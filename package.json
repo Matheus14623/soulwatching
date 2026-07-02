@@ -1,0 +1,20 @@
+{
+  "name": "matheus-observador-cosmico",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Site estático e interativo para Matheus Camargo de Alencar, O Observador Cósmico.",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "verify": "node scripts/verify.mjs"
+  },
+  "keywords": [
+    "portfolio",
+    "static-site",
+    "canvas",
+    "accessibility",
+    "matheus-camargo"
+  ],
+  "license": "UNLICENSED"
+}

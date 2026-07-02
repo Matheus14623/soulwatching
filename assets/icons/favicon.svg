@@ -1,0 +1,7 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="O Observador">
+  <rect width="64" height="64" rx="14" fill="#050608"/>
+  <circle cx="32" cy="32" r="22" fill="none" stroke="#164e63" stroke-width="1.5"/>
+  <circle cx="32" cy="32" r="4" fill="#67e8f9"/>
+  <path d="M11 32c7-11 14-16 21-16s14 5 21 16c-7 11-14 16-21 16s-14-5-21-16Z" fill="none" stroke="#e5e7eb" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M32 7v8M32 49v8M7 32h8M49 32h8" stroke="#8b5cf6" stroke-linecap="round"/>
+</svg>
