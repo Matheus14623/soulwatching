@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="nodeCyan" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#f2ffff" stop-opacity="1"/>
+      <stop offset="0.22" stop-color="#72ecff" stop-opacity="0.92"/>
+      <stop offset="0.62" stop-color="#4b7dff" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#050712" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nodeViolet" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="0.28" stop-color="#ad8cff" stop-opacity="0.82"/>
+      <stop offset="0.72" stop-color="#5a37ff" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#050712" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nodeGold" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#fff8d7" stop-opacity="0.95"/>
+      <stop offset="0.34" stop-color="#f6d56d" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#050712" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="filament" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#72ecff" stop-opacity="0.28"/>
+      <stop offset="0.48" stop-color="#ad8cff" stop-opacity="0.74"/>
+      <stop offset="1" stop-color="#68f0cb" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="thin" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e8fbff" stop-opacity="0.11"/>
+      <stop offset="0.5" stop-color="#72ecff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#ad8cff" stop-opacity="0.12"/>
+    </linearGradient>
+    <filter id="glow" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" fill="none"/>
+
+  <g opacity="0.66" filter="url(#glow)" fill="none" stroke="url(#filament)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-80 720 C105 610 208 690 350 555 S605 292 812 408 S1120 742 1326 520 S1538 316 1688 384" stroke-width="3.2"/>
+    <path d="M28 246 C198 292 257 156 396 212 S632 412 782 230 S1048 118 1218 262 S1452 486 1644 326" stroke-width="2.6"/>
+    <path d="M96 858 C244 758 410 824 548 680 S704 432 912 512 S1210 754 1516 670" stroke-width="2.25"/>
+    <path d="M176 62 C270 236 352 306 522 312 S802 210 942 390 S1040 616 1212 620 S1482 568 1610 762" stroke-width="2"/>
+    <path d="M-44 480 C140 420 250 476 408 396 S646 164 818 212 S1050 424 1198 380 S1432 174 1644 214" stroke-width="1.9"/>
+    <path d="M338 96 C430 256 438 420 586 522 S780 706 1020 652 S1250 348 1448 420" stroke-width="2.2"/>
+    <path d="M220 944 C330 780 522 862 650 730 S780 540 942 590 S1072 790 1246 760 S1475 820 1616 704" stroke-width="1.75"/>
+  </g>
+
+  <g opacity="0.42" fill="none" stroke="url(#thin)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M70 640 C230 560 322 590 436 510 C548 430 650 374 812 408" stroke-width="0.9"/>
+    <path d="M396 212 C496 300 612 280 782 230" stroke-width="0.8"/>
+    <path d="M548 680 C690 620 780 660 942 590" stroke-width="0.9"/>
+    <path d="M912 512 C1048 545 1190 430 1326 520" stroke-width="0.8"/>
+    <path d="M1218 262 C1300 340 1394 358 1448 420" stroke-width="0.8"/>
+    <path d="M522 312 C614 402 642 480 586 522" stroke-width="0.7"/>
+  </g>
+
+  <g opacity="0.9" filter="url(#glow)">
+    <circle cx="168" cy="650" r="66" fill="url(#nodeCyan)"/>
+    <circle cx="350" cy="555" r="58" fill="url(#nodeViolet)"/>
+    <circle cx="518" cy="314" r="52" fill="url(#nodeGold)"/>
+    <circle cx="792" cy="414" r="82" fill="url(#nodeCyan)"/>
+    <circle cx="1014" cy="650" r="62" fill="url(#nodeViolet)"/>
+    <circle cx="1215" cy="260" r="50" fill="url(#nodeGold)"/>
+    <circle cx="1325" cy="520" r="74" fill="url(#nodeCyan)"/>
+    <circle cx="1460" cy="420" r="54" fill="url(#nodeViolet)"/>
+    <circle cx="640" cy="730" r="48" fill="url(#nodeGold)"/>
+    <circle cx="392" cy="210" r="44" fill="url(#nodeCyan)"/>
+  </g>
+
+  <g opacity="0.52" fill="#f5fbff">
+    <circle cx="247" cy="726" r="2.2"/>
+    <circle cx="432" cy="455" r="1.8"/>
+    <circle cx="594" cy="586" r="1.8"/>
+    <circle cx="750" cy="288" r="1.5"/>
+    <circle cx="1088" cy="505" r="1.9"/>
+    <circle cx="1162" cy="716" r="1.4"/>
+    <circle cx="1390" cy="318" r="1.6"/>
+    <circle cx="1518" cy="608" r="1.6"/>
+    <circle cx="84" cy="364" r="1.6"/>
+    <circle cx="902" cy="780" r="1.8"/>
+  </g>
+</svg>

@@ -1,0 +1,637 @@
+--- /mnt/data/orig_obs/matheus-observatorio-ideias/assets/css/styles.css	2026-07-03 18:15:21.000000000 +0000
++++ /mnt/data/work_obs/matheus-observatorio-ideias/assets/css/styles.css	2026-07-03 19:20:03.205548750 +0000
+@@ -438,6 +438,49 @@
+
++
++.hero-media::before,
++.hero-media::after {
++  content: "";
++  position: absolute;
++  inset: -8%;
++  width: 116%;
++  height: 116%;
++  pointer-events: none;
++  opacity: 0;
++  transition: opacity 900ms ease, transform 1200ms ease, filter 900ms ease;
++}
++
++.hero-media::before {
++  z-index: 3;
++  transform: scale(1.08);
++  background:
++    radial-gradient(circle at 22% 58%, rgba(114, 236, 255, 0.24), transparent 18rem),
++    radial-gradient(circle at 50% 35%, rgba(173, 140, 255, 0.18), transparent 21rem),
++    radial-gradient(circle at 79% 48%, rgba(104, 240, 203, 0.16), transparent 18rem),
++    radial-gradient(circle at 62% 78%, rgba(246, 213, 109, 0.12), transparent 16rem);
++  filter: blur(10px) saturate(1.18);
++  mix-blend-mode: screen;
++}
++
++.hero-media::after {
++  z-index: 4;
++  transform: scale(1.06) translate3d(0, 2%, 0);
++  background: url("../images/cosmic-web.svg") center / cover no-repeat;
++  filter: saturate(1.28) contrast(1.12);
++  mix-blend-mode: screen;
++}
++
++body[data-mode="observer"] .hero-media::before {
++  opacity: 0.92;
++  transform: scale(1);
++}
++
++body[data-mode="observer"] .hero-media::after {
++  opacity: 0.86;
++  transform: scale(1) translate3d(0, 0, 0);
+ }
+ 
+ .hero-image,
+@@ -453,6 +496,7 @@
+ }
+ 
+ .hero-image {
++  z-index: 0;
+   object-fit: cover;
+   opacity: 0.22;
+   filter: saturate(0.8) contrast(1.08);
+@@ -460,46 +504,80 @@
+ }
+ 
+ .hero-structure {
++  z-index: 2;
+   object-fit: cover;
+   opacity: 0;
+   mix-blend-mode: screen;
+   transform: scale(1.05);
+-  transition: opacity 700ms ease, transform 900ms ease;
++  filter: saturate(1) blur(0);
++  transition: opacity 700ms ease, transform 900ms ease, filter 700ms ease;
+ }
+ 
+ body[data-mode="observer"] .hero-image {
+-  opacity: 0.08;
+-  filter: saturate(0.5) contrast(1.1);
++  opacity: 0.045;
++  filter: saturate(0.45) contrast(1.18) brightness(0.72);
+ }
+ 
+ body[data-mode="observer"] .hero-structure {
+-  opacity: 0.42;
+-  transform: scale(1);
++  opacity: 0.24;
++  transform: scale(1.02);
++  filter: saturate(1.4) blur(1.4px);
+ }
+ 
+ .flow-canvas {
+-  opacity: 0.95;
++  z-index: 6;
++  opacity: 0;
++  mix-blend-mode: screen;
++  transition: opacity 850ms ease, filter 850ms ease;
++  filter: saturate(1.16) contrast(1.08);
++}
++
++body[data-mode="observer"] .flow-canvas {
++  opacity: 1;
+ }
+ 
+ .hero-vignette {
++  z-index: 5;
+   background:
+     radial-gradient(circle at 70% 40%, rgba(9, 16, 34, 0.1), rgba(5, 7, 18, 0.7) 44%, #050712 86%),
+     linear-gradient(90deg, rgba(5,7,18,0.92), rgba(5,7,18,0.38) 55%, rgba(5,7,18,0.8));
++  transition: background 700ms ease, opacity 700ms ease;
++}
++
++body[data-mode="observer"] .hero-vignette {
++  background:
++    radial-gradient(circle at 64% 44%, rgba(5, 7, 18, 0.03), rgba(5, 7, 18, 0.36) 52%, rgba(5, 7, 18, 0.86) 92%),
++    linear-gradient(90deg, rgba(5, 7, 18, 0.88), rgba(5, 7, 18, 0.16) 54%, rgba(5, 7, 18, 0.62));
+ }
+ 
+ .scanline {
++  z-index: 7;
+   pointer-events: none;
+   opacity: 0.16;
+   background: repeating-linear-gradient(to bottom, transparent 0 6px, rgba(114, 236, 255, 0.08) 7px, transparent 8px);
+ }
+ 
++body[data-mode="observer"] .scanline {
++  opacity: 0.24;
++}
++
+ .stellar-grid {
++  z-index: 1;
+   opacity: 0.25;
+   background:
+     linear-gradient(rgba(114, 236, 255, 0.08) 1px, transparent 1px),
+     linear-gradient(90deg, rgba(114, 236, 255, 0.08) 1px, transparent 1px);
+   background-size: 96px 96px;
+   mask-image: radial-gradient(circle at 60% 44%, black, transparent 70%);
++  transition: opacity 700ms ease, background-size 900ms ease;
++}
++
++body[data-mode="observer"] .stellar-grid {
++  opacity: 0.54;
++  background:
++    linear-gradient(rgba(114, 236, 255, 0.11) 1px, transparent 1px),
++    linear-gradient(90deg, rgba(173, 140, 255, 0.09) 1px, transparent 1px);
++  background-size: 72px 72px;
+ }
+ 
+ .hero-layout {
+@@ -577,6 +655,23 @@
+   box-shadow: var(--shadow-glow);
+ }
+ 
++.button-ghost[aria-pressed="true"] {
++  color: #e8fbff;
++  text-shadow: 0 0 22px rgba(114, 236, 255, 0.42);
++}
++
++body[data-mode="observer"] .hero-copy::before {
++  content: "";
++  position: absolute;
++  inset: -1.6rem -1.4rem;
++  z-index: -1;
++  border-radius: var(--radius-xl);
++  background: radial-gradient(circle at 14% 18%, rgba(114, 236, 255, 0.13), transparent 18rem), rgba(5, 7, 18, 0.18);
++  box-shadow: 0 0 72px rgba(114, 236, 255, 0.06);
++  backdrop-filter: blur(2px);
++  pointer-events: none;
++}
++
+ .microcopy {
+   margin-top: 1rem;
+   color: var(--muted);
+@@ -1755,6 +1850,15 @@
+   .data-point {
+     display: none !important;
+   }
++
++  body[data-mode="observer"] .hero-media::after {
++    opacity: 0.7;
++    transform: scale(1.18);
++  }
++
++  body[data-mode="observer"] .flow-canvas {
++    opacity: 0.76;
++  }
+ }
+ 
+ @media (max-width: 460px) {
+--- /mnt/data/orig_obs/matheus-observatorio-ideias/assets/js/observer.js	2026-07-03 18:17:13.000000000 +0000
++++ /mnt/data/work_obs/matheus-observatorio-ideias/assets/js/observer.js	2026-07-03 19:20:37.473826154 +0000
+@@ -1,67 +1,52 @@
+ import { $, $$, clamp, debounce, prefersReducedMotion, safeSetText, setPressed } from './utils.js';
+ 
+-class FlowParticle {
+-  constructor(width, height, fadeIn = false) {
+-    this.width = width;
+-    this.height = height;
+-    this.reset(fadeIn);
+-  }
+-
+-  reset(fadeIn = false) {
+-    this.x = Math.random() * this.width;
+-    this.y = Math.random() * this.height;
+-    this.vx = (Math.random() - 0.5) * 0.18;
+-    this.vy = (Math.random() - 0.5) * 0.18;
+-    this.size = Math.random() * 1.6 + 0.45;
+-    this.life = Math.random() * 280 + 150;
+-    this.maxLife = this.life;
+-    this.alpha = fadeIn ? 0 : Math.random() * 0.65 + 0.35;
+-    this.hue = Math.random() > 0.45 ? 190 + Math.random() * 35 : 255 + Math.random() * 38;
+-  }
+-
+-  resize(width, height) {
+-    this.width = width;
+-    this.height = height;
+-    this.x = clamp(this.x, 0, width);
+-    this.y = clamp(this.y, 0, height);
+-  }
+-
+-  update() {
+-    const angle = (Math.cos(this.x * 0.0022) + Math.sin(this.y * 0.002)) * Math.PI * 1.42;
+-    this.vx += Math.cos(angle) * 0.0042;
+-    this.vy += Math.sin(angle) * 0.0031;
+-    this.vx *= 0.985;
+-    this.vy *= 0.985;
+-    this.x += this.vx;
+-    this.y += this.vy;
+-    this.life -= 1;
+-
+-    if (this.life > this.maxLife - 75) this.alpha = clamp(this.alpha + 0.018, 0, 0.9);
+-    if (this.life < 55) this.alpha = clamp(this.alpha - 0.018, 0, 0.9);
+-
+-    if (this.x < -60) this.x = this.width + 60;
+-    if (this.x > this.width + 60) this.x = -60;
+-    if (this.y < -60) this.y = this.height + 60;
+-    if (this.y > this.height + 60) this.y = -60;
+-    if (this.life <= 0 || !Number.isFinite(this.x) || !Number.isFinite(this.y)) this.reset(true);
+-  }
+-
+-  draw(ctx) {
+-    ctx.fillStyle = `hsla(${this.hue}, 90%, 68%, ${this.alpha})`;
+-    ctx.beginPath();
+-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+-    ctx.fill();
++const TAU = Math.PI * 2;
++
++function randomBetween(min, max) {
++  return min + Math.random() * (max - min);
++}
++
++function distanceSq(a, b) {
++  const dx = a.x - b.x;
++  const dy = a.y - b.y;
++  return dx * dx + dy * dy;
++}
++
++function quadraticPoint(a, c, b, t) {
++  const inv = 1 - t;
++  return {
++    x: inv * inv * a.x + 2 * inv * t * c.x + t * t * b.x,
++    y: inv * inv * a.y + 2 * inv * t * c.y + t * t * b.y,
++  };
++}
++
++class WebNode {
++  constructor(x, y, mass = 1) {
++    this.x = x;
++    this.y = y;
++    this.mass = mass;
++    this.radius = randomBetween(1.4, 3.8) * mass;
++    this.hue = Math.random() > 0.62 ? randomBetween(42, 52) : randomBetween(188, 224);
++    this.phase = Math.random() * TAU;
++  }
++
++  resize(scaleX, scaleY) {
++    this.x *= scaleX;
++    this.y *= scaleY;
+   }
+ }
+ 
+-class FlowField {
++class CosmicWeb {
+   constructor(canvas) {
+     this.canvas = canvas;
+     this.ctx = canvas?.getContext('2d', { alpha: true });
+     this.width = 0;
+     this.height = 0;
+-    this.particles = [];
++    this.nodes = [];
++    this.edges = [];
++    this.signals = [];
+     this.frame = 0;
++    this.startTime = 0;
+     this.isActive = false;
+     this.tick = this.tick.bind(this);
+   }
+@@ -69,36 +54,134 @@
+   resize() {
+     if (!this.canvas || !this.ctx) return;
+     const rect = this.canvas.getBoundingClientRect();
+-    this.width = Math.max(1, rect.width);
+-    this.height = Math.max(1, rect.height);
++    const nextWidth = Math.max(1, rect.width);
++    const nextHeight = Math.max(1, rect.height);
+     const dpr = Math.min(window.devicePixelRatio || 1, 2);
+-    this.canvas.width = Math.round(this.width * dpr);
+-    this.canvas.height = Math.round(this.height * dpr);
++
++    const oldWidth = this.width || nextWidth;
++    const oldHeight = this.height || nextHeight;
++    this.width = nextWidth;
++    this.height = nextHeight;
++    this.canvas.width = Math.round(nextWidth * dpr);
++    this.canvas.height = Math.round(nextHeight * dpr);
+     this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+ 
+-    const desiredCount = clamp(Math.round((this.width * this.height) / 8200), 70, 240);
+-    if (this.particles.length === 0) {
+-      this.particles = Array.from({ length: desiredCount }, () => new FlowParticle(this.width, this.height));
++    if (!this.nodes.length || Math.abs(nextWidth - oldWidth) > 120 || Math.abs(nextHeight - oldHeight) > 120) {
++      this.buildWeb();
+       return;
+     }
+ 
+-    this.particles.forEach((particle) => particle.resize(this.width, this.height));
+-    while (this.particles.length < desiredCount) this.particles.push(new FlowParticle(this.width, this.height, true));
+-    while (this.particles.length > desiredCount) this.particles.pop();
++    const scaleX = nextWidth / oldWidth;
++    const scaleY = nextHeight / oldHeight;
++    this.nodes.forEach((node) => node.resize(scaleX, scaleY));
++    this.buildEdges();
++    this.seedSignals();
++  }
++
++  buildWeb() {
++    if (!this.width || !this.height) return;
++
++    const anchors = [
++      [0.12, 0.64, 1.34],
++      [0.26, 0.28, 1.1],
++      [0.42, 0.58, 1.46],
++      [0.58, 0.28, 1.18],
++      [0.72, 0.68, 1.4],
++      [0.86, 0.42, 1.22],
++    ];
++
++    const nodeCount = clamp(Math.round((this.width * this.height) / 23500), 32, 68);
++    const nodes = anchors.map(([x, y, mass]) => new WebNode(x * this.width, y * this.height, mass));
++
++    while (nodes.length < nodeCount) {
++      const [ax, ay] = anchors[Math.floor(Math.random() * anchors.length)];
++      const spreadX = this.width * randomBetween(0.06, 0.18);
++      const spreadY = this.height * randomBetween(0.06, 0.18);
++      const x = clamp(ax * this.width + randomBetween(-spreadX, spreadX), -40, this.width + 40);
++      const y = clamp(ay * this.height + randomBetween(-spreadY, spreadY), -40, this.height + 40);
++      nodes.push(new WebNode(x, y, randomBetween(0.66, 1.16)));
++    }
++
++    this.nodes = nodes;
++    this.buildEdges();
++    this.seedSignals();
++  }
++
++  buildEdges() {
++    const nextEdges = [];
++    const seen = new Set();
++    const maxLink = Math.max(this.width, this.height) * 0.31;
++    const maxLinkSq = maxLink * maxLink;
++
++    this.nodes.forEach((node, index) => {
++      const nearest = this.nodes
++        .map((candidate, candidateIndex) => ({ candidate, candidateIndex, dist: distanceSq(node, candidate) }))
++        .filter((entry) => entry.candidateIndex !== index && entry.dist < maxLinkSq)
++        .sort((a, b) => a.dist - b.dist)
++        .slice(0, node.mass > 1.2 ? 4 : 3);
++
++      nearest.forEach(({ candidate, candidateIndex, dist }) => {
++        const a = Math.min(index, candidateIndex);
++        const b = Math.max(index, candidateIndex);
++        const key = `${a}:${b}`;
++        if (seen.has(key)) return;
++        seen.add(key);
++
++        const distance = Math.sqrt(dist);
++        const midX = (node.x + candidate.x) / 2;
++        const midY = (node.y + candidate.y) / 2;
++        const angle = Math.atan2(candidate.y - node.y, candidate.x - node.x);
++        const bend = Math.sin((index + candidateIndex) * 1.7) * clamp(distance * 0.18, 12, 70);
++        const control = {
++          x: midX + Math.cos(angle + Math.PI / 2) * bend,
++          y: midY + Math.sin(angle + Math.PI / 2) * bend,
++        };
++
++        nextEdges.push({
++          a: node,
++          b: candidate,
++          control,
++          distance,
++          alpha: clamp(1 - distance / maxLink, 0.08, 0.78),
++          phase: Math.random() * TAU,
++        });
++      });
++    });
++
++    this.edges = nextEdges;
++  }
++
++  seedSignals() {
++    const total = clamp(Math.round(this.edges.length * 0.24), 10, 24);
++    this.signals = Array.from({ length: total }, () => this.createSignal());
++  }
++
++  createSignal() {
++    const edge = this.edges[Math.floor(Math.random() * Math.max(1, this.edges.length))];
++    return {
++      edge,
++      progress: Math.random(),
++      speed: randomBetween(0.00055, 0.0017),
++      size: randomBetween(1.1, 2.4),
++      hue: Math.random() > 0.72 ? 48 : randomBetween(188, 215),
++    };
+   }
+ 
+   setActive(nextActive) {
+     const active = Boolean(nextActive && this.canvas && this.ctx);
+     if (active === this.isActive) return;
+     this.isActive = active;
++
+     if (active) {
+       this.resize();
++      this.startTime = performance.now();
+       this.frame = requestAnimationFrame(this.tick);
+-    } else {
+-      cancelAnimationFrame(this.frame);
+-      this.frame = 0;
+-      this.clear();
++      return;
+     }
++
++    cancelAnimationFrame(this.frame);
++    this.frame = 0;
++    this.clear();
+   }
+ 
+   clear() {
+@@ -106,39 +189,150 @@
+     this.ctx.clearRect(0, 0, this.width, this.height);
+   }
+ 
+-  tick() {
+-    if (!this.isActive || !this.ctx) return;
+-    const ctx = this.ctx;
+-    ctx.clearRect(0, 0, this.width, this.height);
++  drawVoidContours(ctx, elapsed) {
++    ctx.save();
++    ctx.globalAlpha = 0.22;
++    ctx.strokeStyle = 'rgba(114, 236, 255, 0.13)';
++    ctx.lineWidth = 0.8;
++    ctx.setLineDash([3, 15]);
++
++    const rings = [
++      [0.32, 0.42, 0.18, 0.08],
++      [0.66, 0.48, 0.24, 0.12],
++      [0.52, 0.75, 0.2, 0.1],
++    ];
++
++    rings.forEach(([x, y, rx, ry], index) => {
++      ctx.beginPath();
++      ctx.ellipse(
++        x * this.width,
++        y * this.height,
++        rx * this.width * (1 + Math.sin(elapsed * 0.00025 + index) * 0.025),
++        ry * this.height,
++        Math.sin(index + 0.5) * 0.4,
++        0,
++        TAU,
++      );
++      ctx.stroke();
++    });
++
++    ctx.restore();
++  }
++
++  drawFilaments(ctx, elapsed) {
++    ctx.save();
++    ctx.globalCompositeOperation = 'lighter';
++    ctx.lineCap = 'round';
++    ctx.lineJoin = 'round';
++
++    this.edges.forEach((edge) => {
++      const pulse = 0.72 + Math.sin(elapsed * 0.0012 + edge.phase) * 0.28;
++      const alpha = edge.alpha * pulse;
++      const gradient = ctx.createLinearGradient(edge.a.x, edge.a.y, edge.b.x, edge.b.y);
++      gradient.addColorStop(0, `rgba(114, 236, 255, ${alpha * 0.08})`);
++      gradient.addColorStop(0.48, `rgba(173, 140, 255, ${alpha * 0.34})`);
++      gradient.addColorStop(1, `rgba(104, 240, 203, ${alpha * 0.1})`);
++
++      ctx.shadowBlur = 18;
++      ctx.shadowColor = 'rgba(114, 236, 255, 0.16)';
++      ctx.strokeStyle = gradient;
++      ctx.lineWidth = clamp(edge.alpha * 3.2, 0.45, 1.85);
++      ctx.beginPath();
++      ctx.moveTo(edge.a.x, edge.a.y);
++      ctx.quadraticCurveTo(edge.control.x, edge.control.y, edge.b.x, edge.b.y);
++      ctx.stroke();
++
++      ctx.shadowBlur = 0;
++      ctx.strokeStyle = `rgba(232, 251, 255, ${alpha * 0.08})`;
++      ctx.lineWidth = 0.45;
++      ctx.beginPath();
++      ctx.moveTo(edge.a.x, edge.a.y);
++      ctx.quadraticCurveTo(edge.control.x, edge.control.y, edge.b.x, edge.b.y);
++      ctx.stroke();
++    });
++
++    ctx.restore();
++  }
++
++  drawNodes(ctx, elapsed) {
++    ctx.save();
++    ctx.globalCompositeOperation = 'lighter';
++
++    this.nodes.forEach((node) => {
++      const pulse = 1 + Math.sin(elapsed * 0.0018 + node.phase) * 0.24;
++      const radius = node.radius * pulse;
++      const glow = radius * 8.8;
++      const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, glow);
++      gradient.addColorStop(0, `hsla(${node.hue}, 100%, 88%, 0.92)`);
++      gradient.addColorStop(0.18, `hsla(${node.hue}, 100%, 64%, 0.56)`);
++      gradient.addColorStop(0.56, `hsla(${node.hue}, 100%, 58%, 0.16)`);
++      gradient.addColorStop(1, `hsla(${node.hue}, 100%, 58%, 0)`);
++
++      ctx.fillStyle = gradient;
++      ctx.beginPath();
++      ctx.arc(node.x, node.y, glow, 0, TAU);
++      ctx.fill();
++
++      ctx.fillStyle = `hsla(${node.hue}, 100%, 88%, 0.92)`;
++      ctx.beginPath();
++      ctx.arc(node.x, node.y, Math.max(1.15, radius), 0, TAU);
++      ctx.fill();
++    });
++
++    ctx.restore();
++  }
++
++  drawSignals(ctx) {
++    if (!this.edges.length) return;
++
++    ctx.save();
+     ctx.globalCompositeOperation = 'lighter';
+ 
+-    const maxDistance = clamp(Math.min(this.width, this.height) * 0.17, 80, 132);
+-    const maxDistanceSq = maxDistance * maxDistance;
++    this.signals.forEach((signal, index) => {
++      if (!signal.edge) {
++        this.signals[index] = this.createSignal();
++        return;
++      }
+ 
+-    for (let i = 0; i < this.particles.length; i += 1) {
+-      const p1 = this.particles[i];
+-      p1.update();
+-      p1.draw(ctx);
+-
+-      for (let j = i + 1; j < this.particles.length; j += 1) {
+-        const p2 = this.particles[j];
+-        const dx = p1.x - p2.x;
+-        const dy = p1.y - p2.y;
+-        const distSq = dx * dx + dy * dy;
+-        if (distSq >= maxDistanceSq) continue;
+-
+-        const dist = Math.sqrt(distSq);
+-        const alpha = (1 - dist / maxDistance) * Math.min(p1.alpha, p2.alpha) * 0.32;
+-        ctx.strokeStyle = `rgba(138, 92, 246, ${alpha})`;
+-        ctx.lineWidth = 0.35;
+-        ctx.beginPath();
+-        ctx.moveTo(p1.x, p1.y);
+-        ctx.lineTo(p2.x, p2.y);
+-        ctx.stroke();
++      signal.progress += signal.speed;
++      if (signal.progress > 1) {
++        this.signals[index] = this.createSignal();
++        this.signals[index].progress = 0;
++        return;
+       }
+-    }
+ 
+-    ctx.globalCompositeOperation = 'source-over';
++      const point = quadraticPoint(signal.edge.a, signal.edge.control, signal.edge.b, signal.progress);
++      const previous = quadraticPoint(signal.edge.a, signal.edge.control, signal.edge.b, clamp(signal.progress - 0.035, 0, 1));
++
++      ctx.strokeStyle = `hsla(${signal.hue}, 100%, 70%, 0.38)`;
++      ctx.lineWidth = signal.size * 0.7;
++      ctx.shadowBlur = 18;
++      ctx.shadowColor = `hsla(${signal.hue}, 100%, 70%, 0.48)`;
++      ctx.beginPath();
++      ctx.moveTo(previous.x, previous.y);
++      ctx.lineTo(point.x, point.y);
++      ctx.stroke();
++
++      ctx.fillStyle = `hsla(${signal.hue}, 100%, 80%, 0.92)`;
++      ctx.beginPath();
++      ctx.arc(point.x, point.y, signal.size, 0, TAU);
++      ctx.fill();
++    });
++
++    ctx.restore();
++  }
++
++  tick(time) {
++    if (!this.isActive || !this.ctx) return;
++    const elapsed = time - this.startTime;
++    const ctx = this.ctx;
++
++    ctx.clearRect(0, 0, this.width, this.height);
++    this.drawVoidContours(ctx, elapsed);
++    this.drawFilaments(ctx, elapsed);
++    this.drawSignals(ctx);
++    this.drawNodes(ctx, elapsed);
++
+     this.frame = requestAnimationFrame(this.tick);
+   }
+ }
+@@ -148,7 +342,7 @@
+   const buttons = $$('[data-observer-toggle]');
+   const statusText = $('[data-status-text]');
+   const canvas = $('[data-flow-canvas]');
+-  const flow = new FlowField(canvas);
++  const flow = new CosmicWeb(canvas);
+   let isObserverMode = false;
+   let isHeroVisible = true;
+ 
+@@ -159,7 +353,7 @@
+       const label = $('[data-toggle-label]', button);
+       safeSetText(label, isObserverMode ? 'Desativar visão estrutural' : 'Ativar visão estrutural');
+     });
+-    safeSetText(statusText, isObserverMode ? 'Malha estrutural' : 'Campo de ideias');
++    safeSetText(statusText, isObserverMode ? 'Teia cósmica estrutural' : 'Campo de ideias');
+     flow.setActive(isObserverMode && isHeroVisible && !prefersReducedMotion());
+   };
+ 

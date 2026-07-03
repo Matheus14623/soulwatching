@@ -25,7 +25,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=structural-v2" />
   </head>
   <body data-mode="normal">
     <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
@@ -67,19 +67,19 @@
       <section class="hero" id="topo" aria-labelledby="hero-title">
         <div class="hero-media" aria-hidden="true">
           <img class="hero-image" src="assets/images/rain-window.webp" alt="" decoding="async" />
-          <img class="hero-structure" src="assets/images/calabi-yau-wireframe.webp" alt="" decoding="async" />
+          <!-- <img class="hero-structure" src="assets/images/calabi-yau-wireframe.webp" alt="" decoding="async" /> -->
           <canvas class="flow-canvas" data-flow-canvas></canvas>
           <div class="stellar-grid"></div>
           <div class="hero-vignette"></div>
           <div class="scanline"></div>
         </div>
 
-        <div class="data-point data-point-a" data-observer-data aria-hidden="true">
+        <!-- <div class="data-point data-point-a" data-observer-data aria-hidden="true">
           CONSTELAÇÃO: IDEIAS<br />ESTADO: EM EXPANSÃO
         </div>
         <div class="data-point data-point-b" data-observer-data aria-hidden="true">
           MALHA: HIPÓTESES<br />SINCRONIA: LOCAL
-        </div>
+        </div> -->
 
         <div class="container hero-layout">
           <div class="hero-copy">
@@ -269,8 +269,8 @@
             <p class="section-kicker">06 · Experimento de ressonância</p>
             <h2 id="resonance-title">Há ideias que só aparecem quando o sistema vibra.</h2>
             <!-- <p class="section-intro">
-               A interação de cordas foi preservada da versão anterior como experimento sensorial: código, onda, gesto e ruído. O visual funciona sempre; o áudio só inicia com consentimento explícito.
-            </p> --> 
+              A interação de cordas foi preservada da versão anterior como experimento sensorial: código, onda, gesto e ruído. O visual funciona sempre; o áudio só inicia com consentimento explícito.
+            </p> -->
             <button class="button button-secondary" type="button" data-audio-toggle aria-pressed="false">Ativar áudio sutil</button>
             <p class="audio-status" aria-live="polite" data-audio-status>Áudio desligado. As cordas visuais já estão ativas.</p>
           </div>
@@ -340,6 +340,9 @@
           <div>
             <p class="section-kicker">09 · Sinal</p>
             <h2 id="contact-title">Contato sem inventar canais.</h2>
+            <!-- <p class="section-intro">
+              Como nenhum e-mail público foi fornecido, o formulário prepara e copia a mensagem. Ao configurar um e-mail em <code>assets/js/config.js</code>, ele passa a abrir o cliente de e-mail automaticamente.
+            </p> -->
           </div>
 
           <form class="contact-form" data-contact-form novalidate>
@@ -385,6 +388,6 @@
       </div>
     </noscript>
 
-    <script type="module" src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/main.js?v=structural-v2"></script>
   </body>
 </html>
