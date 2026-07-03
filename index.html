@@ -3,23 +3,23 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Manifesto interativo de Matheus Camargo de Alencar: desenvolvedor full-stack, arquiteto de sistemas e observador do cosmos." />
+    <meta name="description" content="Observatório de Ideias de Matheus Camargo: teorias em desenvolvimento, mapa conceitual, ensaios futuros e experimentos filosóficos sobre cosmos, tempo, vazio e pensamento." />
     <meta name="author" content="Matheus Camargo de Alencar" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#050608" />
+    <meta name="theme-color" content="#050712" />
 
-    <meta property="og:title" content="Matheus Camargo de Alencar | O Observador Cósmico" />
-    <meta property="og:description" content="Uma experiência web sobre código, filosofia, astronomia e a busca pelo backend da existência." />
+    <meta property="og:title" content="Observatório de Ideias | Matheus Camargo" />
+    <meta property="og:description" content="Um arquivo vivo de hipóteses, teorias em desenvolvimento e mapas conceituais entre filosofia, física, programação e cosmos." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="assets/images/og-observador.jpg" />
+    <meta property="og:image" content="assets/images/og-observatorio.jpg" />
     <meta property="og:locale" content="pt_BR" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Matheus Camargo de Alencar | O Observador Cósmico" />
-    <meta name="twitter:description" content="Código, filosofia e cosmos em uma experiência interativa." />
-    <meta name="twitter:image" content="assets/images/og-observador.jpg" />
+    <meta name="twitter:title" content="Observatório de Ideias | Matheus Camargo" />
+    <meta name="twitter:description" content="Teorias em desenvolvimento, constelações conceituais e um arquivo de pensamento em expansão." />
+    <meta name="twitter:image" content="assets/images/og-observatorio.jpg" />
 
-    <title>Matheus Camargo de Alencar | O Observador Cósmico</title>
+    <title>Observatório de Ideias | Matheus Camargo</title>
     <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="assets/images/rain-window.webp" as="image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,8 +35,8 @@
         <a class="brand" href="#topo" aria-label="Voltar ao início">
           <span class="brand-mark" aria-hidden="true"></span>
           <span>
-            <strong>O Observador</strong>
-            <small>Janela do 11º andar</small>
+            <strong>Observatório</strong>
+            <small>arquivo de ideias em órbita</small>
           </span>
         </a>
 
@@ -48,16 +48,17 @@
         </button>
 
         <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
-          <a href="#manifesto">Manifesto</a>
-          <a href="#sistema">Sistema</a>
-          <a href="#filosofia">Bússola</a>
-          <a href="#ressonancia">Ressonância</a>
+          <a href="#teorias">Teorias</a>
+          <a href="#mapa">Mapa</a>
+          <a href="#arquivo">Arquivo</a>
+          <a href="#filosofia">Filosofia</a>
+          <a href="#sobre">Sobre</a>
           <a href="#contato">Contato</a>
         </nav>
 
         <div class="status-pill" aria-live="polite" data-status-pill>
           <span class="status-dot" aria-hidden="true"></span>
-          <span data-status-text>Rotina biológica</span>
+          <span data-status-text>Campo de ideias</span>
         </div>
       </div>
     </header>
@@ -68,135 +69,152 @@
           <img class="hero-image" src="assets/images/rain-window.webp" alt="" decoding="async" />
           <img class="hero-structure" src="assets/images/calabi-yau-wireframe.webp" alt="" decoding="async" />
           <canvas class="flow-canvas" data-flow-canvas></canvas>
+          <div class="stellar-grid"></div>
           <div class="hero-vignette"></div>
           <div class="scanline"></div>
         </div>
 
         <div class="data-point data-point-a" data-observer-data aria-hidden="true">
-          VECTOR_FIELD: WIND<br />VEL: 12m/s
+          CONSTELAÇÃO: IDEIAS<br />ESTADO: EM EXPANSÃO
         </div>
         <div class="data-point data-point-b" data-observer-data aria-hidden="true">
-          GEOMETRIA: NÃO-EUCLIDIANA<br />CURVATURA: POSITIVA
+          MALHA: HIPÓTESES<br />SINCRONIA: LOCAL
         </div>
 
-        <div class="container hero-content">
-          <p class="eyebrow">LATITUDE: -23.5505 · ENTROPIA: CRESCENTE</p>
-          <h1 id="hero-title">Mapeando o backend da existência.</h1>
-          <p class="hero-lead">
-            Uma experiência interativa sobre Matheus Camargo de Alencar: desenvolvedor full-stack, arquiteto de sistemas e observador do cosmos.
-          </p>
-          <div class="hero-actions">
-            <button class="button button-primary" type="button" data-observer-toggle aria-pressed="false">
-              <span data-toggle-label>Ativar visão estrutural</span>
-            </button>
-            <a class="button button-secondary" href="#manifesto">Ler manifesto</a>
+        <div class="container hero-layout">
+          <div class="hero-copy">
+            <p class="eyebrow">OBSERVATÓRIO · LABORATÓRIO · ARQUIVO CÓSMICO</p>
+            <h1 id="hero-title">Ideias ainda em órbita.</h1>
+            <p class="hero-lead">
+              Um espaço para organizar hipóteses, observar padrões e registrar teorias em movimento. Nem todo pensamento nasce pronto: alguns começam como ruído, intuição, dúvida ou colisão entre conceitos.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#teorias">Explorar teorias</a>
+              <a class="button button-secondary" href="#mapa">Ver mapa de ideias</a>
+              <button class="button button-ghost" type="button" data-observer-toggle aria-pressed="false">
+                <span data-toggle-label>Ativar visão estrutural</span>
+              </button>
+            </div>
+            <p class="microcopy">As ideias aqui não são verdades finais. São estruturas em desenvolvimento.</p>
           </div>
-          <p class="microcopy">Cuidado: saber é perturbar o sistema observado.</p>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="solar-system">
+              <span class="sun"></span>
+              <span class="orbit orbit-1"><i></i></span>
+              <span class="orbit orbit-2"><i></i></span>
+              <span class="orbit orbit-3"><i></i></span>
+              <span class="orbit orbit-4"><i></i></span>
+              <span class="probe">↗</span>
+              <span class="coordinate coordinate-a">T-01</span>
+              <span class="coordinate coordinate-b">ER=EPR</span>
+              <span class="coordinate coordinate-c">Δt</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="section split-section" id="manifesto" aria-labelledby="manifesto-title">
-        <div class="container">
-          <div class="section-kicker">01 · Manifesto</div>
-          <div class="section-heading">
-            <h2 id="manifesto-title">Entre a matéria e a mente, o observador compila sentido.</h2>
+      <section class="section aperture-section" id="campo" aria-labelledby="campo-title">
+        <div class="container aperture-grid">
+          <div>
+            <p class="section-kicker">01 · Campo de investigação</p>
+            <h2 id="campo-title">Entre filosofia, ciência, imaginação e engenharia, o pensamento ganha uma arquitetura.</h2>
+          </div>
+          <div class="aperture-copy">
             <p>
-              O projeto original já trazia essa dualidade: corpo preso à rotina, mente mirando a física, a astronomia e a arquitetura invisível por trás da realidade.
+              Isto não é um caderno íntimo. Também não é um monumento pessoal. É um observatório: um lugar para catalogar perguntas, testar metáforas, separar hipótese de intuição e transformar fragmentos em mapas mais legíveis.
+            </p>
+            <p>
+              Matheus Camargo aparece aqui como origem humana do campo de investigação: desenvolvedor, observador e organizador de ideias que atravessam tempo, cosmologia, programação, filosofia e limites da percepção.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section theories-section" id="teorias" aria-labelledby="theories-title">
+        <div class="container">
+          <div class="section-heading theories-heading">
+            <div>
+              <p class="section-kicker">02 · Teorias em desenvolvimento</p>
+              <h2 id="theories-title">Hipóteses como planetas: algumas densas, outras ainda gasosas.</h2>
+            </div>
+            <p>
+              Cada teoria é tratada como uma linha de pesquisa em evolução. O objetivo não é declarar uma conclusão definitiva, mas tornar visível a pergunta central, os conceitos conectados e o que ainda precisa amadurecer.
             </p>
           </div>
 
-          <div class="split-grid">
-            <article class="split-card earthly-card">
-              <div class="card-line"></div>
-              <p class="card-label">Camada terrena</p>
-              <h3>A matéria</h3>
-              <p>
-                Boletos, deslocamentos, estudo, trabalho e decisões práticas. A sobrevivência estratégica não é oposta ao pensamento cósmico; é a base que sustenta o observatório.
-              </p>
-              <dl class="spec-list">
-                <div><dt>Modo</dt><dd>Rotina · corpo · constância</dd></div>
-                <div><dt>Meta preservada</dt><dd>FUVEST / USP</dd></div>
-                <div><dt>Objeto simbólico</dt><dd>Transporte para o observatório</dd></div>
-              </dl>
-              <div class="car-stack" aria-label="Imagens simbólicas dos carros preservados do projeto original">
-                <img src="assets/images/celta-2010.webp" alt="Ilustração de um Chevrolet Celta prata 2010 em rua urbana" loading="lazy" decoding="async" />
-                <img src="assets/images/ford-focus.webp" alt="Ilustração de um Ford Focus hatch preto" loading="lazy" decoding="async" />
-              </div>
-            </article>
-
-            <article class="split-card cosmic-card">
-              <div class="card-line"></div>
-              <p class="card-label">Camada abstrata</p>
-              <h3>A mente</h3>
-              <p>
-                O olhar que transforma trânsito em dinâmica dos fluidos, vento em campo vetorial e ansiedade em uma questão de escala. A interface é o cotidiano; o interesse é o código-fonte.
-              </p>
-              <dl class="spec-list spec-list-right">
-                <div><dt>Modo</dt><dd>Macro · assíncrono · sistêmico</dd></div>
-                <div><dt>Busca</dt><dd>Ground truth do cosmos</dd></div>
-                <div><dt>Linguagem</dt><dd>Programação aplicada à física</dd></div>
-              </dl>
-              <figure class="wireframe-frame">
-                <img src="assets/images/calabi-yau-wireframe.webp" alt="Visualização dourada de uma estrutura matemática complexa em fundo escuro" loading="lazy" decoding="async" />
-                <figcaption>Estrutura como metáfora: dobras, campos e sistemas invisíveis.</figcaption>
-              </figure>
-            </article>
+          <div class="theory-toolbar" aria-label="Filtros de teorias">
+            <label class="search-field" for="theory-search">
+              <span>Buscar no arquivo</span>
+              <input id="theory-search" type="search" placeholder="latência, vazio, tempo, Poincaré..." data-theory-search />
+            </label>
+            <div class="filter-row" data-theory-filters></div>
           </div>
 
-          <blockquote class="bridge-quote">
-            “Resolver a matéria para liberar espaço ao espírito: o transporte é só uma etapa; o destino é o observatório.”
-          </blockquote>
+          <div class="theory-lab">
+            <div>
+              <p class="result-count" data-theory-count aria-live="polite"></p>
+              <div class="theory-grid" data-theory-grid></div>
+              <p class="empty-state" hidden data-theory-empty>Nenhuma teoria encontrada com esse filtro. Tente outro termo ou volte para “Todas”.</p>
+            </div>
+
+            <aside class="theory-detail" data-theory-detail aria-live="polite" aria-label="Detalhes da teoria selecionada"></aside>
+          </div>
         </div>
       </section>
 
-      <section class="section system-section" id="sistema" aria-labelledby="system-title">
+      <section class="section constellation-section" id="mapa" aria-labelledby="map-title">
         <div class="container">
-          <div class="section-kicker">02 · Sistema</div>
-          <div class="system-layout">
-            <div>
-              <h2 id="system-title">Um full-stack que pensa em camadas: UI, backend, física e consciência.</h2>
-              <p class="section-intro">
-                A identidade final não deveria virar um template corporativo genérico. Ela precisava conservar o tom filosófico, mas organizar a mensagem como produto digital: clara, navegável, responsiva e pronta para edição.
-              </p>
-            </div>
-
-            <div class="code-card" aria-label="Algoritmo de progressão cósmica">
-              <div class="code-card-header">
-                <span></span><span></span><span></span>
-                <strong>evolucao.js</strong>
-              </div>
-              <pre><code>function evolucao(input_diario) {
-  if (probabilidade > zero_absoluto) {
-    escolher_epsilon();
-  }
-
-  enfrentar_dor_aguda(crescimento);
-  evitar_dor_cronica(arrependimento);
-  return input_interno_maximo;
-}</code></pre>
-            </div>
+          <div class="section-heading centered narrow">
+            <p class="section-kicker">03 · Mapa de ideias</p>
+            <h2 id="map-title">Uma constelação não explica o céu. Ela ajuda a navegar por ele.</h2>
+            <p>
+              As conexões abaixo não são provas; são trilhas conceituais. Uma teoria puxa outra como gravidade sutil: luz, vazio, recorrência, buracos negros, tempo e informação.
+            </p>
           </div>
 
-          <div class="expertise-grid" aria-label="Áreas de identidade e atuação">
-            <article class="expertise-card">
-              <span class="card-index">01</span>
-              <h3>Desenvolvimento Full-Stack</h3>
-              <p>Arquitetura de interfaces, lógica de aplicação e organização de sistemas com código limpo e editável.</p>
+          <div class="constellation-map" data-constellation-map>
+            <svg class="map-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" data-map-lines></svg>
+            <div class="map-nodes" data-map-nodes></div>
+            <div class="map-core" aria-hidden="true">
+              <span></span>
+              <strong>Arquivo<br />em órbita</strong>
+            </div>
+          </div>
+          <p class="map-caption" data-map-caption>Clique em uma estrela para aproximar a teoria correspondente.</p>
+        </div>
+      </section>
+
+      <section class="section archive-section" id="arquivo" aria-labelledby="archive-title">
+        <div class="container archive-layout">
+          <div>
+            <p class="section-kicker">04 · Artigos, ensaios e registros</p>
+            <h2 id="archive-title">Um arquivo preparado para receber pensamento com versão, contexto e maturação.</h2>
+            <p class="section-intro">
+              O espaço de publicação foi desenhado para não fingir que já existem ensaios completos. Por enquanto, ele funciona como estrutura editorial: categorias, critérios e caminhos para transformar teoria em texto público.
+            </p>
+          </div>
+
+          <div class="archive-grid" aria-label="Estrutura editorial planejada">
+            <article class="archive-card">
+              <span>Formato 01</span>
+              <h3>Ensaios longos</h3>
+              <p>Textos para desenvolver uma teoria com premissas, analogias, limites, objeções e evolução histórica da ideia.</p>
             </article>
-            <article class="expertise-card">
-              <span class="card-index">02</span>
-              <h3>Experiências Interativas</h3>
-              <p>Canvas, microinterações, navegação responsiva e estados visuais que comunicam a personalidade da marca.</p>
+            <article class="archive-card">
+              <span>Formato 02</span>
+              <h3>Fragmentos conceituais</h3>
+              <p>Notas curtas para preservar intuições antes que desapareçam no ruído da rotina.</p>
             </article>
-            <article class="expertise-card">
-              <span class="card-index">03</span>
-              <h3>Escrita e Manifesto</h3>
-              <p>Copywriting em português, sem frases genéricas, sustentado pela documentação fornecida sobre Matheus.</p>
+            <article class="archive-card">
+              <span>Formato 03</span>
+              <h3>Experimentos visuais</h3>
+              <p>Diagramas, mapas, microinterações e protótipos que transformam abstração em interface.</p>
             </article>
-            <article class="expertise-card">
-              <span class="card-index">04</span>
-              <h3>Cosmologia como linguagem</h3>
-              <p>O universo como sistema distribuído, a física como regra de negócio e o cotidiano como interface observável.</p>
+            <article class="archive-card is-muted">
+              <span>Estado atual</span>
+              <h3>Sem artigos publicados ainda</h3>
+              <p>A estrutura está pronta para receber conteúdo real sem preencher o site com textos falsos.</p>
             </article>
           </div>
         </div>
@@ -205,24 +223,24 @@
       <section class="section compass-section" id="filosofia" aria-labelledby="compass-title">
         <div class="texture" aria-hidden="true"></div>
         <div class="container compass-shell">
-          <div class="section-kicker">03 · Bússola filosófica</div>
-          <div class="section-heading centered">
-            <h2 id="compass-title">Filosofia não como dogma, mas como ferramenta de navegação.</h2>
-            <p>Escolha uma situação e veja qual paradigma assume o controle do sistema.</p>
+          <div class="section-heading centered narrow">
+            <p class="section-kicker">05 · Bússola filosófica</p>
+            <h2 id="compass-title">Ferramentas de navegação para uma mente que alterna escala.</h2>
+            <p>Estoicismo, niilismo libertador e absurdismo como instrumentos: não para fechar o sentido, mas para continuar pensando quando o mundo fica estreito.</p>
           </div>
 
           <div class="compass-grid">
             <div class="compass-controls" role="tablist" aria-label="Paradigmas filosóficos">
               <button class="compass-button is-active" type="button" role="tab" aria-selected="true" aria-controls="philosophy-panel" data-philosophy="traffic">
-                <span>Rotina & trânsito</span>
+                <span>Rotina e controle</span>
                 <small>Estoicismo</small>
               </button>
               <button class="compass-button" type="button" role="tab" aria-selected="false" aria-controls="philosophy-panel" data-philosophy="dread">
-                <span>Angústia existencial</span>
-                <small>Niilismo otimista</small>
+                <span>Escala e finitude</span>
+                <small>Niilismo libertador</small>
               </button>
               <button class="compass-button" type="button" role="tab" aria-selected="false" aria-controls="philosophy-panel" data-philosophy="chaos">
-                <span>Caos & sem sentido</span>
+                <span>Contradição e gesto</span>
                 <small>Absurdismo</small>
               </button>
             </div>
@@ -234,52 +252,11 @@
               <div class="philosophy-copy">
                 <p class="panel-label" data-philosophy-subtitle>Ferramenta: controle interno</p>
                 <h3 data-philosophy-title>Estoicismo</h3>
-                <blockquote data-philosophy-quote>
-                  “Serenidade para diferenciar o que pode ser controlado do que só pode ser observado.”
-                </blockquote>
+                <blockquote data-philosophy-quote>“Separar o que pode ser conduzido do que só pode ser observado.”</blockquote>
                 <p data-philosophy-analysis>
-                  A âncora do cotidiano: separar input interno de output externo, sem transformar o caos alheio em ruído permanente.
+                  A rotina perde parte do ruído quando o sistema distingue input interno de output externo.
                 </p>
               </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section cosmos-section" id="cosmos" aria-labelledby="cosmos-title">
-        <div class="container">
-          <div class="section-kicker">04 · Backend do universo</div>
-          <div class="cosmos-grid">
-            <div>
-              <h2 id="cosmos-title">O cosmos como sistema distribuído e assíncrono.</h2>
-              <p class="section-intro">
-                O conteúdo da página foi reestruturado para transformar conceitos abstratos em leitura visual: latência da luz, tempo local, teia cósmica e a hipótese poética de reboot do servidor cósmico.
-              </p>
-              <a class="inline-link" href="#contato">Enviar um sinal para o observador</a>
-            </div>
-            <div class="orbit-card" aria-hidden="true">
-              <div class="orbit orbit-a"></div>
-              <div class="orbit orbit-b"></div>
-              <div class="orbit orbit-c"></div>
-              <span class="orbit-core"></span>
-            </div>
-          </div>
-
-          <div class="timeline" aria-label="Conceitos principais">
-            <article>
-              <span>01</span>
-              <h3>Tempo local</h3>
-              <p>Sem relógio mestre absoluto: a pressa é tratada como latência biológica, não como verdade universal.</p>
-            </article>
-            <article>
-              <span>02</span>
-              <h3>Teia cósmica</h3>
-              <p>Regiões podem comprimir, expandir e informar a realidade com atraso. O agora é observado por ecos.</p>
-            </article>
-            <article>
-              <span>03</span>
-              <h3>Input maior que output</h3>
-              <p>O reconhecimento externo não é a métrica final. A métrica é a intensidade do combustível interno.</p>
             </article>
           </div>
         </div>
@@ -289,11 +266,11 @@
         <div class="resonance-bg" aria-hidden="true"></div>
         <div class="container resonance-layout">
           <div>
-            <div class="section-kicker">05 · Ressonância</div>
-            <h2 id="resonance-title">A mesma busca aparece no código e no violão: encontrar o esqueleto oculto.</h2>
-            <p class="section-intro">
-              A interação de cordas foi preservada e reescrita sem dependência externa. A experiência visual funciona sempre; o áudio só inicia com consentimento explícito.
-            </p>
+            <p class="section-kicker">06 · Experimento de ressonância</p>
+            <h2 id="resonance-title">Há ideias que só aparecem quando o sistema vibra.</h2>
+            <!-- <p class="section-intro">
+               A interação de cordas foi preservada da versão anterior como experimento sensorial: código, onda, gesto e ruído. O visual funciona sempre; o áudio só inicia com consentimento explícito.
+            </p> --> 
             <button class="button button-secondary" type="button" data-audio-toggle aria-pressed="false">Ativar áudio sutil</button>
             <p class="audio-status" aria-live="polite" data-audio-status>Áudio desligado. As cordas visuais já estão ativas.</p>
           </div>
@@ -305,32 +282,55 @@
         </div>
       </section>
 
-      <section class="section journey-section" id="jornada" aria-labelledby="journey-title">
+      <section class="section development-section" id="desenvolvimento" aria-labelledby="development-title">
         <div class="container">
-          <div class="section-kicker">06 · Jornada</div>
-          <div class="section-heading centered">
-            <h2 id="journey-title">Um observador imperfeito, mas em progressão.</h2>
-            <p>
-              A página não vende certezas. Ela organiza perguntas, tensões e objetivos em uma experiência que respira filosofia, tecnologia e ciência.
-            </p>
+          <div class="section-heading centered narrow">
+            <p class="section-kicker">07 · Linha de desenvolvimento</p>
+            <h2 id="development-title">Uma arquitetura viva precisa aceitar estado intermediário.</h2>
+            <p>As teorias não foram congeladas como conclusão. O site agora registra estágio, lacunas e próximos movimentos.</p>
           </div>
 
-          <div class="journey-grid">
+          <div class="route-timeline" aria-label="Linha de evolução do projeto">
             <article>
               <span>Agora</span>
-              <h3>Constância mínima</h3>
-              <p>Escolher o epsilon: ações pequenas, mas reais, quando a probabilidade é maior que zero absoluto.</p>
+              <h3>Catalogar hipóteses</h3>
+              <p>Separar títulos, premissas, perguntas abertas, conexões e nível de maturidade.</p>
             </article>
             <article>
-              <span>Próximo passo</span>
-              <h3>FUVEST / USP</h3>
-              <p>O caminho formal para adquirir ferramentas matemáticas e aproximar intuição de linguagem técnica.</p>
+              <span>Próximo ciclo</span>
+              <h3>Versionar ensaios</h3>
+              <p>Transformar cada teoria em texto longo, com escopo, limites e objeções possíveis.</p>
             </article>
             <article>
-              <span>Direção</span>
-              <h3>Documentar o ruído</h3>
-              <p>Registrar perguntas, hipóteses e experiências para que o pensamento não se perca no piloto automático.</p>
+              <span>Expansão</span>
+              <h3>Mapa mais denso</h3>
+              <p>Adicionar novas relações, diagramas e atualizações conforme o pensamento evoluir.</p>
             </article>
+            <article>
+              <span>Critério</span>
+              <h3>Clareza antes de grandiosidade</h3>
+              <p>Não exagerar afirmações. Melhor uma hipótese honesta do que uma certeza teatral.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section about-section" id="sobre" aria-labelledby="about-title">
+        <div class="container about-grid">
+          <div class="about-orbit" aria-hidden="true">
+            <img src="assets/images/cosmic-scale.webp" alt="" loading="lazy" decoding="async" />
+            <span></span>
+            <span></span>
+          </div>
+          <div>
+            <p class="section-kicker">08 · Sobre o autor do campo</p>
+            <h2 id="about-title">Matheus Camargo não é o centro do sistema. É o ponto humano de onde a observação parte.</h2>
+            <p>
+              Desenvolvedor full-stack e observador de padrões, Matheus usa a linguagem de sistemas para pensar o cosmos: tempo como variável local, luz como mensageira atrasada, universo como arquitetura assíncrona. O interesse não está em parecer definitivo, mas em participar do mistério com honestidade intelectual.
+            </p>
+            <p>
+              Este espaço existe para que perguntas não fiquem soltas. Algumas nasceram da janela, da rotina, da física, da filosofia ou da programação. Outras ainda não têm forma suficiente. Todas carregam a mesma tentativa: organizar o ruído sem matar o assombro.
+            </p>
           </div>
         </div>
       </section>
@@ -338,11 +338,8 @@
       <section class="section contact-section" id="contato" aria-labelledby="contact-title">
         <div class="container contact-grid">
           <div>
-            <div class="section-kicker">07 · Contato</div>
-            <h2 id="contact-title">Enviar um sinal sem inventar canais.</h2>
-            <p class="section-intro">
-              Como nenhum e-mail público foi fornecido, o formulário prepara e copia a mensagem. Ao configurar um e-mail em <code>assets/js/config.js</code>, ele passa a abrir o cliente de e-mail automaticamente.
-            </p>
+            <p class="section-kicker">09 · Sinal</p>
+            <h2 id="contact-title">Contato sem inventar canais.</h2>
           </div>
 
           <form class="contact-form" data-contact-form novalidate>
@@ -358,10 +355,10 @@
             </div>
             <div class="form-field">
               <label for="message">Mensagem</label>
-              <textarea id="message" name="message" rows="6" required minlength="12"></textarea>
+              <textarea id="message" name="message" rows="6" required minlength="12" placeholder="Escreva um sinal, uma pergunta ou uma ideia para o observatório."></textarea>
               <small data-error-for="message"></small>
             </div>
-            <button class="button button-primary" type="submit" data-contact-submit>Gerar mensagem</button>
+            <button class="button button-primary" type="submit" data-contact-submit>Enviar mensagem</button>
             <p class="form-status" role="status" aria-live="polite" data-contact-status></p>
           </form>
         </div>
@@ -371,11 +368,11 @@
     <footer class="site-footer">
       <div class="container footer-grid">
         <p>
-          <strong>Matheus Camargo de Alencar</strong><br />
-          Desenvolvedor Full-Stack · Arquiteto de Sistemas · Observador do Cosmos
+          <strong>Observatório de Ideias</strong><br />
+          Um arquivo vivo conectado a Matheus Camargo de Alencar.
         </p>
         <p class="footer-note">
-          Projeto reorganizado em HTML, CSS e JavaScript modulares. Imagens locais, metadados SEO, acessibilidade, responsividade e interações funcionais.
+          Projeto estático em HTML, CSS e JavaScript modular. Teorias organizadas como hipóteses em desenvolvimento, com mapa conceitual, filtros, busca e interações acessíveis.
         </p>
       </div>
     </footer>
@@ -384,7 +381,7 @@
 
     <noscript>
       <div class="noscript-message">
-        Esta experiência continua legível sem JavaScript, mas os modos interativos, canvas e formulário avançado ficam desativados.
+        Esta experiência continua legível sem JavaScript, mas filtros, mapa dinâmico, canvas e formulário avançado ficam desativados.
       </div>
     </noscript>
 

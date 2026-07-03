@@ -57,7 +57,7 @@ function buildMessage(form) {
       'Mensagem:',
       message,
       '',
-      'Origem: Site O Observador Cósmico',
+      'Origem: Observatório de Ideias',
     ].join('\n'),
   };
 }

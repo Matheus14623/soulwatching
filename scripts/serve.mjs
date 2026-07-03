@@ -59,5 +59,5 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(port, () => {
-  console.log(`Observador Cósmico em http://localhost:${port}`);
+  console.log(`Observatório de Ideias em http://localhost:${port}`);
 });

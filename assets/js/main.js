@@ -1,5 +1,6 @@
 import { initNavigation } from './navigation.js';
 import { initObserverMode } from './observer.js';
+import { initTheoryLab } from './theory-lab.js';
 import { initPhilosophyCompass } from './philosophy.js';
 import { initResonance } from './resonance.js';
 import { initContactForm } from './contact.js';
@@ -7,6 +8,7 @@ import { initContactForm } from './contact.js';
 const boot = () => {
   initNavigation();
   initObserverMode();
+  initTheoryLab();
   initPhilosophyCompass();
   initResonance();
   initContactForm();

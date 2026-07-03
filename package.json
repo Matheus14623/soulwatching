@@ -1,17 +1,19 @@
 {
-  "name": "matheus-observador-cosmico",
-  "version": "1.0.0",
+  "name": "matheus-observatorio-ideias",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
-  "description": "Site estático e interativo para Matheus Camargo de Alencar, O Observador Cósmico.",
+  "description": "Site estático, filosófico e interativo para o Observatório de Ideias de Matheus Camargo.",
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "start": "node scripts/serve.mjs",
-    "verify": "node scripts/verify.mjs"
+    "verify": "node scripts/verify.mjs",
+    "build": "node scripts/verify.mjs"
   },
   "keywords": [
-    "portfolio",
     "static-site",
+    "philosophy",
+    "cosmology",
     "canvas",
     "accessibility",
     "matheus-camargo"

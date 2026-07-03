@@ -159,7 +159,7 @@ export function initObserverMode() {
       const label = $('[data-toggle-label]', button);
       safeSetText(label, isObserverMode ? 'Desativar visão estrutural' : 'Ativar visão estrutural');
     });
-    safeSetText(statusText, isObserverMode ? 'Análise estrutural' : 'Rotina biológica');
+    safeSetText(statusText, isObserverMode ? 'Malha estrutural' : 'Campo de ideias');
     flow.setActive(isObserverMode && isHeroVisible && !prefersReducedMotion());
   };
 
