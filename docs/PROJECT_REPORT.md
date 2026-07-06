@@ -82,3 +82,16 @@ npm run verify
 ```
 
 Também foram verificados os módulos JavaScript com `node --check`.
+## Atualização — contato e visão estrutural otimizada
+
+Esta atualização preserva a identidade de observatório intelectual e adiciona uma área final de coordenadas profissionais. A seção de contato agora integra a foto de Matheus, a imagem cósmica associada ao perfil técnico, links diretos para e-mail, telefone, LinkedIn e GitHub, além do formulário com abertura por `mailto:`.
+
+A visão estrutural foi refatorada para reduzir custo de CPU/GPU. A versão anterior desenhava uma malha em canvas com loop contínuo. A nova versão usa um SVG estático da teia cósmica, poucos sinais animados apenas por `transform` e `opacity`, classe de baixo consumo em telas menores, pausa por `IntersectionObserver` quando o hero sai da viewport e respeito a `prefers-reduced-motion`.
+
+Arquivos principais alterados nesta atualização:
+
+- `index.html`: nova área de contato e integração das imagens enviadas.
+- `assets/css/styles.css`: estilos da constelação de contato e modo estrutural leve.
+- `assets/js/observer.js`: remoção do canvas animado contínuo e troca por overlay estático com sinais controlados por classe.
+- `assets/js/config.js`: contatos profissionais centralizados.
+- `assets/images/matheus-camargo.webp` e `assets/images/github-profile.webp`: imagens otimizadas para uso no site.

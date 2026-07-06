@@ -25,7 +25,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/styles.css?v=structural-v2" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=contact-structural-v3" />
   </head>
   <body data-mode="normal">
     <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
@@ -66,9 +66,8 @@
     <main id="conteudo">
       <section class="hero" id="topo" aria-labelledby="hero-title">
         <div class="hero-media" aria-hidden="true">
-          <!-- <img class="hero-image" src="assets/images/rain-window.webp" alt="" decoding="async" /> -->
+          <img class="hero-image" src="assets/images/rain-window.webp" alt="" decoding="async" fetchpriority="high" />
           <!-- <img class="hero-structure" src="assets/images/calabi-yau-wireframe.webp" alt="" decoding="async" /> -->
-          <canvas class="flow-canvas" data-flow-canvas></canvas>
           <div class="stellar-grid"></div>
           <div class="hero-vignette"></div>
           <div class="scanline"></div>
@@ -273,6 +272,7 @@
             </p> -->
             <button class="button button-secondary" type="button" data-audio-toggle aria-pressed="false">Ativar áudio sutil</button>
             <p class="audio-status" aria-live="polite" data-audio-status>Áudio desligado. As cordas visuais já estão ativas.</p>
+            <p>ta meio bugado ainda rsrs</p>
           </div>
 
           <div class="string-instrument" data-string-container>
@@ -294,22 +294,26 @@
             <article>
               <span>Agora</span>
               <h3>Catalogar hipóteses</h3>
-              <p>Separar títulos, premissas, perguntas abertas, conexões e nível de maturidade.</p>
+              <!-- <p>Separar títulos, premissas, perguntas abertas, conexões e nível de maturidade.</p> -->
+               <p>Em breve!</p>
             </article>
             <article>
               <span>Próximo ciclo</span>
               <h3>Versionar ensaios</h3>
-              <p>Transformar cada teoria em texto longo, com escopo, limites e objeções possíveis.</p>
+              <!-- <p>Transformar cada teoria em texto longo, com escopo, limites e objeções possíveis.</p> -->
+               <p>Em breve!</p>
             </article>
             <article>
               <span>Expansão</span>
               <h3>Mapa mais denso</h3>
-              <p>Adicionar novas relações, diagramas e atualizações conforme o pensamento evoluir.</p>
+              <!-- <p>Adicionar novas relações, diagramas e atualizações conforme o pensamento evoluir.</p> -->
+               <p>Em breve!</p>
             </article>
             <article>
               <span>Critério</span>
               <h3>Clareza antes de grandiosidade</h3>
-              <p>Não exagerar afirmações. Melhor uma hipótese honesta do que uma certeza teatral.</p>
+              <!-- <p>Não exagerar afirmações. Melhor uma hipótese honesta do que uma certeza teatral.</p> -->
+               <p>Em breve!</p>
             </article>
           </div>
         </div>
@@ -326,7 +330,7 @@
             <p class="section-kicker">08 · Sobre o autor do campo</p>
             <h2 id="about-title">Matheus Camargo não é o centro do sistema. É o ponto humano de onde a observação parte.</h2>
             <p>
-              Desenvolvedor full-stack e observador de padrões, Matheus usa a linguagem de sistemas para pensar o cosmos: tempo como variável local, luz como mensageira atrasada, universo como arquitetura assíncrona. O interesse não está em parecer definitivo, mas em participar do mistério com honestidade intelectual.
+              Desenvolvedor full-stack e observador de padrões, Eu uso a linguagem de sistemas para pensar o cosmos: tempo como variável local, luz como mensageira atrasada, universo como arquitetura assíncrona. O interesse não está em parecer definitivo, mas em participar do mistério com honestidade intelectual.
             </p>
             <p>
               Este espaço existe para que perguntas não fiquem soltas. Algumas nasceram da janela, da rotina, da física, da filosofia ou da programação. Outras ainda não têm forma suficiente. Todas carregam a mesma tentativa: organizar o ruído sem matar o assombro.
@@ -337,33 +341,100 @@
 
       <section class="section contact-section" id="contato" aria-labelledby="contact-title">
         <div class="container contact-grid">
-          <div>
-            <p class="section-kicker">09 · Sinal</p>
-            <h2 id="contact-title">Contato sem inventar canais.</h2>
-            <!-- <p class="section-intro">
-              Como nenhum e-mail público foi fornecido, o formulário prepara e copia a mensagem. Ao configurar um e-mail em <code>assets/js/config.js</code>, ele passa a abrir o cliente de e-mail automaticamente.
-            </p> -->
+          <div class="contact-orbit-card">
+            <p class="section-kicker">09 · Coordenadas de contato</p>
+            <h2 id="contact-title">Algumas ideias permanecem em órbita. Outras pedem conversa.</h2>
+            <p class="section-intro">
+              Entre teorias, código e registros em expansão, estes são os pontos externos do observatório: presença profissional, repositórios, e um canal direto para projetos, perguntas ou colaboração.
+            </p>
+
+            <div class="profile-constellation" aria-label="Ponte entre Matheus Camargo e sua presença técnica">
+              <figure class="profile-card profile-card-human">
+                <img src="assets/images/matheus-camargo.webp" width="640" height="640" alt="Foto de Matheus Camargo sentado próximo a uma janela" loading="lazy" decoding="async" />
+                <figcaption>
+                  <span>Origem humana</span>
+                  <strong>Matheus Camargo</strong>
+                </figcaption>
+              </figure>
+
+              <div class="profile-connection" aria-hidden="true">
+                <span></span>
+                <span></span>
+              </div>
+
+              <figure class="profile-card profile-card-github">
+                <img src="assets/images/github-profile.webp" width="460" height="460" alt="Imagem cósmica associada ao perfil GitHub de Matheus Camargo" loading="lazy" decoding="async" />
+                <figcaption>
+                  <span>Extensão técnica</span>
+                  <strong>GitHub / código</strong>
+                </figcaption>
+              </figure>
+            </div>
           </div>
 
-          <form class="contact-form" data-contact-form novalidate>
-            <div class="form-field">
-              <label for="name">Nome</label>
-              <input id="name" name="name" type="text" autocomplete="name" required minlength="2" />
-              <small data-error-for="name"></small>
+          <div class="contact-panel">
+            <div class="contact-link-list" aria-label="Pontos de conexão profissional">
+              <a class="contact-link" href="mailto:Matheuscamargodealencar@gmail.com" aria-label="Enviar e-mail para Matheus Camargo">
+                <span class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M4 6.8h16v10.4H4z"/><path d="m4.8 7.3 7.2 5.2 7.2-5.2"/></svg>
+                </span>
+                <span>
+                  <small>E-mail</small>
+                  <strong>Matheuscamargodealencar@gmail.com</strong>
+                </span>
+              </a>
+
+              <a class="contact-link" href="tel:+5511913639989" aria-label="Ligar para Matheus Camargo no telefone 11 91363-9989">
+                <span class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M8.2 4.8 6 6.6c-.7.6-.8 1.6-.4 2.4 2 4.2 5.2 7.4 9.4 9.4.8.4 1.8.2 2.4-.4l1.8-2.2-3.7-2.2-1.2 1.2c-2.2-1.1-4-2.9-5.1-5.1l1.2-1.2z"/></svg>
+                </span>
+                <span>
+                  <small>Telefone</small>
+                  <strong>11 91363-9989</strong>
+                </span>
+              </a>
+
+              <a class="contact-link" href="https://www.linkedin.com/in/gomin/" target="_blank" rel="noopener noreferrer" aria-label="Abrir LinkedIn de Matheus Camargo em uma nova aba">
+                <span class="contact-icon contact-icon-text" aria-hidden="true">in</span>
+                <span>
+                  <small>LinkedIn</small>
+                  <strong>linkedin.com/in/gomin</strong>
+                </span>
+              </a>
+
+              <a class="contact-link" href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer" aria-label="Abrir GitHub de Matheus Camargo em uma nova aba">
+                <span class="contact-icon contact-icon-text" aria-hidden="true">GH</span>
+                <span>
+                  <small>GitHub</small>
+                  <strong>github.com/Matheus14623</strong>
+                </span>
+              </a>
             </div>
-            <div class="form-field">
-              <label for="email">E-mail</label>
-              <input id="email" name="email" type="email" autocomplete="email" required />
-              <small data-error-for="email"></small>
-            </div>
-            <div class="form-field">
-              <label for="message">Mensagem</label>
-              <textarea id="message" name="message" rows="6" required minlength="12" placeholder="Escreva um sinal, uma pergunta ou uma ideia para o observatório."></textarea>
-              <small data-error-for="message"></small>
-            </div>
-            <button class="button button-primary" type="submit" data-contact-submit>Enviar mensagem</button>
-            <p class="form-status" role="status" aria-live="polite" data-contact-status></p>
-          </form>
+
+            <form class="contact-form" data-contact-form novalidate>
+              <div class="form-heading">
+                <h3>Enviar um sinal</h3>
+                <p>O formulário prepara a mensagem e abre seu cliente de e-mail com tudo organizado.</p>
+              </div>
+              <div class="form-field">
+                <label for="name">Nome</label>
+                <input id="name" name="name" type="text" autocomplete="name" required minlength="2" />
+                <small data-error-for="name"></small>
+              </div>
+              <div class="form-field">
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+                <small data-error-for="email"></small>
+              </div>
+              <div class="form-field">
+                <label for="message">Mensagem</label>
+                <textarea id="message" name="message" rows="6" required minlength="12" placeholder="Escreva uma pergunta, proposta, colaboração ou ideia para continuar a órbita."></textarea>
+                <small data-error-for="message"></small>
+              </div>
+              <button class="button button-primary" type="submit" data-contact-submit>Abrir e-mail</button>
+              <p class="form-status" role="status" aria-live="polite" data-contact-status></p>
+            </form>
+          </div>
         </div>
       </section>
     </main>
@@ -374,9 +445,12 @@
           <strong>Observatório de Ideias</strong><br />
           Um arquivo vivo conectado a Matheus Camargo de Alencar.
         </p>
-        <p class="footer-note">
-          Projeto estático em HTML, CSS e JavaScript modular. Teorias organizadas como hipóteses em desenvolvimento, com mapa conceitual, filtros, busca e interações acessíveis.
-        </p>
+        <nav class="footer-links" aria-label="Links profissionais">
+          <a href="mailto:Matheuscamargodealencar@gmail.com">E-mail</a>
+          <a href="tel:+5511913639989">Telefone</a>
+          <a href="https://www.linkedin.com/in/gomin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
       </div>
     </footer>
 
@@ -388,6 +462,6 @@
       </div>
     </noscript>
 
-    <script type="module" src="assets/js/main.js?v=structural-v2"></script>
+    <script type="module" src="assets/js/main.js?v=contact-structural-v3"></script>
   </body>
 </html>

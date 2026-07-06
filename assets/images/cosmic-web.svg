@@ -28,7 +28,7 @@
       <stop offset="1" stop-color="#ad8cff" stop-opacity="0.12"/>
     </linearGradient>
     <filter id="glow" x="-70%" y="-70%" width="240%" height="240%">
-      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feGaussianBlur stdDeviation="4" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>

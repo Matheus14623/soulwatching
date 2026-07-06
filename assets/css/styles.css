@@ -868,7 +868,6 @@ body[data-mode="observer"] .data-point {
   right: -3rem;
   top: -3rem;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--accent-glow), transparent 64%);
   opacity: 0.78;
   pointer-events: none;
 }
@@ -1398,7 +1397,6 @@ body[data-mode="observer"] .data-point {
   right: 5%;
   top: 3.2rem;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(114, 236, 255, 0.45), transparent);
 }
 
 .route-timeline article {
@@ -1408,15 +1406,7 @@ body[data-mode="observer"] .data-point {
 }
 
 .route-timeline article::before {
-  content: "";
-  position: absolute;
-  top: 2.98rem;
-  left: 1.25rem;
-  width: 0.55rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 18px rgba(114, 236, 255, 0.8);
+
 }
 
 .about-grid {
@@ -1460,18 +1450,253 @@ body[data-mode="observer"] .data-point {
   font-size: 1.06rem;
 }
 
+.contact-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-section::before {
+  content: "";
+  position: absolute;
+  inset: 8% -14% auto auto;
+  width: min(48vw, 38rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(114, 236, 255, 0.13);
+  border-radius: 50%;
+  transform: rotate(-18deg) scaleY(0.46);
+  pointer-events: none;
+  box-shadow: 0 0 80px rgba(114, 236, 255, 0.08);
+}
+
 .contact-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.58fr) minmax(0, 0.72fr);
-  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(0, 0.88fr) minmax(22rem, 0.72fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
   align-items: start;
+}
+
+.contact-orbit-card,
+.contact-panel,
+.contact-form {
+  border: 1px solid rgba(255, 255, 255, 0.105);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035)),
+    rgba(5, 7, 18, 0.58);
+  box-shadow: var(--shadow-soft);
+}
+
+.contact-orbit-card {
+  position: relative;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.contact-orbit-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -8rem -10rem auto;
+  width: 22rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(173, 140, 255, 0.16), transparent 65%);
+  pointer-events: none;
+}
+
+.profile-constellation {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(8.5rem, 0.72fr) minmax(3rem, 0.22fr) minmax(8.5rem, 0.72fr);
+  gap: clamp(0.8rem, 2.4vw, 1.5rem);
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.profile-card {
+  position: relative;
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.profile-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  transition: transform 480ms ease, opacity 480ms ease;
+}
+
+.profile-card:hover img {
+  transform: scale(1.035);
+}
+
+.profile-card-human img {
+  opacity: 0.9;
+}
+
+.profile-card-github img {
+  opacity: 0.82;
+  mix-blend-mode: screen;
+}
+
+.profile-card figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1.2rem;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.86));
+}
+
+.profile-card figcaption span,
+.contact-link small {
+  display: block;
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.profile-card figcaption strong {
+  display: block;
+  margin-top: 0.24rem;
+  font-size: clamp(0.95rem, 1.6vw, 1.16rem);
+}
+
+.profile-connection {
+  position: relative;
+  min-height: 8rem;
+  display: grid;
+  place-items: center;
+}
+
+.profile-connection::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(13vw, 8rem);
+  height: min(13vw, 8rem);
+  border: 1px solid rgba(114, 236, 255, 0.28);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scaleY(0.44) rotate(-16deg);
+}
+
+.profile-connection span:first-child {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(114, 236, 255, 0.55), rgba(173, 140, 255, 0.5), transparent);
+}
+
+.profile-connection span:last-child {
+  position: absolute;
+  width: 0.5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 18px rgba(114, 236, 255, 0.8);
+}
+
+.contact-note {
+  position: relative;
+  z-index: 1;
+  margin-top: 1.35rem;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.contact-panel {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 2.4vw, 1.25rem);
+  border-radius: var(--radius-xl);
+}
+
+.contact-link-list {
+  display: grid;
+  gap: 0.78rem;
+}
+
+.contact-link {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.92rem;
+  align-items: center;
+  min-height: 4.25rem;
+  padding: 0.82rem 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.045);
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.contact-link:hover,
+.contact-link:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(114, 236, 255, 0.38);
+  background: rgba(114, 236, 255, 0.075);
+}
+
+.contact-link strong {
+  display: block;
+  overflow-wrap: anywhere;
+  margin-top: 0.18rem;
+  color: var(--text);
+  font-size: clamp(0.88rem, 1.3vw, 1rem);
+}
+
+.contact-icon {
+  width: 2.65rem;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.22), transparent 35%),
+    rgba(114, 236, 255, 0.1);
+  border: 1px solid rgba(114, 236, 255, 0.24);
+  color: var(--cyan);
+  box-shadow: 0 0 28px rgba(114, 236, 255, 0.08);
+}
+
+.contact-icon svg {
+  width: 1.24rem;
+  height: 1.24rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.contact-icon-text {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 
 .contact-form {
   display: grid;
   gap: 1rem;
-  padding: clamp(1.2rem, 3vw, 2rem);
-  border-radius: var(--radius-xl);
+  padding: clamp(1.05rem, 2.4vw, 1.45rem);
+  border-radius: var(--radius-lg);
+  box-shadow: none;
+}
+
+.form-heading h3 {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+}
+
+.form-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
 .form-field {
@@ -1512,8 +1737,30 @@ body[data-mode="observer"] .data-point {
   color: var(--text);
 }
 
-.footer-note {
-  text-align: right;
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.55rem;
+}
+
+.footer-links a {
+  padding: 0.5rem 0.72rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  color: var(--cyan);
+  border-color: rgba(114, 236, 255, 0.34);
+  background: rgba(114, 236, 255, 0.06);
 }
 
 .back-to-top {
@@ -1628,9 +1875,13 @@ body[data-mode="observer"] .data-point {
     grid-template-columns: 1fr;
   }
 
+  .hero-copy {
+    order: -1;
+  }
+
   .hero-visual {
     min-height: 26rem;
-    order: -1;
+    order: 0;
   }
 
   .solar-system {
@@ -1748,8 +1999,23 @@ body[data-mode="observer"] .data-point {
     min-height: 20rem;
   }
 
-  .footer-note {
-    text-align: left;
+  .profile-constellation {
+    grid-template-columns: 1fr;
+    max-width: 24rem;
+    margin-inline: auto;
+  }
+
+  .profile-connection {
+    min-height: 3.6rem;
+    transform: rotate(90deg);
+  }
+
+  .contact-panel {
+    padding: 0.9rem;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
   }
 
   .data-point {
@@ -1788,9 +2054,9 @@ body[data-mode="observer"] .data-point {
 
 
 /* ==========================================================
-   V2 — Visão estrutural explícita
-   Esta camada fica acima da imagem da chuva e abaixo do conteúdo,
-   evitando que a teia cósmica seja escondida por blend modes/vinheta.
+   V3 — Visão estrutural otimizada
+   A teia principal é SVG estático + poucos sinais por transform/opacity.
+   Não há loop contínuo em canvas, nem geração repetida de partículas.
    ========================================================== */
 .hero {
   isolation: isolate;
@@ -1803,46 +2069,38 @@ body[data-mode="observer"] .data-point {
   inset: -10%;
   pointer-events: none;
   opacity: 0;
-  transition:
-    opacity 850ms ease,
-    transform 1200ms ease,
-    filter 850ms ease;
+  transition: opacity 620ms ease, transform 900ms ease;
 }
 
 .hero::before {
   z-index: 1;
   background:
-    url("../images/cosmic-web.svg") center / cover no-repeat,
-    radial-gradient(circle at 20% 62%, rgba(114, 236, 255, 0.28), transparent 21rem),
-    radial-gradient(circle at 58% 34%, rgba(173, 140, 255, 0.2), transparent 24rem),
-    radial-gradient(circle at 82% 52%, rgba(104, 240, 203, 0.14), transparent 22rem);
-  filter: saturate(1.35) contrast(1.16) drop-shadow(0 0 24px rgba(114, 236, 255, 0.18));
+    radial-gradient(circle at 20% 62%, rgba(114, 236, 255, 0.22), transparent 20rem),
+    radial-gradient(circle at 58% 34%, rgba(173, 140, 255, 0.16), transparent 23rem),
+    radial-gradient(circle at 82% 52%, rgba(104, 240, 203, 0.1), transparent 21rem);
   mix-blend-mode: screen;
-  transform: scale(1.08) rotate(-0.7deg) translate3d(0, 1.6%, 0);
+  transform: scale(1.04) translate3d(0, 1.2%, 0);
 }
 
 .hero::after {
   z-index: 2;
   background:
-    radial-gradient(circle at 22% 58%, rgba(114, 236, 255, 0.22), transparent 16rem),
-    radial-gradient(circle at 46% 42%, rgba(173, 140, 255, 0.16), transparent 20rem),
-    radial-gradient(circle at 76% 70%, rgba(246, 213, 109, 0.12), transparent 15rem),
-    linear-gradient(115deg, rgba(5, 7, 18, 0.16), rgba(5, 7, 18, 0.02) 45%, rgba(5, 7, 18, 0.2));
-  filter: blur(8px) saturate(1.15);
+    radial-gradient(circle at 22% 58%, rgba(114, 236, 255, 0.15), transparent 15rem),
+    radial-gradient(circle at 46% 42%, rgba(173, 140, 255, 0.12), transparent 19rem),
+    linear-gradient(115deg, rgba(5, 7, 18, 0.18), rgba(5, 7, 18, 0.03) 45%, rgba(5, 7, 18, 0.22));
   mix-blend-mode: screen;
-  transform: scale(1.04);
+  transform: scale(1.02);
 }
 
 body[data-mode="observer"] .hero::before,
 body.is-structural-vision .hero::before {
-  opacity: 0.96;
-  transform: scale(1) rotate(0deg) translate3d(0, 0, 0);
+  opacity: 0.92;
+  transform: scale(1) translate3d(0, 0, 0);
 }
 
 body[data-mode="observer"] .hero::after,
 body.is-structural-vision .hero::after {
-  opacity: 0.72;
-  transform: scale(1);
+  opacity: 0.58;
 }
 
 .hero-layout,
@@ -1857,63 +2115,144 @@ body.is-structural-vision .hero::after {
 .hero > .container,
 .hero-copy,
 .hero-visual {
-  z-index: 5;
-}
-
-.data-point {
   z-index: 6;
 }
 
-.structural-flow-canvas {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  opacity: 0;
-  mix-blend-mode: screen;
-  filter: saturate(1.18) contrast(1.08);
-  transition: opacity 650ms ease, filter 650ms ease;
+.data-point {
+  z-index: 7;
 }
 
-body[data-mode="observer"] .structural-flow-canvas,
-body.is-structural-vision .structural-flow-canvas {
+.structural-overlay {
+  position: absolute;
+  inset: -7%;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(0, 1.5%, 0) scale(1.035);
+  transition: opacity 520ms ease, transform 720ms ease;
+  contain: layout paint style;
+  overflow: hidden;
+}
+
+.structural-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  mix-blend-mode: screen;
+}
+
+body[data-mode="observer"] .structural-overlay,
+body.is-structural-vision .structural-overlay {
   opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.structural-signal {
+  position: absolute;
+  width: 0.42rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #e8fbff;
+  box-shadow: 0 0 15px rgba(114, 236, 255, 0.7);
+  opacity: 0;
+  transform: translate3d(var(--sx), var(--sy), 0) scale(0.8);
+  animation: structuralSignal var(--duration, 7s) linear infinite;
+  animation-play-state: paused;
+  will-change: transform, opacity;
+}
+
+.structural-overlay.is-running .structural-signal {
+  animation-play-state: running;
+}
+
+.structural-signal.signal-a {
+  --sx: 14vw;
+  --sy: 66vh;
+  --ex: 72vw;
+  --ey: 36vh;
+  --duration: 8.4s;
+  animation-delay: -1.6s;
+}
+
+.structural-signal.signal-b {
+  --sx: 24vw;
+  --sy: 28vh;
+  --ex: 88vw;
+  --ey: 52vh;
+  --duration: 10.2s;
+  animation-delay: -5.2s;
+}
+
+.structural-signal.signal-c {
+  --sx: 38vw;
+  --sy: 84vh;
+  --ex: 64vw;
+  --ey: 22vh;
+  --duration: 9.6s;
+  animation-delay: -3s;
+  background: #fff6c2;
+  box-shadow: 0 0 14px rgba(246, 213, 109, 0.58);
+}
+
+.structural-signal.signal-d {
+  --sx: 76vw;
+  --sy: 74vh;
+  --ex: 22vw;
+  --ey: 44vh;
+  --duration: 11.2s;
+  animation-delay: -6.6s;
+}
+
+@keyframes structuralSignal {
+  0% {
+    opacity: 0;
+    transform: translate3d(var(--sx), var(--sy), 0) scale(0.6);
+  }
+  14% {
+    opacity: 0.92;
+  }
+  82% {
+    opacity: 0.72;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--ex), var(--ey), 0) scale(1);
+  }
 }
 
 body[data-mode="observer"] .hero-image,
 body.is-structural-vision .hero-image {
-  opacity: 0.035 !important;
-  filter: brightness(0.56) contrast(1.22) saturate(0.42) !important;
+  opacity: 0.045 !important;
+  filter: brightness(0.58) contrast(1.18) saturate(0.42) !important;
 }
 
 body[data-mode="observer"] .hero-structure,
 body.is-structural-vision .hero-structure {
-  opacity: 0.16 !important;
-  transform: scale(1.02);
-  filter: saturate(1.45) blur(1.2px) !important;
+  opacity: 0.11 !important;
+  transform: scale(1.01);
+  filter: saturate(1.25) !important;
 }
 
 body[data-mode="observer"] .hero-vignette,
 body.is-structural-vision .hero-vignette {
   background:
-    radial-gradient(circle at 63% 44%, rgba(5, 7, 18, 0.02), rgba(5, 7, 18, 0.24) 50%, rgba(5, 7, 18, 0.78) 88%),
+    radial-gradient(circle at 63% 44%, rgba(5, 7, 18, 0.02), rgba(5, 7, 18, 0.26) 50%, rgba(5, 7, 18, 0.78) 88%),
     linear-gradient(90deg, rgba(5, 7, 18, 0.9), rgba(5, 7, 18, 0.08) 48%, rgba(5, 7, 18, 0.56));
 }
 
 body[data-mode="observer"] .stellar-grid,
 body.is-structural-vision .stellar-grid {
-  opacity: 0.66;
+  opacity: 0.56;
   background:
-    linear-gradient(rgba(114, 236, 255, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(173, 140, 255, 0.1) 1px, transparent 1px);
-  background-size: 70px 70px;
+    linear-gradient(rgba(114, 236, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(173, 140, 255, 0.08) 1px, transparent 1px);
+  background-size: 74px 74px;
 }
 
 body[data-mode="observer"] .scanline,
 body.is-structural-vision .scanline {
-  opacity: 0.25;
+  opacity: 0.2;
 }
 
 body[data-mode="observer"] .button-ghost[aria-pressed="true"],
@@ -1922,35 +2261,47 @@ body.is-structural-vision .button-ghost[aria-pressed="true"] {
   border-color: rgba(114, 236, 255, 0.52);
   background: rgba(114, 236, 255, 0.1);
   text-shadow: 0 0 20px rgba(114, 236, 255, 0.42);
-  box-shadow: 0 0 42px rgba(114, 236, 255, 0.16);
+  box-shadow: 0 0 30px rgba(114, 236, 255, 0.13);
 }
 
-body.structural-pulse .hero::before {
-  filter: saturate(1.7) contrast(1.28) drop-shadow(0 0 34px rgba(114, 236, 255, 0.28));
+body.structural-pulse .structural-overlay {
+  opacity: 1;
 }
 
 @media (max-width: 760px) {
   body[data-mode="observer"] .hero::before,
   body.is-structural-vision .hero::before {
-    opacity: 0.82;
-    transform: scale(1.14);
+    opacity: 0.74;
+    transform: scale(1.08);
   }
 
-  body[data-mode="observer"] .structural-flow-canvas,
-  body.is-structural-vision .structural-flow-canvas {
+  .structural-overlay {
+    inset: -3%;
+  }
+
+  .structural-overlay img {
     opacity: 0.72;
+  }
+
+  .structural-overlay.is-low-power .structural-signal.signal-c,
+  .structural-overlay.is-low-power .structural-signal.signal-d {
+    display: none;
+  }
+
+  .structural-signal {
+    width: 0.34rem;
+    box-shadow: 0 0 10px rgba(114, 236, 255, 0.55);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero::before,
   .hero::after,
-  .structural-flow-canvas {
+  .structural-overlay {
     transition: none;
   }
 
-  body[data-mode="observer"] .structural-flow-canvas,
-  body.is-structural-vision .structural-flow-canvas {
-    opacity: 0.28;
+  .structural-signal {
+    display: none;
   }
 }

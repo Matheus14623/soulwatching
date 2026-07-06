@@ -60,6 +60,9 @@ matheus-observatorio-ideias/
 │   ├── images/
 │   │   ├── calabi-yau-wireframe.webp
 │   │   ├── cosmic-scale.webp
+│   │   ├── cosmic-web.svg
+│   │   ├── github-profile.webp
+│   │   ├── matheus-camargo.webp
 │   │   ├── og-observatorio.jpg
 │   │   ├── rain-window.webp
 │   │   ├── sisyphus-absurdism.webp
@@ -80,6 +83,7 @@ matheus-observatorio-ideias/
 │   └── TEORIAS_ORIGINAIS.txt
 ├── index.html
 ├── package.json
+├── package-lock.json
 ├── robots.txt
 ├── scripts/
 │   ├── serve.mjs
@@ -90,27 +94,27 @@ matheus-observatorio-ideias/
 
 ## Principais recursos
 
-- Hero com atmosfera cósmica, sistema orbital em CSS e modo de visão estrutural.
+- Hero com atmosfera cósmica, sistema orbital em CSS e modo de visão estrutural otimizado.
 - Seção de teorias alimentada por `assets/js/theories.js`.
 - Busca, filtros, cards, status, progresso e painel de detalhes.
 - Mapa de ideias em formato de constelação interativa.
 - Estrutura editorial para artigos e ensaios futuros sem inventar publicações.
 - Bússola filosófica interativa.
 - Experimento de ressonância com canvas e áudio opcional via Web Audio API.
-- Formulário de contato com validação e fallback seguro.
+- Área de contato com foto, imagem de perfil técnico, e-mail, telefone, LinkedIn, GitHub e formulário com `mailto:`.
 - SEO, Open Graph, favicon e imagem social atualizados.
 
-## Contato
+## Contato e presença profissional
 
-Nenhum e-mail público foi fornecido. Por padrão, o formulário gera/copia a mensagem. Para ativar `mailto:`, edite:
+A seção final reúne as coordenadas externas do observatório:
 
-```js
-// assets/js/config.js
-export const SITE_CONFIG = Object.freeze({
-  contactEmail: 'seu-email-publico@dominio.com',
-});
-```
+- E-mail: `Matheuscamargodealencar@gmail.com`
+- Telefone: `11 91363-9989`
+- LinkedIn: `https://www.linkedin.com/in/gomin/`
+- GitHub: `https://github.com/Matheus14623`
+
+O formulário utiliza `mailto:` e abre o cliente de e-mail com a mensagem organizada. Os dados ficam centralizados em `assets/js/config.js`.
 
 ## Observações de conteúdo
 
-As teorias são apresentadas como hipóteses em desenvolvimento, não como verdades finais. O site evita depoimentos, métricas, redes sociais e dados de contato não fornecidos.
+As teorias são apresentadas como hipóteses em desenvolvimento, não como verdades finais. O site evita depoimentos, métricas e publicações não comprovadas; os canais exibidos são apenas os fornecidos nesta atualização.
