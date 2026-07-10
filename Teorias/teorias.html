@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Arquivo navegável de teorias em desenvolvimento do Observatório de Ideias de Matheus Camargo: hipóteses, perguntas abertas, conceitos conectados e maturação conceitual." />
+    <meta name="author" content="Matheus Camargo de Alencar" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#050712" />
+
+    <meta property="og:title" content="Constelação de Teorias | Observatório de Ideias" />
+    <meta property="og:description" content="Uma área dedicada para explorar hipóteses cosmológicas, mapas conceituais, vazio, tempo, informação e filosofia operacional." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="../assets/images/og-observatorio.jpg" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Constelação de Teorias | Observatório de Ideias" />
+    <meta name="twitter:description" content="Hipóteses em maturação, organizadas por categoria, estágio, perguntas abertas e conceitos conectados." />
+    <meta name="twitter:image" content="../assets/images/og-observatorio.jpg" />
+
+    <title>Constelação de Teorias | Observatório de Ideias</title>
+    <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/styles.css?v=scale-theories-v1" />
+    <link rel="stylesheet" href="./teorias.css?v=scale-theories-v1" />
+  </head>
+  <body class="theories-page-body" data-mode="normal">
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
+
+    <header class="site-header" data-header>
+      <div class="header-shell">
+        <a class="brand" href="../index.html#topo" aria-label="Voltar ao início do Observatório">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>
+            <strong>Observatório</strong>
+            <small>arquivo de ideias em órbita</small>
+          </span>
+        </a>
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle>
+          <span class="sr-only">Abrir menu</span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+
+        <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
+          <a href="../index.html#topo">Início</a>
+          <a href="#teorias">Teorias</a>
+          <a href="#fontes">Fontes</a>
+          <a href="../index.html#mapa">Mapa</a>
+          <a href="../index.html#contato">Contato</a>
+        </nav>
+
+        <div class="status-pill" aria-live="polite" data-status-pill>
+          <span class="status-dot" aria-hidden="true"></span>
+          <span data-status-text>Arquivo de teorias</span>
+        </div>
+
+        <span class="beta-badge" aria-label="Modelo em versão beta">Modelo Beta</span>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="theory-archive-hero" id="topo" aria-labelledby="archive-title">
+        <div class="container theory-archive-hero-grid">
+          <div class="archive-hero-copy">
+            <p class="eyebrow">CONSTELAÇÃO · HIPÓTESES · CAMPO TEÓRICO</p>
+            <h1 id="archive-title">Arquivo de teorias em maturação.</h1>
+            <p class="hero-lead">
+              Aqui o observatório desce uma camada: cada hipótese ganha ficha, estado, conceitos conectados e perguntas que ainda não aceitaram fechamento.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#teorias">Explorar arquivo</a>
+              <a class="button button-secondary" href="../index.html#teorias">Voltar ao recorte da home</a>
+            </div>
+          </div>
+
+          <aside class="archive-orbit-panel" aria-label="Resumo do arquivo de teorias">
+            <span class="archive-orbit-core" aria-hidden="true"></span>
+            <div class="archive-orbit-stat">
+              <strong data-theories-total>10</strong>
+              <span>linhas catalogadas</span>
+            </div>
+            <div class="archive-orbit-stat">
+              <strong data-category-total>7</strong>
+              <span>eixos de filtro</span>
+            </div>
+            <p>
+              Nenhuma entrada é apresentada como verdade final. O valor está em tornar o pensamento rastreável: premissa, limite, relação e próximo refinamento.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section theory-archive-section" id="teorias" aria-labelledby="theory-browser-title">
+        <div class="container">
+          <div class="theory-browser-heading">
+            <div>
+              <p class="section-kicker">arquivo navegável</p>
+              <h2 id="theory-browser-title">Pesquisar, filtrar e observar cada linha de pensamento.</h2>
+            </div>
+            <!-- <p>
+              A busca é o eixo principal. Os filtros funcionam como órbitas secundárias: ajudam a reduzir o campo sem transformar categorias em parede visual.
+            </p> -->
+          </div>
+
+          <div class="theory-control-panel" aria-label="Busca e filtros de teorias">
+            <label class="archive-search-field" for="archive-theory-search">
+              <span>Buscar teoria, conceito, status ou pergunta</span>
+              <input id="archive-theory-search" type="search" placeholder="tempo, vazio, backend, epsilon, horizonte..." autocomplete="off" data-theory-search />
+            </label>
+
+            <div class="filter-rail-shell">
+              <div class="filter-rail" role="list" aria-label="Categorias disponíveis" data-filter-rail></div>
+            </div>
+
+            <div class="filter-summary" aria-live="polite">
+              <span data-active-filter>Todas as categorias</span>
+              <button class="reset-filter-button" type="button" data-reset-filters>Limpar busca</button>
+            </div>
+          </div>
+
+          <div class="theory-archive-layout">
+            <div class="theory-results-column">
+              <p class="result-count" data-result-count aria-live="polite"></p>
+              <div class="theory-archive-grid" data-theory-archive-grid></div>
+              <div class="theory-empty-state" hidden data-empty-state>
+                <p class="section-kicker">sem correspondência</p>
+                <h3>Nenhuma hipótese apareceu nesse recorte.</h3>
+                <p>Troque o termo, volte para “Todas” ou use conceitos mais amplos como tempo, vazio, informação ou método.</p>
+              </div>
+            </div>
+
+            <aside class="theory-dossier" data-theory-dossier aria-live="polite" aria-label="Dossiê da teoria selecionada"></aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section archive-sources-section" id="fontes" aria-labelledby="sources-title">
+        <div class="container archive-sources-grid">
+          <div>
+            <p class="section-kicker">fontes internas</p>
+            <h2 id="sources-title">A pasta Teorias continua como material bruto.</h2>
+          </div>
+
+          <div class="source-note-grid" aria-label="Como a página foi estruturada">
+            <article>
+              <span>01</span>
+              <h3>Dados compartilhados</h3>
+              <p>Em Breve</p>
+              <!-- <p>As entradas ficam centralizadas para que a home mostre um recorte e esta página carregue o arquivo completo.</p> -->
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Filtros escaláveis</h3>
+              <p>Em Breve</p>
+              <!-- <p>As categorias ficam em uma trilha horizontal, preparada para receber mais eixos sem quebrar a interface.</p> -->
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Próxima expansão</h3>
+              <p>Em Breve</p>
+              <!-- <p>A estrutura já permite transformar cada teoria em uma página própria, quando houver ensaios mais longos.</p> -->
+              
+            </article>
+            
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p>
+          <strong>Observatório de Ideias</strong><br />
+          Constelação de teorias em desenvolvimento de Matheus Camargo de Alencar.
+        </p>
+        <nav class="footer-links" aria-label="Links profissionais e navegação">
+          <a href="../index.html#topo">Início</a>
+          <a href="../index.html#contato">Contato</a>
+          <a href="mailto:Matheuscamargodealencar@gmail.com">E-mail</a>
+          <a href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
+      </div>
+    </footer>
+
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo">↑</button>
+
+    <noscript>
+      <div class="noscript-message">
+        Esta página continua legível sem JavaScript, mas busca, filtros e detalhes dinâmicos ficam desativados.
+      </div>
+    </noscript>
+
+    <script type="module" src="./teorias.js?v=scale-theories-v1"></script>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 import { $, $$, safeSetText } from './utils.js';
-import { THEORIES, THEORY_FILTERS } from './theories.js';
+import { THEORIES, THEORY_FILTERS } from '../data/theories.js';
 
 const state = {
   activeFilter: 'todas',
@@ -87,16 +87,28 @@ function renderFilters() {
   });
 }
 
+function getVisibleTheories(theories, grid) {
+  const limit = Number(grid?.dataset.theoryLimit || 0);
+  if (!Number.isFinite(limit) || limit <= 0) return theories;
+  return theories.slice(0, limit);
+}
+
 function renderCards(theories) {
   const grid = $('[data-theory-grid]');
   const empty = $('[data-theory-empty]');
   const count = $('[data-theory-count]');
-  if (!grid) return;
+  if (!grid) return [];
 
-  safeSetText(count, `${theories.length} ${theories.length === 1 ? 'teoria visível' : 'teorias visíveis'} · ${THEORIES.length} no arquivo`);
+  const visibleTheories = getVisibleTheories(theories, grid);
+  const hasLimit = visibleTheories.length !== theories.length;
+  const countText = hasLimit
+    ? `${visibleTheories.length} de ${theories.length} teorias no recorte da home · ${THEORIES.length} no arquivo`
+    : `${theories.length} ${theories.length === 1 ? 'teoria visível' : 'teorias visíveis'} · ${THEORIES.length} no arquivo`;
+
+  safeSetText(count, countText);
   if (empty) empty.hidden = theories.length > 0;
 
-  grid.innerHTML = theories.map((theory) => `
+  grid.innerHTML = visibleTheories.map((theory) => `
     <article class="theory-card${theory.id === state.activeTheoryId ? ' is-active' : ''}" tabindex="0" role="button" data-theory-id="${theory.id}" style="--accent:${theory.color}; --accent-glow:${theory.glow}; --status-color:${getStatusColor(theory)};">
       <div class="theory-card-top">
         <span class="theory-code">${escapeHtml(theory.code)}</span>
@@ -127,6 +139,8 @@ function renderCards(theories) {
       }
     });
   });
+
+  return visibleTheories;
 }
 
 function renderDetail() {
@@ -236,8 +250,10 @@ function renderMap() {
 function renderAll() {
   renderFilters();
   const theories = filteredTheories();
-  if (!theories.some((theory) => theory.id === state.activeTheoryId) && theories[0]) {
-    state.activeTheoryId = theories[0].id;
+  const grid = $('[data-theory-grid]');
+  const visibleTheories = getVisibleTheories(theories, grid);
+  if (!visibleTheories.some((theory) => theory.id === state.activeTheoryId) && visibleTheories[0]) {
+    state.activeTheoryId = visibleTheories[0].id;
   }
   renderCards(theories);
   renderDetail();

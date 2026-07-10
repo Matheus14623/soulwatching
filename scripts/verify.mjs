@@ -1,12 +1,16 @@
 import { readFile, stat } from 'node:fs/promises';
-import { resolve, dirname, join } from 'node:path';
+import { resolve, dirname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const requiredFiles = [
   'index.html',
   'teorias.html',
+  'Teorias/teorias.html',
+  'Teorias/teorias.css',
+  'Teorias/teorias.js',
   'assets/css/styles.css',
+  'assets/data/theories.js',
   'assets/js/main.js',
   'assets/js/config.js',
   'assets/js/navigation.js',
@@ -29,14 +33,18 @@ const requiredFiles = [
   'vercel.json',
 ];
 
+const htmlFiles = ['index.html', 'teorias.html', 'Teorias/teorias.html'];
 const errors = [];
 
-for (const file of requiredFiles) {
-  const info = await stat(join(root, file)).catch(() => null);
-  if (!info || !info.isFile()) errors.push(`Arquivo ausente: ${file}`);
+async function fileExists(path) {
+  const info = await stat(join(root, path)).catch(() => null);
+  return Boolean(info?.isFile());
 }
 
-const htmlFiles = ['index.html', 'teorias.html'];
+for (const file of requiredFiles) {
+  if (!(await fileExists(file))) errors.push(`Arquivo ausente: ${file}`);
+}
+
 const htmlByFile = new Map();
 for (const file of htmlFiles) {
   htmlByFile.set(file, await readFile(join(root, file), 'utf8'));
@@ -44,22 +52,30 @@ for (const file of htmlFiles) {
 
 const combinedHtml = [...htmlByFile.values()].join('\n');
 const css = await readFile(join(root, 'assets/css/styles.css'), 'utf8');
+const theoryCss = await readFile(join(root, 'Teorias/teorias.css'), 'utf8');
 
 if (combinedHtml.includes('blob:')) errors.push('Algum HTML ainda contém URL blob.');
 if (combinedHtml.includes('{{PASTE_THE_CURRENT_HTML_FILE_HERE}}')) errors.push('Algum HTML contém placeholder do prompt.');
 if (/\bdi[aá]rio\b/i.test(combinedHtml)) errors.push('HTML ainda usa linguagem de diário.');
 if (combinedHtml.includes('cdn.tailwindcss.com')) errors.push('Tailwind CDN não foi removido.');
 if (combinedHtml.includes('Tone.js')) errors.push('Tone.js CDN não foi removido.');
-if (/TODO:/i.test(combinedHtml + css)) errors.push('Há TODO visível em arquivos principais.');
+if (/TODO:/i.test(combinedHtml + css + theoryCss)) errors.push('Há TODO visível em arquivos principais.');
 
-const refs = [...combinedHtml.matchAll(/(?:src|href)="(assets\/[^"#?]+)"/g)].map((match) => match[1]);
-for (const ref of refs) {
-  const info = await stat(join(root, ref)).catch(() => null);
-  if (!info || !info.isFile()) errors.push(`Referência local inexistente: ${ref}`);
+function isExternal(ref) {
+  return /^(https?:|mailto:|tel:|#|javascript:)/i.test(ref);
 }
 
 for (const [file, html] of htmlByFile) {
-  const anchors = [...html.matchAll(/href="#([^"]+)"/g)].map((match) => match[1]).filter((id) => id !== '');
+  const base = dirname(file);
+  const refs = [...html.matchAll(/(?:src|href)="([^"#?]+)(?:[?#][^"]*)?"/g)].map((match) => match[1]);
+  for (const ref of refs) {
+    if (isExternal(ref)) continue;
+    const resolved = normalize(join(base, ref));
+    if (resolved.startsWith('..')) continue;
+    if (!(await fileExists(resolved))) errors.push(`Referência local inexistente em ${file}: ${ref}`);
+  }
+
+  const anchors = [...html.matchAll(/href="#([^"]+)"/g)].map((match) => match[1]).filter(Boolean);
   for (const id of anchors) {
     if (!html.includes(`id="${id}"`)) errors.push(`Âncora sem destino em ${file}: #${id}`);
   }

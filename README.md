@@ -56,6 +56,8 @@ O arquivo `vercel.json` já está incluído para orientar a Vercel a publicar a 
 matheus-observatorio-ideias/
 ├── assets/
 │   ├── css/styles.css
+│   ├── data/
+│   │   └── theories.js
 │   ├── icons/favicon.svg
 │   ├── images/
 │   │   ├── calabi-yau-wireframe.webp
@@ -81,9 +83,12 @@ matheus-observatorio-ideias/
 ├── docs/
 │   └── INTEGRACAO_TEORIAS.md
 ├── Teorias/
+│   ├── teorias.html
+│   ├── teorias.css
+│   ├── teorias.js
 │   ├── # Cosmologia Lógica O Backend da Ex.md.txt
 │   ├── Agora erabole e fale sobre esse tex.txt
-│   ├── Documento de Texto.md.txt
+│   ├── Novo(a) Documento de Texto.md.txt
 │   ├── TEORIAS_ORIGINAIS.txt
 │   └── backup gpt universo.txt
 ├── index.html
@@ -101,19 +106,24 @@ matheus-observatorio-ideias/
 ## Principais recursos
 
 - Hero com atmosfera cósmica, sistema orbital em CSS e modo de visão estrutural otimizado.
-- Seção de teorias alimentada por `assets/js/theories.js`, agora com 10 linhas catalogadas.
-- Busca, filtros, cards, status, progresso e painel de detalhes na home e na nova página `teorias.html`.
+- Home como recorte/gateway das teorias, com CTA para `Teorias/teorias.html`.
+- Dados de teorias centralizados em `assets/data/theories.js`, consumidos pela home e pela página dedicada.
+- Página dedicada em `Teorias/` com `teorias.html`, `teorias.css` e `teorias.js`.
+- Busca client-side por título, resumo, categoria, status, conceitos, perguntas e pontos de desenvolvimento.
+- Filtros em trilha horizontal escalável para receber mais categorias sem quebrar o layout.
+- Dossiê de teoria selecionada no desktop e detalhes expandidos no próprio card no mobile.
 - Mapa de ideias em formato de constelação interativa.
 - Estrutura editorial para artigos e ensaios futuros sem inventar publicações.
 - Bússola filosófica interativa.
 - Experimento de ressonância com canvas e áudio opcional via Web Audio API.
-- Área de contato redesenhada como coordenadas do observatório, com foto, imagem técnica, e-mail, telefone, LinkedIn, GitHub e formulário com `mailto:`.
+- Área de contato refinada no desktop como sistema de órbitas, preservando o empilhamento limpo no mobile.
 - SEO, Open Graph, favicon e imagem social atualizados.
-
 
 ## Página dedicada de teorias
 
-A página `teorias.html` foi adicionada para preparar o projeto para expansão interna. Ela usa os mesmos dados da home, mas em um ambiente mais focado para leitura, filtro e amadurecimento futuro de páginas individuais por teoria.
+A página principal do arquivo agora está em `Teorias/teorias.html`. Ela carrega primeiro o CSS global (`../assets/css/styles.css`) e depois a camada específica da página (`./teorias.css`). A lógica da página fica em `./teorias.js`, que renderiza cards, filtros, busca e dossiê usando os dados compartilhados de `../assets/data/theories.js`.
+
+O arquivo raiz `teorias.html` foi mantido apenas como redirecionamento de compatibilidade para evitar links antigos quebrados.
 
 ## Contato e presença profissional
 

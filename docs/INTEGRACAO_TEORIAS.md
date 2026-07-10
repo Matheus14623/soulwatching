@@ -1,27 +1,24 @@
-# Integração da pasta Teorias
+# Integração e escala das teorias
 
-Esta atualização preserva a pasta `Teorias/` como fonte original e adiciona uma camada navegável no site.
+A página dedicada de teorias foi reorganizada para o caminho `Teorias/teorias.html`, com CSS e JavaScript específicos no mesmo diretório:
 
-## Materiais analisados
+```text
+Teorias/
+├── teorias.html
+├── teorias.css
+└── teorias.js
+```
 
-- `TEORIAS_ORIGINAIS.txt`: base das hipóteses de Observação Não-Linear, Ciclagem Eterna, Universo-Buraco Negro, Contentor Finito e ER=EPR.
-- `# Cosmologia Lógica O Backend da Ex.md.txt` e `Documento de Texto.md.txt`: consolidados como o eixo **Cosmologia Lógica: o Backend da Existência**.
-- `Agora erabole e fale sobre esse tex.txt`: usado para extrair linhas sobre horizonte, extensão dos sentidos, risco, estudo e filosofia operacional.
-- `backup gpt universo.txt`: usado como registro de contexto e metanível sobre interesses, perguntas e eixos de estudo.
+Os documentos originais da pasta `Teorias` continuam preservados como material bruto. A camada navegável usa dados centralizados em `assets/data/theories.js`, permitindo que a home mostre apenas um recorte enquanto a página dedicada apresenta o arquivo completo.
 
-## Novas linhas adicionadas ao sistema
+## Decisões de estrutura
 
-- T-07 — Cosmologia Lógica: o Backend da Existência.
-- T-08 — Gênese por Flutuação do Vácuo.
-- T-09 — Zero vs. Epsilon.
-- T-10 — Maldição do Horizonte e Extensão dos Sentidos.
+- `assets/css/styles.css` mantém identidade global, tokens visuais, navegação, botões e componentes compartilhados.
+- `Teorias/teorias.css` adiciona apenas a camada específica da página dedicada: hero do arquivo, busca, trilha de filtros, cards, dossiê e estados vazios.
+- `Teorias/teorias.js` controla apenas busca, filtros, seleção de teoria, dossiê e detalhes mobile.
+- `assets/js/theory-lab.js` continua atendendo a home e agora usa o mesmo arquivo de dados compartilhados.
+- O arquivo raiz `teorias.html` redireciona para `Teorias/teorias.html` para evitar links antigos quebrados.
 
-## Decisões de conteúdo
+## Conteúdo
 
-As entradas foram escritas como hipóteses, eixos e linhas de pesquisa em desenvolvimento. Nenhuma teoria é apresentada como conclusão científica final. O objetivo é organizar pensamento, evidenciar perguntas abertas e preparar o site para futuros textos longos.
-
-## Decisões de interface
-
-- A home mantém um recorte rápido das teorias.
-- `teorias.html` concentra a página dedicada para busca, filtros e leitura mais prolongada.
-- Os dados continuam centralizados em `assets/js/theories.js`, separando conteúdo e interface.
+As teorias permanecem marcadas como hipóteses em desenvolvimento. A interface evita tratar as entradas como verdades finais e privilegia estado, pergunta, hipótese central, conceitos conectados e pontos que ainda precisam amadurecer.

@@ -48,7 +48,7 @@
         </button>
 
         <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
-          <a href="#teorias">Teorias</a>
+          <a href="Teorias/teorias.html">Teorias</a>
           <a href="#mapa">Mapa</a>
           <a href="#arquivo">Arquivo</a>
           <a href="#filosofia">Filosofia</a>
@@ -59,12 +59,9 @@
         <div class="status-pill" aria-live="polite" data-status-pill>
           <span class="status-dot" aria-hidden="true"></span>
           <span data-status-text>Campo de ideias</span>
-          <span> | BETA </span>
         </div>
 
-        <div class="status-pill" aria-live="polite" data-status-pill>
-
-        </div>
+        <span class="beta-badge" aria-label="Modelo em versão beta">Beta</span>
       </div>
     </header>
 
@@ -93,7 +90,7 @@
               Nem todo pensamento nasce pronto: alguns começam como ruído, intuição, dúvida ou colisão entre conceitos.
             </p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#teorias">Explorar teorias</a>
+              <a class="button button-primary" href="Teorias/teorias.html">Explorar teorias</a>
               <a class="button button-secondary" href="#mapa">Ver mapa de ideias</a>
               <button class="button button-ghost" type="button" data-observer-toggle aria-pressed="false">
                 <span data-toggle-label>Ativar visão estrutural</span>
@@ -170,14 +167,14 @@
               <p>
                 Cada teoria é tratada como uma linha de pesquisa em evolução. A interface destaca premissa, perguntas abertas, conceitos conectados e limites do que ainda precisa amadurecer.
               </p>
-              <a class="inline-cta" href="teorias.html">Abrir página dedicada das teorias <span aria-hidden="true">↗</span></a>
+              <a class="inline-cta" href="Teorias/teorias.html">Abrir constelação completa <span aria-hidden="true">↗</span></a>
             </div>
           </div>
 
           <div class="theory-index-strip" aria-label="Resumo do arquivo de teorias">
             <span><strong>10</strong> linhas catalogadas</span>
             <span><strong>7</strong> eixos de filtro</span>
-            <span><strong>0</strong> certezas finais</span>
+            <!-- <span><strong>0</strong> certezas finais</span> -->
           </div>
 
           <div class="theory-toolbar" aria-label="Filtros de teorias">
@@ -191,7 +188,7 @@
           <div class="theory-lab">
             <div>
               <p class="result-count" data-theory-count aria-live="polite"></p>
-              <div class="theory-grid" data-theory-grid></div>
+              <div class="theory-grid" data-theory-grid data-theory-limit="6"></div>
               <p class="empty-state" hidden data-theory-empty>Nenhuma teoria encontrada com esse filtro. Tente outro termo ou volte para “Todas”.</p>
             </div>
 
@@ -253,6 +250,8 @@
               <h3>Sem artigos publicados ainda</h3>
               <!-- <p>A estrutura está pronta para receber conteúdo real sem preencher o site com textos falsos.</p> -->
             </article>
+
+            <p>Em Breve!</p>
           </div>
         </div>
       </section>
@@ -386,24 +385,22 @@
             </p>
           </div>
 
-          <div class="contact-constellation-layout">
+          <div class="contact-orbit-system">
             <div class="identity-orbit-card" aria-label="Matheus Camargo e presença técnica">
               <figure class="identity-node identity-node-human">
                 <img src="assets/images/matheus-camargo.webp" width="640" height="640" alt="Foto de Matheus Camargo sentado próximo a uma janela" loading="lazy" decoding="async" />
                 <figcaption>
-                  <!-- <span>origem humana</span>
-                  <strong>Matheus Camargo</strong> -->
+                  <span>origem humana</span>
+                  <strong>Matheus Camargo</strong>
                 </figcaption>
               </figure>
 
               <figure class="identity-node identity-node-github">
                 <img src="assets/images/github-profile.webp" width="460" height="460" alt="Imagem cósmica associada ao perfil GitHub de Matheus Camargo" loading="lazy" decoding="async" />
-                <div style="margin-right: 25rem;">
-                  <figcaption >
-                    <strong >GitHub</strong>
-                  </figcaption>
-                </div>
-                
+                <figcaption>
+                  <span>satélite técnico</span>
+                  <strong>GitHub</strong>
+                </figcaption>
               </figure>
             </div>
 
