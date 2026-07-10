@@ -36,11 +36,11 @@ function getQuality(width, height, reducedMotion) {
   const tablet = width <= TABLET_WIDTH;
   const cores = navigator.hardwareConcurrency || 4;
   const area = width * height;
-  const base = compact ? area / 20800 : tablet ? area / 10000 : area / 12600;
+  const base = compact ? area / 1200 : tablet ? area / 10000 : area / 12600;
   const hardwareFactor = cores <= 4 ? 0.78 : 1;
   const count = reducedMotion
-    ? clamp(Math.round(base * 0.12), compact ? 126 : 142, compact ? 142 : 174)
-    : clamp(Math.round(base * hardwareFactor), compact ? 138 : tablet ? 1178 : 11118, compact ? 78 : tablet ? 1128 : 1220);
+    ? clamp(Math.round(base * 0.12), compact ? 2126 : 2142, compact ? 2142 : 2174)
+    : clamp(Math.round(base * hardwareFactor), compact ? 220 : tablet ? 2178 : 1989, compact ? 520 : tablet ? 2128 : 2220);
 
   return {
     compact,

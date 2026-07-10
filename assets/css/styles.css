@@ -1413,9 +1413,7 @@ body[data-mode="observer"] .data-point {
   border-radius: var(--radius-lg);
 }
 
-.route-timeline article::before {
 
-}
 
 .about-grid {
   display: grid;
