@@ -1,5 +1,5 @@
 import { initNavigation } from './navigation.js';
-import { initObserverMode } from './observer.js?v=contact-structural-v3';
+import { initObserverMode } from './observer.js?v=layout-theories-v4';
 import { initTheoryLab } from './theory-lab.js';
 import { initPhilosophyCompass } from './philosophy.js';
 import { initResonance } from './resonance.js';

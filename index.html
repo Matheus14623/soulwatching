@@ -25,7 +25,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/styles.css?v=contact-structural-v3" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=layout-theories-v4" />
   </head>
   <body data-mode="normal">
     <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
@@ -59,6 +59,11 @@
         <div class="status-pill" aria-live="polite" data-status-pill>
           <span class="status-dot" aria-hidden="true"></span>
           <span data-status-text>Campo de ideias</span>
+          <span> | BETA </span>
+        </div>
+
+        <div class="status-pill" aria-live="polite" data-status-pill>
+
         </div>
       </div>
     </header>
@@ -115,38 +120,64 @@
 
       <section class="section aperture-section" id="campo" aria-labelledby="campo-title">
         <div class="container aperture-grid">
-          <div>
+          <div class="aperture-intro">
             <p class="section-kicker">01 · Campo de investigação</p>
-            <h2 id="campo-title">Entre filosofia, ciência, imaginação e engenharia, o pensamento ganha uma arquitetura.</h2>
-            <p>
-              Isto não é um caderno íntimo. Também não é um monumento pessoal. É um observatório: um lugar para catalogar perguntas, testar metáforas, separar hipótese de intuição e transformar fragmentos em mapas mais legíveis.
+            <h2 id="campo-title">Um observatório para perguntas que ainda não aceitaram forma definitiva.</h2>
+            <p class="section-intro">
+              Entre filosofia, ciência, imaginação e engenharia, este espaço dá arquitetura ao ruído: transforma dúvidas em mapas, hipóteses em sistemas e intuições em registros mais legíveis.
             </p>
-            
           </div>
-          <div class="aperture-copy">
-            <p>
-              Matheus Camargo aparece aqui como desenvolvedor, observador e organizador de ideias que atravessam tempo, cosmologia, programação, filosofia e limites da percepção.
-            </p>
 
+          <aside class="aperture-panel" aria-label="Identidade do campo de investigação">
+            <div class="aperture-panel-copy">
+              <span class="panel-orbit-label">origem do campo</span>
+              <p>
+                Matheus Camargo aparece aqui como ponto de observação: desenvolvedor, organizador de sistemas e autor de perguntas que atravessam cosmologia, programação, filosofia e limites da percepção.
+              </p>
+            </div>
 
-            <figure class="profile-card profile-card-human">
+            <figure class="aperture-profile profile-card profile-card-human">
               <img src="assets/images/matheus-camargo.webp" width="640" height="640" alt="Foto de Matheus Camargo sentado próximo a uma janela" loading="lazy" decoding="async" />
+              <figcaption>
+                <!-- <span>observador</span>
+                <strong>código · cosmos · pensamento</strong> -->
+              </figcaption>
             </figure>
 
-          </div>
+            <!-- <div class="aperture-lenses" aria-label="Lentes do observatório">
+              <span>cosmologia</span>
+              <span>filosofia</span>
+              <span>software</span>
+              <span>hipóteses</span>
+              <span>musica</span>
+            </div> -->
+
+            <p>
+              Não é um caderno íntimo nem um monumento pessoal. É um campo de trabalho para separar metáfora de hipótese, preservar o assombro e manter cada ideia aberta ao próprio refinamento.
+            </p>
+          </aside>
         </div>
       </section>
 
       <section class="section theories-section" id="teorias" aria-labelledby="theories-title">
         <div class="container">
-          <div class="section-heading theories-heading">
+          <div class="section-heading theories-heading theories-heading-refined">
             <div>
               <p class="section-kicker">02 · Teorias em desenvolvimento</p>
-              <h2 id="theories-title">Hipóteses como planetas: algumas densas, outras ainda gasosas.</h2>
+              <h2 id="theories-title">Hipóteses como sistemas: cada uma com núcleo, órbita e estado de maturação.</h2>
             </div>
-            <p>
-              Cada teoria é tratada como uma linha de pesquisa em evolução. O objetivo não é declarar uma conclusão definitiva, mas tornar visível a pergunta central, os conceitos conectados e o que ainda precisa amadurecer.
-            </p>
+            <div class="theories-heading-copy">
+              <p>
+                Cada teoria é tratada como uma linha de pesquisa em evolução. A interface destaca premissa, perguntas abertas, conceitos conectados e limites do que ainda precisa amadurecer.
+              </p>
+              <a class="inline-cta" href="teorias.html">Abrir página dedicada das teorias <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+
+          <div class="theory-index-strip" aria-label="Resumo do arquivo de teorias">
+            <span><strong>10</strong> linhas catalogadas</span>
+            <span><strong>7</strong> eixos de filtro</span>
+            <span><strong>0</strong> certezas finais</span>
           </div>
 
           <div class="theory-toolbar" aria-label="Filtros de teorias">
@@ -346,98 +377,99 @@
       </section>
 
       <section class="section contact-section" id="contato" aria-labelledby="contact-title">
-        <div class="container contact-grid">
-          <div class="contact-orbit-card">
+        <div class="container contact-shell">
+          <div class="contact-heading">
             <p class="section-kicker">09 · Coordenadas de contato</p>
-            <h2 id="contact-title">Algumas ideias permanecem em órbita. Outras pedem conversa.</h2>
-
-
-            <div class="profile-constellation" aria-label="Ponte entre Matheus Camargo e sua presença técnica">
-              <figure class="profile-card profile-card-human">
-                <img src="assets/images/matheus-camargo.webp" width="640" height="640" alt="Foto de Matheus Camargo sentado próximo a uma janela" loading="lazy" decoding="async" />
-                <figcaption>
-                  <span>Origem humana</span>
-                  <strong>Matheus Camargo</strong>
-                </figcaption>
-              </figure>
-
-              <div class="profile-connection" aria-hidden="true">
-                <span></span>
-                <span></span>
-              </div>
-
-              <figure class="profile-card profile-card-github">
-                <img src="assets/images/github-profile.webp" width="460" height="460" alt="Imagem cósmica associada ao perfil GitHub de Matheus Camargo" loading="lazy" decoding="async" />
-                <figcaption>
-                  <span>Extensão técnica</span>
-                  <strong>GitHub / código</strong>
-                </figcaption>
-              </figure>
-            </div>
+            <h2 id="contact-title">Pontos de conexão fora do observatório.</h2>
+            <p>
+              Algumas ideias permanecem em órbita. Outras pedem conversa, código, colaboração ou continuidade. Estes são os canais externos para atravessar o campo e chegar ao lado profissional do sistema.
+            </p>
           </div>
 
-          <div class="contact-panel">
-            <div class="contact-link-list" aria-label="Pontos de conexão profissional">
-              <a class="contact-link" href="mailto:Matheuscamargodealencar@gmail.com" aria-label="Enviar e-mail para Matheus Camargo">
-                <span class="contact-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M4 6.8h16v10.4H4z"/><path d="m4.8 7.3 7.2 5.2 7.2-5.2"/></svg>
-                </span>
-                <span>
-                  <small>E-mail</small>
-                  <strong>Matheuscamargodealencar@gmail.com</strong>
-                </span>
-              </a>
+          <div class="contact-constellation-layout">
+            <div class="identity-orbit-card" aria-label="Matheus Camargo e presença técnica">
+              <figure class="identity-node identity-node-human">
+                <img src="assets/images/matheus-camargo.webp" width="640" height="640" alt="Foto de Matheus Camargo sentado próximo a uma janela" loading="lazy" decoding="async" />
+                <figcaption>
+                  <!-- <span>origem humana</span>
+                  <strong>Matheus Camargo</strong> -->
+                </figcaption>
+              </figure>
 
-              <a class="contact-link" href="tel:+5511913639989" aria-label="Ligar para Matheus Camargo no telefone 11 91363-9989">
-                <span class="contact-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M8.2 4.8 6 6.6c-.7.6-.8 1.6-.4 2.4 2 4.2 5.2 7.4 9.4 9.4.8.4 1.8.2 2.4-.4l1.8-2.2-3.7-2.2-1.2 1.2c-2.2-1.1-4-2.9-5.1-5.1l1.2-1.2z"/></svg>
-                </span>
-                <span>
-                  <small>Telefone</small>
-                  <strong>11 91363-9989</strong>
-                </span>
-              </a>
-
-              <a class="contact-link" href="https://www.linkedin.com/in/gomin/" target="_blank" rel="noopener noreferrer" aria-label="Abrir LinkedIn de Matheus Camargo em uma nova aba">
-                <span class="contact-icon contact-icon-text" aria-hidden="true">in</span>
-                <span>
-                  <small>LinkedIn</small>
-                  <strong>linkedin.com/in/gomin</strong>
-                </span>
-              </a>
-
-              <a class="contact-link" href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer" aria-label="Abrir GitHub de Matheus Camargo em uma nova aba">
-                <span class="contact-icon contact-icon-text" aria-hidden="true">GH</span>
-                <span>
-                  <small>GitHub</small>
-                  <strong>github.com/Matheus14623</strong>
-                </span>
-              </a>
+              <figure class="identity-node identity-node-github">
+                <img src="assets/images/github-profile.webp" width="460" height="460" alt="Imagem cósmica associada ao perfil GitHub de Matheus Camargo" loading="lazy" decoding="async" />
+                <div style="margin-right: 25rem;">
+                  <figcaption >
+                    <strong >GitHub</strong>
+                  </figcaption>
+                </div>
+                
+              </figure>
             </div>
 
-            <form class="contact-form" data-contact-form novalidate>
-              <div class="form-heading">
-                <h3>Enviar um sinal</h3>
-                <p>O formulário prepara a mensagem e abre seu cliente de e-mail com tudo organizado.</p>
+            <div class="contact-coordinate-panel">
+              <div class="contact-link-list" aria-label="Pontos de conexão profissional">
+                <a class="contact-link" href="mailto:Matheuscamargodealencar@gmail.com" aria-label="Enviar e-mail para Matheus Camargo">
+                  <span class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M4 6.8h16v10.4H4z"/><path d="m4.8 7.3 7.2 5.2 7.2-5.2"/></svg>
+                  </span>
+                  <span>
+                    <small>E-mail</small>
+                    <strong>Matheuscamargodealencar@gmail.com</strong>
+                  </span>
+                </a>
+
+                <a class="contact-link" href="tel:+5511913639989" aria-label="Ligar para Matheus Camargo no telefone 11 91363-9989">
+                  <span class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M8.2 4.8 6 6.6c-.7.6-.8 1.6-.4 2.4 2 4.2 5.2 7.4 9.4 9.4.8.4 1.8.2 2.4-.4l1.8-2.2-3.7-2.2-1.2 1.2c-2.2-1.1-4-2.9-5.1-5.1l1.2-1.2z"/></svg>
+                  </span>
+                  <span>
+                    <small>Telefone</small>
+                    <strong>11 91363-9989</strong>
+                  </span>
+                </a>
+
+                <a class="contact-link" href="https://www.linkedin.com/in/gomin/" target="_blank" rel="noopener noreferrer" aria-label="Abrir LinkedIn de Matheus Camargo em uma nova aba">
+                  <span class="contact-icon contact-icon-text" aria-hidden="true">in</span>
+                  <span>
+                    <small>LinkedIn</small>
+                    <strong>linkedin.com/in/gomin</strong>
+                  </span>
+                </a>
+
+                <a class="contact-link" href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer" aria-label="Abrir GitHub de Matheus Camargo em uma nova aba">
+                  <span class="contact-icon contact-icon-text" aria-hidden="true">GH</span>
+                  <span>
+                    <small>GitHub</small>
+                    <strong>github.com/Matheus14623</strong>
+                  </span>
+                </a>
               </div>
-              <div class="form-field">
-                <label for="name">Nome</label>
-                <input id="name" name="name" type="text" autocomplete="name" required minlength="2" />
-                <small data-error-for="name"></small>
-              </div>
-              <div class="form-field">
-                <label for="email">E-mail</label>
-                <input id="email" name="email" type="email" autocomplete="email" required />
-                <small data-error-for="email"></small>
-              </div>
-              <div class="form-field">
-                <label for="message">Mensagem</label>
-                <textarea id="message" name="message" rows="6" required minlength="12" placeholder="Escreva uma pergunta, proposta, colaboração ou ideia para continuar a órbita."></textarea>
-                <small data-error-for="message"></small>
-              </div>
-              <button class="button button-primary" type="submit" data-contact-submit>Abrir e-mail</button>
-              <p class="form-status" role="status" aria-live="polite" data-contact-status></p>
-            </form>
+
+              <form class="contact-form compact-contact-form" data-contact-form novalidate>
+                <div class="form-heading">
+                  <h3>Enviar um sinal</h3>
+                  <p>O formulário prepara a mensagem e abre seu cliente de e-mail com tudo organizado.</p>
+                </div>
+                <div class="form-field">
+                  <label for="name">Nome</label>
+                  <input id="name" name="name" type="text" autocomplete="name" required minlength="2" />
+                  <small data-error-for="name"></small>
+                </div>
+                <div class="form-field">
+                  <label for="email">E-mail</label>
+                  <input id="email" name="email" type="email" autocomplete="email" required />
+                  <small data-error-for="email"></small>
+                </div>
+                <div class="form-field">
+                  <label for="message">Mensagem</label>
+                  <textarea id="message" name="message" rows="5" required minlength="12" placeholder="Escreva uma pergunta, proposta, colaboração ou ideia para continuar a órbita."></textarea>
+                  <small data-error-for="message"></small>
+                </div>
+                <button class="button button-primary" type="submit" data-contact-submit>Abrir e-mail</button>
+                <p class="form-status" role="status" aria-live="polite" data-contact-status></p>
+              </form>
+            </div>
           </div>
         </div>
       </section>
@@ -446,6 +478,7 @@
     <footer class="site-footer">
       <div class="container footer-grid">
         <p>
+          <strong>Status: BETA/DESENVOLVIMENTO</strong><br />
           <strong>Observatório de Ideias</strong><br />
           Um arquivo vivo conectado a Matheus Camargo de Alencar.
         </p>
@@ -466,6 +499,6 @@
       </div>
     </noscript>
 
-    <script type="module" src="assets/js/main.js?v=contact-structural-v3"></script>
+    <script type="module" src="assets/js/main.js?v=layout-theories-v4"></script>
   </body>
 </html>

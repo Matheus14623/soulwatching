@@ -28,8 +28,10 @@ export function initObserverMode() {
   body.dataset.observerInitialized = 'true';
 
   const hero = $('.hero');
-  const overlay = createStructuralOverlay(hero);
   const buttons = $$('[data-observer-toggle]');
+  if (!hero || !buttons.length) return;
+
+  const overlay = createStructuralOverlay(hero);
   const statusText = $('[data-status-text]');
   const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   const compactQuery = window.matchMedia('(max-width: 760px)');

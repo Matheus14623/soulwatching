@@ -1,6 +1,6 @@
 {
   "name": "matheus-observatorio-ideias",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
   "type": "module",
   "description": "Site estático, filosófico e interativo para o Observatório de Ideias de Matheus Camargo.",

@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const requiredFiles = [
   'index.html',
+  'teorias.html',
   'assets/css/styles.css',
   'assets/js/main.js',
   'assets/js/config.js',
@@ -22,6 +23,8 @@ const requiredFiles = [
   'assets/images/stoic-rock.webp',
   'assets/images/sisyphus-absurdism.webp',
   'assets/images/cosmic-scale.webp',
+  'assets/images/matheus-camargo.webp',
+  'assets/images/github-profile.webp',
   'assets/images/og-observatorio.jpg',
   'vercel.json',
 ];
@@ -33,25 +36,33 @@ for (const file of requiredFiles) {
   if (!info || !info.isFile()) errors.push(`Arquivo ausente: ${file}`);
 }
 
-const html = await readFile(join(root, 'index.html'), 'utf8');
+const htmlFiles = ['index.html', 'teorias.html'];
+const htmlByFile = new Map();
+for (const file of htmlFiles) {
+  htmlByFile.set(file, await readFile(join(root, file), 'utf8'));
+}
+
+const combinedHtml = [...htmlByFile.values()].join('\n');
 const css = await readFile(join(root, 'assets/css/styles.css'), 'utf8');
 
-if (html.includes('blob:')) errors.push('index.html ainda contém URL blob.');
-if (html.includes('{{PASTE_THE_CURRENT_HTML_FILE_HERE}}')) errors.push('index.html contém placeholder do prompt.');
-if (/\bdi[aá]rio\b/i.test(html)) errors.push('index.html ainda usa linguagem de diário.');
-if (html.includes('cdn.tailwindcss.com')) errors.push('Tailwind CDN não foi removido.');
-if (html.includes('Tone.js')) errors.push('Tone.js CDN não foi removido.');
-if (/TODO:/i.test(html + css)) errors.push('Há TODO visível em arquivos principais.');
+if (combinedHtml.includes('blob:')) errors.push('Algum HTML ainda contém URL blob.');
+if (combinedHtml.includes('{{PASTE_THE_CURRENT_HTML_FILE_HERE}}')) errors.push('Algum HTML contém placeholder do prompt.');
+if (/\bdi[aá]rio\b/i.test(combinedHtml)) errors.push('HTML ainda usa linguagem de diário.');
+if (combinedHtml.includes('cdn.tailwindcss.com')) errors.push('Tailwind CDN não foi removido.');
+if (combinedHtml.includes('Tone.js')) errors.push('Tone.js CDN não foi removido.');
+if (/TODO:/i.test(combinedHtml + css)) errors.push('Há TODO visível em arquivos principais.');
 
-const refs = [...html.matchAll(/(?:src|href)="(assets\/[^"#?]+)"/g)].map((match) => match[1]);
+const refs = [...combinedHtml.matchAll(/(?:src|href)="(assets\/[^"#?]+)"/g)].map((match) => match[1]);
 for (const ref of refs) {
   const info = await stat(join(root, ref)).catch(() => null);
   if (!info || !info.isFile()) errors.push(`Referência local inexistente: ${ref}`);
 }
 
-const anchors = [...html.matchAll(/href="#([^"]+)"/g)].map((match) => match[1]).filter((id) => id !== '');
-for (const id of anchors) {
-  if (!html.includes(`id="${id}"`)) errors.push(`Âncora sem destino: #${id}`);
+for (const [file, html] of htmlByFile) {
+  const anchors = [...html.matchAll(/href="#([^"]+)"/g)].map((match) => match[1]).filter((id) => id !== '');
+  for (const id of anchors) {
+    if (!html.includes(`id="${id}"`)) errors.push(`Âncora sem destino em ${file}: #${id}`);
+  }
 }
 
 for (const jsFile of requiredFiles.filter((file) => file.endsWith('.js'))) {

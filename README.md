@@ -79,9 +79,15 @@ matheus-observatorio-ideias/
 │       ├── theory-lab.js
 │       └── utils.js
 ├── docs/
-│   ├── PROJECT_REPORT.md
-│   └── TEORIAS_ORIGINAIS.txt
+│   └── INTEGRACAO_TEORIAS.md
+├── Teorias/
+│   ├── # Cosmologia Lógica O Backend da Ex.md.txt
+│   ├── Agora erabole e fale sobre esse tex.txt
+│   ├── Documento de Texto.md.txt
+│   ├── TEORIAS_ORIGINAIS.txt
+│   └── backup gpt universo.txt
 ├── index.html
+├── teorias.html
 ├── package.json
 ├── package-lock.json
 ├── robots.txt
@@ -95,14 +101,19 @@ matheus-observatorio-ideias/
 ## Principais recursos
 
 - Hero com atmosfera cósmica, sistema orbital em CSS e modo de visão estrutural otimizado.
-- Seção de teorias alimentada por `assets/js/theories.js`.
-- Busca, filtros, cards, status, progresso e painel de detalhes.
+- Seção de teorias alimentada por `assets/js/theories.js`, agora com 10 linhas catalogadas.
+- Busca, filtros, cards, status, progresso e painel de detalhes na home e na nova página `teorias.html`.
 - Mapa de ideias em formato de constelação interativa.
 - Estrutura editorial para artigos e ensaios futuros sem inventar publicações.
 - Bússola filosófica interativa.
 - Experimento de ressonância com canvas e áudio opcional via Web Audio API.
-- Área de contato com foto, imagem de perfil técnico, e-mail, telefone, LinkedIn, GitHub e formulário com `mailto:`.
+- Área de contato redesenhada como coordenadas do observatório, com foto, imagem técnica, e-mail, telefone, LinkedIn, GitHub e formulário com `mailto:`.
 - SEO, Open Graph, favicon e imagem social atualizados.
+
+
+## Página dedicada de teorias
+
+A página `teorias.html` foi adicionada para preparar o projeto para expansão interna. Ela usa os mesmos dados da home, mas em um ambiente mais focado para leitura, filtro e amadurecimento futuro de páginas individuais por teoria.
 
 ## Contato e presença profissional
 

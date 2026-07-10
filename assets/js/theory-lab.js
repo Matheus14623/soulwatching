@@ -29,6 +29,9 @@ function getTheory(id) {
 
 function getStatusColor(theory) {
   if (theory.status.includes('fronteira')) return '#ff9ef2';
+  if (theory.status.includes('eixo')) return '#b7f7ff';
+  if (theory.status.includes('ponte')) return '#8fd8ff';
+  if (theory.status.includes('filosofia')) return '#f7df87';
   if (theory.status.includes('rascunho')) return '#ad8cff';
   if (theory.status.includes('inicial')) return '#68f0cb';
   return '#72ecff';
@@ -100,7 +103,12 @@ function renderCards(theories) {
         <span class="status-badge">${escapeHtml(theory.status)}</span>
       </div>
       <h3>${escapeHtml(theory.title)}</h3>
-      <p>${escapeHtml(theory.summary)}</p>
+      <p class="theory-card-subtitle">${escapeHtml(theory.subtitle)}</p>
+      <p class="theory-card-summary">${escapeHtml(theory.summary)}</p>
+      <div class="theory-card-meta" aria-label="Resumo da teoria">
+        <span>${theory.questions.length} perguntas</span>
+        <span>${theory.concepts.length} conceitos</span>
+      </div>
       <div class="tag-list">${tagMarkup(theory.concepts)}</div>
       <div class="progress-block" aria-label="Maturidade conceitual inferida: ${theory.progress}%">
         <div class="progress-label"><span>Maturidade</span><strong>${theory.progress}%</strong></div>
@@ -132,6 +140,12 @@ function renderDetail() {
     <p class="detail-kicker">${escapeHtml(theory.code)} · ${escapeHtml(theory.status)}</p>
     <h3>${escapeHtml(theory.title)}</h3>
     <p>${escapeHtml(theory.subtitle)}</p>
+
+    <div class="detail-meta" aria-label="Metadados da teoria">
+      <span>${escapeHtml(theory.category)}</span>
+      <span>${theory.questions.length} perguntas abertas</span>
+      <span>${theory.needs.length} pontos a desenvolver</span>
+    </div>
 
     <div class="progress-block" aria-label="Maturidade conceitual inferida: ${theory.progress}%">
       <div class="progress-label"><span>Estado de maturação</span><strong>${theory.progress}%</strong></div>
