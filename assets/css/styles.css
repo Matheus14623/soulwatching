@@ -2736,7 +2736,7 @@ img {
   position: absolute;
   inset: auto 0 0;
   padding: 1rem;
-  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.86));
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.06));
 }
 
 .identity-node figcaption span {
@@ -3131,5 +3131,283 @@ img {
 @media (max-width: 460px) {
   .contact-orbit-system .identity-orbit-card {
     min-height: 24rem;
+  }
+}
+
+/* ==========================================================
+   Ajuste final — Contato desktop refinado
+   Fotos ao lado do título + contatos abaixo
+   ========================================================== */
+
+.contact-section {
+  overflow: clip;
+}
+
+.contact-shell {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3.4rem);
+}
+
+.contact-intro-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(20rem, 0.78fr);
+  gap: clamp(2rem, 5vw, 5.2rem);
+  align-items: center;
+}
+
+.contact-intro-grid::after {
+  content: "";
+  position: absolute;
+  left: 43%;
+  right: 8%;
+  top: 56%;
+  z-index: -1;
+  height: 1px;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(114, 236, 255, 0.3),
+      rgba(173, 140, 255, 0.18),
+      transparent);
+  pointer-events: none;
+}
+
+.contact-heading {
+  max-width: 790px;
+}
+
+.contact-heading h2 {
+  max-width: 11ch;
+  font-size: clamp(2.9rem, 6.2vw, 6.4rem);
+}
+
+.contact-heading p {
+  max-width: 62ch;
+  margin-bottom: 0;
+  color: var(--text-soft);
+  font-size: clamp(1rem, 1.25vw, 1.12rem);
+}
+
+/* Card das fotos agora fica no topo direito, junto do título */
+.contact-section .contact-identity-showcase {
+  justify-self: end;
+  width: min(100%, 38rem);
+  min-height: clamp(18rem, 27vw, 24.5rem);
+  aspect-ratio: 1.42 / 1;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 28% 42%, rgba(114, 236, 255, 0.12), transparent 11rem),
+    radial-gradient(circle at 76% 68%, rgba(173, 140, 255, 0.14), transparent 12rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.026));
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+  contain: layout paint;
+}
+
+.contact-section .contact-identity-showcase::before {
+  inset: 12% 14%;
+  border-color: rgba(114, 236, 255, 0.22);
+  transform: rotate(-13deg) scaleY(0.5);
+}
+
+.contact-section .contact-identity-showcase::after {
+  inset: 27% 9%;
+  border-color: rgba(173, 140, 255, 0.22);
+  transform: rotate(17deg) scaleY(0.48);
+}
+
+/* Corrige o corte dos textos dentro das fotos */
+.contact-section .contact-identity-showcase .identity-node {
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.contact-section .contact-identity-showcase .identity-node img {
+  display: block;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 20px 58px rgba(0, 0, 0, 0.36),
+    0 0 42px rgba(114, 236, 255, 0.08);
+}
+
+.contact-section .contact-identity-showcase .identity-node-human {
+  left: 7%;
+  top: 10%;
+  width: min(53%, 16rem);
+  aspect-ratio: 1;
+}
+
+.contact-section .contact-identity-showcase .identity-node-human img {
+  object-position: center 42%;
+}
+
+.contact-section .contact-identity-showcase .identity-node-github {
+  right: 8%;
+  bottom: 10%;
+  width: min(34%, 10.4rem);
+  aspect-ratio: 1;
+}
+
+.contact-section .contact-identity-showcase .identity-node-github img {
+  opacity: 0.94;
+  mix-blend-mode: screen;
+}
+
+.contact-section .contact-identity-showcase .identity-node figcaption {
+  position: absolute;
+  left: 50%;
+  right: auto;
+  bottom: 0.90rem;
+  width: max-content;
+  max-width: calc(100% - 1.1rem);
+  padding: 0.38rem 0.62rem;
+  transform: translateX(-50%);
+  /* border: 1px solid rgba(114, 236, 255, 0.2); */
+  border-radius: 999px;
+  /* background: rgba(5, 8, 18, 0.82); */
+  text-align: center;
+  /* box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28); */
+  /* backdrop-filter: blur(30px); */
+}
+
+.contact-section .contact-identity-showcase .identity-node figcaption span {
+  display: block;
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  line-height: 1.1;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.contact-section .contact-identity-showcase .identity-node figcaption strong {
+  display: block;
+  margin-top: 0.12rem;
+  color: var(--text);
+  font-size: clamp(0.68rem, 0.82vw, 0.82rem);
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+/* Contatos e formulário agora ficam abaixo do título/fotos */
+.contact-coordinate-panel--below {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(21rem, 0.48fr);
+  gap: clamp(1rem, 2.2vw, 1.45rem);
+  align-items: stretch;
+}
+
+.contact-coordinate-panel--below .contact-link-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(17rem, 1fr));
+  gap: 0.85rem;
+  align-content: start;
+}
+
+.contact-coordinate-panel--below .contact-link {
+  min-height: 5.2rem;
+  padding: 1rem 1.05rem;
+  border-radius: 1.35rem;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(114, 236, 255, 0.09), transparent 8rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.062), rgba(255, 255, 255, 0.03));
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.16);
+}
+
+.contact-coordinate-panel--below .contact-link>span:last-child {
+  min-width: 0;
+}
+
+.contact-coordinate-panel--below .contact-link strong {
+  font-size: clamp(0.82rem, 0.98vw, 0.96rem);
+  line-height: 1.18;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+.contact-coordinate-panel--below .compact-contact-form {
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(114, 236, 255, 0.08), transparent 12rem),
+    rgba(255, 255, 255, 0.035);
+}
+
+/* Tablet */
+@media (max-width: 1080px) {
+  .contact-intro-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-intro-grid::after {
+    display: none;
+  }
+
+  .contact-section .contact-identity-showcase {
+    justify-self: center;
+    width: min(100%, 36rem);
+  }
+
+  .contact-coordinate-panel--below {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-coordinate-panel--below .contact-link-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile: mantém o comportamento empilhado */
+@media (max-width: 760px) {
+  .contact-heading h2 {
+    max-width: none;
+  }
+
+  .contact-section .contact-identity-showcase {
+    min-height: 27rem;
+    aspect-ratio: auto;
+    border-radius: var(--radius-xl);
+  }
+
+  .contact-section .contact-identity-showcase .identity-node-human {
+    left: 7%;
+    top: 9%;
+    width: 68%;
+  }
+
+  .contact-section .contact-identity-showcase .identity-node-github {
+    right: 7%;
+    bottom: 9%;
+    width: 39%;
+  }
+
+  .contact-coordinate-panel--below .contact-link-list {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-coordinate-panel--below .contact-link {
+    min-height: 4.6rem;
+  }
+}
+
+@media (max-width: 460px) {
+  .contact-section .contact-identity-showcase {
+    min-height: 24rem;
+  }
+
+  .contact-section .contact-identity-showcase .identity-node figcaption {
+    bottom: 0.55rem;
+    padding: 0.34rem 0.52rem;
+  }
+
+  .contact-section .contact-identity-showcase .identity-node figcaption span {
+    font-size: 0.47rem;
+  }
+
+  .contact-section .contact-identity-showcase .identity-node figcaption strong {
+    font-size: 0.64rem;
   }
 }
