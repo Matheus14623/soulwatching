@@ -424,7 +424,7 @@ export function initObserverMode() {
   const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   const renderer = new StellarDriftRenderer(overlay, reduceMotionQuery);
 
-  let isObserverMode = false;
+  let isObserverMode = true;
   let pulseTimer = 0;
 
   const sync = () => {
@@ -438,7 +438,7 @@ export function initObserverMode() {
     buttons.forEach((button) => {
       setPressed(button, isObserverMode);
       const label = $('[data-toggle-label]', button);
-      safeSetText(label, isObserverMode ? 'Desativar visão estrutural' : 'Ativar visão estrutural');
+      safeSetText(label, isObserverMode ? 'Desativar visão estelar' : 'Ativar visão estelar');
     });
 
     safeSetText(statusText, isObserverMode ? 'Deriva estelar simulada' : 'Campo de ideias');

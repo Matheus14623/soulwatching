@@ -93,7 +93,7 @@ matheus-observatorio-ideias/
 
 ## Principais recursos
 
-- Hero com atmosfera cósmica, sistema orbital em CSS e modo de visão estrutural otimizado.
+- Hero com atmosfera cósmica, sistema orbital em CSS e modo de visão estelar otimizado.
 - Home como recorte/gateway das teorias, com CTA para `Teorias/teorias.html`.
 - Dados de teorias centralizados em `assets/data/theories.js`, consumidos pela home e pela página dedicada.
 - Página dedicada em `Teorias/` com `teorias.html`, `teorias.css` e `teorias.js`.

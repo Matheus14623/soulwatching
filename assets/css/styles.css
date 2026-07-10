@@ -1041,9 +1041,9 @@ body[data-mode="observer"] .data-point {
 
 .constellation-section {
   overflow: hidden;
-  background:
+  /* background:
     radial-gradient(circle at 50% 45%, rgba(173, 140, 255, 0.08), transparent 28rem),
-    rgba(255,255,255,0.014);
+    rgba(255,255,255,0.014); */
 }
 
 .constellation-map {
@@ -2062,7 +2062,7 @@ body[data-mode="observer"] .data-point {
 
 
 /* ==========================================================
-   V3 — Visão estrutural otimizada
+   V3 — Visão estelar otimizada
    A teia principal é SVG estático + poucos sinais por transform/opacity.
    Não há loop contínuo em canvas, nem geração repetida de partículas.
    ========================================================== */
