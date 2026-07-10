@@ -36,20 +36,8 @@ Não há build obrigatório. O comando abaixo roda a verificação para ambiente
 npm run build
 ```
 
-## Deploy na Vercel
-
-O projeto é estático. A raiz do projeto é o diretório de publicação.
-
-Configuração recomendada na Vercel:
-
-```text
-Framework Preset: Other
-Build Command: vazio
-Output Directory: .
+irectory: .
 ```
-
-O arquivo `vercel.json` já está incluído para orientar a Vercel a publicar a raiz sem build.
-
 ## Estrutura
 
 ```text
