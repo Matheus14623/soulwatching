@@ -3297,7 +3297,7 @@ img {
 /* Contatos e formulário agora ficam abaixo do título/fotos */
 .contact-coordinate-panel--below {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(21rem, 0.48fr);
+  /* grid-template-columns: minmax(0, 1fr) minmax(21rem, 0.48fr); */
   gap: clamp(1rem, 2.2vw, 1.45rem);
   align-items: stretch;
 }
