@@ -40,6 +40,7 @@ export function initPhilosophyCompass() {
   const analysis = $('[data-philosophy-analysis]');
 
   if (!buttons.length || !panel) return;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   const applyPhilosophy = (key) => {
     const data = PHILOSOPHY_DATA[key];
@@ -50,6 +51,7 @@ export function initPhilosophyCompass() {
       button.classList.toggle('is-active', isActive);
       button.setAttribute('aria-selected', String(isActive));
       button.tabIndex = isActive ? 0 : -1;
+      if (isActive) panel.setAttribute('aria-labelledby', button.id);
     });
 
     panel.classList.add('is-changing');
@@ -64,7 +66,7 @@ export function initPhilosophyCompass() {
       }
       panel.dataset.accent = data.accent;
       panel.classList.remove('is-changing');
-    }, 180);
+    }, reduceMotion.matches ? 0 : 180);
   };
 
   buttons.forEach((button) => {

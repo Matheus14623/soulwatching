@@ -36,11 +36,11 @@ function getQuality(width, height, reducedMotion) {
   const tablet = width <= TABLET_WIDTH;
   const cores = navigator.hardwareConcurrency || 4;
   const area = width * height;
-  const base = compact ? area / 1200 : tablet ? area / 10000 : area / 12600;
+  const base = compact ? area / 1400 : tablet ? area / 1800 : area / 1600;
   const hardwareFactor = cores <= 4 ? 0.78 : 1;
   const count = reducedMotion
-    ? clamp(Math.round(base * 0.12), compact ? 2126 : 2142, compact ? 2142 : 2174)
-    : clamp(Math.round(base * hardwareFactor), compact ? 220 : tablet ? 2178 : 1989, compact ? 520 : tablet ? 2128 : 2220);
+    ? clamp(Math.round(base * 0.42), compact ? 90 : tablet ? 150 : 220, compact ? 180 : tablet ? 280 : 420)
+    : clamp(Math.round(base * hardwareFactor), compact ? 180 : tablet ? 320 : 520, compact ? 420 : tablet ? 650 : 1100);
 
   return {
     compact,
@@ -424,7 +424,7 @@ export function initObserverMode() {
   const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   const renderer = new StellarDriftRenderer(overlay, reduceMotionQuery);
 
-  let isObserverMode = true;
+  let isObserverMode = false;
   let pulseTimer = 0;
 
   const sync = () => {

@@ -167,6 +167,14 @@ class ResonanceCanvas {
     this.audio.play(nearest.string.index);
   }
 
+  pluck(index, force = 1.15) {
+    const string = this.strings[index];
+    if (!string) return;
+    string.pluck(force);
+    this.audio.play(index);
+    this.start();
+  }
+
   start() {
     if (this.frame || prefersReducedMotion()) {
       this.drawStatic();
@@ -209,9 +217,21 @@ export function initResonance() {
   const container = $('[data-string-container]');
   const audioButton = $('[data-audio-toggle]');
   const status = $('[data-audio-status]');
+  const stringButtons = document.querySelectorAll('[data-string-key]');
   const audio = new AudioEngine();
   const resonance = new ResonanceCanvas(canvas, container, audio);
   resonance.init();
+
+  stringButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const index = Number(button.dataset.stringKey);
+      resonance.pluck(index);
+      safeSetText(
+        status,
+        `Corda ${index + 1} acionada. ${audio.enabled ? 'Áudio ativo.' : 'Áudio desligado; resposta somente visual.'}`,
+      );
+    });
+  });
 
   audioButton?.addEventListener('click', async () => {
     try {

@@ -269,6 +269,71 @@
   box-shadow: inset 0 0 0 1px rgba(114, 236, 255, 0.14);
 }
 
+.archive-filter-chip small {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+}
+
+.advanced-filter-panel {
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.025);
+}
+
+.advanced-filter-panel > summary {
+  display: flex;
+  min-height: 3rem;
+  padding: 0.75rem 0.9rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.advanced-filter-panel > summary::marker {
+  color: var(--cyan);
+}
+
+.advanced-filter-panel > summary span:last-child {
+  color: var(--cyan);
+  font-size: 0.6rem;
+}
+
+.advanced-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  padding: 0 0.85rem 0.85rem;
+}
+
+.advanced-filter-grid label {
+  display: grid;
+  gap: 0.42rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.advanced-filter-grid select {
+  width: 100%;
+  min-height: 2.8rem;
+  padding: 0 2.3rem 0 0.72rem;
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: var(--radius-sm);
+  background: var(--bg-3);
+  color: var(--text-soft);
+  font: 500 0.76rem/1.2 var(--font-sans);
+  text-transform: none;
+}
+
 .filter-summary {
   display: flex;
   flex-wrap: wrap;
@@ -522,6 +587,131 @@
   color: var(--cyan);
 }
 
+.dossier-central-question {
+  padding: 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+}
+
+.dossier-disclosure,
+.mobile-detail-disclosure {
+  margin-top: 0.7rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.dossier-disclosure > summary,
+.mobile-detail-disclosure > summary {
+  padding: 0.85rem 0;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.dossier-disclosure > summary::marker,
+.mobile-detail-disclosure > summary::marker {
+  color: var(--accent, var(--cyan));
+}
+
+.dossier-disclosure-content {
+  padding-bottom: 0.45rem;
+}
+
+.dossier-disclosure-content > p {
+  color: var(--text-soft);
+}
+
+.dossier-disclosure-content ul {
+  display: grid;
+  gap: 0.48rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dossier-disclosure-content li {
+  position: relative;
+  padding-left: 1rem;
+  color: var(--text-soft);
+  line-height: 1.55;
+}
+
+.dossier-disclosure-content li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.provenance-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+}
+
+.provenance-list div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.provenance-list dt {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.provenance-list dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--text-soft);
+  font-size: 0.83rem;
+}
+
+.dossier-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.theory-permalink,
+.theory-map-link {
+  display: inline-flex;
+  min-height: 2.7rem;
+  padding: 0.58rem 0.72rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(114,236,255,0.24);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  line-height: 1.3;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.theory-permalink:hover,
+.theory-permalink:focus-visible,
+.theory-map-link:hover,
+.theory-map-link:focus-visible {
+  border-color: var(--border-strong);
+  color: var(--cyan);
+}
+
+.dossier-empty {
+  color: var(--text-soft);
+}
+
 .mobile-theory-detail {
   display: none;
   padding: 0 1rem 1rem;
@@ -606,6 +796,15 @@
     display: none;
   }
 
+  .archive-theory-card {
+    overflow: visible;
+    contain: none;
+  }
+
+  .archive-card-trigger {
+    min-height: 0;
+  }
+
   .mobile-theory-detail:not([hidden]) {
     display: block;
   }
@@ -631,6 +830,11 @@
 
   .filter-summary {
     align-items: stretch;
+  }
+
+  .advanced-filter-grid,
+  .dossier-actions {
+    grid-template-columns: 1fr;
   }
 
   .reset-filter-button {

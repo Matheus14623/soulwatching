@@ -2502,8 +2502,63 @@ img {
   padding: clamp(1rem, 1.8vw, 1.2rem);
   background:
     radial-gradient(circle at 100% 0%, var(--accent-glow), transparent 9.5rem),
-    ;
+    linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.028));
   box-shadow: 0 14px 46px rgba(0, 0, 0, 0.2);
+}
+
+.string-keyboard-controls {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  max-width: calc(100% - 15rem);
+}
+
+.string-keyboard-controls button {
+  min-height: 2.5rem;
+  padding: 0.45rem 0.58rem;
+  border: 1px solid rgba(114,236,255,0.2);
+  border-radius: 999px;
+  background: rgba(5,8,18,0.76);
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  cursor: pointer;
+}
+
+.string-keyboard-controls button:hover,
+.string-keyboard-controls button:focus-visible {
+  border-color: var(--border-strong);
+  color: var(--cyan);
+}
+
+/* Production fixes kept last to win over legacy cascade layers. */
+@media (max-width: 760px) {
+  .theories-section .theory-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .structural-time-indicator {
+    display: none;
+  }
+
+  .instrument-hint {
+    top: 0.8rem;
+    right: 0.8rem;
+    bottom: auto;
+    left: 0.8rem;
+    text-align: center;
+  }
+
+  .string-keyboard-controls {
+    right: 0.8rem;
+    bottom: 0.8rem;
+    left: 0.8rem;
+    justify-content: center;
+    max-width: none;
+  }
 }
 
 

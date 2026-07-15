@@ -1,0 +1,199 @@
+.archive-hero .inner-hero-copy h1 {
+  max-width: 12ch;
+}
+
+.archive-definition-section {
+  background: var(--bg-2);
+}
+
+.archive-type-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.archive-type-card {
+  position: relative;
+  display: grid;
+  min-height: 17rem;
+  padding: clamp(1.1rem, 2.5vw, 1.55rem);
+  overflow: clip;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(173,140,255,0.1), transparent 12rem),
+    linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
+}
+
+a.archive-type-card {
+  color: inherit;
+  transition: transform 170ms ease, border-color 170ms ease;
+}
+
+a.archive-type-card:hover,
+a.archive-type-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+}
+
+.archive-type-card--active {
+  border-color: rgba(114,236,255,0.25);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(114,236,255,0.14), transparent 12rem),
+    linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.028));
+}
+
+.archive-type-card > span,
+.archive-type-card > strong {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.archive-type-card h3 {
+  margin: 1.4rem 0 0.6rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 4vw, 3.5rem);
+  line-height: 1;
+}
+
+.archive-type-card p {
+  max-width: 48ch;
+  margin: 0 0 2rem;
+  color: var(--text-soft);
+}
+
+.archive-type-card > strong {
+  align-self: end;
+  color: var(--muted);
+}
+
+.archive-empty-section {
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+  background: var(--bg-2);
+}
+
+.archive-workflow-section {
+  background:
+    radial-gradient(circle at 12% 80%, rgba(114,236,255,0.06), transparent 24rem),
+    var(--bg);
+}
+
+.archive-workflow {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: archive-step;
+}
+
+.archive-workflow li {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  gap: clamp(1rem, 4vw, 2.5rem);
+  padding: 1.25rem 0;
+  border-top: 1px solid rgba(255,255,255,0.09);
+}
+
+.archive-workflow li:last-child {
+  border-bottom: 1px solid rgba(255,255,255,0.09);
+}
+
+.archive-workflow li > span {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+}
+
+.archive-workflow h3 {
+  margin-bottom: 0.35rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+}
+
+.archive-workflow p {
+  max-width: 64ch;
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.archive-schema-section {
+  background: var(--bg-2);
+}
+
+.archive-schema-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(20rem, 1fr);
+  gap: clamp(2rem, 7vw, 6rem);
+  align-items: start;
+}
+
+.archive-schema-layout h2 {
+  max-width: 12ch;
+}
+
+.archive-schema-layout > div > p:last-child {
+  max-width: 55ch;
+}
+
+.archive-schema-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: rgba(255,255,255,0.035);
+}
+
+.archive-schema-list div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.archive-schema-list div:last-child {
+  border-bottom: 0;
+}
+
+.archive-schema-list dt {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.archive-schema-list dd {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+@media (max-width: 960px) {
+  .archive-schema-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .archive-type-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .archive-workflow li,
+  .archive-schema-list div {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.archive-type-card {
+    transition: none;
+  }
+}

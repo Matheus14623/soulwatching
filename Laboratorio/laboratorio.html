@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Laboratório do Observatório de Ideias de Matheus Camargo: experimentos leves com visão estelar, ressonância, constelações e interfaces conceituais." />
+    <meta name="author" content="Matheus Camargo de Alencar" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#050712" />
+
+    <meta property="og:title" content="Laboratório | Observatório de Ideias" />
+    <meta property="og:description" content="Código, gesto e visualização como instrumentos para explorar ideias sem transformar o site em demonstração vazia." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="../assets/images/og-observatorio.jpg" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Laboratório | Observatório de Ideias" />
+    <meta name="twitter:description" content="Experimentos reais do observatório reunidos em um campo técnico e sensorial." />
+    <meta name="twitter:image" content="../assets/images/og-observatorio.jpg" />
+
+    <title>Laboratório | Observatório de Ideias</title>
+    <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/styles.css?v=observatory-scale-v1" />
+    <link rel="stylesheet" href="../assets/css/observatory-pages.css?v=observatory-scale-v1" />
+    <link rel="stylesheet" href="./laboratorio.css?v=observatory-scale-v1" />
+  </head>
+  <body class="observatory-page-body laboratory-page-body" data-mode="normal">
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
+
+    <header class="site-header" data-header>
+      <div class="header-shell">
+        <a class="brand" href="../index.html#topo" aria-label="Voltar ao início do Observatório">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span><strong>Observatório</strong><small>arquivo de ideias em órbita</small></span>
+        </a>
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle>
+          <span class="sr-only">Abrir menu</span>
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+
+        <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
+          <a href="../index.html#topo">Início</a>
+          <a href="../Teorias/teorias.html">Teorias</a>
+          <a href="../Mapa/mapa.html">Mapa</a>
+          <a href="../Arquivo/arquivo.html">Arquivo</a>
+          <a href="#experimentos" aria-current="page">Laboratório</a>
+          <a href="../index.html#contato">Coordenadas</a>
+        </nav>
+
+        <div class="status-pill" aria-live="polite" data-status-pill>
+          <span class="status-dot" aria-hidden="true"></span>
+          <span data-status-text>Experimentos ativos</span>
+        </div>
+        <span class="beta-badge" aria-label="Modelo em versão beta">Beta</span>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="inner-hero laboratory-hero" id="topo" aria-labelledby="laboratory-title">
+        <div class="container inner-hero-grid">
+          <div class="inner-hero-copy">
+            <p class="eyebrow">CÓDIGO · GESTO · VISUALIZAÇÃO</p>
+            <h1 id="laboratory-title">Pensar também pode ser uma forma de interação.</h1>
+            <p class="hero-lead">
+              O laboratório reúne experiências que já existem no observatório. Cada uma traduz uma pergunta em comportamento visual, som, navegação ou relação.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#experimentos">Ver experimentos</a>
+              <a class="button button-secondary" href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer" aria-label="Abrir GitHub de Matheus Camargo em uma nova aba">Abrir GitHub</a>
+            </div>
+          </div>
+
+          <aside class="page-status-card" aria-label="Estado atual do laboratório">
+            <span>camada experimental</span>
+            <strong>3 campos ativos</strong>
+            <dl class="page-status-list">
+              <div><dt>Canvas</dt><dd>visão estelar e ressonância</dd></div>
+              <div><dt>Dados</dt><dd>constelação derivada das teorias</dd></div>
+              <div><dt>Regra</dt><dd>efeito somente quando há função conceitual</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section experiments-section" id="experimentos" aria-labelledby="experiments-title">
+        <div class="container">
+          <div class="page-section-heading">
+            <div>
+              <p class="section-kicker">01 · Experimentos navegáveis</p>
+              <h2 id="experiments-title">Três formas de aproximar o campo.</h2>
+            </div>
+            <!-- <p>Os experimentos continuam em suas páginas de origem para evitar duplicação de código e manter cada interação no contexto correto.</p> -->
+          </div>
+
+          <div class="experiment-grid">
+            <a class="experiment-card experiment-card--stellar" href="../index.html#topo">
+              <div class="experiment-visual experiment-visual--stars" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+              <div class="experiment-copy">
+                <span>ativo · canvas 2D</span>
+                <h3>Visão estelar</h3>
+                <p>Uma camada opcional de deriva temporal que troca a fotografia do hero por um campo de estrelas controlado.</p>
+                <strong>Ativar na página inicial <span aria-hidden="true">↗</span></strong>
+              </div>
+            </a>
+
+            <a class="experiment-card experiment-card--sound" href="../index.html#ressonancia">
+              <div class="experiment-visual experiment-visual--strings" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="experiment-copy">
+                <span>ativo · canvas + áudio opcional</span>
+                <h3>Ressonância</h3>
+                <p>Seis cordas respondem ao gesto. O som só é iniciado com consentimento explícito e o desenho pausa fora da tela.</p>
+                <strong>Abrir instrumento <span aria-hidden="true">↗</span></strong>
+              </div>
+            </a>
+
+            <a class="experiment-card experiment-card--map" href="../Mapa/mapa.html">
+              <div class="experiment-visual experiment-visual--nodes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="experiment-copy">
+                <span>ativo · dados compartilhados</span>
+                <h3>Constelação</h3>
+                <p>Teorias e conexões viram uma interface leve, filtrável e acessível sem biblioteca de grafos.</p>
+                <strong>Explorar relações <span aria-hidden="true">↗</span></strong>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section laboratory-principles-section" aria-labelledby="principles-title">
+        <div class="container">
+          <div class="page-section-heading">
+            <div>
+              <p class="section-kicker">02 · Critérios</p>
+              <h2 id="principles-title">Experimentar sem transformar tudo em espetáculo.</h2>
+            </div>
+            <!-- <p>A camada técnica deve tornar uma relação perceptível, nunca esconder falta de conteúdo.</p> -->
+          </div>
+
+          <div class="definition-grid">
+            <article class="definition-card"><span>sentido</span><h3>Função antes do efeito</h3><p>Uma interação entra no laboratório quando responde a uma pergunta ou melhora a exploração.</p></article>
+            <article class="definition-card"><span>controle</span><h3>Movimento opcional</h3><p>Áudio depende de consentimento; animações respeitam redução de movimento e visibilidade.</p></article>
+            <article class="definition-card"><span>escala</span><h3>Peso proporcional</h3><p>Canvas e JavaScript permanecem pequenos, sem bibliotecas pesadas ou nós excessivos no DOM.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section laboratory-technical-section" aria-labelledby="technical-title">
+        <div class="container technical-presence-grid">
+          <div>
+            <p class="section-kicker">03 · Presença técnica</p>
+            <h2 id="technical-title">O portfólio aparece como consequência do trabalho.</h2>
+            <!-- <p>
+              O próprio observatório demonstra arquitetura front-end, visualização, acessibilidade e organização de dados. Projetos externos permanecem no GitHub para não converter todo o campo em vitrine profissional genérica.
+            </p> -->
+            <div class="hero-actions">
+              <a class="button button-primary" href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer" aria-label="Abrir projetos públicos de Matheus Camargo no GitHub em uma nova aba">Ver projetos no GitHub</a>
+              <a class="button button-secondary" href="https://www.linkedin.com/in/gomin/" target="_blank" rel="noopener noreferrer" aria-label="Abrir LinkedIn de Matheus Camargo em uma nova aba">Abrir LinkedIn</a>
+            </div>
+          </div>
+          <div class="technical-orbit" aria-hidden="true"><span></span><span></span><span></span><strong>código<br />como lente</strong></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container note-panel">
+          <p class="section-kicker">próxima expansão</p>
+          <h3>O próximo experimento ainda não foi definido.</h3>
+          <!-- <p>Novos protótipos só entrarão quando houver uma ideia real que se beneficie de simulação, diagrama ou interação. O campo está preparado; o conteúdo não será inventado.</p> -->
+          <p>Em Breve</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container page-footer-cta">
+          <div>
+            <p class="section-kicker">da interface ao conteúdo</p>
+            <h2>O laboratório aproxima. As teorias sustentam a investigação.</h2>
+            <p>Depois de experimentar o gesto, retorne ao arquivo para ler pergunta, hipótese e tensão.</p>
+          </div>
+          <div class="hero-actions">
+            <a class="button button-primary" href="../Teorias/teorias.html">Explorar teorias</a>
+            <a class="button button-secondary" href="../index.html#contato">Abrir coordenadas</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p><strong>Laboratório</strong><br />Experimentos técnicos e conceituais do Observatório.</p>
+        <nav class="footer-links" aria-label="Navegação e links profissionais">
+          <a href="../index.html#topo">Início</a>
+          <a href="../Teorias/teorias.html">Teorias</a>
+          <a href="../Mapa/mapa.html">Mapa</a>
+          <a href="../Arquivo/arquivo.html">Arquivo</a>
+          <a href="mailto:Matheuscamargodealencar@gmail.com">E-mail</a>
+          <a href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
+      </div>
+    </footer>
+
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo">↑</button>
+    <script type="module" src="../assets/js/page-shell.js?v=observatory-scale-v1"></script>
+  </body>
+</html>

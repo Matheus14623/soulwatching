@@ -1,15 +1,20 @@
 import { readFile, stat } from 'node:fs/promises';
 import { resolve, dirname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { THEORIES, THEORY_FILTERS } from '../assets/data/theories.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const requiredFiles = [
+  'README.md',
+  'DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md',
+  'docs/INTEGRACAO_TEORIAS.md',
   'index.html',
   'teorias.html',
   'Teorias/teorias.html',
   'Teorias/teorias.css',
   'Teorias/teorias.js',
   'assets/css/styles.css',
+  'assets/css/observatory-pages.css',
   'assets/data/theories.js',
   'assets/js/main.js',
   'assets/js/config.js',
@@ -21,6 +26,7 @@ const requiredFiles = [
   'assets/js/resonance.js',
   'assets/js/contact.js',
   'assets/js/utils.js',
+  'assets/js/page-shell.js',
   'assets/icons/favicon.svg',
   'assets/images/rain-window.webp',
   'assets/images/calabi-yau-wireframe.webp',
@@ -30,10 +36,24 @@ const requiredFiles = [
   'assets/images/matheus-camargo.webp',
   'assets/images/github-profile.webp',
   'assets/images/og-observatorio.jpg',
+  'Mapa/mapa.html',
+  'Mapa/mapa.css',
+  'Mapa/mapa.js',
+  'Arquivo/arquivo.html',
+  'Arquivo/arquivo.css',
+  'Laboratorio/laboratorio.html',
+  'Laboratorio/laboratorio.css',
   'vercel.json',
 ];
 
-const htmlFiles = ['index.html', 'teorias.html', 'Teorias/teorias.html'];
+const htmlFiles = [
+  'index.html',
+  'teorias.html',
+  'Teorias/teorias.html',
+  'Mapa/mapa.html',
+  'Arquivo/arquivo.html',
+  'Laboratorio/laboratorio.html',
+];
 const errors = [];
 
 async function fileExists(path) {
@@ -84,6 +104,41 @@ for (const [file, html] of htmlByFile) {
 for (const jsFile of requiredFiles.filter((file) => file.endsWith('.js'))) {
   const js = await readFile(join(root, jsFile), 'utf8');
   if (/console\.log\(/.test(js)) errors.push(`console.log encontrado em ${jsFile}`);
+}
+
+const theoryIds = new Set();
+const theorySlugs = new Set();
+const filterIds = new Set(THEORY_FILTERS.map((filter) => filter.id));
+const requiredTheoryFields = [
+  'id', 'slug', 'code', 'title', 'summary', 'centralIdea', 'centralQuestion',
+  'hypothesis', 'status', 'phase', 'stage', 'category', 'sourceFile',
+  'concepts', 'questions', 'developmentNotes', 'connections',
+];
+
+for (const theory of THEORIES) {
+  const missing = requiredTheoryFields.filter((field) => theory[field] === undefined || theory[field] === '');
+  if (missing.length) errors.push(`${theory.code || theory.id || 'Teoria'} sem campos obrigatórios: ${missing.join(', ')}`);
+
+  if (theoryIds.has(theory.id)) errors.push(`ID de teoria duplicado: ${theory.id}`);
+  if (theorySlugs.has(theory.slug)) errors.push(`Slug de teoria duplicado: ${theory.slug}`);
+  theoryIds.add(theory.id);
+  theorySlugs.add(theory.slug);
+
+  if (!Number.isFinite(theory.progress) || theory.progress < 0 || theory.progress > 100) {
+    errors.push(`Progresso inválido em ${theory.id}`);
+  }
+
+  const unknownFilters = theory.filters.filter((filter) => !filterIds.has(filter));
+  if (!filterIds.has(theory.category)) unknownFilters.push(theory.category);
+  if (unknownFilters.length) errors.push(`Filtros desconhecidos em ${theory.id}: ${[...new Set(unknownFilters)].join(', ')}`);
+
+  const sourcePath = theory.sourceFile.replace(/^Teorias\//, 'Teorias/');
+  if (!(await fileExists(sourcePath))) errors.push(`Fonte interna inexistente em ${theory.id}: ${theory.sourceFile}`);
+}
+
+for (const theory of THEORIES) {
+  const unknownConnections = theory.connections.filter((id) => !theoryIds.has(id));
+  if (unknownConnections.length) errors.push(`Conexões inválidas em ${theory.id}: ${unknownConnections.join(', ')}`);
 }
 
 if (errors.length) {

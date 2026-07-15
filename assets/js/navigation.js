@@ -6,20 +6,25 @@ export function initNavigation() {
   const nav = $('[data-primary-nav]');
   const backToTop = $('[data-back-to-top]');
   const links = $$('a[href^="#"]', nav || document);
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const sections = links
     .map((link) => document.getElementById(link.getAttribute('href').slice(1)))
     .filter(Boolean);
 
-  const closeMenu = () => {
+  const closeMenu = (options = {}) => {
     if (!toggle || !nav) return;
     toggle.setAttribute('aria-expanded', 'false');
     nav.classList.remove('is-open');
+    $('.sr-only', toggle).textContent = 'Abrir menu';
+    if (options.returnFocus) toggle.focus();
   };
 
   toggle?.addEventListener('click', () => {
     const isOpen = toggle.getAttribute('aria-expanded') === 'true';
     toggle.setAttribute('aria-expanded', String(!isOpen));
     nav?.classList.toggle('is-open', !isOpen);
+    $('.sr-only', toggle).textContent = isOpen ? 'Abrir menu' : 'Fechar menu';
+    if (!isOpen) $('a', nav)?.focus();
   });
 
   links.forEach((link) => {
@@ -27,7 +32,15 @@ export function initNavigation() {
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeMenu();
+    if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      closeMenu({ returnFocus: true });
+    }
+  });
+
+  document.addEventListener('pointerdown', (event) => {
+    if (toggle?.getAttribute('aria-expanded') !== 'true') return;
+    const target = event.target instanceof Node ? event.target : null;
+    if (target && !nav?.contains(target) && !toggle.contains(target)) closeMenu();
   });
 
   const updateHeader = () => {
@@ -40,7 +53,7 @@ export function initNavigation() {
   window.addEventListener('scroll', updateHeader, { passive: true });
 
   backToTop?.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
   });
 
   if ('IntersectionObserver' in window && sections.length) {

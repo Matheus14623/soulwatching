@@ -25,6 +25,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/styles.css?v=scale-theories-v1" />
+    <link rel="stylesheet" href="../assets/css/observatory-pages.css?v=observatory-scale-v1" />
     <link rel="stylesheet" href="./teorias.css?v=scale-theories-v1" />
   </head>
   <body class="theories-page-body" data-mode="normal">
@@ -49,10 +50,11 @@
 
         <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
           <a href="../index.html#topo">Início</a>
-          <a href="#teorias">Teorias</a>
-          <a href="#fontes">Fontes</a>
-          <a href="../index.html#mapa">Mapa</a>
-          <a href="../index.html#contato">Contato</a>
+          <a href="#teorias" aria-current="page">Teorias</a>
+          <a href="../Mapa/mapa.html">Mapa</a>
+          <a href="../Arquivo/arquivo.html">Arquivo</a>
+          <a href="../Laboratorio/laboratorio.html">Laboratório</a>
+          <a href="../index.html#contato">Coordenadas</a>
         </nav>
 
         <div class="status-pill" aria-live="polite" data-status-pill>
@@ -75,7 +77,7 @@
             </p>
             <div class="hero-actions">
               <a class="button button-primary" href="#teorias">Explorar arquivo</a>
-              <a class="button button-secondary" href="../index.html#teorias">Voltar ao recorte da home</a>
+              <a class="button button-secondary" href="../Mapa/mapa.html">Abrir mapa de relações</a>
             </div>
           </div>
 
@@ -118,9 +120,36 @@
               <div class="filter-rail" role="list" aria-label="Categorias disponíveis" data-filter-rail></div>
             </div>
 
+            <details class="advanced-filter-panel" data-advanced-filters>
+              <summary>
+                <span>Filtros avançados</span>
+                <span data-advanced-filter-count>nenhum ativo</span>
+              </summary>
+              <div class="advanced-filter-grid">
+                <label>
+                  <span>Fase de desenvolvimento</span>
+                  <select data-phase-filter>
+                    <option value="todas">Todas as fases</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Status editorial</span>
+                  <select data-status-filter>
+                    <option value="todos">Todos os status</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Conceito relacionado</span>
+                  <select data-concept-filter>
+                    <option value="todos">Todos os conceitos</option>
+                  </select>
+                </label>
+              </div>
+            </details>
+
             <div class="filter-summary" aria-live="polite">
               <span data-active-filter>Todas as categorias</span>
-              <button class="reset-filter-button" type="button" data-reset-filters>Limpar busca</button>
+              <button class="reset-filter-button" type="button" data-reset-filters>Limpar filtros</button>
             </div>
           </div>
 
@@ -140,7 +169,7 @@
         </div>
       </section>
 
-      <section class="section archive-sources-section" id="fontes" aria-labelledby="sources-title">
+      <!-- <section class="section archive-sources-section" id="fontes" aria-labelledby="sources-title">
         <div class="container archive-sources-grid">
           <div>
             <p class="section-kicker">fontes internas</p>
@@ -151,26 +180,22 @@
             <article>
               <span>01</span>
               <h3>Dados compartilhados</h3>
-              <p>Em Breve</p>
-              <!-- <p>As entradas ficam centralizadas para que a home mostre um recorte e esta página carregue o arquivo completo.</p> -->
+              <p>As entradas ficam centralizadas para que a home mostre um recorte e esta página carregue o arquivo completo.</p>
             </article>
             <article>
               <span>02</span>
               <h3>Filtros escaláveis</h3>
-              <p>Em Breve</p>
-              <!-- <p>As categorias ficam em uma trilha horizontal, preparada para receber mais eixos sem quebrar a interface.</p> -->
+              <p>Categoria, fase, status e conceitos funcionam em conjunto sem multiplicar botões na tela.</p>
             </article>
             <article>
               <span>03</span>
               <h3>Próxima expansão</h3>
-              <p>Em Breve</p>
-              <!-- <p>A estrutura já permite transformar cada teoria em uma página própria, quando houver ensaios mais longos.</p> -->
-              
+              <p>Cada seleção possui URL própria, preparando o caminho para dossiês individuais quando houver conteúdo longo.</p>
             </article>
             
           </div>
         </div>
-      </section>
+      </section> -->
     </main>
 
     <footer class="site-footer">
@@ -181,7 +206,9 @@
         </p>
         <nav class="footer-links" aria-label="Links profissionais e navegação">
           <a href="../index.html#topo">Início</a>
-          <a href="../index.html#contato">Contato</a>
+          <a href="../Mapa/mapa.html">Mapa</a>
+          <a href="../Arquivo/arquivo.html">Arquivo</a>
+          <a href="../Laboratorio/laboratorio.html">Laboratório</a>
           <a href="mailto:Matheuscamargodealencar@gmail.com">E-mail</a>
           <a href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer">GitHub</a>
         </nav>

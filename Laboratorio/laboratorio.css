@@ -1,0 +1,281 @@
+.laboratory-hero .inner-hero-copy h1 {
+  max-width: 11ch;
+}
+
+.experiments-section {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(114,236,255,0.06), transparent 24rem),
+    var(--bg-2);
+}
+
+.experiment-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.experiment-card {
+  grid-column: span 4;
+  display: grid;
+  min-width: 0;
+  overflow: clip;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.022));
+  color: inherit;
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.experiment-card:hover,
+.experiment-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+}
+
+.experiment-visual {
+  position: relative;
+  min-height: 15rem;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(114,236,255,0.12), transparent 10rem),
+    rgba(5,8,18,0.7);
+}
+
+.experiment-visual--stars span {
+  position: absolute;
+  width: 0.34rem;
+  height: 0.34rem;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 18px rgba(114,236,255,0.8);
+}
+
+.experiment-visual--stars span:nth-child(1) { left: 18%; top: 28%; }
+.experiment-visual--stars span:nth-child(2) { left: 72%; top: 22%; width: 0.2rem; height: 0.2rem; }
+.experiment-visual--stars span:nth-child(3) { left: 54%; top: 64%; width: 0.46rem; height: 0.46rem; }
+.experiment-visual--stars span:nth-child(4) { left: 30%; top: 78%; width: 0.18rem; height: 0.18rem; }
+
+.experiment-visual--stars::before,
+.experiment-visual--stars::after {
+  content: "";
+  position: absolute;
+  left: 52%;
+  top: 50%;
+  width: 12rem;
+  height: 6.5rem;
+  border: 1px solid rgba(114,236,255,0.18);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(-16deg);
+}
+
+.experiment-visual--stars::after {
+  width: 7rem;
+  height: 11rem;
+  transform: translate(-50%, -50%) rotate(28deg);
+}
+
+.experiment-visual--strings {
+  display: grid;
+  padding: 1.7rem 2rem;
+  align-content: center;
+  gap: 1rem;
+}
+
+.experiment-visual--strings span {
+  height: 1px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, transparent, rgba(114,236,255,0.78), transparent);
+  box-shadow: 0 0 12px rgba(114,236,255,0.24);
+}
+
+.experiment-visual--strings span:nth-child(2),
+.experiment-visual--strings span:nth-child(5) {
+  transform: translateY(-3px) rotate(1.2deg);
+}
+
+.experiment-visual--strings span:nth-child(3) {
+  transform: translateY(4px) rotate(-1.5deg);
+}
+
+.experiment-visual--nodes i {
+  position: absolute;
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 50%;
+  background: var(--purple);
+  box-shadow: 0 0 18px rgba(173,140,255,0.55);
+}
+
+.experiment-visual--nodes i:nth-child(1) { left: 18%; top: 30%; }
+.experiment-visual--nodes i:nth-child(2) { left: 66%; top: 24%; background: var(--cyan); }
+.experiment-visual--nodes i:nth-child(3) { left: 78%; top: 68%; background: var(--gold); }
+.experiment-visual--nodes i:nth-child(4) { left: 30%; top: 76%; background: var(--green); }
+.experiment-visual--nodes i:nth-child(5) { left: 48%; top: 50%; width: 0.9rem; height: 0.9rem; background: var(--cyan); }
+
+.experiment-visual--nodes::before {
+  content: "";
+  position: absolute;
+  inset: 20% 15%;
+  background:
+    linear-gradient(24deg, transparent 47%, rgba(114,236,255,0.16) 49%, rgba(114,236,255,0.16) 51%, transparent 53%),
+    linear-gradient(-28deg, transparent 48%, rgba(173,140,255,0.16) 49%, rgba(173,140,255,0.16) 51%, transparent 52%);
+}
+
+.experiment-copy {
+  display: grid;
+  padding: 1.2rem;
+}
+
+.experiment-copy > span,
+.experiment-copy > strong {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.experiment-copy h3 {
+  margin: 0.8rem 0 0.55rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.experiment-copy p {
+  margin: 0 0 1.6rem;
+  color: var(--text-soft);
+}
+
+.experiment-copy > strong {
+  align-self: end;
+}
+
+.laboratory-principles-section {
+  background: var(--bg);
+}
+
+.laboratory-technical-section {
+  background: var(--bg-2);
+}
+
+.technical-presence-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.5fr);
+  gap: clamp(2rem, 8vw, 7rem);
+  align-items: center;
+}
+
+.technical-presence-grid h2 {
+  max-width: 13ch;
+}
+
+.technical-presence-grid p:not(.section-kicker) {
+  max-width: 63ch;
+  color: var(--text-soft);
+}
+
+.technical-orbit {
+  position: relative;
+  display: grid;
+  width: min(100%, 27rem);
+  aspect-ratio: 1;
+  place-items: center;
+  justify-self: center;
+  border: 1px solid rgba(114,236,255,0.13);
+  border-radius: 50%;
+}
+
+.technical-orbit::before,
+.technical-orbit::after,
+.technical-orbit span {
+  content: "";
+  position: absolute;
+  inset: 14%;
+  border: 1px solid rgba(173,140,255,0.15);
+  border-radius: 50%;
+  transform: rotate(28deg) scaleY(0.55);
+}
+
+.technical-orbit::after {
+  inset: 26%;
+  border-color: rgba(114,236,255,0.2);
+  transform: rotate(-35deg) scaleY(1.7);
+}
+
+.technical-orbit span:nth-child(1) {
+  inset: 40%;
+  border: 0;
+  background: radial-gradient(circle, rgba(114,236,255,0.8), rgba(114,236,255,0.08) 35%, transparent 67%);
+  transform: none;
+}
+
+.technical-orbit span:nth-child(2) {
+  left: 17%;
+  top: 28%;
+  width: 0.65rem;
+  height: 0.65rem;
+  border: 0;
+  background: var(--purple);
+  box-shadow: 0 0 20px rgba(173,140,255,0.55);
+  transform: none;
+}
+
+.technical-orbit span:nth-child(3) {
+  left: 77%;
+  top: 68%;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 0;
+  background: var(--gold);
+  box-shadow: 0 0 18px rgba(246,213,109,0.45);
+  transform: none;
+}
+
+.technical-orbit strong {
+  position: relative;
+  z-index: 2;
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1080px) {
+  .experiment-card {
+    grid-column: span 6;
+  }
+
+  .experiment-card:last-child {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 960px) {
+  .technical-presence-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .experiment-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .experiment-card,
+  .experiment-card:last-child {
+    grid-column: 1;
+  }
+
+  .experiment-visual {
+    min-height: 12rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experiment-card {
+    transition: none;
+  }
+}

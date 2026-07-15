@@ -1,4 +1,4 @@
-import { $, $$, safeSetText } from './utils.js';
+import { $, $$, debounce, safeSetText } from './utils.js';
 import { THEORIES, THEORY_FILTERS } from '../data/theories.js';
 
 const state = {
@@ -49,7 +49,9 @@ function matchesQuery(theory) {
     theory.summary,
     theory.hypothesis,
     theory.status,
+    theory.phase,
     theory.stage,
+    theory.sourceFile,
     theory.concepts.join(' '),
     theory.questions.join(' '),
     theory.needs.join(' '),
@@ -118,6 +120,7 @@ function renderCards(theories) {
       <p class="theory-card-subtitle">${escapeHtml(theory.subtitle)}</p>
       <p class="theory-card-summary">${escapeHtml(theory.summary)}</p>
       <div class="theory-card-meta" aria-label="Resumo da teoria">
+        <span>${escapeHtml(theory.phase)}</span>
         <span>${theory.questions.length} perguntas</span>
         <span>${theory.concepts.length} conceitos</span>
       </div>
@@ -157,6 +160,7 @@ function renderDetail() {
 
     <div class="detail-meta" aria-label="Metadados da teoria">
       <span>${escapeHtml(theory.category)}</span>
+      <span>${escapeHtml(theory.phase)}</span>
       <span>${theory.questions.length} perguntas abertas</span>
       <span>${theory.needs.length} pontos a desenvolver</span>
     </div>
@@ -164,6 +168,11 @@ function renderDetail() {
     <div class="progress-block" aria-label="Maturidade conceitual inferida: ${theory.progress}%">
       <div class="progress-label"><span>Estado de maturação</span><strong>${theory.progress}%</strong></div>
       <div class="progress-track"><span style="--progress:${theory.progress}%"></span></div>
+    </div>
+
+    <div class="detail-section">
+      <h4>Pergunta central</h4>
+      <p>${escapeHtml(theory.centralQuestion)}</p>
     </div>
 
     <div class="detail-section">
@@ -191,6 +200,16 @@ function renderDetail() {
       <p>${escapeHtml(theory.stage)}</p>
     </div>
   `;
+}
+
+function updateArchiveStats() {
+  const relationCount = new Set(
+    THEORIES.flatMap((theory) => theory.connections.map((target) => [theory.id, target].sort().join('::'))),
+  ).size;
+
+  $$('[data-theory-total]').forEach((element) => safeSetText(element, String(THEORIES.length)));
+  $$('[data-filter-total]').forEach((element) => safeSetText(element, String(Math.max(THEORY_FILTERS.length - 1, 0))));
+  $$('[data-relation-total]').forEach((element) => safeSetText(element, String(relationCount)));
 }
 
 function setActiveTheory(id, options = {}) {
@@ -248,6 +267,7 @@ function renderMap() {
 }
 
 function renderAll() {
+  updateArchiveStats();
   renderFilters();
   const theories = filteredTheories();
   const grid = $('[data-theory-grid]');
@@ -265,10 +285,10 @@ export function initTheoryLab() {
   if (!$('[data-theory-grid]')) return;
 
   const search = $('[data-theory-search]');
-  search?.addEventListener('input', () => {
+  search?.addEventListener('input', debounce(() => {
     state.query = search.value.trim();
     renderAll();
-  });
+  }, 140));
 
   renderAll();
 }
