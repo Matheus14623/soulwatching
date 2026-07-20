@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Mapa de ideias do Observatório de Matheus Camargo: relações navegáveis entre teorias, conceitos e eixos de investigação." />
+    <meta name="description" content="Mapa de ideias do Observatório: relações navegáveis entre hipóteses, estudos, estruturas conceituais, programas e eixos de investigação." />
     <meta name="author" content="Matheus Camargo de Alencar" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#050712" />
@@ -24,9 +24,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/css/styles.css?v=observatory-scale-v1" />
+    <link rel="stylesheet" href="../assets/css/styles.css?v=theory-clarity-v2" />
     <link rel="stylesheet" href="../assets/css/observatory-pages.css?v=observatory-scale-v1" />
-    <link rel="stylesheet" href="./mapa.css?v=observatory-scale-v1" />
+    <link rel="stylesheet" href="./mapa.css?v=theory-clarity-v2" />
   </head>
   <body class="observatory-page-body map-page-body" data-mode="normal">
     <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
@@ -73,7 +73,7 @@
             <p class="eyebrow">CONSTELAÇÃO · RELAÇÕES · NAVEGAÇÃO CONCEITUAL</p>
             <h1 id="map-page-title">Ideias ganham forma quando suas relações ficam visíveis.</h1>
             <p class="hero-lead">
-              Este mapa não tenta provar uma teoria pela proximidade com outra. Ele registra trilhas de pensamento: afinidades, tensões, conceitos recorrentes e perguntas que atravessam mais de uma linha.
+              Este mapa não tenta sustentar uma proposta pela proximidade com outra. Ele registra trilhas de pensamento: afinidades, tensões, conceitos recorrentes e perguntas que atravessam mais de uma linha.
             </p>
             <div class="hero-actions">
               <a class="button button-primary" href="#constelacao">Explorar constelação</a>
@@ -83,11 +83,11 @@
 
           <aside class="page-status-card" aria-label="Estado atual do mapa">
             <span>campo atual</span>
-            <strong><span data-map-theory-total>10</span> teorias</strong>
+            <strong><span data-map-theory-total>10</span> entradas</strong>
             <dl class="page-status-list">
               <div><dt>Relações</dt><dd><span data-map-relation-total>0</span> conexões únicas catalogadas</dd></div>
               <div><dt>Eixos</dt><dd><span data-map-filter-total>7</span> categorias navegáveis</dd></div>
-              <div><dt>Estado</dt><dd>mapa leve derivado dos dados públicos</dd></div>
+              <div><dt>Estado</dt><dd>mapa leve de relações conceituais</dd></div>
             </dl>
           </aside>
         </div>
@@ -98,17 +98,17 @@
           <div class="page-section-heading">
             <div>
               <p class="section-kicker">01 · Constelação navegável</p>
-              <h2 id="constellation-page-title">Aproxime uma teoria e siga suas conexões.</h2>
+              <h2 id="constellation-page-title">Aproxime uma linha e siga suas conexões.</h2>
             </div>
             <p>
-              Filtre por eixo para reduzir o ruído. As demais teorias permanecem visíveis em baixa intensidade para preservar o contexto do sistema.
+              Filtre por eixo para reduzir o ruído. As demais entradas permanecem visíveis em baixa intensidade para preservar o contexto do sistema.
             </p>
           </div>
 
-          <div class="map-filter-rail" role="list" aria-label="Filtrar mapa por categoria" data-map-filters></div>
+          <div class="map-filter-rail" role="group" aria-label="Filtrar mapa por categoria" data-map-filters></div>
 
           <div class="map-browser-layout">
-            <div class="idea-map-stage" data-idea-map aria-label="Mapa interativo de relações entre teorias">
+            <div class="idea-map-stage" data-idea-map role="group" aria-label="Mapa interativo de relações entre linhas de investigação">
               <svg class="idea-map-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" data-map-lines></svg>
               <div class="idea-map-nodes" data-map-nodes></div>
               <div class="idea-map-core" aria-hidden="true">
@@ -117,7 +117,7 @@
               </div>
             </div>
 
-            <aside class="map-theory-detail" data-map-detail aria-live="polite" aria-label="Teoria selecionada no mapa"></aside>
+            <aside class="map-theory-detail" data-map-detail aria-label="Entrada selecionada no mapa"></aside>
           </div>
 
           <p class="map-reading-note" data-map-caption>Selecione um nó para ler a relação principal e abrir o dossiê correspondente.</p>
@@ -131,9 +131,6 @@
               <p class="section-kicker">02 · Eixos de investigação</p>
               <h2 id="axis-title">Categorias organizam o campo sem congelar as ideias.</h2>
             </div>
-            <!-- <p>
-              Uma teoria pode atravessar mais de um eixo. A categoria principal ajuda a localizar; os filtros secundários registram sobreposições.
-            </p> -->
           </div>
           <div class="map-axis-grid" data-axis-grid></div>
         </div>
@@ -146,19 +143,18 @@
               <p class="section-kicker">03 · Como ler</p>
               <h2 id="map-method-title">Conexão não é validação.</h2>
             </div>
-            <!-- <p>O mapa funciona como índice visual e não como diagrama científico. Toda relação continua aberta a revisão editorial.</p> -->
           </div>
 
           <div class="definition-grid">
             <article class="definition-card">
               <span>nó</span>
-              <h3>Uma teoria</h3>
-              <p>Cada ponto representa uma hipótese registrada no arquivo público, com código e estágio próprios.</p>
+              <h3>Uma entrada</h3>
+              <p>Cada ponto representa uma hipótese, estudo, estrutura conceitual, heurística ou programa do arquivo público.</p>
             </article>
             <article class="definition-card">
               <span>linha</span>
               <h3>Uma relação</h3>
-              <p>A linha indica que duas teorias compartilham problema, conceito ou consequência. Não indica causalidade.</p>
+              <p>A linha indica que duas entradas compartilham problema, conceito ou consequência. Não indica causalidade ou confirmação.</p>
             </article>
             <article class="definition-card">
               <span>eixo</span>
@@ -174,7 +170,7 @@
           <div>
             <p class="section-kicker">continuar a exploração</p>
             <h2>O mapa mostra a relação. O arquivo mostra a tensão.</h2>
-            <p>Abra o dossiê completo para ver pergunta central, hipótese, conceitos e pontos que ainda precisam amadurecer.</p>
+            <p>Abra o dossiê completo para ver pergunta central, proposição, limite, caminho de teste e referências.</p>
           </div>
           <div class="hero-actions">
             <a class="button button-primary" href="../Teorias/teorias.html">Explorar teorias</a>
@@ -204,6 +200,6 @@
       <div class="noscript-message">O texto desta página permanece legível, mas a constelação interativa precisa de JavaScript para renderizar os dados.</div>
     </noscript>
 
-    <script type="module" src="./mapa.js?v=observatory-scale-v1"></script>
+    <script type="module" src="./mapa.js?v=theory-clarity-v2"></script>
   </body>
 </html>

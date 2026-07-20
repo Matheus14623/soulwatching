@@ -1,6 +1,6 @@
 import { initNavigation } from './navigation.js';
 import { initObserverMode } from './observer.js?v=stellar-drift-v1';
-import { initTheoryLab } from './theory-lab.js';
+import { initTheoryLab } from './theory-lab.js?v=theory-clarity-v2';
 import { initPhilosophyCompass } from './philosophy.js';
 import { initResonance } from './resonance.js';
 import { initContactForm } from './contact.js';

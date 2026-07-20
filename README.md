@@ -1,6 +1,6 @@
 # Observatório de Ideias — Matheus Camargo
 
-Site estático, responsivo e interativo concebido como um observatório de ideias: um sistema editorial para teorias em desenvolvimento, relações conceituais, arquivo futuro e experiências de interface.
+Site estático, responsivo e interativo concebido como um observatório de ideias: um sistema editorial para hipóteses, estudos teóricos, estruturas conceituais, programas práticos, relações e experiências de interface.
 
 ## Rotas principais
 
@@ -37,7 +37,7 @@ npm run verify
 npm run build
 ```
 
-O projeto não possui etapa de compilação. Os dois comandos executam a validação estrutural usada antes do deploy: arquivos obrigatórios, schema das teorias, relações, links locais, âncoras, linguagem principal e dependências indevidas.
+`npm run verify` valida a estrutura, o schema, as referências, as relações, os links, a linguagem pública e a ausência de comentários nos arquivos públicos. `npm run build` repete a validação e gera `dist/` somente com arquivos autorizados para publicação.
 
 ## Estrutura
 
@@ -64,13 +64,17 @@ O projeto não possui etapa de compilação. Os dois comandos executam a valida�
 |   |-- css/
 |   |   |-- styles.css
 |   |   `-- observatory-pages.css
-|   |-- data/theories.js
+|   |-- data/
+|   |   |-- theories.js
+|   |   |-- theory-references.js
+|   |   `-- research-tracks.js
 |   |-- icons/
 |   |-- images/
 |   `-- js/
 |       |-- main.js
 |       |-- page-shell.js
 |       |-- navigation.js
+|       |-- theory-model.js
 |       |-- theory-lab.js
 |       |-- observer.js
 |       |-- philosophy.js
@@ -81,8 +85,11 @@ O projeto não possui etapa de compilação. Os dois comandos executam a valida�
 |-- docs/
 |   `-- INTEGRACAO_TEORIAS.md
 |-- scripts/
+|   |-- build.mjs
 |   |-- serve.mjs
+|   |-- theory-sources.mjs
 |   `-- verify.mjs
+|-- dist/                           # artefato público gerado e ignorado pelo Git
 |-- DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md
 |-- package.json
 `-- vercel.json
@@ -92,15 +99,16 @@ O projeto não possui etapa de compilação. Os dois comandos executam a valida�
 
 O projeto preserva a stack estática existente: HTML semântico, CSS próprio e módulos ES nativos, sem framework ou dependências de interface. Essa escolha mantém o carregamento simples e o deploy direto na Vercel.
 
-`assets/data/theories.js` é a fonte estruturada compartilhada pela home, pelo arquivo de teorias e pelo mapa. A home consome um recorte; as páginas profundas usam o conjunto completo. CSS e JavaScript específicos permanecem próximos de cada rota, enquanto tokens, navegação e componentes comuns ficam em `assets/`.
+`assets/data/theories.js` é a fonte estruturada compartilhada pela home, pelo arquivo de teorias e pelo mapa. Referências e linhas ainda em observação ficam em módulos próprios. `assets/js/theory-model.js` concentra localização, relações simétricas e regras comuns, enquanto cada rota controla apenas sua apresentação.
 
 ## Recursos principais
 
 - Home organizada como porta de entrada para as áreas do observatório.
-- Dez teorias catalogadas e sete eixos de investigação.
-- Busca por texto e filtros combináveis por categoria, fase, status e conceito.
-- Dossiê com ideia, pergunta, hipótese, tensão, próximos passos, relações e proveniência.
-- Link direto por teoria, preservado entre arquivo e mapa.
+- Dez entradas catalogadas, nove linhas independentes, seis naturezas e sete eixos.
+- Busca por texto e filtros combináveis por categoria, natureza, estado do trabalho e conceito.
+- Dossiê com contexto conhecido, proposição, limite, caminho de teste, referências, versão e revisão.
+- Link direto por entrada, preservado entre arquivo e mapa.
+- Radar separado para ensaios, simuladores e projetos que ainda não justificam uma nova ficha.
 - Mapa com dez nós e dezoito relações únicas, sem biblioteca gráfica pesada.
 - Arquivo editorial sem publicações ou métricas inventadas.
 - Laboratório com visão estelar, cordas de ressonância e mapa conceitual.
@@ -111,17 +119,17 @@ O projeto preserva a stack estática existente: HTML semântico, CSS próprio e 
 
 Para adicionar ou revisar teorias, consulte [docs/INTEGRACAO_TEORIAS.md](docs/INTEGRACAO_TEORIAS.md). A documentação ampla de arquitetura, manutenção, migração futura e deploy está em [DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md](DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md).
 
-Os arquivos da pasta `Teorias/` continuam preservados como material bruto. Conteúdo bruto não deve ser publicado automaticamente: a entrada pública precisa passar pela estrutura editorial de `assets/data/theories.js`.
+Os arquivos da pasta `Teorias/` continuam preservados como material bruto e ficam fora de `dist/`. A entrada pública precisa passar pela estrutura editorial de `assets/data/theories.js`; caminhos internos são mantidos somente em `scripts/theory-sources.mjs`.
 
 ## Deploy na Vercel
 
-O `vercel.json` mantém o projeto como site estático, com raiz publicada em `.` e URLs limpas. Antes de publicar:
+O `vercel.json` mantém o projeto como site estático, com `dist/` como única raiz pública e URLs limpas. Antes de publicar:
 
 ```bash
 npm run build
 ```
 
-Evite alterar `outputDirectory` para uma pasta inexistente e não introduza rotas dependentes de fallback de SPA. Os links atuais usam caminhos relativos e páginas HTML reais.
+O build usa uma lista explícita de páginas e assets. Documentos, pareceres, scripts, fontes brutas e materiais internos não entram no artefato. Os links atuais usam caminhos relativos e páginas HTML reais.
 
 ## Contato e presença profissional
 
@@ -134,4 +142,4 @@ Esses dados ficam centralizados em `assets/js/config.js`. O formulário usa `mai
 
 ## Princípio editorial
 
-As teorias são apresentadas como hipóteses em desenvolvimento, nunca como verdades finais. O site não inventa publicações, depoimentos, projetos ou métricas para preencher estados ainda vazios.
+As entradas são apresentadas de acordo com sua natureza real. Hipóteses não aparecem como fatos, frameworks não aparecem como física, heurísticas não aparecem como cosmologia e referências não são tratadas como confirmação automática.

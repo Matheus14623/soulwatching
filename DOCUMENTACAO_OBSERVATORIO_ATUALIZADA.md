@@ -170,25 +170,32 @@ A home possui as seguintes camadas:
 
 ### Teorias
 
-O arquivo possui dez entradas e sete eixos atuais. O usuário pode combinar texto, categoria, fase, status e conceito. No desktop, o dossiê fica ao lado da lista; no mobile, abre dentro do card.
+O arquivo possui dez entradas, nove linhas independentes, seis naturezas de conteúdo e sete eixos temáticos. O usuário pode combinar texto, categoria, natureza, estado do trabalho e conceito. No desktop, o dossiê fica ao lado da lista; no mobile, o mesmo conteúdo abre dentro do card.
 
 Cada dossiê apresenta:
 
 - ideia central;
 - pergunta central;
-- hipótese;
+- proposição;
+- contexto conhecido;
+- recorte em investigação;
+- limite atual;
+- caminho verificável;
 - perguntas abertas;
 - conceitos;
-- tensão teórica e próximos passos;
-- teorias relacionadas;
-- proveniência editorial;
+- próximos passos;
+- referências externas;
+- linhas relacionadas;
+- versão e data de revisão;
 - acesso direto ao mapa.
+
+Percentuais de maturidade foram removidos. Hipóteses científicas, estudos teóricos, estruturas conceituais, linhas derivadas, heurísticas e programas práticos usam classificações explícitas.
 
 ### Mapa
 
-O mapa é derivado de `THEORIES`. Ele contém dez nós, dezoito relações únicas e sete eixos. Linhas significam afinidade conceitual catalogada, não causalidade nem validação científica.
+O mapa é derivado de `THEORIES`. Ele contém dez nós, dezoito relações únicas e sete eixos. Linhas significam afinidade conceitual catalogada, não causalidade ou evidência científica.
 
-No desktop, os nós usam as coordenadas editoriais `position`. No mobile, tornam-se botões em fluxo normal. A seleção atualiza o detalhe, as conexões e o parâmetro `teoria` da URL.
+No desktop, os nós usam as coordenadas editoriais `position`. No mobile, tornam-se botões em fluxo normal. Relações declaradas por qualquer uma das pontas são apresentadas de forma simétrica. A seleção atualiza o detalhe, as conexões e o parâmetro `teoria` da URL.
 
 ### Arquivo
 
@@ -213,23 +220,28 @@ Os experimentos permanecem em suas páginas de origem para evitar duplicação. 
 
 ## 7. Dados editoriais
 
-`assets/data/theories.js` contém `THEORY_FILTERS` e `THEORIES`. A interface deriva contagens, opções de filtro e relações desses dados.
+`assets/data/theories.js` contém `THEORY_FILTERS`, `THEORY_TYPES`, `THEORY_REVIEW_STATES` e `THEORIES`. A interface deriva contagens, opções de filtro e relações desses dados.
 
-Os identificadores `id` e `slug` são contratos estáveis. `id` liga teorias entre si; `slug` cria URLs diretas. `progress` representa maturação editorial e não confiança científica. `sourceFile` registra a origem interna sem expor automaticamente o conteúdo bruto.
+`assets/data/theory-references.js` concentra a bibliografia pública. `assets/data/research-tracks.js` mantém ideias que ainda não justificam uma ficha independente. `assets/js/theory-model.js` concentra localização e relações, evitando duplicação entre home, arquivo e mapa.
+
+Os identificadores `id` e `slug` são contratos estáveis. `id` liga entradas entre si; `slug` cria URLs diretas. Fontes brutas são mapeadas somente em `scripts/theory-sources.mjs`, que não faz parte do artefato público.
 
 O contrato completo e um exemplo estão em `docs/INTEGRACAO_TEORIAS.md`.
 
 ## 8. Como evoluir o conteúdo
 
-### Criar uma nova teoria
+### Criar uma nova linha
 
 1. Preserve a fonte bruta em `Teorias/`.
-2. Crie uma síntese pública em `assets/data/theories.js`.
-3. Use código, id e slug inéditos.
-4. Preencha pergunta, hipótese, limites e proveniência.
-5. Conecte apenas ids válidos.
-6. Escolha posição no mapa e teste sobreposição.
-7. Execute a verificação e navegue pelas três superfícies que usam o dado.
+2. Mapeie a fonte somente em `scripts/theory-sources.mjs`.
+3. Crie uma síntese pública em `assets/data/theories.js`.
+4. Use código, id e slug inéditos.
+5. Classifique natureza e estado do trabalho.
+6. Preencha contexto conhecido, proposta, limite e caminho verificável.
+7. Cadastre referências externas por ID.
+8. Conecte apenas ids válidos.
+9. Escolha posição no mapa e teste sobreposição.
+10. Execute a verificação e navegue pelas três superfícies que usam o dado.
 
 ### Criar uma nova página
 
@@ -290,7 +302,7 @@ Em seguida, teste manualmente:
 - Não publicar rascunhos brutos por automação.
 - Não inventar datas, fontes, depoimentos, métricas ou projetos.
 - Marcar hipóteses como hipóteses.
-- Registrar a origem em `sourceFile`.
+- Registrar a origem somente no mapeamento privado `scripts/theory-sources.mjs`.
 - Evitar renomear slugs publicados; quando necessário, criar compatibilidade.
 - Revisar relações em ambos os sentidos conceituais, ainda que o mapa remova duplicatas técnicas.
 
@@ -311,18 +323,17 @@ Em seguida, teste manualmente:
 - O formulário usa `mailto:`; não há confirmação de entrega nem proteção de backend.
 - O mapa usa posições manuais e pode exigir ajuste quando o número de nós crescer.
 - Não há testes unitários ou de regressão visual automatizados.
-- O conteúdo das teorias ainda não possui bibliografia externa estruturada.
 - Não há analytics, consentimento ou telemetria.
+- As relações do mapa ainda não possuem tipos explícitos.
 
 ## 11. Melhorias futuras
 
 Prioridade alta:
 
 - definir domínio canônico e gerar sitemap absoluto;
-- acrescentar bibliografia e tipo de evidência ao schema;
 - criar testes automatizados de smoke e acessibilidade;
 - oferecer redirecionamentos para slugs renomeados;
-- documentar revisão editorial com datas verificáveis.
+- tipar relações conceituais sem quebrar os ids existentes.
 
 Prioridade média:
 
@@ -346,11 +357,11 @@ Somente quando a escala justificar:
 
 Vite é o primeiro passo natural se surgirem muitos módulos, componentes reutilizados ou necessidade de testes e otimização de assets. A migração pode preservar o modelo multipágina:
 
-1. mover a raiz pública para uma estrutura `src/` e `public/`;
+1. mover o código-fonte para uma estrutura `src/` e `public/`;
 2. transformar cabeçalho, rodapé e cards em componentes ou templates;
 3. manter `theories.js` como módulo tipado ou migrá-lo para JSON/TypeScript;
 4. configurar entradas multipágina para home, teorias, mapa, arquivo e laboratório;
-5. gerar `dist/` e alterar `outputDirectory` na Vercel.
+5. preservar `dist/` como único artefato público.
 
 ### Quando Next.js faz sentido
 
@@ -370,16 +381,16 @@ Não há motivo técnico para migrar agora: a stack atual atende dez teorias e c
 
 | Risco | Efeito | Mitigação |
 | --- | --- | --- |
-| Alterar `outputDirectory` sem gerar a pasta | Deploy vazio ou falho | Manter `.` enquanto não houver build de assets. |
+| Falha ao gerar `dist/` | Deploy vazio ou falho | Executar `npm run build` e validar o artefato antes da publicação. |
 | Introduzir rotas de SPA | Atualização direta retorna 404 | Continuar com HTML real ou configurar rewrites deliberadamente. |
 | Diferença de caixa em nomes de pasta | Funciona no Windows e falha no Linux | Preservar exatamente `Teorias`, `Mapa`, `Arquivo` e `Laboratorio`. |
 | Abrir por `file://` durante o teste | Módulos ES não carregam | Usar `npm run dev`. |
 | Renomear slugs | Links compartilhados perdem contexto | Manter slugs ou criar redirect/alias. |
-| Publicar fontes brutas | Conteúdo não revisado fica público | Manter a camada de síntese manual. |
+| Publicar fontes brutas | Conteúdo interno ou pessoal fica acessível | Gerar `dist/` por allowlist e testar extensões proibidas. |
 | Crescer o mapa sem revisar posições | Nós sobrepostos no desktop | Ajustar `position` e testar em viewport amplo. |
 | Adicionar fontes/CDNs externas sem política | Privacidade, indisponibilidade e CSP | Preferir assets locais e documentar qualquer exceção. |
 
-`vercel.json` usa `framework: null`, `outputDirectory: "."`, `cleanUrls: true` e `trailingSlash: false`. O build executado no CI deve continuar sendo `npm run build`, que valida o projeto.
+`vercel.json` usa `framework: null`, `outputDirectory: "dist"`, `cleanUrls: true` e `trailingSlash: false`. `npm run build` valida o projeto, limpa a saída anterior e copia somente os caminhos públicos permitidos.
 
 ## 14. Testes executados nesta expansão
 
@@ -388,29 +399,33 @@ Não há motivo técnico para migrar agora: a stack atual atende dez teorias e c
 - sintaxe de todos os módulos JavaScript;
 - presença de arquivos e rotas obrigatórias;
 - schema e unicidade de id/slug;
-- intervalo de progresso e coordenadas;
-- categorias, filtros, fontes e relações válidas;
+- natureza, estado, revisão e coordenadas;
+- categorias, filtros, referências, fontes privadas e relações válidas;
 - links locais e âncoras dos HTML;
-- ausência de dependências e placeholders proibidos.
+- ausência de comentários HTML, caminhos internos e linguagem de bastidor nos dados públicos;
+- artefato `dist/` sem documentos, fontes brutas ou scripts.
 
 ### Navegador — desktop 1440 × 900
 
 - home, teorias, mapa, arquivo e laboratório carregados;
-- dez teorias e sete eixos renderizados;
-- busca textual e filtro por fase combinados;
-- URL direta restaurando `Zero vs. Epsilon`;
-- mapa com dez nós, dezoito linhas e seleção sincronizada;
-- ids duplicados e estouro horizontal ausentes;
+- dez entradas, seis naturezas e sete eixos renderizados;
+- busca textual, estado vazio, limpeza e filtros por categoria e natureza funcionais;
+- URL direta restaurando a T-08, com vínculo navegável para a linha principal T-02;
+- mapa com dez nós, dezoito relações únicas, filtros e seleção sincronizada;
+- Visão Estelar ativada e desativada repetidamente sem duplicar overlay ou canvas;
+- nenhum elemento do sistema visual descartado de buraco negro;
+- estouro horizontal ausente;
 - console sem erros ou avisos.
 
-### Navegador — mobile 390 × 844
+### Navegador — responsividade
 
-- grids principais em uma coluna;
-- dossiê lateral oculto e detalhe móvel visível sem corte;
-- mapa sem linhas visuais e nós em fluxo normal;
-- arquivo e laboratório sem estouro horizontal;
-- controles de teclado das seis cordas presentes;
-- indicação estrutural fixa removida da tela pequena.
+- arquivo de teorias verificado em 1024 × 768, 768 × 900, 430 × 932, 390 × 844 e 360 × 800;
+- dossiê lateral usado em desktop e detalhe móvel usado a partir de 768 px;
+- as quatro camadas críticas e as referências permanecem disponíveis no detalhe móvel;
+- mapa verificado em 390 × 844, com nós, detalhe e seleção preservados;
+- home, arquivo e laboratório verificados em 360 × 800;
+- Visão Estelar entra no perfil leve em 360 px;
+- nenhuma das larguras apresentou estouro horizontal ou erros no console.
 
 ## 15. Checklist para próxima grande atualização
 
@@ -439,7 +454,7 @@ Não há motivo técnico para migrar agora: a stack atual atende dez teorias e c
 
 - A home passou a funcionar como gateway, com cinco destinos reais e contagens derivadas dos dados.
 - A navegação foi ampliada e ganhou indicação de página ativa e comportamento de teclado mais completo.
-- O arquivo de teorias recebeu fases, origem, slugs, campos editoriais derivados e o eixo Existencial.
+- O arquivo de teorias recebeu naturezas, estados do trabalho, slugs, campos editoriais derivados e origem mantida fora do conteúdo público.
 - A página de teorias ganhou busca ampliada, filtros combinados, resumo de filtros, reset, dossiê progressivo, links diretos e detalhe móvel no próprio card.
 - O Mapa de Ideias tornou-se uma página independente, leve e derivada da mesma fonte de dados.
 - Arquivo e Laboratório ganharam páginas honestas, sem publicações ou projetos fictícios.
@@ -447,3 +462,20 @@ Não há motivo técnico para migrar agora: a stack atual atende dez teorias e c
 - Bússola filosófica, ressonância e navegação receberam melhorias de semântica, teclado e redução de movimento.
 - A verificação passou a cobrir as novas rotas, o schema das teorias, relações, fontes, links e âncoras.
 - README, integração de teorias e esta documentação foram atualizados sem apagar a auditoria anterior.
+
+## 18. Atualização de clareza científica e privacidade
+
+Esta expansão preserva a identidade visual e as rotas do observatório, mas altera a forma de apresentar o acervo:
+
+- “teorias” passa a ser uma área de linhas de investigação com naturezas explícitas;
+- percentuais editoriais deixam de aparecer nos dados e nas interfaces;
+- cada ficha separa contexto conhecido, recorte em investigação, limite atual e caminho verificável;
+- referências externas, versão e data de revisão passam a integrar o dossiê;
+- T-08 permanece ligada à T-02 como linha derivada, sem inflar o número de núcleos independentes;
+- ideias ainda não catalogadas entram em um radar próprio;
+- relações são calculadas por um módulo compartilhado e apresentadas simetricamente;
+- comentários e blocos desativados são proibidos nos arquivos públicos de produção;
+- fontes brutas, documentos, pareceres e scripts ficam fora de `dist/`;
+- a Visão Estelar original foi preservada sem qualquer sistema visual de buraco negro.
+
+Novos efeitos cósmicos não devem ser inferidos a partir do conteúdo das teorias. Experimentos visuais pertencem ao laboratório e só entram quando possuírem função conceitual, ciclo de vida controlado, movimento reduzido e custo proporcional ao dispositivo.

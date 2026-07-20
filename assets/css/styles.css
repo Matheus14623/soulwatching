@@ -896,8 +896,7 @@ body[data-mode="observer"] .data-point {
 
 .theory-code,
 .status-badge,
-.tag,
-.progress-label {
+.tag {
   font-family: var(--font-mono);
   font-size: 0.68rem;
   letter-spacing: 0.1em;
@@ -939,32 +938,6 @@ body[data-mode="observer"] .data-point {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.06);
   color: var(--muted);
-}
-
-.progress-block {
-  margin-top: 1rem;
-}
-
-.progress-label {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.42rem;
-  color: var(--muted);
-}
-
-.progress-track {
-  height: 0.42rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-}
-
-.progress-track span {
-  display: block;
-  height: 100%;
-  width: var(--progress);
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--accent), var(--cyan));
 }
 
 .theory-detail {
@@ -1041,9 +1014,6 @@ body[data-mode="observer"] .data-point {
 
 .constellation-section {
   overflow: hidden;
-  /* background:
-    radial-gradient(circle at 50% 45%, rgba(173, 140, 255, 0.08), transparent 28rem),
-    rgba(255,255,255,0.014); */
 }
 
 .constellation-map {
@@ -2059,11 +2029,6 @@ body[data-mode="observer"] .data-point {
 }
 
 
-/* ==========================================================
-   V3 — Visão estelar otimizada
-   A teia principal é SVG estático + poucos sinais por transform/opacity.
-   Não há loop contínuo em canvas, nem geração repetida de partículas.
-   ========================================================== */
 .hero {
   isolation: isolate;
 }
@@ -2128,7 +2093,6 @@ body.is-structural-vision .hero::after {
   z-index: 7;
 }
 
-/* Structural vision: optimized stellar drift layer */
 .structural-overlay {
   position: fixed;
   inset: 0;
@@ -2534,7 +2498,6 @@ img {
   color: var(--cyan);
 }
 
-/* Production fixes kept last to win over legacy cascade layers. */
 @media (max-width: 760px) {
   .theories-section .theory-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -2609,8 +2572,20 @@ img {
   margin-top: 0;
 }
 
-.theory-card .progress-block {
-  margin-top: 0.9rem;
+.theory-card-assessment {
+  margin: 0 0 0.85rem !important;
+  padding-left: 0.7rem;
+  border-left: 2px solid var(--accent);
+  color: color-mix(in srgb, var(--accent) 82%, white) !important;
+  font-family: var(--font-mono);
+  font-size: 0.66rem !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.detail-empty {
+  color: var(--text-soft);
 }
 
 .theory-detail {
@@ -2955,7 +2930,6 @@ img {
   }
 }
 
-/* Mapa mais denso após integração de novas teorias. */
 .map-node {
   width: min(9.6rem, 24vw);
   padding: 0.64rem 0.54rem;
@@ -2980,9 +2954,6 @@ img {
   }
 }
 
-/* ==========================================================
-   Refinamento de escala — header beta, home preview e contato
-   ========================================================== */
 .header-shell {
   position: relative;
 }
@@ -3015,12 +2986,6 @@ img {
 .status-pill {
   margin-right: clamp(4.5rem, 7vw, 6.8rem);
 }
-
-/* .theory-card {
-  background:
-    radial-gradient(circle at 100% 0%, var(--accent-glow), transparent 9.5rem),
-    linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
-} */
 
 .contact-orbit-system,
 .contact-orbit-system * {
@@ -3190,11 +3155,6 @@ img {
   }
 }
 
-/* ==========================================================
-   Ajuste final — Contato desktop refinado
-   Fotos ao lado do título + contatos abaixo
-   ========================================================== */
-
 .contact-section {
   overflow: clip;
 }
@@ -3244,7 +3204,6 @@ img {
   font-size: clamp(1rem, 1.25vw, 1.12rem);
 }
 
-/* Card das fotos agora fica no topo direito, junto do título */
 .contact-section .contact-identity-showcase {
   justify-self: end;
   width: min(100%, 38rem);
@@ -3272,7 +3231,6 @@ img {
   transform: rotate(17deg) scaleY(0.48);
 }
 
-/* Corrige o corte dos textos dentro das fotos */
 .contact-section .contact-identity-showcase .identity-node {
   overflow: visible;
   background: transparent;
@@ -3321,12 +3279,8 @@ img {
   max-width: calc(100% - 1.1rem);
   padding: 0.38rem 0.62rem;
   transform: translateX(-50%);
-  /* border: 1px solid rgba(114, 236, 255, 0.2); */
   border-radius: 999px;
-  /* background: rgba(5, 8, 18, 0.82); */
   text-align: center;
-  /* box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28); */
-  /* backdrop-filter: blur(30px); */
 }
 
 .contact-section .contact-identity-showcase .identity-node figcaption span {
@@ -3349,10 +3303,8 @@ img {
   white-space: nowrap;
 }
 
-/* Contatos e formulário agora ficam abaixo do título/fotos */
 .contact-coordinate-panel--below {
   display: grid;
-  /* grid-template-columns: minmax(0, 1fr) minmax(21rem, 0.48fr); */
   gap: clamp(1rem, 2.2vw, 1.45rem);
   align-items: stretch;
 }
@@ -3392,7 +3344,6 @@ img {
     rgba(255, 255, 255, 0.035);
 }
 
-/* Tablet */
 @media (max-width: 1080px) {
   .contact-intro-grid {
     grid-template-columns: 1fr;
@@ -3416,7 +3367,6 @@ img {
   }
 }
 
-/* Mobile: mantém o comportamento empilhado */
 @media (max-width: 760px) {
   .contact-heading h2 {
     max-width: none;

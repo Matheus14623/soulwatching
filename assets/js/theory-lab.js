@@ -1,5 +1,13 @@
-import { $, $$, debounce, safeSetText } from './utils.js';
+import { $, $$, debounce, escapeHtml, normalizeText, safeSetText } from './utils.js';
+import {
+  findTheory,
+  getRelatedTheoryIds,
+  getUniqueTheoryRelations,
+  theoryMatchesCategory,
+} from './theory-model.js';
 import { THEORIES, THEORY_FILTERS } from '../data/theories.js';
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 const state = {
   activeFilter: 'todas',
@@ -7,56 +15,29 @@ const state = {
   activeTheoryId: THEORIES[0]?.id || '',
 };
 
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#039;');
-}
-
-function normalize(value) {
-  return String(value)
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
-}
-
-function getTheory(id) {
-  return THEORIES.find((theory) => theory.id === id) || THEORIES[0];
-}
-
-function getStatusColor(theory) {
-  if (theory.status.includes('fronteira')) return '#ff9ef2';
-  if (theory.status.includes('eixo')) return '#b7f7ff';
-  if (theory.status.includes('ponte')) return '#8fd8ff';
-  if (theory.status.includes('filosofia')) return '#f7df87';
-  if (theory.status.includes('rascunho')) return '#ad8cff';
-  if (theory.status.includes('inicial')) return '#68f0cb';
-  return '#72ecff';
-}
-
 function matchesFilter(theory) {
-  return state.activeFilter === 'todas' || theory.filters.includes(state.activeFilter) || theory.category === state.activeFilter;
+  return theoryMatchesCategory(theory, state.activeFilter);
 }
 
 function matchesQuery(theory) {
   if (!state.query) return true;
-  const haystack = normalize([
+  const haystack = normalizeText([
     theory.title,
     theory.subtitle,
     theory.summary,
-    theory.hypothesis,
-    theory.status,
-    theory.phase,
-    theory.stage,
-    theory.sourceFile,
+    theory.proposal,
+    theory.typeLabel,
+    theory.reviewStateLabel,
+    theory.review.assessment,
+    theory.review.known,
+    theory.review.focus,
+    theory.review.limit,
+    theory.review.test,
     theory.concepts.join(' '),
     theory.questions.join(' '),
-    theory.needs.join(' '),
+    theory.nextSteps.join(' '),
   ].join(' '));
-  return haystack.includes(normalize(state.query));
+  return haystack.includes(normalizeText(state.query));
 }
 
 function filteredTheories() {
@@ -104,31 +85,28 @@ function renderCards(theories) {
   const visibleTheories = getVisibleTheories(theories, grid);
   const hasLimit = visibleTheories.length !== theories.length;
   const countText = hasLimit
-    ? `${visibleTheories.length} de ${theories.length} teorias no recorte da home · ${THEORIES.length} no arquivo`
-    : `${theories.length} ${theories.length === 1 ? 'teoria visível' : 'teorias visíveis'} · ${THEORIES.length} no arquivo`;
+    ? `${visibleTheories.length} de ${theories.length} entradas no recorte da home · ${THEORIES.length} no arquivo`
+    : `${theories.length} ${theories.length === 1 ? 'entrada visível' : 'entradas visíveis'} · ${THEORIES.length} no arquivo`;
 
   safeSetText(count, countText);
   if (empty) empty.hidden = theories.length > 0;
 
   grid.innerHTML = visibleTheories.map((theory) => `
-    <article class="theory-card${theory.id === state.activeTheoryId ? ' is-active' : ''}" tabindex="0" role="button" data-theory-id="${theory.id}" style="--accent:${theory.color}; --accent-glow:${theory.glow}; --status-color:${getStatusColor(theory)};">
+    <article class="theory-card${theory.id === state.activeTheoryId ? ' is-active' : ''}" tabindex="0" role="button" aria-pressed="${theory.id === state.activeTheoryId}" data-theory-id="${theory.id}" style="--accent:${theory.color}; --accent-glow:${theory.glow}; --status-color:${theory.color};">
       <div class="theory-card-top">
         <span class="theory-code">${escapeHtml(theory.code)}</span>
-        <span class="status-badge">${escapeHtml(theory.status)}</span>
+        <span class="status-badge">${escapeHtml(theory.typeShortLabel)}</span>
       </div>
       <h3>${escapeHtml(theory.title)}</h3>
       <p class="theory-card-subtitle">${escapeHtml(theory.subtitle)}</p>
       <p class="theory-card-summary">${escapeHtml(theory.summary)}</p>
-      <div class="theory-card-meta" aria-label="Resumo da teoria">
-        <span>${escapeHtml(theory.phase)}</span>
+      <div class="theory-card-meta" aria-label="Resumo da entrada">
+        <span>${escapeHtml(theory.reviewStateLabel)}</span>
         <span>${theory.questions.length} perguntas</span>
-        <span>${theory.concepts.length} conceitos</span>
+        <span>${getRelatedTheoryIds(theory).length} relações</span>
       </div>
+      <p class="theory-card-assessment">${escapeHtml(theory.review.assessment)}</p>
       <div class="tag-list">${tagMarkup(theory.concepts)}</div>
-      <div class="progress-block" aria-label="Maturidade conceitual inferida: ${theory.progress}%">
-        <div class="progress-label"><span>Maturidade</span><strong>${theory.progress}%</strong></div>
-        <div class="progress-track"><span style="--progress:${theory.progress}%"></span></div>
-      </div>
     </article>
   `).join('');
 
@@ -146,28 +124,29 @@ function renderCards(theories) {
   return visibleTheories;
 }
 
-function renderDetail() {
+function renderDetail(visibleTheories = getVisibleTheories(filteredTheories(), $('[data-theory-grid]'))) {
   const detail = $('[data-theory-detail]');
   if (!detail) return;
 
-  const theory = getTheory(state.activeTheoryId);
+  if (!visibleTheories.length) {
+    detail.removeAttribute('style');
+    detail.innerHTML = '<p class="detail-empty">Nenhuma entrada selecionada neste recorte.</p>';
+    return;
+  }
+
+  const theory = findTheory(state.activeTheoryId, THEORIES[0]);
   detail.style.setProperty('--accent', theory.color);
   detail.style.setProperty('--accent-glow', theory.glow);
   detail.innerHTML = `
-    <p class="detail-kicker">${escapeHtml(theory.code)} · ${escapeHtml(theory.status)}</p>
+    <p class="detail-kicker">${escapeHtml(theory.code)} · ${escapeHtml(theory.typeLabel)}</p>
     <h3>${escapeHtml(theory.title)}</h3>
     <p>${escapeHtml(theory.subtitle)}</p>
 
-    <div class="detail-meta" aria-label="Metadados da teoria">
-      <span>${escapeHtml(theory.category)}</span>
-      <span>${escapeHtml(theory.phase)}</span>
+    <div class="detail-meta" aria-label="Metadados da entrada">
+      <span>${escapeHtml(theory.reviewStateLabel)}</span>
+      <span>${escapeHtml(theory.review.assessment)}</span>
       <span>${theory.questions.length} perguntas abertas</span>
-      <span>${theory.needs.length} pontos a desenvolver</span>
-    </div>
-
-    <div class="progress-block" aria-label="Maturidade conceitual inferida: ${theory.progress}%">
-      <div class="progress-label"><span>Estado de maturação</span><strong>${theory.progress}%</strong></div>
-      <div class="progress-track"><span style="--progress:${theory.progress}%"></span></div>
+      <span>${theory.nextSteps.length} próximos passos</span>
     </div>
 
     <div class="detail-section">
@@ -176,8 +155,23 @@ function renderDetail() {
     </div>
 
     <div class="detail-section">
-      <h4>Hipótese central</h4>
-      <p>${escapeHtml(theory.hypothesis)}</p>
+      <h4>Proposição</h4>
+      <p>${escapeHtml(theory.proposal)}</p>
+    </div>
+
+    <div class="detail-section">
+      <h4>Contexto conhecido</h4>
+      <p>${escapeHtml(theory.review.known)}</p>
+    </div>
+
+    <div class="detail-section">
+      <h4>Limite atual</h4>
+      <p>${escapeHtml(theory.review.limit)}</p>
+    </div>
+
+    <div class="detail-section">
+      <h4>Caminho verificável</h4>
+      <p>${escapeHtml(theory.review.test)}</p>
     </div>
 
     <div class="detail-section">
@@ -191,21 +185,19 @@ function renderDetail() {
     </div>
 
     <div class="detail-section">
-      <h4>O que ainda precisa amadurecer</h4>
-      <ul>${listMarkup(theory.needs)}</ul>
+      <h4>Próximos passos</h4>
+      <ul>${listMarkup(theory.nextSteps)}</ul>
     </div>
 
     <div class="detail-section">
-      <h4>Estágio</h4>
-      <p>${escapeHtml(theory.stage)}</p>
+      <h4>Revisão</h4>
+      <p>${escapeHtml(theory.revision.label)} · versão ${escapeHtml(theory.revision.version)}</p>
     </div>
   `;
 }
 
 function updateArchiveStats() {
-  const relationCount = new Set(
-    THEORIES.flatMap((theory) => theory.connections.map((target) => [theory.id, target].sort().join('::'))),
-  ).size;
+  const relationCount = getUniqueTheoryRelations().length;
 
   $$('[data-theory-total]').forEach((element) => safeSetText(element, String(THEORIES.length)));
   $$('[data-filter-total]').forEach((element) => safeSetText(element, String(Math.max(THEORY_FILTERS.length - 1, 0))));
@@ -213,12 +205,13 @@ function updateArchiveStats() {
 }
 
 function setActiveTheory(id, options = {}) {
-  const theory = getTheory(id);
+  const theory = findTheory(id, THEORIES[0]);
   state.activeTheoryId = theory.id;
   renderDetail();
 
   $$('[data-theory-id]').forEach((card) => {
     card.classList.toggle('is-active', card.dataset.theoryId === theory.id);
+    card.setAttribute('aria-pressed', String(card.dataset.theoryId === theory.id));
   });
 
   $$('[data-map-node]').forEach((node) => {
@@ -229,7 +222,10 @@ function setActiveTheory(id, options = {}) {
   safeSetText(caption, `${theory.code} · ${theory.shortTitle}: ${theory.summary}`);
 
   if (options.scroll) {
-    document.getElementById('teorias')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('teorias')?.scrollIntoView({
+      behavior: reduceMotion.matches ? 'auto' : 'smooth',
+      block: 'start',
+    });
   }
 }
 
@@ -238,25 +234,12 @@ function renderMap() {
   const nodes = $('[data-map-nodes]');
   if (!lines || !nodes) return;
 
-  const byId = new Map(THEORIES.map((theory) => [theory.id, theory]));
-  const drawn = new Set();
-  const lineMarkup = [];
-
-  THEORIES.forEach((theory) => {
-    theory.connections.forEach((targetId) => {
-      const target = byId.get(targetId);
-      if (!target) return;
-      const key = [theory.id, targetId].sort().join('::');
-      if (drawn.has(key)) return;
-      drawn.add(key);
-      lineMarkup.push(`<line x1="${theory.position.x}" y1="${theory.position.y}" x2="${target.position.x}" y2="${target.position.y}"></line>`);
-    });
-  });
-
-  lines.innerHTML = lineMarkup.join('');
+  lines.innerHTML = getUniqueTheoryRelations()
+    .map(([source, target]) => `<line x1="${source.position.x}" y1="${source.position.y}" x2="${target.position.x}" y2="${target.position.y}"></line>`)
+    .join('');
   nodes.innerHTML = THEORIES.map((theory) => `
-    <button class="map-node${theory.id === state.activeTheoryId ? ' is-active' : ''}" type="button" data-map-node="${theory.id}" style="--x:${theory.position.x}%; --y:${theory.position.y}%; --accent:${theory.color}; --accent-glow:${theory.glow};" aria-label="Abrir teoria ${escapeHtml(theory.title)}">
-      <span>${escapeHtml(theory.code)}</span>
+    <button class="map-node${theory.id === state.activeTheoryId ? ' is-active' : ''}" type="button" data-map-node="${theory.id}" style="--x:${theory.position.x}%; --y:${theory.position.y}%; --accent:${theory.color}; --accent-glow:${theory.glow};" aria-label="Abrir entrada ${escapeHtml(theory.title)}">
+      <span>${escapeHtml(theory.code)} · ${escapeHtml(theory.typeShortLabel)}</span>
       <strong>${escapeHtml(theory.shortTitle)}</strong>
     </button>
   `).join('');
@@ -276,7 +259,7 @@ function renderAll() {
     state.activeTheoryId = visibleTheories[0].id;
   }
   renderCards(theories);
-  renderDetail();
+  renderDetail(visibleTheories);
   renderMap();
   setActiveTheory(state.activeTheoryId, { scroll: false });
 }

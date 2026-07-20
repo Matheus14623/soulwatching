@@ -181,6 +181,10 @@
   opacity: 0.22;
 }
 
+.idea-map-node:disabled {
+  cursor: default;
+}
+
 .idea-map-core {
   position: absolute;
   z-index: 2;

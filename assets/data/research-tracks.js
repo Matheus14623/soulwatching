@@ -1,0 +1,38 @@
+export const RESEARCH_TRACKS = Object.freeze([
+  Object.freeze({
+    id: 'sistema-distribuido-assincrono',
+    code: 'R-01',
+    title: 'Universo como sistema distribuído assíncrono',
+    kind: 'Ferramenta pedagógica',
+    summary: 'Uma analogia computacional para explorar relógios próprios, ausência de simultaneidade universal e ordenações diferentes de eventos separados espacialmente.',
+    boundary: 'A ordem de eventos ligados causalmente permanece invariável; a analogia não cria um relógio absoluto nem altera a relatividade.',
+    nextStep: 'Transformar a ideia em um simulador de eventos, referenciais e cones de luz.',
+  }),
+  Object.freeze({
+    id: 'astrobiologia-em-camadas',
+    code: 'R-02',
+    title: 'Astrobiologia em camadas',
+    kind: 'Projeto quantitativo',
+    summary: 'Separar abiogênese, vida complexa, inteligência, tecnologia e duração detectável para representar melhor as incertezas da busca por vida.',
+    boundary: 'Exoplanetas ampliam a amostra observacional, mas não tornam inteligência ou tecnologia resultados inevitáveis.',
+    nextStep: 'Construir um modelo probabilístico com distribuições para cada etapa e atualização por biossinaturas ou tecnossinaturas.',
+  }),
+  Object.freeze({
+    id: 'energia-ondas-relogios',
+    code: 'R-03',
+    title: 'Energia, ondas gravitacionais e relógios',
+    kind: 'Trilha de estudo',
+    summary: 'Investigar como energia, momento, pressão e perturbações gravitacionais entram na geometria e afetam medições de tempo.',
+    boundary: 'A pergunta pertence à relatividade e à metrologia; não constitui, por si só, uma nova teoria.',
+    nextStep: 'Criar uma sequência de cálculos e experimentos com relógios relativísticos, interferometria ou pulsar timing.',
+  }),
+  Object.freeze({
+    id: 'materia-identidade-consciencia',
+    code: 'R-04',
+    title: 'Matéria, identidade e consciência',
+    kind: 'Ensaio filosófico',
+    summary: 'Examinar pessoas como padrões temporários de matéria cósmica e distinguir continuidade material, memória, identidade e consciência.',
+    boundary: 'Reciclagem de constituintes não preserva automaticamente identidade; formulações como “o universo pensa” permanecem metafóricas.',
+    nextStep: 'Desenvolver um ensaio com definições claras e diálogo entre filosofia da mente, física e biologia.',
+  }),
+]);

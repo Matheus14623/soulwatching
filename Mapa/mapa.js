@@ -1,5 +1,11 @@
 import { initNavigation } from '../assets/js/navigation.js';
-import { $, safeSetText } from '../assets/js/utils.js';
+import { $, escapeHtml, safeSetText } from '../assets/js/utils.js';
+import {
+  findTheory,
+  getRelatedTheories,
+  getUniqueTheoryRelations,
+  theoryMatchesCategory,
+} from '../assets/js/theory-model.js';
 import { THEORIES, THEORY_FILTERS } from '../assets/data/theories.js';
 
 const axisDescriptions = {
@@ -12,10 +18,6 @@ const axisDescriptions = {
   metodo: 'Linguagem de sistemas, critérios e organização do pensamento.',
 };
 
-function findTheory(id) {
-  return THEORIES.find((theory) => theory.id === id || theory.slug === id) || null;
-}
-
 function initialTheoryId() {
   const requested = new URL(window.location.href).searchParams.get('teoria');
   return findTheory(requested)?.id || THEORIES[0]?.id || '';
@@ -26,37 +28,13 @@ const state = {
   activeId: initialTheoryId(),
 };
 
-function escapeHtml(value) {
-  return String(value ?? '')
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#039;');
-}
-
 function matchesCategory(theory) {
-  return state.category === 'todas'
-    || theory.category === state.category
-    || theory.filters.includes(state.category);
-}
-
-function uniqueRelations() {
-  const relations = new Map();
-  THEORIES.forEach((theory) => {
-    theory.connections.forEach((targetId) => {
-      const target = findTheory(targetId);
-      if (!target) return;
-      const key = [theory.id, target.id].sort().join('::');
-      if (!relations.has(key)) relations.set(key, [theory, target]);
-    });
-  });
-  return [...relations.values()];
+  return theoryMatchesCategory(theory, state.category);
 }
 
 function renderStats() {
   safeSetText($('[data-map-theory-total]'), String(THEORIES.length));
-  safeSetText($('[data-map-relation-total]'), String(uniqueRelations().length));
+  safeSetText($('[data-map-relation-total]'), String(getUniqueTheoryRelations().length));
   safeSetText($('[data-map-filter-total]'), String(Math.max(THEORY_FILTERS.length - 1, 0)));
 }
 
@@ -67,10 +45,10 @@ function renderFilters() {
   rail.innerHTML = THEORY_FILTERS.map((filter) => {
     const count = filter.id === 'todas'
       ? THEORIES.length
-      : THEORIES.filter((theory) => theory.category === filter.id || theory.filters.includes(filter.id)).length;
+      : THEORIES.filter((theory) => theoryMatchesCategory(theory, filter.id)).length;
     const active = filter.id === state.category;
     return `
-      <button class="map-filter-button${active ? ' is-active' : ''}" type="button" role="listitem" data-map-filter="${escapeHtml(filter.id)}" aria-pressed="${active}">
+      <button class="map-filter-button${active ? ' is-active' : ''}" type="button" data-map-filter="${escapeHtml(filter.id)}" aria-pressed="${active}">
         ${escapeHtml(filter.label)} <span>${count}</span>
       </button>
     `;
@@ -82,7 +60,7 @@ function renderMap() {
   const nodes = $('[data-map-nodes]');
   if (!lines || !nodes) return;
 
-  lines.innerHTML = uniqueRelations().map(([source, target]) => {
+  lines.innerHTML = getUniqueTheoryRelations().map(([source, target]) => {
     const active = source.id === state.activeId || target.id === state.activeId;
     const muted = !matchesCategory(source) || !matchesCategory(target);
     return `<line class="${active ? 'is-active ' : ''}${muted ? 'is-muted' : ''}" x1="${source.position.x}" y1="${source.position.y}" x2="${target.position.x}" y2="${target.position.y}"></line>`;
@@ -92,8 +70,8 @@ function renderMap() {
     const active = theory.id === state.activeId;
     const muted = !matchesCategory(theory);
     return `
-      <button class="idea-map-node${active ? ' is-active' : ''}${muted ? ' is-muted' : ''}" type="button" data-map-node="${escapeHtml(theory.id)}" style="--x:${theory.position.x}%; --y:${theory.position.y}%; --accent:${theory.color}; --accent-glow:${theory.glow};" aria-pressed="${active}" aria-label="Selecionar ${escapeHtml(theory.code)}: ${escapeHtml(theory.title)}">
-        <span>${escapeHtml(theory.code)} · ${escapeHtml(theory.phase)}</span>
+      <button class="idea-map-node${active ? ' is-active' : ''}${muted ? ' is-muted' : ''}" type="button" data-map-node="${escapeHtml(theory.id)}" style="--x:${theory.position.x}%; --y:${theory.position.y}%; --accent:${theory.color}; --accent-glow:${theory.glow};" aria-pressed="${active}" aria-label="Selecionar ${escapeHtml(theory.code)}: ${escapeHtml(theory.title)}"${muted ? ' disabled' : ''}>
+        <span>${escapeHtml(theory.code)} · ${escapeHtml(theory.typeShortLabel)}</span>
         <strong>${escapeHtml(theory.shortTitle)}</strong>
       </button>
     `;
@@ -101,7 +79,7 @@ function renderMap() {
 }
 
 function relatedMarkup(theory) {
-  const related = theory.connections.map((id) => findTheory(id)).filter(Boolean);
+  const related = getRelatedTheories(theory);
   if (!related.length) return '<p>Nenhuma relação catalogada neste momento.</p>';
   return related.map((item) => `
     <button class="map-related-button" type="button" data-related-theory="${escapeHtml(item.id)}">
@@ -115,17 +93,28 @@ function renderDetail() {
   const panel = $('[data-map-detail]');
   const theory = findTheory(state.activeId);
   if (!panel || !theory) return;
+  const relatedCount = getRelatedTheories(theory).length;
 
   panel.style.setProperty('--accent', theory.color);
   panel.style.setProperty('--accent-glow', theory.glow);
   panel.innerHTML = `
-    <p class="map-detail-kicker">${escapeHtml(theory.code)} · ${escapeHtml(theory.phase)}</p>
+    <p class="map-detail-kicker">${escapeHtml(theory.code)} · ${escapeHtml(theory.typeLabel)}</p>
     <h3>${escapeHtml(theory.title)}</h3>
     <p>${escapeHtml(theory.centralIdea)}</p>
 
     <div class="map-detail-section">
+      <h4>Estado do trabalho</h4>
+      <p>${escapeHtml(theory.review.assessment)}</p>
+    </div>
+
+    <div class="map-detail-section">
       <h4>Pergunta central</h4>
       <p>${escapeHtml(theory.centralQuestion)}</p>
+    </div>
+
+    <div class="map-detail-section">
+      <h4>Limite atual</h4>
+      <p>${escapeHtml(theory.review.limit)}</p>
     </div>
 
     <div class="map-detail-section">
@@ -145,7 +134,7 @@ function renderDetail() {
 
   safeSetText(
     $('[data-map-caption]'),
-    `${theory.code} · ${theory.shortTitle}: ${theory.connections.length} ${theory.connections.length === 1 ? 'conexão direta' : 'conexões diretas'}.`,
+    `${theory.code} · ${theory.shortTitle}: ${relatedCount} ${relatedCount === 1 ? 'conexão direta' : 'conexões diretas'}.`,
   );
 }
 
@@ -158,7 +147,7 @@ function renderAxes() {
     const concepts = [...new Set(theories.flatMap((theory) => theory.concepts))].slice(0, 3);
     return `
       <article class="map-axis-card">
-        <span>${theories.length} ${theories.length === 1 ? 'teoria' : 'teorias'}</span>
+        <span>${theories.length} ${theories.length === 1 ? 'entrada' : 'entradas'}</span>
         <h3>${escapeHtml(filter.label)}</h3>
         <p>${escapeHtml(axisDescriptions[filter.id] || 'Eixo conceitual em organização.')}</p>
         <div class="tag-list">${concepts.map((concept) => `<span class="tag">${escapeHtml(concept)}</span>`).join('')}</div>
@@ -173,13 +162,20 @@ function syncUrl(theory) {
   window.history.replaceState({ theory: theory.slug }, '', url);
 }
 
-function setActive(id, sync = true) {
+function setActive(id, sync = true, focusDetail = false) {
   const theory = findTheory(id);
   if (!theory) return;
   state.activeId = theory.id;
   renderMap();
   renderDetail();
   if (sync) syncUrl(theory);
+  if (focusDetail && window.innerWidth <= 1080) {
+    const panel = $('[data-map-detail]');
+    panel?.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      block: 'start',
+    });
+  }
 }
 
 function bindEvents() {
@@ -194,11 +190,15 @@ function bindEvents() {
     renderFilters();
     renderMap();
     renderDetail();
+    const selected = findTheory(state.activeId);
+    if (selected) syncUrl(selected);
+    const filterId = state.category;
+    requestAnimationFrame(() => document.querySelector(`[data-map-filter="${CSS.escape(filterId)}"]`)?.focus());
   });
 
   $('[data-map-nodes]')?.addEventListener('click', (event) => {
     const button = event.target instanceof Element ? event.target.closest('[data-map-node]') : null;
-    if (button) setActive(button.dataset.mapNode);
+    if (button) setActive(button.dataset.mapNode, true, true);
   });
 
   $('[data-map-detail]')?.addEventListener('click', (event) => {
@@ -206,7 +206,7 @@ function bindEvents() {
     if (!button) return;
     state.category = 'todas';
     renderFilters();
-    setActive(button.dataset.relatedTheory);
+    setActive(button.dataset.relatedTheory, true, true);
   });
 
   window.addEventListener('popstate', () => {

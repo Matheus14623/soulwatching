@@ -25,7 +25,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/styles.css?v=layout-theories-v4" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=theory-clarity-v2" />
     <link rel="stylesheet" href="assets/css/observatory-pages.css?v=observatory-scale-v1" />
   </head>
   <body data-mode="normal">
@@ -70,18 +70,10 @@
       <section class="hero" id="topo" aria-labelledby="hero-title">
         <div class="hero-media" aria-hidden="true">
           <img class="hero-image" src="assets/images/rain-window.webp" alt="" decoding="async" fetchpriority="high" />
-          <!-- <img class="hero-structure" src="assets/images/calabi-yau-wireframe.webp" alt="" decoding="async" /> -->
           <div class="stellar-grid"></div>
           <div class="hero-vignette"></div>
           <div class="scanline"></div>
         </div>
-
-        <!-- <div class="data-point data-point-a" data-observer-data aria-hidden="true">
-          CONSTELAÇÃO: IDEIAS<br />ESTADO: EM EXPANSÃO
-        </div>
-        <div class="data-point data-point-b" data-observer-data aria-hidden="true">
-          MALHA: HIPÓTESES<br />SINCRONIA: LOCAL
-        </div> -->
 
         <div class="container hero-layout">
           <div class="hero-copy">
@@ -136,19 +128,8 @@
 
             <figure class="aperture-profile profile-card profile-card-human" >
               <img  src="assets/images/matheus-camargo.webp" width="640" height="640" alt="Foto de Matheus Camargo sentado próximo a uma janela" loading="lazy" decoding="async" />
-              <figcaption>
-                <!-- <span>observador</span>
-                <strong>código · cosmos · pensamento</strong> -->
-              </figcaption>
+              <figcaption></figcaption>
             </figure>
-
-            <!-- <div class="aperture-lenses" aria-label="Lentes do observatório">
-              <span>cosmologia</span>
-              <span>filosofia</span>
-              <span>software</span>
-              <span>hipóteses</span>
-              <span>musica</span>
-            </div> -->
 
             <p>
               Não é um caderno íntimo nem um monumento pessoal. É um campo de trabalho para separar metáfora de hipótese, preservar o assombro e manter cada ideia aberta ao próprio refinamento.
@@ -164,16 +145,13 @@
               <p class="section-kicker">02 · Rotas do observatório</p>
               <h2 id="gateway-title">A home abre o campo. Cada rota aprofunda uma forma de observar.</h2>
             </div>
-            <!-- <p>
-              O observatório agora separa exploração, leitura e experimentação. Assim, a página inicial permanece como ponto de entrada sem tentar conter todo o sistema.
-            </p> -->
           </div>
 
           <div class="gateway-grid" aria-label="Áreas do Observatório de Ideias">
             <a class="gateway-card gateway-card--featured" href="Teorias/teorias.html">
               <span class="gateway-index">01 · arquivo central</span>
-              <h3>Teorias</h3>
-              <p>Hipóteses com pergunta central, estágio, conceitos, tensões e relações navegáveis.</p>
+              <h3>Linhas de investigação</h3>
+              <p>Hipóteses, estudos e programas com contexto, proposição, limite e caminho de teste.</p>
               <span class="gateway-meta"><strong data-theory-total>10</strong> linhas catalogadas</span>
             </a>
 
@@ -201,7 +179,6 @@
             <a class="gateway-card gateway-card--external" href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer" aria-label="Abrir projetos técnicos de Matheus Camargo no GitHub em uma nova aba">
               <span class="gateway-index">05 · presença técnica</span>
               <h3>Projetos e código</h3>
-              <!-- <p>O lado profissional permanece discreto e verificável, conectado ao trabalho público no GitHub.</p> -->
               <span class="gateway-meta">abrir GitHub <span aria-hidden="true">↗</span></span>
             </a>
           </div>
@@ -212,24 +189,23 @@
         <div class="container">
           <div class="section-heading theories-heading theories-heading-refined">
             <div>
-              <p class="section-kicker">03 · Teorias em desenvolvimento</p>
-              <h2 id="theories-title">Hipóteses como sistemas: cada uma com núcleo, órbita e estado de maturação.</h2>
+              <p class="section-kicker">03 · Linhas de investigação</p>
+              <h2 id="theories-title">Perguntas em camadas: contexto, proposição, limite e caminho de teste.</h2>
             </div>
             <div class="theories-heading-copy">
               <p>
-                Cada teoria é tratada como uma linha de pesquisa em evolução. A interface destaca premissa, perguntas abertas, conceitos conectados e limites do que ainda precisa amadurecer.
+                O arquivo distingue hipóteses científicas, estudos teóricos, estruturas conceituais, heurísticas e programas práticos. Cada entrada mostra o que se conhece, o que se propõe e como a ideia pode ser revisada.
               </p>
               <a class="inline-cta" href="Teorias/teorias.html">Abrir constelação completa <span aria-hidden="true">↗</span></a>
             </div>
           </div>
 
-          <div class="theory-index-strip" aria-label="Resumo do arquivo de teorias">
+          <div class="theory-index-strip" aria-label="Resumo das linhas de investigação">
             <span><strong data-theory-total>10</strong> linhas catalogadas</span>
             <span><strong data-filter-total>7</strong> eixos de filtro</span>
-            <!-- <span><strong>0</strong> certezas finais</span> -->
           </div>
 
-          <div class="theory-toolbar" aria-label="Filtros de teorias">
+          <div class="theory-toolbar" aria-label="Filtros das linhas de investigação">
             <label class="search-field" for="theory-search">
               <span>Buscar no arquivo</span>
               <input id="theory-search" type="search" placeholder="latência, vazio, tempo, Poincaré..." data-theory-search />
@@ -241,10 +217,10 @@
             <div>
               <p class="result-count" data-theory-count aria-live="polite"></p>
               <div class="theory-grid" data-theory-grid data-theory-limit="6"></div>
-              <p class="empty-state" hidden data-theory-empty>Nenhuma teoria encontrada com esse filtro. Tente outro termo ou volte para “Todas”.</p>
+              <p class="empty-state" hidden data-theory-empty>Nenhuma entrada encontrada com esse filtro. Tente outro termo ou volte para “Todas”.</p>
             </div>
 
-            <aside  class="theory-detail" data-theory-detail aria-live="polite" aria-label="Detalhes da teoria selecionada"></aside>
+            <aside  class="theory-detail" data-theory-detail aria-label="Detalhes da entrada selecionada"></aside>
           </div>
         </div>
       </section>
@@ -358,23 +334,13 @@
           <div>
             <p class="section-kicker">07 · Experimento de ressonância</p>
             <h2 id="resonance-title">Há ideias que só aparecem quando o sistema vibra.</h2>
-            <!-- <p class="section-intro">
-              A interação de cordas foi preservada da versão anterior como experimento sensorial: código, onda, gesto e ruído. O visual funciona sempre; o áudio só inicia com consentimento explícito.
-            </p> -->
             <button class="button button-secondary" type="button" data-audio-toggle aria-pressed="false">Ativar áudio sutil</button>
             <p class="audio-status" aria-live="polite" data-audio-status>Áudio desligado. As cordas visuais já estão ativas.</p>
-            <!-- <p class="microcopy">O gesto altera a vibração visual; o som permanece desligado até consentimento explícito.</p> -->
           </div>
 
           <div  class="string-instrument" data-string-container>
             <canvas class="string-canvas" data-string-canvas aria-label="Cordas interativas por ponteiro" aria-describedby="resonance-instructions"></canvas>
             <div class="string-keyboard-controls" role="group" aria-label="Acionar cordas pelo teclado">
-              <!-- <button type="button" data-string-key="0">Corda 1</button>
-              <button type="button" data-string-key="1">Corda 2</button>
-              <button type="button" data-string-key="2">Corda 3</button>
-              <button type="button" data-string-key="3">Corda 4</button>
-              <button type="button" data-string-key="4">Corda 5</button>
-              <button type="button" data-string-key="5">Corda 6</button> -->
             </div>
             <div class="instrument-hint" id="resonance-instructions">Passe o cursor, toque nas cordas</div>
           </div>
@@ -392,25 +358,21 @@
             <article>
               <span>Agora</span>
               <h3>Catalogar hipóteses</h3>
-              <!-- <p>Separar títulos, premissas, perguntas abertas, conexões e estágio editorial.</p> -->
               <p>Em Breve</p>
             </article>
             <article>
               <span>Próximo ciclo</span>
               <h3>Versionar ensaios</h3>
-              <!-- <p>Transformar teorias maduras em textos longos, com escopo, limites e objeções possíveis.</p> -->
               <p>Em Breve</p>
             </article>
             <article>
               <span>Expansão</span>
               <h3>Mapa mais denso</h3>
-              <!-- <p>Adicionar relações e diagramas apenas quando novas conexões forem curadas.</p> -->
               <p>Em Breve</p>
             </article>
             <article>
               <span>Critério</span>
               <h3>Clareza antes de grandiosidade</h3>
-              <!-- <p>Melhor uma hipótese honesta e revisável do que uma certeza teatral.</p> -->
               <p>Em Breve</p>
             </article>
           </div>
@@ -443,10 +405,6 @@
             <div class="contact-heading">
               <p class="section-kicker">10 · Coordenadas de contato</p>
               <h2 id="contact-title">Pontos de conexão fora do observatório.</h2>
-              <!-- <p>
-                Algumas ideias permanecem em órbita. Outras pedem conversa, código, colaboração ou continuidade.
-                Estes são os canais externos para atravessar o campo e chegar ao lado profissional do sistema.
-              </p> -->
             </div>
 
             <div class="identity-orbit-card contact-identity-showcase" aria-label="Matheus Camargo e presença técnica">
@@ -460,7 +418,6 @@
                   decoding="async"
                 />
                 <figcaption>
-                  <!-- <span>origem humana</span> -->
                   <strong>Matheus Camargo</strong>
                 </figcaption>
               </figure>
@@ -475,7 +432,6 @@
                   decoding="async"
                 />
                 <figcaption>
-                  <!-- <span>satélite técnico</span> -->
                   <strong>GitHub</strong>
                 </figcaption>
               </figure>
@@ -581,7 +537,6 @@
       <div class="container footer-grid">
         <p>
           <strong>Status: Desenvolvimento | BETA TEST</strong><br />
-          <!-- <strong>Observatório de Ideias</strong><br /> -->
           Um arquivo vivo conectado a Matheus Camargo de Alencar.
         </p>
         <nav class="footer-links" aria-label="Navegação e links profissionais">
@@ -604,6 +559,6 @@
       </div>
     </noscript>
 
-    <script type="module" src="assets/js/main.js?v=stellar-drift-v1"></script>
+    <script type="module" src="assets/js/main.js?v=theory-clarity-v2"></script>
   </body>
 </html>

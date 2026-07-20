@@ -1,113 +1,163 @@
-# Integração e escala das teorias
+# Integração e escala das linhas de investigação
 
-As teorias públicas do observatório são mantidas em `assets/data/theories.js`. Esse arquivo é a fonte compartilhada por três experiências:
+As entradas públicas do observatório são mantidas em `assets/data/theories.js`. Esse arquivo é a fonte compartilhada por três experiências:
 
-- a home mostra um recorte de seis cards;
-- `Teorias/teorias.html` oferece busca, filtros e dossiês completos;
-- `Mapa/mapa.html` calcula os nós e as relações conceituais.
+- a home mostra um recorte de seis entradas;
+- `Teorias/teorias.html` oferece busca, filtros e dossiês;
+- `Mapa/mapa.html` calcula nós e relações conceituais.
 
-Os textos originais da pasta `Teorias/` permanecem como material editorial bruto. Eles não são importados nem publicados automaticamente.
+Nem toda entrada é uma teoria física. O modelo distingue hipóteses científicas, estudos teóricos, estruturas conceituais, linhas derivadas, heurísticas e programas práticos. Essa classificação é parte do conteúdo público e deve permanecer visível.
 
-## Contrato de uma teoria
+Os materiais brutos da pasta `Teorias/` são fontes editoriais privadas. Eles não são importados pela interface, não aparecem no dossiê e não entram no artefato de publicação.
 
-Cada entrada de `THEORIES` usa estes campos:
+## Arquitetura de dados
+
+| Arquivo | Responsabilidade |
+| --- | --- |
+| `assets/data/theories.js` | Conteúdo público, classificações, revisão crítica e relações. |
+| `assets/data/theory-references.js` | Registro único das referências externas exibidas nos dossiês. |
+| `assets/data/research-tracks.js` | Radar de ideias que ainda não justificam uma entrada independente. |
+| `assets/js/theory-model.js` | Busca por ID/slug, relações simétricas e regras compartilhadas do domínio. |
+| `scripts/theory-sources.mjs` | Mapeamento privado entre uma entrada e seu material editorial de origem. |
+| `scripts/verify.mjs` | Validação do schema, referências, rotas, privacidade e HTML. |
+
+Home, arquivo e mapa possuem controladores próprios, mas não devem duplicar as regras de localização ou de relação entre entradas.
+
+## Contrato público de uma entrada
 
 | Campo | Função |
 | --- | --- |
 | `id` | Identificador estável usado nas relações internas. |
 | `slug` | Identificador legível usado em `?teoria=...`. Deve ser único. |
 | `code` | Código editorial curto, como `T-11`. |
-| `title` | Título completo do dossiê. |
-| `shortTitle` | Rótulo compacto usado no mapa. |
+| `title` e `shortTitle` | Título completo e rótulo compacto do mapa. |
 | `subtitle` | Uma linha que delimita o problema. |
-| `status` | Estado editorial exibido como sinal curto. |
-| `phase` | Fase usada no filtro avançado. |
-| `sourceFile` | Caminho relativo do material que originou a síntese. |
-| `stage` | Nota editorial mais específica sobre maturidade. |
-| `progress` | Número inteiro de `0` a `100`; indica maturação editorial, não validade científica. |
+| `kind` | Natureza da entrada, definida em `THEORY_TYPES`. |
+| `reviewState` | Estado do trabalho, definido em `THEORY_REVIEW_STATES`. |
+| `independent` | Indica se a entrada representa uma linha própria. |
+| `parentId` | Linha principal de uma derivação, quando aplicável. |
 | `category` | Eixo principal; deve existir em `THEORY_FILTERS`. |
-| `filters` | Um ou mais eixos relacionados. |
-| `color` e `glow` | Acentos visuais usados nos cards e no mapa. |
-| `position` | Coordenadas percentuais `{ x, y }` para o mapa desktop. |
+| `filters` | Eixos relacionados usados na busca e no mapa. |
+| `color` e `glow` | Acentos visuais dos cards e nós. |
+| `position` | Coordenadas percentuais `{ x, y }` do mapa desktop. |
 | `summary` | Ideia central em linguagem pública e concisa. |
-| `hypothesis` | Hipótese central, distinguindo proposta de fato estabelecido. |
-| `questions` | Perguntas abertas que orientam o refinamento. |
-| `concepts` | Termos indexáveis pela busca e pelo filtro de conceito. |
-| `needs` | Tensões, limites e próximos passos editoriais. |
-| `connections` | Lista de `id` de teorias relacionadas. |
+| `proposal` | Proposição da entrada, sem apresentá-la como fato estabelecido. |
+| `questions` | Perguntas abertas que orientam o desenvolvimento. |
+| `concepts` | Termos indexáveis pela busca e pelos filtros. |
+| `nextSteps` | Ações concretas de formalização, análise ou execução. |
+| `connections` | Lista de IDs relacionados. |
+| `referenceIds` | Chaves de referências cadastradas em `theory-references.js`. |
+| `review` | Leitura em quatro camadas: `known`, `focus`, `limit` e `test`, além de `assessment`. |
+| `revision` | Versão e data da última revisão de conteúdo. |
 
-Na exportação, cada teoria recebe também aliases imutáveis para consumo das interfaces: `centralIdea`, `centralQuestion`, `theoreticalTension`, `developmentNotes` e `updatedAt`.
+Na exportação, cada entrada recebe ainda os campos derivados `typeLabel`, `typeShortLabel`, `reviewStateLabel`, `centralIdea`, `centralQuestion` e `theoreticalTension`.
+
+## Leitura pública em quatro camadas
+
+Todos os dossiês seguem a mesma ordem:
+
+1. **Contexto conhecido:** o que pertence à literatura, às observações ou a resultados estabelecidos.
+2. **Recorte em investigação:** a pergunta ou proposição específica da entrada.
+3. **Limite atual:** onde a formulação é incompleta, especulativa ou incompatível com um resultado conhecido.
+4. **Caminho verificável:** cálculo, dado, simulação ou critério capaz de fortalecer, revisar ou abandonar a proposta.
+
+Essa estrutura substitui percentuais de maturidade. O sistema não usa números sem rubrica para sugerir credibilidade científica.
 
 ## Exemplo mínimo
 
 ```js
 {
-  id: 'nova-hipotese',
-  slug: 'nova-hipotese',
+  id: 'nova-linha',
+  slug: 'nova-linha',
   code: 'T-11',
-  title: 'Nova Hipótese',
-  shortTitle: 'Nova hipótese',
+  title: 'Nova Linha',
+  shortTitle: 'Nova linha',
   subtitle: 'O problema em uma linha',
-  status: 'hipótese inicial',
-  phase: 'hipótese inicial',
-  sourceFile: 'Teorias/NOVA_FONTE.txt',
-  stage: 'Síntese inicial aguardando objeções',
-  progress: 25,
+  kind: 'hipotese-cientifica',
+  reviewState: 'formalizacao',
+  independent: true,
   category: 'cosmologia',
   filters: ['cosmologia', 'tempo'],
   color: '#72ecff',
   glow: 'rgba(114, 236, 255, 0.58)',
   position: { x: 50, y: 50 },
-  summary: 'Síntese pública da ideia.',
-  hypothesis: 'Formulação provisória da hipótese.',
-  questions: ['Qual é a pergunta que precisa permanecer aberta?'],
+  summary: 'Síntese pública da investigação.',
+  proposal: 'Formulação provisória que ainda precisa ser testada.',
+  questions: ['Qual pergunta precisa permanecer aberta?'],
   concepts: ['conceito principal'],
-  needs: ['Qual limite ou objeção precisa ser trabalhado?'],
+  nextSteps: ['Definir um observável e um critério de revisão.'],
   connections: ['observacao-nao-linear'],
+  referenceIds: ['hogg-distance'],
+  review: {
+    assessment: 'Formalização necessária',
+    known: 'Base científica relevante para a pergunta.',
+    focus: 'Recorte específico que será investigado.',
+    limit: 'Principal limitação ou objeção atual.',
+    test: 'Resultado capaz de revisar a proposta.',
+  },
 }
 ```
 
-## Como adicionar uma teoria
+## Como adicionar ou revisar uma entrada
 
-1. Preserve o arquivo bruto em `Teorias/` e registre seu caminho em `sourceFile`.
-2. Crie a síntese pública em `assets/data/theories.js` sem copiar automaticamente conversas ou rascunhos.
-3. Use `id`, `slug` e `code` inéditos. Não renomeie os existentes sem planejar compatibilidade de URLs e relações.
-4. Escolha `category` e `filters` entre os ids de `THEORY_FILTERS`; adicione um novo eixo ao catálogo antes de usá-lo.
-5. Conecte apenas ids existentes. Relações podem ser declaradas por uma das pontas; o mapa remove duplicatas.
-6. Posicione o nó entre `0` e `100` nos eixos `x` e `y` e revise sobreposições no desktop.
-7. Execute `npm run verify` e teste home, arquivo e mapa em desktop e mobile.
+1. Preserve o material bruto fora do conteúdo público.
+2. Registre o caminho somente em `scripts/theory-sources.mjs`.
+3. Escreva a síntese pública em `assets/data/theories.js` com linguagem impessoal e verificável.
+4. Classifique a natureza e o estado do trabalho antes de escolher categoria ou cor.
+5. Preencha as quatro camadas da leitura crítica.
+6. Cadastre referências em `assets/data/theory-references.js` e use apenas seus IDs na entrada.
+7. Reutilize IDs existentes para relações. A interface apresenta relações de forma simétrica.
+8. Defina `parentId` quando a entrada for uma derivação; não multiplique fichas para repetir o mesmo núcleo.
+9. Preserve IDs e slugs existentes para não quebrar URLs.
+10. Execute a verificação e revise home, arquivo e mapa em desktop e mobile.
 
 ## Filtros e busca
 
-O arquivo combina cinco dimensões sem duplicar os dados:
+O arquivo combina cinco dimensões:
 
 - texto livre;
-- categoria;
-- fase;
-- status;
+- eixo temático;
+- natureza da entrada;
+- estado do trabalho;
 - conceito.
 
-A busca cobre título, resumo, hipótese, pergunta central, tensões, origem, conceitos e títulos relacionados. Os valores dos selects de fase, status e conceito são derivados do próprio conjunto de teorias, portanto novas entradas aparecem automaticamente.
+A busca cobre título, resumo, proposição, perguntas, limites, testes, referências e linhas relacionadas. Os selects são derivados dos registros centrais, portanto novas opções aparecem automaticamente.
 
 ## URLs diretas
 
-O parâmetro `teoria` usa o `slug`:
+O parâmetro `teoria` continua usando o `slug`:
 
 ```text
-Teorias/teorias.html?teoria=nova-hipotese
-Mapa/mapa.html?teoria=nova-hipotese
+Teorias/teorias.html?teoria=nova-linha
+Mapa/mapa.html?teoria=nova-linha
 ```
 
-Se o slug não existir, a interface mantém uma seleção válida. A escolha do usuário é sincronizada com `history.replaceState`, sem exigir um roteador de SPA.
+Entradas fundidas ou reclassificadas devem preservar seus slugs enquanto houver links externos apontando para elas.
 
-## Responsabilidades por arquivo
+## Radar de desenvolvimento
 
-- `assets/data/theories.js`: schema e conteúdo público estruturado.
-- `assets/js/theory-lab.js`: recorte de teorias da home.
-- `Teorias/teorias.js`: filtros, busca, cards, dossiês e URLs diretas.
-- `Mapa/mapa.js`: relações únicas, nós, filtros e detalhe contextual.
-- `scripts/verify.mjs`: regras estruturais e integridade dos dados.
+`assets/data/research-tracks.js` recebe ensaios, simuladores, trilhas de estudo e projetos quantitativos que ainda não justificam uma nova ficha. O radar evita transformar todo pensamento promissor em “teoria” e permite promover uma linha no futuro sem perder seu histórico.
+
+## Privacidade e publicação
+
+`npm run build` valida o projeto e gera `dist/` por uma lista explícita de caminhos públicos. O artefato inclui somente páginas, imagens, estilos, scripts e dados necessários à interface.
+
+Não entram em `dist/`:
+
+- `docs/`;
+- `ia/`;
+- `scripts/`;
+- arquivos `.txt` da pasta `Teorias/`;
+- pareceres, PDFs, builders ou renders de controle;
+- caminhos de fontes editoriais.
+
+Comentários HTML, CSS e JavaScript também são proibidos nos arquivos públicos pela verificação. Orientações técnicas pertencem à documentação; ressalvas relevantes ao visitante devem ser texto público finalizado.
 
 ## Critério editorial
 
-`progress` mede o quanto a entrada foi organizada editorialmente; não é nota de credibilidade. `status`, `phase` e `stage` devem deixar explícito quando algo é rascunho, metáfora, hipótese inicial ou linha em revisão. Publicações, datas, fontes externas e métricas só entram quando forem verificáveis.
+- Distinguir fato estabelecido, proposta, metáfora e limite.
+- Não apresentar referência como confirmação automática da entrada.
+- Não usar elogios, validações genéricas ou bastidores de produção como conteúdo público.
+- Não expor conversas, dados pessoais ou caminhos internos.
+- Publicar datas, versões, fontes e métricas somente quando forem verificáveis.
+- Tratar uma relação do mapa como afinidade conceitual, não causalidade ou evidência.

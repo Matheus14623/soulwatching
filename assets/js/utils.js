@@ -19,6 +19,23 @@ export function safeSetText(element, text) {
   if (element) element.textContent = text;
 }
 
+export function escapeHtml(value) {
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
+export function normalizeText(value) {
+  return String(value ?? '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
+}
+
 export function setPressed(button, pressed) {
   if (button) button.setAttribute('aria-pressed', String(Boolean(pressed)));
 }
