@@ -35,6 +35,7 @@ const requiredFiles = [
   'assets/js/theory-lab.js',
   'assets/js/philosophy.js',
   'assets/js/resonance.js',
+  'assets/js/smooth-scroll.js',
   'assets/js/contact.js',
   'assets/js/utils.js',
   'assets/js/page-shell.js',

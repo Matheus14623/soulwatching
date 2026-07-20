@@ -1,5 +1,12 @@
 import { initNavigation } from '../assets/js/navigation.js';
-import { $, debounce, escapeHtml, normalizeText, safeSetText } from '../assets/js/utils.js';
+import {
+  $,
+  debounce,
+  escapeHtml,
+  normalizeText,
+  safeSetText,
+} from '../assets/js/utils.js';
+import { smoothScrollToElement } from '../assets/js/smooth-scroll.js';
 import {
   findTheory,
   getRelatedTheories,
@@ -558,10 +565,7 @@ function bindEvents() {
     state.kind = state.kind === selected ? 'todos' : selected;
     render();
     requestAnimationFrame(() => document.querySelector(`[data-type-legend="${CSS.escape(selected)}"]`)?.focus());
-    document.getElementById('teorias')?.scrollIntoView({
-      behavior: reduceMotion.matches ? 'auto' : 'smooth',
-      block: 'start',
-    });
+    smoothScrollToElement(document.getElementById('teorias'));
   });
 
   kind?.addEventListener('change', () => {

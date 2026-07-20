@@ -1,4 +1,5 @@
 import { $, $$ } from './utils.js';
+import { initSmoothScrolling, smoothScrollTo } from './smooth-scroll.js';
 
 export function initNavigation() {
   const header = $('[data-header]');
@@ -6,10 +7,11 @@ export function initNavigation() {
   const nav = $('[data-primary-nav]');
   const backToTop = $('[data-back-to-top]');
   const links = $$('a[href^="#"]', nav || document);
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const sections = links
     .map((link) => document.getElementById(link.getAttribute('href').slice(1)))
     .filter(Boolean);
+
+  initSmoothScrolling();
 
   const closeMenu = (options = {}) => {
     if (!toggle || !nav) return;
@@ -53,7 +55,7 @@ export function initNavigation() {
   window.addEventListener('scroll', updateHeader, { passive: true });
 
   backToTop?.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    smoothScrollTo(0);
   });
 
   if ('IntersectionObserver' in window && sections.length) {

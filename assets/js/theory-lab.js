@@ -1,4 +1,12 @@
-import { $, $$, debounce, escapeHtml, normalizeText, safeSetText } from './utils.js';
+import {
+  $,
+  $$,
+  debounce,
+  escapeHtml,
+  normalizeText,
+  safeSetText,
+} from './utils.js';
+import { smoothScrollToElement } from './smooth-scroll.js';
 import {
   findTheory,
   getRelatedTheoryIds,
@@ -6,8 +14,6 @@ import {
   theoryMatchesCategory,
 } from './theory-model.js';
 import { THEORIES, THEORY_FILTERS } from '../data/theories.js';
-
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 const state = {
   activeFilter: 'todas',
@@ -222,10 +228,7 @@ function setActiveTheory(id, options = {}) {
   safeSetText(caption, `${theory.code} · ${theory.shortTitle}: ${theory.summary}`);
 
   if (options.scroll) {
-    document.getElementById('teorias')?.scrollIntoView({
-      behavior: reduceMotion.matches ? 'auto' : 'smooth',
-      block: 'start',
-    });
+    smoothScrollToElement(document.getElementById('teorias'));
   }
 }
 

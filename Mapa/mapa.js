@@ -1,5 +1,6 @@
 import { initNavigation } from '../assets/js/navigation.js';
 import { $, escapeHtml, safeSetText } from '../assets/js/utils.js';
+import { smoothScrollToElement } from '../assets/js/smooth-scroll.js';
 import {
   findTheory,
   getRelatedTheories,
@@ -171,10 +172,7 @@ function setActive(id, sync = true, focusDetail = false) {
   if (sync) syncUrl(theory);
   if (focusDetail && window.innerWidth <= 1080) {
     const panel = $('[data-map-detail]');
-    panel?.scrollIntoView({
-      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-      block: 'start',
-    });
+    smoothScrollToElement(panel);
   }
 }
 

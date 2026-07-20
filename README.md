@@ -74,6 +74,7 @@ npm run build
 |       |-- main.js
 |       |-- page-shell.js
 |       |-- navigation.js
+|       |-- smooth-scroll.js
 |       |-- theory-model.js
 |       |-- theory-lab.js
 |       |-- observer.js
@@ -99,7 +100,7 @@ npm run build
 
 O projeto preserva a stack estática existente: HTML semântico, CSS próprio e módulos ES nativos, sem framework ou dependências de interface. Essa escolha mantém o carregamento simples e o deploy direto na Vercel.
 
-`assets/data/theories.js` é a fonte estruturada compartilhada pela home, pelo arquivo de teorias e pelo mapa. Referências e linhas ainda em observação ficam em módulos próprios. `assets/js/theory-model.js` concentra localização, relações simétricas e regras comuns, enquanto cada rota controla apenas sua apresentação.
+`assets/data/theories.js` é a fonte estruturada compartilhada pela home, pelo arquivo de teorias e pelo mapa. Referências e linhas ainda em observação ficam em módulos próprios. `assets/js/theory-model.js` concentra localização, relações simétricas e regras comuns, enquanto cada rota controla apenas sua apresentação. `assets/js/smooth-scroll.js` centraliza a rolagem interna com uma curva curta, cancelamento por interação e fallback para movimento reduzido.
 
 ## Recursos principais
 
@@ -112,7 +113,7 @@ O projeto preserva a stack estática existente: HTML semântico, CSS próprio e 
 - Mapa com dez nós e dezoito relações únicas, sem biblioteca gráfica pesada.
 - Arquivo editorial sem publicações ou métricas inventadas.
 - Laboratório com visão estelar, cordas de ressonância e mapa conceitual.
-- Navegação por teclado, estados ARIA, redução de movimento e layouts móveis dedicados.
+- Navegação por teclado, rolagem interna suave, estados ARIA, redução de movimento e layouts móveis dedicados.
 - Verificação automatizada adequada ao build da Vercel.
 
 ## Dados editoriais

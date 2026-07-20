@@ -36,6 +36,7 @@ HTML de cada rota
   |-- CSS compartilhado de páginas internas: assets/css/observatory-pages.css
   |-- CSS específico da rota
   |-- navegação compartilhada: assets/js/navigation.js
+  |-- rolagem compartilhada: assets/js/smooth-scroll.js
   `-- módulo específico quando necessário
 
 assets/data/theories.js
@@ -100,6 +101,7 @@ Não há framework, TypeScript, bundler, CMS, banco de dados ou backend.
 |       |-- main.js
 |       |-- page-shell.js
 |       |-- navigation.js
+|       |-- smooth-scroll.js
 |       |-- theory-lab.js
 |       |-- observer.js
 |       |-- philosophy.js
@@ -142,6 +144,7 @@ Componentes visuais recorrentes:
 - O dossiê lateral das teorias vira detalhe dentro do card no mobile.
 - O mapa abandona posicionamento absoluto e linhas no mobile, tornando-se uma lista semântica.
 - A indicação fixa da visão estrutural não ocupa a tela pequena.
+- Links internos e retornos ao topo usam uma curva curta de rolagem, cancelável por roda, toque, ponteiro ou teclado.
 - Animações respeitam `prefers-reduced-motion`.
 - Áudio permanece desligado até ação explícita.
 
