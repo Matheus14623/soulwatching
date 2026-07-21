@@ -45,6 +45,7 @@ function createSlide(figure, index) {
   image.alt = figure.portrait.alt;
   image.loading = index < 3 ? 'eager' : 'lazy';
   image.decoding = 'async';
+  image.draggable = false;
 
   const position = createElement('span', 'notable-slide-index', String(index + 1).padStart(2, '0'));
   position.setAttribute('aria-hidden', 'true');
@@ -218,6 +219,7 @@ function initNotableFiguresGallery() {
   if (!gallerySection || !carouselShell || !carousel || !slides || !detail || !index || !filters || !search) return;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const finePointer = window.matchMedia('(any-pointer: fine)');
   const requestedProfile = new URL(window.location.href).searchParams.get('perfil');
   const requestedFigure = findNotableFigure(requestedProfile);
   const initialFigure = requestedFigure || NOTABLE_FIGURES[0];
@@ -342,6 +344,7 @@ function initNotableFiguresGallery() {
     if (!swiper) return;
     swiper.destroy(true, true);
     swiper = null;
+    carousel.classList.remove('is-dragging');
   }
 
   function initializeStaticFallback(initialIndex) {
@@ -360,6 +363,8 @@ function initNotableFiguresGallery() {
       initializeStaticFallback(initialIndex);
       return;
     }
+
+    const isMouseOptimized = finePointer.matches;
 
     swiper = new SwiperConstructor(carousel, {
       a11y: {
@@ -392,6 +397,7 @@ function initNotableFiguresGallery() {
         stretch: 34,
       },
       effect: reducedMotion.matches ? 'slide' : 'coverflow',
+      followFinger: true,
       grabCursor: true,
       initialSlide: initialIndex,
       keyboard: {
@@ -409,12 +415,21 @@ function initNotableFiguresGallery() {
         dynamicBullets: visibleFigures.length > 8,
         el: pagination,
       },
-      resistanceRatio: 0.72,
+      longSwipes: true,
+      longSwipesMs: isMouseOptimized ? 180 : 300,
+      longSwipesRatio: isMouseOptimized ? 0.16 : 0.5,
+      preventClicks: true,
+      preventClicksPropagation: true,
+      resistanceRatio: isMouseOptimized ? 0.86 : 0.72,
       rewind: visibleFigures.length > 1 && visibleFigures.length < 8,
+      shortSwipes: true,
+      simulateTouch: true,
       slideToClickedSlide: false,
       slidesPerView: 'auto',
       spaceBetween: 18,
-      speed: reducedMotion.matches ? 0 : 820,
+      speed: reducedMotion.matches ? 0 : (isMouseOptimized ? 520 : 820),
+      threshold: isMouseOptimized ? 2 : 5,
+      touchRatio: isMouseOptimized ? 1.12 : 1,
       watchSlidesProgress: true,
       on: {
         init(instance) {
@@ -430,10 +445,12 @@ function initNotableFiguresGallery() {
           });
         },
         touchStart() {
+          carousel.classList.add('is-dragging');
           announceNextChange = true;
           setPauseReason('drag', true);
         },
         touchEnd() {
+          carousel.classList.remove('is-dragging');
           setPauseReason('drag', false);
         },
         autoplayStart() {

@@ -674,11 +674,11 @@ function relativeMarkdownTarget(fromFile, repositoryRelativeTarget) {
 
 function escapeMarkdownText(value) {
   return value
-    .replaceAll('\\', '\\\\')
-    .replaceAll('[', '\\[')
-    .replaceAll(']', '\\]')
-    .replaceAll('|', '\\|')
-    .replaceAll('\n', ' ');
+    .replace(/\\/g, '\\\\')
+    .replace(/\[/g, '\\[')
+    .replace(/\]/g, '\\]')
+    .replace(/\|/g, '\\|')
+    .replace(/\n/g, ' ');
 }
 
 function markdownLink(label, targetPath) {

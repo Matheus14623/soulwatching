@@ -212,17 +212,17 @@ function parsePlainScalar(value, source, line, column) {
   if (!trimmed || /^(?:null|~)$/i.test(trimmed)) return null;
   if (/^(?:true|false)$/i.test(trimmed)) return trimmed.toLowerCase() === 'true';
   if (/^[+-]?(?:0|[1-9][0-9_]*)$/.test(trimmed)) {
-    const number = Number(trimmed.replaceAll('_', ''));
+    const number = Number(trimmed.replace(/_/g, ''));
     if (!Number.isSafeInteger(number)) yamlFail(source, line, column, 'inteiro fora do intervalo seguro');
     return number;
   }
   if (/^[+-]?(?:(?:0|[1-9][0-9_]*)\.[0-9_]+|(?:0|[1-9][0-9_]*)(?:[eE][+-]?[0-9]+)|(?:0|[1-9][0-9_]*)\.[0-9_]+(?:[eE][+-]?[0-9]+))$/.test(trimmed)) {
-    const number = Number(trimmed.replaceAll('_', ''));
+    const number = Number(trimmed.replace(/_/g, ''));
     if (!Number.isFinite(number)) yamlFail(source, line, column, 'número não finito não permitido');
     return number;
   }
-  if (/^0x[0-9a-fA-F_]+$/.test(trimmed)) return Number.parseInt(trimmed.slice(2).replaceAll('_', ''), 16);
-  if (/^0o[0-7_]+$/.test(trimmed)) return Number.parseInt(trimmed.slice(2).replaceAll('_', ''), 8);
+  if (/^0x[0-9a-fA-F_]+$/.test(trimmed)) return Number.parseInt(trimmed.slice(2).replace(/_/g, ''), 16);
+  if (/^0o[0-7_]+$/.test(trimmed)) return Number.parseInt(trimmed.slice(2).replace(/_/g, ''), 8);
   if (/^(?:[-+]?\.(?:inf|nan))$/i.test(trimmed)) yamlFail(source, line, column, 'NaN e infinito não são permitidos');
   if (YAML_UNSUPPORTED_PREFIX.test(trimmed) || trimmed === '---' || trimmed === '...') {
     yamlFail(source, line, column, `sintaxe YAML não suportada: ${trimmed}`);
@@ -375,7 +375,7 @@ function parseInlineValue(value, source, line, column) {
 class YamlBlockParser {
   constructor(text, source) {
     this.source = source;
-    const normalized = text.replace(/^\uFEFF/, '').replaceAll('\r\n', '\n').replaceAll('\r', '\n');
+    const normalized = text.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n');
     if (Buffer.byteLength(normalized, 'utf8') > MAX_YAML_BYTES) fail('YAML_TOO_LARGE', `${source}: YAML excede ${MAX_YAML_BYTES} bytes`);
     if (normalized.includes('\0')) fail('YAML_PARSE_ERROR', `${source}: caractere NUL não permitido`);
     this.lines = normalized.split('\n');
@@ -601,7 +601,7 @@ function assertSchemaKeywords(schema, path = '#', seen = new WeakSet()) {
 }
 
 function escapeJsonPointer(value) {
-  return String(value).replaceAll('~', '~0').replaceAll('/', '~1');
+  return String(value).replace(/~/g, '~0').replace(/\//g, '~1');
 }
 
 function deepEqual(left, right) {
@@ -623,7 +623,7 @@ function resolveLocalReference(rootSchema, reference, schemaPath) {
   if (!reference.startsWith('#/')) schemaFail(schemaPath, '$ref local inválido');
   let current = rootSchema;
   for (const encoded of reference.slice(2).split('/')) {
-    const key = encoded.replaceAll('~1', '/').replaceAll('~0', '~');
+    const key = encoded.replace(/~1/g, '/').replace(/~0/g, '~');
     if (!current || typeof current !== 'object' || !own(current, key)) schemaFail(schemaPath, `$ref não encontrado: ${reference}`);
     current = current[key];
   }
@@ -975,7 +975,7 @@ function scanInlineLinks(line, definitions) {
 }
 
 function parseMarkdown(relativePath, text) {
-  const normalized = text.replaceAll('\r\n', '\n').replaceAll('\r', '\n');
+  const normalized = text.replace(/\r\n?/g, '\n');
   let frontMatter = createRecord();
   let body = normalized;
   let bodyStartLine = 1;
@@ -1483,7 +1483,7 @@ export async function buildKnowledgeModel(aiRoot, options = {}) {
 }
 
 function escapeTableCell(value) {
-  return String(value ?? '').replaceAll('|', '\\|').replaceAll('\n', ' ').trim();
+  return String(value ?? '').replace(/\|/g, '\\|').replace(/\n/g, ' ').trim();
 }
 
 function routingHref(repoPath) {

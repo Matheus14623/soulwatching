@@ -60,7 +60,7 @@ Contratos:
 
 `GrandesNomes/grandes-nomes.js` constrói os cards e dossiês a partir do catálogo compartilhado e mantém uma única instância de Swiper. O perfil central pode mudar por arraste, clique, botões, teclado, índice ou `?perfil=<slug>`. Busca e filtros destroem a instância anterior antes de reconstruir o conjunto visível.
 
-A rotação usa intervalo de 30 segundos e pode ser pausada manualmente. Ela também para durante foco, ponteiro, arraste, aba oculta ou galeria fora da viewport. Em movimento reduzido, autoplay e coverflow são desativados, a velocidade cai para zero e o conteúdo permanece navegável. Se a biblioteca não carregar, o fallback estático preserva cards, detalhe e botões.
+A rotação usa intervalo de 30 segundos e pode ser pausada manualmente. Ela também para durante foco, ponteiro, arraste, aba oculta ou galeria fora da viewport. Em ponteiros de alta precisão, o arraste usa limiar menor, resposta levemente ampliada e encaixe mais rápido; o arraste nativo dos retratos fica desativado para não disputar o gesto com o carrossel. A configuração tátil permanece independente. Em movimento reduzido, autoplay e coverflow são desativados, a velocidade cai para zero e o conteúdo permanece navegável. Se a biblioteca não carregar, o fallback estático preserva cards, detalhe e botões.
 
 ## Navegação e rolagem
 
