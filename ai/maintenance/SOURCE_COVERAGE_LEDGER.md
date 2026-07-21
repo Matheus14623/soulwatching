@@ -32,6 +32,7 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 - O inventário inclui `.md`, `.docx` e `.pdf` fora de `ai/`, `dist/`, `output/` e `.git/`.
 - Toda fonte inventariada exige uma decisão deliberada ou uma exclusão explícita.
 - Headings Markdown são extraídos automaticamente; binários usam uma lista manual deliberada, inclusive quando vazia.
+- Markdown é normalizado para `LF` antes do cálculo de tamanho e SHA-256; `.docx` e `.pdf` preservam os bytes originais.
 - Destinos canônicos são validados com o casing real do filesystem.
 - O ledger não reproduz conteúdo pessoal, fontes editoriais brutas ou bastidores.
 
@@ -60,8 +61,8 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 - Tipo: `architecture-guide`
 - Estado: `historical`
 - Decisão: `preserve`
-- Tamanho: `24193` bytes
-- SHA-256: `17b2975b1d3dca7edabfa104c546ae60734618e506bc7ef3d7f497eaf88b57a7`
+- Tamanho: `23825` bytes
+- SHA-256: `fe6437e361b7ff628b1eb8dc58de65acccfed611bddb866e176e97c3b76cf5ac`
 - Síntese: Snapshot arquitetural amplo do estado pós-expansão, preservado como histórico e subordinado aos nós canônicos atuais.
 - Destinos canônicos:
   - `project.architecture` — [ai/project/ARCHITECTURE.md](../project/ARCHITECTURE.md)
@@ -127,8 +128,8 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 - Tipo: `operational-guide`
 - Estado: `current`
 - Decisão: `preserve`
-- Tamanho: `7177` bytes
-- SHA-256: `60bc19f21aa8146d1ce5684001cc34bcdb72a213e590f3c04da05e88633c1dd0`
+- Tamanho: `7067` bytes
+- SHA-256: `691c7775075893b47f314cc1bf0bf3235654c92c52cc40f26624d24b8c51a638`
 - Síntese: Entrada operacional resumida para rotas, execução local, arquitetura pública e publicação.
 - Destinos canônicos:
   - `project.index` — [ai/project/INDEX.md](../project/INDEX.md)

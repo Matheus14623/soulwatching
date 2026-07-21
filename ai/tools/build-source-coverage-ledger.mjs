@@ -3,7 +3,6 @@ import {
   mkdir,
   readFile,
   readdir,
-  stat,
   writeFile,
 } from 'node:fs/promises';
 import path from 'node:path';
@@ -636,11 +635,13 @@ async function resolveSourceRecord(source) {
     `Fonte ${source.path}`,
   );
   const fileBuffer = await readFile(absolutePath);
-  const fileStats = await stat(absolutePath);
   const extension = path.posix.extname(source.path).toLowerCase();
+  const canonicalBuffer = extension === '.md'
+    ? Buffer.from(fileBuffer.toString('utf8').replace(/\r\n?/g, '\n'), 'utf8')
+    : fileBuffer;
   const headings =
     source.headings.mode === 'auto'
-      ? extractMarkdownHeadings(fileBuffer.toString('utf8'), source.headings)
+      ? extractMarkdownHeadings(canonicalBuffer.toString('utf8'), source.headings)
       : source.headings.items.map((text) => ({ level: null, text }));
   const headingOmissions =
     source.headings.mode === 'auto'
@@ -652,8 +653,8 @@ async function resolveSourceRecord(source) {
 
   return {
     ...source,
-    bytes: fileStats.size,
-    sha256: createHash('sha256').update(fileBuffer).digest('hex'),
+    bytes: canonicalBuffer.length,
+    sha256: createHash('sha256').update(canonicalBuffer).digest('hex'),
     extension: extension.slice(1),
     headingMode: source.headings.mode,
     headings,
@@ -729,6 +730,7 @@ function renderLedger(records, exclusions, inventoryCount) {
     '- O inventário inclui `.md`, `.docx` e `.pdf` fora de `ai/`, `dist/`, `output/` e `.git/`.',
     '- Toda fonte inventariada exige uma decisão deliberada ou uma exclusão explícita.',
     '- Headings Markdown são extraídos automaticamente; binários usam uma lista manual deliberada, inclusive quando vazia.',
+    '- Markdown é normalizado para `LF` antes do cálculo de tamanho e SHA-256; `.docx` e `.pdf` preservam os bytes originais.',
     '- Destinos canônicos são validados com o casing real do filesystem.',
     '- O ledger não reproduz conteúdo pessoal, fontes editoriais brutas ou bastidores.',
     '',

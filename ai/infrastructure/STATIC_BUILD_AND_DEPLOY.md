@@ -55,6 +55,7 @@ O servidor local serve a raiz de `process.cwd()`. Uma rota inexistente devolve o
 - Uma nova rota pública precisa entrar conscientemente na allowlist e no verificador.
 - Um diretório copiado por inteiro exige que todos os seus tipos de arquivo estejam cobertos pela verificação.
 - Preserve a capitalização dos caminhos para o ambiente Linux da hospedagem.
+- O ledger de cobertura normaliza fontes Markdown para `LF` antes de calcular tamanho e SHA-256, evitando divergências entre checkouts Windows e Linux; fontes binárias permanecem byte a byte.
 - Gere e verifique `dist/`; não edite o artefato manualmente.
 - Não trate `scripts/serve.mjs` como preview seguro: ele serve a raiz e pode expor arquivos internos por URL conhecida.
 - Não use o servidor local como evidência do comportamento de roteamento, cache ou headers da hospedagem.

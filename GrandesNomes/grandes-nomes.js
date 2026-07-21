@@ -377,7 +377,7 @@ function initNotableFiguresGallery() {
       autoplay: reducedMotion.matches || visibleFigures.length < 2
         ? false
         : {
-          delay: 30000,
+          delay: 10000,
           disableOnInteraction: false,
           pauseOnMouseEnter: false,
           waitForTransition: true,
