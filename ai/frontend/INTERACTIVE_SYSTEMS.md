@@ -26,6 +26,7 @@ related_context:
   - "frontend.user-flows"
 evidence_sources:
   - "assets/js/observer.js"
+  - "assets/js/stellar-vision-info.js"
   - "assets/js/resonance.js"
   - "assets/js/philosophy.js"
   - "assets/js/navigation.js"
@@ -43,6 +44,8 @@ evidence_sources:
 A Visão Estelar começa desligada. Durante o boot, `observer.js` cria ou reutiliza um único overlay ainda oculto, instancia `StellarDriftRenderer` e prepara o perfil de qualidade e o conjunto de estrelas. A ativação torna o overlay visível e inicia o loop, ou desenha o campo estático quando há preferência por movimento reduzido.
 
 Ao desligar, o renderer cancela o frame e remove seus listeners de `resize` e `visibilitychange`. Os controles e o listener da preferência de movimento permanecem durante o ciclo de vida da página. Quando o modo está ativo, o loop pausa se a aba fica oculta.
+
+O controle de ajuda ao lado do toggle abre um `dialog` nativo em desktop e mobile sem alterar o estado da Visão Estelar. `stellar-vision-info.js` controla abertura, fechamento por botão, `Escape` ou backdrop e devolução de foco. O texto público separa o movimento próprio medido por astrometria da representação acelerada do site: as estrelas do canvas possuem posições e velocidades visuais geradas localmente e não reproduzem trajetórias do Gaia ou Hipparcos.
 
 Contratos:
 

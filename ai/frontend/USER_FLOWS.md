@@ -60,6 +60,8 @@ botão data-observer-toggle
 
 O estado não é persistido entre páginas ou recarregamentos.
 
+O botão de ajuda adjacente abre um diálogo explicativo independente do toggle. O diálogo fecha por botão, `Escape` ou backdrop e devolve o foco ao controle que o abriu, sem ligar ou desligar o renderer.
+
 ## Seleção de um grande nome
 
 ```text

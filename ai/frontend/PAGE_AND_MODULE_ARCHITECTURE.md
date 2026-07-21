@@ -33,6 +33,7 @@ evidence_sources:
   - "Arquivo/arquivo.html"
   - "Laboratorio/laboratorio.html"
   - "assets/js/main.js"
+  - "assets/js/stellar-vision-info.js"
   - "assets/js/page-shell.js"
   - "assets/js/notable-figures-preview.js"
   - "assets/js/notable-figures-model.js"
@@ -42,7 +43,7 @@ evidence_sources:
 
 ## Current Confirmed Structure
 
-`assets/js/main.js` inicializa os sete sistemas da home uma única vez, incluindo o recorte de Grandes Nomes. `assets/js/page-shell.js` inicializa somente a navegação nas páginas estáticas. Teorias, Mapa e Grandes Nomes importam navegação, modelos compartilhados e dados, mas controlam seus próprios estados e renderização.
+`assets/js/main.js` inicializa os sistemas da home uma única vez, incluindo o recorte de Grandes Nomes e o diálogo explicativo da Visão Estelar. `assets/js/page-shell.js` inicializa somente a navegação nas páginas estáticas. Teorias, Mapa e Grandes Nomes importam navegação, modelos compartilhados e dados, mas controlam seus próprios estados e renderização.
 
 Ordem de estilos nas páginas internas:
 
@@ -62,6 +63,7 @@ Ordem de estilos nas páginas internas:
 ## Entry Points
 
 - Navegação e rolagem: `assets/js/navigation.js` e `assets/js/smooth-scroll.js`.
+- Explicação da Visão Estelar: `assets/js/stellar-vision-info.js`.
 - Domínio de teorias: `assets/js/theory-model.js`.
 - Domínio de perfis históricos: `assets/js/notable-figures-model.js`.
 - Recorte de perfis na home: `assets/js/notable-figures-preview.js`.

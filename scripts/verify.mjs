@@ -51,6 +51,7 @@ const requiredFiles = [
   'assets/js/config.js',
   'assets/js/navigation.js',
   'assets/js/observer.js',
+  'assets/js/stellar-vision-info.js',
   'assets/js/theories.js',
   'assets/js/theory-model.js',
   'assets/js/theory-lab.js',

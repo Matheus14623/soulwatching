@@ -952,6 +952,7 @@
       "documentType": "canonical-reference",
       "evidenceSources": [
         "assets/js/observer.js",
+        "assets/js/stellar-vision-info.js",
         "assets/js/resonance.js",
         "assets/js/philosophy.js",
         "assets/js/navigation.js",
@@ -1052,6 +1053,7 @@
         "Arquivo/arquivo.html",
         "Laboratorio/laboratorio.html",
         "assets/js/main.js",
+        "assets/js/stellar-vision-info.js",
         "assets/js/page-shell.js",
         "assets/js/notable-figures-preview.js",
         "assets/js/notable-figures-model.js"

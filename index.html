@@ -87,9 +87,22 @@
             <div class="hero-actions">
               <a class="button button-primary" href="Teorias/teorias.html">Explorar teorias</a>
               <a class="button button-secondary" href="Mapa/mapa.html">Abrir constelação</a>
-              <button class="button button-ghost" type="button" data-observer-toggle aria-pressed="false">
-                <span data-toggle-label>Ativar visão estelar</span>
-              </button>
+              <div class="stellar-vision-controls">
+                <button class="button button-ghost" type="button" data-observer-toggle aria-pressed="false">
+                  <span data-toggle-label>Ativar visão estelar</span>
+                </button>
+                <button
+                  class="stellar-vision-info-trigger"
+                  type="button"
+                  aria-label="Entender a Visão Estelar simulada"
+                  aria-haspopup="dialog"
+                  aria-controls="stellar-vision-info"
+                  title="Entender a Visão Estelar simulada"
+                  data-stellar-vision-info-open
+                >
+                  <span aria-hidden="true">?</span>
+                </button>
+              </div>
             </div>
             <p class="microcopy">As ideias aqui não são verdades finais. São estruturas em desenvolvimento.</p>
           </div>
@@ -563,6 +576,74 @@
       </section>
     </main>
 
+    <dialog
+      class="stellar-vision-dialog"
+      id="stellar-vision-info"
+      aria-labelledby="stellar-vision-info-title"
+      aria-describedby="stellar-vision-info-summary"
+      data-stellar-vision-info
+    >
+      <div class="stellar-vision-dialog-toolbar">
+        <p class="stellar-vision-dialog-kicker">CIÊNCIA · MOVIMENTO PRÓPRIO</p>
+        <button
+          class="stellar-vision-dialog-close"
+          type="button"
+          aria-label="Fechar explicação sobre a Visão Estelar"
+          data-stellar-vision-info-close
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+
+      <div class="stellar-vision-dialog-panel">
+        <h2 id="stellar-vision-info-title">O que é a Visão Estelar simulada?</h2>
+        <p class="stellar-vision-dialog-summary" id="stellar-vision-info-summary">
+          As estrelas não estão paradas. Elas se deslocam continuamente pela Via Láctea, embora essa mudança quase nunca seja perceptível a olho nu durante uma vida humana.
+        </p>
+
+        <div class="stellar-vision-dialog-copy">
+          <p>
+            Vista do Sistema Solar, a mudança lenta da posição de uma estrela no céu é chamada de <strong>movimento próprio</strong>. Como as estrelas possuem distâncias, direções e velocidades diferentes, os desenhos que reconhecemos como constelações se transformam gradualmente ao longo de milênios.
+          </p>
+          <p>
+            Missões de astrometria como Hipparcos e Gaia produziram medições precisas de posições, paralaxes — usadas para estimar distâncias — e movimentos próprios. Combinados com medidas de velocidade radial, esses dados permitem estimar o movimento tridimensional de muitas estrelas.
+          </p>
+        </div>
+
+        <section class="stellar-vision-example" aria-labelledby="stellar-vision-example-title">
+          <p class="stellar-vision-dialog-label" id="stellar-vision-example-title">Um exemplo científico</p>
+          <p>
+            A ESA utilizou medições das missões Gaia e Hipparcos para mostrar como a região da constelação de Órion pode mudar ao longo dos próximos 450 mil anos. O padrão parece fixo hoje, mas suas estrelas seguem trajetórias diferentes pela Galáxia.
+          </p>
+        </section>
+
+        <section class="stellar-vision-simulation-note" aria-labelledby="stellar-vision-simulation-title">
+          <p class="stellar-vision-dialog-label" id="stellar-vision-simulation-title">O que esta experiência representa</p>
+          <p>
+            A Visão Estelar deste site é uma <strong>representação conceitual acelerada</strong> da deriva estelar. As posições, cores e velocidades são geradas para fins visuais, e o contador comprime 450 mil anos em um ciclo curto. Ela não reproduz o catálogo Gaia nem prevê a trajetória de estrelas específicas.
+          </p>
+        </section>
+
+        <div class="stellar-vision-sources">
+          <p class="stellar-vision-dialog-label">Fontes científicas</p>
+          <div>
+            <a
+              href="https://www.esa.int/Science_Exploration/Space_Science/Gaia/Proper_motion"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ler sobre movimento próprio no site da ESA, em nova aba"
+            >Movimento próprio · ESA <span aria-hidden="true">↗</span></a>
+            <a
+              href="https://www.esa.int/Space_in_Member_States/Portugal/O_futuro_da_constelacao_Orion"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ler sobre o futuro da constelação de Órion no site da ESA, em nova aba"
+            >O futuro de Órion · ESA <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
     <footer class="site-footer">
       <div class="container footer-grid">
         <p>
@@ -590,6 +671,6 @@
       </div>
     </noscript>
 
-    <script type="module" src="assets/js/main.js?v=smooth-flow-v2"></script>
+    <script type="module" src="assets/js/main.js?v=stellar-info-v1"></script>
   </body>
 </html>
