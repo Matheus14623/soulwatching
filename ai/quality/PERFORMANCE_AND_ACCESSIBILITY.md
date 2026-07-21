@@ -26,6 +26,8 @@ evidence_sources:
   - "assets/css/styles.css"
   - "Teorias/teorias.css"
   - "Mapa/mapa.css"
+  - "GrandesNomes/grandes-nomes.js"
+  - "GrandesNomes/grandes-nomes.css"
 ---
 
 # Desempenho e acessibilidade
@@ -37,6 +39,7 @@ evidence_sources:
 - A ressonância limita DPR a 2, exige ação explícita para áudio e pausa fora da viewport quando `IntersectionObserver` está disponível.
 - A rolagem suave é cancelável e usa fallback imediato para movimento reduzido.
 - Teorias e Mapa reconstroem partes do DOM no cliente; o custo atual é pequeno para o catálogo existente.
+- Grandes Nomes usa retratos WebP locais, imagens preguiçosas após os primeiros cards e uma única instância de carrossel. Autoplay pausa quando não é percebido; filtros destroem a instância anterior e movimento reduzido remove rotação, profundidade e transições.
 
 ## Canonical Rules
 
@@ -52,7 +55,7 @@ evidence_sources:
 
 ## Scaling Guidance
 
-Se o catálogo crescer para dezenas de entradas, concentre índices de busca e relações no modelo compartilhado, aplique debounce onde medido e evite reconstruir filtros sem necessidade. Paginação ou virtualização só entram após medição.
+Se os catálogos crescerem para dezenas de entradas, concentre índices de busca e relações nos modelos compartilhados, aplique debounce onde medido e evite reconstruir filtros sem necessidade. Paginação, virtualização ou divisão de bundles só entram após medição.
 
 ## Validation
 

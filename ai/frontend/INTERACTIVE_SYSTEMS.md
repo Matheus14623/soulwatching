@@ -5,7 +5,7 @@ scope: "frontend"
 kind: "canonical-reference"
 status: "canonical"
 canonical_for:
-  - "ciclo de vida da Visão Estelar, ressonância, filosofia, navegação e rolagem"
+  - "ciclo de vida da Visão Estelar, galeria, ressonância, filosofia, navegação e rolagem"
 triggers:
   - "Visão Estelar"
   - "observer"
@@ -14,6 +14,8 @@ triggers:
   - "áudio"
   - "smooth scroll"
   - "efeito cósmico"
+  - "carrossel"
+  - "Grandes Nomes"
 required_context:
   - "frontend.index"
 conditional_context:
@@ -29,6 +31,8 @@ evidence_sources:
   - "assets/js/navigation.js"
   - "assets/js/smooth-scroll.js"
   - "assets/js/contact.js"
+  - "GrandesNomes/grandes-nomes.js"
+  - "assets/vendor/swiper/LICENSE"
   - "index.html"
 ---
 
@@ -51,6 +55,12 @@ Contratos:
 ## Ressonância
 
 `resonance.js` mantém seis cordas em Canvas 2D. O DPR é limitado e movimento reduzido usa desenho estático. Quando `IntersectionObserver` está disponível, o loop pausa fora da viewport; sem essa API, o fallback atual mantém o canvas ativo. O áudio só inicia depois de ação explícita; os seis botões fornecem alternativa ao ponteiro.
+
+## Galeria de Grandes Nomes
+
+`GrandesNomes/grandes-nomes.js` constrói os cards e dossiês a partir do catálogo compartilhado e mantém uma única instância de Swiper. O perfil central pode mudar por arraste, clique, botões, teclado, índice ou `?perfil=<slug>`. Busca e filtros destroem a instância anterior antes de reconstruir o conjunto visível.
+
+A rotação usa intervalo de 30 segundos e pode ser pausada manualmente. Ela também para durante foco, ponteiro, arraste, aba oculta ou galeria fora da viewport. Em movimento reduzido, autoplay e coverflow são desativados, a velocidade cai para zero e o conteúdo permanece navegável. Se a biblioteca não carregar, o fallback estático preserva cards, detalhe e botões.
 
 ## Navegação e rolagem
 

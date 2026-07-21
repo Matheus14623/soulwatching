@@ -17,6 +17,8 @@ required_context:
 conditional_context:
   - id: "domains.theory-catalog"
     condition: "Quando a página consumir ou apresentar linhas de investigação."
+  - id: "domains.notable-figures"
+    condition: "Quando a página consumir ou apresentar perfis históricos e suas conexões."
 related_context:
   - "project.architecture"
   - "quality.validation-release"
@@ -26,17 +28,21 @@ evidence_sources:
   - "Teorias/teorias.js"
   - "Mapa/mapa.html"
   - "Mapa/mapa.js"
+  - "GrandesNomes/grandes-nomes.html"
+  - "GrandesNomes/grandes-nomes.js"
   - "Arquivo/arquivo.html"
   - "Laboratorio/laboratorio.html"
   - "assets/js/main.js"
   - "assets/js/page-shell.js"
+  - "assets/js/notable-figures-preview.js"
+  - "assets/js/notable-figures-model.js"
 ---
 
 # Páginas e módulos do frontend
 
 ## Current Confirmed Structure
 
-`assets/js/main.js` inicializa os seis sistemas da home uma única vez. `assets/js/page-shell.js` inicializa somente a navegação nas páginas estáticas. Teorias e Mapa importam navegação, utilitários, modelo compartilhado e dados, mas controlam seus próprios estados e renderização.
+`assets/js/main.js` inicializa os sete sistemas da home uma única vez, incluindo o recorte de Grandes Nomes. `assets/js/page-shell.js` inicializa somente a navegação nas páginas estáticas. Teorias, Mapa e Grandes Nomes importam navegação, modelos compartilhados e dados, mas controlam seus próprios estados e renderização.
 
 Ordem de estilos nas páginas internas:
 
@@ -57,6 +63,8 @@ Ordem de estilos nas páginas internas:
 
 - Navegação e rolagem: `assets/js/navigation.js` e `assets/js/smooth-scroll.js`.
 - Domínio de teorias: `assets/js/theory-model.js`.
+- Domínio de perfis históricos: `assets/js/notable-figures-model.js`.
+- Recorte de perfis na home: `assets/js/notable-figures-preview.js`.
 - Utilitários genéricos: `assets/js/utils.js`.
 - Dados editoriais: `assets/data/`.
 

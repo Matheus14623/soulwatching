@@ -8,6 +8,10 @@
       "condition": "Quando a mudança alterar busca, filtros, URL, seleção ou navegação entre superfícies."
     },
     {
+      "id": "domains.notable-figures",
+      "condition": "Quando a linha receber ou revisar uma conexão pública com um perfil histórico."
+    },
+    {
       "id": "quality.validation-release",
       "condition": "Antes de considerar a alteração pronta para publicação."
     }

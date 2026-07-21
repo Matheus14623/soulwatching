@@ -74,6 +74,48 @@
       ]
     },
     {
+      "path": "docs/PROTOCOLO_RIGOROSO_VALIDACAO_DE_TEORIAS_E_ESTRUTURACAO_DO_PENSAMENTO.docx",
+      "documentType": "methodology-manual",
+      "state": "internal",
+      "decision": "reference",
+      "summary": "Manual privado para auditoria crítica por IA, validação proporcional ao tipo de ideia e estruturação disciplinada do pensamento científico, filosófico e prático.",
+      "canonicalNodes": [
+        "domains.editorial-model",
+        "domains.theory-catalog",
+        "quality.validation-release",
+        "maintenance.expansion-guide"
+      ],
+      "headings": {
+        "mode": "manual",
+        "items": [
+          "Como usar este manual",
+          "1. Compromisso epistemológico",
+          "2. Classificar antes de avaliar",
+          "3. Estados de maturidade",
+          "4. Dossiê mínimo de entrada",
+          "5. Processo de auditoria em quatorze etapas",
+          "6. Trilha de validação científica",
+          "7. Trilha de validação filosófica",
+          "8. Trilha de decisão e filosofia prática",
+          "9. Protocolo de fontes e evidências",
+          "10. Revisão adversarial e controle de vieses",
+          "11. Rubrica de avaliação",
+          "12. Classes de veredito",
+          "13. Estrutura obrigatória do parecer da IA",
+          "14. Prompt Mestre para auditoria por IA",
+          "15. Manual de estruturação do pensamento",
+          "16. Fichas reutilizáveis",
+          "17. Rotina de desenvolvimento intelectual",
+          "18. Checklist de qualidade final",
+          "19. Limites, escalonamento e base metodológica"
+        ]
+      },
+      "notes": [
+        "Tratar como instrumento privado de método, não como validação científica de qualquer teoria específica.",
+        "O documento pode orientar revisões futuras, mas sua incorporação em conteúdo público exige síntese editorial separada."
+      ]
+    },
+    {
       "path": "docs/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026.docx",
       "documentType": "editorial-review",
       "state": "internal",
@@ -157,23 +199,6 @@
       },
       "notes": [
         "Não é fonte editorial independente e não deve ser publicado como conteúdo do observatório."
-      ]
-    },
-    {
-      "path": "docs/_teste_word.pdfcheck.docx",
-      "documentType": "qa-fixture",
-      "state": "qa",
-      "decision": "qa-only",
-      "summary": "Fixture de verificação do fluxo DOCX/PDF, sem autoridade editorial própria.",
-      "canonicalNodes": [
-        "quality.validation-release"
-      ],
-      "headings": {
-        "mode": "manual",
-        "items": []
-      },
-      "notes": [
-        "Manter somente enquanto o fluxo de QA documental depender deste artefato."
       ]
     },
     {

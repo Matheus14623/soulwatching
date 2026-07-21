@@ -31,8 +31,10 @@ evidence_sources:
   - "index.html"
   - "Teorias/teorias.html"
   - "Mapa/mapa.html"
+  - "GrandesNomes/grandes-nomes.html"
   - "Arquivo/arquivo.html"
   - "Laboratorio/laboratorio.html"
+  - "assets/vendor/swiper/LICENSE"
 ---
 
 # Build estático e deploy
@@ -41,7 +43,7 @@ evidence_sources:
 
 `vercel.json` declara projeto estático, executa `npm run build`, publica `dist/`, habilita URLs limpas e desabilita barra final. O build verifica o projeto, remove somente o diretório `dist/` validado, recria a saída e copia uma allowlist.
 
-Entram páginas principais, assets públicos e as pastas de rota. Não entram `docs/`, `ia/`, `ai/`, `scripts/`, fontes brutas ou documentos. A base `ai/` não faz parte da allowlist e também deve ser rejeitada por defesa em profundidade.
+Entram páginas principais, assets públicos autorizados e as pastas de rota. A rota Grandes Nomes e os três arquivos vendorizados do Swiper entram por allowlist explícita; retratos WebP entram pelo diretório público de imagens. Não entram `docs/`, `ia/`, `ai/`, `scripts/`, fontes brutas ou documentos. A base `ai/` não faz parte da allowlist e também deve ser rejeitada por defesa em profundidade.
 
 As páginas principais possuem título, descrição e metadados Open Graph/Twitter, mas não declaram `canonical` nem `og:url`; as imagens sociais usam caminhos relativos. Apenas o redirecionamento legado possui `canonical`. `robots.txt` permite rastreamento geral, não existe sitemap e `vercel.json` não declara CSP ou outros headers de segurança. O carregamento do Google Fonts é uma requisição de runtime a terceiro.
 

@@ -1,0 +1,252 @@
+.notable-preview-section {
+  overflow: clip;
+  background:
+    radial-gradient(circle at 18% 28%, rgba(246, 213, 109, 0.08), transparent 24rem),
+    radial-gradient(circle at 84% 70%, rgba(173, 140, 255, 0.08), transparent 28rem),
+    var(--bg-2);
+}
+
+.notable-preview-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(114, 236, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(114, 236, 255, 0.025) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+}
+
+.notable-preview-heading,
+.notable-preview-grid,
+.notable-preview-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.notable-preview-heading h2 {
+  max-width: 12ch;
+}
+
+.notable-preview-heading > p {
+  max-width: 54ch;
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.notable-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.8rem, 2vw, 1.2rem);
+}
+
+.notable-preview-card {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  min-height: 34rem;
+  overflow: clip;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: rgba(7, 11, 23, 0.88);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+  isolation: isolate;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.notable-preview-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -3rem -4rem auto;
+  z-index: 2;
+  width: 10rem;
+  aspect-ratio: 1;
+  border: 1px solid rgba(114, 236, 255, 0.18);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 420ms ease, border-color 220ms ease;
+}
+
+.notable-preview-card:hover,
+.notable-preview-card:focus-visible {
+  transform: translateY(-7px);
+  border-color: var(--border-strong);
+  box-shadow: 0 30px 86px rgba(0, 0, 0, 0.36), 0 0 48px rgba(114, 236, 255, 0.07);
+}
+
+.notable-preview-card:hover::after,
+.notable-preview-card:focus-visible::after {
+  transform: translate(-1.2rem, -1.2rem) scale(1.08);
+  border-color: rgba(114, 236, 255, 0.38);
+}
+
+.notable-preview-media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.notable-preview-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(5, 7, 18, 0.08) 18%, rgba(5, 7, 18, 0.42) 55%, #050712 92%),
+    linear-gradient(120deg, rgba(114, 236, 255, 0.08), transparent 45%);
+}
+
+.notable-preview-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  filter: saturate(0.58) contrast(1.04) brightness(0.83);
+  transform: scale(1.025);
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1), filter 260ms ease;
+}
+
+.notable-preview-card:hover .notable-preview-media img,
+.notable-preview-card:focus-visible .notable-preview-media img {
+  filter: saturate(0.78) contrast(1.06) brightness(0.92);
+  transform: scale(1.075);
+}
+
+.notable-preview-orbit {
+  position: absolute;
+  top: 8%;
+  right: 8%;
+  z-index: 1;
+  width: 4.2rem;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  transform: rotate(-18deg) scaleY(0.42);
+}
+
+.notable-preview-orbit::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -0.16rem;
+  width: 0.34rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 16px rgba(114, 236, 255, 0.9);
+}
+
+.notable-preview-body {
+  align-self: end;
+  display: grid;
+  gap: 0.72rem;
+  padding: clamp(1.15rem, 2.6vw, 1.65rem);
+}
+
+.notable-preview-meta,
+.notable-preview-action {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.notable-preview-name {
+  max-width: 10ch;
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  line-height: 0.96;
+}
+
+.notable-preview-summary {
+  max-width: 44ch;
+  color: var(--text-soft);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.notable-preview-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.45rem;
+  color: var(--text);
+}
+
+.notable-preview-action span {
+  color: var(--cyan);
+  transition: transform 180ms ease;
+}
+
+.notable-preview-card:hover .notable-preview-action span,
+.notable-preview-card:focus-visible .notable-preview-action span {
+  transform: translate(0.2rem, -0.2rem);
+}
+
+.notable-preview-card--astronomia .notable-preview-meta {
+  color: var(--gold);
+}
+
+.notable-preview-card--filosofia-metodo .notable-preview-meta {
+  color: var(--purple);
+}
+
+.notable-preview-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+@media (max-width: 960px) {
+  .notable-preview-grid {
+    grid-auto-columns: min(78vw, 22rem);
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    gap: 0.85rem;
+    margin-inline: calc((100vw - min(100vw - 2rem, var(--container))) / -2);
+    padding-inline: max(1rem, calc((100vw - var(--container)) / 2));
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(114, 236, 255, 0.42) transparent;
+  }
+
+  .notable-preview-card {
+    min-height: 31rem;
+    scroll-snap-align: center;
+  }
+}
+
+@media (max-width: 460px) {
+  .notable-preview-grid {
+    grid-auto-columns: calc(100vw - 2rem);
+    margin-inline: -0.5rem;
+    padding-inline: 0.5rem;
+  }
+
+  .notable-preview-card {
+    min-height: 29rem;
+  }
+
+  .notable-preview-name {
+    font-size: clamp(2.2rem, 12vw, 3rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notable-preview-card,
+  .notable-preview-card::after,
+  .notable-preview-media img,
+  .notable-preview-action span {
+    transition: none;
+  }
+
+  .notable-preview-card:hover,
+  .notable-preview-card:focus-visible,
+  .notable-preview-card:hover .notable-preview-media img,
+  .notable-preview-card:focus-visible .notable-preview-media img {
+    transform: none;
+  }
+}

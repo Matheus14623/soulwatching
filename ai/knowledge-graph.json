@@ -81,13 +81,14 @@
     },
     "domains.index": {
       "canonicalFor": [
-        "roteamento das regras editoriais e do catálogo de linhas de investigação"
+        "roteamento das regras editoriais, das linhas de investigação e do catálogo de grandes nomes"
       ],
       "conditionalContext": [],
       "documentType": "scope-index",
       "evidenceSources": [
         "assets/data/theories.js",
         "assets/data/research-tracks.js",
+        "assets/data/notable-figures.js",
         "docs/INTEGRACAO_TEORIAS.md",
         "Arquivo/arquivo.html"
       ],
@@ -119,7 +120,8 @@
       "path": "ai/domains/INDEX.md",
       "relatedContext": [
         "domains.editorial-model",
-        "domains.theory-catalog"
+        "domains.theory-catalog",
+        "domains.notable-figures"
       ],
       "requiredContext": [
         "root.index"
@@ -137,7 +139,89 @@
         "teoria",
         "linha de investigação",
         "publicação",
-        "privacidade editorial"
+        "privacidade editorial",
+        "grandes nomes"
+      ]
+    },
+    "domains.notable-figures": {
+      "canonicalFor": [
+        "estrutura editorial, fontes, retratos e relações do catálogo Grandes Nomes"
+      ],
+      "conditionalContext": [
+        {
+          "condition": "Quando um perfil receber, remover ou revisar uma conexão com uma linha do Observatório.",
+          "id": "domains.theory-catalog"
+        }
+      ],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "assets/data/notable-figures.js",
+        "assets/data/notable-figure-references.js",
+        "assets/js/notable-figures-model.js",
+        "GrandesNomes/grandes-nomes.html",
+        "GrandesNomes/grandes-nomes.js",
+        "scripts/verify.mjs"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Catálogo de grandes nomes"
+        },
+        {
+          "level": 2,
+          "text": "Propósito"
+        },
+        {
+          "level": 2,
+          "text": "Estrutura confirmada"
+        },
+        {
+          "level": 2,
+          "text": "Regras editoriais"
+        },
+        {
+          "level": 2,
+          "text": "Retratos e fontes"
+        },
+        {
+          "level": 2,
+          "text": "Evolução do catálogo"
+        },
+        {
+          "level": 2,
+          "text": "Validação"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "domains.notable-figures",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/domains/NOTABLE_FIGURES_CATALOG.md",
+      "relatedContext": [
+        "domains.editorial-model",
+        "frontend.pages-modules",
+        "frontend.user-flows"
+      ],
+      "requiredContext": [
+        "domains.index"
+      ],
+      "scope": "domains",
+      "sourceFiles": [
+        "ai/domains/NOTABLE_FIGURES_CATALOG.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Catálogo de grandes nomes",
+      "triggers": [
+        "Grandes Nomes",
+        "perfil histórico",
+        "cientista",
+        "filósofo da ciência",
+        "retrato licenciado"
       ]
     },
     "domains.theory-catalog": {
@@ -734,6 +818,8 @@
         "assets/css/observatory-pages.css",
         "Teorias/teorias.css",
         "Mapa/mapa.css",
+        "GrandesNomes/grandes-nomes.css",
+        "assets/css/notable-figures-preview.css",
         "Arquivo/arquivo.css",
         "Laboratorio/laboratorio.css",
         "index.html"
@@ -797,6 +883,7 @@
       "documentType": "scope-index",
       "evidenceSources": [
         "index.html",
+        "GrandesNomes/grandes-nomes.html",
         "assets/css/styles.css",
         "assets/js/main.js"
       ],
@@ -854,7 +941,7 @@
     },
     "frontend.interactive-systems": {
       "canonicalFor": [
-        "ciclo de vida da Visão Estelar, ressonância, filosofia, navegação e rolagem"
+        "ciclo de vida da Visão Estelar, galeria, ressonância, filosofia, navegação e rolagem"
       ],
       "conditionalContext": [
         {
@@ -870,6 +957,8 @@
         "assets/js/navigation.js",
         "assets/js/smooth-scroll.js",
         "assets/js/contact.js",
+        "GrandesNomes/grandes-nomes.js",
+        "assets/vendor/swiper/LICENSE",
         "index.html"
       ],
       "headings": [
@@ -884,6 +973,10 @@
         {
           "level": 2,
           "text": "Ressonância"
+        },
+        {
+          "level": 2,
+          "text": "Galeria de Grandes Nomes"
         },
         {
           "level": 2,
@@ -928,7 +1021,9 @@
         "ressonância",
         "áudio",
         "smooth scroll",
-        "efeito cósmico"
+        "efeito cósmico",
+        "carrossel",
+        "Grandes Nomes"
       ]
     },
     "frontend.pages-modules": {
@@ -939,6 +1034,10 @@
         {
           "condition": "Quando a página consumir ou apresentar linhas de investigação.",
           "id": "domains.theory-catalog"
+        },
+        {
+          "condition": "Quando a página consumir ou apresentar perfis históricos e suas conexões.",
+          "id": "domains.notable-figures"
         }
       ],
       "documentType": "canonical-reference",
@@ -948,10 +1047,14 @@
         "Teorias/teorias.js",
         "Mapa/mapa.html",
         "Mapa/mapa.js",
+        "GrandesNomes/grandes-nomes.html",
+        "GrandesNomes/grandes-nomes.js",
         "Arquivo/arquivo.html",
         "Laboratorio/laboratorio.html",
         "assets/js/main.js",
-        "assets/js/page-shell.js"
+        "assets/js/page-shell.js",
+        "assets/js/notable-figures-preview.js",
+        "assets/js/notable-figures-model.js"
       ],
       "headings": [
         {
@@ -1023,7 +1126,10 @@
         "Mapa/mapa.js",
         "assets/js/theory-model.js",
         "assets/js/observer.js",
-        "assets/js/contact.js"
+        "assets/js/contact.js",
+        "assets/js/notable-figures-model.js",
+        "assets/js/notable-figures-preview.js",
+        "GrandesNomes/grandes-nomes.js"
       ],
       "headings": [
         {
@@ -1037,6 +1143,10 @@
         {
           "level": 2,
           "text": "Ativação da Visão Estelar"
+        },
+        {
+          "level": 2,
+          "text": "Seleção de um grande nome"
         },
         {
           "level": 2,
@@ -1158,8 +1268,10 @@
         "index.html",
         "Teorias/teorias.html",
         "Mapa/mapa.html",
+        "GrandesNomes/grandes-nomes.html",
         "Arquivo/arquivo.html",
-        "Laboratorio/laboratorio.html"
+        "Laboratorio/laboratorio.html",
+        "assets/vendor/swiper/LICENSE"
       ],
       "headings": [
         {
@@ -1707,11 +1819,11 @@
         },
         {
           "level": 3,
-          "text": "docs/renderparecer/PARECERCRITICOINTEGRALDASTEORIAS2026browser.pdf"
+          "text": "docs/PROTOCOLORIGOROSOVALIDACAODETEORIASEESTRUTURACAODOPENSAMENTO.docx"
         },
         {
           "level": 3,
-          "text": "docs/testeword.pdfcheck.docx"
+          "text": "docs/renderparecer/PARECERCRITICOINTEGRALDASTEORIAS2026browser.pdf"
         },
         {
           "level": 3,
@@ -1795,10 +1907,13 @@
         "index.html",
         "Teorias/teorias.html",
         "Mapa/mapa.html",
+        "GrandesNomes/grandes-nomes.html",
         "Arquivo/arquivo.html",
         "Laboratorio/laboratorio.html",
         "assets/js/main.js",
-        "assets/js/page-shell.js"
+        "assets/js/page-shell.js",
+        "assets/js/notable-figures-model.js",
+        "assets/vendor/swiper/LICENSE"
       ],
       "headings": [
         {
@@ -2119,7 +2234,9 @@
         "assets/js/smooth-scroll.js",
         "assets/css/styles.css",
         "Teorias/teorias.css",
-        "Mapa/mapa.css"
+        "Mapa/mapa.css",
+        "GrandesNomes/grandes-nomes.js",
+        "GrandesNomes/grandes-nomes.css"
       ],
       "headings": [
         {
@@ -2184,6 +2301,10 @@
         {
           "condition": "Quando dados ou interfaces de teorias forem alterados.",
           "id": "domains.theory-catalog"
+        },
+        {
+          "condition": "Quando perfis, fontes, retratos ou a galeria Grandes Nomes forem alterados.",
+          "id": "domains.notable-figures"
         },
         {
           "condition": "Quando build, allowlist ou Vercel forem alterados.",
@@ -2433,6 +2554,10 @@
           "id": "domains.theory-catalog"
         },
         {
+          "condition": "Quando a mudança tocar perfis, retratos, filtros, dossiês ou conexões da área Grandes Nomes.",
+          "id": "domains.notable-figures"
+        },
+        {
           "condition": "Quando houver interação, animação, canvas, áudio, responsividade ou mudança semântica.",
           "id": "quality.performance-accessibility"
         }
@@ -2561,6 +2686,10 @@
         {
           "condition": "Quando a mudança alterar busca, filtros, URL, seleção ou navegação entre superfícies.",
           "id": "frontend.user-flows"
+        },
+        {
+          "condition": "Quando a linha receber ou revisar uma conexão pública com um perfil histórico.",
+          "id": "domains.notable-figures"
         },
         {
           "condition": "Antes de considerar a alteração pronta para publicação.",

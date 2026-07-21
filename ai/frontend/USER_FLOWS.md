@@ -27,6 +27,9 @@ evidence_sources:
   - "assets/js/theory-model.js"
   - "assets/js/observer.js"
   - "assets/js/contact.js"
+  - "assets/js/notable-figures-model.js"
+  - "assets/js/notable-figures-preview.js"
+  - "GrandesNomes/grandes-nomes.js"
 ---
 
 # Fluxos do usuário e estado
@@ -57,6 +60,20 @@ botão data-observer-toggle
 
 O estado não é persistido entre páginas ou recarregamentos.
 
+## Seleção de um grande nome
+
+```text
+NOTABLE_FIGURES
+  -> recorte da home ou busca e área na página completa
+  -> perfil ativo resolvido por notable-figures-model.js
+  -> card central e dossiê usam a mesma entrada
+  -> fontes e IDs de teoria são resolvidos pelos catálogos centrais
+  -> seleção explícita atualiza ?perfil=<slug>
+  -> índice e links da home abrem a galeria preservando o slug
+```
+
+Arraste, botões anterior/próximo, clique em card, setas, Home e End compartilham o mesmo estado ativo. O filtro preserva o perfil quando ele continua visível e escolhe a primeira opção válida quando ele deixa de pertencer ao recorte. A pausa manual da rotação permanece durante reconstruções de busca ou filtro na mesma sessão da página.
+
 ## Contato
 
 ```text
@@ -69,7 +86,7 @@ formulário local
 
 ## Validation
 
-Teste uma URL direta válida e inválida, mudança de filtro que remove a seleção, navegação Teorias ↔ Mapa, foco após re-render, múltiplas alternâncias da Visão Estelar e formulário com campos inválidos.
+Teste URLs diretas válidas e inválidas de teoria e perfil, mudança de filtro que remove a seleção, navegação Teorias ↔ Mapa, seleção Home → Grandes Nomes, foco após re-render, múltiplas alternâncias da Visão Estelar e formulário com campos inválidos.
 
 ## To Verify
 

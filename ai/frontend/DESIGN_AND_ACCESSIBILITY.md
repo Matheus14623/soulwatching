@@ -24,6 +24,8 @@ evidence_sources:
   - "assets/css/observatory-pages.css"
   - "Teorias/teorias.css"
   - "Mapa/mapa.css"
+  - "GrandesNomes/grandes-nomes.css"
+  - "assets/css/notable-figures-preview.css"
   - "Arquivo/arquivo.css"
   - "Laboratorio/laboratorio.css"
   - "index.html"
@@ -45,6 +47,7 @@ Breakpoints recorrentes incluem 1180, 1080, 1040, 960, 760, 460 e 430 px. Eles s
 - Mantenha foco visível, ordem de headings, nomes acessíveis e controles de teclado.
 - Preserve conteúdo equivalente no mobile; adapte layout, não significado.
 - Toda animação respeita `prefers-reduced-motion` no CSS e no JavaScript.
+- Carrosséis automáticos precisam de pausa visível, alternativa por teclado, estado textual e conteúdo completo fora de hover.
 - Não adicione comentários, blocos desativados ou notas de implementação em HTML, CSS ou JavaScript públicos. Orientações pertencem à documentação.
 - Evite declarações inline arbitrárias e novas camadas tardias de override. Custom properties derivadas dos dados, como `--accent`, `--accent-glow`, `--status-color`, `--x` e `--y`, são a exceção existente para cards e nós do mapa.
 

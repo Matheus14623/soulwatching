@@ -27,6 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/styles.css?v=smooth-flow-v1" />
     <link rel="stylesheet" href="assets/css/observatory-pages.css?v=observatory-scale-v1" />
+    <link rel="stylesheet" href="assets/css/notable-figures-preview.css?v=great-minds-v1" />
   </head>
   <body data-mode="normal">
     <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
@@ -51,6 +52,7 @@
         <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
           <a href="Teorias/teorias.html">Teorias</a>
           <a href="Mapa/mapa.html">Mapa</a>
+          <a href="GrandesNomes/grandes-nomes.html">Grandes nomes</a>
           <a href="Arquivo/arquivo.html">Arquivo</a>
           <a href="Laboratorio/laboratorio.html">Laboratório</a>
           <a href="#sobre">Sobre</a>
@@ -176,9 +178,17 @@
               <span class="gateway-meta">3 campos ativos</span>
             </a>
 
+            <a class="gateway-card" href="GrandesNomes/grandes-nomes.html">
+              <span class="gateway-index">05 · referências</span>
+              <h3>Grandes nomes</h3>
+              <p>Trajetórias que mudaram a astronomia, a física e os critérios usados para pensar a ciência.</p>
+              <span class="gateway-meta" data-notable-profile-count="summary">20 perfis documentados</span>
+            </a>
+
             <a class="gateway-card gateway-card--external" href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer" aria-label="Abrir projetos técnicos de Matheus Camargo no GitHub em uma nova aba">
-              <span class="gateway-index">05 · presença técnica</span>
+              <span class="gateway-index">06 · presença técnica</span>
               <h3>Projetos e código</h3>
+              <p>Sistemas, experimentos e implementações que conectam a prática técnica às perguntas do observatório.</p>
               <span class="gateway-meta">abrir GitHub <span aria-hidden="true">↗</span></span>
             </a>
           </div>
@@ -250,10 +260,30 @@
         </div>
       </section>
 
+      <section class="section notable-preview-section" id="grandes-nomes" aria-labelledby="notable-preview-title">
+        <div class="container">
+          <div class="section-heading notable-preview-heading">
+            <div>
+              <p class="section-kicker">05 · Grandes nomes</p>
+              <h2 id="notable-preview-title">Ideias também têm uma história de pessoas, instrumentos e rupturas.</h2>
+            </div>
+            <p>
+              Três entradas para uma galeria maior: contribuições verificáveis, obras centrais e conexões cuidadosas com as linhas do Observatório.
+            </p>
+          </div>
+
+          <div class="notable-preview-grid" aria-label="Destaques da área Grandes Nomes" data-notable-figures-preview></div>
+
+          <div class="notable-preview-footer">
+            <a class="button button-secondary" href="GrandesNomes/grandes-nomes.html" data-notable-profile-count="action">Explorar os 20 perfis</a>
+          </div>
+        </div>
+      </section>
+
       <section class="section archive-section" id="arquivo" aria-labelledby="archive-title">
         <div class="container archive-layout">
           <div>
-            <p class="section-kicker">05 · Artigos, ensaios e registros</p>
+            <p class="section-kicker">06 · Artigos, ensaios e registros</p>
             <h2 id="archive-title">Um arquivo preparado para receber pensamento com versão, contexto e maturação.</h2>
             <p class="section-intro">
               O espaço de publicação foi desenhado para não fingir que já existem ensaios completos. Por enquanto, ele funciona como estrutura editorial: categorias, critérios e caminhos para transformar teoria em texto público.
@@ -290,7 +320,7 @@
         <div  aria-hidden="true"></div>
         <div class="container compass-shell">
           <div class="section-heading centered narrow">
-            <p class="section-kicker">06 · Bússola filosófica</p>
+            <p class="section-kicker">07 · Bússola filosófica</p>
             <h2 id="compass-title">Ferramentas de navegação para uma mente que alterna escala.</h2>
             <p>Estoicismo, niilismo libertador e absurdismo como instrumentos: não para fechar o sentido, mas para continuar pensando quando o mundo fica estreito.</p>
           </div>
@@ -332,7 +362,7 @@
         <div class="resonance-bg" aria-hidden="true"></div>
         <div class="container resonance-layout">
           <div>
-            <p class="section-kicker">07 · Experimento de ressonância</p>
+            <p class="section-kicker">08 · Experimento de ressonância</p>
             <h2 id="resonance-title">Há ideias que só aparecem quando o sistema vibra.</h2>
             <button class="button button-secondary" type="button" data-audio-toggle aria-pressed="false">Ativar áudio sutil</button>
             <p class="audio-status" aria-live="polite" data-audio-status>Áudio desligado. As cordas visuais já estão ativas.</p>
@@ -350,7 +380,7 @@
       <section class="section development-section" id="desenvolvimento" aria-labelledby="development-title">
         <div class="container">
           <div class="section-heading centered narrow">
-            <p class="section-kicker">08 · Linha de desenvolvimento</p>
+            <p class="section-kicker">09 · Linha de desenvolvimento</p>
             <h2 id="development-title">Uma arquitetura viva precisa aceitar estado intermediário.</h2>
           </div>
 
@@ -387,7 +417,7 @@
             <span></span>
           </div>
           <div>
-            <p class="section-kicker">09 · Sobre o autor do campo</p>
+            <p class="section-kicker">10 · Sobre o autor do campo</p>
             <h2 id="about-title">Matheus Camargo não é o centro do sistema. É o ponto humano de onde a observação parte.</h2>
             <p>
               Desenvolvedor full-stack e observador de padrões, eu uso a linguagem de sistemas para pensar o cosmos: tempo como variável local, luz como mensageira atrasada, universo como arquitetura assíncrona. O interesse não está em parecer definitivo, mas em participar do mistério com honestidade intelectual.
@@ -403,13 +433,13 @@
         <div class="container contact-shell">
           <div class="contact-intro-grid">
             <div class="contact-heading">
-              <p class="section-kicker">10 · Coordenadas de contato</p>
+              <p class="section-kicker">11 · Coordenadas de contato</p>
               <h2 id="contact-title">Pontos de conexão fora do observatório.</h2>
             </div>
 
             <div class="identity-orbit-card contact-identity-showcase" aria-label="Matheus Camargo e presença técnica">
               <figure  class="identity-node identity-node-human">
-                <img 
+                <img
                   src="assets/images/matheus-camargo.webp"
                   width="640"
                   height="640"
@@ -542,6 +572,7 @@
         <nav class="footer-links" aria-label="Navegação e links profissionais">
           <a href="Teorias/teorias.html">Teorias</a>
           <a href="Mapa/mapa.html">Mapa</a>
+          <a href="GrandesNomes/grandes-nomes.html">Grandes nomes</a>
           <a href="Arquivo/arquivo.html">Arquivo</a>
           <a href="Laboratorio/laboratorio.html">Laboratório</a>
           <a href="mailto:Matheuscamargodealencar@gmail.com">E-mail</a>
@@ -559,6 +590,6 @@
       </div>
     </noscript>
 
-    <script type="module" src="assets/js/main.js?v=smooth-flow-v1"></script>
+    <script type="module" src="assets/js/main.js?v=smooth-flow-v2"></script>
   </body>
 </html>

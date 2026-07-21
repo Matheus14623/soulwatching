@@ -4,6 +4,7 @@ import { initTheoryLab } from './theory-lab.js?v=theory-clarity-v2';
 import { initPhilosophyCompass } from './philosophy.js';
 import { initResonance } from './resonance.js';
 import { initContactForm } from './contact.js';
+import { initNotableFiguresPreview } from './notable-figures-preview.js?v=great-minds-v2';
 
 const boot = () => {
   initNavigation();
@@ -12,6 +13,7 @@ const boot = () => {
   initPhilosophyCompass();
   initResonance();
   initContactForm();
+  initNotableFiguresPreview();
 };
 
 if (document.readyState === 'loading') {

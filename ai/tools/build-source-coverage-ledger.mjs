@@ -38,6 +38,7 @@ const VALID_DOCUMENT_TYPES = new Set([
   'domain-guide',
   'historical-audit',
   'editorial-review',
+  'methodology-manual',
   'qa-fixture',
   'qa-render',
 ]);

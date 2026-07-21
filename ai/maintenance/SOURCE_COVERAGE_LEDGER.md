@@ -47,8 +47,8 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 | [README.md](../../README.md) | operational-guide | current | preserve | 11 | 5 |
 | [docs/INTEGRACAO_TEORIAS.md](../../docs/INTEGRACAO_TEORIAS.md) | domain-guide | historical | preserve | 11 | 4 |
 | [docs/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026.docx](../../docs/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026.docx) | editorial-review | internal | reference | 25 | 4 |
+| [docs/PROTOCOLO_RIGOROSO_VALIDACAO_DE_TEORIAS_E_ESTRUTURACAO_DO_PENSAMENTO.docx](../../docs/PROTOCOLO_RIGOROSO_VALIDACAO_DE_TEORIAS_E_ESTRUTURACAO_DO_PENSAMENTO.docx) | methodology-manual | internal | reference | 20 | 4 |
 | [docs/_render_parecer/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026_browser.pdf](../../docs/_render_parecer/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026_browser.pdf) | qa-render | qa | qa-only | 0 | 1 |
-| [docs/_teste_word.pdfcheck.docx](../../docs/_teste_word.pdfcheck.docx) | qa-fixture | qa | qa-only | 0 | 1 |
 | [ia/estrutura geral observatório.md](../../ia/estrutura%20geral%20observat%C3%B3rio.md) | historical-audit | historical | historical | 155 | 7 |
 
 ## Fontes cobertas
@@ -127,8 +127,8 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 - Tipo: `operational-guide`
 - Estado: `current`
 - Decisão: `preserve`
-- Tamanho: `6078` bytes
-- SHA-256: `2ae9a2679413e4fe481dd4927b4a3e04d8eae152b3265b8b0f0f47c1c7af1b7f`
+- Tamanho: `7177` bytes
+- SHA-256: `60bc19f21aa8146d1ce5684001cc34bcdb72a213e590f3c04da05e88633c1dd0`
 - Síntese: Entrada operacional resumida para rotas, execução local, arquitetura pública e publicação.
 - Destinos canônicos:
   - `project.index` — [ai/project/INDEX.md](../project/INDEX.md)
@@ -234,6 +234,46 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
   - `seção-6` — auditoria de ferramenta e bastidores
   - `apêndice-a` — inventário de arquivos e fontes internas
 
+### docs/PROTOCOLO_RIGOROSO_VALIDACAO_DE_TEORIAS_E_ESTRUTURACAO_DO_PENSAMENTO.docx
+
+- Fonte: [docs/PROTOCOLO_RIGOROSO_VALIDACAO_DE_TEORIAS_E_ESTRUTURACAO_DO_PENSAMENTO.docx](../../docs/PROTOCOLO_RIGOROSO_VALIDACAO_DE_TEORIAS_E_ESTRUTURACAO_DO_PENSAMENTO.docx)
+- Formato: `docx`
+- Tipo: `methodology-manual`
+- Estado: `internal`
+- Decisão: `reference`
+- Tamanho: `61585` bytes
+- SHA-256: `437c42ef3ff2d78049ed9e6e0025daa086cc5f169edcc178ff4a4fcf551a1a7f`
+- Síntese: Manual privado para auditoria crítica por IA, validação proporcional ao tipo de ideia e estruturação disciplinada do pensamento científico, filosófico e prático.
+- Destinos canônicos:
+  - `domains.editorial-model` — [ai/domains/EDITORIAL_MODEL.md](../domains/EDITORIAL_MODEL.md)
+  - `domains.theory-catalog` — [ai/domains/THEORY_CATALOG.md](../domains/THEORY_CATALOG.md)
+  - `quality.validation-release` — [ai/quality/VALIDATION_AND_RELEASE.md](../quality/VALIDATION_AND_RELEASE.md)
+  - `maintenance.expansion-guide` — [ai/maintenance/EXPANSION_GUIDE.md](EXPANSION_GUIDE.md)
+- Decisões complementares:
+  - Tratar como instrumento privado de método, não como validação científica de qualquer teoria específica.
+  - O documento pode orientar revisões futuras, mas sua incorporação em conteúdo público exige síntese editorial separada.
+- Headings: lista manual
+  - `Manual` Como usar este manual
+  - `Manual` 1. Compromisso epistemológico
+  - `Manual` 2. Classificar antes de avaliar
+  - `Manual` 3. Estados de maturidade
+  - `Manual` 4. Dossiê mínimo de entrada
+  - `Manual` 5. Processo de auditoria em quatorze etapas
+  - `Manual` 6. Trilha de validação científica
+  - `Manual` 7. Trilha de validação filosófica
+  - `Manual` 8. Trilha de decisão e filosofia prática
+  - `Manual` 9. Protocolo de fontes e evidências
+  - `Manual` 10. Revisão adversarial e controle de vieses
+  - `Manual` 11. Rubrica de avaliação
+  - `Manual` 12. Classes de veredito
+  - `Manual` 13. Estrutura obrigatória do parecer da IA
+  - `Manual` 14. Prompt Mestre para auditoria por IA
+  - `Manual` 15. Manual de estruturação do pensamento
+  - `Manual` 16. Fichas reutilizáveis
+  - `Manual` 17. Rotina de desenvolvimento intelectual
+  - `Manual` 18. Checklist de qualidade final
+  - `Manual` 19. Limites, escalonamento e base metodológica
+
 ### docs/_render_parecer/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026_browser.pdf
 
 - Fonte: [docs/_render_parecer/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026_browser.pdf](../../docs/_render_parecer/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026_browser.pdf)
@@ -248,22 +288,6 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
   - `quality.validation-release` — [ai/quality/VALIDATION_AND_RELEASE.md](../quality/VALIDATION_AND_RELEASE.md)
 - Decisões complementares:
   - Não é fonte editorial independente e não deve ser publicado como conteúdo do observatório.
-- Headings: lista manual deliberadamente vazia
-
-### docs/_teste_word.pdfcheck.docx
-
-- Fonte: [docs/_teste_word.pdfcheck.docx](../../docs/_teste_word.pdfcheck.docx)
-- Formato: `docx`
-- Tipo: `qa-fixture`
-- Estado: `qa`
-- Decisão: `qa-only`
-- Tamanho: `36634` bytes
-- SHA-256: `4597032e4a8911490dda21f9aab39a4468fd8b5709493f6d97afe327723c8198`
-- Síntese: Fixture de verificação do fluxo DOCX/PDF, sem autoridade editorial própria.
-- Destinos canônicos:
-  - `quality.validation-release` — [ai/quality/VALIDATION_AND_RELEASE.md](../quality/VALIDATION_AND_RELEASE.md)
-- Decisões complementares:
-  - Manter somente enquanto o fluxo de QA documental depender deste artefato.
 - Headings: lista manual deliberadamente vazia
 
 ### ia/estrutura geral observatório.md

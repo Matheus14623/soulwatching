@@ -8,6 +8,10 @@
       "condition": "Quando a mudança tocar cards, filtros, dossiês, mapa ou dados de linhas de investigação."
     },
     {
+      "id": "domains.notable-figures",
+      "condition": "Quando a mudança tocar perfis, retratos, filtros, dossiês ou conexões da área Grandes Nomes."
+    },
+    {
       "id": "quality.performance-accessibility",
       "condition": "Quando houver interação, animação, canvas, áudio, responsividade ou mudança semântica."
     }

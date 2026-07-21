@@ -1796,6 +1796,22 @@ body[data-mode="observer"] .data-point {
   to { background-position: 0 920px, 28px 1836px; }
 }
 
+@media (max-width: 1220px) and (min-width: 1081px) {
+  .header-shell {
+    grid-template-columns: auto 1fr;
+  }
+
+  .primary-nav {
+    justify-self: end;
+    gap: clamp(0.55rem, 1.1vw, 0.9rem);
+    font-size: 0.84rem;
+  }
+
+  .status-pill {
+    display: none;
+  }
+}
+
 @media (max-width: 1080px) {
   .header-shell {
     grid-template-columns: auto auto;

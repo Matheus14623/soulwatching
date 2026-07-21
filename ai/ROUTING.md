@@ -42,6 +42,7 @@ Alterar página, componente, estilo, navegação ou estado de interface.
 - Contexto obrigatório: [Base de conhecimento do Observatório de Ideias](INDEX.md), [Índice do frontend](frontend/INDEX.md), [Páginas e módulos do frontend](frontend/PAGE_AND_MODULE_ARCHITECTURE.md).
 - Contexto condicional:
   - [Catálogo de linhas de investigação](domains/THEORY_CATALOG.md): Quando a mudança tocar cards, filtros, dossiês, mapa ou dados de linhas de investigação.
+  - [Catálogo de grandes nomes](domains/NOTABLE_FIGURES_CATALOG.md): Quando a mudança tocar perfis, retratos, filtros, dossiês ou conexões da área Grandes Nomes.
   - [Desempenho e acessibilidade](quality/PERFORMANCE_AND_ACCESSIBILITY.md): Quando houver interação, animação, canvas, áudio, responsividade ou mudança semântica.
 - Contexto relacionado: [Design, responsividade e acessibilidade](frontend/DESIGN_AND_ACCESSIBILITY.md), [Fluxos do usuário e estado](frontend/USER_FLOWS.md).
 
@@ -100,5 +101,6 @@ Adicionar, revisar, reclassificar ou relacionar uma linha de investigação.
 - Contexto obrigatório: [Base de conhecimento do Observatório de Ideias](INDEX.md), [Índice do domínio editorial](domains/INDEX.md), [Catálogo de linhas de investigação](domains/THEORY_CATALOG.md).
 - Contexto condicional:
   - [Fluxos do usuário e estado](frontend/USER_FLOWS.md): Quando a mudança alterar busca, filtros, URL, seleção ou navegação entre superfícies.
+  - [Catálogo de grandes nomes](domains/NOTABLE_FIGURES_CATALOG.md): Quando a linha receber ou revisar uma conexão pública com um perfil histórico.
   - [Validação e release](quality/VALIDATION_AND_RELEASE.md): Antes de considerar a alteração pronta para publicação.
 - Contexto relacionado: [Modelo editorial e publicação](domains/EDITORIAL_MODEL.md), [Integração e escala das linhas de investigação](../docs/INTEGRACAO_TEORIAS.md).

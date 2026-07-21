@@ -25,10 +25,13 @@ evidence_sources:
   - "index.html"
   - "Teorias/teorias.html"
   - "Mapa/mapa.html"
+  - "GrandesNomes/grandes-nomes.html"
   - "Arquivo/arquivo.html"
   - "Laboratorio/laboratorio.html"
   - "assets/js/main.js"
   - "assets/js/page-shell.js"
+  - "assets/js/notable-figures-model.js"
+  - "assets/vendor/swiper/LICENSE"
 supersedes:
   - "external.current-architecture"
 ---
@@ -48,11 +51,12 @@ O Observatório é uma aplicação estática multipágina. Cada destino principa
 | Home | `index.html` → `assets/js/main.js` | Gateway, Visão Estelar, recorte de teorias, mapa-resumo, filosofia, ressonância e contato. |
 | Teorias | `Teorias/teorias.html` → `Teorias/teorias.js` | Busca, filtros, cards, dossiê, referências, radar e URL direta. |
 | Mapa | `Mapa/mapa.html` → `Mapa/mapa.js` | Relações, eixos, seleção, detalhe e URL direta. |
+| Grandes Nomes | `GrandesNomes/grandes-nomes.html` → `GrandesNomes/grandes-nomes.js` | Galeria arrastável, busca, filtros, dossiês, fontes, conexões e URL direta de perfil. |
 | Arquivo | `Arquivo/arquivo.html` → `assets/js/page-shell.js` | Estado editorial e conteúdo estático. |
 | Laboratório | `Laboratorio/laboratorio.html` → `assets/js/page-shell.js` | Índice estático das experiências existentes. |
 | Compatibilidade | `teorias.html` | Redirecionamento legado para a rota atual. |
 
-Tecnologias confirmadas: HTML5, CSS, JavaScript ES Modules, Canvas 2D, Web Audio API, History API e IntersectionObserver. Não há framework, TypeScript, backend, banco, CMS ou dependências declaradas.
+Tecnologias confirmadas: HTML5, CSS, JavaScript ES Modules, Canvas 2D, Web Audio API, History API e IntersectionObserver. Não há framework, TypeScript, backend, banco ou CMS. A galeria usa Swiper 14.0.6, fixado e servido localmente como dependência de interface sem requisição de runtime a CDN.
 
 ## Canonical Rules
 
@@ -61,10 +65,11 @@ Tecnologias confirmadas: HTML5, CSS, JavaScript ES Modules, Canvas 2D, Web Audio
 - Use módulos pequenos com inicialização defensiva quando um elemento não existir.
 - Uma nova rota recebe HTML real, CSS específico apenas quando necessário e `page-shell.js` se precisar somente da navegação comum.
 - Não adicione uma dependência para substituir uma API nativa suficiente.
+- Dependências vendorizadas precisam de versão fixa, licença preservada, arquivos explícitos no build e fallback que mantenha o conteúdo acessível.
 
 ## Dependencies
 
-`assets/data/theories.js` alimenta home, Teorias e Mapa. `assets/js/theory-model.js` concentra localização, correspondência de categoria e relações simétricas. Navegação e rolagem são compartilhadas por `navigation.js` e `smooth-scroll.js`.
+`assets/data/theories.js` alimenta home, Teorias e Mapa. `assets/js/theory-model.js` concentra localização, correspondência de categoria e relações simétricas. `assets/data/notable-figures.js` alimenta os três destaques da home e a rota Grandes Nomes; `assets/js/notable-figures-model.js` resolve busca, fontes e conexões com o catálogo de teorias. Navegação e rolagem são compartilhadas por `navigation.js` e `smooth-scroll.js`.
 
 ## Validation
 

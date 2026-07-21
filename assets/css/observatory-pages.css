@@ -91,7 +91,8 @@
 }
 
 .gateway-card--external {
-  grid-column: span 8;
+  grid-column: 1 / -1;
+  min-height: 14rem;
 }
 
 .gateway-index,

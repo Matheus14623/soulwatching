@@ -17,6 +17,8 @@ required_context:
 conditional_context:
   - id: "domains.theory-catalog"
     condition: "Quando dados ou interfaces de teorias forem alterados."
+  - id: "domains.notable-figures"
+    condition: "Quando perfis, fontes, retratos ou a galeria Grandes Nomes forem alterados."
   - id: "infrastructure.static-deploy"
     condition: "Quando build, allowlist ou Vercel forem alterados."
 related_context:
@@ -32,7 +34,7 @@ evidence_sources:
 
 ## Automated Coverage
 
-`npm run verify` cobre a lista declarada de arquivos obrigatórios, referências e âncoras dos HTML cadastrados, restrições de linguagem em HTML e nos módulos públicos de dados, comentários nos arquivos públicos cadastrados, campos e relações do catálogo e sincronização da base `ai/`. `npm run build` repete a verificação, recria `dist/` e rejeita artefatos internos proibidos.
+`npm run verify` cobre a lista declarada de arquivos obrigatórios, referências e âncoras dos HTML cadastrados, restrições de linguagem em HTML e nos módulos públicos de dados, comentários nos arquivos públicos cadastrados, campos e relações dos catálogos de teorias e grandes nomes e sincronização da base `ai/`. No catálogo de perfis, também valida fontes, retratos, tipos de conexão, teorias resolvidas e as três posições de destaque. `npm run build` repete a verificação, recria `dist/` e rejeita artefatos internos proibidos.
 
 Essa cobertura é estrutural. Ela não prova comportamento no navegador, acessibilidade completa, desempenho, disponibilidade de links externos ou ausência de regressão visual.
 
@@ -51,6 +53,7 @@ O verificador não enumera automaticamente todo arquivo futuro dentro dos diret�
 - Navegação principal, menu, Escape e retorno ao topo.
 - Busca, cada dimensão de filtro, estado vazio e reset.
 - URL direta válida no catálogo e no mapa.
+- URL direta de perfil, busca, áreas, estado vazio, arraste, pausa, índice e controles da galeria.
 - Seleção relacionada, foco e URL coerentes após re-render.
 - Visão Estelar ligada e desligada repetidamente sem canvas duplicado.
 - Ressonância com áudio inicialmente desligado e controles por teclado.

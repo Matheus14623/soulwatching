@@ -10,6 +10,12 @@ import {
 } from '../assets/data/theories.js';
 import { THEORY_REFERENCES } from '../assets/data/theory-references.js';
 import { RESEARCH_TRACKS } from '../assets/data/research-tracks.js';
+import {
+  NOTABLE_FIGURE_AREAS,
+  NOTABLE_FIGURE_RELATION_TYPES,
+  NOTABLE_FIGURES,
+} from '../assets/data/notable-figures.js';
+import { NOTABLE_FIGURE_REFERENCES } from '../assets/data/notable-figure-references.js';
 import { THEORY_SOURCE_FILES } from './theory-sources.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -30,11 +36,17 @@ const requiredFiles = [
   'Teorias/teorias.html',
   'Teorias/teorias.css',
   'Teorias/teorias.js',
+  'GrandesNomes/grandes-nomes.html',
+  'GrandesNomes/grandes-nomes.css',
+  'GrandesNomes/grandes-nomes.js',
   'assets/css/styles.css',
   'assets/css/observatory-pages.css',
+  'assets/css/notable-figures-preview.css',
   'assets/data/theories.js',
   'assets/data/theory-references.js',
   'assets/data/research-tracks.js',
+  'assets/data/notable-figures.js',
+  'assets/data/notable-figure-references.js',
   'assets/js/main.js',
   'assets/js/config.js',
   'assets/js/navigation.js',
@@ -48,6 +60,11 @@ const requiredFiles = [
   'assets/js/contact.js',
   'assets/js/utils.js',
   'assets/js/page-shell.js',
+  'assets/js/notable-figures-model.js',
+  'assets/js/notable-figures-preview.js',
+  'assets/vendor/swiper/swiper-bundle.min.css',
+  'assets/vendor/swiper/swiper-bundle.min.js',
+  'assets/vendor/swiper/LICENSE',
   'assets/icons/favicon.svg',
   'assets/images/rain-window.webp',
   'assets/images/calabi-yau-wireframe.webp',
@@ -74,6 +91,7 @@ const htmlFiles = [
   'teorias.html',
   'Teorias/teorias.html',
   'Mapa/mapa.html',
+  'GrandesNomes/grandes-nomes.html',
   'Arquivo/arquivo.html',
   'Laboratorio/laboratorio.html',
 ];
@@ -100,12 +118,15 @@ const publicDataFiles = [
   'assets/data/theories.js',
   'assets/data/theory-references.js',
   'assets/data/research-tracks.js',
+  'assets/data/notable-figures.js',
+  'assets/data/notable-figure-references.js',
 ];
 const publicData = (await Promise.all(
   publicDataFiles.map((file) => readFile(join(root, file), 'utf8')),
 )).join('\n');
 const publicCodeFiles = requiredFiles.filter((file) =>
-  /^(?:assets|Teorias|Mapa|Arquivo|Laboratorio)[\\/].*\.(?:css|js)$/i.test(file));
+  /^(?:assets|Teorias|Mapa|GrandesNomes|Arquivo|Laboratorio)[\\/].*\.(?:css|js)$/i.test(file)
+  && !/^assets[\\/]vendor[\\/]/i.test(file));
 const publicCode = (await Promise.all(
   publicCodeFiles.map((file) => readFile(join(root, file), 'utf8')),
 )).join('\n');
@@ -239,6 +260,117 @@ for (const [id, reference] of Object.entries(THEORY_REFERENCES)) {
     if (!['https:', 'http:'].includes(url.protocol)) errors.push(`URL de referência inválida: ${id}`);
   } catch {
     errors.push(`URL de referência inválida: ${id}`);
+  }
+}
+
+const notableFigureIds = new Set();
+const notableFigureSlugs = new Set();
+const notableAreaIds = new Set(NOTABLE_FIGURE_AREAS.map((area) => area.id));
+const notableRelationTypeIds = new Set(
+  NOTABLE_FIGURE_RELATION_TYPES.map((relationType) => relationType.id),
+);
+const notableReferenceIds = new Set(Object.keys(NOTABLE_FIGURE_REFERENCES));
+const featuredRanks = [];
+
+for (const figure of NOTABLE_FIGURES) {
+  const missing = [
+    'id', 'slug', 'name', 'lifespan', 'area', 'role', 'portrait',
+    'summary', 'impact', 'contributions', 'milestones', 'sourceIds', 'theoryLinks',
+  ].filter((field) => figure[field] === undefined || figure[field] === '');
+  if (missing.length) errors.push(`Perfil incompleto em ${figure.id || figure.name}: ${missing.join(', ')}`);
+
+  if (notableFigureIds.has(figure.id)) errors.push(`ID de grande nome duplicado: ${figure.id}`);
+  if (notableFigureSlugs.has(figure.slug)) errors.push(`Slug de grande nome duplicado: ${figure.slug}`);
+  notableFigureIds.add(figure.id);
+  notableFigureSlugs.add(figure.slug);
+
+  if (!notableAreaIds.has(figure.area) || figure.area === 'todas') {
+    errors.push(`Área desconhecida em ${figure.id}: ${figure.area}`);
+  }
+  if (!Array.isArray(figure.contributions) || figure.contributions.length < 3) {
+    errors.push(`Contribuições insuficientes em ${figure.id}`);
+  }
+  if (!Array.isArray(figure.milestones) || figure.milestones.length < 3) {
+    errors.push(`Marcos insuficientes em ${figure.id}`);
+  }
+  if (!Array.isArray(figure.sourceIds) || !figure.sourceIds.length) {
+    errors.push(`Fontes ausentes em ${figure.id}`);
+  }
+  if (!Array.isArray(figure.theoryLinks)) {
+    errors.push(`Conexões com o Observatório inválidas em ${figure.id}`);
+  }
+
+  const unknownSources = figure.sourceIds.filter((id) => !notableReferenceIds.has(id));
+  if (unknownSources.length) errors.push(`Fontes desconhecidas em ${figure.id}: ${unknownSources.join(', ')}`);
+
+  for (const link of Array.isArray(figure.theoryLinks) ? figure.theoryLinks : []) {
+    if (!theoryIds.has(link.theoryId)) {
+      errors.push(`Teoria desconhecida em ${figure.id}: ${link.theoryId}`);
+    }
+    if (!notableRelationTypeIds.has(link.relationType)) {
+      errors.push(`Tipo de relação desconhecido em ${figure.id}: ${link.relationType}`);
+    }
+    if (!link.label || !link.note) errors.push(`Relação incompleta em ${figure.id}`);
+  }
+
+  if (!figure.portrait?.src || !figure.portrait?.alt || !figure.portrait?.credit
+    || !figure.portrait?.license || !figure.portrait?.sourceUrl || !figure.portrait?.modifications) {
+    errors.push(`Metadados de retrato incompletos em ${figure.id}`);
+  } else {
+    const portraitPath = figure.portrait.src.split(/[?#]/, 1)[0];
+    if (!/^assets[\\/]images[\\/]grandes-nomes[\\/]/i.test(portraitPath)) {
+      errors.push(`Retrato fora do diretório público esperado em ${figure.id}`);
+    }
+    if (!portraitPath.toLowerCase().endsWith('.webp')) {
+      errors.push(`Retrato não otimizado como WebP em ${figure.id}`);
+    }
+    if (!Number.isInteger(figure.portrait.width) || figure.portrait.width < 1
+      || !Number.isInteger(figure.portrait.height) || figure.portrait.height < 1) {
+      errors.push(`Dimensões de retrato inválidas em ${figure.id}`);
+    }
+    if (!(await fileExists(portraitPath))) {
+      errors.push(`Retrato ausente em ${figure.id}: ${portraitPath}`);
+    }
+    try {
+      const sourceUrl = new URL(figure.portrait.sourceUrl);
+      if (!['https:', 'http:'].includes(sourceUrl.protocol)) throw new Error();
+    } catch {
+      errors.push(`URL de retrato inválida em ${figure.id}`);
+    }
+    if (/^CC/i.test(figure.portrait.license)) {
+      try {
+        const licenseUrl = new URL(figure.portrait.licenseUrl);
+        if (licenseUrl.protocol !== 'https:') throw new Error();
+      } catch {
+        errors.push(`URL da licença Creative Commons inválida em ${figure.id}`);
+      }
+    }
+  }
+
+  if (figure.featuredRank !== null) {
+    if (!Number.isInteger(figure.featuredRank) || figure.featuredRank < 1) {
+      errors.push(`Posição de destaque inválida em ${figure.id}`);
+    } else {
+      featuredRanks.push(figure.featuredRank);
+    }
+  }
+}
+
+if (featuredRanks.length !== 3 || new Set(featuredRanks).size !== 3
+  || featuredRanks.sort((a, b) => a - b).join(',') !== '1,2,3') {
+  errors.push('A home precisa de exatamente três grandes nomes com posições 1, 2 e 3.');
+}
+
+for (const [id, reference] of Object.entries(NOTABLE_FIGURE_REFERENCES)) {
+  if (!reference.title || !reference.institution || !reference.kind || !reference.url) {
+    errors.push(`Referência de grande nome incompleta: ${id}`);
+    continue;
+  }
+  try {
+    const url = new URL(reference.url);
+    if (!['https:', 'http:'].includes(url.protocol)) throw new Error();
+  } catch {
+    errors.push(`URL de referência de grande nome inválida: ${id}`);
   }
 }
 
