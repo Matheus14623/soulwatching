@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "path": "README.md",
+      "documentType": "operational-guide",
+      "state": "current",
+      "decision": "preserve",
+      "summary": "Entrada operacional resumida para rotas, execução local, arquitetura pública e publicação.",
+      "canonicalNodes": [
+        "project.index",
+        "project.commands",
+        "project.architecture",
+        "domains.editorial-model",
+        "infrastructure.static-deploy"
+      ],
+      "headings": {
+        "mode": "auto",
+        "stripH1Attribution": true,
+        "omitNumberedSections": []
+      },
+      "notes": [
+        "Preservar como quickstart humano; detalhes normativos pertencem aos nós canônicos.",
+        "Contagens e requisitos de runtime precisam permanecer verificáveis, não duplicados como constantes do grafo."
+      ]
+    },
+    {
+      "path": "DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md",
+      "documentType": "architecture-guide",
+      "state": "historical",
+      "decision": "preserve",
+      "summary": "Snapshot arquitetural amplo do estado pós-expansão, preservado como histórico e subordinado aos nós canônicos atuais.",
+      "canonicalNodes": [
+        "project.architecture",
+        "project.boundaries",
+        "frontend.pages-modules",
+        "frontend.interactive-systems",
+        "frontend.design-accessibility",
+        "domains.editorial-model",
+        "quality.validation-release",
+        "infrastructure.static-deploy",
+        "maintenance.expansion-guide"
+      ],
+      "headings": {
+        "mode": "auto",
+        "stripH1Attribution": false,
+        "omitNumberedSections": []
+      },
+      "notes": [
+        "Usar como evidência do estado pós-expansão, subordinada ao comportamento verificado e aos nós especializados.",
+        "Resultados de testes são registros de uma execução e devem ser revalidados antes de sustentar garantias atuais."
+      ]
+    },
+    {
+      "path": "docs/INTEGRACAO_TEORIAS.md",
+      "documentType": "domain-guide",
+      "state": "historical",
+      "decision": "preserve",
+      "summary": "Especificação especializada anterior para dados, leitura crítica, relações, referências, URLs e publicação das linhas de investigação.",
+      "canonicalNodes": [
+        "domains.editorial-model",
+        "domains.theory-catalog",
+        "project.boundaries",
+        "maintenance.expansion-guide"
+      ],
+      "headings": {
+        "mode": "auto",
+        "stripH1Attribution": false,
+        "omitNumberedSections": []
+      },
+      "notes": [
+        "É a especificação documental especializada do domínio, abaixo do código e da validação executável.",
+        "O exemplo mínimo deve acompanhar todos os campos obrigatórios do contrato."
+      ]
+    },
+    {
+      "path": "docs/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026.docx",
+      "documentType": "editorial-review",
+      "state": "internal",
+      "decision": "reference",
+      "summary": "Parecer editorial interno usado para calibrar clareza científica, classificação e limites das linhas de investigação.",
+      "canonicalNodes": [
+        "domains.editorial-model",
+        "domains.theory-catalog",
+        "project.boundaries",
+        "quality.validation-release"
+      ],
+      "headings": {
+        "mode": "manual",
+        "items": [
+          "1. Veredito executivo",
+          "3. Matriz geral das dez entradas públicas",
+          "4. Parecer detalhado por entrada",
+          "T-01 — Observação Não-Linear",
+          "T-02 — Instabilidade Probabilística do Vazio",
+          "T-03 — Ciclagem Eterna e Reboot do Vácuo",
+          "T-04 — Topologia do Contentor Finito",
+          "T-05 — Gênese Gravitacional do Tempo / Universo-Buraco-Negro",
+          "T-06 — ER=EPR e Sondas Quânticas",
+          "T-07 — Backend da Existência",
+          "T-08 — Gênese por Flutuação do Vácuo",
+          "T-09 — Zero versus Epsilon",
+          "T-10 — Maldição do Horizonte e Extensão dos Sentidos",
+          "5.1 Universo como sistema distribuído assíncrono",
+          "5.2 Astrobiologia em camadas e Equação de Drake",
+          "5.3 Energia, ondas gravitacionais e relógios",
+          "5.4 Infinito, possibilidade e impossibilidade",
+          "5.5 Matéria, identidade e consciência",
+          "5.6 Buracos negros antigos, portais e dimensões que morrem",
+          "7. Roteiro de desenvolvimento recomendado",
+          "Modelo mínimo de ficha científica",
+          "Apêndice B — Correções factuais prioritárias",
+          "Fontes e referências",
+          "Literatura e fontes externas",
+          "Limitações do parecer"
+        ],
+        "omissions": [
+          {
+            "locator": "seção-2",
+            "reason": "proveniência e autoria internas"
+          },
+          {
+            "locator": "introdução-da-seção-5",
+            "reason": "contexto de conversas internas"
+          },
+          {
+            "locator": "seção-5.7",
+            "reason": "processo interno de produção"
+          },
+          {
+            "locator": "seção-6",
+            "reason": "auditoria de ferramenta e bastidores"
+          },
+          {
+            "locator": "apêndice-a",
+            "reason": "inventário de arquivos e fontes internas"
+          }
+        ]
+      },
+      "notes": [
+        "Fonte interna: aproveitar conclusões editoriais neutras sem publicar proveniência pessoal ou processo de produção.",
+        "Não tratar o parecer como revisão por pares nem como validação automática das propostas."
+      ]
+    },
+    {
+      "path": "docs/_render_parecer/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026_browser.pdf",
+      "documentType": "qa-render",
+      "state": "qa",
+      "decision": "qa-only",
+      "summary": "Render de controle visual do parecer, retido exclusivamente como evidência de QA documental.",
+      "canonicalNodes": [
+        "quality.validation-release"
+      ],
+      "headings": {
+        "mode": "manual",
+        "items": []
+      },
+      "notes": [
+        "Não é fonte editorial independente e não deve ser publicado como conteúdo do observatório."
+      ]
+    },
+    {
+      "path": "docs/_teste_word.pdfcheck.docx",
+      "documentType": "qa-fixture",
+      "state": "qa",
+      "decision": "qa-only",
+      "summary": "Fixture de verificação do fluxo DOCX/PDF, sem autoridade editorial própria.",
+      "canonicalNodes": [
+        "quality.validation-release"
+      ],
+      "headings": {
+        "mode": "manual",
+        "items": []
+      },
+      "notes": [
+        "Manter somente enquanto o fluxo de QA documental depender deste artefato."
+      ]
+    },
+    {
+      "path": "ia/estrutura geral observatório.md",
+      "documentType": "historical-audit",
+      "state": "historical",
+      "decision": "historical",
+      "summary": "Auditoria histórica anterior à arquitetura atual, útil para rastrear decisões e regressões sem definir o estado vigente.",
+      "canonicalNodes": [
+        "project.architecture",
+        "frontend.pages-modules",
+        "frontend.interactive-systems",
+        "frontend.design-accessibility",
+        "domains.editorial-model",
+        "quality.performance-accessibility",
+        "maintenance.expansion-guide"
+      ],
+      "headings": {
+        "mode": "auto",
+        "stripH1Attribution": true,
+        "omitNumberedSections": [
+          "13",
+          "14"
+        ]
+      },
+      "notes": [
+        "Preservar como evidência histórica, nunca como autoridade automática sobre o runtime atual.",
+        "Só migrar princípios estáveis depois de revalidá-los contra código, testes e documentação corrente."
+      ]
+    }
+  ],
+  "exclusions": [
+    {
+      "path": "AGENTS.md",
+      "decision": "exclude",
+      "reason": "criado pela base atual"
+    }
+  ]
+}

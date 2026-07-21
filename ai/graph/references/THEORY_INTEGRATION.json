@@ -1,0 +1,25 @@
+{
+  "id": "external.theory-integration",
+  "title": "Integração e escala das linhas de investigação",
+  "path": "docs/INTEGRACAO_TEORIAS.md",
+  "scope": "domains",
+  "kind": "legacy-reference",
+  "status": "legacy",
+  "documentType": "domain-specification",
+  "canonicalFor": ["especificação humana detalhada do catálogo público de teorias"],
+  "triggers": ["integração de teorias", "schema editorial", "quatro camadas"],
+  "requiredContext": ["domains.theory-catalog"],
+  "conditionalContext": [],
+  "relatedContext": ["quality.validation-release"],
+  "evidenceSources": ["assets/data/theories.js", "assets/data/theory-references.js", "scripts/verify.mjs"],
+  "supersedes": [],
+  "supersededBy": ["domains.theory-catalog"],
+  "sourceFiles": ["ai/graph/references/THEORY_INTEGRATION.json"],
+  "headings": [
+    { "level": 1, "text": "Integração e escala das linhas de investigação" },
+    { "level": 2, "text": "Arquitetura de dados" },
+    { "level": 2, "text": "Contrato público de uma entrada" },
+    { "level": 2, "text": "Privacidade e publicação" }
+  ],
+  "notes": ["Documento preservado como referência detalhada; o proprietário canônico atual é domains.theory-catalog."]
+}

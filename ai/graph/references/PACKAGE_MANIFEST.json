@@ -1,0 +1,20 @@
+{
+  "id": "external.package-manifest",
+  "title": "Manifesto do projeto",
+  "path": "package.json",
+  "scope": "project",
+  "kind": "canonical-reference",
+  "status": "canonical",
+  "documentType": "package-manifest",
+  "canonicalFor": ["scripts npm e metadados técnicos declarados"],
+  "triggers": ["package.json", "npm", "scripts"],
+  "requiredContext": ["project.commands"],
+  "conditionalContext": [],
+  "relatedContext": ["quality.validation-release"],
+  "evidenceSources": ["package.json", "package-lock.json"],
+  "supersedes": [],
+  "supersededBy": [],
+  "sourceFiles": ["ai/graph/references/PACKAGE_MANIFEST.json"],
+  "headings": [],
+  "notes": ["Manifesto sem dependências de runtime ou desenvolvimento declaradas."]
+}

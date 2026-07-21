@@ -1,0 +1,16 @@
+{
+  "id": "theory-content-change",
+  "description": "Adicionar, revisar, reclassificar ou relacionar uma linha de investigação.",
+  "requiredContext": ["root.index", "domains.index", "domains.theory-catalog"],
+  "conditionalContext": [
+    {
+      "id": "frontend.user-flows",
+      "condition": "Quando a mudança alterar busca, filtros, URL, seleção ou navegação entre superfícies."
+    },
+    {
+      "id": "quality.validation-release",
+      "condition": "Antes de considerar a alteração pronta para publicação."
+    }
+  ],
+  "relatedContext": ["domains.editorial-model", "external.theory-integration"]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "testing-review",
+  "description": "Executar revisão, diagnóstico, validação, QA responsiva ou auditoria de publicação.",
+  "requiredContext": ["root.index", "quality.index", "quality.validation-release"],
+  "conditionalContext": [
+    {
+      "id": "quality.performance-accessibility",
+      "condition": "Quando a revisão envolver interface, movimento, teclado, canvas ou desempenho."
+    }
+  ],
+  "relatedContext": ["project.commands", "frontend.user-flows"]
+}

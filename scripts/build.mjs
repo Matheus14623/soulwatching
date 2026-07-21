@@ -55,7 +55,7 @@ async function listFiles(directory) {
 
 const outputFiles = await listFiles(output);
 const forbiddenExtensions = /\.(?:docx|pdf|py|cjs|md)$/i;
-const forbiddenDirectories = /^(?:docs|ia|scripts)(?:[\\/]|$)/i;
+const forbiddenDirectories = /^(?:ai|docs|ia|scripts)(?:[\\/]|$)/i;
 
 for (const file of outputFiles) {
   const publicPath = relative(output, file);

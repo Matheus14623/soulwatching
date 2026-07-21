@@ -1,0 +1,20 @@
+{
+  "id": "external.build-script",
+  "title": "Build público por allowlist",
+  "path": "scripts/build.mjs",
+  "scope": "infrastructure",
+  "kind": "canonical-reference",
+  "status": "canonical",
+  "documentType": "build-script",
+  "canonicalFor": ["geração e proteção do artefato público dist/"],
+  "triggers": ["build.mjs", "npm run build", "dist", "allowlist"],
+  "requiredContext": ["infrastructure.static-deploy"],
+  "conditionalContext": [],
+  "relatedContext": ["external.project-verify", "project.boundaries"],
+  "evidenceSources": ["scripts/build.mjs", "vercel.json"],
+  "supersedes": [],
+  "supersededBy": [],
+  "sourceFiles": ["ai/graph/references/PROJECT_BUILD.json"],
+  "headings": [],
+  "notes": ["ai/ não integra a allowlist pública e deve continuar fora de dist/."]
+}

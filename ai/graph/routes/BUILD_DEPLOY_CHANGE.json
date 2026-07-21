@@ -1,0 +1,16 @@
+{
+  "id": "build-deploy-change",
+  "description": "Alterar servidor local, verificação, allowlist pública, build ou configuração da Vercel.",
+  "requiredContext": ["root.index", "infrastructure.index", "infrastructure.static-deploy"],
+  "conditionalContext": [
+    {
+      "id": "quality.validation-release",
+      "condition": "Quando a mudança modificar verificações ou critérios de publicação."
+    },
+    {
+      "id": "project.boundaries",
+      "condition": "Quando houver risco de incluir documentação, fontes editoriais ou artefatos internos em dist/."
+    }
+  ],
+  "relatedContext": ["project.commands", "external.vercel-config"]
+}

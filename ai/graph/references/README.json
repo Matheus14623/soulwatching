@@ -1,0 +1,26 @@
+{
+  "id": "external.readme",
+  "title": "README do Observatório de Ideias",
+  "path": "README.md",
+  "scope": "project",
+  "kind": "canonical-reference",
+  "status": "canonical",
+  "documentType": "project-readme",
+  "canonicalFor": ["onboarding humano resumido"],
+  "triggers": ["README", "início rápido", "como rodar"],
+  "requiredContext": ["root.index"],
+  "conditionalContext": [],
+  "relatedContext": ["project.index", "project.commands"],
+  "evidenceSources": ["package.json", "scripts/build.mjs", "vercel.json"],
+  "supersedes": [],
+  "supersededBy": [],
+  "sourceFiles": ["ai/graph/references/README.json"],
+  "headings": [
+    { "level": 1, "text": "Observatório de Ideias — Matheus Camargo" },
+    { "level": 2, "text": "Rotas principais" },
+    { "level": 2, "text": "Como rodar localmente" },
+    { "level": 2, "text": "Verificação e build" },
+    { "level": 2, "text": "Arquitetura" }
+  ],
+  "notes": ["Resumo operacional; regras detalhadas possuem proprietários canônicos em ai/."]
+}

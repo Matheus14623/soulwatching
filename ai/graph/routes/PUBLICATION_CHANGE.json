@@ -1,0 +1,20 @@
+{
+  "id": "publication-change",
+  "description": "Criar ou revisar ensaio, registro, fragmento, página de leitura ou o catálogo do Arquivo.",
+  "requiredContext": ["root.index", "domains.index", "domains.editorial-model"],
+  "conditionalContext": [
+    {
+      "id": "project.architecture",
+      "condition": "Quando a primeira publicação exigir nova rota, catálogo ou decisão estrutural."
+    },
+    {
+      "id": "infrastructure.static-deploy",
+      "condition": "Quando novos HTML, dados ou assets precisarem entrar no artefato público."
+    },
+    {
+      "id": "quality.validation-release",
+      "condition": "Antes de considerar o conteúdo pronto para publicação."
+    }
+  ],
+  "relatedContext": ["project.boundaries", "frontend.design-accessibility"]
+}

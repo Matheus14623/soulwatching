@@ -1,0 +1,20 @@
+{
+  "id": "external.agents",
+  "title": "Orientações para agentes",
+  "path": "AGENTS.md",
+  "scope": "maintenance",
+  "kind": "canonical-reference",
+  "status": "canonical",
+  "documentType": "agent-instructions",
+  "canonicalFor": ["entrada curta de agentes no repositório"],
+  "triggers": ["AGENTS.md", "instruções de agente"],
+  "requiredContext": ["root.index"],
+  "conditionalContext": [],
+  "relatedContext": ["maintenance.index"],
+  "evidenceSources": [],
+  "supersedes": [],
+  "supersededBy": [],
+  "sourceFiles": ["ai/graph/references/AGENTS.json"],
+  "headings": [{ "level": 1, "text": "Orientações para agentes" }],
+  "notes": ["Arquivo intencionalmente curto; detalhes pertencem à base ai/."]
+}

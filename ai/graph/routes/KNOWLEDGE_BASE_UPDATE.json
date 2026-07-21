@@ -1,0 +1,16 @@
+{
+  "id": "knowledge-base-update",
+  "description": "Criar, corrigir, expandir ou incorporar conhecimento na base ai/.",
+  "requiredContext": ["root.index", "maintenance.index", "maintenance.expansion-guide"],
+  "conditionalContext": [
+    {
+      "id": "maintenance.pending-workflow",
+      "condition": "Quando a tarefa registrar uma descoberta ou incorporar arquivos de pending-knowledge."
+    },
+    {
+      "id": "maintenance.source-coverage",
+      "condition": "Quando uma fonte anterior for preservada, migrada, substituída ou mudar de proprietário canônico."
+    }
+  ],
+  "relatedContext": ["maintenance.graph-standard", "maintenance.graph-workflow", "maintenance.node-creation", "maintenance.linking-rules"]
+}

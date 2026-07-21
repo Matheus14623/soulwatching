@@ -1,0 +1,20 @@
+{
+  "id": "external.knowledge-graph",
+  "title": "Grafo de conhecimento gerado",
+  "path": "ai/knowledge-graph.json",
+  "scope": "maintenance",
+  "kind": "canonical-reference",
+  "status": "canonical",
+  "documentType": "generated-graph",
+  "canonicalFor": ["navegação estruturada gerada a partir das fontes canônicas"],
+  "triggers": ["knowledge-graph.json", "grafo", "nós", "rotas"],
+  "requiredContext": ["maintenance.graph-standard"],
+  "conditionalContext": [],
+  "relatedContext": ["maintenance.graph-workflow", "external.knowledge-schema"],
+  "evidenceSources": ["ai/knowledge.schema.json"],
+  "supersedes": [],
+  "supersededBy": [],
+  "sourceFiles": ["ai/graph/references/KNOWLEDGE_GRAPH.json"],
+  "headings": [],
+  "notes": ["Nunca editar manualmente; regenerar pelas fontes."]
+}

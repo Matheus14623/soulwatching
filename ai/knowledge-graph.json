@@ -1,0 +1,2584 @@
+{
+  "generated": true,
+  "nodes": {
+    "domains.editorial-model": {
+      "canonicalFor": [
+        "voz pública, classificação de formatos, privacidade e passagem de rascunho para publicação"
+      ],
+      "conditionalContext": [],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "Arquivo/arquivo.html",
+        "Laboratorio/laboratorio.html",
+        "index.html",
+        "docs/INTEGRACAO_TEORIAS.md",
+        "scripts/build.mjs",
+        "scripts/verify.mjs"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Modelo editorial e publicação"
+        },
+        {
+          "level": 2,
+          "text": "Purpose"
+        },
+        {
+          "level": 2,
+          "text": "Current Confirmed Structure"
+        },
+        {
+          "level": 2,
+          "text": "Canonical Rules"
+        },
+        {
+          "level": 2,
+          "text": "Publication Flow"
+        },
+        {
+          "level": 2,
+          "text": "When Not To Publish"
+        },
+        {
+          "level": 2,
+          "text": "Validation"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "domains.editorial-model",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/domains/EDITORIAL_MODEL.md",
+      "relatedContext": [
+        "project.boundaries",
+        "frontend.design-accessibility",
+        "domains.theory-catalog"
+      ],
+      "requiredContext": [
+        "domains.index"
+      ],
+      "scope": "domains",
+      "sourceFiles": [
+        "ai/domains/EDITORIAL_MODEL.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Modelo editorial e publicação",
+      "triggers": [
+        "tom de voz",
+        "ensaio",
+        "registro",
+        "arquivo",
+        "rascunho",
+        "conteúdo público",
+        "privacidade"
+      ]
+    },
+    "domains.index": {
+      "canonicalFor": [
+        "roteamento das regras editoriais e do catálogo de linhas de investigação"
+      ],
+      "conditionalContext": [],
+      "documentType": "scope-index",
+      "evidenceSources": [
+        "assets/data/theories.js",
+        "assets/data/research-tracks.js",
+        "docs/INTEGRACAO_TEORIAS.md",
+        "Arquivo/arquivo.html"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Índice do domínio editorial"
+        },
+        {
+          "level": 2,
+          "text": "Navegação"
+        },
+        {
+          "level": 2,
+          "text": "Vocabulário central"
+        },
+        {
+          "level": 2,
+          "text": "Quando atualizar"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "domains.index",
+      "kind": "index",
+      "notes": [],
+      "path": "ai/domains/INDEX.md",
+      "relatedContext": [
+        "domains.editorial-model",
+        "domains.theory-catalog"
+      ],
+      "requiredContext": [
+        "root.index"
+      ],
+      "scope": "domains",
+      "sourceFiles": [
+        "ai/domains/INDEX.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Índice do domínio editorial",
+      "triggers": [
+        "conteúdo",
+        "teoria",
+        "linha de investigação",
+        "publicação",
+        "privacidade editorial"
+      ]
+    },
+    "domains.theory-catalog": {
+      "canonicalFor": [
+        "contrato público, invariantes, relações, referências e evolução das linhas de investigação"
+      ],
+      "conditionalContext": [
+        {
+          "condition": "Quando a alteração afetar busca, filtro, seleção, URL ou mapa.",
+          "id": "frontend.user-flows"
+        },
+        {
+          "condition": "Antes de publicar qualquer alteração no catálogo.",
+          "id": "quality.validation-release"
+        }
+      ],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "assets/data/theories.js",
+        "assets/data/theory-references.js",
+        "assets/data/research-tracks.js",
+        "assets/js/theory-model.js",
+        "scripts/theory-sources.mjs",
+        "scripts/verify.mjs",
+        "docs/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026.docx"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Catálogo de linhas de investigação"
+        },
+        {
+          "level": 2,
+          "text": "Current Confirmed Structure"
+        },
+        {
+          "level": 2,
+          "text": "Public Contract"
+        },
+        {
+          "level": 2,
+          "text": "Four-Layer Reading"
+        },
+        {
+          "level": 2,
+          "text": "Invariants"
+        },
+        {
+          "level": 2,
+          "text": "Update Workflow"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "domains.theory-catalog",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/domains/THEORY_CATALOG.md",
+      "relatedContext": [
+        "external.theory-integration",
+        "domains.editorial-model"
+      ],
+      "requiredContext": [
+        "domains.index"
+      ],
+      "scope": "domains",
+      "sourceFiles": [
+        "ai/domains/THEORY_CATALOG.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [
+        "external.theory-integration"
+      ],
+      "title": "Catálogo de linhas de investigação",
+      "triggers": [
+        "THEORIES",
+        "THEORY_TYPES",
+        "THEORY_REVIEW_STATES",
+        "linha de investigação",
+        "slug",
+        "relação",
+        "referência",
+        "radar"
+      ]
+    },
+    "external.agents": {
+      "canonicalFor": [
+        "entrada curta de agentes no repositório"
+      ],
+      "conditionalContext": [],
+      "documentType": "agent-instructions",
+      "evidenceSources": [],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Orientações para agentes"
+        }
+      ],
+      "id": "external.agents",
+      "kind": "canonical-reference",
+      "notes": [
+        "Arquivo intencionalmente curto; detalhes pertencem à base ai/."
+      ],
+      "path": "AGENTS.md",
+      "relatedContext": [
+        "maintenance.index"
+      ],
+      "requiredContext": [
+        "root.index"
+      ],
+      "scope": "maintenance",
+      "sourceFiles": [
+        "ai/graph/references/AGENTS.json"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Orientações para agentes",
+      "triggers": [
+        "AGENTS.md",
+        "instruções de agente"
+      ]
+    },
+    "external.build-script": {
+      "canonicalFor": [
+        "geração e proteção do artefato público dist/"
+      ],
+      "conditionalContext": [],
+      "documentType": "build-script",
+      "evidenceSources": [
+        "scripts/build.mjs",
+        "vercel.json"
+      ],
+      "headings": [],
+      "id": "external.build-script",
+      "kind": "canonical-reference",
+      "notes": [
+        "ai/ não integra a allowlist pública e deve continuar fora de dist/."
+      ],
+      "path": "scripts/build.mjs",
+      "relatedContext": [
+        "external.project-verify",
+        "project.boundaries"
+      ],
+      "requiredContext": [
+        "infrastructure.static-deploy"
+      ],
+      "scope": "infrastructure",
+      "sourceFiles": [
+        "ai/graph/references/PROJECT_BUILD.json"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Build público por allowlist",
+      "triggers": [
+        "build.mjs",
+        "npm run build",
+        "dist",
+        "allowlist"
+      ]
+    },
+    "external.current-architecture": {
+      "canonicalFor": [
+        "snapshot narrativo amplo da arquitetura após a expansão"
+      ],
+      "conditionalContext": [],
+      "documentType": "architecture-document",
+      "evidenceSources": [
+        "index.html",
+        "assets/js/main.js",
+        "scripts/build.mjs",
+        "vercel.json"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Documentação atualizada do Observatório de Ideias"
+        },
+        {
+          "level": 2,
+          "text": "1. Visão do produto"
+        },
+        {
+          "level": 2,
+          "text": "2. Arquitetura atual"
+        },
+        {
+          "level": 2,
+          "text": "7. Dados editoriais"
+        },
+        {
+          "level": 2,
+          "text": "9. Manutenção"
+        },
+        {
+          "level": 2,
+          "text": "18. Atualização de clareza científica e privacidade"
+        }
+      ],
+      "id": "external.current-architecture",
+      "kind": "legacy-reference",
+      "notes": [
+        "Snapshot preservado; a autoridade canônica atual pertence aos nós especializados em ai/."
+      ],
+      "path": "DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md",
+      "relatedContext": [
+        "project.architecture",
+        "maintenance.source-coverage"
+      ],
+      "requiredContext": [
+        "root.index"
+      ],
+      "scope": "project",
+      "sourceFiles": [
+        "ai/graph/references/CURRENT_ARCHITECTURE.json"
+      ],
+      "status": "legacy",
+      "supersededBy": [
+        "project.architecture"
+      ],
+      "supersedes": [
+        "external.legacy-audit"
+      ],
+      "title": "Documentação atualizada do Observatório",
+      "triggers": [
+        "documentação ampla",
+        "arquitetura atual",
+        "histórico de expansão"
+      ]
+    },
+    "external.knowledge-graph": {
+      "canonicalFor": [
+        "navegação estruturada gerada a partir das fontes canônicas"
+      ],
+      "conditionalContext": [],
+      "documentType": "generated-graph",
+      "evidenceSources": [
+        "ai/knowledge.schema.json"
+      ],
+      "headings": [],
+      "id": "external.knowledge-graph",
+      "kind": "canonical-reference",
+      "notes": [
+        "Nunca editar manualmente; regenerar pelas fontes."
+      ],
+      "path": "ai/knowledge-graph.json",
+      "relatedContext": [
+        "maintenance.graph-workflow",
+        "external.knowledge-schema"
+      ],
+      "requiredContext": [
+        "maintenance.graph-standard"
+      ],
+      "scope": "maintenance",
+      "sourceFiles": [
+        "ai/graph/references/KNOWLEDGE_GRAPH.json"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Grafo de conhecimento gerado",
+      "triggers": [
+        "knowledge-graph.json",
+        "grafo",
+        "nós",
+        "rotas"
+      ]
+    },
+    "external.knowledge-schema": {
+      "canonicalFor": [
+        "contrato estrutural de nós, rotas e grafo"
+      ],
+      "conditionalContext": [],
+      "documentType": "json-schema",
+      "evidenceSources": [
+        "ai/knowledge.schema.json"
+      ],
+      "headings": [],
+      "id": "external.knowledge-schema",
+      "kind": "standard",
+      "notes": [],
+      "path": "ai/knowledge.schema.json",
+      "relatedContext": [
+        "maintenance.graph-workflow"
+      ],
+      "requiredContext": [
+        "maintenance.graph-standard"
+      ],
+      "scope": "maintenance",
+      "sourceFiles": [
+        "ai/graph/references/KNOWLEDGE_SCHEMA.json"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Schema da base de conhecimento",
+      "triggers": [
+        "knowledge.schema.json",
+        "JSON Schema",
+        "schema do grafo"
+      ]
+    },
+    "external.legacy-audit": {
+      "canonicalFor": [
+        "evidência histórica da arquitetura anterior"
+      ],
+      "conditionalContext": [],
+      "documentType": "legacy-reference",
+      "evidenceSources": [
+        "ia/estrutura geral observatório.md"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Documentação Geral do Projeto — Matheus Camargo"
+        },
+        {
+          "level": 2,
+          "text": "Como ler este documento"
+        },
+        {
+          "level": 2,
+          "text": "6. Arquitetura Técnica"
+        },
+        {
+          "level": 2,
+          "text": "25. Resumo Executivo"
+        }
+      ],
+      "id": "external.legacy-audit",
+      "kind": "legacy-reference",
+      "notes": [
+        "Não usar como autoridade do estado atual sem revalidar no código."
+      ],
+      "path": "ia/estrutura geral observatório.md",
+      "relatedContext": [
+        "external.current-architecture",
+        "maintenance.source-coverage"
+      ],
+      "requiredContext": [
+        "project.boundaries"
+      ],
+      "scope": "project",
+      "sourceFiles": [
+        "ai/graph/references/LEGACY_AUDIT.json"
+      ],
+      "status": "legacy",
+      "supersededBy": [
+        "external.current-architecture"
+      ],
+      "supersedes": [],
+      "title": "Documentação Geral do Projeto — auditoria histórica",
+      "triggers": [
+        "auditoria histórica",
+        "estado anterior",
+        "ia/"
+      ]
+    },
+    "external.package-manifest": {
+      "canonicalFor": [
+        "scripts npm e metadados técnicos declarados"
+      ],
+      "conditionalContext": [],
+      "documentType": "package-manifest",
+      "evidenceSources": [
+        "package.json",
+        "package-lock.json"
+      ],
+      "headings": [],
+      "id": "external.package-manifest",
+      "kind": "canonical-reference",
+      "notes": [
+        "Manifesto sem dependências de runtime ou desenvolvimento declaradas."
+      ],
+      "path": "package.json",
+      "relatedContext": [
+        "quality.validation-release"
+      ],
+      "requiredContext": [
+        "project.commands"
+      ],
+      "scope": "project",
+      "sourceFiles": [
+        "ai/graph/references/PACKAGE_MANIFEST.json"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Manifesto do projeto",
+      "triggers": [
+        "package.json",
+        "npm",
+        "scripts"
+      ]
+    },
+    "external.project-verify": {
+      "canonicalFor": [
+        "verificações automatizadas do produto e da publicação"
+      ],
+      "conditionalContext": [],
+      "documentType": "validation-script",
+      "evidenceSources": [
+        "scripts/verify.mjs"
+      ],
+      "headings": [],
+      "id": "external.project-verify",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "scripts/verify.mjs",
+      "relatedContext": [
+        "external.build-script"
+      ],
+      "requiredContext": [
+        "quality.validation-release"
+      ],
+      "scope": "quality",
+      "sourceFiles": [
+        "ai/graph/references/PROJECT_VERIFY.json"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Verificação do produto",
+      "triggers": [
+        "verify.mjs",
+        "npm run verify",
+        "validação"
+      ]
+    },
+    "external.readme": {
+      "canonicalFor": [
+        "onboarding humano resumido"
+      ],
+      "conditionalContext": [],
+      "documentType": "project-readme",
+      "evidenceSources": [
+        "package.json",
+        "scripts/build.mjs",
+        "vercel.json"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Observatório de Ideias — Matheus Camargo"
+        },
+        {
+          "level": 2,
+          "text": "Rotas principais"
+        },
+        {
+          "level": 2,
+          "text": "Como rodar localmente"
+        },
+        {
+          "level": 2,
+          "text": "Verificação e build"
+        },
+        {
+          "level": 2,
+          "text": "Arquitetura"
+        }
+      ],
+      "id": "external.readme",
+      "kind": "canonical-reference",
+      "notes": [
+        "Resumo operacional; regras detalhadas possuem proprietários canônicos em ai/."
+      ],
+      "path": "README.md",
+      "relatedContext": [
+        "project.index",
+        "project.commands"
+      ],
+      "requiredContext": [
+        "root.index"
+      ],
+      "scope": "project",
+      "sourceFiles": [
+        "ai/graph/references/README.json"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "README do Observatório de Ideias",
+      "triggers": [
+        "README",
+        "início rápido",
+        "como rodar"
+      ]
+    },
+    "external.theory-integration": {
+      "canonicalFor": [
+        "especificação humana detalhada do catálogo público de teorias"
+      ],
+      "conditionalContext": [],
+      "documentType": "domain-specification",
+      "evidenceSources": [
+        "assets/data/theories.js",
+        "assets/data/theory-references.js",
+        "scripts/verify.mjs"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Integração e escala das linhas de investigação"
+        },
+        {
+          "level": 2,
+          "text": "Arquitetura de dados"
+        },
+        {
+          "level": 2,
+          "text": "Contrato público de uma entrada"
+        },
+        {
+          "level": 2,
+          "text": "Privacidade e publicação"
+        }
+      ],
+      "id": "external.theory-integration",
+      "kind": "legacy-reference",
+      "notes": [
+        "Documento preservado como referência detalhada; o proprietário canônico atual é domains.theory-catalog."
+      ],
+      "path": "docs/INTEGRACAO_TEORIAS.md",
+      "relatedContext": [
+        "quality.validation-release"
+      ],
+      "requiredContext": [
+        "domains.theory-catalog"
+      ],
+      "scope": "domains",
+      "sourceFiles": [
+        "ai/graph/references/THEORY_INTEGRATION.json"
+      ],
+      "status": "legacy",
+      "supersededBy": [
+        "domains.theory-catalog"
+      ],
+      "supersedes": [],
+      "title": "Integração e escala das linhas de investigação",
+      "triggers": [
+        "integração de teorias",
+        "schema editorial",
+        "quatro camadas"
+      ]
+    },
+    "external.vercel-config": {
+      "canonicalFor": [
+        "configuração declarada do deploy estático"
+      ],
+      "conditionalContext": [],
+      "documentType": "deploy-configuration",
+      "evidenceSources": [
+        "vercel.json",
+        "scripts/build.mjs"
+      ],
+      "headings": [],
+      "id": "external.vercel-config",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "vercel.json",
+      "relatedContext": [
+        "external.build-script"
+      ],
+      "requiredContext": [
+        "infrastructure.static-deploy"
+      ],
+      "scope": "infrastructure",
+      "sourceFiles": [
+        "ai/graph/references/VERCEL_CONFIG.json"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Configuração de deploy da Vercel",
+      "triggers": [
+        "vercel.json",
+        "Vercel",
+        "outputDirectory"
+      ]
+    },
+    "frontend.design-accessibility": {
+      "canonicalFor": [
+        "identidade visual, cascata, breakpoints e requisitos acessíveis do frontend"
+      ],
+      "conditionalContext": [],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "assets/css/styles.css",
+        "assets/css/observatory-pages.css",
+        "Teorias/teorias.css",
+        "Mapa/mapa.css",
+        "Arquivo/arquivo.css",
+        "Laboratorio/laboratorio.css",
+        "index.html"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Design, responsividade e acessibilidade"
+        },
+        {
+          "level": 2,
+          "text": "Current Confirmed Structure"
+        },
+        {
+          "level": 2,
+          "text": "Canonical Rules"
+        },
+        {
+          "level": 2,
+          "text": "Validation"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "frontend.design-accessibility",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/frontend/DESIGN_AND_ACCESSIBILITY.md",
+      "relatedContext": [
+        "quality.performance-accessibility",
+        "domains.editorial-model",
+        "infrastructure.static-deploy"
+      ],
+      "requiredContext": [
+        "frontend.index"
+      ],
+      "scope": "frontend",
+      "sourceFiles": [
+        "ai/frontend/DESIGN_AND_ACCESSIBILITY.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Design, responsividade e acessibilidade",
+      "triggers": [
+        "design",
+        "CSS",
+        "responsividade",
+        "acessibilidade",
+        "ARIA",
+        "movimento reduzido"
+      ]
+    },
+    "frontend.index": {
+      "canonicalFor": [
+        "roteamento de páginas, módulos, design, interações e fluxos do navegador"
+      ],
+      "conditionalContext": [],
+      "documentType": "scope-index",
+      "evidenceSources": [
+        "index.html",
+        "assets/css/styles.css",
+        "assets/js/main.js"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Índice do frontend"
+        },
+        {
+          "level": 2,
+          "text": "Navegação"
+        },
+        {
+          "level": 2,
+          "text": "Pontos de entrada"
+        },
+        {
+          "level": 2,
+          "text": "Quando atualizar"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "frontend.index",
+      "kind": "index",
+      "notes": [],
+      "path": "ai/frontend/INDEX.md",
+      "relatedContext": [
+        "frontend.pages-modules",
+        "frontend.interactive-systems",
+        "frontend.design-accessibility",
+        "frontend.user-flows"
+      ],
+      "requiredContext": [
+        "root.index"
+      ],
+      "scope": "frontend",
+      "sourceFiles": [
+        "ai/frontend/INDEX.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Índice do frontend",
+      "triggers": [
+        "frontend",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "interface",
+        "responsividade"
+      ]
+    },
+    "frontend.interactive-systems": {
+      "canonicalFor": [
+        "ciclo de vida da Visão Estelar, ressonância, filosofia, navegação e rolagem"
+      ],
+      "conditionalContext": [
+        {
+          "condition": "Sempre que movimento, canvas, áudio ou interação por teclado for alterado.",
+          "id": "quality.performance-accessibility"
+        }
+      ],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "assets/js/observer.js",
+        "assets/js/resonance.js",
+        "assets/js/philosophy.js",
+        "assets/js/navigation.js",
+        "assets/js/smooth-scroll.js",
+        "assets/js/contact.js",
+        "index.html"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Sistemas interativos"
+        },
+        {
+          "level": 2,
+          "text": "Visão Estelar"
+        },
+        {
+          "level": 2,
+          "text": "Ressonância"
+        },
+        {
+          "level": 2,
+          "text": "Navegação e rolagem"
+        },
+        {
+          "level": 2,
+          "text": "Filosofia e contato"
+        },
+        {
+          "level": 2,
+          "text": "Validation"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "frontend.interactive-systems",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/frontend/INTERACTIVE_SYSTEMS.md",
+      "relatedContext": [
+        "frontend.design-accessibility",
+        "frontend.user-flows"
+      ],
+      "requiredContext": [
+        "frontend.index"
+      ],
+      "scope": "frontend",
+      "sourceFiles": [
+        "ai/frontend/INTERACTIVE_SYSTEMS.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Sistemas interativos",
+      "triggers": [
+        "Visão Estelar",
+        "observer",
+        "canvas",
+        "ressonância",
+        "áudio",
+        "smooth scroll",
+        "efeito cósmico"
+      ]
+    },
+    "frontend.pages-modules": {
+      "canonicalFor": [
+        "composição de páginas, ordem de CSS e responsabilidade de controladores"
+      ],
+      "conditionalContext": [
+        {
+          "condition": "Quando a página consumir ou apresentar linhas de investigação.",
+          "id": "domains.theory-catalog"
+        }
+      ],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "index.html",
+        "Teorias/teorias.html",
+        "Teorias/teorias.js",
+        "Mapa/mapa.html",
+        "Mapa/mapa.js",
+        "Arquivo/arquivo.html",
+        "Laboratorio/laboratorio.html",
+        "assets/js/main.js",
+        "assets/js/page-shell.js"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Páginas e módulos do frontend"
+        },
+        {
+          "level": 2,
+          "text": "Current Confirmed Structure"
+        },
+        {
+          "level": 2,
+          "text": "Canonical Rules"
+        },
+        {
+          "level": 2,
+          "text": "Entry Points"
+        },
+        {
+          "level": 2,
+          "text": "Validation"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "frontend.pages-modules",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/frontend/PAGE_AND_MODULE_ARCHITECTURE.md",
+      "relatedContext": [
+        "project.architecture",
+        "quality.validation-release"
+      ],
+      "requiredContext": [
+        "frontend.index"
+      ],
+      "scope": "frontend",
+      "sourceFiles": [
+        "ai/frontend/PAGE_AND_MODULE_ARCHITECTURE.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Páginas e módulos do frontend",
+      "triggers": [
+        "nova página",
+        "controlador de rota",
+        "main.js",
+        "page-shell.js",
+        "CSS específico"
+      ]
+    },
+    "frontend.user-flows": {
+      "canonicalFor": [
+        "sequência de estado, URL e atualização visual nas jornadas principais"
+      ],
+      "conditionalContext": [
+        {
+          "condition": "Quando o fluxo envolve linhas de investigação.",
+          "id": "domains.theory-catalog"
+        }
+      ],
+      "documentType": "flow-map",
+      "evidenceSources": [
+        "assets/js/theory-lab.js",
+        "Teorias/teorias.js",
+        "Mapa/mapa.js",
+        "assets/js/theory-model.js",
+        "assets/js/observer.js",
+        "assets/js/contact.js"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Fluxos do usuário e estado"
+        },
+        {
+          "level": 2,
+          "text": "Seleção de uma linha de investigação"
+        },
+        {
+          "level": 2,
+          "text": "Ativação da Visão Estelar"
+        },
+        {
+          "level": 2,
+          "text": "Contato"
+        },
+        {
+          "level": 2,
+          "text": "Validation"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "frontend.user-flows",
+      "kind": "flow-map",
+      "notes": [],
+      "path": "ai/frontend/USER_FLOWS.md",
+      "relatedContext": [
+        "frontend.interactive-systems"
+      ],
+      "requiredContext": [
+        "frontend.index"
+      ],
+      "scope": "frontend",
+      "sourceFiles": [
+        "ai/frontend/USER_FLOWS.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Fluxos do usuário e estado",
+      "triggers": [
+        "fluxo",
+        "URL direta",
+        "query string",
+        "seleção de teoria",
+        "filtros",
+        "toggle"
+      ]
+    },
+    "infrastructure.index": {
+      "canonicalFor": [
+        "roteamento de build, artefato público, servidor local e hospedagem"
+      ],
+      "conditionalContext": [],
+      "documentType": "scope-index",
+      "evidenceSources": [
+        "scripts/build.mjs",
+        "scripts/serve.mjs",
+        "vercel.json"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Índice de infraestrutura"
+        },
+        {
+          "level": 2,
+          "text": "Navegação"
+        },
+        {
+          "level": 2,
+          "text": "Estado confirmado"
+        },
+        {
+          "level": 2,
+          "text": "Quando atualizar"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "infrastructure.index",
+      "kind": "index",
+      "notes": [],
+      "path": "ai/infrastructure/INDEX.md",
+      "relatedContext": [
+        "infrastructure.static-deploy"
+      ],
+      "requiredContext": [
+        "root.index"
+      ],
+      "scope": "infrastructure",
+      "sourceFiles": [
+        "ai/infrastructure/INDEX.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Índice de infraestrutura",
+      "triggers": [
+        "deploy",
+        "Vercel",
+        "dist",
+        "build",
+        "servidor local"
+      ]
+    },
+    "infrastructure.static-deploy": {
+      "canonicalFor": [
+        "composição de dist, proteção de conteúdo interno e configuração da Vercel"
+      ],
+      "conditionalContext": [
+        {
+          "condition": "Quando um novo tipo de arquivo, documento ou fonte editorial puder atravessar a fronteira pública.",
+          "id": "project.boundaries"
+        }
+      ],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "scripts/build.mjs",
+        "scripts/verify.mjs",
+        "scripts/serve.mjs",
+        "vercel.json",
+        ".gitignore",
+        "robots.txt",
+        "index.html",
+        "Teorias/teorias.html",
+        "Mapa/mapa.html",
+        "Arquivo/arquivo.html",
+        "Laboratorio/laboratorio.html"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Build estático e deploy"
+        },
+        {
+          "level": 2,
+          "text": "Current Confirmed Structure"
+        },
+        {
+          "level": 2,
+          "text": "Canonical Rules"
+        },
+        {
+          "level": 2,
+          "text": "Validation"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "infrastructure.static-deploy",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/infrastructure/STATIC_BUILD_AND_DEPLOY.md",
+      "relatedContext": [
+        "quality.validation-release",
+        "external.build-script",
+        "external.vercel-config"
+      ],
+      "requiredContext": [
+        "infrastructure.index"
+      ],
+      "scope": "infrastructure",
+      "sourceFiles": [
+        "ai/infrastructure/STATIC_BUILD_AND_DEPLOY.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Build estático e deploy",
+      "triggers": [
+        "scripts/build.mjs",
+        "vercel.json",
+        "dist",
+        "allowlist",
+        "publicação"
+      ]
+    },
+    "maintenance.expansion-guide": {
+      "canonicalFor": [
+        "decisão sobre atualizar, criar ou relacionar conhecimento canônico"
+      ],
+      "conditionalContext": [],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "ai/INDEX.md",
+        "ai/knowledge.schema.json",
+        "ai/maintenance/source-coverage-decisions.json",
+        "ai/tools/build-source-coverage-ledger.mjs"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Guia de expansão da base"
+        },
+        {
+          "level": 2,
+          "text": "Before Writing"
+        },
+        {
+          "level": 2,
+          "text": "Update or Create"
+        },
+        {
+          "level": 2,
+          "text": "New Scope"
+        },
+        {
+          "level": 2,
+          "text": "Existing Sources"
+        },
+        {
+          "level": 2,
+          "text": "Completion"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "maintenance.expansion-guide",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/maintenance/EXPANSION_GUIDE.md",
+      "relatedContext": [
+        "maintenance.node-creation",
+        "maintenance.linking-rules",
+        "maintenance.pending-workflow"
+      ],
+      "requiredContext": [
+        "maintenance.index"
+      ],
+      "scope": "maintenance",
+      "sourceFiles": [
+        "ai/maintenance/EXPANSION_GUIDE.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Guia de expansão da base",
+      "triggers": [
+        "expandir ai/",
+        "novo escopo",
+        "novo documento",
+        "incorporar conhecimento"
+      ]
+    },
+    "maintenance.graph-standard": {
+      "canonicalFor": [
+        "contrato de frontmatter, nós, rotas, referências e grafo gerado"
+      ],
+      "conditionalContext": [],
+      "documentType": "standard",
+      "evidenceSources": [
+        "ai/knowledge.schema.json",
+        "ai/graph/routes/GENERAL_ORIENTATION.json",
+        "ai/graph/references/README.json",
+        "ai/tools/build-knowledge-graph.mjs"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Padrão do grafo de conhecimento"
+        },
+        {
+          "level": 2,
+          "text": "Sources"
+        },
+        {
+          "level": 2,
+          "text": "Markdown Nodes"
+        },
+        {
+          "level": 2,
+          "text": "Evidence and Origin"
+        },
+        {
+          "level": 2,
+          "text": "Routes"
+        },
+        {
+          "level": 2,
+          "text": "External References"
+        },
+        {
+          "level": 2,
+          "text": "Invariants"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "maintenance.graph-standard",
+      "kind": "standard",
+      "notes": [],
+      "path": "ai/maintenance/KNOWLEDGE_GRAPH_STANDARD.md",
+      "relatedContext": [
+        "maintenance.node-creation",
+        "maintenance.graph-workflow",
+        "external.knowledge-schema"
+      ],
+      "requiredContext": [
+        "maintenance.index"
+      ],
+      "scope": "maintenance",
+      "sourceFiles": [
+        "ai/maintenance/KNOWLEDGE_GRAPH_STANDARD.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Padrão do grafo de conhecimento",
+      "triggers": [
+        "frontmatter",
+        "knowledge-graph.json",
+        "schema",
+        "route shard",
+        "reference shard"
+      ]
+    },
+    "maintenance.graph-workflow": {
+      "canonicalFor": [
+        "ordem de geração, comandos, modo check e tratamento de falhas"
+      ],
+      "conditionalContext": [],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "ai/tools/build-source-coverage-ledger.mjs",
+        "ai/tools/build-knowledge-graph.mjs",
+        "package.json"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Workflow de geração e validação"
+        },
+        {
+          "level": 2,
+          "text": "Generated Artifacts"
+        },
+        {
+          "level": 2,
+          "text": "Commands"
+        },
+        {
+          "level": 2,
+          "text": "Validation Order"
+        },
+        {
+          "level": 2,
+          "text": "Failure Handling"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "maintenance.graph-workflow",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/maintenance/GRAPH_GENERATION_WORKFLOW.md",
+      "relatedContext": [
+        "maintenance.graph-standard",
+        "maintenance.source-coverage",
+        "external.knowledge-graph"
+      ],
+      "requiredContext": [
+        "maintenance.index"
+      ],
+      "scope": "maintenance",
+      "sourceFiles": [
+        "ai/maintenance/GRAPH_GENERATION_WORKFLOW.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Workflow de geração e validação",
+      "triggers": [
+        "gerar grafo",
+        "--check",
+        "ROUTING.md",
+        "SOURCE_COVERAGE_LEDGER.md",
+        "knowledge-graph.json"
+      ]
+    },
+    "maintenance.index": {
+      "canonicalFor": [
+        "roteamento de criação, geração, cobertura e evolução da base ai/"
+      ],
+      "conditionalContext": [],
+      "documentType": "scope-index",
+      "evidenceSources": [
+        "ai/knowledge.schema.json",
+        "ai/tools/build-knowledge-graph.mjs",
+        "ai/tools/build-source-coverage-ledger.mjs"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Índice de manutenção da base"
+        },
+        {
+          "level": 2,
+          "text": "Navegação"
+        },
+        {
+          "level": 2,
+          "text": "Regra de propriedade"
+        },
+        {
+          "level": 2,
+          "text": "Quando atualizar"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "maintenance.index",
+      "kind": "index",
+      "notes": [],
+      "path": "ai/maintenance/INDEX.md",
+      "relatedContext": [
+        "maintenance.graph-standard",
+        "maintenance.expansion-guide",
+        "maintenance.node-creation",
+        "maintenance.linking-rules",
+        "maintenance.graph-workflow",
+        "maintenance.pending-workflow",
+        "maintenance.source-coverage"
+      ],
+      "requiredContext": [
+        "root.index"
+      ],
+      "scope": "maintenance",
+      "sourceFiles": [
+        "ai/maintenance/INDEX.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Índice de manutenção da base",
+      "triggers": [
+        "manutenção da base",
+        "novo documento canônico",
+        "grafo",
+        "ledger",
+        "conhecimento pendente"
+      ]
+    },
+    "maintenance.linking-rules": {
+      "canonicalFor": [
+        "links Markdown, relacionamentos estruturados e leitura progressiva"
+      ],
+      "conditionalContext": [],
+      "documentType": "standard",
+      "evidenceSources": [
+        "ai/tools/build-knowledge-graph.mjs",
+        "ai/knowledge.schema.json"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Regras de links e contexto"
+        },
+        {
+          "level": 2,
+          "text": "Markdown Links"
+        },
+        {
+          "level": 2,
+          "text": "Structured Relationships"
+        },
+        {
+          "level": 2,
+          "text": "Canonical Ownership"
+        },
+        {
+          "level": 2,
+          "text": "Validation"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "maintenance.linking-rules",
+      "kind": "standard",
+      "notes": [],
+      "path": "ai/maintenance/LINKING_RULES.md",
+      "relatedContext": [
+        "maintenance.graph-standard",
+        "maintenance.node-creation"
+      ],
+      "requiredContext": [
+        "maintenance.index"
+      ],
+      "scope": "maintenance",
+      "sourceFiles": [
+        "ai/maintenance/LINKING_RULES.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Regras de links e contexto",
+      "triggers": [
+        "link interno",
+        "required_context",
+        "conditional_context",
+        "related_context",
+        "fragmento"
+      ]
+    },
+    "maintenance.node-creation": {
+      "canonicalFor": [
+        "nomenclatura, frontmatter e conteúdo mínimo de um documento canônico"
+      ],
+      "conditionalContext": [],
+      "documentType": "standard",
+      "evidenceSources": [
+        "ai/knowledge.schema.json",
+        "ai/tools/build-knowledge-graph.mjs"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Criação de nós canônicos"
+        },
+        {
+          "level": 2,
+          "text": "Naming"
+        },
+        {
+          "level": 2,
+          "text": "Frontmatter Template"
+        },
+        {
+          "level": 2,
+          "text": "Body"
+        },
+        {
+          "level": 2,
+          "text": "Validation"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "maintenance.node-creation",
+      "kind": "standard",
+      "notes": [],
+      "path": "ai/maintenance/KNOWLEDGE_NODE_CREATION.md",
+      "relatedContext": [
+        "maintenance.graph-standard",
+        "maintenance.linking-rules"
+      ],
+      "requiredContext": [
+        "maintenance.index"
+      ],
+      "scope": "maintenance",
+      "sourceFiles": [
+        "ai/maintenance/KNOWLEDGE_NODE_CREATION.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Criação de nós canônicos",
+      "triggers": [
+        "criar nó",
+        "frontmatter obrigatório",
+        "ID canônico",
+        "novo Markdown"
+      ]
+    },
+    "maintenance.pending-workflow": {
+      "canonicalFor": [
+        "registro não conflitante e incorporação controlada de descobertas futuras"
+      ],
+      "conditionalContext": [],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "ai/pending-knowledge/INDEX.md",
+        "ai/pending-knowledge/PENDING_KNOWLEDGE_TEMPLATE.md"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Workflow de conhecimento pendente"
+        },
+        {
+          "level": 2,
+          "text": "Normal Development"
+        },
+        {
+          "level": 2,
+          "text": "Controlled Incorporation"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "maintenance.pending-workflow",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/maintenance/PENDING_KNOWLEDGE_WORKFLOW.md",
+      "relatedContext": [
+        "maintenance.expansion-guide"
+      ],
+      "requiredContext": [
+        "maintenance.index"
+      ],
+      "scope": "maintenance",
+      "sourceFiles": [
+        "ai/maintenance/PENDING_KNOWLEDGE_WORKFLOW.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Workflow de conhecimento pendente",
+      "triggers": [
+        "conhecimento pendente",
+        "descoberta durável",
+        "incorporar base",
+        "pending-knowledge"
+      ]
+    },
+    "maintenance.source-coverage": {
+      "canonicalFor": [
+        "inventário e decisão deliberada sobre documentação anterior à base canônica"
+      ],
+      "conditionalContext": [],
+      "documentType": "migration-ledger",
+      "evidenceSources": [
+        "ai/maintenance/source-coverage-decisions.json",
+        "ai/tools/build-source-coverage-ledger.mjs"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Cobertura das fontes documentais"
+        },
+        {
+          "level": 2,
+          "text": "Política de cobertura"
+        },
+        {
+          "level": 2,
+          "text": "Resumo"
+        },
+        {
+          "level": 2,
+          "text": "Fontes cobertas"
+        },
+        {
+          "level": 3,
+          "text": "DOCUMENTACAOOBSERVATORIOATUALIZADA.md"
+        },
+        {
+          "level": 3,
+          "text": "README.md"
+        },
+        {
+          "level": 3,
+          "text": "docs/INTEGRACAOTEORIAS.md"
+        },
+        {
+          "level": 3,
+          "text": "docs/PARECERCRITICOINTEGRALDASTEORIAS2026.docx"
+        },
+        {
+          "level": 3,
+          "text": "docs/renderparecer/PARECERCRITICOINTEGRALDASTEORIAS2026browser.pdf"
+        },
+        {
+          "level": 3,
+          "text": "docs/testeword.pdfcheck.docx"
+        },
+        {
+          "level": 3,
+          "text": "ia/estrutura geral observatório.md"
+        },
+        {
+          "level": 2,
+          "text": "Exclusões explícitas"
+        }
+      ],
+      "id": "maintenance.source-coverage",
+      "kind": "migration-ledger",
+      "notes": [],
+      "path": "ai/maintenance/SOURCE_COVERAGE_LEDGER.md",
+      "relatedContext": [
+        "maintenance.graph-standard",
+        "maintenance.expansion-guide",
+        "project.boundaries"
+      ],
+      "requiredContext": [
+        "maintenance.index"
+      ],
+      "scope": "maintenance",
+      "sourceFiles": [
+        "ai/maintenance/SOURCE_COVERAGE_LEDGER.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Cobertura das fontes documentais",
+      "triggers": [
+        "nova documentação fora de ai",
+        "migração de fonte",
+        "auditoria de cobertura"
+      ]
+    },
+    "pending.index": {
+      "canonicalFor": [
+        "orientação local dos registros ainda não incorporados"
+      ],
+      "conditionalContext": [],
+      "documentType": "scope-index",
+      "evidenceSources": [],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Conhecimento pendente"
+        }
+      ],
+      "id": "pending.index",
+      "kind": "index",
+      "notes": [],
+      "path": "ai/pending-knowledge/INDEX.md",
+      "relatedContext": [],
+      "requiredContext": [],
+      "scope": "maintenance",
+      "sourceFiles": [
+        "ai/pending-knowledge/INDEX.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Conhecimento pendente",
+      "triggers": [
+        "pending-knowledge"
+      ]
+    },
+    "project.architecture": {
+      "canonicalFor": [
+        "stack, rotas, entrypoints e divisão de responsabilidades do produto"
+      ],
+      "conditionalContext": [
+        {
+          "condition": "Quando a tarefa modificar HTML, CSS ou controladores de página.",
+          "id": "frontend.pages-modules"
+        }
+      ],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "package.json",
+        "index.html",
+        "Teorias/teorias.html",
+        "Mapa/mapa.html",
+        "Arquivo/arquivo.html",
+        "Laboratorio/laboratorio.html",
+        "assets/js/main.js",
+        "assets/js/page-shell.js"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Arquitetura atual"
+        },
+        {
+          "level": 2,
+          "text": "Purpose"
+        },
+        {
+          "level": 2,
+          "text": "Current Confirmed Structure"
+        },
+        {
+          "level": 2,
+          "text": "Canonical Rules"
+        },
+        {
+          "level": 2,
+          "text": "Dependencies"
+        },
+        {
+          "level": 2,
+          "text": "Validation"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "project.architecture",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/project/ARCHITECTURE.md",
+      "relatedContext": [
+        "project.boundaries",
+        "infrastructure.static-deploy"
+      ],
+      "requiredContext": [
+        "project.index"
+      ],
+      "scope": "project",
+      "sourceFiles": [
+        "ai/project/ARCHITECTURE.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [
+        "external.current-architecture"
+      ],
+      "title": "Arquitetura atual",
+      "triggers": [
+        "nova rota",
+        "entrypoint",
+        "módulo",
+        "stack",
+        "arquitetura multipágina"
+      ]
+    },
+    "project.boundaries": {
+      "canonicalFor": [
+        "separação entre código ativo, conteúdo privado, documentação, legado e derivados"
+      ],
+      "conditionalContext": [],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "scripts/build.mjs",
+        "scripts/theory-sources.mjs",
+        "docs/INTEGRACAO_TEORIAS.md",
+        "DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md",
+        "ia/estrutura geral observatório.md"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Fronteiras, fontes de verdade e legado"
+        },
+        {
+          "level": 2,
+          "text": "Current Confirmed Structure"
+        },
+        {
+          "level": 2,
+          "text": "Canonical Rules"
+        },
+        {
+          "level": 2,
+          "text": "Evidence"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "project.boundaries",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/project/REPOSITORY_BOUNDARIES.md",
+      "relatedContext": [
+        "domains.editorial-model",
+        "infrastructure.static-deploy",
+        "maintenance.source-coverage"
+      ],
+      "requiredContext": [
+        "project.index"
+      ],
+      "scope": "project",
+      "sourceFiles": [
+        "ai/project/REPOSITORY_BOUNDARIES.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Fronteiras, fontes de verdade e legado",
+      "triggers": [
+        "dist",
+        "output",
+        "fonte privada",
+        "documentação histórica",
+        "ia/",
+        "material bruto"
+      ]
+    },
+    "project.commands": {
+      "canonicalFor": [
+        "comandos locais, requisitos declarados e comportamento operacional"
+      ],
+      "conditionalContext": [],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "package.json",
+        "package-lock.json",
+        "scripts/serve.mjs",
+        "scripts/verify.mjs",
+        "scripts/build.mjs"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Comandos e ambiente"
+        },
+        {
+          "level": 2,
+          "text": "Current Confirmed Structure"
+        },
+        {
+          "level": 2,
+          "text": "Contracts To Preserve"
+        },
+        {
+          "level": 2,
+          "text": "Validation"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "project.commands",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/project/COMMANDS_AND_ENVIRONMENT.md",
+      "relatedContext": [
+        "quality.validation-release",
+        "infrastructure.static-deploy"
+      ],
+      "requiredContext": [
+        "project.index"
+      ],
+      "scope": "project",
+      "sourceFiles": [
+        "ai/project/COMMANDS_AND_ENVIRONMENT.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Comandos e ambiente",
+      "triggers": [
+        "npm run dev",
+        "npm run verify",
+        "npm run build",
+        "Node",
+        "ambiente local"
+      ]
+    },
+    "project.index": {
+      "canonicalFor": [
+        "roteamento de arquitetura, comandos e fronteiras do repositório"
+      ],
+      "conditionalContext": [],
+      "documentType": "scope-index",
+      "evidenceSources": [
+        "README.md",
+        "package.json",
+        "scripts/build.mjs"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Índice do projeto"
+        },
+        {
+          "level": 2,
+          "text": "Navegação"
+        },
+        {
+          "level": 2,
+          "text": "Pontos de entrada confirmados"
+        },
+        {
+          "level": 2,
+          "text": "Quando atualizar"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "project.index",
+      "kind": "index",
+      "notes": [],
+      "path": "ai/project/INDEX.md",
+      "relatedContext": [
+        "project.architecture",
+        "project.commands",
+        "project.boundaries"
+      ],
+      "requiredContext": [
+        "root.index"
+      ],
+      "scope": "project",
+      "sourceFiles": [
+        "ai/project/INDEX.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Índice do projeto",
+      "triggers": [
+        "estrutura do repositório",
+        "arquitetura",
+        "comandos",
+        "legado"
+      ]
+    },
+    "quality.index": {
+      "canonicalFor": [
+        "roteamento de verificação, release, desempenho e acessibilidade"
+      ],
+      "conditionalContext": [],
+      "documentType": "scope-index",
+      "evidenceSources": [
+        "scripts/verify.mjs",
+        "scripts/build.mjs",
+        "assets/js/observer.js",
+        "assets/js/resonance.js"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Índice de qualidade"
+        },
+        {
+          "level": 2,
+          "text": "Navegação"
+        },
+        {
+          "level": 2,
+          "text": "Estado confirmado"
+        },
+        {
+          "level": 2,
+          "text": "Quando atualizar"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "quality.index",
+      "kind": "index",
+      "notes": [],
+      "path": "ai/quality/INDEX.md",
+      "relatedContext": [
+        "quality.validation-release",
+        "quality.performance-accessibility"
+      ],
+      "requiredContext": [
+        "root.index"
+      ],
+      "scope": "quality",
+      "sourceFiles": [
+        "ai/quality/INDEX.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Índice de qualidade",
+      "triggers": [
+        "teste",
+        "QA",
+        "verify",
+        "release",
+        "performance",
+        "acessibilidade"
+      ]
+    },
+    "quality.performance-accessibility": {
+      "canonicalFor": [
+        "budgets qualitativos, movimento, ciclo de vida e critérios acessíveis"
+      ],
+      "conditionalContext": [],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "assets/js/observer.js",
+        "assets/js/resonance.js",
+        "assets/js/smooth-scroll.js",
+        "assets/css/styles.css",
+        "Teorias/teorias.css",
+        "Mapa/mapa.css"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Desempenho e acessibilidade"
+        },
+        {
+          "level": 2,
+          "text": "Current Confirmed Structure"
+        },
+        {
+          "level": 2,
+          "text": "Canonical Rules"
+        },
+        {
+          "level": 2,
+          "text": "Scaling Guidance"
+        },
+        {
+          "level": 2,
+          "text": "Validation"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "quality.performance-accessibility",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/quality/PERFORMANCE_AND_ACCESSIBILITY.md",
+      "relatedContext": [
+        "frontend.interactive-systems",
+        "frontend.design-accessibility"
+      ],
+      "requiredContext": [
+        "quality.index"
+      ],
+      "scope": "quality",
+      "sourceFiles": [
+        "ai/quality/PERFORMANCE_AND_ACCESSIBILITY.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Desempenho e acessibilidade",
+      "triggers": [
+        "performance",
+        "memória",
+        "canvas",
+        "movimento reduzido",
+        "teclado",
+        "foco",
+        "ARIA"
+      ]
+    },
+    "quality.validation-release": {
+      "canonicalFor": [
+        "verificação automatizada e checklist de publicação"
+      ],
+      "conditionalContext": [
+        {
+          "condition": "Quando dados ou interfaces de teorias forem alterados.",
+          "id": "domains.theory-catalog"
+        },
+        {
+          "condition": "Quando build, allowlist ou Vercel forem alterados.",
+          "id": "infrastructure.static-deploy"
+        }
+      ],
+      "documentType": "checklist",
+      "evidenceSources": [
+        "scripts/verify.mjs",
+        "scripts/build.mjs",
+        "package.json"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Validação e release"
+        },
+        {
+          "level": 2,
+          "text": "Automated Coverage"
+        },
+        {
+          "level": 2,
+          "text": "Required Checks"
+        },
+        {
+          "level": 2,
+          "text": "UI Checklist"
+        },
+        {
+          "level": 2,
+          "text": "Release Boundaries"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "quality.validation-release",
+      "kind": "checklist",
+      "notes": [],
+      "path": "ai/quality/VALIDATION_AND_RELEASE.md",
+      "relatedContext": [
+        "quality.performance-accessibility",
+        "project.commands"
+      ],
+      "requiredContext": [
+        "quality.index"
+      ],
+      "scope": "quality",
+      "sourceFiles": [
+        "ai/quality/VALIDATION_AND_RELEASE.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Validação e release",
+      "triggers": [
+        "npm run verify",
+        "npm run build",
+        "publicação",
+        "checklist",
+        "regressão"
+      ]
+    },
+    "root.index": {
+      "canonicalFor": [
+        "entrada obrigatória e navegação progressiva da base de conhecimento"
+      ],
+      "conditionalContext": [],
+      "documentType": "root-index",
+      "evidenceSources": [
+        "package.json",
+        "index.html",
+        "scripts/build.mjs",
+        "vercel.json"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Base de conhecimento do Observatório de Ideias"
+        },
+        {
+          "level": 2,
+          "text": "Comece pela tarefa"
+        },
+        {
+          "level": 2,
+          "text": "Princípios de leitura"
+        },
+        {
+          "level": 2,
+          "text": "Artefatos estruturados"
+        },
+        {
+          "level": 2,
+          "text": "Conhecimento ainda não incorporado"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "root.index",
+      "kind": "index",
+      "notes": [],
+      "path": "ai/INDEX.md",
+      "relatedContext": [
+        "root.routing",
+        "project.index",
+        "frontend.index",
+        "domains.index",
+        "quality.index",
+        "infrastructure.index",
+        "maintenance.index"
+      ],
+      "requiredContext": [],
+      "scope": "project",
+      "sourceFiles": [
+        "ai/INDEX.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Base de conhecimento do Observatório de Ideias",
+      "triggers": [
+        "início de tarefa",
+        "orientação geral",
+        "onde alterar"
+      ]
+    },
+    "root.routing": {
+      "canonicalFor": [
+        "roteamento progressivo de tarefas para contexto obrigatório"
+      ],
+      "conditionalContext": [],
+      "documentType": "routing-map",
+      "evidenceSources": [],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Roteamento da base de conhecimento"
+        },
+        {
+          "level": 2,
+          "text": "Como usar"
+        },
+        {
+          "level": 2,
+          "text": "Rotas disponíveis"
+        },
+        {
+          "level": 3,
+          "text": "build-deploy-change"
+        },
+        {
+          "level": 3,
+          "text": "frontend-change"
+        },
+        {
+          "level": 3,
+          "text": "general-orientation"
+        },
+        {
+          "level": 3,
+          "text": "interactive-experiment-change"
+        },
+        {
+          "level": 3,
+          "text": "knowledge-base-update"
+        },
+        {
+          "level": 3,
+          "text": "publication-change"
+        },
+        {
+          "level": 3,
+          "text": "testing-review"
+        },
+        {
+          "level": 3,
+          "text": "theory-content-change"
+        }
+      ],
+      "id": "root.routing",
+      "kind": "routing-map",
+      "notes": [
+        "Arquivo gerado; não editar manualmente."
+      ],
+      "path": "ai/ROUTING.md",
+      "relatedContext": [
+        "maintenance.graph-standard"
+      ],
+      "requiredContext": [
+        "root.index"
+      ],
+      "scope": "project",
+      "sourceFiles": [
+        "ai/graph/routes/BUILD_DEPLOY_CHANGE.json",
+        "ai/graph/routes/FRONTEND_CHANGE.json",
+        "ai/graph/routes/GENERAL_ORIENTATION.json",
+        "ai/graph/routes/INTERACTIVE_EXPERIMENT_CHANGE.json",
+        "ai/graph/routes/KNOWLEDGE_BASE_UPDATE.json",
+        "ai/graph/routes/PUBLICATION_CHANGE.json",
+        "ai/graph/routes/TESTING_REVIEW.json",
+        "ai/graph/routes/THEORY_CONTENT_CHANGE.json"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Roteamento da base de conhecimento",
+      "triggers": [
+        "roteamento",
+        "tipo de tarefa",
+        "contexto obrigatório"
+      ]
+    }
+  },
+  "routes": {
+    "build-deploy-change": {
+      "conditionalContext": [
+        {
+          "condition": "Quando a mudança modificar verificações ou critérios de publicação.",
+          "id": "quality.validation-release"
+        },
+        {
+          "condition": "Quando houver risco de incluir documentação, fontes editoriais ou artefatos internos em dist/.",
+          "id": "project.boundaries"
+        }
+      ],
+      "description": "Alterar servidor local, verificação, allowlist pública, build ou configuração da Vercel.",
+      "id": "build-deploy-change",
+      "relatedContext": [
+        "project.commands",
+        "external.vercel-config"
+      ],
+      "requiredContext": [
+        "root.index",
+        "infrastructure.index",
+        "infrastructure.static-deploy"
+      ]
+    },
+    "frontend-change": {
+      "conditionalContext": [
+        {
+          "condition": "Quando a mudança tocar cards, filtros, dossiês, mapa ou dados de linhas de investigação.",
+          "id": "domains.theory-catalog"
+        },
+        {
+          "condition": "Quando houver interação, animação, canvas, áudio, responsividade ou mudança semântica.",
+          "id": "quality.performance-accessibility"
+        }
+      ],
+      "description": "Alterar página, componente, estilo, navegação ou estado de interface.",
+      "id": "frontend-change",
+      "relatedContext": [
+        "frontend.design-accessibility",
+        "frontend.user-flows"
+      ],
+      "requiredContext": [
+        "root.index",
+        "frontend.index",
+        "frontend.pages-modules"
+      ]
+    },
+    "general-orientation": {
+      "conditionalContext": [],
+      "description": "Entender o repositório, localizar responsabilidades ou preparar uma tarefa ainda sem escopo definido.",
+      "id": "general-orientation",
+      "relatedContext": [
+        "project.architecture",
+        "project.boundaries"
+      ],
+      "requiredContext": [
+        "root.index",
+        "project.index"
+      ]
+    },
+    "interactive-experiment-change": {
+      "conditionalContext": [
+        {
+          "condition": "Quando o experimento introduzir texto público ou uma nova promessa editorial.",
+          "id": "domains.editorial-model"
+        },
+        {
+          "condition": "Quando novos assets ou módulos precisarem entrar no artefato público.",
+          "id": "infrastructure.static-deploy"
+        }
+      ],
+      "description": "Alterar Visão Estelar, ressonância, movimento, canvas, áudio ou criar um experimento visual.",
+      "id": "interactive-experiment-change",
+      "relatedContext": [
+        "frontend.design-accessibility",
+        "quality.validation-release"
+      ],
+      "requiredContext": [
+        "root.index",
+        "frontend.interactive-systems",
+        "quality.performance-accessibility"
+      ]
+    },
+    "knowledge-base-update": {
+      "conditionalContext": [
+        {
+          "condition": "Quando a tarefa registrar uma descoberta ou incorporar arquivos de pending-knowledge.",
+          "id": "maintenance.pending-workflow"
+        },
+        {
+          "condition": "Quando uma fonte anterior for preservada, migrada, substituída ou mudar de proprietário canônico.",
+          "id": "maintenance.source-coverage"
+        }
+      ],
+      "description": "Criar, corrigir, expandir ou incorporar conhecimento na base ai/.",
+      "id": "knowledge-base-update",
+      "relatedContext": [
+        "maintenance.graph-standard",
+        "maintenance.graph-workflow",
+        "maintenance.node-creation",
+        "maintenance.linking-rules"
+      ],
+      "requiredContext": [
+        "root.index",
+        "maintenance.index",
+        "maintenance.expansion-guide"
+      ]
+    },
+    "publication-change": {
+      "conditionalContext": [
+        {
+          "condition": "Quando a primeira publicação exigir nova rota, catálogo ou decisão estrutural.",
+          "id": "project.architecture"
+        },
+        {
+          "condition": "Quando novos HTML, dados ou assets precisarem entrar no artefato público.",
+          "id": "infrastructure.static-deploy"
+        },
+        {
+          "condition": "Antes de considerar o conteúdo pronto para publicação.",
+          "id": "quality.validation-release"
+        }
+      ],
+      "description": "Criar ou revisar ensaio, registro, fragmento, página de leitura ou o catálogo do Arquivo.",
+      "id": "publication-change",
+      "relatedContext": [
+        "project.boundaries",
+        "frontend.design-accessibility"
+      ],
+      "requiredContext": [
+        "root.index",
+        "domains.index",
+        "domains.editorial-model"
+      ]
+    },
+    "testing-review": {
+      "conditionalContext": [
+        {
+          "condition": "Quando a revisão envolver interface, movimento, teclado, canvas ou desempenho.",
+          "id": "quality.performance-accessibility"
+        }
+      ],
+      "description": "Executar revisão, diagnóstico, validação, QA responsiva ou auditoria de publicação.",
+      "id": "testing-review",
+      "relatedContext": [
+        "project.commands",
+        "frontend.user-flows"
+      ],
+      "requiredContext": [
+        "root.index",
+        "quality.index",
+        "quality.validation-release"
+      ]
+    },
+    "theory-content-change": {
+      "conditionalContext": [
+        {
+          "condition": "Quando a mudança alterar busca, filtros, URL, seleção ou navegação entre superfícies.",
+          "id": "frontend.user-flows"
+        },
+        {
+          "condition": "Antes de considerar a alteração pronta para publicação.",
+          "id": "quality.validation-release"
+        }
+      ],
+      "description": "Adicionar, revisar, reclassificar ou relacionar uma linha de investigação.",
+      "id": "theory-content-change",
+      "relatedContext": [
+        "domains.editorial-model",
+        "external.theory-integration"
+      ],
+      "requiredContext": [
+        "root.index",
+        "domains.index",
+        "domains.theory-catalog"
+      ]
+    }
+  },
+  "schemaVersion": "1.0.0"
+}

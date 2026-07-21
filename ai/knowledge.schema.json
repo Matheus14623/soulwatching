@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observatorio.local/ai/knowledge.schema.json",
+  "$defs": {
+    "nodeId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+    },
+    "repoPath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![A-Za-z]:/)(?![A-Za-z][A-Za-z0-9+.-]*:)(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+    },
+    "heading": {
+      "type": "object",
+      "required": ["level", "text"],
+      "properties": {
+        "level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 6
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "conditionalContext": {
+      "type": "object",
+      "required": ["id", "condition"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/nodeId"
+        },
+        "condition": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "node": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "path",
+        "scope",
+        "kind",
+        "status",
+        "documentType",
+        "canonicalFor",
+        "triggers",
+        "requiredContext",
+        "conditionalContext",
+        "relatedContext",
+        "evidenceSources",
+        "supersedes",
+        "supersededBy",
+        "sourceFiles",
+        "headings",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/nodeId"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "$ref": "#/$defs/repoPath"
+        },
+        "scope": {
+          "enum": ["project", "frontend", "domains", "quality", "infrastructure", "maintenance"]
+        },
+        "kind": {
+          "enum": ["index", "routing-map", "canonical-reference", "flow-map", "checklist", "template", "standard", "migration-ledger", "legacy-reference"]
+        },
+        "status": {
+          "enum": ["canonical", "draft", "deprecated", "legacy", "to-verify"]
+        },
+        "documentType": {
+          "enum": [
+            "root-index",
+            "scope-index",
+            "routing-map",
+            "canonical-reference",
+            "flow-map",
+            "checklist",
+            "template",
+            "standard",
+            "migration-ledger",
+            "legacy-reference",
+            "agent-instructions",
+            "project-readme",
+            "architecture-document",
+            "domain-specification",
+            "package-manifest",
+            "deploy-configuration",
+            "validation-script",
+            "build-script",
+            "json-schema",
+            "generated-graph"
+          ]
+        },
+        "canonicalFor": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "triggers": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "requiredContext": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nodeId" },
+          "uniqueItems": true
+        },
+        "conditionalContext": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/conditionalContext" }
+        },
+        "relatedContext": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nodeId" },
+          "uniqueItems": true
+        },
+        "evidenceSources": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/repoPath" },
+          "uniqueItems": true
+        },
+        "supersedes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nodeId" },
+          "uniqueItems": true
+        },
+        "supersededBy": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nodeId" },
+          "uniqueItems": true
+        },
+        "sourceFiles": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/repoPath" },
+          "uniqueItems": true
+        },
+        "headings": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/heading" }
+        },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "route": {
+      "type": "object",
+      "required": ["id", "description", "requiredContext", "conditionalContext", "relatedContext"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requiredContext": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nodeId" },
+          "uniqueItems": true
+        },
+        "conditionalContext": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/conditionalContext" }
+        },
+        "relatedContext": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nodeId" },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "graph": {
+      "type": "object",
+      "required": ["schemaVersion", "generated", "nodes", "routes"],
+      "properties": {
+        "schemaVersion": { "const": "1.0.0" },
+        "generated": { "const": true },
+        "nodes": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/node" }
+        },
+        "routes": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/route" }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$ref": "#/$defs/graph"
+}

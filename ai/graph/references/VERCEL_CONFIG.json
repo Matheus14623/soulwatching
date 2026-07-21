@@ -1,0 +1,20 @@
+{
+  "id": "external.vercel-config",
+  "title": "Configuração de deploy da Vercel",
+  "path": "vercel.json",
+  "scope": "infrastructure",
+  "kind": "canonical-reference",
+  "status": "canonical",
+  "documentType": "deploy-configuration",
+  "canonicalFor": ["configuração declarada do deploy estático"],
+  "triggers": ["vercel.json", "Vercel", "outputDirectory"],
+  "requiredContext": ["infrastructure.static-deploy"],
+  "conditionalContext": [],
+  "relatedContext": ["external.build-script"],
+  "evidenceSources": ["vercel.json", "scripts/build.mjs"],
+  "supersedes": [],
+  "supersededBy": [],
+  "sourceFiles": ["ai/graph/references/VERCEL_CONFIG.json"],
+  "headings": [],
+  "notes": []
+}

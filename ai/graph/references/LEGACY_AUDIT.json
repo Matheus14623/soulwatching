@@ -1,0 +1,25 @@
+{
+  "id": "external.legacy-audit",
+  "title": "Documentação Geral do Projeto — auditoria histórica",
+  "path": "ia/estrutura geral observatório.md",
+  "scope": "project",
+  "kind": "legacy-reference",
+  "status": "legacy",
+  "documentType": "legacy-reference",
+  "canonicalFor": ["evidência histórica da arquitetura anterior"],
+  "triggers": ["auditoria histórica", "estado anterior", "ia/"],
+  "requiredContext": ["project.boundaries"],
+  "conditionalContext": [],
+  "relatedContext": ["external.current-architecture", "maintenance.source-coverage"],
+  "evidenceSources": ["ia/estrutura geral observatório.md"],
+  "supersedes": [],
+  "supersededBy": ["external.current-architecture"],
+  "sourceFiles": ["ai/graph/references/LEGACY_AUDIT.json"],
+  "headings": [
+    { "level": 1, "text": "Documentação Geral do Projeto — Matheus Camargo" },
+    { "level": 2, "text": "Como ler este documento" },
+    { "level": 2, "text": "6. Arquitetura Técnica" },
+    { "level": 2, "text": "25. Resumo Executivo" }
+  ],
+  "notes": ["Não usar como autoridade do estado atual sem revalidar no código."]
+}

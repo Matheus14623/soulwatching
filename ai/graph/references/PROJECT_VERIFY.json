@@ -1,0 +1,20 @@
+{
+  "id": "external.project-verify",
+  "title": "Verificação do produto",
+  "path": "scripts/verify.mjs",
+  "scope": "quality",
+  "kind": "canonical-reference",
+  "status": "canonical",
+  "documentType": "validation-script",
+  "canonicalFor": ["verificações automatizadas do produto e da publicação"],
+  "triggers": ["verify.mjs", "npm run verify", "validação"],
+  "requiredContext": ["quality.validation-release"],
+  "conditionalContext": [],
+  "relatedContext": ["external.build-script"],
+  "evidenceSources": ["scripts/verify.mjs"],
+  "supersedes": [],
+  "supersededBy": [],
+  "sourceFiles": ["ai/graph/references/PROJECT_VERIFY.json"],
+  "headings": [],
+  "notes": []
+}

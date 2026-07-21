@@ -1,4 +1,5 @@
 import { readFile, stat } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
 import { resolve, dirname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
@@ -13,6 +14,14 @@ import { THEORY_SOURCE_FILES } from './theory-sources.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const requiredFiles = [
+  'AGENTS.md',
+  'ai/INDEX.md',
+  'ai/ROUTING.md',
+  'ai/knowledge.schema.json',
+  'ai/knowledge-graph.json',
+  'ai/maintenance/SOURCE_COVERAGE_LEDGER.md',
+  'ai/tools/build-knowledge-graph.mjs',
+  'ai/tools/build-source-coverage-ledger.mjs',
   'README.md',
   'DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md',
   'docs/INTEGRACAO_TEORIAS.md',
@@ -240,6 +249,20 @@ for (const track of RESEARCH_TRACKS) {
   if (missing.length) errors.push(`Linha do radar incompleta em ${track.id || track.code}: ${missing.join(', ')}`);
   if (trackIds.has(track.id)) errors.push(`ID duplicado no radar: ${track.id}`);
   trackIds.add(track.id);
+}
+
+for (const script of [
+  'ai/tools/build-source-coverage-ledger.mjs',
+  'ai/tools/build-knowledge-graph.mjs',
+]) {
+  const result = spawnSync(process.execPath, [join(root, script), '--check'], {
+    cwd: root,
+    encoding: 'utf8',
+  });
+  if (result.status !== 0) {
+    const detail = String(result.stderr || result.stdout || '').trim();
+    errors.push(`Base de conhecimento inválida em ${script}${detail ? `: ${detail}` : ''}`);
+  }
 }
 
 if (errors.length) {

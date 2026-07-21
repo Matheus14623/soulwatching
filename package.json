@@ -8,7 +8,10 @@
     "dev": "node scripts/serve.mjs",
     "start": "node scripts/serve.mjs",
     "verify": "node scripts/verify.mjs",
-    "build": "node scripts/build.mjs"
+    "build": "node scripts/build.mjs",
+    "knowledge:build": "node ai/tools/build-source-coverage-ledger.mjs && node ai/tools/build-knowledge-graph.mjs",
+    "knowledge:check": "node ai/tools/build-source-coverage-ledger.mjs --check && node ai/tools/build-knowledge-graph.mjs --check",
+    "knowledge:test": "node --test ai/tools/tests/knowledge-tools.test.mjs"
   },
   "keywords": [
     "static-site",

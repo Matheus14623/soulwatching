@@ -1,0 +1,16 @@
+{
+  "id": "interactive-experiment-change",
+  "description": "Alterar Visão Estelar, ressonância, movimento, canvas, áudio ou criar um experimento visual.",
+  "requiredContext": ["root.index", "frontend.interactive-systems", "quality.performance-accessibility"],
+  "conditionalContext": [
+    {
+      "id": "domains.editorial-model",
+      "condition": "Quando o experimento introduzir texto público ou uma nova promessa editorial."
+    },
+    {
+      "id": "infrastructure.static-deploy",
+      "condition": "Quando novos assets ou módulos precisarem entrar no artefato público."
+    }
+  ],
+  "relatedContext": ["frontend.design-accessibility", "quality.validation-release"]
+}

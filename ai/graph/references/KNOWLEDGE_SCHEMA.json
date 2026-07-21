@@ -1,0 +1,20 @@
+{
+  "id": "external.knowledge-schema",
+  "title": "Schema da base de conhecimento",
+  "path": "ai/knowledge.schema.json",
+  "scope": "maintenance",
+  "kind": "standard",
+  "status": "canonical",
+  "documentType": "json-schema",
+  "canonicalFor": ["contrato estrutural de nós, rotas e grafo"],
+  "triggers": ["knowledge.schema.json", "JSON Schema", "schema do grafo"],
+  "requiredContext": ["maintenance.graph-standard"],
+  "conditionalContext": [],
+  "relatedContext": ["maintenance.graph-workflow"],
+  "evidenceSources": ["ai/knowledge.schema.json"],
+  "supersedes": [],
+  "supersededBy": [],
+  "sourceFiles": ["ai/graph/references/KNOWLEDGE_SCHEMA.json"],
+  "headings": [],
+  "notes": []
+}

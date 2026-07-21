@@ -1,0 +1,27 @@
+{
+  "id": "external.current-architecture",
+  "title": "Documentação atualizada do Observatório",
+  "path": "DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md",
+  "scope": "project",
+  "kind": "legacy-reference",
+  "status": "legacy",
+  "documentType": "architecture-document",
+  "canonicalFor": ["snapshot narrativo amplo da arquitetura após a expansão"],
+  "triggers": ["documentação ampla", "arquitetura atual", "histórico de expansão"],
+  "requiredContext": ["root.index"],
+  "conditionalContext": [],
+  "relatedContext": ["project.architecture", "maintenance.source-coverage"],
+  "evidenceSources": ["index.html", "assets/js/main.js", "scripts/build.mjs", "vercel.json"],
+  "supersedes": ["external.legacy-audit"],
+  "supersededBy": ["project.architecture"],
+  "sourceFiles": ["ai/graph/references/CURRENT_ARCHITECTURE.json"],
+  "headings": [
+    { "level": 1, "text": "Documentação atualizada do Observatório de Ideias" },
+    { "level": 2, "text": "1. Visão do produto" },
+    { "level": 2, "text": "2. Arquitetura atual" },
+    { "level": 2, "text": "7. Dados editoriais" },
+    { "level": 2, "text": "9. Manutenção" },
+    { "level": 2, "text": "18. Atualização de clareza científica e privacidade" }
+  ],
+  "notes": ["Snapshot preservado; a autoridade canônica atual pertence aos nós especializados em ai/."]
+}

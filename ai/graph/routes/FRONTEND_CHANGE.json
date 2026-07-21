@@ -1,0 +1,16 @@
+{
+  "id": "frontend-change",
+  "description": "Alterar página, componente, estilo, navegação ou estado de interface.",
+  "requiredContext": ["root.index", "frontend.index", "frontend.pages-modules"],
+  "conditionalContext": [
+    {
+      "id": "domains.theory-catalog",
+      "condition": "Quando a mudança tocar cards, filtros, dossiês, mapa ou dados de linhas de investigação."
+    },
+    {
+      "id": "quality.performance-accessibility",
+      "condition": "Quando houver interação, animação, canvas, áudio, responsividade ou mudança semântica."
+    }
+  ],
+  "relatedContext": ["frontend.design-accessibility", "frontend.user-flows"]
+}
