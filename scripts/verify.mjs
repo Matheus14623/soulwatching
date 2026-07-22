@@ -16,6 +16,10 @@ import {
   NOTABLE_FIGURES,
 } from '../assets/data/notable-figures.js';
 import { NOTABLE_FIGURE_REFERENCES } from '../assets/data/notable-figure-references.js';
+import {
+  CONSTELLATIONS,
+  CONSTELLATION_REFERENCES,
+} from '../assets/data/constellations.js';
 import { THEORY_SOURCE_FILES } from './theory-sources.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -41,12 +45,15 @@ const requiredFiles = [
   'GrandesNomes/grandes-nomes.js',
   'assets/css/styles.css',
   'assets/css/observatory-pages.css',
+  'assets/css/constellation-chart.css',
+  'assets/css/constellations-preview.css',
   'assets/css/notable-figures-preview.css',
   'assets/data/theories.js',
   'assets/data/theory-references.js',
   'assets/data/research-tracks.js',
   'assets/data/notable-figures.js',
   'assets/data/notable-figure-references.js',
+  'assets/data/constellations.js',
   'assets/js/main.js',
   'assets/js/config.js',
   'assets/js/navigation.js',
@@ -63,6 +70,9 @@ const requiredFiles = [
   'assets/js/page-shell.js',
   'assets/js/notable-figures-model.js',
   'assets/js/notable-figures-preview.js',
+  'assets/js/constellation-model.js',
+  'assets/js/constellation-chart.js',
+  'assets/js/constellations-preview.js',
   'assets/vendor/swiper/swiper-bundle.min.css',
   'assets/vendor/swiper/swiper-bundle.min.js',
   'assets/vendor/swiper/LICENSE',
@@ -78,6 +88,9 @@ const requiredFiles = [
   'Mapa/mapa.html',
   'Mapa/mapa.css',
   'Mapa/mapa.js',
+  'Constelacoes/constelacoes.html',
+  'Constelacoes/constelacoes.css',
+  'Constelacoes/constelacoes.js',
   'Arquivo/arquivo.html',
   'Arquivo/arquivo.css',
   'Laboratorio/laboratorio.html',
@@ -92,6 +105,7 @@ const htmlFiles = [
   'teorias.html',
   'Teorias/teorias.html',
   'Mapa/mapa.html',
+  'Constelacoes/constelacoes.html',
   'GrandesNomes/grandes-nomes.html',
   'Arquivo/arquivo.html',
   'Laboratorio/laboratorio.html',
@@ -121,12 +135,13 @@ const publicDataFiles = [
   'assets/data/research-tracks.js',
   'assets/data/notable-figures.js',
   'assets/data/notable-figure-references.js',
+  'assets/data/constellations.js',
 ];
 const publicData = (await Promise.all(
   publicDataFiles.map((file) => readFile(join(root, file), 'utf8')),
 )).join('\n');
 const publicCodeFiles = requiredFiles.filter((file) =>
-  /^(?:assets|Teorias|Mapa|GrandesNomes|Arquivo|Laboratorio)[\\/].*\.(?:css|js)$/i.test(file)
+  /^(?:assets|Teorias|Mapa|Constelacoes|GrandesNomes|Arquivo|Laboratorio)[\\/].*\.(?:css|js)$/i.test(file)
   && !/^assets[\\/]vendor[\\/]/i.test(file));
 const publicCode = (await Promise.all(
   publicCodeFiles.map((file) => readFile(join(root, file), 'utf8')),
@@ -372,6 +387,168 @@ for (const [id, reference] of Object.entries(NOTABLE_FIGURE_REFERENCES)) {
     if (!['https:', 'http:'].includes(url.protocol)) throw new Error();
   } catch {
     errors.push(`URL de referência de grande nome inválida: ${id}`);
+  }
+}
+
+const constellationIds = new Set();
+const constellationSlugs = new Set();
+const constellationAbbreviations = new Set();
+const constellationReferenceIds = new Set(Object.keys(CONSTELLATION_REFERENCES));
+const constellationFeaturedRanks = [];
+const constellationSeasonIds = new Set(['verao', 'outono', 'inverno', 'primavera']);
+const constellationStarRoles = new Set(['anchor', 'guide', 'landmark', 'context']);
+const constellationLabelAnchors = new Set(['start', 'middle', 'end']);
+
+if (CONSTELLATIONS.length !== 12) {
+  errors.push(`O atlas precisa ter exatamente 12 constelações; encontrou ${CONSTELLATIONS.length}.`);
+}
+
+for (const constellation of CONSTELLATIONS) {
+  const missing = [
+    'id', 'slug', 'name', 'latinName', 'abbreviation', 'season', 'seasonId', 'signature',
+    'recognition', 'fact', 'guideNote', 'sourceIds', 'relatedConstellationIds', 'stars', 'lines',
+  ].filter((field) => constellation[field] === undefined || constellation[field] === '');
+  if (missing.length) {
+    errors.push(`Constelação incompleta em ${constellation.id || constellation.name}: ${missing.join(', ')}`);
+  }
+
+  if (constellationIds.has(constellation.id)) errors.push(`ID de constelação duplicado: ${constellation.id}`);
+  if (constellationSlugs.has(constellation.slug)) errors.push(`Slug de constelação duplicado: ${constellation.slug}`);
+  if (constellationAbbreviations.has(constellation.abbreviation)) {
+    errors.push(`Abreviação de constelação duplicada: ${constellation.abbreviation}`);
+  }
+  constellationIds.add(constellation.id);
+  constellationSlugs.add(constellation.slug);
+  constellationAbbreviations.add(constellation.abbreviation);
+
+  if (!/^[A-Z][A-Za-z]{2}$/.test(constellation.abbreviation)) {
+    errors.push(`Abreviação inválida em ${constellation.id}: ${constellation.abbreviation}`);
+  }
+  if (!constellationSeasonIds.has(constellation.seasonId)) {
+    errors.push(`Estação inválida em ${constellation.id}: ${constellation.seasonId}`);
+  }
+  if (typeof constellation.signature !== 'string' || !constellation.signature.trim()) {
+    errors.push(`Assinatura visual ausente em ${constellation.id}`);
+  }
+  if (!Array.isArray(constellation.sourceIds) || !constellation.sourceIds.length) {
+    errors.push(`Fontes ausentes em ${constellation.id}`);
+  }
+  if (!Array.isArray(constellation.relatedConstellationIds)) {
+    errors.push(`Relações de constelação inválidas em ${constellation.id}`);
+  }
+  if (!Array.isArray(constellation.stars) || constellation.stars.length < 4) {
+    errors.push(`Estrelas insuficientes em ${constellation.id}`);
+  }
+  if (!Array.isArray(constellation.lines) || !constellation.lines.length) {
+    errors.push(`Linhas-guia ausentes em ${constellation.id}`);
+  }
+
+  const unknownSources = constellation.sourceIds.filter((id) => !constellationReferenceIds.has(id));
+  if (unknownSources.length) {
+    errors.push(`Fontes desconhecidas em ${constellation.id}: ${unknownSources.join(', ')}`);
+  }
+
+  const starIds = new Set();
+  for (const star of Array.isArray(constellation.stars) ? constellation.stars : []) {
+    const missingStarFields = ['id', 'name', 'designation', 'magnitude', 'x', 'y', 'tone', 'label', 'role']
+      .filter((field) => star[field] === undefined || star[field] === '');
+    if (missingStarFields.length) {
+      errors.push(`Estrela incompleta em ${constellation.id}: ${missingStarFields.join(', ')}`);
+    }
+    if (starIds.has(star.id)) errors.push(`ID de estrela duplicado em ${constellation.id}: ${star.id}`);
+    starIds.add(star.id);
+    if (!Number.isFinite(star.magnitude)) errors.push(`Magnitude inválida em ${constellation.id}/${star.id}`);
+    if (!Number.isFinite(star.x) || !Number.isFinite(star.y)
+      || star.x < 0 || star.x > 100 || star.y < 0 || star.y > 100) {
+      errors.push(`Posição inválida em ${constellation.id}/${star.id}`);
+    }
+    if (!['warm', 'cool', 'white'].includes(star.tone)) {
+      errors.push(`Tom estelar inválido em ${constellation.id}/${star.id}: ${star.tone}`);
+    }
+    if (typeof star.label !== 'boolean') errors.push(`Indicador de rótulo inválido em ${constellation.id}/${star.id}`);
+    if (!constellationStarRoles.has(star.role)) {
+      errors.push(`Papel estelar inválido em ${constellation.id}/${star.id}: ${star.role}`);
+    }
+    for (const offset of ['labelDx', 'labelDy']) {
+      if (star[offset] !== undefined && !Number.isFinite(star[offset])) {
+        errors.push(`Deslocamento de rótulo inválido em ${constellation.id}/${star.id}: ${offset}`);
+      }
+    }
+    if (star.labelAnchor !== undefined && !constellationLabelAnchors.has(star.labelAnchor)) {
+      errors.push(`Âncora de rótulo inválida em ${constellation.id}/${star.id}: ${star.labelAnchor}`);
+    }
+    if (star.chartLabel !== undefined && (typeof star.chartLabel !== 'string' || !star.chartLabel.trim())) {
+      errors.push(`Rótulo visual inválido em ${constellation.id}/${star.id}`);
+    }
+  }
+
+  const connectedStarIds = new Set();
+  const lineKeys = new Set();
+  for (const line of Array.isArray(constellation.lines) ? constellation.lines : []) {
+    if (!Array.isArray(line) || line.length !== 2) {
+      errors.push(`Linha-guia inválida em ${constellation.id}`);
+      continue;
+    }
+    const [sourceId, targetId] = line;
+    const lineKey = [sourceId, targetId].sort().join('\u0000');
+    if (lineKeys.has(lineKey)) {
+      errors.push(`Linha-guia duplicada em ${constellation.id}: ${sourceId} → ${targetId}`);
+    }
+    lineKeys.add(lineKey);
+    connectedStarIds.add(sourceId);
+    connectedStarIds.add(targetId);
+    if (!starIds.has(sourceId) || !starIds.has(targetId)) {
+      errors.push(`Linha-guia aponta para estrela desconhecida em ${constellation.id}: ${sourceId} → ${targetId}`);
+    }
+    if (sourceId === targetId) errors.push(`Linha-guia circular em ${constellation.id}: ${sourceId}`);
+  }
+
+  for (const star of Array.isArray(constellation.stars) ? constellation.stars : []) {
+    if (!connectedStarIds.has(star.id) && !['landmark', 'context'].includes(star.role)) {
+      errors.push(`Estrela isolada precisa ser landmark ou context em ${constellation.id}/${star.id}`);
+    }
+  }
+
+  if (constellation.featuredRank !== null) {
+    if (!Number.isInteger(constellation.featuredRank) || constellation.featuredRank < 1) {
+      errors.push(`Posição de destaque inválida em ${constellation.id}`);
+    } else {
+      constellationFeaturedRanks.push(constellation.featuredRank);
+    }
+  }
+}
+
+for (const constellation of CONSTELLATIONS) {
+  if (!Array.isArray(constellation.relatedConstellationIds)) continue;
+  const relatedIds = new Set();
+  for (const relatedId of constellation.relatedConstellationIds) {
+    if (relatedIds.has(relatedId)) {
+      errors.push(`Constelação relacionada duplicada em ${constellation.id}: ${relatedId}`);
+    }
+    relatedIds.add(relatedId);
+    if (relatedId === constellation.id) {
+      errors.push(`Constelação não pode se relacionar consigo mesma: ${constellation.id}`);
+    } else if (!constellationIds.has(relatedId)) {
+      errors.push(`Constelação relacionada desconhecida em ${constellation.id}: ${relatedId}`);
+    }
+  }
+}
+
+if (constellationFeaturedRanks.length !== 3 || new Set(constellationFeaturedRanks).size !== 3
+  || constellationFeaturedRanks.sort((a, b) => a - b).join(',') !== '1,2,3') {
+  errors.push('A home precisa de exatamente três constelações com posições de destaque 1, 2 e 3.');
+}
+
+for (const [id, reference] of Object.entries(CONSTELLATION_REFERENCES)) {
+  if (!reference.title || !reference.institution || !reference.url) {
+    errors.push(`Referência de constelação incompleta: ${id}`);
+    continue;
+  }
+  try {
+    const url = new URL(reference.url);
+    if (url.protocol !== 'https:') throw new Error();
+  } catch {
+    errors.push(`URL de referência de constelação inválida: ${id}`);
   }
 }
 

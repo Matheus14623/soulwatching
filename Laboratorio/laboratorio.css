@@ -15,7 +15,7 @@
 }
 
 .experiment-card {
-  grid-column: span 4;
+  grid-column: span 6;
   display: grid;
   min-width: 0;
   overflow: clip;
@@ -120,6 +120,40 @@
   background:
     linear-gradient(24deg, transparent 47%, rgba(114,236,255,0.16) 49%, rgba(114,236,255,0.16) 51%, transparent 53%),
     linear-gradient(-28deg, transparent 48%, rgba(173,140,255,0.16) 49%, rgba(173,140,255,0.16) 51%, transparent 52%);
+}
+
+.experiment-visual--constellations span {
+  position: absolute;
+  width: 0.36rem;
+  height: 0.36rem;
+  border-radius: 50%;
+  background: #f4f8ff;
+  box-shadow: 0 0 14px rgba(114,236,255,0.68);
+}
+
+.experiment-visual--constellations span:nth-child(1) { left: 20%; top: 28%; }
+.experiment-visual--constellations span:nth-child(2) { left: 70%; top: 24%; width: 0.5rem; height: 0.5rem; }
+.experiment-visual--constellations span:nth-child(3) { left: 42%; top: 46%; }
+.experiment-visual--constellations span:nth-child(4) { left: 54%; top: 48%; }
+.experiment-visual--constellations span:nth-child(5) { left: 64%; top: 50%; }
+.experiment-visual--constellations span:nth-child(6) { left: 28%; top: 76%; width: 0.48rem; height: 0.48rem; }
+.experiment-visual--constellations span:nth-child(7) { left: 76%; top: 78%; width: 0.56rem; height: 0.56rem; }
+
+.experiment-visual--constellations::before,
+.experiment-visual--constellations::after {
+  content: "";
+  position: absolute;
+  inset: 20% 17%;
+  opacity: 0.78;
+  background:
+    linear-gradient(20deg, transparent 48.8%, rgba(114,87,255,0.78) 49.5%, rgba(114,87,255,0.78) 50.5%, transparent 51.2%),
+    linear-gradient(-23deg, transparent 48.8%, rgba(114,87,255,0.56) 49.5%, rgba(114,87,255,0.56) 50.5%, transparent 51.2%);
+  filter: drop-shadow(0 0 5px rgba(114,87,255,0.55));
+}
+
+.experiment-visual--constellations::after {
+  inset: 34% 24% 24%;
+  transform: rotate(7deg);
 }
 
 .experiment-copy {
@@ -241,16 +275,6 @@
   letter-spacing: 0.1em;
   text-align: center;
   text-transform: uppercase;
-}
-
-@media (max-width: 1080px) {
-  .experiment-card {
-    grid-column: span 6;
-  }
-
-  .experiment-card:last-child {
-    grid-column: span 12;
-  }
 }
 
 @media (max-width: 960px) {

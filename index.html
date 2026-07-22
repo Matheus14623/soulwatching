@@ -27,6 +27,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/styles.css?v=smooth-flow-v1" />
     <link rel="stylesheet" href="assets/css/observatory-pages.css?v=observatory-scale-v1" />
+    <link rel="stylesheet" href="assets/css/constellation-chart.css?v=constellation-atlas-v2" />
+    <link rel="stylesheet" href="assets/css/constellations-preview.css?v=constellation-atlas-v2" />
     <link rel="stylesheet" href="assets/css/notable-figures-preview.css?v=great-minds-v1" />
   </head>
   <body data-mode="normal">
@@ -53,10 +55,10 @@
           <a href="Teorias/teorias.html">Teorias</a>
           <a href="Mapa/mapa.html">Mapa</a>
           <a href="GrandesNomes/grandes-nomes.html">Grandes nomes</a>
+          <a href="Constelacoes/constelacoes.html">Constelações</a>
           <a href="Arquivo/arquivo.html">Arquivo</a>
           <a href="Laboratorio/laboratorio.html">Laboratório</a>
           <a href="#sobre">Sobre</a>
-          <a href="#contato">Coordenadas</a>
         </nav>
 
         <div class="status-pill" aria-live="polite" data-status-pill>
@@ -187,8 +189,8 @@
             <a class="gateway-card" href="Laboratorio/laboratorio.html">
               <span class="gateway-index">04 · experimentos</span>
               <h3>Laboratório</h3>
-              <p>Visão estelar, ressonância e constelação reunidas como instrumentos técnicos e sensoriais.</p>
-              <span class="gateway-meta">3 campos ativos</span>
+              <p>Visão estelar, ressonância, mapas e atlas celeste reunidos como instrumentos técnicos e sensoriais.</p>
+              <span class="gateway-meta">4 campos ativos</span>
             </a>
 
             <a class="gateway-card" href="GrandesNomes/grandes-nomes.html">
@@ -198,8 +200,15 @@
               <span class="gateway-meta" data-notable-profile-count="summary">20 perfis documentados</span>
             </a>
 
+            <a class="gateway-card" href="Constelacoes/constelacoes.html">
+              <span class="gateway-index">06 · céu observável</span>
+              <h3>Constelações</h3>
+              <p>Um atlas educativo para reconhecer padrões estelares, estrelas de referência e asterismos.</p>
+              <span class="gateway-meta"><span data-constellation-count>12</span> campos para explorar</span>
+            </a>
+
             <a class="gateway-card gateway-card--external" href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer" aria-label="Abrir projetos técnicos de Matheus Camargo no GitHub em uma nova aba">
-              <span class="gateway-index">06 · presença técnica</span>
+              <span class="gateway-index">07 · presença técnica</span>
               <h3>Projetos e código</h3>
               <p>Sistemas, experimentos e implementações que conectam a prática técnica às perguntas do observatório.</p>
               <span class="gateway-meta">abrir GitHub <span aria-hidden="true">↗</span></span>
@@ -273,11 +282,31 @@
         </div>
       </section>
 
+      <section class="section sky-guide-preview-section" id="constelacoes" aria-labelledby="sky-guide-preview-title">
+        <div class="container">
+          <div class="section-heading sky-guide-preview-heading">
+            <div>
+              <p class="section-kicker">05 · Guia do céu</p>
+              <h2 id="sky-guide-preview-title">Você sabe identificar constelações?</h2>
+            </div>
+            <p>
+              Comece por três padrões em destaque. Passe o mouse ou use o teclado para revelar as linhas; no atlas, explore doze constelações com busca, filtros sazonais e fichas científicas.
+            </p>
+          </div>
+
+          <div class="sky-guide-preview-grid" aria-label="Demonstração do atlas de constelações" data-constellations-preview></div>
+
+          <div class="sky-guide-preview-footer">
+            <a class="button button-secondary" href="Constelacoes/constelacoes.html">Abrir atlas celeste</a>
+          </div>
+        </div>
+      </section>
+
       <section class="section notable-preview-section" id="grandes-nomes" aria-labelledby="notable-preview-title">
         <div class="container">
           <div class="section-heading notable-preview-heading">
             <div>
-              <p class="section-kicker">05 · Grandes nomes</p>
+              <p class="section-kicker">06 · Grandes nomes</p>
               <h2 id="notable-preview-title">Ideias também têm uma história de pessoas, instrumentos e rupturas.</h2>
             </div>
             <p>
@@ -296,7 +325,7 @@
       <section class="section archive-section" id="arquivo" aria-labelledby="archive-title">
         <div class="container archive-layout">
           <div>
-            <p class="section-kicker">06 · Artigos, ensaios e registros</p>
+            <p class="section-kicker">07 · Artigos, ensaios e registros</p>
             <h2 id="archive-title">Um arquivo preparado para receber pensamento com versão, contexto e maturação.</h2>
             <p class="section-intro">
               O espaço de publicação foi desenhado para não fingir que já existem ensaios completos. Por enquanto, ele funciona como estrutura editorial: categorias, critérios e caminhos para transformar teoria em texto público.
@@ -333,7 +362,7 @@
         <div  aria-hidden="true"></div>
         <div class="container compass-shell">
           <div class="section-heading centered narrow">
-            <p class="section-kicker">07 · Bússola filosófica</p>
+            <p class="section-kicker">08 · Bússola filosófica</p>
             <h2 id="compass-title">Ferramentas de navegação para uma mente que alterna escala.</h2>
             <p>Estoicismo, niilismo libertador e absurdismo como instrumentos: não para fechar o sentido, mas para continuar pensando quando o mundo fica estreito.</p>
           </div>
@@ -375,7 +404,7 @@
         <div class="resonance-bg" aria-hidden="true"></div>
         <div class="container resonance-layout">
           <div>
-            <p class="section-kicker">08 · Experimento de ressonância</p>
+            <p class="section-kicker">09 · Experimento de ressonância</p>
             <h2 id="resonance-title">Há ideias que só aparecem quando o sistema vibra.</h2>
             <button class="button button-secondary" type="button" data-audio-toggle aria-pressed="false">Ativar áudio sutil</button>
             <p class="audio-status" aria-live="polite" data-audio-status>Áudio desligado. As cordas visuais já estão ativas.</p>
@@ -393,7 +422,7 @@
       <section class="section development-section" id="desenvolvimento" aria-labelledby="development-title">
         <div class="container">
           <div class="section-heading centered narrow">
-            <p class="section-kicker">09 · Linha de desenvolvimento</p>
+            <p class="section-kicker">10 · Linha de desenvolvimento</p>
             <h2 id="development-title">Uma arquitetura viva precisa aceitar estado intermediário.</h2>
           </div>
 
@@ -430,7 +459,7 @@
             <span></span>
           </div>
           <div>
-            <p class="section-kicker">10 · Sobre o autor do campo</p>
+            <p class="section-kicker">11 · Sobre o autor do campo</p>
             <h2 id="about-title">Matheus Camargo não é o centro do sistema. É o ponto humano de onde a observação parte.</h2>
             <p>
               Desenvolvedor full-stack e observador de padrões, eu uso a linguagem de sistemas para pensar o cosmos: tempo como variável local, luz como mensageira atrasada, universo como arquitetura assíncrona. O interesse não está em parecer definitivo, mas em participar do mistério com honestidade intelectual.
@@ -446,7 +475,7 @@
         <div class="container contact-shell">
           <div class="contact-intro-grid">
             <div class="contact-heading">
-              <p class="section-kicker">11 · Coordenadas de contato</p>
+              <p class="section-kicker">12 · Coordenadas de contato</p>
               <h2 id="contact-title">Pontos de conexão fora do observatório.</h2>
             </div>
 
@@ -654,6 +683,7 @@
           <a href="Teorias/teorias.html">Teorias</a>
           <a href="Mapa/mapa.html">Mapa</a>
           <a href="GrandesNomes/grandes-nomes.html">Grandes nomes</a>
+          <a href="Constelacoes/constelacoes.html">Constelações</a>
           <a href="Arquivo/arquivo.html">Arquivo</a>
           <a href="Laboratorio/laboratorio.html">Laboratório</a>
           <a href="mailto:Matheuscamargodealencar@gmail.com">E-mail</a>
@@ -671,6 +701,6 @@
       </div>
     </noscript>
 
-    <script type="module" src="assets/js/main.js?v=stellar-info-v1"></script>
+    <script type="module" src="assets/js/main.js?v=constellation-atlas-v2"></script>
   </body>
 </html>

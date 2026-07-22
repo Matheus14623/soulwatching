@@ -6,6 +6,7 @@ import { initPhilosophyCompass } from './philosophy.js';
 import { initResonance } from './resonance.js';
 import { initContactForm } from './contact.js';
 import { initNotableFiguresPreview } from './notable-figures-preview.js?v=great-minds-v2';
+import { initConstellationsPreview } from './constellations-preview.js?v=constellation-atlas-v2';
 
 const boot = () => {
   initNavigation();
@@ -16,6 +17,7 @@ const boot = () => {
   initResonance();
   initContactForm();
   initNotableFiguresPreview();
+  initConstellationsPreview();
 };
 
 if (document.readyState === 'loading') {

@@ -32,6 +32,7 @@ evidence_sources:
   - "Teorias/teorias.html"
   - "Mapa/mapa.html"
   - "GrandesNomes/grandes-nomes.html"
+  - "Constelacoes/constelacoes.html"
   - "Arquivo/arquivo.html"
   - "Laboratorio/laboratorio.html"
   - "assets/vendor/swiper/LICENSE"
@@ -43,7 +44,7 @@ evidence_sources:
 
 `vercel.json` declara projeto estático, executa `npm run build`, publica `dist/`, habilita URLs limpas e desabilita barra final. O build verifica o projeto, remove somente o diretório `dist/` validado, recria a saída e copia uma allowlist. A cópia recursiva é implementada com primitivas estáveis de `node:fs/promises`, sem depender de `fs.promises.cp`, para manter compatibilidade com ambientes Node anteriores à versão 16.7.
 
-Entram páginas principais, assets públicos autorizados e as pastas de rota. A rota Grandes Nomes e os três arquivos vendorizados do Swiper entram por allowlist explícita; retratos WebP entram pelo diretório público de imagens. Não entram `docs/`, `ia/`, `ai/`, `scripts/`, fontes brutas ou documentos. A base `ai/` não faz parte da allowlist e também deve ser rejeitada por defesa em profundidade.
+Entram páginas principais, assets públicos autorizados e as pastas de rota. `Constelacoes` entra como diretório público próprio; a rota Grandes Nomes e os três arquivos vendorizados do Swiper entram por allowlist explícita; retratos WebP entram pelo diretório público de imagens. Não entram `docs/`, `ia/`, `ai/`, `scripts/`, fontes brutas ou documentos. A base `ai/` não faz parte da allowlist e também deve ser rejeitada por defesa em profundidade.
 
 As páginas principais possuem título, descrição e metadados Open Graph/Twitter, mas não declaram `canonical` nem `og:url`; as imagens sociais usam caminhos relativos. Apenas o redirecionamento legado possui `canonical`. `robots.txt` permite rastreamento geral, não existe sitemap e `vercel.json` não declara CSP ou outros headers de segurança. O carregamento do Google Fonts é uma requisição de runtime a terceiro.
 

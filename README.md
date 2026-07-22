@@ -8,6 +8,7 @@ Site estático, responsivo e interativo concebido como um observatório de ideia
 - `/Teorias/teorias.html`: arquivo navegável com busca, filtros combinados, dossiês e URLs diretas.
 - `/Mapa/mapa.html`: mapa conceitual leve derivado dos mesmos dados das teorias.
 - `/GrandesNomes/grandes-nomes.html`: galeria documentada de cientistas e filósofos, com busca, filtros, dossiês e URLs diretas.
+- `/Constelacoes/constelacoes.html`: atlas educativo com 12 constelações, busca, filtros sazonais, linhas-guia, fontes e seleção acessível.
 - `/Arquivo/arquivo.html`: arquitetura editorial e estado honesto do arquivo.
 - `/Laboratorio/laboratorio.html`: índice dos experimentos existentes.
 - `/teorias.html`: redirecionamento legado para a rota atual de teorias.
@@ -18,6 +19,7 @@ As URLs de teoria usam o parâmetro `teoria`, por exemplo:
 /Teorias/teorias.html?teoria=zero-epsilon
 /Mapa/mapa.html?teoria=zero-epsilon
 /GrandesNomes/grandes-nomes.html?perfil=albert-einstein
+/Constelacoes/constelacoes.html?constelacao=orion
 ```
 
 ## Como rodar localmente
@@ -57,6 +59,10 @@ npm run build
 |   |-- grandes-nomes.html
 |   |-- grandes-nomes.css
 |   `-- grandes-nomes.js
+|-- Constelacoes/
+|   |-- constelacoes.html
+|   |-- constelacoes.css
+|   `-- constelacoes.js
 |-- Mapa/
 |   |-- mapa.html
 |   |-- mapa.css
@@ -75,7 +81,8 @@ npm run build
 |   |   |-- theory-references.js
 |   |   |-- research-tracks.js
 |   |   |-- notable-figures.js
-|   |   `-- notable-figure-references.js
+|   |   |-- notable-figure-references.js
+|   |   `-- constellations.js
 |   |-- icons/
 |   |-- images/
 |   |   `-- grandes-nomes/
@@ -89,6 +96,9 @@ npm run build
 |       |-- theory-model.js
 |       |-- notable-figures-model.js
 |       |-- notable-figures-preview.js
+|       |-- constellation-model.js
+|       |-- constellation-chart.js
+|       |-- constellations-preview.js
 |       |-- theory-lab.js
 |       |-- observer.js
 |       |-- philosophy.js
@@ -113,7 +123,7 @@ npm run build
 
 O projeto preserva a stack estática existente: HTML semântico, CSS próprio e módulos ES nativos, sem framework. A galeria usa somente o Swiper 14.0.6 fixado e servido localmente, mantendo o deploy direto na Vercel sem dependência de CDN em runtime.
 
-`assets/data/theories.js` é a fonte estruturada compartilhada pela home, pelo arquivo de teorias e pelo mapa. `assets/data/notable-figures.js` alimenta os três destaques da home e a galeria completa. Referências e linhas ainda em observação ficam em módulos próprios. Os modelos compartilhados concentram localização, busca e resolução de relações, enquanto cada rota controla apenas sua apresentação. `assets/js/smooth-scroll.js` centraliza a rolagem interna com uma curva curta, cancelamento por interação e fallback para movimento reduzido.
+`assets/data/theories.js` é a fonte estruturada compartilhada pela home, pelo arquivo de teorias e pelo mapa. `assets/data/notable-figures.js` alimenta os três destaques da home e a galeria completa. `assets/data/constellations.js` alimenta a demonstração da home e o atlas; o modelo compartilhado concentra seleção, busca e recortes sazonais, enquanto o renderizador SVG produz os campos esquemáticos. Referências e linhas ainda em observação ficam em módulos próprios. Os modelos compartilhados concentram localização, busca e resolução de relações, enquanto cada rota controla apenas sua apresentação. `assets/js/smooth-scroll.js` centraliza a rolagem interna com uma curva curta, cancelamento por interação e fallback para movimento reduzido.
 
 ## Recursos principais
 
@@ -127,8 +137,10 @@ O projeto preserva a stack estática existente: HTML semântico, CSS próprio e 
 - Galeria com 20 perfis, três áreas, retratos licenciados, fontes institucionais e conexões editoriais delimitadas.
 - Cards com arraste, coverflow leve, seleção por teclado e rotação de 30 segundos com pausa visível e respeito a movimento reduzido.
 - Três destaques de Grandes Nomes na home, gerados pelo mesmo catálogo da página completa.
+- Atlas mestre–detalhe com 12 constelações, busca, filtros sazonais, faixa de seleção, navegação por mouse, teclado ou toque, URL direta e distinção entre regiões oficiais, linhas-guia e asterismos.
+- Três demonstrações de constelações na home, geradas pelo mesmo catálogo e renderizador SVG da rota completa.
 - Arquivo editorial sem publicações ou métricas inventadas.
-- Laboratório com visão estelar, cordas de ressonância e mapa conceitual.
+- Laboratório com visão estelar, cordas de ressonância, mapa conceitual e atlas celeste.
 - Navegação por teclado, rolagem interna suave, estados ARIA, redução de movimento e layouts móveis dedicados.
 - Verificação automatizada adequada ao build da Vercel.
 

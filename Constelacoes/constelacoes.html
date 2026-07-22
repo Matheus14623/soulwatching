@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Atlas educativo para reconhecer 12 constelações no céu: explore estrelas de referência, revele linhas-guia e encontre padrões visíveis do Brasil." />
+    <meta name="author" content="Matheus Camargo de Alencar" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#03050d" />
+
+    <meta property="og:title" content="Constelações | Observatório de Ideias" />
+    <meta property="og:description" content="Um atlas celeste interativo para aprender a reconhecer 12 constelações e suas estrelas de referência." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="../assets/images/og-observatorio.jpg" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Constelações | Observatório de Ideias" />
+    <meta name="twitter:description" content="Passe o mouse, use o teclado ou toque para revelar linhas-guia no céu educativo." />
+    <meta name="twitter:image" content="../assets/images/og-observatorio.jpg" />
+
+    <title>Constelações | Observatório de Ideias</title>
+    <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/styles.css?v=smooth-flow-v1" />
+    <link rel="stylesheet" href="../assets/css/observatory-pages.css?v=observatory-scale-v1" />
+    <link rel="stylesheet" href="../assets/css/constellation-chart.css?v=constellation-atlas-v2" />
+    <link rel="stylesheet" href="./constelacoes.css?v=constellation-atlas-v2" />
+  </head>
+  <body class="observatory-page-body constellation-atlas-page-body" data-mode="normal">
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
+
+    <header class="site-header" data-header>
+      <div class="header-shell">
+        <a class="brand" href="../index.html#topo" aria-label="Voltar ao início do Observatório">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span><strong>Observatório</strong><small>arquivo de ideias em órbita</small></span>
+        </a>
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle>
+          <span class="sr-only">Abrir menu</span>
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+
+        <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
+          <a href="../index.html#topo">Início</a>
+          <a href="../Teorias/teorias.html">Teorias</a>
+          <a href="../Mapa/mapa.html">Mapa</a>
+          <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
+          <a href="#atlas" aria-current="page">Constelações</a>
+          <a href="../Arquivo/arquivo.html">Arquivo</a>
+          <a href="../Laboratorio/laboratorio.html">Laboratório</a>
+          <a href="../index.html#contato">Coordenadas</a>
+        </nav>
+
+        <div class="status-pill" aria-live="polite" data-status-pill>
+          <span class="status-dot" aria-hidden="true"></span>
+          <span data-status-text>Atlas celeste</span>
+        </div>
+        <span class="beta-badge" aria-label="Modelo em versão beta">Beta</span>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="sky-atlas" id="atlas" aria-labelledby="atlas-title" data-sky-atlas>
+        <div class="sky-atlas-nebula" aria-hidden="true"></div>
+        <div class="sky-atlas-shell">
+          <div class="sky-atlas-heading">
+            <div>
+              <p class="eyebrow">ATLAS CELESTE · 12 CAMPOS DE RECONHECIMENTO</p>
+              <h1 id="atlas-title">Você sabe identificar constelações?</h1>
+            </div>
+            <p id="atlas-instructions">
+              Observe primeiro apenas as estrelas. Passe o mouse, navegue pelo teclado ou toque em um campo para revelar a linha-guia e descobrir o padrão.
+            </p>
+          </div>
+
+          <div class="sky-atlas-toolbar" aria-label="Controles do atlas">
+            <div class="sky-atlas-readout" aria-live="polite">
+              <span>CAMPO ATIVO</span>
+              <strong data-atlas-position>01 / 12</strong>
+            </div>
+            <div class="sky-atlas-navigation">
+              <button class="sky-atlas-control" type="button" data-atlas-previous aria-label="Selecionar constelação anterior">←</button>
+              <button class="sky-atlas-control sky-atlas-control--wide" type="button" aria-pressed="false" data-atlas-guide-toggle>
+                <span data-atlas-guide-label>Fixar linha-guia</span>
+              </button>
+              <button class="sky-atlas-control" type="button" data-atlas-next aria-label="Selecionar próxima constelação">→</button>
+            </div>
+          </div>
+
+          <div class="sky-atlas-discovery">
+            <label class="sky-atlas-search">
+              <span>BUSCAR NO CÉU</span>
+              <input type="search" inputmode="search" autocomplete="off" placeholder="Constelação ou estrela" data-atlas-search />
+            </label>
+            <div class="sky-atlas-filters" aria-label="Filtrar pela melhor época de observação" data-atlas-filters></div>
+            <p class="sky-atlas-result-count" aria-live="polite" data-atlas-result-count>12 constelações disponíveis</p>
+          </div>
+
+          <div class="sky-atlas-content">
+            <div class="sky-atlas-primary">
+              <div class="sky-atlas-stage-shell">
+                <div class="sky-atlas-stage" tabindex="0" role="group" aria-label="Campo estelar selecionado" data-atlas-stage data-guide-pinned="false" data-preview="false">
+                  <div class="sky-atlas-stage-readout" aria-hidden="true">
+                    <span data-atlas-field-code>CAMPO 01 · Cru</span>
+                    <span>CAMPO ESQUEMÁTICO</span>
+                  </div>
+                  <div class="sky-atlas-stage-chart" data-atlas-chart></div>
+                  <div class="sky-atlas-stage-legend">
+                    <span><i class="sky-atlas-legend-star" aria-hidden="true"></i> ponto maior ≈ maior brilho aparente</span>
+                    <span data-atlas-guide-cue>Passe o mouse para revelar</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sky-atlas-catalog">
+                <div class="sky-atlas-catalog-heading">
+                  <p>MAPA DE PADRÕES</p>
+                  <span>Escolha uma constelação para mudar o campo.</span>
+                </div>
+                <div class="sky-atlas-index" aria-label="Escolher uma constelação" data-atlas-index></div>
+                <p class="sky-atlas-empty" data-atlas-empty hidden>Nenhuma constelação corresponde a essa busca.</p>
+                <p class="sky-atlas-scroll-cue"><span aria-hidden="true">↔</span> Deslize para comparar os campos.</p>
+              </div>
+            </div>
+            <aside class="sky-atlas-detail" aria-label="Informações da constelação em exibição" data-atlas-detail></aside>
+          </div>
+
+          <p class="sr-only" aria-live="polite" aria-atomic="true" data-atlas-announcement></p>
+        </div>
+      </section>
+
+      <section class="section sky-atlas-reading" id="como-ler" aria-labelledby="reading-title">
+        <div class="container">
+          <div class="page-section-heading">
+            <div>
+              <p class="section-kicker">COMO LER O CÉU</p>
+              <h2 id="reading-title">Linhas ajudam a reconhecer. Limites definem a constelação.</h2>
+            </div>
+            <p>
+              O desenho é uma ferramenta de orientação, não uma estrutura física no espaço. Estrelas que parecem vizinhas podem estar separadas por centenas de anos-luz.
+            </p>
+          </div>
+
+          <div class="sky-atlas-reading-grid">
+            <article>
+              <span>88 regiões</span>
+              <h3>Definição astronômica</h3>
+              <p>A União Astronômica Internacional divide toda a esfera celeste em 88 regiões com limites oficiais.</p>
+            </article>
+            <article>
+              <span>Linhas-guia</span>
+              <h3>Não existe um traço único</h3>
+              <p>A IAU não define figuras de palitos oficiais. Atlas diferentes podem ligar as estrelas de maneiras ligeiramente diferentes.</p>
+            </article>
+            <article>
+              <span>Asterismos</span>
+              <h3>Padrões dentro do padrão</h3>
+              <p>Três Marias e o Bule de Chá são formas reconhecíveis dentro de constelações, mas não são constelações oficiais independentes.</p>
+            </article>
+          </div>
+
+          <div class="sky-atlas-reading-source">
+            <p>Base científica</p>
+            <a href="https://www.iau.org/Iau/Science/What-we-do/The-Constellations.aspx" target="_blank" rel="noopener noreferrer">Constelações · IAU ↗</a>
+            <a href="https://science.nasa.gov/solar-system/skywatching/what-are-asterisms/" target="_blank" rel="noopener noreferrer">Asterismos · NASA ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container page-footer-cta">
+          <div>
+            <p class="section-kicker">CONTINUAR A OBSERVAÇÃO</p>
+            <h2>Do céu reconhecido ao céu em movimento.</h2>
+            <p>Retorne à página inicial para experimentar a Visão Estelar simulada e entender por que esses padrões mudam ao longo de milhares de anos.</p>
+          </div>
+          <div class="hero-actions">
+            <a class="button button-primary" href="../index.html#topo">Abrir Visão Estelar</a>
+            <a class="button button-secondary" href="../Laboratorio/laboratorio.html">Ver laboratório</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p><strong>Atlas de constelações</strong><br />Reconhecimento visual com contexto científico e linhas-guia acessíveis.</p>
+        <nav class="footer-links" aria-label="Navegação e links profissionais">
+          <a href="../index.html#topo">Início</a>
+          <a href="../Teorias/teorias.html">Teorias</a>
+          <a href="../Mapa/mapa.html">Mapa</a>
+          <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
+          <a href="../Arquivo/arquivo.html">Arquivo</a>
+          <a href="../Laboratorio/laboratorio.html">Laboratório</a>
+          <a href="mailto:Matheuscamargodealencar@gmail.com">E-mail</a>
+          <a href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
+      </div>
+    </footer>
+
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo">↑</button>
+
+    <noscript>
+      <div class="noscript-message">Ative JavaScript para revelar as linhas e alternar entre as constelações. A explicação científica abaixo continua disponível.</div>
+    </noscript>
+
+    <script type="module" src="./constelacoes.js?v=constellation-atlas-v2"></script>
+  </body>
+</html>

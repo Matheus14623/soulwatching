@@ -30,6 +30,8 @@ evidence_sources:
   - "Mapa/mapa.js"
   - "GrandesNomes/grandes-nomes.html"
   - "GrandesNomes/grandes-nomes.js"
+  - "Constelacoes/constelacoes.html"
+  - "Constelacoes/constelacoes.js"
   - "Arquivo/arquivo.html"
   - "Laboratorio/laboratorio.html"
   - "assets/js/main.js"
@@ -37,13 +39,16 @@ evidence_sources:
   - "assets/js/page-shell.js"
   - "assets/js/notable-figures-preview.js"
   - "assets/js/notable-figures-model.js"
+  - "assets/js/constellation-model.js"
+  - "assets/js/constellation-chart.js"
+  - "assets/js/constellations-preview.js"
 ---
 
 # Páginas e módulos do frontend
 
 ## Current Confirmed Structure
 
-`assets/js/main.js` inicializa os sistemas da home uma única vez, incluindo o recorte de Grandes Nomes e o diálogo explicativo da Visão Estelar. `assets/js/page-shell.js` inicializa somente a navegação nas páginas estáticas. Teorias, Mapa e Grandes Nomes importam navegação, modelos compartilhados e dados, mas controlam seus próprios estados e renderização.
+`assets/js/main.js` inicializa os sistemas da home uma única vez, incluindo os recortes de Grandes Nomes e Constelações e o diálogo explicativo da Visão Estelar. `assets/js/page-shell.js` inicializa somente a navegação nas páginas estáticas. Teorias, Mapa, Grandes Nomes e Constelações importam navegação, modelos compartilhados e dados, mas controlam seus próprios estados e renderização.
 
 Ordem de estilos nas páginas internas:
 
@@ -58,7 +63,7 @@ Ordem de estilos nas páginas internas:
 - Preserve um único `h1`, landmarks semânticos, título e descrição próprios por página.
 - Um módulo compartilhado deve possuir responsabilidade transversal real; estado visual específico permanece no controlador da rota.
 - Use `textContent` ou escape explícito ao renderizar dados em HTML.
-- Mantenha paths e capitalização exatos para Linux, especialmente `Teorias`, `Mapa`, `Arquivo` e `Laboratorio`.
+- Mantenha paths e capitalização exatos para Linux, especialmente `Teorias`, `Mapa`, `GrandesNomes`, `Constelacoes`, `Arquivo` e `Laboratorio`.
 
 ## Entry Points
 
@@ -67,6 +72,9 @@ Ordem de estilos nas páginas internas:
 - Domínio de teorias: `assets/js/theory-model.js`.
 - Domínio de perfis históricos: `assets/js/notable-figures-model.js`.
 - Recorte de perfis na home: `assets/js/notable-figures-preview.js`.
+- Domínio de constelações: `assets/js/constellation-model.js`.
+- Renderização SVG compartilhada do atlas e da home: `assets/js/constellation-chart.js`.
+- Recorte de constelações na home: `assets/js/constellations-preview.js`.
 - Utilitários genéricos: `assets/js/utils.js`.
 - Dados editoriais: `assets/data/`.
 

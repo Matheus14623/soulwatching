@@ -5,7 +5,7 @@ scope: "frontend"
 kind: "canonical-reference"
 status: "canonical"
 canonical_for:
-  - "ciclo de vida da Visão Estelar, galeria, ressonância, filosofia, navegação e rolagem"
+  - "ciclo de vida da Visão Estelar, atlas de constelações, galeria, ressonância, filosofia, navegação e rolagem"
 triggers:
   - "Visão Estelar"
   - "observer"
@@ -16,6 +16,7 @@ triggers:
   - "efeito cósmico"
   - "carrossel"
   - "Grandes Nomes"
+  - "Constelações"
 required_context:
   - "frontend.index"
 conditional_context:
@@ -33,6 +34,9 @@ evidence_sources:
   - "assets/js/smooth-scroll.js"
   - "assets/js/contact.js"
   - "GrandesNomes/grandes-nomes.js"
+  - "Constelacoes/constelacoes.js"
+  - "assets/js/constellation-chart.js"
+  - "assets/data/constellations.js"
   - "assets/vendor/swiper/LICENSE"
   - "index.html"
 ---
@@ -65,6 +69,16 @@ Contratos:
 
 A rotação usa intervalo de 30 segundos e pode ser pausada manualmente. Ela também para durante foco, ponteiro, arraste, aba oculta ou galeria fora da viewport. Em ponteiros de alta precisão, o arraste usa limiar menor, resposta levemente ampliada e encaixe mais rápido; o arraste nativo dos retratos fica desativado para não disputar o gesto com o carrossel. A configuração tátil permanece independente. Em movimento reduzido, autoplay e coverflow são desativados, a velocidade cai para zero e o conteúdo permanece navegável. Se a biblioteca não carregar, o fallback estático preserva cards, detalhe e botões.
 
+## Atlas de Constelações
+
+`Constelacoes/constelacoes.js` organiza 12 entradas de `assets/data/constellations.js` em uma superfície mestre–detalhe e usa o mesmo renderizador SVG da prévia da home. Uma constelação ocupa o campo principal; a faixa horizontal mantém o catálogo navegável sem repetir 12 painéis completos. Busca textual e filtros sazonais produzem o conjunto visível, preservam a seleção quando possível e escolhem uma opção válida quando ela deixa o recorte. No desktop, campo e catálogo formam a coluna principal à esquerda, enquanto o detalhe ocupa uma coluna independente à direita; assim, diferenças no tamanho do texto não deslocam o catálogo. Em telas estreitas, a ordem natural é campo, catálogo e detalhe.
+
+As estrelas permanecem visíveis sem depender das linhas. Hover ou foco sobre uma opção pré-visualizam temporariamente sua guia no campo principal. Seleções por mouse ou teclado — inclusive clique, controles anterior/próximo, opção relacionada e foco móvel da faixa — mudam a constelação ativa e atualizam `?constelacao=<slug>` sem fixar implicitamente as linhas; ao terminar a prévia, a visibilidade volta ao estado explícito da guia. Toque ou caneta fixam a guia porque esses dispositivos não oferecem hover persistente. O botão da guia é o controle explícito para fixar ou liberar as linhas da seleção atual. A faixa usa foco móvel: setas esquerda e direita, `Home` e `End` deslocam a opção ativa sem transformar todas as entradas em uma sequência redundante de tabulação, e a entrada selecionada é mantida visível.
+
+O atlas é educativo e não calcula local, data, hora ou projeção do céu em tempo real. Cada campo mantém uma forma relativa simplificada, mas a posição entre campos é composição de interface. As linhas são guias convencionais: a IAU define 88 regiões e seus limites, não uma figura de palitos oficial. Asterismos como Três Marias e Bule de Chá permanecem identificados como padrões internos, não como constelações independentes.
+
+Não existe loop contínuo, canvas ou biblioteca para o atlas. A interação substitui o campo principal, atualiza detalhes textuais e alterna estados de SVG; não há simulação física, rastreamento do ponteiro ou animação temporal do céu.
+
 ## Navegação e rolagem
 
 `navigation.js` controla menu, seção ativa, cabeçalho e retorno ao topo. `smooth-scroll.js` centraliza âncoras, compensa o cabeçalho, permite cancelamento por interação e cai para rolagem imediata com movimento reduzido.
@@ -75,7 +89,7 @@ A rotação usa intervalo de 30 segundos e pode ser pausada manualmente. Ela tam
 
 ## Validation
 
-Teste inicialização única, alternâncias repetidas, visibilidade da aba, redução de movimento, teclado, áudio desligado e console sem erros.
+Teste inicialização única, alternâncias repetidas, visibilidade da aba, redução de movimento, teclado, toque, seleção direta por slug, áudio desligado e console sem erros.
 
 ## To Verify
 

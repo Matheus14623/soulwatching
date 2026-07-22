@@ -1,0 +1,211 @@
+.sky-guide-preview-section {
+  position: relative;
+  overflow: clip;
+  background:
+    radial-gradient(circle at 16% 32%, rgba(114, 236, 255, 0.09), transparent 26rem),
+    radial-gradient(circle at 82% 68%, rgba(114, 87, 255, 0.12), transparent 30rem),
+    #050814;
+}
+
+.sky-guide-preview-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.44;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.78) 0 1px, transparent 1.35px),
+    radial-gradient(circle, rgba(151, 200, 255, 0.58) 0 0.7px, transparent 1.1px);
+  background-position: 9px 17px, 43px 68px;
+  background-size: 104px 104px, 157px 157px;
+  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+}
+
+.sky-guide-preview-heading,
+.sky-guide-preview-grid,
+.sky-guide-preview-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.sky-guide-preview-heading {
+  align-items: end;
+}
+
+.sky-guide-preview-heading h2 {
+  max-width: 12ch;
+}
+
+.sky-guide-preview-heading > p {
+  max-width: 56ch;
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.sky-guide-preview-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.28fr) repeat(2, minmax(0, 0.86fr));
+  gap: clamp(0.75rem, 2vw, 1rem);
+}
+
+.sky-guide-preview-card {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  min-height: 31rem;
+  overflow: clip;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(circle at 50% 24%, rgba(64, 94, 168, 0.18), transparent 17rem),
+    linear-gradient(180deg, rgba(7, 12, 27, 0.72), rgba(5, 7, 18, 0.96));
+  box-shadow: 0 24px 68px rgba(0, 0, 0, 0.28);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.sky-guide-preview-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.035), transparent 38%);
+}
+
+.sky-guide-preview-card:first-child {
+  border-color: rgba(114, 236, 255, 0.2);
+  background:
+    radial-gradient(circle at 50% 24%, rgba(66, 122, 177, 0.24), transparent 18rem),
+    linear-gradient(180deg, rgba(7, 13, 29, 0.78), rgba(5, 7, 18, 0.97));
+}
+
+.sky-guide-preview-card:hover,
+.sky-guide-preview-card:focus-visible {
+  transform: translateY(-6px);
+  border-color: rgba(114, 236, 255, 0.34);
+  box-shadow: 0 30px 78px rgba(0, 0, 0, 0.38), 0 0 44px rgba(114, 87, 255, 0.1);
+}
+
+.sky-guide-preview-chart {
+  position: relative;
+  display: block;
+  min-height: 18rem;
+  padding: 1.35rem;
+}
+
+.sky-guide-preview-chart::before {
+  content: "CAMPO ESQUEMÁTICO";
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: rgba(151, 167, 191, 0.62);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+}
+
+.sky-guide-preview-card:hover .constellation-chart-lines,
+.sky-guide-preview-card:focus-visible .constellation-chart-lines {
+  opacity: 1;
+}
+
+.sky-guide-preview-card:hover .constellation-chart-lines line,
+.sky-guide-preview-card:focus-visible .constellation-chart-lines line {
+  stroke-dashoffset: 0;
+}
+
+.sky-guide-preview-copy {
+  align-self: end;
+  display: grid;
+  gap: 0.64rem;
+  padding: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(5, 8, 18, 0.62);
+}
+
+.sky-guide-preview-meta,
+.sky-guide-preview-action {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.sky-guide-preview-name {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+}
+
+.sky-guide-preview-cue {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  line-height: 1.62;
+}
+
+.sky-guide-preview-action {
+  margin-top: 0.35rem;
+  color: var(--text);
+}
+
+.sky-guide-preview-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+@media (max-width: 960px) {
+  .sky-guide-preview-grid {
+    grid-auto-columns: min(82vw, 24rem);
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    margin-inline: calc((100vw - min(100vw - 2rem, var(--container))) / -2);
+    padding-inline: max(1rem, calc((100vw - var(--container)) / 2));
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(114, 236, 255, 0.42) transparent;
+  }
+
+  .sky-guide-preview-card {
+    min-height: 29rem;
+    scroll-snap-align: center;
+  }
+}
+
+@media (hover: none) {
+  .sky-guide-preview-card .constellation-chart-lines {
+    opacity: 0.74;
+  }
+
+  .sky-guide-preview-card .constellation-chart-lines line {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (max-width: 460px) {
+  .sky-guide-preview-grid {
+    grid-auto-columns: calc(100vw - 2rem);
+    margin-inline: -0.5rem;
+    padding-inline: 0.5rem;
+  }
+
+  .sky-guide-preview-card {
+    min-height: 27rem;
+  }
+
+  .sky-guide-preview-chart {
+    min-height: 16.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sky-guide-preview-card {
+    transition: none;
+  }
+
+  .sky-guide-preview-card:hover,
+  .sky-guide-preview-card:focus-visible {
+    transform: none;
+  }
+}

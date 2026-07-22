@@ -1,0 +1,80 @@
+.constellation-chart {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.constellation-chart-lines {
+  opacity: 0;
+  stroke: rgba(129, 113, 255, 0.92);
+  stroke-width: 0.72;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 4px rgba(114, 87, 255, 0.72));
+  transition: opacity 220ms ease;
+}
+
+.constellation-chart-lines--glow {
+  stroke: rgba(112, 88, 255, 0.5);
+  stroke-width: 2.5;
+  filter: blur(2px) drop-shadow(0 0 7px rgba(114, 87, 255, 0.66));
+}
+
+.constellation-chart-lines line {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  transition: stroke-dashoffset 560ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.constellation-chart-star-halo {
+  fill: rgba(255, 255, 255, 0.08);
+}
+
+.constellation-chart-star-core {
+  fill: #f7fbff;
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-width: 0.25;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 2px rgba(220, 241, 255, 0.9)) drop-shadow(0 0 5px rgba(114, 236, 255, 0.42));
+}
+
+.constellation-chart-star--warm .constellation-chart-star-core {
+  fill: #ffd7aa;
+  filter: drop-shadow(0 0 2px rgba(255, 226, 190, 0.92)) drop-shadow(0 0 6px rgba(255, 155, 91, 0.44));
+}
+
+.constellation-chart-star--cool .constellation-chart-star-core {
+  fill: #d9eaff;
+}
+
+.constellation-chart-star--landmark .constellation-chart-star-halo {
+  fill: rgba(114, 236, 255, 0.1);
+  stroke: rgba(114, 236, 255, 0.34);
+  stroke-width: 0.35;
+  stroke-dasharray: 1.4 1.4;
+}
+
+.constellation-chart-star--context {
+  opacity: 0.7;
+}
+
+.constellation-chart-star-label {
+  fill: rgba(232, 241, 252, 0.94);
+  font-family: var(--font-sans);
+  font-size: 3.3px;
+  font-weight: 500;
+  paint-order: stroke;
+  stroke: rgba(5, 7, 18, 0.92);
+  stroke-width: 1.2px;
+  stroke-linejoin: round;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .constellation-chart-lines,
+  .constellation-chart-lines line,
+  .constellation-chart-star-label {
+    transition: none;
+  }
+}

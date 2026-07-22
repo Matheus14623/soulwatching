@@ -35,6 +35,7 @@ const publicPaths = [
   'Teorias/teorias.css',
   'Teorias/teorias.js',
   'Mapa',
+  'Constelacoes',
   'GrandesNomes/grandes-nomes.html',
   'GrandesNomes/grandes-nomes.css',
   'GrandesNomes/grandes-nomes.js',

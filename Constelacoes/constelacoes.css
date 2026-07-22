@@ -1,0 +1,949 @@
+.constellation-atlas-page-body {
+  background: #03050d;
+}
+
+.sky-atlas {
+  position: relative;
+  min-height: 100svh;
+  padding: calc(var(--header-height) + clamp(1.5rem, 3vw, 2.6rem)) 0 clamp(2.5rem, 6vw, 5rem);
+  overflow: clip;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at 10% 18%, rgba(57, 131, 176, 0.17), transparent 31rem),
+    radial-gradient(circle at 82% 55%, rgba(100, 65, 179, 0.16), transparent 38rem),
+    linear-gradient(180deg, #02040b 0%, #050816 58%, #03050d 100%);
+}
+
+.sky-atlas::before,
+.sky-atlas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sky-atlas::before {
+  opacity: 0.68;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.88) 0 0.8px, transparent 1.2px),
+    radial-gradient(circle, rgba(180, 215, 255, 0.68) 0 1px, transparent 1.45px),
+    radial-gradient(circle, rgba(255, 220, 178, 0.58) 0 0.75px, transparent 1.15px);
+  background-position: 17px 31px, 82px 103px, 133px 44px;
+  background-size: 113px 113px, 179px 179px, 241px 241px;
+}
+
+.sky-atlas::after {
+  background:
+    linear-gradient(90deg, rgba(3, 5, 13, 0.62), transparent 13%, transparent 87%, rgba(3, 5, 13, 0.62)),
+    linear-gradient(180deg, rgba(3, 5, 13, 0.18), transparent 20%, rgba(3, 5, 13, 0.55));
+}
+
+.sky-atlas-nebula {
+  position: absolute;
+  top: 9%;
+  left: 43%;
+  width: min(82rem, 94vw);
+  height: 62rem;
+  pointer-events: none;
+  opacity: 0.28;
+  filter: blur(24px);
+  transform: translateX(-50%) rotate(-12deg);
+  background:
+    radial-gradient(ellipse at 34% 46%, rgba(95, 148, 183, 0.42), transparent 22%),
+    radial-gradient(ellipse at 56% 52%, rgba(139, 91, 158, 0.3), transparent 31%),
+    radial-gradient(ellipse at 70% 43%, rgba(63, 117, 139, 0.32), transparent 27%);
+}
+
+.sky-atlas-shell {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2rem, 1510px);
+  margin-inline: auto;
+}
+
+.sky-atlas-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.48fr);
+  gap: clamp(1.5rem, 5vw, 5rem);
+  align-items: end;
+}
+
+.sky-atlas-heading h1 {
+  max-width: 12ch;
+  margin: 0.65rem 0 0;
+  font-size: clamp(3.2rem, 7.4vw, 7.4rem);
+  line-height: 0.9;
+}
+
+.sky-atlas-heading > p {
+  max-width: 52ch;
+  margin: 0 0 0.35rem;
+  color: var(--text-soft);
+  line-height: 1.72;
+}
+
+.sky-atlas-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  margin-top: clamp(1.5rem, 3vw, 2.4rem);
+  padding: 0.68rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(5, 9, 21, 0.76);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(16px);
+}
+
+.sky-atlas-readout,
+.sky-atlas-navigation {
+  display: flex;
+  align-items: center;
+}
+
+.sky-atlas-readout {
+  gap: 0.7rem;
+  min-height: 2.5rem;
+  padding-inline: 0.7rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sky-atlas-readout span {
+  color: var(--muted);
+  font-size: 0.61rem;
+}
+
+.sky-atlas-readout strong {
+  color: var(--cyan);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.sky-atlas-navigation {
+  gap: 0.45rem;
+}
+
+.sky-atlas-control {
+  display: inline-flex;
+  min-width: 2.65rem;
+  min-height: 2.65rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.58rem 0.82rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.sky-atlas-control--wide {
+  min-width: 11.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sky-atlas-control:hover,
+.sky-atlas-control:focus-visible,
+.sky-atlas-control[aria-pressed="true"] {
+  border-color: rgba(114, 236, 255, 0.4);
+  background: rgba(114, 236, 255, 0.1);
+  color: var(--text);
+}
+
+.sky-atlas-control:hover {
+  transform: translateY(-1px);
+}
+
+.sky-atlas-control:disabled {
+  opacity: 0.36;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.sky-atlas-discovery {
+  display: grid;
+  grid-template-columns: minmax(15rem, 21rem) minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: end;
+  margin-block: 0.8rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: var(--radius-lg);
+  background: rgba(4, 8, 19, 0.62);
+}
+
+.sky-atlas-search {
+  display: grid;
+  gap: 0.38rem;
+}
+
+.sky-atlas-search > span,
+.sky-atlas-result-count,
+.sky-atlas-filter-button,
+.sky-atlas-catalog-heading p,
+.sky-atlas-catalog-heading span,
+.sky-atlas-scroll-cue {
+  font-family: var(--font-mono);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.sky-atlas-search > span {
+  color: var(--cyan);
+  font-size: 0.58rem;
+}
+
+.sky-atlas-search input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.8rem;
+  outline: 0;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text);
+}
+
+.sky-atlas-search input::placeholder {
+  color: rgba(169, 181, 200, 0.58);
+}
+
+.sky-atlas-search input:focus {
+  border-color: rgba(114, 236, 255, 0.42);
+  box-shadow: 0 0 0 3px rgba(114, 236, 255, 0.08);
+}
+
+.sky-atlas-filters {
+  display: flex;
+  gap: 0.35rem;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.sky-atlas-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.sky-atlas-filter-button {
+  flex: 0 0 auto;
+  min-height: 2.75rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.59rem;
+  cursor: pointer;
+}
+
+.sky-atlas-filter-button:hover,
+.sky-atlas-filter-button:focus-visible,
+.sky-atlas-filter-button[aria-pressed="true"] {
+  border-color: rgba(114, 236, 255, 0.26);
+  background: rgba(114, 236, 255, 0.075);
+  color: var(--text);
+}
+
+.sky-atlas-result-count {
+  min-width: 9rem;
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.58rem;
+  text-align: right;
+}
+
+.sky-atlas-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 24rem);
+  gap: clamp(0.8rem, 1.6vw, 1.35rem);
+  align-items: start;
+  min-width: 0;
+}
+
+.sky-atlas-primary {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  min-width: 0;
+}
+
+.sky-atlas-stage-shell {
+  min-width: 0;
+}
+
+.sky-atlas-stage {
+  position: relative;
+  min-height: clamp(38rem, 78vh, 52rem);
+  overflow: hidden;
+  border: 1px solid rgba(137, 173, 255, 0.16);
+  border-radius: var(--radius-xl);
+  outline: 0;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(71, 82, 154, 0.19), transparent 38%),
+    radial-gradient(ellipse at 24% 76%, rgba(39, 104, 133, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(6, 11, 27, 0.9), rgba(2, 5, 14, 0.98));
+  box-shadow: inset 0 0 110px rgba(0, 0, 0, 0.5), 0 30px 90px rgba(0, 0, 0, 0.34);
+  cursor: crosshair;
+  isolation: isolate;
+}
+
+.sky-atlas-stage::before,
+.sky-atlas-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sky-atlas-stage::before {
+  z-index: -1;
+  opacity: 0.36;
+  background:
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 8.8rem, rgba(129, 151, 199, 0.1) 8.85rem 8.92rem),
+    linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(129, 151, 199, 0.1) 50%, transparent calc(50% + 0.5px)),
+    linear-gradient(transparent calc(50% - 0.5px), rgba(129, 151, 199, 0.08) 50%, transparent calc(50% + 0.5px));
+}
+
+.sky-atlas-stage::after {
+  z-index: 2;
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 48%, transparent 42%, rgba(1, 3, 10, 0.46) 100%);
+}
+
+.sky-atlas-stage:focus-visible {
+  border-color: rgba(114, 236, 255, 0.52);
+  box-shadow: inset 0 0 0 2px rgba(114, 236, 255, 0.25), inset 0 0 110px rgba(0, 0, 0, 0.5), 0 30px 90px rgba(0, 0, 0, 0.34);
+}
+
+.sky-atlas-stage-readout,
+.sky-atlas-stage-legend {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  color: rgba(168, 184, 207, 0.7);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sky-atlas-stage-readout {
+  top: 0;
+  left: 0;
+  padding: 1rem 1.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+  background: linear-gradient(180deg, rgba(3, 7, 18, 0.82), transparent);
+}
+
+.sky-atlas-stage-readout span:first-child {
+  color: var(--cyan);
+}
+
+.sky-atlas-stage-chart {
+  position: absolute;
+  z-index: 1;
+  inset: 3.25rem 1.4rem 3.4rem;
+  display: grid;
+  place-items: center;
+}
+
+.sky-atlas-stage-chart .constellation-chart {
+  width: min(100%, 54rem);
+  height: 100%;
+}
+
+.sky-atlas-stage-legend {
+  right: 0;
+  bottom: 0;
+  align-items: center;
+  padding: 0.9rem 1.1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.055);
+  background: linear-gradient(0deg, rgba(3, 7, 18, 0.9), transparent);
+}
+
+.sky-atlas-stage-legend span {
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.sky-atlas-stage-legend span:last-child {
+  color: rgba(223, 231, 244, 0.84);
+}
+
+.sky-atlas-legend-star {
+  width: 0.46rem;
+  height: 0.46rem;
+  border-radius: 50%;
+  background: #f3f8ff;
+  box-shadow: 0 0 0.6rem rgba(114, 236, 255, 0.76);
+}
+
+.sky-atlas-stage:hover .constellation-chart-lines,
+.sky-atlas-stage:focus-visible .constellation-chart-lines,
+.sky-atlas-stage[data-preview="true"] .constellation-chart-lines,
+.sky-atlas-stage[data-guide-pinned="true"] .constellation-chart-lines,
+.sky-atlas-stage:hover .constellation-chart-star-label,
+.sky-atlas-stage:focus-visible .constellation-chart-star-label,
+.sky-atlas-stage[data-preview="true"] .constellation-chart-star-label,
+.sky-atlas-stage[data-guide-pinned="true"] .constellation-chart-star-label {
+  opacity: 1;
+}
+
+.sky-atlas-stage:hover .constellation-chart-lines line,
+.sky-atlas-stage:focus-visible .constellation-chart-lines line,
+.sky-atlas-stage[data-preview="true"] .constellation-chart-lines line,
+.sky-atlas-stage[data-guide-pinned="true"] .constellation-chart-lines line {
+  stroke-dashoffset: 0;
+}
+
+.sky-atlas-detail {
+  position: sticky;
+  top: calc(var(--header-height) + 1rem);
+  align-self: start;
+  display: grid;
+  align-content: start;
+  min-width: 0;
+  min-height: clamp(38rem, 78vh, 52rem);
+  padding: clamp(1rem, 2vw, 1.45rem);
+  border: 1px solid rgba(114, 236, 255, 0.18);
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(114, 236, 255, 0.12), transparent 15rem),
+    radial-gradient(circle at 0% 100%, rgba(114, 87, 255, 0.09), transparent 17rem),
+    rgba(6, 11, 24, 0.88);
+  box-shadow: 0 24px 76px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(18px);
+}
+
+.sky-atlas-detail-heading {
+  padding-bottom: 0.95rem;
+}
+
+.sky-atlas-detail-code,
+.sky-atlas-detail-season,
+.sky-atlas-detail-sources > span,
+.sky-atlas-detail-badge {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.sky-atlas-detail-code {
+  color: var(--cyan);
+}
+
+.sky-atlas-detail-heading h2 {
+  margin: 0.55rem 0;
+  font-size: clamp(2.4rem, 4vw, 3.9rem);
+  line-height: 0.94;
+}
+
+.sky-atlas-detail-season {
+  margin: 0;
+  color: var(--gold);
+}
+
+.sky-atlas-detail-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+  margin-top: 0.9rem;
+}
+
+.sky-atlas-detail-badge {
+  padding: 0.38rem 0.52rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  color: var(--text-soft);
+  background: rgba(255, 255, 255, 0.035);
+  font-size: 0.56rem;
+}
+
+.sky-atlas-detail-section {
+  padding-block: 0.82rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sky-atlas-detail-section h3 {
+  margin: 0 0 0.4rem;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sky-atlas-detail-section p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.89rem;
+  line-height: 1.62;
+}
+
+.sky-atlas-detail-section .sky-atlas-key-stars {
+  color: rgba(232, 240, 250, 0.92);
+  font-size: 0.84rem;
+}
+
+.sky-atlas-detail-section .sky-atlas-guide-note {
+  margin-top: 0.58rem;
+  color: var(--muted);
+}
+
+.sky-atlas-related {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  padding-top: 0.75rem;
+}
+
+.sky-atlas-related button {
+  min-height: 2.25rem;
+  padding: 0.42rem 0.62rem;
+  border: 1px solid rgba(114, 236, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(114, 236, 255, 0.055);
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  cursor: pointer;
+}
+
+.sky-atlas-related button:hover,
+.sky-atlas-related button:focus-visible {
+  border-color: rgba(114, 236, 255, 0.42);
+  color: var(--text);
+}
+
+.sky-atlas-detail-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sky-atlas-detail-sources > span {
+  width: 100%;
+  color: var(--muted);
+}
+
+.sky-atlas-source-link {
+  padding: 0.4rem 0.58rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: 0.59rem;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.sky-atlas-source-link:hover,
+.sky-atlas-source-link:focus-visible {
+  border-color: rgba(114, 236, 255, 0.34);
+  color: var(--text);
+}
+
+.sky-atlas-catalog {
+  min-width: 0;
+  margin-top: 0;
+  padding: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: var(--radius-xl);
+  background: rgba(3, 7, 17, 0.68);
+  box-shadow: 0 20px 64px rgba(0, 0, 0, 0.22);
+}
+
+.sky-atlas-catalog-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 0 0.2rem 0.75rem;
+}
+
+.sky-atlas-catalog-heading p,
+.sky-atlas-catalog-heading span {
+  margin: 0;
+  font-size: 0.59rem;
+}
+
+.sky-atlas-catalog-heading p {
+  color: var(--cyan);
+}
+
+.sky-atlas-catalog-heading span {
+  color: var(--muted);
+}
+
+.sky-atlas-index {
+  display: grid;
+  grid-auto-columns: minmax(10.5rem, 12rem);
+  grid-auto-flow: column;
+  gap: 0.55rem;
+  min-width: 0;
+  padding: 0.15rem 0.15rem 0.65rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline proximity;
+  scrollbar-color: rgba(114, 236, 255, 0.34) transparent;
+  scrollbar-width: thin;
+}
+
+.sky-atlas-index-button {
+  position: relative;
+  display: grid;
+  grid-template-rows: 6.8rem auto;
+  min-width: 0;
+  min-height: 11rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-lg);
+  outline: 0;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(72, 92, 157, 0.14), transparent 65%),
+    rgba(7, 11, 25, 0.72);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.sky-atlas-index-button:hover,
+.sky-atlas-index-button:focus-visible,
+.sky-atlas-index-button[aria-pressed="true"] {
+  border-color: rgba(114, 236, 255, 0.34);
+  background:
+    radial-gradient(circle at 50% 30%, rgba(83, 107, 190, 0.24), transparent 68%),
+    rgba(8, 13, 29, 0.94);
+  box-shadow: inset 0 0 32px rgba(114, 87, 255, 0.08), 0 10px 32px rgba(0, 0, 0, 0.22);
+}
+
+.sky-atlas-index-button:hover {
+  transform: translateY(-2px);
+}
+
+.sky-atlas-index-button:focus-visible {
+  box-shadow: inset 0 0 0 2px rgba(114, 236, 255, 0.32), 0 10px 32px rgba(0, 0, 0, 0.22);
+}
+
+.sky-atlas-index-button[hidden] {
+  display: none;
+}
+
+.sky-atlas-index-chart {
+  display: block;
+  min-width: 0;
+  padding: 0.7rem 0.75rem 0.25rem;
+}
+
+.sky-atlas-index-chart .constellation-chart {
+  height: 100%;
+}
+
+.sky-atlas-index-copy {
+  display: grid;
+  gap: 0.18rem;
+  align-content: end;
+  padding: 0.7rem 0.8rem 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sky-atlas-index-number,
+.sky-atlas-index-meta {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sky-atlas-index-name {
+  font-family: var(--font-serif);
+  font-size: 1.18rem;
+  line-height: 1;
+}
+
+.sky-atlas-index-meta {
+  color: var(--cyan);
+}
+
+.sky-atlas-index-button:hover .constellation-chart-lines,
+.sky-atlas-index-button:focus-visible .constellation-chart-lines {
+  opacity: 0.78;
+}
+
+.sky-atlas-index-button:hover .constellation-chart-lines line,
+.sky-atlas-index-button:focus-visible .constellation-chart-lines line {
+  stroke-dashoffset: 0;
+}
+
+.sky-atlas-empty {
+  margin: 0;
+  padding: 2.2rem 1rem;
+  color: var(--text-soft);
+  text-align: center;
+}
+
+.sky-atlas-scroll-cue {
+  margin: 0.55rem 0 0;
+  color: var(--muted);
+  font-size: 0.56rem;
+  text-align: right;
+}
+
+.sky-atlas-reading {
+  background:
+    radial-gradient(circle at 84% 18%, rgba(114, 87, 255, 0.08), transparent 25rem),
+    var(--bg-2);
+}
+
+.sky-atlas-reading-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.sky-atlas-reading-grid article {
+  padding: clamp(1.1rem, 2vw, 1.4rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.sky-atlas-reading-grid span {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sky-atlas-reading-grid h3 {
+  margin: 0.8rem 0 0.55rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.03;
+}
+
+.sky-atlas-reading-grid p {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.sky-atlas-reading-source {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  background: rgba(5, 9, 20, 0.55);
+}
+
+.sky-atlas-reading-source p {
+  margin: 0 auto 0 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sky-atlas-reading-source a {
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+}
+
+.sky-atlas-reading-source a:hover,
+.sky-atlas-reading-source a:focus-visible {
+  color: var(--cyan);
+}
+
+@media (max-width: 1120px) {
+  .sky-atlas-content {
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 21rem);
+  }
+
+  .sky-atlas-discovery {
+    grid-template-columns: minmax(14rem, 19rem) minmax(0, 1fr);
+  }
+
+  .sky-atlas-result-count {
+    grid-column: 1 / -1;
+    min-width: 0;
+    margin: 0;
+    text-align: left;
+  }
+}
+
+@media (max-width: 900px) {
+  .sky-atlas-heading,
+  .sky-atlas-content {
+    grid-template-columns: 1fr;
+  }
+
+  .sky-atlas-heading > p {
+    margin: 0;
+  }
+
+  .sky-atlas-stage {
+    min-height: min(65rem, 68vh);
+  }
+
+  .sky-atlas-detail {
+    position: static;
+    min-height: 0;
+    backdrop-filter: none;
+  }
+
+  .sky-atlas-index {
+    grid-auto-columns: minmax(10rem, 11.5rem);
+  }
+
+  .sky-atlas-reading-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sky-atlas-nebula {
+    opacity: 0.18;
+    filter: blur(15px);
+  }
+}
+
+@media (max-width: 680px) {
+  .sky-atlas-discovery {
+    grid-template-columns: 1fr;
+  }
+
+  .sky-atlas-result-count {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .sky-atlas {
+    padding-top: calc(var(--header-height) + 1.3rem);
+  }
+
+  .sky-atlas-heading h1 {
+    font-size: clamp(2.9rem, 14.5vw, 4.4rem);
+  }
+
+  .sky-atlas-toolbar {
+    display: grid;
+    border-radius: var(--radius-lg);
+  }
+
+  .sky-atlas-readout {
+    justify-content: center;
+  }
+
+  .sky-atlas-navigation {
+    width: 100%;
+  }
+
+  .sky-atlas-control {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+  }
+
+  .sky-atlas-control--wide {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sky-atlas-discovery {
+    padding: 0.75rem;
+  }
+
+  .sky-atlas-stage {
+    min-height: 29rem;
+  }
+
+  .sky-atlas-stage-chart {
+    inset: 3rem 0.3rem 4.2rem;
+  }
+
+  .sky-atlas-stage-readout,
+  .sky-atlas-stage-legend {
+    font-size: 0.52rem;
+  }
+
+  .sky-atlas-stage-readout {
+    padding: 0.9rem;
+  }
+
+  .sky-atlas-stage-legend {
+    display: grid;
+    gap: 0.3rem;
+    justify-content: start;
+    padding: 0.75rem 0.9rem;
+  }
+
+  .sky-atlas-index {
+    grid-auto-columns: minmax(9.25rem, 10rem);
+  }
+
+  .sky-atlas-index-button {
+    grid-template-rows: 5.9rem auto;
+    min-height: 10rem;
+  }
+
+  .sky-atlas-catalog-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .sky-atlas-scroll-cue {
+    text-align: left;
+  }
+
+  .sky-atlas-reading-source {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 380px) {
+  .sky-atlas-stage {
+    min-height: 27rem;
+  }
+
+  .sky-atlas-readout span {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sky-atlas-control,
+  .sky-atlas-index-button,
+  .sky-atlas-source-link {
+    transition: none;
+  }
+
+  .sky-atlas-control:hover,
+  .sky-atlas-index-button:hover {
+    transform: none;
+  }
+}

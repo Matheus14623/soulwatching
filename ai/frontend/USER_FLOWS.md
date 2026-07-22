@@ -30,6 +30,8 @@ evidence_sources:
   - "assets/js/notable-figures-model.js"
   - "assets/js/notable-figures-preview.js"
   - "GrandesNomes/grandes-nomes.js"
+  - "Constelacoes/constelacoes.js"
+  - "assets/js/constellations-preview.js"
 ---
 
 # Fluxos do usuário e estado
@@ -76,6 +78,23 @@ NOTABLE_FIGURES
 
 Arraste, botões anterior/próximo, clique em card, setas, Home e End compartilham o mesmo estado ativo. O filtro preserva o perfil quando ele continua visível e escolhe a primeira opção válida quando ele deixa de pertencer ao recorte. A pausa manual da rotação permanece durante reconstruções de busca ou filtro na mesma sessão da página.
 
+## Identificação de uma constelação
+
+```text
+CONSTELLATIONS
+  -> prévia da home, URL direta ou atlas completo
+  -> busca e estação definem o conjunto visível
+  -> uma entrada alimenta campo principal, detalhe e faixa de seleção
+  -> hover e foco mostram temporariamente sua linha-guia
+  -> mouse, teclado ou controles adjacentes mudam a seleção sem fixar implicitamente a guia
+  -> toque ou caneta selecionam e fixam a guia por não oferecerem hover persistente
+  -> campo, detalhe, opção ativa e estados ARIA usam a mesma entrada
+  -> seleção explícita atualiza ?constelacao=<slug>
+  -> botão da guia fixa ou libera explicitamente as linhas da seleção atual
+```
+
+No desktop, afastar o ponteiro ou o foco encerra a prévia e restaura a constelação selecionada com a visibilidade definida pelo estado explícito da guia. Em telas compactas, o conteúdo segue a ordem campo, catálogo e detalhe; a faixa de seletores usa rolagem horizontal, e tocar fixa a seleção e a mantém visível. No desktop, campo e catálogo formam a coluna esquerda e não mudam de posição quando o detalhe independente à direita cresce. A navegação da faixa usa foco móvel para oferecer um único ponto de tabulação, e as setas percorrem apenas o recorte resultante da busca e da estação. Se um filtro remover a seleção atual, a primeira entrada visível torna-se ativa e a URL permanece coerente. O SVG é decorativo, enquanto botões, texto, legenda e fontes fornecem o conteúdo equivalente.
+
 ## Contato
 
 ```text
@@ -88,7 +107,7 @@ formulário local
 
 ## Validation
 
-Teste URLs diretas válidas e inválidas de teoria e perfil, mudança de filtro que remove a seleção, navegação Teorias ↔ Mapa, seleção Home → Grandes Nomes, foco após re-render, múltiplas alternâncias da Visão Estelar e formulário com campos inválidos.
+Teste URLs diretas válidas e inválidas de teoria, perfil e constelação, mudança de filtro que remove a seleção, busca sem resultado, navegação Teorias ↔ Mapa, seleções Home → Grandes Nomes e Home → Constelações, foco após re-render, toque, setas, `Home` e `End` no atlas, múltiplas alternâncias da Visão Estelar e formulário com campos inválidos.
 
 ## To Verify
 

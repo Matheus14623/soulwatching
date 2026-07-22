@@ -36,7 +36,7 @@ Leia este escopo para entender a aplicação antes de escolher uma camada espec�
 ## Pontos de entrada confirmados
 
 - `index.html` com `assets/js/main.js` para a home interativa.
-- HTML e controlador próprios em `Teorias/` e `Mapa/`.
+- HTML e controlador próprios em `Teorias/`, `Mapa/`, `GrandesNomes/` e `Constelacoes/`.
 - HTML estático com `assets/js/page-shell.js` em `Arquivo/` e `Laboratorio/`.
 - `scripts/serve.mjs`, `scripts/verify.mjs` e `scripts/build.mjs` para o ciclo local.
 

@@ -819,6 +819,9 @@
         "Teorias/teorias.css",
         "Mapa/mapa.css",
         "GrandesNomes/grandes-nomes.css",
+        "Constelacoes/constelacoes.css",
+        "assets/css/constellation-chart.css",
+        "assets/css/constellations-preview.css",
         "assets/css/notable-figures-preview.css",
         "Arquivo/arquivo.css",
         "Laboratorio/laboratorio.css",
@@ -941,7 +944,7 @@
     },
     "frontend.interactive-systems": {
       "canonicalFor": [
-        "ciclo de vida da Visão Estelar, galeria, ressonância, filosofia, navegação e rolagem"
+        "ciclo de vida da Visão Estelar, atlas de constelações, galeria, ressonância, filosofia, navegação e rolagem"
       ],
       "conditionalContext": [
         {
@@ -959,6 +962,9 @@
         "assets/js/smooth-scroll.js",
         "assets/js/contact.js",
         "GrandesNomes/grandes-nomes.js",
+        "Constelacoes/constelacoes.js",
+        "assets/js/constellation-chart.js",
+        "assets/data/constellations.js",
         "assets/vendor/swiper/LICENSE",
         "index.html"
       ],
@@ -978,6 +984,10 @@
         {
           "level": 2,
           "text": "Galeria de Grandes Nomes"
+        },
+        {
+          "level": 2,
+          "text": "Atlas de Constelações"
         },
         {
           "level": 2,
@@ -1024,7 +1034,8 @@
         "smooth scroll",
         "efeito cósmico",
         "carrossel",
-        "Grandes Nomes"
+        "Grandes Nomes",
+        "Constelações"
       ]
     },
     "frontend.pages-modules": {
@@ -1050,13 +1061,18 @@
         "Mapa/mapa.js",
         "GrandesNomes/grandes-nomes.html",
         "GrandesNomes/grandes-nomes.js",
+        "Constelacoes/constelacoes.html",
+        "Constelacoes/constelacoes.js",
         "Arquivo/arquivo.html",
         "Laboratorio/laboratorio.html",
         "assets/js/main.js",
         "assets/js/stellar-vision-info.js",
         "assets/js/page-shell.js",
         "assets/js/notable-figures-preview.js",
-        "assets/js/notable-figures-model.js"
+        "assets/js/notable-figures-model.js",
+        "assets/js/constellation-model.js",
+        "assets/js/constellation-chart.js",
+        "assets/js/constellations-preview.js"
       ],
       "headings": [
         {
@@ -1131,7 +1147,9 @@
         "assets/js/contact.js",
         "assets/js/notable-figures-model.js",
         "assets/js/notable-figures-preview.js",
-        "GrandesNomes/grandes-nomes.js"
+        "GrandesNomes/grandes-nomes.js",
+        "Constelacoes/constelacoes.js",
+        "assets/js/constellations-preview.js"
       ],
       "headings": [
         {
@@ -1149,6 +1167,10 @@
         {
           "level": 2,
           "text": "Seleção de um grande nome"
+        },
+        {
+          "level": 2,
+          "text": "Identificação de uma constelação"
         },
         {
           "level": 2,
@@ -1271,6 +1293,7 @@
         "Teorias/teorias.html",
         "Mapa/mapa.html",
         "GrandesNomes/grandes-nomes.html",
+        "Constelacoes/constelacoes.html",
         "Arquivo/arquivo.html",
         "Laboratorio/laboratorio.html",
         "assets/vendor/swiper/LICENSE"
@@ -1910,11 +1933,14 @@
         "Teorias/teorias.html",
         "Mapa/mapa.html",
         "GrandesNomes/grandes-nomes.html",
+        "Constelacoes/constelacoes.html",
         "Arquivo/arquivo.html",
         "Laboratorio/laboratorio.html",
         "assets/js/main.js",
         "assets/js/page-shell.js",
         "assets/js/notable-figures-model.js",
+        "assets/js/constellation-model.js",
+        "assets/js/constellation-chart.js",
         "assets/vendor/swiper/LICENSE"
       ],
       "headings": [
@@ -2238,7 +2264,10 @@
         "Teorias/teorias.css",
         "Mapa/mapa.css",
         "GrandesNomes/grandes-nomes.js",
-        "GrandesNomes/grandes-nomes.css"
+        "GrandesNomes/grandes-nomes.css",
+        "Constelacoes/constelacoes.js",
+        "Constelacoes/constelacoes.css",
+        "assets/js/constellation-chart.js"
       ],
       "headings": [
         {

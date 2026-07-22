@@ -25,6 +25,9 @@ evidence_sources:
   - "Teorias/teorias.css"
   - "Mapa/mapa.css"
   - "GrandesNomes/grandes-nomes.css"
+  - "Constelacoes/constelacoes.css"
+  - "assets/css/constellation-chart.css"
+  - "assets/css/constellations-preview.css"
   - "assets/css/notable-figures-preview.css"
   - "Arquivo/arquivo.css"
   - "Laboratorio/laboratorio.css"
@@ -38,6 +41,10 @@ evidence_sources:
 O sistema visual combina observatório, arquivo técnico e campo cósmico. Tokens globais em `styles.css` definem fundo escuro, acentos ciano/violeta/dourado, tipografia, raios, sombras, container e altura do cabeçalho. Inter, JetBrains Mono e Playfair Display são carregadas pelo Google Fonts, com famílias do sistema como fallback.
 
 Breakpoints recorrentes incluem 1180, 1080, 1040, 960, 760, 460 e 430 px. Eles são responsabilidades de componentes diferentes, não uma única escala global rígida.
+
+O atlas de constelações usa um campo principal, um painel textual e uma faixa horizontal de seletores compactos. Busca e filtros sazonais reduzem o catálogo sem remover o contexto da seleção. No desktop, campo e catálogo permanecem agrupados à esquerda e o detalhe ocupa uma coluna independente à direita, evitando que textos de comprimentos diferentes desloquem o catálogo. Em telas estreitas, a ordem natural é campo, catálogo e detalhe, e a faixa mantém rolagem horizontal controlada.
+
+As estrelas permanecem visíveis sem depender das linhas. Hover e foco oferecem uma prévia temporária no desktop; mouse e teclado alteram a seleção sem fixar implicitamente a guia. Toque e caneta fixam as linhas porque não possuem hover persistente, enquanto o botão textual da guia fornece a ação explícita de fixar ou liberar em qualquer dispositivo. Os estados selecionados, a legenda de magnitude e o detalhe equivalente impedem que cor, brilho, movimento ou posição do ponteiro sejam o único meio de acesso. A faixa adota foco móvel e suporta setas, `Home` e `End`; filtros, campo de busca e controles anterior/próximo continuam na ordem normal de tabulação.
 
 ## Canonical Rules
 

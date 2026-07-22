@@ -128,8 +128,8 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 - Tipo: `operational-guide`
 - Estado: `current`
 - Decisão: `preserve`
-- Tamanho: `7067` bytes
-- SHA-256: `691c7775075893b47f314cc1bf0bf3235654c92c52cc40f26624d24b8c51a638`
+- Tamanho: `8043` bytes
+- SHA-256: `65493659bbb8deb0ea865c50a53174da6c7b69f02356a1c7507cab4c0eb2726b`
 - Síntese: Entrada operacional resumida para rotas, execução local, arquitetura pública e publicação.
 - Destinos canônicos:
   - `project.index` — [ai/project/INDEX.md](../project/INDEX.md)

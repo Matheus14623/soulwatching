@@ -40,7 +40,7 @@ Leia este escopo para mudanças visíveis ou comportamentais no navegador.
 
 ## Pontos de entrada
 
-A home usa `main.js`; Teorias, Mapa e Grandes Nomes possuem controladores próprios; Arquivo e Laboratório usam somente o shell compartilhado. CSS global vem antes do CSS compartilhado de páginas internas e do CSS específico da rota.
+A home usa `main.js`; Teorias, Mapa, Grandes Nomes e Constelações possuem controladores próprios; Arquivo e Laboratório usam somente o shell compartilhado. CSS global vem antes do CSS compartilhado de páginas internas e do CSS específico da rota.
 
 ## Quando atualizar
 

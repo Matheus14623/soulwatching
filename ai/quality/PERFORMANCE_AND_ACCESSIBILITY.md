@@ -28,6 +28,9 @@ evidence_sources:
   - "Mapa/mapa.css"
   - "GrandesNomes/grandes-nomes.js"
   - "GrandesNomes/grandes-nomes.css"
+  - "Constelacoes/constelacoes.js"
+  - "Constelacoes/constelacoes.css"
+  - "assets/js/constellation-chart.js"
 ---
 
 # Desempenho e acessibilidade
@@ -40,6 +43,7 @@ evidence_sources:
 - A rolagem suave é cancelável e usa fallback imediato para movimento reduzido.
 - Teorias e Mapa reconstroem partes do DOM no cliente; o custo atual é pequeno para o catálogo existente.
 - Grandes Nomes usa retratos WebP locais, imagens preguiçosas após os primeiros cards e uma única instância de carrossel. Autoplay pausa quando não é percebido; filtros destroem a instância anterior e movimento reduzido remove rotação, profundidade e transições.
+- Constelações usa um campo principal e uma faixa de miniaturas SVG produzidos pelo mesmo renderizador, sem canvas, timers, loop de animação ou dependência nova. Busca e filtros operam sobre as 12 entradas em memória; a interface não mantém 12 painéis detalhados simultâneos. Hover e foco pré-visualizam as linhas; mouse e teclado mudam a seleção sem fixá-las implicitamente, toque e caneta fixam a guia por não possuírem hover persistente, e o botão da guia controla a fixação explícita. Campo e catálogo compartilham a coluna principal, independente da altura do detalhe, e no mobile seguem antes do detalhe na ordem natural. Movimento reduzido remove transições e o desenho progressivo das linhas.
 
 ## Canonical Rules
 
@@ -47,7 +51,7 @@ evidence_sources:
 - Use uma única instância de cada loop global e limpe frames/listeners quando o recurso desativar.
 - Pause trabalho contínuo quando não for percebido.
 - Ajuste qualidade por dispositivo sem remover conteúdo essencial.
-- Ofereça teclado e texto equivalente a interações por ponteiro.
+- Ofereça teclado e texto equivalente a interações por ponteiro; em coleções compostas, prefira foco móvel a dezenas de pontos de tabulação equivalentes.
 - Preserve foco após substituir elementos interativos.
 - Use estados ARIA coerentes e regiões vivas pequenas; não anuncie painéis inteiros repetidamente.
 - Movimento reduzido deve ser aplicado tanto no CSS quanto no JavaScript.

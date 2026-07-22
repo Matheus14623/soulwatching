@@ -28,7 +28,7 @@ evidence_sources:
 
 # Base de conhecimento do Observatório de Ideias
 
-O repositório contém um site estático multipágina em HTML, CSS e módulos JavaScript nativos. A home funciona como gateway; Teorias, Mapa, Grandes Nomes, Arquivo e Laboratório possuem rotas próprias. Não há backend, banco de dados, CMS ou bundler confirmados.
+O repositório contém um site estático multipágina em HTML, CSS e módulos JavaScript nativos. A home funciona como gateway; Teorias, Mapa, Grandes Nomes, Constelações, Arquivo e Laboratório possuem rotas próprias. Não há backend, banco de dados, CMS ou bundler confirmados.
 
 ## Comece pela tarefa
 
