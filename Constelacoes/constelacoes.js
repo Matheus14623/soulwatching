@@ -10,6 +10,7 @@ import {
 } from '../assets/js/constellation-model.js?v=constellation-atlas-v2';
 import { initNavigation } from '../assets/js/navigation.js';
 import { prefersReducedMotion } from '../assets/js/utils.js';
+import { initWhaleSharkEasterEgg } from './whale-shark-easter-egg.js?v=whale-shark-v1';
 
 const pageUrl = new URL(window.location.href);
 const requestedConstellation = pageUrl.searchParams.get('constelacao');
@@ -519,6 +520,7 @@ function renderAtlas() {
 
 function boot() {
   initNavigation();
+  initWhaleSharkEasterEgg();
   if (!cacheElements()) return;
   normalizeInvalidInitialUrl();
   renderAtlas();

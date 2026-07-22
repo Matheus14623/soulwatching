@@ -26,6 +26,7 @@ evidence_sources:
   - "Mapa/mapa.css"
   - "GrandesNomes/grandes-nomes.css"
   - "Constelacoes/constelacoes.css"
+  - "Constelacoes/whale-shark-easter-egg.js"
   - "assets/css/constellation-chart.css"
   - "assets/css/constellations-preview.css"
   - "assets/css/notable-figures-preview.css"
@@ -45,6 +46,8 @@ Breakpoints recorrentes incluem 1180, 1080, 1040, 960, 760, 460 e 430 px. Eles s
 O atlas de constelações usa um campo principal, um painel textual e uma faixa horizontal de seletores compactos. Busca e filtros sazonais reduzem o catálogo sem remover o contexto da seleção. No desktop, campo e catálogo permanecem agrupados à esquerda e o detalhe ocupa uma coluna independente à direita, evitando que textos de comprimentos diferentes desloquem o catálogo. Em telas estreitas, a ordem natural é campo, catálogo e detalhe, e a faixa mantém rolagem horizontal controlada.
 
 As estrelas permanecem visíveis sem depender das linhas. Hover e foco oferecem uma prévia temporária no desktop; mouse e teclado alteram a seleção sem fixar implicitamente a guia. Toque e caneta fixam as linhas porque não possuem hover persistente, enquanto o botão textual da guia fornece a ação explícita de fixar ou liberar em qualquer dispositivo. Os estados selecionados, a legenda de magnitude e o detalhe equivalente impedem que cor, brilho, movimento ou posição do ponteiro sejam o único meio de acesso. A faixa adota foco móvel e suporta setas, `Home` e `End`; filtros, campo de busca e controles anterior/próximo continuam na ordem normal de tabulação.
+
+Uma ilustração estelar de tubarão-baleia ocupa o fundo da área superior direita sem participar do catálogo de constelações. O componente usa um único SVG gerado no botão nomeado, com estrelas e linhas próprias, e reduz escala e opacidade nos breakpoints de 900 e 600 px. O retângulo visual permanece sem eventos; paths transparentes limitados à silhueta definem a hit-area para mouse e toque, enquanto foco de teclado e o nome acessível permanecem no botão. Hover, foco, clique e toque revelam o desenho e acionam uma sequência finita que retorna à geometria de repouso. Movimento reduzido mantém a revelação, mas remove qualquer deslocamento das partes da figura.
 
 ## Canonical Rules
 

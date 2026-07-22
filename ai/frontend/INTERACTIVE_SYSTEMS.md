@@ -35,6 +35,8 @@ evidence_sources:
   - "assets/js/contact.js"
   - "GrandesNomes/grandes-nomes.js"
   - "Constelacoes/constelacoes.js"
+  - "Constelacoes/whale-shark-easter-egg.js"
+  - "Constelacoes/constelacoes.css"
   - "assets/js/constellation-chart.js"
   - "assets/data/constellations.js"
   - "assets/vendor/swiper/LICENSE"
@@ -76,6 +78,12 @@ A rotação usa intervalo de 30 segundos e pode ser pausada manualmente. Ela tam
 As estrelas permanecem visíveis sem depender das linhas. Hover ou foco sobre uma opção pré-visualizam temporariamente sua guia no campo principal. Seleções por mouse ou teclado — inclusive clique, controles anterior/próximo, opção relacionada e foco móvel da faixa — mudam a constelação ativa e atualizam `?constelacao=<slug>` sem fixar implicitamente as linhas; ao terminar a prévia, a visibilidade volta ao estado explícito da guia. Toque ou caneta fixam a guia porque esses dispositivos não oferecem hover persistente. O botão da guia é o controle explícito para fixar ou liberar as linhas da seleção atual. A faixa usa foco móvel: setas esquerda e direita, `Home` e `End` deslocam a opção ativa sem transformar todas as entradas em uma sequência redundante de tabulação, e a entrada selecionada é mantida visível.
 
 O atlas é educativo e não calcula local, data, hora ou projeção do céu em tempo real. Cada campo mantém uma forma relativa simplificada, mas a posição entre campos é composição de interface. As linhas são guias convencionais: a IAU define 88 regiões e seus limites, não uma figura de palitos oficial. Asterismos como Três Marias e Bule de Chá permanecem identificados como padrões internos, não como constelações independentes.
+
+Separadamente do catálogo científico, `Constelacoes/whale-shark-easter-egg.js` injeta um único SVG de tubarão-baleia no botão acessível da área superior direita. A figura é uma ilustração estelar independente: não pertence a `CONSTELLATIONS`, não altera a contagem, a busca, os filtros, o detalhe ou `?constelacao=`. O SVG permanece oculto da árvore de acessibilidade porque o botão fornece o nome da ação.
+
+Entrada do ponteiro sem toque, foco, clique ou toque iniciam uma interação finita. Corpo, cauda, nadadeiras e pontos executam uma única sequência; o quadro final usa a transformação original, e `animationend` ou `animationcancel` remove o estado temporário. Hover e foco visível mantêm brilho e linhas enquanto a interação correspondente continuar, mas não criam movimento contínuo. A área retangular do botão e o SVG não recebem eventos diretamente; somente os paths transparentes que acompanham a silhueta funcionam como hit-area, evitando bloquear os controles vizinhos.
+
+Com `prefers-reduced-motion`, o módulo marca o perfil reduzido antes da ativação e o CSS preserva apenas a revelação visual, sem deslocar corpo, cauda ou nadadeiras. A sequência reduzida ainda termina e limpa o estado temporário.
 
 Não existe loop contínuo, canvas ou biblioteca para o atlas. A interação substitui o campo principal, atualiza detalhes textuais e alterna estados de SVG; não há simulação física, rastreamento do ponteiro ou animação temporal do céu.
 

@@ -91,6 +91,7 @@ const requiredFiles = [
   'Constelacoes/constelacoes.html',
   'Constelacoes/constelacoes.css',
   'Constelacoes/constelacoes.js',
+  'Constelacoes/whale-shark-easter-egg.js',
   'Arquivo/arquivo.html',
   'Arquivo/arquivo.css',
   'Laboratorio/laboratorio.html',

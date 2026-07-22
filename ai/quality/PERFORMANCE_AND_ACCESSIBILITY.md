@@ -30,6 +30,7 @@ evidence_sources:
   - "GrandesNomes/grandes-nomes.css"
   - "Constelacoes/constelacoes.js"
   - "Constelacoes/constelacoes.css"
+  - "Constelacoes/whale-shark-easter-egg.js"
   - "assets/js/constellation-chart.js"
 ---
 
@@ -44,6 +45,7 @@ evidence_sources:
 - Teorias e Mapa reconstroem partes do DOM no cliente; o custo atual é pequeno para o catálogo existente.
 - Grandes Nomes usa retratos WebP locais, imagens preguiçosas após os primeiros cards e uma única instância de carrossel. Autoplay pausa quando não é percebido; filtros destroem a instância anterior e movimento reduzido remove rotação, profundidade e transições.
 - Constelações usa um campo principal e uma faixa de miniaturas SVG produzidos pelo mesmo renderizador, sem canvas, timers, loop de animação ou dependência nova. Busca e filtros operam sobre as 12 entradas em memória; a interface não mantém 12 painéis detalhados simultâneos. Hover e foco pré-visualizam as linhas; mouse e teclado mudam a seleção sem fixá-las implicitamente, toque e caneta fixam a guia por não possuírem hover persistente, e o botão da guia controla a fixação explícita. Campo e catálogo compartilham a coluna principal, independente da altura do detalhe, e no mobile seguem antes do detalhe na ordem natural. Movimento reduzido remove transições e o desenho progressivo das linhas.
+- O tubarão-baleia estelar é uma ilustração independente do catálogo e usa um único SVG, sem canvas, biblioteca, timer recorrente ou loop. Ponteiro, foco, clique e toque iniciam somente uma sequência finita; o término ou cancelamento remove o estado transitório e devolve corpo, cauda e nadadeiras à posição original. A hit-area acompanha a silhueta em paths transparentes para não transformar todo o retângulo sobreposto em alvo nem bloquear controles próximos. Em movimento reduzido, brilho e linhas ainda respondem, mas não há deslocamento das partes.
 
 ## Canonical Rules
 

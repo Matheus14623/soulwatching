@@ -62,10 +62,19 @@
 }
 
 .sky-atlas-heading {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.48fr);
   gap: clamp(1.5rem, 5vw, 5rem);
   align-items: end;
+  isolation: isolate;
+}
+
+.sky-atlas-heading > div,
+.sky-atlas-heading > p {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .sky-atlas-heading h1 {
@@ -80,6 +89,237 @@
   margin: 0 0 0.35rem;
   color: var(--text-soft);
   line-height: 1.72;
+}
+
+.sky-atlas-whale-shark {
+  position: absolute;
+  z-index: 0;
+  top: -0.75rem;
+  right: calc((100vw - 100%) / -2);
+  width: min(40vw, 40rem);
+  aspect-ratio: 2 / 1;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  opacity: 0.76;
+  cursor: pointer;
+  pointer-events: none;
+  transition: opacity 260ms ease;
+}
+
+.whale-shark-constellation {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.whale-shark-constellation__form,
+.whale-shark-constellation__tail,
+.whale-shark-constellation__fins {
+  transform-box: view-box;
+}
+
+.whale-shark-constellation__form {
+  transform-origin: 320px 170px;
+}
+
+.whale-shark-constellation__tail {
+  transform-origin: 151px 169px;
+}
+
+.whale-shark-constellation__fins {
+  transform-origin: 408px 213px;
+}
+
+.whale-shark-constellation__line {
+  fill: none;
+  stroke: rgba(129, 113, 255, 0.9);
+  stroke-width: 0.78;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0.025;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 3px rgba(114, 87, 255, 0.28));
+  transition:
+    opacity 240ms ease,
+    stroke-dashoffset 720ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 260ms ease;
+}
+
+.whale-shark-constellation__star {
+  fill: #f4f9ff;
+  stroke: rgba(255, 255, 255, 0.82);
+  stroke-width: 0.22;
+  vector-effect: non-scaling-stroke;
+  transition: opacity 240ms ease, filter 260ms ease, transform 260ms ease;
+}
+
+.whale-shark-constellation__star--structure {
+  opacity: 0.3;
+  filter: drop-shadow(0 0 1.5px rgba(181, 225, 255, 0.48));
+}
+
+.whale-shark-constellation__star--spot {
+  fill: #d9eaff;
+  opacity: 0.17;
+}
+
+.whale-shark-constellation__hit-area {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 2.8;
+  pointer-events: fill;
+  cursor: pointer;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 180ms ease;
+}
+
+.sky-atlas-whale-shark:focus-visible,
+.sky-atlas-whale-shark.is-awake {
+  opacity: 1;
+}
+
+.sky-atlas-whale-shark:focus-visible .whale-shark-constellation__line,
+.sky-atlas-whale-shark.is-awake .whale-shark-constellation__line {
+  opacity: 0.86;
+  stroke-dashoffset: 0;
+  filter: drop-shadow(0 0 4px rgba(114, 87, 255, 0.72)) drop-shadow(0 0 8px rgba(114, 236, 255, 0.3));
+}
+
+.sky-atlas-whale-shark:focus-visible .whale-shark-constellation__star--structure,
+.sky-atlas-whale-shark.is-awake .whale-shark-constellation__star--structure {
+  opacity: 1;
+  filter: drop-shadow(0 0 2px rgba(220, 241, 255, 0.94)) drop-shadow(0 0 6px rgba(114, 236, 255, 0.62));
+}
+
+.sky-atlas-whale-shark:focus-visible .whale-shark-constellation__star--spot,
+.sky-atlas-whale-shark.is-awake .whale-shark-constellation__star--spot {
+  opacity: 0.88;
+  filter: drop-shadow(0 0 3px rgba(114, 236, 255, 0.55));
+}
+
+.sky-atlas-whale-shark:focus-visible .whale-shark-constellation__hit-area {
+  stroke: rgba(114, 236, 255, 0.34);
+  stroke-dasharray: 2 5;
+}
+
+.sky-atlas-whale-shark.is-awake .whale-shark-constellation__form {
+  animation: whale-shark-swim 1550ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.sky-atlas-whale-shark.is-awake .whale-shark-constellation__tail {
+  animation: whale-shark-tail 1550ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.sky-atlas-whale-shark.is-awake .whale-shark-constellation__fins {
+  animation: whale-shark-fin 1550ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.sky-atlas-whale-shark.is-awake .whale-shark-constellation__spots {
+  animation: whale-shark-spots 1550ms ease-out both;
+}
+
+.sky-atlas-whale-shark[data-whale-motion="reduced"].is-awake .whale-shark-constellation__form {
+  animation: whale-shark-still 900ms linear both;
+}
+
+.sky-atlas-whale-shark[data-whale-motion="reduced"].is-awake .whale-shark-constellation__tail,
+.sky-atlas-whale-shark[data-whale-motion="reduced"].is-awake .whale-shark-constellation__fins,
+.sky-atlas-whale-shark[data-whale-motion="reduced"].is-awake .whale-shark-constellation__spots {
+  animation: none;
+  transform: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sky-atlas-whale-shark:hover {
+    opacity: 1;
+  }
+
+  .sky-atlas-whale-shark:hover .whale-shark-constellation__line {
+    opacity: 0.86;
+    stroke-dashoffset: 0;
+    filter: drop-shadow(0 0 4px rgba(114, 87, 255, 0.72)) drop-shadow(0 0 8px rgba(114, 236, 255, 0.3));
+  }
+
+  .sky-atlas-whale-shark:hover .whale-shark-constellation__star--structure {
+    opacity: 1;
+    filter: drop-shadow(0 0 2px rgba(220, 241, 255, 0.94)) drop-shadow(0 0 6px rgba(114, 236, 255, 0.62));
+  }
+
+  .sky-atlas-whale-shark:hover .whale-shark-constellation__star--spot {
+    opacity: 0.88;
+    filter: drop-shadow(0 0 3px rgba(114, 236, 255, 0.55));
+  }
+}
+
+@keyframes whale-shark-swim {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  24% {
+    transform: translate3d(-3px, -2px, 0) rotate(-0.22deg);
+  }
+  54% {
+    transform: translate3d(7px, -4px, 0) rotate(0.38deg);
+  }
+  78% {
+    transform: translate3d(3px, -1px, 0) rotate(0.12deg);
+  }
+}
+
+@keyframes whale-shark-tail {
+  0%,
+  100% {
+    transform: scaleX(1) skewY(0deg);
+  }
+  24% {
+    transform: scaleX(0.9) skewY(1.35deg);
+  }
+  52% {
+    transform: scaleX(1.025) skewY(-1.1deg);
+  }
+  76% {
+    transform: scaleX(0.945) skewY(0.75deg);
+  }
+}
+
+@keyframes whale-shark-fin {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  34% {
+    transform: rotate(3.8deg);
+  }
+  68% {
+    transform: rotate(-1.8deg);
+  }
+}
+
+@keyframes whale-shark-spots {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  38% {
+    opacity: 0.68;
+  }
+  66% {
+    opacity: 1;
+  }
+}
+
+@keyframes whale-shark-still {
+  from,
+  to {
+    transform: none;
+  }
 }
 
 .sky-atlas-toolbar {
@@ -802,6 +1042,12 @@
     grid-template-columns: 1fr;
   }
 
+  .sky-atlas-whale-shark {
+    top: 1.5rem;
+    width: min(55vw, 26rem);
+    opacity: 0.7;
+  }
+
   .sky-atlas-heading > p {
     margin: 0;
   }
@@ -843,6 +1089,13 @@
 @media (max-width: 600px) {
   .sky-atlas {
     padding-top: calc(var(--header-height) + 1.3rem);
+  }
+
+  .sky-atlas-whale-shark {
+    top: 3.2rem;
+    right: calc((100vw - 100%) / -2);
+    width: min(78vw, 20rem);
+    opacity: 0.64;
   }
 
   .sky-atlas-heading h1 {
@@ -938,12 +1191,27 @@
 @media (prefers-reduced-motion: reduce) {
   .sky-atlas-control,
   .sky-atlas-index-button,
-  .sky-atlas-source-link {
+  .sky-atlas-source-link,
+  .sky-atlas-whale-shark,
+  .whale-shark-constellation__line,
+  .whale-shark-constellation__star,
+  .whale-shark-constellation__hit-area {
     transition: none;
   }
 
   .sky-atlas-control:hover,
   .sky-atlas-index-button:hover {
+    transform: none;
+  }
+
+  .sky-atlas-whale-shark.is-awake .whale-shark-constellation__form {
+    animation: whale-shark-still 900ms linear both;
+  }
+
+  .sky-atlas-whale-shark.is-awake .whale-shark-constellation__tail,
+  .sky-atlas-whale-shark.is-awake .whale-shark-constellation__fins,
+  .sky-atlas-whale-shark.is-awake .whale-shark-constellation__spots {
+    animation: none;
     transform: none;
   }
 }

@@ -820,6 +820,7 @@
         "Mapa/mapa.css",
         "GrandesNomes/grandes-nomes.css",
         "Constelacoes/constelacoes.css",
+        "Constelacoes/whale-shark-easter-egg.js",
         "assets/css/constellation-chart.css",
         "assets/css/constellations-preview.css",
         "assets/css/notable-figures-preview.css",
@@ -963,6 +964,8 @@
         "assets/js/contact.js",
         "GrandesNomes/grandes-nomes.js",
         "Constelacoes/constelacoes.js",
+        "Constelacoes/whale-shark-easter-egg.js",
+        "Constelacoes/constelacoes.css",
         "assets/js/constellation-chart.js",
         "assets/data/constellations.js",
         "assets/vendor/swiper/LICENSE",
@@ -2267,6 +2270,7 @@
         "GrandesNomes/grandes-nomes.css",
         "Constelacoes/constelacoes.js",
         "Constelacoes/constelacoes.css",
+        "Constelacoes/whale-shark-easter-egg.js",
         "assets/js/constellation-chart.js"
       ],
       "headings": [
