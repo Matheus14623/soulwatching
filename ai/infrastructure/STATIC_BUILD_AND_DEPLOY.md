@@ -11,6 +11,8 @@ triggers:
   - "vercel.json"
   - "dist"
   - "allowlist"
+  - "manifesto público"
+  - "servidor local"
   - "publicação"
 required_context:
   - "infrastructure.index"
@@ -25,6 +27,8 @@ evidence_sources:
   - "scripts/build.mjs"
   - "scripts/verify.mjs"
   - "scripts/serve.mjs"
+  - "scripts/public-manifest.mjs"
+  - "scripts/tests/public-smoke.test.mjs"
   - "vercel.json"
   - ".gitignore"
   - "robots.txt"
@@ -35,6 +39,9 @@ evidence_sources:
   - "Constelacoes/constelacoes.html"
   - "Arquivo/arquivo.html"
   - "Laboratorio/laboratorio.html"
+  - "Laboratorio/experimento.html"
+  - "Rotas/rotas.html"
+  - "Contribuicoes/contribuicoes.html"
   - "assets/vendor/swiper/LICENSE"
 ---
 
@@ -42,33 +49,33 @@ evidence_sources:
 
 ## Current Confirmed Structure
 
-`vercel.json` declara projeto estático, executa `npm run build`, publica `dist/`, habilita URLs limpas e desabilita barra final. O build verifica o projeto, remove somente o diretório `dist/` validado, recria a saída e copia uma allowlist. A cópia recursiva é implementada com primitivas estáveis de `node:fs/promises`, sem depender de `fs.promises.cp`, para manter compatibilidade com ambientes Node anteriores à versão 16.7.
+`vercel.json` declara projeto estático, executa `npm run build`, publica `dist/`, habilita URLs limpas e desabilita barra final. `scripts/public-manifest.mjs` é a fonte única das rotas públicas, dos HTML, dos arquivos obrigatórios e dos caminhos de build. O build verifica o projeto, remove somente o diretório `dist/` validado, recria a saída e copia essa allowlist. A cópia recursiva usa primitivas estáveis de `node:fs/promises`, sem depender de `fs.promises.cp`.
 
-Entram páginas principais, assets públicos autorizados e as pastas de rota. `Constelacoes` entra como diretório público próprio; a rota Grandes Nomes e os três arquivos vendorizados do Swiper entram por allowlist explícita; retratos WebP entram pelo diretório público de imagens. Não entram `docs/`, `ia/`, `ai/`, `scripts/`, fontes brutas ou documentos. A base `ai/` não faz parte da allowlist e também deve ser rejeitada por defesa em profundidade.
+Entram dez rotas declaradas — incluindo executor de experimento —, o redirecionamento legado, assets públicos autorizados e as pastas de rota. Teorias e Grandes Nomes entram por arquivos explícitos; Mapa, Constelações, Arquivo, Laboratório, Rotas e Contribuições entram por diretórios públicos; os três arquivos vendorizados do Swiper permanecem explícitos. Não entram `docs/`, `ia/`, `ai/`, `.github/`, `scripts/`, fontes brutas ou documentos. A base `ai/` não faz parte da allowlist e também é rejeitada por defesa em profundidade.
 
 As páginas principais possuem título, descrição e metadados Open Graph/Twitter, mas não declaram `canonical` nem `og:url`; as imagens sociais usam caminhos relativos. Apenas o redirecionamento legado possui `canonical`. `robots.txt` permite rastreamento geral, não existe sitemap e `vercel.json` não declara CSP ou outros headers de segurança. O carregamento do Google Fonts é uma requisição de runtime a terceiro.
 
-O servidor local serve a raiz de `process.cwd()`. Uma rota inexistente devolve o HTML da home com status 404, portanto ele não reproduz o comportamento de `cleanUrls` da Vercel e não deve ser usado para validar redirects ou URLs de produção.
+O servidor local resolve caminhos a partir da raiz do projeto, mas no modo fonte só entrega arquivos autorizados pelo mesmo manifesto. Ele vincula-se a `localhost`, aceita `GET` e `HEAD`, reconhece URLs declaradas com e sem `.html` e responde 404 para arquivos internos ou rotas inexistentes. O modo `--dist` serve somente o artefato gerado. Os smoke tests exercitam os dois modos, mas não substituem a validação dos redirects, cache e headers reais da Vercel.
 
 ## Canonical Rules
 
 - Nunca mude `outputDirectory` para a raiz do repositório.
 - Uma nova rota pública precisa entrar conscientemente na allowlist e no verificador.
-- Um diretório copiado por inteiro exige que todos os seus tipos de arquivo estejam cobertos pela verificação.
+- Um diretório copiado por inteiro exige revisão dos arquivos novos; o manifesto e o verificador precisam continuar alinhados.
 - Preserve a capitalização dos caminhos para o ambiente Linux da hospedagem.
 - O ledger de cobertura normaliza fontes Markdown para `LF` antes de calcular tamanho e SHA-256, evitando divergências entre checkouts Windows e Linux; fontes binárias permanecem byte a byte.
 - Gere e verifique `dist/`; não edite o artefato manualmente.
-- Não trate `scripts/serve.mjs` como preview seguro: ele serve a raiz e pode expor arquivos internos por URL conhecida.
-- Não use o servidor local como evidência do comportamento de roteamento, cache ou headers da hospedagem.
+- Use `npm run dev` para a fonte allowlisted e `npm run preview` para reconstruir e servir `dist/`; caminhos privados devem continuar retornando 404 em ambos os testes aplicáveis.
+- Não use o servidor local como evidência definitiva do comportamento de redirects, cache ou headers da hospedagem.
 
 ## Validation
 
-Execute `npm run build`, conte e inspecione os arquivos autorizados, confirme ausência de `ai/`, documentação, scripts e fontes editoriais e abra as rotas principais por HTTP.
+Execute `npm test`, confirme se o smoke de navegador não foi ignorado quando ele for requisito da mudança, inspecione os arquivos autorizados em `dist/`, confirme ausência de `ai/`, documentação, scripts e fontes editoriais e abra as rotas principais por HTTP.
 
 ## To Verify
 
 - Comportamento de `cleanUrls` e redirects no domínio final.
 - Domínio absoluto, `canonical`, `og:url`, sitemap e URLs absolutas das imagens sociais.
 - Política de CSP, headers de segurança e carregamento de fontes de terceiros.
-- Se o servidor de desenvolvimento deve passar a servir somente `dist/`, fixar `127.0.0.1` e trocar a validação de caminho por uma fronteira que não dependa apenas de prefixo textual.
-- Cobertura automática de arquivos novos dentro dos diretórios copiados por inteiro.
+- Headers de segurança e cache que precisam ser aplicados pela Vercel além dos valores básicos do servidor local.
+- Schema permitido para arquivos novos dentro dos diretórios copiados por inteiro.

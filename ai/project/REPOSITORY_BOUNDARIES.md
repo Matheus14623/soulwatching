@@ -20,7 +20,9 @@ related_context:
   - "infrastructure.static-deploy"
   - "maintenance.source-coverage"
 evidence_sources:
+  - "scripts/public-manifest.mjs"
   - "scripts/build.mjs"
+  - "scripts/serve.mjs"
   - "scripts/theory-sources.mjs"
   - "docs/INTEGRACAO_TEORIAS.md"
   - "DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md"
@@ -35,6 +37,7 @@ evidence_sources:
 | --- | --- | --- |
 | HTML, CSS, JS e configurações ativos | Implementação do produto | Primária para comportamento atual. |
 | `assets/data/` | Conteúdo público estruturado | Primária para dados exibidos. |
+| `scripts/public-manifest.mjs` | Rotas e composição pública | Primária para servidor local, verificação, build e smoke tests. |
 | `scripts/theory-sources.mjs` e materiais brutos | Proveniência editorial privada | Ler somente em tarefa editorial explícita. |
 | `README.md` | Onboarding humano | Resumo, não proprietário de regras detalhadas. |
 | `docs/INTEGRACAO_TEORIAS.md` | Especificação especializada anterior | Referência atual ligada ao domínio canônico em `ai/`. |
@@ -52,7 +55,7 @@ evidence_sources:
 
 ## Evidence
 
-O build usa uma allowlist pública e rejeita extensões/documentos internos no artefato. A origem privada das entradas é mantida fora dos módulos consumidos pelo navegador.
+O build usa uma allowlist pública central e rejeita extensões e documentos internos no artefato. O servidor de desenvolvimento aplica a mesma fronteira e os smoke tests confirmam que caminhos internos conhecidos respondem 404. A origem privada das entradas é mantida fora dos módulos consumidos pelo navegador.
 
 ## To Verify
 

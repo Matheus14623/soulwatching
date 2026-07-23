@@ -29,8 +29,15 @@ evidence_sources:
   - "Constelacoes/constelacoes.html"
   - "Arquivo/arquivo.html"
   - "Laboratorio/laboratorio.html"
+  - "Laboratorio/experimento.html"
+  - "Rotas/rotas.html"
+  - "Contribuicoes/contribuicoes.html"
   - "assets/js/main.js"
   - "assets/js/page-shell.js"
+  - "assets/js/global-search.js"
+  - "assets/data/experiments.js"
+  - "assets/data/learning-paths.js"
+  - "scripts/public-manifest.mjs"
   - "assets/js/notable-figures-model.js"
   - "assets/js/constellation-model.js"
   - "assets/js/constellation-chart.js"
@@ -51,13 +58,16 @@ O Observatório é uma aplicação estática multipágina. Cada destino principa
 
 | Superfície | Entry point | Responsabilidade |
 | --- | --- | --- |
-| Home | `index.html` → `assets/js/main.js` | Gateway, Visão Estelar, recortes de teorias, grandes nomes e constelações, mapa-resumo, filosofia, ressonância e contato. |
-| Teorias | `Teorias/teorias.html` → `Teorias/teorias.js` | Busca, filtros, cards, dossiê, referências, radar e URL direta. |
+| Home | `index.html` → `assets/js/main.js` | Gateway, Visão Estelar, recortes de teorias, grandes nomes, constelações e Rotas Guiadas, mapa-resumo, filosofia, ressonância e contato. |
+| Teorias | `Teorias/teorias.html` → `Teorias/teorias.js` | Busca, filtros, comparação, dossiê crítico, revisão individual, relações tipadas e URLs diretas. |
 | Mapa | `Mapa/mapa.html` → `Mapa/mapa.js` | Relações, eixos, seleção, detalhe e URL direta. |
-| Grandes Nomes | `GrandesNomes/grandes-nomes.html` → `GrandesNomes/grandes-nomes.js` | Galeria arrastável, busca, filtros, dossiês, fontes, conexões e URL direta de perfil. |
-| Constelações | `Constelacoes/constelacoes.html` → `Constelacoes/constelacoes.js` | Atlas mestre–detalhe, busca, filtros sazonais, seleção acessível, linhas-guia, fontes e URL direta de constelação. |
+| Grandes Nomes | `GrandesNomes/grandes-nomes.html` → `GrandesNomes/grandes-nomes.js` | Galeria arrastável, comparação, trilhas temáticas, linha do tempo, dossiês, fontes e URLs diretas. |
+| Constelações | `Constelacoes/constelacoes.html` → `Constelacoes/constelacoes.js` | Atlas mestre–detalhe, busca, filtros, linhas-guia, modo treino acessível, fontes e URLs diretas. |
 | Arquivo | `Arquivo/arquivo.html` → `assets/js/page-shell.js` | Estado editorial e conteúdo estático. |
-| Laboratório | `Laboratorio/laboratorio.html` → `assets/js/page-shell.js` | Índice estático das experiências existentes. |
+| Laboratório | `Laboratorio/laboratorio.html` → `Laboratorio/laboratorio.js` | Catálogo central das nove experiências públicas. |
+| Executor de experimento | `Laboratorio/experimento.html` → `Laboratorio/experimento.js` | Shell compartilhado que carrega sob demanda um dos quatro simuladores. |
+| Rotas Guiadas | `Rotas/rotas.html` → `Rotas/rotas.js` | Quatro percursos editoriais entre perfis, teorias e experiências, com etapa preservada na URL. |
+| Contribuições | `Contribuicoes/contribuicoes.html` → `Contribuicoes/contribuicoes.js` | Política de autoria externa, catálogo ainda vazio e preparação local de proposta por `mailto:`. |
 | Compatibilidade | `teorias.html` | Redirecionamento legado para a rota atual. |
 
 Tecnologias confirmadas: HTML5, CSS, JavaScript ES Modules, SVG, Canvas 2D, Web Audio API, History API e IntersectionObserver. Não há framework, TypeScript, backend, banco ou CMS. A galeria usa Swiper 14.0.6, fixado e servido localmente como dependência de interface sem requisição de runtime a CDN.
@@ -68,16 +78,19 @@ Tecnologias confirmadas: HTML5, CSS, JavaScript ES Modules, SVG, Canvas 2D, Web 
 - Compartilhe regras de domínio e dados; mantenha controladores de apresentação por rota.
 - Use módulos pequenos com inicialização defensiva quando um elemento não existir.
 - Uma nova rota recebe HTML real, CSS específico apenas quando necessário e `page-shell.js` se precisar somente da navegação comum.
+- Cadastre rotas, arquivos obrigatórios e caminhos de build em `scripts/public-manifest.mjs`; os consumidores não mantêm listas paralelas.
 - Não adicione uma dependência para substituir uma API nativa suficiente.
 - Dependências vendorizadas precisam de versão fixa, licença preservada, arquivos explícitos no build e fallback que mantenha o conteúdo acessível.
 
 ## Dependencies
 
-`assets/data/theories.js` alimenta home, Teorias e Mapa. `assets/js/theory-model.js` concentra localização, correspondência de categoria e relações simétricas. `assets/data/notable-figures.js` alimenta os três destaques da home e a rota Grandes Nomes; `assets/js/notable-figures-model.js` resolve busca, fontes e conexões com o catálogo de teorias. `assets/data/constellations.js` alimenta o recorte da home e a rota Constelações; `assets/js/constellation-model.js` resolve seleção, busca, estação e fontes, e `assets/js/constellation-chart.js` produz o SVG compartilhado. Navegação e rolagem são compartilhadas por `navigation.js` e `smooth-scroll.js`.
+`assets/data/theories.js` alimenta home, Teorias e Mapa. `assets/js/theory-model.js` concentra localização e relações tipadas simétricas; `assets/js/theory-figure-model.js` deriva, dos perfis, as relações inversas exibidas nos dossiês. `assets/data/notable-figures.js` alimenta destaques, 22 perfis, comparação, quatro trilhas e linha do tempo. `assets/data/constellations.js` alimenta o recorte da home, o atlas e seu treino; `constellation-chart.js` produz o SVG compartilhado.
+
+`assets/data/experiments.js` é o catálogo central das nove experiências e seus limites; o executor importa somente o módulo do simulador solicitado. `assets/data/learning-paths.js` e `learning-paths-model.js` ligam as quatro Rotas Guiadas aos catálogos existentes, sem copiar títulos ou slugs. `assets/data/contributions.js` separa formatos, política e publicações externas. Navegação, busca global, métricas e rolagem são compartilhadas por `navigation.js`, `global-search.js`, `site-metrics.js` e `smooth-scroll.js`.
 
 ## Validation
 
-Execute `npm run verify` depois de alterar entrypoints, imports, rotas ou arquivos obrigatórios. Execute `npm run build` para comprovar a composição do artefato público.
+Execute `npm run verify` depois de alterar entrypoints, imports, rotas ou arquivos obrigatórios. Execute `npm test` para comprovar build, composição pública e smoke das rotas; confirme se o teste de navegador foi executado ou ignorado.
 
 ## To Verify
 

@@ -1,4 +1,4 @@
-import { readFile, stat } from 'node:fs/promises';
+import { readFile, readdir, stat } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import { resolve, dirname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -20,7 +20,24 @@ import {
   CONSTELLATIONS,
   CONSTELLATION_REFERENCES,
 } from '../assets/data/constellations.js';
+import {
+  CONTRIBUTIONS,
+  CONTRIBUTION_LINK_TYPES,
+  CONTRIBUTION_ROLES,
+  CONTRIBUTION_SOURCE_TYPES,
+  CONTRIBUTION_STATUSES,
+  CONTRIBUTION_TYPES,
+  validateContributionCatalog,
+} from '../assets/data/contributions.js';
 import { THEORY_SOURCE_FILES } from './theory-sources.mjs';
+import {
+  PUBLIC_BUILD_DIRECTORIES,
+  PUBLIC_BUILD_FILES,
+  PUBLIC_BUILD_PATHS,
+  PUBLIC_HTML_FILES,
+  PUBLIC_REQUIRED_FILES,
+  PUBLIC_ROUTES,
+} from './public-manifest.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const requiredFiles = [
@@ -35,82 +52,24 @@ const requiredFiles = [
   'README.md',
   'DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md',
   'docs/INTEGRACAO_TEORIAS.md',
-  'index.html',
-  'teorias.html',
-  'Teorias/teorias.html',
-  'Teorias/teorias.css',
-  'Teorias/teorias.js',
-  'GrandesNomes/grandes-nomes.html',
-  'GrandesNomes/grandes-nomes.css',
-  'GrandesNomes/grandes-nomes.js',
-  'assets/css/styles.css',
-  'assets/css/observatory-pages.css',
-  'assets/css/constellation-chart.css',
-  'assets/css/constellations-preview.css',
-  'assets/css/notable-figures-preview.css',
-  'assets/data/theories.js',
-  'assets/data/theory-references.js',
-  'assets/data/research-tracks.js',
-  'assets/data/notable-figures.js',
-  'assets/data/notable-figure-references.js',
-  'assets/data/constellations.js',
-  'assets/js/main.js',
-  'assets/js/config.js',
-  'assets/js/navigation.js',
-  'assets/js/observer.js',
-  'assets/js/stellar-vision-info.js',
-  'assets/js/theories.js',
-  'assets/js/theory-model.js',
-  'assets/js/theory-lab.js',
-  'assets/js/philosophy.js',
-  'assets/js/resonance.js',
-  'assets/js/smooth-scroll.js',
-  'assets/js/contact.js',
-  'assets/js/utils.js',
-  'assets/js/page-shell.js',
-  'assets/js/notable-figures-model.js',
-  'assets/js/notable-figures-preview.js',
-  'assets/js/constellation-model.js',
-  'assets/js/constellation-chart.js',
-  'assets/js/constellations-preview.js',
-  'assets/vendor/swiper/swiper-bundle.min.css',
-  'assets/vendor/swiper/swiper-bundle.min.js',
-  'assets/vendor/swiper/LICENSE',
-  'assets/icons/favicon.svg',
-  'assets/images/rain-window.webp',
-  'assets/images/calabi-yau-wireframe.webp',
-  'assets/images/stoic-rock.webp',
-  'assets/images/sisyphus-absurdism.webp',
-  'assets/images/cosmic-scale.webp',
-  'assets/images/matheus-camargo.webp',
-  'assets/images/github-profile.webp',
-  'assets/images/og-observatorio.jpg',
-  'Mapa/mapa.html',
-  'Mapa/mapa.css',
-  'Mapa/mapa.js',
-  'Constelacoes/constelacoes.html',
-  'Constelacoes/constelacoes.css',
-  'Constelacoes/constelacoes.js',
-  'Constelacoes/whale-shark-easter-egg.js',
-  'Arquivo/arquivo.html',
-  'Arquivo/arquivo.css',
-  'Laboratorio/laboratorio.html',
-  'Laboratorio/laboratorio.css',
+  '.github/workflows/quality.yml',
+  'package.json',
+  'package-lock.json',
   'scripts/build.mjs',
+  'scripts/public-manifest.mjs',
+  'scripts/serve.mjs',
+  'scripts/tests/accessibility-contracts.test.mjs',
+  'scripts/tests/browser-smoke.test.mjs',
+  'scripts/tests/contributions-contracts.test.mjs',
+  'scripts/tests/feature-contracts.test.mjs',
+  'scripts/tests/public-smoke.test.mjs',
+  'scripts/tests/test-server.mjs',
   'scripts/theory-sources.mjs',
   'vercel.json',
+  ...PUBLIC_REQUIRED_FILES,
 ];
 
-const htmlFiles = [
-  'index.html',
-  'teorias.html',
-  'Teorias/teorias.html',
-  'Mapa/mapa.html',
-  'Constelacoes/constelacoes.html',
-  'GrandesNomes/grandes-nomes.html',
-  'Arquivo/arquivo.html',
-  'Laboratorio/laboratorio.html',
-];
+const htmlFiles = PUBLIC_HTML_FILES;
 const errors = [];
 
 async function fileExists(path) {
@@ -118,8 +77,81 @@ async function fileExists(path) {
   return Boolean(info?.isFile());
 }
 
+async function directoryExists(path) {
+  const info = await stat(join(root, path)).catch(() => null);
+  return Boolean(info?.isDirectory());
+}
+
+function normalizeManifestPath(path) {
+  return normalize(path).replaceAll('\\', '/');
+}
+
+function isCoveredByBuildManifest(path) {
+  const normalizedPath = normalizeManifestPath(path);
+  if (PUBLIC_BUILD_FILES.some((file) => normalizeManifestPath(file) === normalizedPath)) return true;
+  return PUBLIC_BUILD_DIRECTORIES.some((directory) => {
+    const normalizedDirectory = normalizeManifestPath(directory);
+    return normalizedPath.startsWith(`${normalizedDirectory}/`);
+  });
+}
+
+async function listPublicFiles(directory) {
+  const entries = await readdir(join(root, directory), { withFileTypes: true });
+  const files = await Promise.all(entries.map((entry) => {
+    const path = normalizeManifestPath(join(directory, entry.name));
+    return entry.isDirectory() ? listPublicFiles(path) : [path];
+  }));
+  return files.flat();
+}
+
 for (const file of requiredFiles) {
   if (!(await fileExists(file))) errors.push(`Arquivo ausente: ${file}`);
+}
+
+for (const directory of PUBLIC_BUILD_DIRECTORIES) {
+  if (!(await directoryExists(directory))) errors.push(`Diretório público ausente: ${directory}`);
+}
+
+for (const file of PUBLIC_BUILD_FILES) {
+  if (!(await fileExists(file))) errors.push(`Arquivo público ausente: ${file}`);
+}
+
+const publicFiles = [
+  ...PUBLIC_BUILD_FILES.map(normalizeManifestPath),
+  ...(await Promise.all(PUBLIC_BUILD_DIRECTORIES.map(listPublicFiles))).flat(),
+];
+const discoveredHtmlFiles = publicFiles.filter((file) => file.endsWith('.html'));
+const unregisteredHtmlFiles = discoveredHtmlFiles.filter((file) => !PUBLIC_HTML_FILES.includes(file));
+if (unregisteredHtmlFiles.length) {
+  errors.push(`HTML público sem rota declarada: ${unregisteredHtmlFiles.join(', ')}`);
+}
+
+for (const file of PUBLIC_REQUIRED_FILES) {
+  if (!isCoveredByBuildManifest(file)) errors.push(`Arquivo obrigatório fora do manifesto de build: ${file}`);
+}
+
+for (const [label, entries] of [
+  ['caminho de build', PUBLIC_BUILD_PATHS],
+  ['arquivo HTML', PUBLIC_HTML_FILES],
+  ['arquivo obrigatório', PUBLIC_REQUIRED_FILES],
+]) {
+  const duplicates = entries.filter((entry, index) => entries.indexOf(entry) !== index);
+  if (duplicates.length) errors.push(`Duplicidade no manifesto (${label}): ${[...new Set(duplicates)].join(', ')}`);
+}
+
+for (const key of ['id', 'url', 'cleanUrl', 'file']) {
+  const values = PUBLIC_ROUTES.map((route) => route[key]);
+  const duplicates = values.filter((value, index) => values.indexOf(value) !== index);
+  if (duplicates.length) {
+    errors.push(`Rotas públicas duplicam ${key}: ${[...new Set(duplicates)].join(', ')}`);
+  }
+}
+
+for (const route of PUBLIC_ROUTES) {
+  if (!PUBLIC_HTML_FILES.includes(route.file)) errors.push(`Rota fora da lista HTML: ${route.file}`);
+  if (!route.url.startsWith('/') || !route.cleanUrl.startsWith('/')) {
+    errors.push(`URL pública inválida na rota ${route.id}`);
+  }
 }
 
 const htmlByFile = new Map();
@@ -137,12 +169,13 @@ const publicDataFiles = [
   'assets/data/notable-figures.js',
   'assets/data/notable-figure-references.js',
   'assets/data/constellations.js',
+  'assets/data/contributions.js',
 ];
 const publicData = (await Promise.all(
   publicDataFiles.map((file) => readFile(join(root, file), 'utf8')),
 )).join('\n');
-const publicCodeFiles = requiredFiles.filter((file) =>
-  /^(?:assets|Teorias|Mapa|Constelacoes|GrandesNomes|Arquivo|Laboratorio)[\\/].*\.(?:css|js)$/i.test(file)
+const publicCodeFiles = publicFiles.filter((file) =>
+  /\.(?:css|js)$/i.test(file)
   && !/^assets[\\/]vendor[\\/]/i.test(file));
 const publicCode = (await Promise.all(
   publicCodeFiles.map((file) => readFile(join(root, file), 'utf8')),
@@ -186,9 +219,35 @@ for (const [file, html] of htmlByFile) {
   }
 }
 
-for (const jsFile of requiredFiles.filter((file) => file.endsWith('.js'))) {
+for (const jsFile of publicCodeFiles.filter((file) => file.endsWith('.js'))) {
   const js = await readFile(join(root, jsFile), 'utf8');
   if (/console\.log\(/.test(js)) errors.push(`console.log encontrado em ${jsFile}`);
+}
+
+try {
+  validateContributionCatalog(CONTRIBUTIONS);
+} catch (error) {
+  errors.push(`Catálogo de contribuições inválido: ${error.message}`);
+}
+
+for (const [label, definitions] of [
+  ['tipos de contribuição', CONTRIBUTION_TYPES],
+  ['status de contribuição', CONTRIBUTION_STATUSES],
+  ['papéis de contribuição', CONTRIBUTION_ROLES],
+  ['tipos de link de contribuição', CONTRIBUTION_LINK_TYPES],
+  ['tipos de fonte de contribuição', CONTRIBUTION_SOURCE_TYPES],
+]) {
+  if (!definitions.length) {
+    errors.push(`Catálogo vazio: ${label}`);
+    continue;
+  }
+  const ids = definitions.map((definition) => definition.id);
+  const labels = definitions.map((definition) => definition.label);
+  if (new Set(ids).size !== ids.length) errors.push(`IDs duplicados em ${label}`);
+  if (new Set(labels).size !== labels.length) errors.push(`Rótulos duplicados em ${label}`);
+  if (definitions.some((definition) => !definition.id || !definition.label)) {
+    errors.push(`Definição incompleta em ${label}`);
+  }
 }
 
 const theoryIds = new Set();
@@ -400,8 +459,8 @@ const constellationSeasonIds = new Set(['verao', 'outono', 'inverno', 'primavera
 const constellationStarRoles = new Set(['anchor', 'guide', 'landmark', 'context']);
 const constellationLabelAnchors = new Set(['start', 'middle', 'end']);
 
-if (CONSTELLATIONS.length !== 12) {
-  errors.push(`O atlas precisa ter exatamente 12 constelações; encontrou ${CONSTELLATIONS.length}.`);
+if (CONSTELLATIONS.length < 12) {
+  errors.push(`O atlas não pode regredir abaixo dos 12 campos de referência; encontrou ${CONSTELLATIONS.length}.`);
 }
 
 for (const constellation of CONSTELLATIONS) {

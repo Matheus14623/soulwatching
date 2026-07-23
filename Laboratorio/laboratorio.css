@@ -151,6 +151,127 @@
   filter: drop-shadow(0 0 5px rgba(114,87,255,0.55));
 }
 
+.experiment-visual--light-cone::before,
+.experiment-visual--light-cone::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1px;
+  height: 130%;
+  background: linear-gradient(transparent, rgba(241,207,115,0.7), transparent);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.experiment-visual--light-cone::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.experiment-visual--light-cone span:first-child,
+.experiment-visual--epsilon span:first-child,
+.experiment-visual--cycle span:first-child,
+.experiment-visual--biosphere span:first-child,
+.experiment-visual--quiz span:first-child {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 28px rgba(114,236,255,0.8);
+  transform: translate(-50%, -50%);
+}
+
+.experiment-visual--epsilon::before {
+  content: "0                    ε";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 50%;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(114,236,255,0.45);
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-align: center;
+  white-space: pre;
+}
+
+.experiment-visual--cycle::before,
+.experiment-visual--cycle::after {
+  content: "";
+  position: absolute;
+  inset: 22%;
+  border: 1px solid rgba(173,140,255,0.48);
+  border-radius: 50%;
+}
+
+.experiment-visual--cycle::after {
+  inset: 38%;
+  border-color: rgba(241,207,115,0.5);
+}
+
+.experiment-visual--cycle span:not(:first-child),
+.experiment-visual--quiz span:not(:first-child),
+.experiment-visual--biosphere span:not(:first-child) {
+  position: absolute;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: var(--purple);
+  box-shadow: 0 0 12px rgba(173,140,255,0.55);
+}
+
+.experiment-visual--cycle span:nth-child(2),
+.experiment-visual--quiz span:nth-child(2),
+.experiment-visual--biosphere span:nth-child(2) { left: 24%; top: 27%; }
+.experiment-visual--cycle span:nth-child(3),
+.experiment-visual--quiz span:nth-child(3),
+.experiment-visual--biosphere span:nth-child(3) { left: 72%; top: 25%; }
+.experiment-visual--cycle span:nth-child(4),
+.experiment-visual--quiz span:nth-child(4),
+.experiment-visual--biosphere span:nth-child(4) { left: 79%; top: 65%; }
+.experiment-visual--cycle span:nth-child(5),
+.experiment-visual--quiz span:nth-child(5),
+.experiment-visual--biosphere span:nth-child(5) { left: 32%; top: 76%; }
+.experiment-visual--cycle span:nth-child(6),
+.experiment-visual--quiz span:nth-child(6),
+.experiment-visual--biosphere span:nth-child(6) { left: 51%; top: 18%; }
+.experiment-visual--cycle span:nth-child(7),
+.experiment-visual--quiz span:nth-child(7),
+.experiment-visual--biosphere span:nth-child(7) { left: 60%; top: 72%; }
+
+.experiment-visual--quiz::before {
+  content: "?";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: rgba(114,236,255,0.55);
+  font-family: var(--font-serif);
+  font-size: 8rem;
+  transform: translate(-50%, -50%);
+}
+
+.experiment-visual--biosphere::before,
+.experiment-visual--biosphere::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10rem;
+  aspect-ratio: 1;
+  border: 1px solid rgba(135,229,176,0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.experiment-visual--biosphere::after {
+  width: 13rem;
+  border-color: rgba(114,236,255,0.14);
+}
+
 .experiment-visual--constellations::after {
   inset: 34% 24% 24%;
   transform: rotate(7deg);

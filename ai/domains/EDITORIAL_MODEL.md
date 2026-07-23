@@ -14,6 +14,8 @@ triggers:
   - "rascunho"
   - "conteúdo público"
   - "privacidade"
+  - "contribuição externa"
+  - "crédito"
 required_context:
   - "domains.index"
 related_context:
@@ -23,6 +25,8 @@ related_context:
 evidence_sources:
   - "Arquivo/arquivo.html"
   - "Laboratorio/laboratorio.html"
+  - "Contribuicoes/contribuicoes.html"
+  - "assets/data/contributions.js"
   - "index.html"
   - "docs/INTEGRACAO_TEORIAS.md"
   - "scripts/build.mjs"
@@ -37,7 +41,7 @@ Preservar a essência do observatório sem transformar rascunhos, bastidores ou 
 
 ## Current Confirmed Structure
 
-O produto distingue linhas de investigação, ensaios, registros e experiências de laboratório. O Arquivo ainda declara zero publicações e não cria títulos, datas ou métricas fictícias para preencher espaço.
+O produto distingue linhas de investigação, ensaios e registros próprios, experiências de laboratório, percursos guiados e contribuições externas. O Arquivo declara zero ensaios e registros; o catálogo de contribuições externas também está vazio. São estados diferentes e nenhum deles cria títulos, autores, datas ou métricas fictícias para preencher espaço.
 
 ## Canonical Rules
 
@@ -49,6 +53,8 @@ O produto distingue linhas de investigação, ensaios, registros e experiências
 - Materiais brutos e pareceres são insumos privados; o conteúdo público é uma síntese editorial separada.
 - Comentários de implementação e blocos desativados não pertencem aos arquivos públicos. Se uma ressalva é necessária ao visitante, escreva texto final no contexto adequado.
 - Informações profissionais públicas devem permanecer funcionais e discretas; novos dados pessoais exigem decisão explícita.
+- Conteúdo externo preserva o nome de crédito escolhido, a natureza da participação, fontes, permissões e revisões; não deve ser reatribuído ao Observatório ou a Matheus Camargo.
+- Publicação externa não constitui endosso científico, e uma objeção publicada não é tratada como ataque pessoal.
 
 ## Publication Flow
 
@@ -62,9 +68,22 @@ material privado
   -> verificação e build por allowlist
 ```
 
+Propostas externas seguem uma entrada separada:
+
+```text
+formulário local
+  -> e-mail preparado pelo navegador
+  -> confirmação de autoria ou permissão
+  -> leitura editorial e verificação de fontes
+  -> decisão explícita de crédito, licença, revisão e local de publicação
+  -> entrada no catálogo público somente depois da autorização
+```
+
+Os cinco formatos aceitos hoje são ensaio, nota técnica, visualização, revisão ou objeção e linha de investigação convidada. O formulário usa `mailto:`: não faz upload, não grava dados, não cria conta e não publica automaticamente.
+
 ## When Not To Publish
 
-Não substitua o estado vazio do Arquivo até existir uma publicação real, revisada, navegável e com uma decisão de schema. Um fragmento curto ainda precisa de contexto e estado editorial; não deve virar diário.
+Não substitua o estado vazio do Arquivo até existir um ensaio ou registro próprio real, revisado, navegável e com uma decisão de schema. Não preencha a área de Contribuições até existir material externo autorizado, creditado e revisado. Um fragmento curto ainda precisa de contexto e estado editorial; não deve virar diário.
 
 ## Validation
 
@@ -72,5 +91,5 @@ Revise linguagem, procedência, privacidade, distinção epistemológica e prese
 
 ## To Verify
 
-- Schema e rota canônica do primeiro ensaio ou registro completo.
+- Schema e rota canônica do primeiro ensaio, registro ou conteúdo externo completo.
 - Decisão atual sobre manter telefone pessoal no conteúdo público.

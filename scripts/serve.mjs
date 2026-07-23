@@ -1,63 +1,130 @@
-import { createServer } from 'node:http';
-import { readFile, stat } from 'node:fs/promises';
 import { createReadStream } from 'node:fs';
-import { extname, join, normalize, resolve } from 'node:path';
+import { readFile, stat } from 'node:fs/promises';
+import { createServer } from 'node:http';
+import { dirname, extname, isAbsolute, relative, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import {
+  PUBLIC_BUILD_DIRECTORIES,
+  PUBLIC_BUILD_FILES,
+  PUBLIC_ROUTES,
+} from './public-manifest.mjs';
 
-const root = resolve(process.cwd());
-const port = Number(process.env.PORT || 5173);
+const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const mode = process.argv.includes('--dist') ? 'dist' : 'source';
+const root = mode === 'dist' ? resolve(projectRoot, 'dist') : projectRoot;
+const host = 'localhost';
+const requestedPort = Number(process.env.PORT || 5173);
+const port = Number.isInteger(requestedPort) && requestedPort >= 0 && requestedPort <= 65535
+  ? requestedPort
+  : 5173;
 
 const mimeTypes = new Map([
-  ['.html', 'text/html; charset=utf-8'],
+  ['.avif', 'image/avif'],
   ['.css', 'text/css; charset=utf-8'],
-  ['.js', 'text/javascript; charset=utf-8'],
-  ['.mjs', 'text/javascript; charset=utf-8'],
-  ['.json', 'application/json; charset=utf-8'],
-  ['.svg', 'image/svg+xml'],
-  ['.webp', 'image/webp'],
-  ['.jpg', 'image/jpeg'],
+  ['.html', 'text/html; charset=utf-8'],
+  ['.ico', 'image/x-icon'],
   ['.jpeg', 'image/jpeg'],
+  ['.jpg', 'image/jpeg'],
+  ['.js', 'text/javascript; charset=utf-8'],
+  ['.json', 'application/json; charset=utf-8'],
+  ['.mjs', 'text/javascript; charset=utf-8'],
   ['.png', 'image/png'],
+  ['.svg', 'image/svg+xml'],
   ['.txt', 'text/plain; charset=utf-8'],
-  ['.md', 'text/markdown; charset=utf-8'],
+  ['.webp', 'image/webp'],
+  ['.woff', 'font/woff'],
+  ['.woff2', 'font/woff2'],
+  ['.xml', 'application/xml; charset=utf-8'],
 ]);
 
-function safePath(urlPath) {
-  const decoded = decodeURIComponent(urlPath.split('?')[0]);
-  const target = normalize(decoded === '/' ? '/index.html' : decoded);
-  const absolute = resolve(join(root, target));
-  if (!absolute.startsWith(root)) return null;
-  return absolute;
+const routeFiles = new Map();
+for (const route of PUBLIC_ROUTES) {
+  routeFiles.set(route.url, route.file);
+  routeFiles.set(route.cleanUrl, route.file);
+}
+
+function normalizePublicPath(path) {
+  return path.replaceAll('\\', '/').replace(/^\/+/, '');
+}
+
+function isInsideRoot(path) {
+  const pathFromRoot = relative(root, path);
+  return pathFromRoot === '' || (!pathFromRoot.startsWith('..') && !isAbsolute(pathFromRoot));
+}
+
+function isAllowedSourcePath(path) {
+  const publicPath = normalizePublicPath(relative(projectRoot, path));
+  if (PUBLIC_BUILD_FILES.includes(publicPath)) return true;
+  return PUBLIC_BUILD_DIRECTORIES.some((directory) => (
+    publicPath === directory || publicPath.startsWith(`${directory}/`)
+  ));
+}
+
+function resolveRequestPath(rawUrl) {
+  const url = new URL(rawUrl, `http://${host}`);
+  const decodedPath = decodeURIComponent(url.pathname);
+  const routeFile = routeFiles.get(decodedPath);
+  const publicPath = routeFile || normalizePublicPath(decodedPath || 'index.html') || 'index.html';
+  const filePath = resolve(root, publicPath);
+  if (!isInsideRoot(filePath)) return null;
+  if (mode === 'source' && !isAllowedSourcePath(filePath)) return null;
+  return filePath;
+}
+
+async function sendNotFound(response, method) {
+  const notFoundPath = resolve(root, 'index.html');
+  const notFound = await readFile(notFoundPath).catch(() => Buffer.from('Página não encontrada.'));
+  response.writeHead(404, {
+    'content-type': 'text/html; charset=utf-8',
+    'x-content-type-options': 'nosniff',
+  });
+  response.end(method === 'HEAD' ? undefined : notFound);
 }
 
 const server = createServer(async (request, response) => {
+  const method = request.method || 'GET';
+  if (!['GET', 'HEAD'].includes(method)) {
+    response.writeHead(405, { allow: 'GET, HEAD' });
+    response.end();
+    return;
+  }
+
   try {
-    const filePath = safePath(request.url || '/');
-    if (!filePath) {
-      response.writeHead(403);
-      response.end('Forbidden');
+    const filePath = resolveRequestPath(request.url || '/');
+    const info = filePath ? await stat(filePath).catch(() => null) : null;
+    if (!info?.isFile()) {
+      await sendNotFound(response, method);
       return;
     }
 
-    const info = await stat(filePath).catch(() => null);
-    if (!info || !info.isFile()) {
-      const notFound = await readFile(join(root, 'index.html'));
-      response.writeHead(404, { 'content-type': 'text/html; charset=utf-8' });
-      response.end(notFound);
-      return;
-    }
-
-    const type = mimeTypes.get(extname(filePath)) || 'application/octet-stream';
+    const type = mimeTypes.get(extname(filePath).toLowerCase()) || 'application/octet-stream';
     response.writeHead(200, {
-      'content-type': type,
       'cache-control': type.startsWith('image/') ? 'public, max-age=86400' : 'no-cache',
+      'content-length': info.size,
+      'content-type': type,
+      'x-content-type-options': 'nosniff',
     });
-    createReadStream(filePath).pipe(response);
-  } catch (error) {
-    response.writeHead(500, { 'content-type': 'text/plain; charset=utf-8' });
-    response.end(`Internal Server Error: ${error.message}`);
+    if (method === 'HEAD') response.end();
+    else createReadStream(filePath).pipe(response);
+  } catch {
+    response.writeHead(400, {
+      'content-type': 'text/plain; charset=utf-8',
+      'x-content-type-options': 'nosniff',
+    });
+    response.end('Requisição inválida.');
   }
 });
 
-server.listen(port, () => {
-  console.log(`Observatório de Ideias em http://localhost:${port}`);
+server.listen(port, host, () => {
+  const address = server.address();
+  const activePort = typeof address === 'object' && address ? address.port : port;
+  const label = mode === 'dist' ? 'preview de dist' : 'desenvolvimento com allowlist pública';
+  console.log(`Observatório de Ideias (${label}) em http://${host}:${activePort}`);
 });
+
+function stopServer() {
+  server.close(() => process.exit(0));
+}
+
+process.once('SIGINT', stopServer);
+process.once('SIGTERM', stopServer);

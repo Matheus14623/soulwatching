@@ -1,4 +1,6 @@
 import { $, $$ } from './utils.js';
+import { initGlobalSearch } from './global-search.js?v=global-search-v1';
+import { initSiteMetrics } from './site-metrics.js?v=site-metrics-v1';
 import { initSmoothScrolling, smoothScrollTo } from './smooth-scroll.js';
 
 export function initNavigation() {
@@ -6,27 +8,49 @@ export function initNavigation() {
   const toggle = $('[data-menu-toggle]');
   const nav = $('[data-primary-nav]');
   const backToTop = $('[data-back-to-top]');
+  const mobileMenu = window.matchMedia('(max-width: 1080px)');
   const links = $$('a[href^="#"]', nav || document);
   const sections = links
     .map((link) => document.getElementById(link.getAttribute('href').slice(1)))
     .filter(Boolean);
 
   initSmoothScrolling();
+  initGlobalSearch();
+  void initSiteMetrics();
+
+  const setMenuState = (isOpen, options = {}) => {
+    if (!toggle || !nav) return;
+    const openOnMobile = mobileMenu.matches && isOpen;
+    toggle.setAttribute('aria-expanded', String(openOnMobile));
+    nav.classList.toggle('is-open', openOnMobile);
+    if (mobileMenu.matches && !openOnMobile && nav.contains(document.activeElement)) toggle.focus();
+    nav.inert = mobileMenu.matches && !openOnMobile;
+    if (nav.inert) nav.setAttribute('aria-hidden', 'true');
+    else nav.removeAttribute('aria-hidden');
+    $('.sr-only', toggle).textContent = openOnMobile ? 'Fechar menu' : 'Abrir menu';
+    if (options.returnFocus && mobileMenu.matches && document.activeElement !== toggle) toggle.focus();
+    if (options.focusFirst && openOnMobile) $('a', nav)?.focus();
+  };
 
   const closeMenu = (options = {}) => {
-    if (!toggle || !nav) return;
-    toggle.setAttribute('aria-expanded', 'false');
-    nav.classList.remove('is-open');
-    $('.sr-only', toggle).textContent = 'Abrir menu';
-    if (options.returnFocus) toggle.focus();
+    setMenuState(false, options);
   };
+
+  const syncMenuWithViewport = () => {
+    const wasOpen = toggle?.getAttribute('aria-expanded') === 'true';
+    setMenuState(mobileMenu.matches && wasOpen);
+  };
+
+  syncMenuWithViewport();
+  if (typeof mobileMenu.addEventListener === 'function') {
+    mobileMenu.addEventListener('change', syncMenuWithViewport);
+  } else {
+    mobileMenu.addListener(syncMenuWithViewport);
+  }
 
   toggle?.addEventListener('click', () => {
     const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!isOpen));
-    nav?.classList.toggle('is-open', !isOpen);
-    $('.sr-only', toggle).textContent = isOpen ? 'Abrir menu' : 'Fechar menu';
-    if (!isOpen) $('a', nav)?.focus();
+    setMenuState(!isOpen, { focusFirst: !isOpen });
   });
 
   links.forEach((link) => {
@@ -47,8 +71,15 @@ export function initNavigation() {
 
   const updateHeader = () => {
     const scrolled = window.scrollY > 24;
+    const showBackToTop = window.scrollY > 620;
     header?.classList.toggle('is-scrolled', scrolled);
-    backToTop?.classList.toggle('is-visible', window.scrollY > 620);
+    backToTop?.classList.toggle('is-visible', showBackToTop);
+    if (backToTop) {
+      backToTop.inert = !showBackToTop;
+      backToTop.tabIndex = showBackToTop ? 0 : -1;
+      if (showBackToTop) backToTop.removeAttribute('aria-hidden');
+      else backToTop.setAttribute('aria-hidden', 'true');
+    }
   };
 
   updateHeader();

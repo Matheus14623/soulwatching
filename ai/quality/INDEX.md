@@ -21,6 +21,11 @@ related_context:
 evidence_sources:
   - "scripts/verify.mjs"
   - "scripts/build.mjs"
+  - "scripts/public-manifest.mjs"
+  - "scripts/tests/public-smoke.test.mjs"
+  - "scripts/tests/accessibility-contracts.test.mjs"
+  - "scripts/tests/browser-smoke.test.mjs"
+  - ".github/workflows/quality.yml"
   - "assets/js/observer.js"
   - "assets/js/resonance.js"
 ---
@@ -36,7 +41,7 @@ Leia este escopo para revisar uma mudança ou definir o nível de validação pr
 
 ## Estado confirmado
 
-O projeto possui verificação estrutural/editorial e build por allowlist, mas não possui suíte E2E, testes unitários do produto, regressão visual, CI ou telemetria. Os validadores da base `ai/` possuem testes nativos separados.
+O projeto possui verificação estrutural/editorial, build por manifesto, smoke HTTP de todas as rotas, contratos estáticos de acessibilidade e um smoke em navegador real quando Chrome, Chromium ou Edge está disponível. O workflow `quality.yml` executa os testes da base e `npm test` em push e pull request com Node 22. Isso ainda não equivale a uma suíte E2E completa, teste unitário de todos os modelos, regressão visual, auditoria automatizada ampla de acessibilidade ou telemetria.
 
 ## Quando atualizar
 

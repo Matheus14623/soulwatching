@@ -5,7 +5,7 @@ scope: "frontend"
 kind: "canonical-reference"
 status: "canonical"
 canonical_for:
-  - "ciclo de vida da Visão Estelar, atlas de constelações, galeria, ressonância, filosofia, navegação e rolagem"
+  - "ciclo de vida da Visão Estelar, atlas, treino, galeria, busca global, Rotas Guiadas, Laboratório, ressonância, filosofia, navegação e rolagem"
 triggers:
   - "Visão Estelar"
   - "observer"
@@ -17,6 +17,10 @@ triggers:
   - "carrossel"
   - "Grandes Nomes"
   - "Constelações"
+  - "busca global"
+  - "Rotas Guiadas"
+  - "simulador"
+  - "modo treino"
 required_context:
   - "frontend.index"
 conditional_context:
@@ -34,11 +38,23 @@ evidence_sources:
   - "assets/js/smooth-scroll.js"
   - "assets/js/contact.js"
   - "GrandesNomes/grandes-nomes.js"
+  - "assets/data/notable-figures.js"
   - "Constelacoes/constelacoes.js"
   - "Constelacoes/whale-shark-easter-egg.js"
   - "Constelacoes/constelacoes.css"
   - "assets/js/constellation-chart.js"
   - "assets/data/constellations.js"
+  - "assets/js/global-search.js"
+  - "assets/data/experiments.js"
+  - "Laboratorio/laboratorio.js"
+  - "Laboratorio/experimento.js"
+  - "Laboratorio/simulations/light-cone.js"
+  - "Laboratorio/simulations/zero-epsilon.js"
+  - "Laboratorio/simulations/finite-recurrence.js"
+  - "Laboratorio/simulations/astrobiology.js"
+  - "assets/data/learning-paths.js"
+  - "assets/js/learning-paths-model.js"
+  - "Rotas/rotas.js"
   - "assets/vendor/swiper/LICENSE"
   - "index.html"
 ---
@@ -71,6 +87,8 @@ Contratos:
 
 A rotação usa intervalo de 30 segundos e pode ser pausada manualmente. Ela também para durante foco, ponteiro, arraste, aba oculta ou galeria fora da viewport. Em ponteiros de alta precisão, o arraste usa limiar menor, resposta levemente ampliada e encaixe mais rápido; o arraste nativo dos retratos fica desativado para não disputar o gesto com o carrossel. A configuração tátil permanece independente. Em movimento reduzido, autoplay e coverflow são desativados, a velocidade cai para zero e o conteúdo permanece navegável. Se a biblioteca não carregar, o fallback estático preserva cards, detalhe e botões.
 
+A comparação recebe duas trajetórias por `?comparar=<slug>,<slug>`, usa os mesmos perfis e mostra contribuições e relações editoriais lado a lado sem produzir uma classificação. As quatro trilhas temáticas usam `?trilha=<id>` e resolvem seus passos contra o catálogo; a linha do tempo reúne métodos e descobertas, pode ser filtrada por observar, medir, modelar e testar e não altera o perfil ativo. Comparação, trilhas e linha do tempo não duplicam dossiês nem transformam ordem cronológica em hierarquia de importância.
+
 ## Atlas de Constelações
 
 `Constelacoes/constelacoes.js` organiza 12 entradas de `assets/data/constellations.js` em uma superfície mestre–detalhe e usa o mesmo renderizador SVG da prévia da home. Uma constelação ocupa o campo principal; a faixa horizontal mantém o catálogo navegável sem repetir 12 painéis completos. Busca textual e filtros sazonais produzem o conjunto visível, preservam a seleção quando possível e escolhem uma opção válida quando ela deixa o recorte. No desktop, campo e catálogo formam a coluna principal à esquerda, enquanto o detalhe ocupa uma coluna independente à direita; assim, diferenças no tamanho do texto não deslocam o catálogo. Em telas estreitas, a ordem natural é campo, catálogo e detalhe.
@@ -87,6 +105,37 @@ Com `prefers-reduced-motion`, o módulo marca o perfil reduzido antes da ativaç
 
 Não existe loop contínuo, canvas ou biblioteca para o atlas. A interação substitui o campo principal, atualiza detalhes textuais e alterna estados de SVG; não há simulação física, rastreamento do ponteiro ou animação temporal do céu.
 
+### Modo treino do Atlas
+
+`?modo=treino` abre uma sessão de oito rodadas sobre as mesmas 12 entradas do atlas. Cada rodada preserva as estrelas, oculta nomes e linhas e oferece quatro respostas; depois da escolha, a interface revela o padrão, informa o resultado e permite avançar. Pontuação, rodada e feedback são anunciados por uma região viva, e o foco segue para a próxima ação relevante.
+
+O treino não persiste pontuação, não cria perfil de usuário e não substitui observação real. Ao sair, o controlador restaura o atlas normal e sua seleção. Movimento reduzido mantém a revelação e remove transições não essenciais.
+
+## Busca global
+
+`global-search.js` injeta um único botão na navegação e um `dialog` sob demanda. A abertura por botão ou `Ctrl+K`/`Command+K` importa em paralelo teorias, 22 perfis, 12 constelações, nove experiências, quatro Rotas Guiadas e contribuições publicadas. O índice permanece em memória apenas durante a página; títulos recebem maior peso, todos os termos precisam aparecer no texto normalizado e no máximo 12 resultados são mostrados. Com consulta vazia, até oito Rotas Guiadas e experiências são sugeridas.
+
+Setas percorrem os resultados, `Escape` fecha o diálogo pelo comportamento nativo e o foco retorna ao gatilho. A busca é client-side: não consulta servidor, não registra histórico e não encontra texto livre fora dos seis catálogos.
+
+## Rotas Guiadas
+
+`assets/data/learning-paths.js` declara quatro percursos de cinco etapas. `learning-paths-model.js` resolve cada referência para um perfil, uma linha de investigação ou uma experiência e descarta referências inexistentes; `Rotas/rotas.js` apresenta catálogo, justificativa da passagem, progresso e controles anterior/próximo. A URL `?rota=<slug>&etapa=<n>` permite compartilhar a posição atual.
+
+O avanço representa navegação, não conclusão certificada. Não há conta, persistência ou sincronização entre páginas: abrir o conteúdo de uma etapa e voltar não marca automaticamente leitura. As rotas organizam níveis de evidência distintos sem declarar que um perfil histórico valida uma linha autoral.
+
+## Laboratório
+
+`assets/data/experiments.js` é a fonte única das nove experiências ativas e de quatro naturezas: visualização conceitual, instrumento interativo, simulador didático e modo de treino. Home, Arquivo, Laboratório, busca, métricas e Rotas Guiadas consomem esse catálogo. `Laboratorio/experimento.js` aceita `?experimento=<slug>`, apresenta pergunta, tecnologia, limite e linhas autorais relacionadas e importa somente o simulador pedido. Uma seleção inválida recebe estado de erro e retorno ao índice; `pagehide` executa a limpeza fornecida pelo módulo.
+
+Os quatro simuladores e seus limites são:
+
+- **Cone de luz e referenciais:** transformação de Lorentz em uma dimensão espacial, unidades com `c = 1` e referenciais inerciais; classifica a separação causal e preserva o intervalo, sem gravidade ou aceleração.
+- **Zero vs. Epsilon:** heurística transparente que combina chance, benefício, custo, dano, aprendizado e reversibilidade em escalas escolhidas pelo visitante. Tetos separados de custo e dano residual funcionam como critérios explícitos de parada: não alteram o saldo e, quando excedidos, impedem uma leitura favorável; o modelo não é previsão nem aconselhamento profissional.
+- **Modelo finito de recorrência:** sistema determinístico `próximo = (a × estado + b) mod N`, com transiente e ciclo; repetição no modelo finito não demonstra recorrência cosmológica nem visita a todos os estados.
+- **Astrobiologia probabilística:** cenário de potências de dez para mundos candidatos, abiogênese, complexidade, inteligência tecnológica, detectabilidade e sobreposição temporal. As cinco etapas são probabilidades condicionais multiplicadas pela regra da cadeia; a chance de ao menos um sinal assume candidatos independentes com a mesma probabilidade combinada. O modelo não estima frequências reais.
+
+Controles, fórmulas, hipóteses e resultados devem permanecer visíveis. Um simulador didático demonstra consequências de premissas escolhidas; não converte o resultado em evidência para as linhas relacionadas.
+
 ## Navegação e rolagem
 
 `navigation.js` controla menu, seção ativa, cabeçalho e retorno ao topo. `smooth-scroll.js` centraliza âncoras, compensa o cabeçalho, permite cancelamento por interação e cai para rolagem imediata com movimento reduzido.
@@ -97,7 +146,7 @@ Não existe loop contínuo, canvas ou biblioteca para o atlas. A interação sub
 
 ## Validation
 
-Teste inicialização única, alternâncias repetidas, visibilidade da aba, redução de movimento, teclado, toque, seleção direta por slug, áudio desligado e console sem erros.
+Teste inicialização única, alternâncias repetidas, visibilidade da aba, redução de movimento, teclado, toque, busca global, URLs de comparação e trilha, oito rodadas do Atlas, quatro Rotas Guiadas, os extremos dos controles dos quatro simuladores, áudio desligado e console sem erros.
 
 ## To Verify
 

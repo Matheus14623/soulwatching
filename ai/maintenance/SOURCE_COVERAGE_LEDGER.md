@@ -44,7 +44,7 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 
 | Fonte | Tipo | Estado | Decisão | Headings | Destinos |
 | --- | --- | --- | --- | ---: | ---: |
-| [DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md](../../DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md) | architecture-guide | historical | preserve | 42 | 9 |
+| [DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md](../../DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md) | architecture-guide | historical | preserve | 27 | 9 |
 | [README.md](../../README.md) | operational-guide | current | preserve | 11 | 5 |
 | [docs/INTEGRACAO_TEORIAS.md](../../docs/INTEGRACAO_TEORIAS.md) | domain-guide | historical | preserve | 11 | 4 |
 | [docs/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026.docx](../../docs/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026.docx) | editorial-review | internal | reference | 25 | 4 |
@@ -61,8 +61,8 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 - Tipo: `architecture-guide`
 - Estado: `historical`
 - Decisão: `preserve`
-- Tamanho: `23825` bytes
-- SHA-256: `fe6437e361b7ff628b1eb8dc58de65acccfed611bddb866e176e97c3b76cf5ac`
+- Tamanho: `20821` bytes
+- SHA-256: `4309db4d21f8a8d05a931c0499a994ccb93289157fb754ec6d0f9f7768c5df6f`
 - Síntese: Snapshot arquitetural amplo do estado pós-expansão, preservado como histórico e subordinado aos nós canônicos atuais.
 - Destinos canônicos:
   - `project.architecture` — [ai/project/ARCHITECTURE.md](../project/ARCHITECTURE.md)
@@ -80,46 +80,31 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 - Headings: extração automática
   - `H1` Documentação atualizada do Observatório de Ideias
   - `H2` 1. Visão do produto
-  - `H3` Princípios
   - `H2` 2. Arquitetura atual
-  - `H3` Decisões técnicas
-  - `H2` 3. Tecnologias
-  - `H2` 4. Estrutura de pastas
-  - `H2` 5. Identidade visual
-  - `H3` Linguagem
-  - `H3` Tokens e componentes
-  - `H3` Responsividade e movimento
-  - `H3` Tom de conteúdo
-  - `H2` 6. Páginas e componentes
-  - `H3` Home
-  - `H3` Teorias
-  - `H3` Mapa
-  - `H3` Arquivo
-  - `H3` Laboratório
-  - `H2` 7. Dados editoriais
-  - `H2` 8. Como evoluir o conteúdo
-  - `H3` Criar uma nova linha
-  - `H3` Criar uma nova página
-  - `H3` Adicionar o primeiro artigo, ensaio ou registro
-  - `H3` Criar um novo experimento
-  - `H2` 9. Manutenção
-  - `H3` Antes de cada publicação
-  - `H3` Regras de conteúdo
-  - `H3` Regras técnicas
-  - `H2` 10. Limitações atuais
-  - `H2` 11. Melhorias futuras
-  - `H2` 12. Transição futura para Vite ou Next.js
-  - `H3` Quando Vite faz sentido
-  - `H3` Quando Next.js faz sentido
-  - `H2` 13. Riscos de deploy na Vercel
-  - `H2` 14. Testes executados nesta expansão
-  - `H3` Automáticos
-  - `H3` Navegador — desktop 1440 × 900
-  - `H3` Navegador — responsividade
-  - `H2` 15. Checklist para próxima grande atualização
-  - `H2` 16. Referências internas
-  - `H2` 17. O que mudou nesta atualização
-  - `H2` 18. Atualização de clareza científica e privacidade
+  - `H2` 3. Catálogo e dossiês de Teorias
+  - `H2` 4. Grandes Nomes
+  - `H2` 5. Rotas Guiadas
+  - `H2` 6. Busca global
+  - `H2` 7. Laboratório e catálogo de experiências
+  - `H3` 7.1 Cone de luz e referenciais
+  - `H3` 7.2 Zero vs. Epsilon
+  - `H3` 7.3 Modelo finito de recorrência
+  - `H3` 7.4 Astrobiologia probabilística
+  - `H2` 8. Atlas e modo treino
+  - `H2` 9. Contribuições externas e autoria
+  - `H2` 10. Acessibilidade e movimento
+  - `H2` 11. Desempenho
+  - `H2` 12. Manifesto, servidor, build e Vercel
+  - `H2` 13. CI e testes
+  - `H2` 14. Como evoluir sem duplicação
+  - `H3` Nova linha de investigação
+  - `H3` Novo perfil histórico
+  - `H3` Nova experiência
+  - `H3` Nova Rota Guiada
+  - `H3` Primeira contribuição externa
+  - `H2` 15. Limitações e pontos a verificar
+  - `H2` 16. Checklist de publicação
+  - `H2` 17. Referências internas
 
 ### README.md
 
@@ -128,8 +113,8 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 - Tipo: `operational-guide`
 - Estado: `current`
 - Decisão: `preserve`
-- Tamanho: `8043` bytes
-- SHA-256: `65493659bbb8deb0ea865c50a53174da6c7b69f02356a1c7507cab4c0eb2726b`
+- Tamanho: `10029` bytes
+- SHA-256: `51b29e7412ae8def8360a5c665b5a8515eef0e3f089c83e796409cf53d4a6bb4`
 - Síntese: Entrada operacional resumida para rotas, execução local, arquitetura pública e publicação.
 - Destinos canônicos:
   - `project.index` — [ai/project/INDEX.md](../project/INDEX.md)
@@ -160,8 +145,8 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 - Tipo: `domain-guide`
 - Estado: `historical`
 - Decisão: `preserve`
-- Tamanho: `8019` bytes
-- SHA-256: `5c577978b04f8e11a47e25626cde865128f39021a5d0fc59cc3e3cdcefb53f54`
+- Tamanho: `9598` bytes
+- SHA-256: `51a9c055a238c995051cb3e0572f61291e6ed52b621e0b715dbc44a107483e11`
 - Síntese: Especificação especializada anterior para dados, leitura crítica, relações, referências, URLs e publicação das linhas de investigação.
 - Destinos canônicos:
   - `domains.editorial-model` — [ai/domains/EDITORIAL_MODEL.md](../domains/EDITORIAL_MODEL.md)

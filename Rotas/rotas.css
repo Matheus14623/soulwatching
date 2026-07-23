@@ -1,0 +1,298 @@
+.routes-hero .inner-hero-copy h1 {
+  max-width: 12ch;
+}
+
+.routes-catalog-section {
+  background: var(--bg-2);
+}
+
+.routes-catalog {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.route-catalog-card {
+  position: relative;
+  display: grid;
+  min-height: 21rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  overflow: clip;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(145deg, rgba(255,255,255,0.065), rgba(255,255,255,0.018));
+  color: inherit;
+  text-align: left;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.route-catalog-card::before {
+  content: "";
+  position: absolute;
+  width: 18rem;
+  height: 18rem;
+  right: -7rem;
+  top: -8rem;
+  border: 1px solid color-mix(in srgb, var(--route-accent) 45%, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 70px color-mix(in srgb, var(--route-accent) 12%, transparent);
+}
+
+.route-catalog-card:hover,
+.route-catalog-card:focus-visible,
+.route-catalog-card[aria-pressed="true"] {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--route-accent) 58%, var(--border));
+  background: linear-gradient(145deg, color-mix(in srgb, var(--route-accent) 9%, transparent), rgba(255,255,255,0.025));
+}
+
+.route-catalog-kicker,
+.route-catalog-meta,
+.route-step-type {
+  color: var(--route-accent, var(--cyan));
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.route-catalog-title {
+  display: block;
+  max-width: 12ch;
+  margin: 1.2rem 0 0.7rem;
+  color: inherit;
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 4vw, 3.25rem);
+  letter-spacing: normal;
+  line-height: 0.98;
+  text-transform: none;
+}
+
+.route-catalog-summary {
+  display: block;
+  max-width: 56ch;
+  margin: 0;
+  color: var(--text-soft);
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.route-catalog-meta {
+  display: flex;
+  gap: 1rem;
+  align-self: end;
+  margin-top: 2rem;
+}
+
+.route-player-section {
+  background:
+    radial-gradient(circle at 78% 12%, rgba(114,236,255,0.07), transparent 26rem),
+    var(--bg);
+}
+
+.route-player-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.34fr);
+  gap: 2rem;
+  align-items: end;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.route-player-header h2 {
+  margin-bottom: 0.7rem;
+}
+
+.route-player-header p:not(.section-kicker) {
+  max-width: 66ch;
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.route-progress {
+  display: grid;
+  gap: 0.6rem;
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.route-progress-track {
+  height: 0.32rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+}
+
+.route-progress-track i {
+  display: block;
+  width: 20%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
+  transition: width 220ms ease;
+}
+
+.route-player-grid {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.32fr) minmax(0, 1fr);
+  gap: clamp(1rem, 4vw, 3rem);
+  margin-top: 2rem;
+}
+
+.route-step-index {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+}
+
+.route-step-index button {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: center;
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-soft);
+  text-align: left;
+}
+
+.route-step-index button:hover,
+.route-step-index button:focus-visible,
+.route-step-index button[aria-current="step"] {
+  border-color: var(--border-strong);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+}
+
+.route-step-index button span {
+  display: grid;
+  width: 2.25rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.route-step-card {
+  position: relative;
+  display: grid;
+  align-content: center;
+  min-height: 30rem;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  overflow: clip;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(145deg, rgba(114,236,255,0.065), rgba(173,140,255,0.025));
+}
+
+.route-step-card::after {
+  content: attr(data-step-number);
+  position: absolute;
+  right: -0.05em;
+  bottom: -0.25em;
+  color: rgba(255,255,255,0.035);
+  font-family: var(--font-serif);
+  font-size: clamp(11rem, 26vw, 21rem);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.route-step-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.route-step-card h3 {
+  max-width: 13ch;
+  margin: 1rem 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  line-height: 0.98;
+}
+
+.route-step-reason {
+  max-width: 66ch;
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.route-step-summary {
+  max-width: 66ch;
+  margin: 1rem 0 1.5rem;
+  color: var(--text-soft);
+}
+
+.route-step-card > .button {
+  justify-self: start;
+}
+
+.route-step-controls {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 2.5rem;
+}
+
+.routes-method-section {
+  background: var(--bg-2);
+}
+
+@media (max-width: 860px) {
+  .routes-catalog,
+  .route-player-header,
+  .route-player-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .route-step-index {
+    grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));
+  }
+
+  .route-step-index button {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding: 0.55rem;
+    text-align: center;
+  }
+
+  .route-step-index button strong {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .routes-catalog {
+    grid-template-columns: 1fr;
+  }
+
+  .route-catalog-card {
+    min-height: 18rem;
+  }
+
+  .route-step-card {
+    min-height: 31rem;
+    padding: 1.3rem;
+  }
+
+  .route-step-controls {
+    display: grid;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-catalog-card,
+  .route-progress-track i {
+    transition: none;
+  }
+}

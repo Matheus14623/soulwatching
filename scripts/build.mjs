@@ -2,6 +2,7 @@ import * as fs from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import { basename, dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { PUBLIC_BUILD_PATHS } from './public-manifest.mjs';
 
 const { copyFile, lstat, mkdir, readdir } = fs;
 
@@ -18,30 +19,6 @@ const verification = spawnSync(process.execPath, [join(root, 'scripts', 'verify.
 });
 
 if (verification.status !== 0) process.exit(verification.status || 1);
-
-const publicPaths = [
-  'index.html',
-  'teorias.html',
-  'robots.txt',
-  'assets/css',
-  'assets/data',
-  'assets/icons',
-  'assets/images',
-  'assets/js',
-  'assets/vendor/swiper/swiper-bundle.min.css',
-  'assets/vendor/swiper/swiper-bundle.min.js',
-  'assets/vendor/swiper/LICENSE',
-  'Teorias/teorias.html',
-  'Teorias/teorias.css',
-  'Teorias/teorias.js',
-  'Mapa',
-  'Constelacoes',
-  'GrandesNomes/grandes-nomes.html',
-  'GrandesNomes/grandes-nomes.css',
-  'GrandesNomes/grandes-nomes.js',
-  'Arquivo',
-  'Laboratorio',
-];
 
 async function removeDirectory(directory) {
   if (typeof fs.rm === 'function') {
@@ -74,7 +51,7 @@ async function copyPath(source, destination) {
 await removeDirectory(output);
 await mkdir(output, { recursive: true });
 
-for (const entry of publicPaths) {
+for (const entry of PUBLIC_BUILD_PATHS) {
   const source = resolve(root, entry);
   const destination = resolve(output, entry);
   await copyPath(source, destination);

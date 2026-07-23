@@ -20,6 +20,7 @@ related_context:
 evidence_sources:
   - "README.md"
   - "package.json"
+  - "scripts/public-manifest.mjs"
   - "scripts/build.mjs"
 ---
 
@@ -36,9 +37,10 @@ Leia este escopo para entender a aplicação antes de escolher uma camada espec�
 ## Pontos de entrada confirmados
 
 - `index.html` com `assets/js/main.js` para a home interativa.
-- HTML e controlador próprios em `Teorias/`, `Mapa/`, `GrandesNomes/` e `Constelacoes/`.
-- HTML estático com `assets/js/page-shell.js` em `Arquivo/` e `Laboratorio/`.
-- `scripts/serve.mjs`, `scripts/verify.mjs` e `scripts/build.mjs` para o ciclo local.
+- HTML e controlador próprios em `Teorias/`, `Mapa/`, `GrandesNomes/`, `Constelacoes/`, `Laboratorio/`, `Rotas/` e `Contribuicoes/`.
+- HTML estático com `assets/js/page-shell.js` em `Arquivo/`.
+- `scripts/public-manifest.mjs` como catálogo central de rotas, arquivos e diretórios públicos.
+- `scripts/serve.mjs`, `scripts/verify.mjs`, `scripts/build.mjs` e `scripts/tests/` para desenvolvimento, verificação, build e smoke tests.
 
 ## Quando atualizar
 

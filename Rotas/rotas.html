@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Rotas guiadas do Observatório de Ideias: percursos curtos entre ciência, filosofia, teorias autorais e experimentos interativos." />
+    <meta name="author" content="Matheus Camargo de Alencar" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#050712" />
+    <meta property="og:title" content="Rotas guiadas | Observatório de Ideias" />
+    <meta property="og:description" content="Escolha uma pergunta e percorra uma sequência editorial com contexto, limites e próximos passos claros." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="../assets/images/og-observatorio.jpg" />
+    <meta property="og:locale" content="pt_BR" />
+    <title>Rotas guiadas | Observatório de Ideias</title>
+    <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/styles.css?v=guided-routes-v1" />
+    <link rel="stylesheet" href="../assets/css/observatory-pages.css?v=guided-routes-v1" />
+    <link rel="stylesheet" href="./rotas.css?v=guided-routes-v1" />
+  </head>
+  <body class="observatory-page-body routes-page-body" data-mode="normal">
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
+
+    <header class="site-header" data-header>
+      <div class="header-shell">
+        <a class="brand" href="../index.html#topo" aria-label="Voltar ao início do Observatório">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span><strong>Observatório</strong><small>arquivo de ideias em órbita</small></span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle>
+          <span class="sr-only">Abrir menu</span>
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+        <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
+          <a href="../index.html#topo">Início</a>
+          <a href="../Teorias/teorias.html">Teorias</a>
+          <a href="../Mapa/mapa.html">Mapa</a>
+          <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
+          <a href="../Constelacoes/constelacoes.html">Constelações</a>
+          <a href="../Laboratorio/laboratorio.html">Laboratório</a>
+          <a href="#rotas" aria-current="page">Rotas</a>
+        </nav>
+        <div class="status-pill" aria-live="polite" data-status-pill>
+          <span class="status-dot" aria-hidden="true"></span>
+          <span data-status-text>Percurso guiado</span>
+        </div>
+        <span class="beta-badge" aria-label="Modelo em versão beta">Beta</span>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="inner-hero routes-hero" id="topo" aria-labelledby="routes-title">
+        <div class="container inner-hero-grid">
+          <div class="inner-hero-copy">
+            <p class="eyebrow">ROTAS GUIADAS · CONTEXTO ANTES DE CONCLUSÃO</p>
+            <h1 id="routes-title">Comece por uma pergunta, não pelo tamanho do arquivo.</h1>
+            <p class="hero-lead">Cada rota aproxima nomes, conceitos, teorias autorais e experimentos em uma ordem explicada. Você pode seguir a sequência ou abrir qualquer etapa diretamente.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#rotas">Escolher uma rota</a>
+              <a class="button button-secondary" href="../Teorias/teorias.html">Explorar por conta própria</a>
+            </div>
+          </div>
+          <aside class="page-status-card" aria-label="Como as rotas funcionam">
+            <span>orientação editorial</span>
+            <strong data-site-route-count-label>Percursos disponíveis</strong>
+            <dl class="page-status-list">
+              <div><dt>Passos</dt><dd>curtos e justificáveis</dd></div>
+              <div><dt>Ordem</dt><dd>sugerida, nunca obrigatória</dd></div>
+              <div><dt>Fontes</dt><dd>mantidas nos dossiês de origem</dd></div>
+              <div><dt>Progresso</dt><dd>apenas nesta sessão</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section routes-catalog-section" id="rotas" aria-labelledby="routes-catalog-title">
+        <div class="container">
+          <div class="page-section-heading">
+            <div>
+              <p class="section-kicker">01 · Escolha do percurso</p>
+              <h2 id="routes-catalog-title">Percursos disponíveis.</h2>
+            </div>
+            <p>As rotas não atribuem validação científica às teorias autorais. Elas oferecem contexto para lê-las com mais precisão.</p>
+          </div>
+          <div class="routes-catalog" data-routes-catalog></div>
+        </div>
+      </section>
+
+      <section class="section route-player-section" id="percurso" aria-labelledby="route-player-title" hidden data-route-player-section>
+        <div class="container route-player" data-route-player>
+          <div class="route-player-header">
+            <div>
+              <p class="section-kicker" data-route-position>Etapa 1</p>
+              <h2 id="route-player-title" tabindex="-1" data-route-title></h2>
+              <p data-route-summary></p>
+            </div>
+            <div class="route-progress" aria-label="Progresso da rota">
+              <span data-route-progress-label></span>
+              <div class="route-progress-track" aria-hidden="true"><i data-route-progress-bar></i></div>
+            </div>
+          </div>
+          <div class="route-player-grid">
+            <nav class="route-step-index" aria-label="Etapas desta rota" data-route-step-index></nav>
+            <article class="route-step-card" data-route-step-card>
+              <span class="route-step-type" data-route-step-type></span>
+              <h3 data-route-step-title></h3>
+              <p class="route-step-reason" data-route-step-reason></p>
+              <p class="route-step-summary" data-route-step-summary></p>
+              <a class="button button-primary" data-route-step-link>Explorar esta etapa</a>
+              <div class="route-step-controls">
+                <button class="button button-secondary" type="button" data-route-previous>Etapa anterior</button>
+                <button class="button button-secondary" type="button" data-route-next>Próxima etapa</button>
+              </div>
+            </article>
+          </div>
+          <p class="sr-only" aria-live="polite" data-route-announcement></p>
+        </div>
+      </section>
+
+      <section class="section routes-method-section" aria-labelledby="routes-method-title">
+        <div class="container">
+          <div class="page-section-heading">
+            <div><p class="section-kicker">02 · Regra de leitura</p><h2 id="routes-method-title">Uma sequência ajuda; ela não decide por você.</h2></div>
+          </div>
+          <div class="definition-grid">
+            <article class="definition-card"><span>contexto</span><h3>História antes da analogia</h3><p>Os grandes nomes aparecem pelo método ou descoberta documentada que ajudam a compreender, não como selo de autoridade.</p></article>
+            <article class="definition-card"><span>separação</span><h3>Conhecimento e proposta</h3><p>Ciência estabelecida, debate aberto, hipótese autoral e experimento didático continuam identificados como categorias diferentes.</p></article>
+            <article class="definition-card"><span>autonomia</span><h3>Atalhos honestos</h3><p>Cada etapa oferece um link direto ao conteúdo completo e a rota permanece útil mesmo quando você decide sair da sequência.</p></article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p><strong>Rotas guiadas</strong><br />Percursos editoriais pelo Observatório de Ideias.</p>
+        <nav class="footer-links" aria-label="Navegação do rodapé">
+          <a href="../index.html#topo">Início</a>
+          <a href="../Teorias/teorias.html">Teorias</a>
+          <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
+          <a href="../Laboratorio/laboratorio.html">Laboratório</a>
+          <a href="../Contribuicoes/contribuicoes.html">Contribuições</a>
+        </nav>
+      </div>
+    </footer>
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo">↑</button>
+    <script type="module" src="./rotas.js?v=guided-routes-v1"></script>
+  </body>
+</html>

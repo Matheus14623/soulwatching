@@ -1,484 +1,326 @@
 # Documentação atualizada do Observatório de Ideias
 
-Atualizada em 15 de julho de 2026.
+Atualizada em 22 de julho de 2026.
 
-Esta documentação registra o estado implementado do projeto e complementa a auditoria anterior em `ia/estrutura geral observatório.md`. O documento anterior foi preservado como base histórica e referência; este arquivo descreve a arquitetura depois da expansão.
+Este documento registra o estado implementado do projeto. A base canônica e progressiva para agentes está em `ai/`; a auditoria em `ia/estrutura geral observatório.md` permanece apenas como referência histórica.
 
 ## 1. Visão do produto
 
-O Observatório de Ideias é um sistema editorial pessoal para organizar hipóteses, relações e experiências de interface. A home é a entrada do sistema, não o contêiner de todo o conteúdo. Cada rota aprofunda uma função:
+O Observatório de Ideias é um sistema editorial estático para organizar linhas de investigação, relações conceituais, história da ciência, experiências didáticas e contribuições creditadas. A home funciona como gateway; cada área possui um HTML real e aprofunda uma função.
 
-| Rota | Papel |
+| Rota | Papel atual |
 | --- | --- |
-| `/index.html` | Apresenta o campo, oferece acesso às áreas, mostra um recorte e preserva as experiências de identidade. |
-| `/Teorias/teorias.html` | Arquivo principal de hipóteses, com busca, filtros combinados, seleção e dossiês. |
-| `/Mapa/mapa.html` | Visualização das relações entre teorias e eixos. |
-| `/Arquivo/arquivo.html` | Define os futuros tipos editoriais e exibe o estado vazio sem inventar publicações. |
-| `/Laboratorio/laboratorio.html` | Reúne as experiências existentes e seus critérios técnicos. |
-| `/teorias.html` | Compatibilidade com links antigos por redirecionamento. |
+| `/index.html` | Entrada, recortes dos catálogos, Visão Estelar, filosofia, ressonância e contato. |
+| `/Teorias/teorias.html` | Dez linhas com busca, filtros, comparação, dossiê crítico e revisão individual. |
+| `/Mapa/mapa.html` | Visualização dos 18 pares derivados do catálogo de relações tipadas. |
+| `/GrandesNomes/grandes-nomes.html` | 22 perfis, comparação, trilhas, linha do tempo, fontes e conexões. |
+| `/Constelacoes/constelacoes.html` | Atlas educativo de 12 constelações e modo treino. |
+| `/Arquivo/arquivo.html` | Estado editorial dos ensaios e registros próprios. |
+| `/Laboratorio/laboratorio.html` | Catálogo central das nove experiências públicas. |
+| `/Laboratorio/experimento.html` | Executor compartilhado dos quatro simuladores didáticos. |
+| `/Rotas/rotas.html` | Quatro percursos guiados entre perfis, teorias e experiências. |
+| `/Contribuicoes/contribuicoes.html` | Política e proposta local de conteúdo externo com autoria explícita. |
+| `/teorias.html` | Redirecionamento legado para a rota atual de Teorias. |
 
-### Princípios
+Princípios preservados:
 
-- Preservar a atmosfera cósmica, contemplativa e tecnológica da versão existente.
-- Separar teoria, metáfora, pergunta e conteúdo publicado.
-- Não usar conteúdo fictício para preencher páginas vazias.
-- Usar uma fonte de dados para todas as visualizações de teoria.
-- Manter interações opcionais, acessíveis e proporcionais ao valor que entregam.
-- Crescer por rotas e módulos, evitando transformar a home em uma página infinita.
+- separar ciência estabelecida, hipótese, metáfora, interpretação e recomendação;
+- não transformar referência, pessoa histórica ou proximidade visual em validação;
+- não publicar rascunhos, bastidores, caminhos internos ou comentários dirigidos ao autor;
+- não inventar publicações, autores, datas, métricas ou resultados para preencher estados vazios;
+- derivar interfaces de catálogos centrais, sem duplicar slugs, contagens ou relações;
+- manter interações opcionais, acessíveis e proporcionais ao que ajudam a entender.
 
 ## 2. Arquitetura atual
 
-O site é uma aplicação estática multipágina. Cada rota é um HTML real, servido diretamente pela Vercel. A navegação não depende de um roteador client-side.
+O site é uma aplicação estática multipágina em HTML semântico, CSS próprio e módulos ES nativos. Não há framework, TypeScript, bundler, backend, banco de dados, CMS ou autenticação. Canvas 2D atende à Visão Estelar e à ressonância; SVG atende ao atlas e aos simuladores. O Swiper 14.0.6 é a única biblioteca de interface, fixada e servida localmente na galeria.
 
 ```text
 HTML de cada rota
-  |-- CSS global: assets/css/styles.css
-  |-- CSS compartilhado de páginas internas: assets/css/observatory-pages.css
+  |-- assets/css/styles.css
+  |-- assets/css/observatory-pages.css
   |-- CSS específico da rota
-  |-- navegação compartilhada: assets/js/navigation.js
-  |-- rolagem compartilhada: assets/js/smooth-scroll.js
-  `-- módulo específico quando necessário
+  |-- assets/js/navigation.js
+  |    |-- smooth-scroll.js
+  |    |-- global-search.js
+  |    `-- site-metrics.js
+  `-- controlador específico ou page-shell.js
 
-assets/data/theories.js
-  |-- recorte da home: assets/js/theory-lab.js
-  |-- arquivo completo: Teorias/teorias.js
-  `-- relações e eixos: Mapa/mapa.js
+catálogos em assets/data/
+  |-- theories.js
+  |-- notable-figures.js
+  |-- constellations.js
+  |-- experiments.js
+  |-- learning-paths.js
+  `-- contributions.js
+
+scripts/public-manifest.mjs
+  |-- servidor local
+  |-- verificador
+  |-- build de dist/
+  `-- smoke tests de rotas
 ```
 
-### Decisões técnicas
+`assets/js/page-shell.js` permanece somente para a rota estática Arquivo. Teorias, Mapa, Grandes Nomes, Constelações, Laboratório, Rotas e Contribuições possuem controladores próprios. O executor de experimentos importa dinamicamente apenas um dos quatro módulos em `Laboratorio/simulations/`.
 
-- HTML semântico para conteúdo e navegação.
-- CSS próprio com tokens globais, componentes e camadas específicas.
-- JavaScript em módulos ES nativos.
-- Nenhuma dependência de interface, gráfico ou áudio.
-- Renderização client-side somente onde os dados se repetem ou a interação exige estado.
-- Arquivos HTML reais para reduzir risco de configuração de rotas na hospedagem estática.
-- Verificação em Node.js, sem compilação de assets.
+## 3. Catálogo e dossiês de Teorias
 
-## 3. Tecnologias
+O catálogo público mantém dez entradas, nove núcleos independentes, seis naturezas e cinco estados de revisão. `assets/data/theories.js` também declara três estados de objeção, sete tipos de relação e uma rubrica de três perguntas para cada natureza.
 
-- HTML5 semântico.
-- CSS moderno: custom properties, Grid, Flexbox, `clamp()`, media queries e `prefers-reduced-motion`.
-- JavaScript ES modules.
-- Canvas 2D para visão estelar e ressonância.
-- Web Audio API com consentimento explícito.
-- IntersectionObserver para limitar trabalho visual fora da tela.
-- History API para URLs diretas das teorias.
-- Node.js para servidor local e verificação.
-- Vercel como hospedagem estática.
+Cada dossiê pode apresentar:
 
-Não há framework, TypeScript, bundler, CMS, banco de dados ou backend.
+- contexto conhecido, recorte em investigação, proposta, limite e caminho verificável;
+- afirmações com referências ligadas ao trecho correspondente;
+- objeções abertas, respondidas ou incorporadas e a resposta editorial atual;
+- condição explícita para revisar e condição para abandonar, encerrar ou reintegrar a linha;
+- rubrica própria da natureza, sem percentual nem nota de maturidade;
+- histórico individual de versão, data, rótulo e resumo da mudança;
+- relações tipadas com justificativa;
+- relações inversas com os perfis de Grandes Nomes.
 
-## 4. Estrutura de pastas
+`THEORY_RELATIONS` é a fonte central dos 18 pares. `theory-model.js` apresenta cada vínculo de modo simétrico; `connections` é um campo derivado para compatibilidade. Uma relação pode ser derivação, dependência metodológica, contexto metodológico, afinidade conceitual, tensão crítica, observável compartilhado ou ponte operacional. Nenhum tipo implica apoio empírico.
+
+O Mapa desenha esses pares como conexões navegáveis, mas a geometria da linha não codifica o tipo nem a força da relação. Rótulo e justificativa pertencem à leitura textual do dossiê.
+
+`theory-figure-model.js` percorre `notable-figures.js` e torna as conexões visíveis também pelo lado da teoria. Assim, uma ligação com Einstein, Poincaré, Bell ou outro perfil é editada em um único catálogo.
+
+URLs relevantes:
 
 ```text
-.
-|-- index.html
-|-- teorias.html
-|-- Arquivo/
-|   |-- arquivo.html
-|   `-- arquivo.css
-|-- Laboratorio/
-|   |-- laboratorio.html
-|   `-- laboratorio.css
-|-- Mapa/
-|   |-- mapa.html
-|   |-- mapa.css
-|   `-- mapa.js
-|-- Teorias/
-|   |-- teorias.html
-|   |-- teorias.css
-|   |-- teorias.js
-|   `-- fontes editoriais brutas
-|-- assets/
-|   |-- css/
-|   |   |-- styles.css
-|   |   `-- observatory-pages.css
-|   |-- data/theories.js
-|   |-- icons/favicon.svg
-|   |-- images/
-|   `-- js/
-|       |-- main.js
-|       |-- page-shell.js
-|       |-- navigation.js
-|       |-- smooth-scroll.js
-|       |-- theory-lab.js
-|       |-- observer.js
-|       |-- philosophy.js
-|       |-- resonance.js
-|       |-- contact.js
-|       |-- config.js
-|       `-- utils.js
-|-- docs/INTEGRACAO_TEORIAS.md
-|-- scripts/
-|   |-- serve.mjs
-|   `-- verify.mjs
-|-- package.json
-`-- vercel.json
+/Teorias/teorias.html?teoria=contentor-finito
+/Teorias/teorias.html?comparar=contentor-finito,ciclagem-eterna
+/Teorias/teorias.html?teoria=contentor-finito&versao=2.1
 ```
 
-## 5. Identidade visual
+O parâmetro `versao` identifica a revisão pública atual. Versões anteriores não são armazenadas como snapshots: se uma URL pedir outra versão, a interface informa a limitação e mostra o conteúdo atual.
 
-### Linguagem
+## 4. Grandes Nomes
 
-O sistema visual combina arquivo técnico, observatório e interface cósmica. A estética se apoia em fundo escuro, pontos luminosos, linhas orbitais, transparências controladas e tipografia de alto contraste.
+O catálogo possui 22 perfis em três áreas: astronomia e observação; física, matemática e cosmos; filosofia e método. Os três destaques da home, a galeria e os dossiês usam os mesmos registros, fontes e retratos WebP locais.
 
-### Tokens e componentes
+Henri Poincaré foi incluído pela dinâmica qualitativa, estabilidade e contribuição metodológica aos sistemas dinâmicos. John Stewart Bell foi incluído pela desigualdade que tornou testável uma diferença entre previsões quânticas e teorias locais de variáveis ocultas. As duas inclusões possuem fontes e atribuições de imagem próprias; presença no catálogo não equivale a endosso de uma linha autoral.
 
-Os tokens principais ficam em `assets/css/styles.css`: cores de fundo e texto, acentos ciano/violeta/dourado, espaços, raios, bordas e sombras. `assets/css/observatory-pages.css` compartilha a linguagem de heros internos, cartões de estado, grids de definição, painéis vazios e chamadas finais.
+A página completa oferece:
 
-Componentes visuais recorrentes:
+- galeria arrastável, teclado, índice, busca, filtros e `?perfil=<slug>`;
+- comparação de duas trajetórias por `?comparar=<slug>,<slug>`;
+- linha do tempo com 15 eventos de método ou descoberta, filtráveis por observar, medir, modelar e testar;
+- quatro trilhas: medir distâncias, gravidade, quântica e filosofia do teste;
+- dossiê com contribuições, marcos, fontes, crédito do retrato e conexões delimitadas.
 
-- cabeçalho com marca, navegação, estado e selo beta;
-- hero com eyebrow, título, texto e ações;
-- cartões translúcidos com borda e brilho moderado;
-- filtros em trilha horizontal;
-- tags e códigos monoespaçados;
-- estados ativos por cor, borda e contraste, nunca apenas por animação;
-- rodapé compacto com rotas internas e coordenadas externas.
+A comparação descreve trajetórias em critérios equivalentes, sem ranking. As trilhas e a linha do tempo são recortes editoriais, não uma história completa da ciência nem atribuição exclusiva de descobertas coletivas.
 
-### Responsividade e movimento
+## 5. Rotas Guiadas
 
-- Grids viram uma coluna em telas pequenas.
-- A navegação usa menu expansível e devolve foco ao botão ao fechar com Escape.
-- O dossiê lateral das teorias vira detalhe dentro do card no mobile.
-- O mapa abandona posicionamento absoluto e linhas no mobile, tornando-se uma lista semântica.
-- A indicação fixa da visão estrutural não ocupa a tela pequena.
-- Links internos e retornos ao topo usam uma curva curta de rolagem, cancelável por roda, toque, ponteiro ou teclado.
-- Animações respeitam `prefers-reduced-motion`.
-- Áudio permanece desligado até ação explícita.
+`assets/data/learning-paths.js` declara quatro percursos de cinco etapas:
 
-### Tom de conteúdo
+1. Observar o Universo distante;
+2. Tempo, gravidade e causalidade;
+3. Por que o vazio não é simplesmente “nada”;
+4. Aprender a perder para a evidência.
 
-Todo texto público deve permanecer em português brasileiro, com voz reflexiva, clara, madura e levemente poética. O conteúdo pode usar imagens cósmicas quando elas explicam uma relação, mas não como ornamentação repetitiva. Evite linguagem corporativa, autoelogio, frases genéricas de portfólio e qualquer enquadramento de diário pessoal. Prefira termos concretos como hipótese, linha de pensamento, pergunta, tensão, arquivo, registro e campo de investigação.
+Cada passo referencia por ID um perfil, uma linha de investigação ou uma experiência. `learning-paths-model.js` resolve título, resumo e link no catálogo de origem, evitando cópias divergentes. A home apresenta um recorte, e a rota completa explica por que cada passagem foi escolhida.
 
-Afirmações científicas precisam ser distinguidas de metáforas e especulações. Textos sobre Matheus devem situá-lo como origem humana e profissional do observatório, sem atribuir autoridade ou resultados não comprovados.
+`?rota=<slug>&etapa=<n>` preserva a posição compartilhável. O progresso não é salvo, não existe conta e abrir o conteúdo completo troca de página. A rota orienta leitura; não certifica conclusão nem mistura os níveis de evidência dos três tipos de conteúdo.
 
-## 6. Páginas e componentes
+## 6. Busca global
 
-### Home
+`global-search.js` adiciona um botão visível à navegação e aceita `Ctrl+K` ou `Command+K`. O diálogo importa sob demanda seis catálogos: teorias, grandes nomes, constelações, experiências, Rotas Guiadas e contribuições publicadas.
 
-A home possui as seguintes camadas:
+A consulta remove acentos, exige a presença de todos os termos, dá maior peso ao título e limita a saída a 12 resultados. Sem consulta, até oito Rotas Guiadas e experiências são sugeridas. Setas percorrem os links; o fechamento devolve foco ao gatilho.
 
-1. hero e visão estelar opcional;
-2. apresentação do campo;
-3. gateway para Teorias, Mapa, Arquivo, Laboratório e GitHub;
-4. recorte de seis teorias com filtros de categoria;
-5. recorte visual do mapa;
-6. explicação do arquivo editorial;
-7. bússola filosófica acessível por abas;
-8. experimento de ressonância com seis controles de teclado;
-9. trajetória do projeto;
-10. coordenadas e contato.
+A busca é totalmente local. Ela não consulta servidor, não registra histórico, não indexa texto livre dos HTML e não retorna contribuições enquanto o catálogo correspondente estiver vazio.
 
-### Teorias
+## 7. Laboratório e catálogo de experiências
 
-O arquivo possui dez entradas, nove linhas independentes, seis naturezas de conteúdo e sete eixos temáticos. O usuário pode combinar texto, categoria, natureza, estado do trabalho e conceito. No desktop, o dossiê fica ao lado da lista; no mobile, o mesmo conteúdo abre dentro do card.
+`assets/data/experiments.js` é a fonte única das nove experiências ativas e de quatro naturezas:
 
-Cada dossiê apresenta:
+- visualização conceitual: Visão Estelar, Mapa de Ideias e Atlas Celeste;
+- instrumento interativo: Ressonância;
+- simulador didático: Cone de Luz, Zero vs. Epsilon, Recorrência Finita e Astrobiologia Probabilística;
+- modo de treino: Treino do Atlas.
 
-- ideia central;
-- pergunta central;
-- proposição;
-- contexto conhecido;
-- recorte em investigação;
-- limite atual;
-- caminho verificável;
-- perguntas abertas;
-- conceitos;
-- próximos passos;
-- referências externas;
-- linhas relacionadas;
-- versão e data de revisão;
-- acesso direto ao mapa.
+Home, Arquivo, Laboratório, busca, métricas e Rotas Guiadas consomem esses mesmos dados. Cada entrada declara pergunta, tecnologia, limite, destino e linhas autorais relacionadas.
 
-Percentuais de maturidade foram removidos. Hipóteses científicas, estudos teóricos, estruturas conceituais, linhas derivadas, heurísticas e programas práticos usam classificações explícitas.
+### 7.1 Cone de luz e referenciais
 
-### Mapa
+Aplica transformações de Lorentz a um evento, compara dois referenciais inerciais, calcula o fator de Lorentz, preserva o intervalo e classifica a separação causal. Usa uma dimensão espacial e unidades com `c = 1`. Não representa gravidade, aceleração ou um espaço-tempo cosmológico completo.
 
-O mapa é derivado de `THEORIES`. Ele contém dez nós, dezoito relações únicas e sete eixos. Linhas significam afinidade conceitual catalogada, não causalidade ou evidência científica.
+### 7.2 Zero vs. Epsilon
 
-No desktop, os nós usam as coordenadas editoriais `position`. No mobile, tornam-se botões em fluxo normal. Relações declaradas por qualquer uma das pontas são apresentadas de forma simétrica. A seleção atualiza o detalhe, as conexões e o parâmetro `teoria` da URL.
+Combina valores informados pelo visitante para chance, benefício, custo, dano, aprendizado e reversibilidade. Tetos independentes de custo e dano residual funcionam como critérios explícitos de parada: eles não alteram o saldo e, quando excedidos, impedem uma leitura favorável. O resultado é uma heurística transparente para comparar inação e teste pequeno, não uma previsão ou aconselhamento médico, jurídico, financeiro ou profissional.
 
-### Arquivo
+### 7.3 Modelo finito de recorrência
 
-A rota distingue quatro tipos de conteúdo:
+Evolui um sistema determinístico pela regra `próximo = (a × estado + b) mod N` e separa transiente de ciclo quando um estado se repete. A repetição em um conjunto finito não demonstra recorrência do Universo e não garante visita a todos os estados possíveis.
 
-- teorias: hipóteses ainda abertas;
-- ensaios: argumentos editorados e publicáveis;
-- registros: notas datadas sobre mudanças de pensamento;
-- laboratório: experiências que testam uma pergunta pela interface.
+### 7.4 Astrobiologia probabilística
 
-O arquivo declara zero publicações no estado atual. Isso é intencional e evita preencher o site com títulos, datas ou resultados fictícios.
+Combina, em potências de dez, mundos candidatos e cinco probabilidades condicionais: abiogênese, complexidade, inteligência tecnológica, detectabilidade e sobreposição temporal. O produto segue a regra da cadeia. O cálculo da probabilidade de pelo menos um sinal assume candidatos independentes com a mesma probabilidade combinada. Os parâmetros são cenários escolhidos, não estimativas confirmadas da frequência de vida.
 
-### Laboratório
+Todos os simuladores mantêm premissas, fórmulas, resultado e limite à vista. Uma relação com Teorias indica contexto editorial; o resultado do simulador não valida a proposta.
 
-O laboratório aponta para três experiências reais:
+## 8. Atlas e modo treino
 
-- visão estelar;
-- cordas de ressonância;
-- mapa de ideias.
+O Atlas mantém 12 constelações em uma superfície mestre–detalhe. Estrelas permanecem visíveis; hover ou foco pré-visualizam linhas, mouse e teclado mudam seleção sem fixá-las, toque ou caneta fixam a guia e o botão textual controla explicitamente esse estado. As linhas são convenções de reconhecimento, não figuras oficiais da IAU; o mapa é esquemático e não calcula céu para local, data e hora.
 
-Os experimentos permanecem em suas páginas de origem para evitar duplicação. A rota também registra os critérios de função, controle e peso técnico.
+`?modo=treino` inicia oito rodadas. Cada rodada mostra somente o padrão estelar e quatro alternativas, revela linha e nome depois da resposta e anuncia pontuação e avanço. A sessão não persiste resultado e respeita movimento reduzido. O tubarão-baleia estelar continua como ilustração interativa separada, sem integrar o catálogo ou sua contagem.
 
-## 7. Dados editoriais
+## 9. Contribuições externas e autoria
 
-`assets/data/theories.js` contém `THEORY_FILTERS`, `THEORY_TYPES`, `THEORY_REVIEW_STATES` e `THEORIES`. A interface deriva contagens, opções de filtro e relações desses dados.
+A rota Contribuições aceita propostas em cinco formatos:
 
-`assets/data/theory-references.js` concentra a bibliografia pública. `assets/data/research-tracks.js` mantém ideias que ainda não justificam uma ficha independente. `assets/js/theory-model.js` concentra localização e relações, evitando duplicação entre home, arquivo e mapa.
+- ensaio;
+- nota técnica;
+- visualização;
+- revisão ou objeção;
+- linha de investigação convidada.
 
-Os identificadores `id` e `slug` são contratos estáveis. `id` liga entradas entre si; `slug` cria URLs diretas. Fontes brutas são mapeadas somente em `scripts/theory-sources.mjs`, que não faz parte do artefato público.
+O formulário solicita contato, nome de crédito, formato, título, resumo, fontes e confirmação de autoria ou permissão. Tudo é validado no navegador e convertido em um `mailto:` para revisão antes do envio. Não há upload, armazenamento, conta, moderação automática ou publicação direta.
 
-O contrato completo e um exemplo estão em `docs/INTEGRACAO_TEORIAS.md`.
+Uma publicação futura precisa preservar crédito, participação, fontes, permissões e revisões. Publicar não transfere autoria para Matheus Camargo e não significa endosso científico. `CONTRIBUTIONS` permanece vazio; a página declara isso em vez de criar colaboradores fictícios.
 
-## 8. Como evoluir o conteúdo
+O Arquivo possui outro escopo e continua com zero ensaios e registros próprios. “Sem ensaios e registros” e “sem contribuições externas” são estados editoriais separados.
 
-### Criar uma nova linha
+## 10. Acessibilidade e movimento
 
-1. Preserve a fonte bruta em `Teorias/`.
-2. Mapeie a fonte somente em `scripts/theory-sources.mjs`.
-3. Crie uma síntese pública em `assets/data/theories.js`.
-4. Use código, id e slug inéditos.
-5. Classifique natureza e estado do trabalho.
-6. Preencha contexto conhecido, proposta, limite e caminho verificável.
-7. Cadastre referências externas por ID.
-8. Conecte apenas ids válidos.
-9. Escolha posição no mapa e teste sobreposição.
-10. Execute a verificação e navegue pelas três superfícies que usam o dado.
+Contratos implementados:
 
-### Criar uma nova página
+- menu compacto fechado usa `inert` e `aria-hidden`, e o estado é ressincronizado no breakpoint;
+- retorno ao topo fica oculto, `inert` e fora da ordem de tabulação até aparecer;
+- erros do contato estão ligados aos campos por `aria-describedby`; `aria-invalid` só existe durante erro;
+- o primeiro campo inválido recebe foco e o status do formulário usa região viva atômica;
+- a ressonância possui seis botões nomeados, além de mouse e toque;
+- busca, Rotas, treino e simuladores usam ações textuais, foco visível e regiões vivas pequenas;
+- movimento reduzido remove autoplay, profundidade, deslocamentos e transições não essenciais;
+- rolagem suave pode ser cancelada por interação e cai para movimento imediato quando necessário.
 
-1. Crie uma pasta com HTML e CSS próprios, seguindo o padrão de `Arquivo/` ou `Laboratorio/`.
-2. Carregue `assets/css/styles.css` antes de `assets/css/observatory-pages.css` e, por último, o CSS da rota.
-3. Carregue `assets/js/page-shell.js` para navegação comum. Use um módulo específico apenas quando houver estado próprio.
-4. Dê à página `title`, descrição, canonical coerente quando o domínio estiver definido, um único `h1` e landmarks semânticos.
-5. Inclua a rota nos cabeçalhos e rodapés relevantes.
-6. Adicione o arquivo à lista obrigatória de `scripts/verify.mjs` quando ele fizer parte do núcleo do produto.
-7. Teste caminhos relativos a partir da raiz e de uma pasta interna.
+Esses pontos possuem cobertura parcial automatizada. Zoom de 200%, contraste no fundo real, leitor de tela, foco depois de re-render e larguras 1440, 1024, 768, 430, 390 e 360 px continuam no QA manual proporcional à mudança.
 
-### Adicionar o primeiro artigo, ensaio ou registro
+## 11. Desempenho
 
-O projeto ainda não possui publicações aprovadas. Quando o primeiro conteúdo real existir:
+- A Visão Estelar limita DPR e partículas por perfil, pausa na aba oculta e cancela frames e listeners ao desligar.
+- A ressonância limita DPR, exige gesto para áudio e pausa fora da viewport quando `IntersectionObserver` existe.
+- Grandes Nomes mantém uma única instância de Swiper, usa WebP local, lazy loading e desativa autoplay e coverflow com movimento reduzido.
+- Atlas e treino reutilizam SVG e catálogo, sem canvas, timer recorrente ou loop contínuo.
+- A busca carrega catálogos somente na primeira abertura do diálogo e limita resultados.
+- O executor carrega somente um simulador e chama sua limpeza em `pagehide`.
+- Rotas renderizam uma etapa completa por vez e não fazem prefetch ou persistência.
 
-1. Classifique-o como ensaio, registro ou fragmento antes de criar a interface.
-2. Preserve o texto-fonte e faça uma versão editorial pública separada.
-3. Crie um catálogo compartilhado, por exemplo `assets/data/archive.js`, com pelo menos `id`, `slug`, `type`, `title`, `summary`, `status`, `tags`, `sourceFile` e uma data somente quando ela for conhecida.
-4. Crie uma rota de leitura real ou uma página de índice em `Arquivo/`; não use cards que apontem para páginas inexistentes.
-5. Faça a home consumir apenas um recorte do mesmo catálogo, sem duplicar títulos no HTML.
-6. Adicione validação do novo schema e das novas rotas em `scripts/verify.mjs`.
-7. Só substitua o estado vazio do Arquivo depois que ao menos uma publicação estiver revisada e navegável.
+Não há orçamento numérico de bundle, FPS ou heap. WebGL pesado, loops globais adicionais e dependências novas só devem entrar depois de medição e justificativa.
 
-Ensaios devem conter argumento desenvolvido. Registros podem documentar mudanças conceituais datadas. Fragmentos podem ser breves, mas precisam de contexto e estado editorial. Nenhum dos três deve ser tratado como diário.
+## 12. Manifesto, servidor, build e Vercel
 
-### Criar um novo experimento
+`scripts/public-manifest.mjs` centraliza dez rotas públicas, seus arquivos, URLs limpas, diretórios copiados e arquivos obrigatórios. Servidor, verificador, build e smoke tests consomem esse manifesto.
 
-1. Defina a pergunta que a interação ajuda a explorar.
-2. Escolha HTML/CSS quando possível; use canvas apenas quando o desenho contínuo justificar.
-3. Garanta controle equivalente por teclado e texto explicativo.
-4. Não inicie áudio sem consentimento.
-5. Pause loops quando a experiência estiver fora da tela ou a aba estiver oculta.
-6. Respeite redução de movimento e ofereça um estado estático compreensível.
-7. Adicione o experimento à rota do Laboratório somente quando existir uma implementação real.
+O servidor oferece dois modos:
 
-## 9. Manutenção
+- `npm run dev`: serve a fonte autorizada em `localhost`, sem expor `ai/`, `docs/`, `scripts/` ou `package.json`;
+- `npm run preview`: executa o build e serve somente `dist/`.
 
-### Antes de cada publicação
+Os dois aceitam apenas `GET` e `HEAD`; caminhos desconhecidos respondem 404. O comportamento local não é prova definitiva dos redirects, cache ou headers aplicados pela Vercel.
+
+`npm run build` executa a verificação, recria `dist/` e copia somente a allowlist. Documentação interna, fontes brutas, scripts, pareceres e arquivos de QA ficam fora do artefato. `vercel.json` usa `framework: null`, `outputDirectory: "dist"`, `cleanUrls: true` e `trailingSlash: false`.
+
+O projeto declara Node.js `>=18.17 <25`.
+
+## 13. CI e testes
+
+`.github/workflows/quality.yml` roda em push e pull request com Node 22 e permissões somente de leitura. O job executa:
+
+```text
+npm ci --ignore-scripts
+npm run knowledge:test
+npm test
+```
+
+`npm test` chama o build no `pretest` e depois:
+
+- smoke HTTP de todas as rotas e URLs limpas, assets, 404 e 405;
+- confirmação de que o servidor de fonte não expõe caminhos internos conhecidos;
+- contratos estáticos dos seis controles da ressonância, erros ligados aos campos e alvos invisíveis fora do teclado;
+- smoke em navegador da home, Rotas, Contribuições e Cone de Luz.
+
+O smoke de navegador é ignorado se Chrome, Chromium ou Edge não estiver disponível. A suíte não substitui regressão visual, auditoria completa de acessibilidade, E2E de todas as jornadas, teste de memória ou validação de links externos.
+
+O verificador ainda não cobre schemas completos dos catálogos de experiências, Rotas Guiadas e contribuições, nem todas as novas rubricas, relações, trilhas e eventos. Esses são pontos de expansão da automação, não funcionalidades ausentes da interface.
+
+## 14. Como evoluir sem duplicação
+
+### Nova linha de investigação
+
+1. Preserve o material bruto fora dos módulos públicos e mapeie a fonte apenas em `scripts/theory-sources.mjs`.
+2. Classifique natureza e estado antes de escrever a apresentação.
+3. Preencha contexto, recorte, proposta, limite, teste, afirmações referenciadas, objeções e critérios de saída.
+4. Registre uma revisão individual e preserve `id`, `slug` e `code` publicados.
+5. Cadastre relações tipadas com IDs válidos e justificativa; não edite `connections` como fonte paralela.
+6. Revise relações inversas em Grandes Nomes e teste home, Teorias, comparação e Mapa.
+
+### Novo perfil histórico
+
+1. Adicione perfil, fontes e retrato WebP local com licença e crédito completos.
+2. Use `theoryLinks` somente quando houver relação pública rigorosa.
+3. Revise comparação, trilhas e linha do tempo antes de incluir o perfil em qualquer recorte.
+4. Não copie o perfil para a home ou para HTML estático.
+
+### Nova experiência
+
+1. Cadastre pergunta, natureza, tecnologia, limite, destino e relações em `experiments.js`.
+2. Use o executor compartilhado somente para simuladores; visualizações em páginas próprias apontam para seu `href`.
+3. Exponha premissas e resultado, forneça teclado e texto equivalente e implemente limpeza quando houver listeners ou trabalho recorrente.
+4. Atualize o manifesto apenas se novos arquivos ou uma nova rota forem necessários.
+
+### Nova Rota Guiada
+
+1. Referencie somente IDs existentes de teoria, perfil ou experiência.
+2. Explique o motivo de cada passagem e preserve a diferença de evidência entre as etapas.
+3. Não duplique títulos, resumos ou links no controlador.
+
+### Primeira contribuição externa
+
+1. Confirme autoria, permissão, crédito público, fontes e licença.
+2. Defina schema e rota de leitura antes de preencher `CONTRIBUTIONS`.
+3. Separe autoria, revisão editorial e eventual objeção ou resposta.
+4. Adicione validação do schema e do destino antes de publicar.
+
+## 15. Limitações e pontos a verificar
+
+- Não há CMS, backend, conta, persistência, analytics ou telemetria.
+- Busca, filtros, treino, Rotas e simuladores executam somente no cliente.
+- URLs usam query string; slugs antigos ainda precisam de estratégia de alias quando forem renomeados.
+- `?versao=` não recupera snapshots anteriores.
+- O mapa usa posições editoriais manuais.
+- O domínio canônico, `canonical`, `og:url`, sitemap e URLs sociais absolutas ainda dependem de decisão de publicação.
+- Não existe regressão visual, auditoria automatizada completa de acessibilidade ou garantia de navegador instalado no CI.
+- Os catálogos novos ainda precisam de validação estrutural tão profunda quanto Teorias, Grandes Nomes e Constelações.
+- FPS, heap, Core Web Vitals e comportamento com leitor de tela precisam de medição em dispositivos reais.
+
+## 16. Checklist de publicação
 
 ```bash
-npm run build
+npm run knowledge:build
+npm test
 ```
 
-Em seguida, teste manualmente:
+Depois:
 
-- navegação interna e retorno à home;
-- busca e cada dimensão de filtro;
-- uma URL direta de teoria no arquivo e no mapa;
-- menu, cards, dossiê e mapa em 390 px;
-- foco visível e Escape no menu;
-- visão estelar com redução de movimento;
-- ressonância com áudio desligado e controles de teclado;
-- console sem erros;
-- links externos, `mailto:` e `tel:`.
+- confirme que o smoke de navegador executou quando a mudança depender dele;
+- inspecione `dist/` quando o manifesto mudar;
+- teste URLs diretas, inválidas e retorno por histórico;
+- revise busca global, comparação, Rotas, treino e os quatro simuladores;
+- teste formulários sem assumir envio ou persistência;
+- confira teclado, Escape, foco, zoom, movimento reduzido e overflow horizontal;
+- faça QA visual nas larguras afetadas;
+- confirme console sem erros e ausência de arquivos internos no artefato.
 
-### Regras de conteúdo
+## 17. Referências internas
 
-- Não publicar rascunhos brutos por automação.
-- Não inventar datas, fontes, depoimentos, métricas ou projetos.
-- Marcar hipóteses como hipóteses.
-- Registrar a origem somente no mapeamento privado `scripts/theory-sources.mjs`.
-- Evitar renomear slugs publicados; quando necessário, criar compatibilidade.
-- Revisar relações em ambos os sentidos conceituais, ainda que o mapa remova duplicatas técnicas.
-
-### Regras técnicas
-
-- Manter módulos pequenos e específicos.
-- Evitar regras CSS globais para uma única rota.
-- Não duplicar dados de teoria no HTML.
-- Preservar caminhos relativos e diferenças de maiúsculas/minúsculas.
-- Não adicionar dependência para um recurso que o navegador já fornece de forma suficiente.
-
-## 10. Limitações atuais
-
-- O conteúdo é um módulo JavaScript editado manualmente; não há CMS nem painel editorial.
-- Busca e filtros rodam apenas no cliente.
-- URLs usam query string, não rotas individuais por teoria.
-- Canonical e sitemap completos dependem da definição do domínio público final.
-- O formulário usa `mailto:`; não há confirmação de entrega nem proteção de backend.
-- O mapa usa posições manuais e pode exigir ajuste quando o número de nós crescer.
-- Não há testes unitários ou de regressão visual automatizados.
-- Não há analytics, consentimento ou telemetria.
-- As relações do mapa ainda não possuem tipos explícitos.
-
-## 11. Melhorias futuras
-
-Prioridade alta:
-
-- definir domínio canônico e gerar sitemap absoluto;
-- criar testes automatizados de smoke e acessibilidade;
-- oferecer redirecionamentos para slugs renomeados;
-- tipar relações conceituais sem quebrar os ids existentes.
-
-Prioridade média:
-
-- separar conceitos em um catálogo próprio;
-- criar página individual por teoria quando houver conteúdo suficiente;
-- adicionar busca por URL e compartilhamento de conjuntos de filtros;
-- gerar automaticamente uma legenda de tipos de relação;
-- introduzir publicação real de ensaios quando existir conteúdo aprovado.
-
-Somente quando a escala justificar:
-
-- CMS ou arquivos Markdown com schema validado;
-- geração estática de páginas por teoria;
-- índice de busca pré-calculado;
-- testes visuais em múltiplos navegadores;
-- observabilidade de erros e desempenho com política de privacidade.
-
-## 12. Transição futura para Vite ou Next.js
-
-### Quando Vite faz sentido
-
-Vite é o primeiro passo natural se surgirem muitos módulos, componentes reutilizados ou necessidade de testes e otimização de assets. A migração pode preservar o modelo multipágina:
-
-1. mover o código-fonte para uma estrutura `src/` e `public/`;
-2. transformar cabeçalho, rodapé e cards em componentes ou templates;
-3. manter `theories.js` como módulo tipado ou migrá-lo para JSON/TypeScript;
-4. configurar entradas multipágina para home, teorias, mapa, arquivo e laboratório;
-5. preservar `dist/` como único artefato público.
-
-### Quando Next.js faz sentido
-
-Next.js se justifica quando houver páginas individuais geradas por slug, conteúdo Markdown/MDX, CMS, preview editorial, metadata por teoria ou rotas de API. Uma transição segura deve:
-
-1. criar rotas estáticas para as páginas atuais;
-2. criar `/teorias/[slug]` com geração estática;
-3. preservar redirects de `?teoria=` e `/teorias.html`;
-4. transformar o schema em TypeScript validado;
-5. isolar canvas e Web Audio em componentes client-only;
-6. confirmar que todo conteúdo editorial pode ser gerado no build;
-7. manter o mapa leve e evitar enviar o conjunto completo quando a escala crescer.
-
-Não há motivo técnico para migrar agora: a stack atual atende dez teorias e cinco rotas com baixa complexidade operacional.
-
-## 13. Riscos de deploy na Vercel
-
-| Risco | Efeito | Mitigação |
-| --- | --- | --- |
-| Falha ao gerar `dist/` | Deploy vazio ou falho | Executar `npm run build` e validar o artefato antes da publicação. |
-| Introduzir rotas de SPA | Atualização direta retorna 404 | Continuar com HTML real ou configurar rewrites deliberadamente. |
-| Diferença de caixa em nomes de pasta | Funciona no Windows e falha no Linux | Preservar exatamente `Teorias`, `Mapa`, `Arquivo` e `Laboratorio`. |
-| Abrir por `file://` durante o teste | Módulos ES não carregam | Usar `npm run dev`. |
-| Renomear slugs | Links compartilhados perdem contexto | Manter slugs ou criar redirect/alias. |
-| Publicar fontes brutas | Conteúdo interno ou pessoal fica acessível | Gerar `dist/` por allowlist e testar extensões proibidas. |
-| Crescer o mapa sem revisar posições | Nós sobrepostos no desktop | Ajustar `position` e testar em viewport amplo. |
-| Adicionar fontes/CDNs externas sem política | Privacidade, indisponibilidade e CSP | Preferir assets locais e documentar qualquer exceção. |
-
-`vercel.json` usa `framework: null`, `outputDirectory: "dist"`, `cleanUrls: true` e `trailingSlash: false`. `npm run build` valida o projeto, limpa a saída anterior e copia somente os caminhos públicos permitidos.
-
-## 14. Testes executados nesta expansão
-
-### Automáticos
-
-- sintaxe de todos os módulos JavaScript;
-- presença de arquivos e rotas obrigatórias;
-- schema e unicidade de id/slug;
-- natureza, estado, revisão e coordenadas;
-- categorias, filtros, referências, fontes privadas e relações válidas;
-- links locais e âncoras dos HTML;
-- ausência de comentários HTML, caminhos internos e linguagem de bastidor nos dados públicos;
-- artefato `dist/` sem documentos, fontes brutas ou scripts.
-
-### Navegador — desktop 1440 × 900
-
-- home, teorias, mapa, arquivo e laboratório carregados;
-- dez entradas, seis naturezas e sete eixos renderizados;
-- busca textual, estado vazio, limpeza e filtros por categoria e natureza funcionais;
-- URL direta restaurando a T-08, com vínculo navegável para a linha principal T-02;
-- mapa com dez nós, dezoito relações únicas, filtros e seleção sincronizada;
-- Visão Estelar ativada e desativada repetidamente sem duplicar overlay ou canvas;
-- nenhum elemento do sistema visual descartado de buraco negro;
-- estouro horizontal ausente;
-- console sem erros ou avisos.
-
-### Navegador — responsividade
-
-- arquivo de teorias verificado em 1024 × 768, 768 × 900, 430 × 932, 390 × 844 e 360 × 800;
-- dossiê lateral usado em desktop e detalhe móvel usado a partir de 768 px;
-- as quatro camadas críticas e as referências permanecem disponíveis no detalhe móvel;
-- mapa verificado em 390 × 844, com nós, detalhe e seleção preservados;
-- home, arquivo e laboratório verificados em 360 × 800;
-- Visão Estelar entra no perfil leve em 360 px;
-- nenhuma das larguras apresentou estouro horizontal ou erros no console.
-
-## 15. Checklist para próxima grande atualização
-
-- [ ] Preservar o documento histórico e registrar uma nova data de arquitetura.
-- [ ] Confirmar se a nova demanda é conteúdo, página, experimento ou infraestrutura.
-- [ ] Revisar os materiais brutos antes de criar dados públicos.
-- [ ] Atualizar o schema e a verificação antes de depender de novos campos.
-- [ ] Evitar renomear ids e slugs existentes.
-- [ ] Atualizar todas as navegações quando houver nova rota principal.
-- [ ] Validar home, Teorias e Mapa após qualquer mudança em `theories.js`.
-- [ ] Testar desktop, tablet, mobile, teclado e redução de movimento.
-- [ ] Verificar console, links, âncoras, metadados e caminhos com caixa correta.
-- [ ] Rodar `npm run build` antes do deploy.
-- [ ] Revisar `vercel.json` se a saída deixar de ser a raiz.
-- [ ] Atualizar README, integração de teorias e esta documentação.
-
-## 16. Referências internas
-
-- Auditoria anterior: `ia/estrutura geral observatório.md`.
-- Integração de dados: `docs/INTEGRACAO_TEORIAS.md`.
-- Fonte estruturada: `assets/data/theories.js`.
-- Validação: `scripts/verify.mjs`.
-- Configuração de deploy: `vercel.json`.
-
-## 17. O que mudou nesta atualização
-
-- A home passou a funcionar como gateway, com cinco destinos reais e contagens derivadas dos dados.
-- A navegação foi ampliada e ganhou indicação de página ativa e comportamento de teclado mais completo.
-- O arquivo de teorias recebeu naturezas, estados do trabalho, slugs, campos editoriais derivados e origem mantida fora do conteúdo público.
-- A página de teorias ganhou busca ampliada, filtros combinados, resumo de filtros, reset, dossiê progressivo, links diretos e detalhe móvel no próprio card.
-- O Mapa de Ideias tornou-se uma página independente, leve e derivada da mesma fonte de dados.
-- Arquivo e Laboratório ganharam páginas honestas, sem publicações ou projetos fictícios.
-- As experiências existentes foram preservadas; a visão estelar ficou desligada por padrão e com menos partículas quando ativada.
-- Bússola filosófica, ressonância e navegação receberam melhorias de semântica, teclado e redução de movimento.
-- A verificação passou a cobrir as novas rotas, o schema das teorias, relações, fontes, links e âncoras.
-- README, integração de teorias e esta documentação foram atualizados sem apagar a auditoria anterior.
-
-## 18. Atualização de clareza científica e privacidade
-
-Esta expansão preserva a identidade visual e as rotas do observatório, mas altera a forma de apresentar o acervo:
-
-- “teorias” passa a ser uma área de linhas de investigação com naturezas explícitas;
-- percentuais editoriais deixam de aparecer nos dados e nas interfaces;
-- cada ficha separa contexto conhecido, recorte em investigação, limite atual e caminho verificável;
-- referências externas, versão e data de revisão passam a integrar o dossiê;
-- T-08 permanece ligada à T-02 como linha derivada, sem inflar o número de núcleos independentes;
-- ideias ainda não catalogadas entram em um radar próprio;
-- relações são calculadas por um módulo compartilhado e apresentadas simetricamente;
-- comentários e blocos desativados são proibidos nos arquivos públicos de produção;
-- fontes brutas, documentos, pareceres e scripts ficam fora de `dist/`;
-- a Visão Estelar original foi preservada sem qualquer sistema visual de buraco negro.
-
-Novos efeitos cósmicos não devem ser inferidos a partir do conteúdo das teorias. Experimentos visuais pertencem ao laboratório e só entram quando possuírem função conceitual, ciclo de vida controlado, movimento reduzido e custo proporcional ao dispositivo.
+- Entrada da base: `ai/INDEX.md`.
+- Roteamento gerado: `ai/ROUTING.md`.
+- Arquitetura: `ai/project/ARCHITECTURE.md`.
+- Sistemas interativos: `ai/frontend/INTERACTIVE_SYSTEMS.md`.
+- Teorias: `ai/domains/THEORY_CATALOG.md`.
+- Grandes Nomes: `ai/domains/NOTABLE_FIGURES_CATALOG.md`.
+- Validação: `ai/quality/VALIDATION_AND_RELEASE.md`.
+- Build e Vercel: `ai/infrastructure/STATIC_BUILD_AND_DEPLOY.md`.
+- Integração editorial anterior: `docs/INTEGRACAO_TEORIAS.md`.

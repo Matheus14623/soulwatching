@@ -26,7 +26,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/styles.css?v=smooth-flow-v1" />
     <link rel="stylesheet" href="../assets/css/observatory-pages.css?v=observatory-scale-v1" />
-    <link rel="stylesheet" href="./teorias.css?v=theory-clarity-v2" />
+    <link rel="stylesheet" href="./teorias.css?v=theory-evidence-v3" />
   </head>
   <body class="theories-page-body" data-mode="normal">
     <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
@@ -151,6 +151,34 @@
             </p>
           </div>
 
+          <section class="theory-comparison-tool" id="comparar" aria-labelledby="theory-comparison-title">
+            <div class="comparison-tool-heading">
+              <div>
+                <p class="section-kicker">comparação crítica</p>
+                <h3 id="theory-comparison-title">Coloque duas linhas sob os mesmos critérios.</h3>
+              </div>
+              <p>Natureza, pergunta, limite, teste e condição de abandono aparecem lado a lado sem produzir nota de credibilidade.</p>
+            </div>
+            <form class="comparison-controls" data-comparison-controls>
+              <label>
+                <span>Primeira linha</span>
+                <select data-compare-first aria-describedby="comparison-guidance"></select>
+              </label>
+              <span class="comparison-versus" aria-hidden="true">×</span>
+              <label>
+                <span>Segunda linha</span>
+                <select data-compare-second aria-describedby="comparison-guidance"></select>
+              </label>
+              <div class="comparison-actions">
+                <button type="button" data-copy-comparison disabled>Copiar comparação</button>
+                <button type="button" data-clear-comparison>Limpar</button>
+              </div>
+            </form>
+            <p class="comparison-guidance" id="comparison-guidance">Escolha duas linhas diferentes. A comparação também pode ser compartilhada pela URL.</p>
+            <p class="comparison-status sr-only" aria-live="polite" data-comparison-status></p>
+            <div class="theory-comparison-output" data-comparison-output></div>
+          </section>
+
           <div class="theory-control-panel" aria-label="Busca e filtros das linhas de investigação">
             <label class="archive-search-field" for="archive-theory-search">
               <span>Buscar entrada, conceito, limite ou pergunta</span>
@@ -205,7 +233,7 @@
               </div>
             </div>
 
-            <aside class="theory-dossier" data-theory-dossier aria-label="Dossiê da entrada selecionada"></aside>
+            <aside class="theory-dossier" id="dossie" data-theory-dossier aria-label="Dossiê da entrada selecionada"></aside>
           </div>
         </div>
       </section>
@@ -253,6 +281,6 @@
       </div>
     </noscript>
 
-    <script type="module" src="./teorias.js?v=smooth-flow-v1"></script>
+    <script type="module" src="./teorias.js?v=theory-evidence-v3"></script>
   </body>
 </html>

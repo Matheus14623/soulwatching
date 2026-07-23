@@ -4,11 +4,19 @@
   "private": true,
   "type": "module",
   "description": "Site estático, filosófico e interativo para o Observatório de Ideias de Matheus Camargo, com página dedicada e escalável de teorias.",
+  "engines": {
+    "node": ">=18.17 <25"
+  },
   "scripts": {
-    "dev": "node scripts/serve.mjs",
-    "start": "node scripts/serve.mjs",
+    "dev": "node scripts/serve.mjs --source",
+    "start": "node scripts/serve.mjs --source",
+    "prepreview": "npm run build",
+    "preview": "node scripts/serve.mjs --dist",
     "verify": "node scripts/verify.mjs",
     "build": "node scripts/build.mjs",
+    "pretest": "npm run build",
+    "test": "npm run test:smoke",
+    "test:smoke": "node --test scripts/tests/public-smoke.test.mjs scripts/tests/accessibility-contracts.test.mjs scripts/tests/feature-contracts.test.mjs scripts/tests/contributions-contracts.test.mjs scripts/tests/browser-smoke.test.mjs",
     "knowledge:build": "node ai/tools/build-source-coverage-ledger.mjs && node ai/tools/build-knowledge-graph.mjs",
     "knowledge:check": "node ai/tools/build-source-coverage-ledger.mjs --check && node ai/tools/build-knowledge-graph.mjs --check",
     "knowledge:test": "node --test ai/tools/tests/knowledge-tools.test.mjs"

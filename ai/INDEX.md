@@ -22,13 +22,14 @@ related_context:
 evidence_sources:
   - "package.json"
   - "index.html"
+  - "scripts/public-manifest.mjs"
   - "scripts/build.mjs"
   - "vercel.json"
 ---
 
 # Base de conhecimento do Observatório de Ideias
 
-O repositório contém um site estático multipágina em HTML, CSS e módulos JavaScript nativos. A home funciona como gateway; Teorias, Mapa, Grandes Nomes, Constelações, Arquivo e Laboratório possuem rotas próprias. Não há backend, banco de dados, CMS ou bundler confirmados.
+O repositório contém um site estático multipágina em HTML, CSS e módulos JavaScript nativos. A home funciona como gateway; Teorias, Mapa, Grandes Nomes, Constelações, Arquivo, Laboratório, Rotas Guiadas e Contribuições possuem rotas próprias, além do executor compartilhado dos simuladores. A navegação comum também oferece busca global sobre os catálogos públicos. Não há backend, banco de dados, CMS ou bundler confirmados.
 
 ## Comece pela tarefa
 
@@ -66,5 +67,4 @@ Descobertas de tarefas comuns entram em [pending-knowledge](pending-knowledge/IN
 
 ## To Verify
 
-- Versão mínima de Node realmente suportada; o README recomenda Node 18+, mas não há `engines` nem arquivo de versão.
 - Domínio público canônico e comportamento final das URLs limpas na hospedagem.

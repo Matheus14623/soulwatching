@@ -17,8 +17,10 @@ required_context:
 related_context:
   - "infrastructure.static-deploy"
 evidence_sources:
+  - "scripts/public-manifest.mjs"
   - "scripts/build.mjs"
   - "scripts/serve.mjs"
+  - ".github/workflows/quality.yml"
   - "vercel.json"
 ---
 
@@ -32,7 +34,7 @@ Leia este escopo para mudanças no ciclo de publicação ou na fronteira entre r
 
 ## Estado confirmado
 
-A Vercel executa `npm run build` e publica `dist/`. Não há containers, infraestrutura como código, ambientes múltiplos ou pipeline de CI no repositório.
+A Vercel executa `npm run build` e publica `dist/`. O repositório possui CI de qualidade em push e pull request, mas não automatiza deploy, rollback ou promoção de ambientes. Não há containers, infraestrutura como código ou ambientes múltiplos declarados.
 
 ## Quando atualizar
 

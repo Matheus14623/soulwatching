@@ -14,10 +14,11 @@ Os materiais brutos da pasta `Teorias/` são fontes editoriais privadas. Eles n�
 
 | Arquivo | Responsabilidade |
 | --- | --- |
-| `assets/data/theories.js` | Conteúdo público, classificações, revisão crítica e relações. |
+| `assets/data/theories.js` | Conteúdo público, classificações, rubricas, objeções, revisões e registro tipado de relações. |
 | `assets/data/theory-references.js` | Registro único das referências externas exibidas nos dossiês. |
 | `assets/data/research-tracks.js` | Radar de ideias que ainda não justificam uma entrada independente. |
 | `assets/js/theory-model.js` | Busca por ID/slug, relações simétricas e regras compartilhadas do domínio. |
+| `assets/js/theory-figure-model.js` | Relações inversas entre linhas autorais e perfis de Grandes Nomes. |
 | `scripts/theory-sources.mjs` | Mapeamento privado entre uma entrada e seu material editorial de origem. |
 | `scripts/verify.mjs` | Validação do schema, referências, rotas, privacidade e HTML. |
 
@@ -45,12 +46,14 @@ Home, arquivo e mapa possuem controladores próprios, mas não devem duplicar as
 | `questions` | Perguntas abertas que orientam o desenvolvimento. |
 | `concepts` | Termos indexáveis pela busca e pelos filtros. |
 | `nextSteps` | Ações concretas de formalização, análise ou execução. |
-| `connections` | Lista de IDs relacionados. |
 | `referenceIds` | Chaves de referências cadastradas em `theory-references.js`. |
+| `claimLinks` | Liga afirmações específicas a referências e ao campo público que sustentam. |
+| `objections` | Objeções identificadas, estado editorial e resposta registrada. |
+| `decisionBoundary` | Condições explícitas para revisar ou abandonar a formulação. |
 | `review` | Leitura em quatro camadas: `known`, `focus`, `limit` e `test`, além de `assessment`. |
-| `revision` | Versão e data da última revisão de conteúdo. |
+| `revisions` | Histórico individual de versões, datas e mudanças. |
 
-Na exportação, cada entrada recebe ainda os campos derivados `typeLabel`, `typeShortLabel`, `reviewStateLabel`, `centralIdea`, `centralQuestion` e `theoreticalTension`.
+As relações entre linhas não são duplicadas em cada registro. `THEORY_RELATIONS` mantém pares `sourceId`/`targetId`, tipo e justificativa em uma única fonte. Na exportação, cada entrada recebe `connections` derivado desse registro, além de `typeLabel`, `typeShortLabel`, `reviewStateLabel`, `claims`, `rubric`, `revisionHistory`, `revision`, `centralIdea`, `centralQuestion` e `theoreticalTension`.
 
 ## Leitura pública em quatro camadas
 
@@ -86,8 +89,17 @@ Essa estrutura substitui percentuais de maturidade. O sistema não usa números 
   questions: ['Qual pergunta precisa permanecer aberta?'],
   concepts: ['conceito principal'],
   nextSteps: ['Definir um observável e um critério de revisão.'],
-  connections: ['observacao-nao-linear'],
   referenceIds: ['hogg-distance'],
+  claimLinks: [
+    { id: 'base', label: 'Base científica', field: 'review.known', referenceIds: ['hogg-distance'] },
+  ],
+  objections: [
+    { id: 'objecao-principal', title: 'Qual é a objeção mais forte?', status: 'aberta', response: 'Resposta provisória e verificável.' },
+  ],
+  decisionBoundary: {
+    revise: 'Condição que exige reformular a linha.',
+    abandon: 'Resultado que encerra esta formulação específica.',
+  },
   review: {
     assessment: 'Formalização necessária',
     known: 'Base científica relevante para a pergunta.',
@@ -95,6 +107,20 @@ Essa estrutura substitui percentuais de maturidade. O sistema não usa números 
     limit: 'Principal limitação ou objeção atual.',
     test: 'Resultado capaz de revisar a proposta.',
   },
+  revisions: [
+    { version: '1.0', reviewedAt: '2026-07-22', label: 'Primeiro registro', changeSummary: 'Escopo inicial documentado.' },
+  ],
+}
+```
+
+Uma relação tipada é cadastrada separadamente:
+
+```js
+{
+  sourceId: 'nova-linha',
+  targetId: 'observacao-nao-linear',
+  type: 'contexto-metodologico',
+  justification: 'Explica a aproximação sem sugerir validação ou equivalência.',
 }
 ```
 
@@ -106,10 +132,11 @@ Essa estrutura substitui percentuais de maturidade. O sistema não usa números 
 4. Classifique a natureza e o estado do trabalho antes de escolher categoria ou cor.
 5. Preencha as quatro camadas da leitura crítica.
 6. Cadastre referências em `assets/data/theory-references.js` e use apenas seus IDs na entrada.
-7. Reutilize IDs existentes para relações. A interface apresenta relações de forma simétrica.
-8. Defina `parentId` quando a entrada for uma derivação; não multiplique fichas para repetir o mesmo núcleo.
-9. Preserve IDs e slugs existentes para não quebrar URLs.
-10. Execute a verificação e revise home, arquivo e mapa em desktop e mobile.
+7. Registre objeções, condição de revisão, condição de abandono e ao menos uma revisão individual.
+8. Cadastre relações somente em `THEORY_RELATIONS`, escolhendo um tipo existente e uma justificativa que declare o limite da aproximação.
+9. Defina `parentId` quando a entrada for uma derivação; não multiplique fichas para repetir o mesmo núcleo.
+10. Preserve IDs e slugs existentes para não quebrar URLs.
+11. Execute a verificação e revise home, arquivo, comparação, dossiê e mapa em desktop e mobile.
 
 ## Filtros e busca
 

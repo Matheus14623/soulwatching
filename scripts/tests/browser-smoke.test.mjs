@@ -1,0 +1,137 @@
+import assert from 'node:assert/strict';
+import { spawn, spawnSync } from 'node:child_process';
+import { existsSync } from 'node:fs';
+import { mkdtemp, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { test } from 'node:test';
+import { startServer, stopServer } from './test-server.mjs';
+
+function findBrowser() {
+  const candidates = [
+    process.env.BROWSER_BIN,
+    'google-chrome',
+    'google-chrome-stable',
+    'chromium',
+    'chromium-browser',
+    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe',
+    'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
+  ].filter(Boolean);
+
+  return candidates.find((candidate) => (
+    (candidate.includes('\\') && existsSync(candidate))
+    || spawnSync(candidate, ['--version'], { stdio: 'ignore', windowsHide: true }).status === 0
+  )) || null;
+}
+
+function dumpDom(browser, url, profileDirectory) {
+  return new Promise((resolveDump, reject) => {
+    const child = spawn(browser, [
+      '--headless=new',
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
+      '--disable-software-rasterizer',
+      '--disable-features=CalculateNativeWinOcclusion,UseDCompPresenter',
+      '--no-first-run',
+      '--no-default-browser-check',
+      '--window-size=390,844',
+      `--user-data-dir=${profileDirectory}`,
+      '--virtual-time-budget=2500',
+      '--dump-dom',
+      url,
+    ], { stdio: ['ignore', 'pipe', 'pipe'], windowsHide: true });
+
+    const stdout = [];
+    const stderr = [];
+    const timeout = setTimeout(() => {
+      child.kill();
+      reject(new Error(`O navegador excedeu o tempo ao abrir ${url}.`));
+    }, 20000);
+
+    child.stdout.on('data', (chunk) => stdout.push(chunk));
+    child.stderr.on('data', (chunk) => stderr.push(chunk));
+    child.once('error', (error) => {
+      clearTimeout(timeout);
+      reject(error);
+    });
+    child.once('exit', (code) => {
+      clearTimeout(timeout);
+      const output = Buffer.concat(stdout).toString('utf8');
+      if (code === 0 && output) {
+        resolveDump(output);
+        return;
+      }
+      const detail = Buffer.concat(stderr).toString('utf8').slice(-1200);
+      reject(new Error(`Navegador terminou com código ${code}. ${detail}`));
+    });
+  });
+}
+
+const browser = findBrowser();
+
+test('um navegador real inicializa as superfícies dinâmicas principais', {
+  skip: browser ? false : 'Chrome, Chromium ou Edge não disponível neste ambiente.',
+}, async () => {
+  const { child, origin } = await startServer('--dist');
+  const profileDirectory = await mkdtemp(join(tmpdir(), 'observatorio-browser-smoke-'));
+  try {
+    const home = await dumpDom(browser, `${origin}/`, profileDirectory);
+    assert.match(home, /data-theory-grid[^>]*>[\s\S]*?class="theory-card/);
+    assert.match(home, /data-notable-figures-preview[^>]*>[\s\S]*?<article/);
+    assert.match(home, /data-learning-paths-preview[^>]*>[\s\S]*?route-preview-card/);
+    assert.match(home, /data-string-key="5"/);
+    assert.match(home, /class="global-search-trigger"/);
+    const mobileNavigation = home.match(/<nav\b[^>]*data-primary-nav[^>]*>/)?.[0] || '';
+    assert.match(mobileNavigation, /\sinert(?:="")?(?:\s|>)/);
+    assert.match(mobileNavigation, /aria-hidden="true"/);
+    const backToTop = home.match(/<button\b[^>]*data-back-to-top[^>]*>/)?.[0] || '';
+    assert.match(backToTop, /aria-hidden="true"/);
+    assert.match(backToTop, /tabindex="-1"/);
+
+    const routes = await dumpDom(browser, `${origin}/Rotas/rotas.html`, profileDirectory);
+    assert.match(routes, /data-routes-catalog[^>]*>[\s\S]*?route-catalog-card/);
+    const routeCards = [...routes.matchAll(/<button[^>]*class="route-catalog-card"[\s\S]*?<\/button>/g)];
+    assert.ok(routeCards.length > 0);
+    routeCards.forEach(([card]) => assert.doesNotMatch(card, /<(?:div|h[1-6]|p)\b/i));
+
+    const contributions = await dumpDom(browser, `${origin}/Contribuicoes/contribuicoes.html`, profileDirectory);
+    assert.match(contributions, /data-contribution-types[^>]*>[\s\S]*?<article/);
+
+    for (const slug of ['cone-de-luz', 'zero-epsilon', 'recorrencia-finita', 'astrobiologia-probabilistica']) {
+      const experiment = await dumpDom(
+        browser,
+        `${origin}/Laboratorio/experimento.html?experimento=${slug}`,
+        profileDirectory,
+      );
+      assert.doesNotMatch(experiment, /Carregando experimento…/, slug);
+      assert.doesNotMatch(experiment, /class="experiment-error"/, slug);
+      assert.match(experiment, /data-simulation-root[^>]+aria-busy="false"/, slug);
+      assert.match(experiment, /class="simulation-layout"/, slug);
+    }
+
+    const training = await dumpDom(
+      browser,
+      `${origin}/Constelacoes/constelacoes.html?modo=treino`,
+      profileDirectory,
+    );
+    assert.match(training, /data-sky-atlas[^>]+data-training-active="true"/);
+    assert.match(training, /data-atlas-training-answers[^>]*>[\s\S]*?data-training-answer/);
+    assert.match(training, /data-training-revealed="false"/);
+  } finally {
+    await stopServer(child);
+    try {
+      await rm(profileDirectory, {
+        force: true,
+        maxRetries: 12,
+        recursive: true,
+        retryDelay: 180,
+      });
+    } catch (error) {
+      if (error.code !== 'EBUSY') throw error;
+    }
+  }
+});

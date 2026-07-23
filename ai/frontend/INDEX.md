@@ -23,8 +23,12 @@ related_context:
 evidence_sources:
   - "index.html"
   - "GrandesNomes/grandes-nomes.html"
+  - "Laboratorio/laboratorio.html"
+  - "Rotas/rotas.html"
+  - "Contribuicoes/contribuicoes.html"
   - "assets/css/styles.css"
   - "assets/js/main.js"
+  - "assets/js/navigation.js"
 ---
 
 # Índice do frontend
@@ -40,7 +44,7 @@ Leia este escopo para mudanças visíveis ou comportamentais no navegador.
 
 ## Pontos de entrada
 
-A home usa `main.js`; Teorias, Mapa, Grandes Nomes e Constelações possuem controladores próprios; Arquivo e Laboratório usam somente o shell compartilhado. CSS global vem antes do CSS compartilhado de páginas internas e do CSS específico da rota.
+A home usa `main.js`; Teorias, Mapa, Grandes Nomes, Constelações, Laboratório, Rotas Guiadas e Contribuições possuem controladores próprios; somente Arquivo usa o shell sem lógica de rota. `navigation.js` inicializa navegação, rolagem, busca global e métricas nas superfícies que o importam. CSS global vem antes do CSS compartilhado de páginas internas e do CSS específico da rota.
 
 ## Quando atualizar
 

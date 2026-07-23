@@ -4,21 +4,36 @@ import { $ } from './utils.js';
 const ERROR_MESSAGES = Object.freeze({
   valueMissing: 'Este campo é obrigatório.',
   typeMismatch: 'Digite um e-mail válido.',
-  tooShort: 'Escreva um pouco mais para a mensagem fazer sentido.',
 });
 
 function getFieldError(field) {
   const validity = field.validity;
   if (validity.valid) return '';
+  if (validity.tooShort) {
+    return field.name === 'name'
+      ? 'Digite pelo menos 2 caracteres.'
+      : 'Escreva pelo menos 12 caracteres para contextualizar a mensagem.';
+  }
   const key = Object.keys(ERROR_MESSAGES).find((name) => validity[name]);
   return ERROR_MESSAGES[key] || 'Revise este campo.';
 }
 
+function connectFieldError(form, field) {
+  const error = $(`[data-error-for="${field.name}"]`, form);
+  if (!error) return null;
+  if (!error.id) error.id = `${field.id || field.name}-error`;
+  const describedBy = new Set((field.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean));
+  describedBy.add(error.id);
+  field.setAttribute('aria-describedby', [...describedBy].join(' '));
+  return error;
+}
+
 function setFieldError(form, field, message) {
   const wrapper = field.closest('.form-field');
-  const error = $(`[data-error-for="${field.name}"]`, form);
+  const error = connectFieldError(form, field);
   wrapper?.classList.toggle('has-error', Boolean(message));
-  field.setAttribute('aria-invalid', String(Boolean(message)));
+  if (message) field.setAttribute('aria-invalid', 'true');
+  else field.removeAttribute('aria-invalid');
   if (error) error.textContent = message;
 }
 
@@ -71,6 +86,7 @@ export function initContactForm() {
   const fields = Array.from(form.elements).filter((element) => element.matches?.('input, textarea'));
 
   fields.forEach((field) => {
+    connectFieldError(form, field);
     field.addEventListener('input', () => setFieldError(form, field, getFieldError(field)));
     field.addEventListener('blur', () => setFieldError(form, field, getFieldError(field)));
   });
@@ -91,7 +107,7 @@ export function initContactForm() {
 
     if (!valid) {
       status?.classList.add('is-error');
-      if (status) status.textContent = 'Há campos para revisar antes de gerar a mensagem.';
+      if (status) status.textContent = 'Revise os campos indicados. O foco foi levado ao primeiro deles.';
       fields.find((field) => !field.validity.valid)?.focus();
       return;
     }

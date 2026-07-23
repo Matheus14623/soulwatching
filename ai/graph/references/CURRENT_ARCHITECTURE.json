@@ -19,9 +19,10 @@
     { "level": 1, "text": "Documentação atualizada do Observatório de Ideias" },
     { "level": 2, "text": "1. Visão do produto" },
     { "level": 2, "text": "2. Arquitetura atual" },
-    { "level": 2, "text": "7. Dados editoriais" },
-    { "level": 2, "text": "9. Manutenção" },
-    { "level": 2, "text": "18. Atualização de clareza científica e privacidade" }
+    { "level": 2, "text": "3. Catálogo e dossiês de Teorias" },
+    { "level": 2, "text": "7. Laboratório e catálogo de experiências" },
+    { "level": 2, "text": "12. Manifesto, servidor, build e Vercel" },
+    { "level": 2, "text": "14. Como evoluir sem duplicação" }
   ],
   "notes": ["Snapshot preservado; a autoridade canônica atual pertence aos nós especializados em ai/."]
 }

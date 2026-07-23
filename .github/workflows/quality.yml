@@ -1,0 +1,35 @@
+name: Qualidade
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify-build-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v4
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Validar manifesto npm
+        run: npm ci --ignore-scripts
+      - name: Testar base de conhecimento
+        run: npm run knowledge:test
+      - name: Conferir documentação derivada
+        run: npm run knowledge:check
+      - name: Verificar contratos públicos
+        run: npm run verify
+      - name: Verificar, construir e testar rotas públicas
+        run: npm test

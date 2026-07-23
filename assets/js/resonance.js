@@ -238,7 +238,12 @@ export function initResonance() {
       const enabled = await audio.toggle();
       setPressed(audioButton, enabled);
       safeSetText(audioButton, enabled ? 'Desativar áudio sutil' : 'Ativar áudio sutil');
-      safeSetText(status, enabled ? 'Áudio ativado. Passe o cursor nas cordas.' : 'Áudio desligado. As cordas visuais continuam ativas.');
+      safeSetText(
+        status,
+        enabled
+          ? 'Áudio ativado. Passe o cursor, toque nas cordas ou use os botões.'
+          : 'Áudio desligado. As cordas visuais continuam ativas.',
+      );
     } catch (error) {
       safeSetText(status, error.message);
       status?.classList.add('is-error');

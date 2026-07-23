@@ -389,6 +389,131 @@
   text-transform: uppercase;
 }
 
+.sky-atlas-control--training {
+  min-width: 8.5rem;
+  border-color: rgba(173, 140, 255, 0.25);
+}
+
+.sky-atlas-training {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(18rem, 1fr);
+  gap: clamp(1rem, 4vw, 3rem);
+  align-items: center;
+  margin-block: 0.8rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid rgba(173, 140, 255, 0.23);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 90% 0%, rgba(173, 140, 255, 0.11), transparent 18rem),
+    rgba(4, 8, 19, 0.72);
+}
+
+.sky-atlas-training[hidden] {
+  display: none;
+}
+
+.sky-atlas-training-copy > p:first-child,
+.sky-atlas-training-feedback {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sky-atlas-training-copy h2 {
+  margin: 0.55rem 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+.sky-atlas-training-copy > p:last-child {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.sky-atlas-training-actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.sky-atlas-training-answers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.sky-atlas-training-answer {
+  min-height: 3.2rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 0.8rem;
+  background: rgba(255,255,255,0.035);
+  color: var(--text-soft);
+  font: inherit;
+  text-align: left;
+}
+
+.sky-atlas-training-answer:hover,
+.sky-atlas-training-answer:focus-visible {
+  border-color: rgba(114,236,255,0.4);
+  color: var(--text);
+}
+
+.sky-atlas-training-answer[data-correct="true"] {
+  border-color: rgba(135,229,176,0.68);
+  background: rgba(135,229,176,0.1);
+  color: #d9ffe8;
+}
+
+.sky-atlas-training-answer[data-selected="true"][data-correct="false"] {
+  border-color: rgba(255,154,154,0.62);
+  background: rgba(255,154,154,0.08);
+  color: #ffd7d7;
+}
+
+.sky-atlas-training-feedback {
+  min-height: 1.2rem;
+  margin: 0;
+}
+
+.sky-atlas[data-training-active="true"] .sky-atlas-discovery,
+.sky-atlas[data-training-active="true"] .sky-atlas-catalog,
+.sky-atlas[data-training-active="true"] .sky-atlas-detail,
+.sky-atlas[data-training-active="true"] .sky-atlas-navigation > :not([data-atlas-training-toggle]) {
+  display: none;
+}
+
+.sky-atlas[data-training-active="true"] .sky-atlas-content {
+  grid-template-columns: 1fr;
+}
+
+.sky-atlas[data-training-active="true"] .sky-atlas-navigation {
+  margin-left: auto;
+}
+
+.sky-atlas[data-training-active="true"] .sky-atlas-stage {
+  cursor: default;
+}
+
+.sky-atlas[data-training-active="true"] .sky-atlas-stage[data-training-revealed="false"] .constellation-chart-lines,
+.sky-atlas[data-training-active="true"] .sky-atlas-stage[data-training-revealed="false"] .constellation-chart-star-label {
+  opacity: 0 !important;
+}
+
+.sky-atlas[data-training-active="true"] .sky-atlas-stage[data-training-revealed="false"] .constellation-chart-lines line {
+  stroke-dashoffset: 120 !important;
+}
+
+.sky-atlas[data-training-active="true"] .sky-atlas-stage[data-training-revealed="true"] .constellation-chart-lines,
+.sky-atlas[data-training-active="true"] .sky-atlas-stage[data-training-revealed="true"] .constellation-chart-star-label {
+  opacity: 1 !important;
+}
+
+.sky-atlas[data-training-active="true"] .sky-atlas-stage[data-training-revealed="true"] .constellation-chart-lines line {
+  stroke-dashoffset: 0 !important;
+}
+
 .sky-atlas-control:hover,
 .sky-atlas-control:focus-visible,
 .sky-atlas-control[aria-pressed="true"] {
@@ -1123,6 +1248,14 @@
   .sky-atlas-control--wide {
     flex: 1;
     min-width: 0;
+  }
+
+  .sky-atlas-training {
+    grid-template-columns: 1fr;
+  }
+
+  .sky-atlas-training-answers {
+    grid-template-columns: 1fr;
   }
 
   .sky-atlas-discovery {

@@ -1,4 +1,10 @@
-import { THEORIES } from '../data/theories.js';
+import {
+  THEORIES,
+  THEORY_RELATIONS,
+  THEORY_RELATION_TYPES,
+} from '../data/theories.js';
+
+const relationTypeById = new Map(THEORY_RELATION_TYPES.map((item) => [item.id, item]));
 
 export function findTheory(id, fallback = null) {
   return THEORIES.find((theory) => theory.id === id || theory.slug === id) || fallback;
@@ -10,34 +16,55 @@ export function theoryMatchesCategory(theory, category) {
     || theory.filters.includes(category);
 }
 
-export function getRelatedTheoryIds(theoryOrId) {
+export function getTheoryRelationType(typeId) {
+  return relationTypeById.get(typeId) || null;
+}
+
+export function getTheoryRelations(theoryOrId) {
   const theory = typeof theoryOrId === 'string' ? findTheory(theoryOrId) : theoryOrId;
   if (!theory) return [];
 
-  const ids = new Set(theory.connections);
-  THEORIES.forEach((candidate) => {
-    if (candidate.connections.includes(theory.id)) ids.add(candidate.id);
-  });
-  return [...ids];
-}
+  return THEORY_RELATIONS
+    .filter((relation) => relation.sourceId === theory.id || relation.targetId === theory.id)
+    .map((relation) => {
+      const outbound = relation.sourceId === theory.id;
+      const relatedTheory = findTheory(outbound ? relation.targetId : relation.sourceId);
+      const relationType = getTheoryRelationType(relation.type);
+      if (!relatedTheory || !relationType) return null;
 
-export function getRelatedTheories(theoryOrId) {
-  return getRelatedTheoryIds(theoryOrId)
-    .map((id) => findTheory(id))
+      return Object.freeze({
+        ...relation,
+        id: [relation.sourceId, relation.targetId].sort().join('::'),
+        direction: outbound ? 'outbound' : 'inbound',
+        relationLabel: relationType.label,
+        relationDescription: relationType.description,
+        theory: relatedTheory,
+      });
+    })
     .filter(Boolean);
 }
 
+export function getTheoryRelationBetween(firstTheoryOrId, secondTheoryOrId) {
+  const first = typeof firstTheoryOrId === 'string' ? findTheory(firstTheoryOrId) : firstTheoryOrId;
+  const second = typeof secondTheoryOrId === 'string' ? findTheory(secondTheoryOrId) : secondTheoryOrId;
+  if (!first || !second) return null;
+  return getTheoryRelations(first).find((relation) => relation.theory.id === second.id) || null;
+}
+
+export function getRelatedTheoryIds(theoryOrId) {
+  return getTheoryRelations(theoryOrId).map((relation) => relation.theory.id);
+}
+
+export function getRelatedTheories(theoryOrId) {
+  return getTheoryRelations(theoryOrId).map((relation) => relation.theory);
+}
+
 export function getUniqueTheoryRelations() {
-  const relations = new Map();
-
-  THEORIES.forEach((theory) => {
-    theory.connections.forEach((targetId) => {
-      const target = findTheory(targetId);
-      if (!target) return;
-      const key = [theory.id, target.id].sort().join('::');
-      if (!relations.has(key)) relations.set(key, Object.freeze([theory, target]));
-    });
-  });
-
-  return [...relations.values()];
+  return THEORY_RELATIONS
+    .map((relation) => {
+      const source = findTheory(relation.sourceId);
+      const target = findTheory(relation.targetId);
+      return source && target ? Object.freeze([source, target]) : null;
+    })
+    .filter(Boolean);
 }

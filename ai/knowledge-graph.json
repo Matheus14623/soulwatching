@@ -10,6 +10,8 @@
       "evidenceSources": [
         "Arquivo/arquivo.html",
         "Laboratorio/laboratorio.html",
+        "Contribuicoes/contribuicoes.html",
+        "assets/data/contributions.js",
         "index.html",
         "docs/INTEGRACAO_TEORIAS.md",
         "scripts/build.mjs",
@@ -76,12 +78,14 @@
         "arquivo",
         "rascunho",
         "conteúdo público",
-        "privacidade"
+        "privacidade",
+        "contribuição externa",
+        "crédito"
       ]
     },
     "domains.index": {
       "canonicalFor": [
-        "roteamento das regras editoriais, das linhas de investigação e do catálogo de grandes nomes"
+        "roteamento das regras editoriais, das linhas de investigação, dos grandes nomes e das contribuições externas"
       ],
       "conditionalContext": [],
       "documentType": "scope-index",
@@ -89,6 +93,9 @@
         "assets/data/theories.js",
         "assets/data/research-tracks.js",
         "assets/data/notable-figures.js",
+        "assets/data/experiments.js",
+        "assets/data/learning-paths.js",
+        "assets/data/contributions.js",
         "docs/INTEGRACAO_TEORIAS.md",
         "Arquivo/arquivo.html"
       ],
@@ -140,7 +147,9 @@
         "linha de investigação",
         "publicação",
         "privacidade editorial",
-        "grandes nomes"
+        "grandes nomes",
+        "contribuição externa",
+        "autoria"
       ]
     },
     "domains.notable-figures": {
@@ -158,6 +167,7 @@
         "assets/data/notable-figures.js",
         "assets/data/notable-figure-references.js",
         "assets/js/notable-figures-model.js",
+        "assets/js/theory-figure-model.js",
         "GrandesNomes/grandes-nomes.html",
         "GrandesNomes/grandes-nomes.js",
         "scripts/verify.mjs"
@@ -221,7 +231,12 @@
         "perfil histórico",
         "cientista",
         "filósofo da ciência",
-        "retrato licenciado"
+        "retrato licenciado",
+        "comparação de trajetórias",
+        "trilha temática",
+        "linha do tempo",
+        "Henri Poincaré",
+        "John Stewart Bell"
       ]
     },
     "domains.theory-catalog": {
@@ -244,6 +259,9 @@
         "assets/data/theory-references.js",
         "assets/data/research-tracks.js",
         "assets/js/theory-model.js",
+        "assets/js/theory-figure-model.js",
+        "assets/data/notable-figures.js",
+        "Teorias/teorias.js",
         "scripts/theory-sources.mjs",
         "scripts/verify.mjs",
         "docs/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026.docx"
@@ -306,7 +324,12 @@
         "linha de investigação",
         "slug",
         "relação",
+        "relação tipada",
         "referência",
+        "objeção",
+        "rubrica",
+        "revisão individual",
+        "comparação de teorias",
         "radar"
       ]
     },
@@ -414,15 +437,19 @@
         },
         {
           "level": 2,
-          "text": "7. Dados editoriais"
+          "text": "3. Catálogo e dossiês de Teorias"
         },
         {
           "level": 2,
-          "text": "9. Manutenção"
+          "text": "7. Laboratório e catálogo de experiências"
         },
         {
           "level": 2,
-          "text": "18. Atualização de clareza científica e privacidade"
+          "text": "12. Manifesto, servidor, build e Vercel"
+        },
+        {
+          "level": 2,
+          "text": "14. Como evoluir sem duplicação"
         }
       ],
       "id": "external.current-architecture",
@@ -826,6 +853,13 @@
         "assets/css/notable-figures-preview.css",
         "Arquivo/arquivo.css",
         "Laboratorio/laboratorio.css",
+        "Laboratorio/experimento.css",
+        "Rotas/rotas.css",
+        "Contribuicoes/contribuicoes.css",
+        "assets/css/global-search.css",
+        "assets/js/navigation.js",
+        "assets/js/contact.js",
+        "scripts/tests/accessibility-contracts.test.mjs",
         "index.html"
       ],
       "headings": [
@@ -888,8 +922,12 @@
       "evidenceSources": [
         "index.html",
         "GrandesNomes/grandes-nomes.html",
+        "Laboratorio/laboratorio.html",
+        "Rotas/rotas.html",
+        "Contribuicoes/contribuicoes.html",
         "assets/css/styles.css",
-        "assets/js/main.js"
+        "assets/js/main.js",
+        "assets/js/navigation.js"
       ],
       "headings": [
         {
@@ -945,7 +983,7 @@
     },
     "frontend.interactive-systems": {
       "canonicalFor": [
-        "ciclo de vida da Visão Estelar, atlas de constelações, galeria, ressonância, filosofia, navegação e rolagem"
+        "ciclo de vida da Visão Estelar, atlas, treino, galeria, busca global, Rotas Guiadas, Laboratório, ressonância, filosofia, navegação e rolagem"
       ],
       "conditionalContext": [
         {
@@ -963,11 +1001,23 @@
         "assets/js/smooth-scroll.js",
         "assets/js/contact.js",
         "GrandesNomes/grandes-nomes.js",
+        "assets/data/notable-figures.js",
         "Constelacoes/constelacoes.js",
         "Constelacoes/whale-shark-easter-egg.js",
         "Constelacoes/constelacoes.css",
         "assets/js/constellation-chart.js",
         "assets/data/constellations.js",
+        "assets/js/global-search.js",
+        "assets/data/experiments.js",
+        "Laboratorio/laboratorio.js",
+        "Laboratorio/experimento.js",
+        "Laboratorio/simulations/light-cone.js",
+        "Laboratorio/simulations/zero-epsilon.js",
+        "Laboratorio/simulations/finite-recurrence.js",
+        "Laboratorio/simulations/astrobiology.js",
+        "assets/data/learning-paths.js",
+        "assets/js/learning-paths-model.js",
+        "Rotas/rotas.js",
         "assets/vendor/swiper/LICENSE",
         "index.html"
       ],
@@ -991,6 +1041,22 @@
         {
           "level": 2,
           "text": "Atlas de Constelações"
+        },
+        {
+          "level": 3,
+          "text": "Modo treino do Atlas"
+        },
+        {
+          "level": 2,
+          "text": "Busca global"
+        },
+        {
+          "level": 2,
+          "text": "Rotas Guiadas"
+        },
+        {
+          "level": 2,
+          "text": "Laboratório"
         },
         {
           "level": 2,
@@ -1038,7 +1104,11 @@
         "efeito cósmico",
         "carrossel",
         "Grandes Nomes",
-        "Constelações"
+        "Constelações",
+        "busca global",
+        "Rotas Guiadas",
+        "simulador",
+        "modo treino"
       ]
     },
     "frontend.pages-modules": {
@@ -1068,6 +1138,13 @@
         "Constelacoes/constelacoes.js",
         "Arquivo/arquivo.html",
         "Laboratorio/laboratorio.html",
+        "Laboratorio/laboratorio.js",
+        "Laboratorio/experimento.html",
+        "Laboratorio/experimento.js",
+        "Rotas/rotas.html",
+        "Rotas/rotas.js",
+        "Contribuicoes/contribuicoes.html",
+        "Contribuicoes/contribuicoes.js",
         "assets/js/main.js",
         "assets/js/stellar-vision-info.js",
         "assets/js/page-shell.js",
@@ -1075,7 +1152,13 @@
         "assets/js/notable-figures-model.js",
         "assets/js/constellation-model.js",
         "assets/js/constellation-chart.js",
-        "assets/js/constellations-preview.js"
+        "assets/js/constellations-preview.js",
+        "assets/js/global-search.js",
+        "assets/js/site-metrics.js",
+        "assets/js/learning-paths-model.js",
+        "assets/data/experiments.js",
+        "assets/data/learning-paths.js",
+        "assets/data/contributions.js"
       ],
       "headings": [
         {
@@ -1152,7 +1235,11 @@
         "assets/js/notable-figures-preview.js",
         "GrandesNomes/grandes-nomes.js",
         "Constelacoes/constelacoes.js",
-        "assets/js/constellations-preview.js"
+        "assets/js/constellations-preview.js",
+        "assets/js/global-search.js",
+        "Rotas/rotas.js",
+        "Laboratorio/experimento.js",
+        "Contribuicoes/contribuicoes.js"
       ],
       "headings": [
         {
@@ -1174,6 +1261,26 @@
         {
           "level": 2,
           "text": "Identificação de uma constelação"
+        },
+        {
+          "level": 2,
+          "text": "Treino de constelações"
+        },
+        {
+          "level": 2,
+          "text": "Busca global"
+        },
+        {
+          "level": 2,
+          "text": "Rota Guiada"
+        },
+        {
+          "level": 2,
+          "text": "Experimento do Laboratório"
+        },
+        {
+          "level": 2,
+          "text": "Proposta de contribuição externa"
         },
         {
           "level": 2,
@@ -1212,7 +1319,13 @@
         "query string",
         "seleção de teoria",
         "filtros",
-        "toggle"
+        "toggle",
+        "comparação",
+        "busca global",
+        "rota guiada",
+        "modo treino",
+        "experimento",
+        "contribuição"
       ]
     },
     "infrastructure.index": {
@@ -1222,8 +1335,10 @@
       "conditionalContext": [],
       "documentType": "scope-index",
       "evidenceSources": [
+        "scripts/public-manifest.mjs",
         "scripts/build.mjs",
         "scripts/serve.mjs",
+        ".github/workflows/quality.yml",
         "vercel.json"
       ],
       "headings": [
@@ -1289,6 +1404,8 @@
         "scripts/build.mjs",
         "scripts/verify.mjs",
         "scripts/serve.mjs",
+        "scripts/public-manifest.mjs",
+        "scripts/tests/public-smoke.test.mjs",
         "vercel.json",
         ".gitignore",
         "robots.txt",
@@ -1299,6 +1416,9 @@
         "Constelacoes/constelacoes.html",
         "Arquivo/arquivo.html",
         "Laboratorio/laboratorio.html",
+        "Laboratorio/experimento.html",
+        "Rotas/rotas.html",
+        "Contribuicoes/contribuicoes.html",
         "assets/vendor/swiper/LICENSE"
       ],
       "headings": [
@@ -1348,6 +1468,8 @@
         "vercel.json",
         "dist",
         "allowlist",
+        "manifesto público",
+        "servidor local",
         "publicação"
       ]
     },
@@ -1939,8 +2061,15 @@
         "Constelacoes/constelacoes.html",
         "Arquivo/arquivo.html",
         "Laboratorio/laboratorio.html",
+        "Laboratorio/experimento.html",
+        "Rotas/rotas.html",
+        "Contribuicoes/contribuicoes.html",
         "assets/js/main.js",
         "assets/js/page-shell.js",
+        "assets/js/global-search.js",
+        "assets/data/experiments.js",
+        "assets/data/learning-paths.js",
+        "scripts/public-manifest.mjs",
         "assets/js/notable-figures-model.js",
         "assets/js/constellation-model.js",
         "assets/js/constellation-chart.js",
@@ -2012,7 +2141,9 @@
       "conditionalContext": [],
       "documentType": "canonical-reference",
       "evidenceSources": [
+        "scripts/public-manifest.mjs",
         "scripts/build.mjs",
+        "scripts/serve.mjs",
         "scripts/theory-sources.mjs",
         "docs/INTEGRACAO_TEORIAS.md",
         "DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md",
@@ -2078,9 +2209,11 @@
       "evidenceSources": [
         "package.json",
         "package-lock.json",
+        "scripts/public-manifest.mjs",
         "scripts/serve.mjs",
         "scripts/verify.mjs",
-        "scripts/build.mjs"
+        "scripts/build.mjs",
+        "scripts/tests/public-smoke.test.mjs"
       ],
       "headings": [
         {
@@ -2127,6 +2260,8 @@
         "npm run dev",
         "npm run verify",
         "npm run build",
+        "npm run preview",
+        "npm test",
         "Node",
         "ambiente local"
       ]
@@ -2140,6 +2275,7 @@
       "evidenceSources": [
         "README.md",
         "package.json",
+        "scripts/public-manifest.mjs",
         "scripts/build.mjs"
       ],
       "headings": [
@@ -2200,6 +2336,11 @@
       "evidenceSources": [
         "scripts/verify.mjs",
         "scripts/build.mjs",
+        "scripts/public-manifest.mjs",
+        "scripts/tests/public-smoke.test.mjs",
+        "scripts/tests/accessibility-contracts.test.mjs",
+        "scripts/tests/browser-smoke.test.mjs",
+        ".github/workflows/quality.yml",
         "assets/js/observer.js",
         "assets/js/resonance.js"
       ],
@@ -2271,7 +2412,16 @@
         "Constelacoes/constelacoes.js",
         "Constelacoes/constelacoes.css",
         "Constelacoes/whale-shark-easter-egg.js",
-        "assets/js/constellation-chart.js"
+        "assets/js/constellation-chart.js",
+        "assets/js/global-search.js",
+        "assets/data/experiments.js",
+        "Laboratorio/experimento.js",
+        "Laboratorio/simulations/light-cone.js",
+        "Laboratorio/simulations/zero-epsilon.js",
+        "Laboratorio/simulations/finite-recurrence.js",
+        "Laboratorio/simulations/astrobiology.js",
+        "Rotas/rotas.js",
+        "scripts/tests/accessibility-contracts.test.mjs"
       ],
       "headings": [
         {
@@ -2350,6 +2500,11 @@
       "evidenceSources": [
         "scripts/verify.mjs",
         "scripts/build.mjs",
+        "scripts/public-manifest.mjs",
+        "scripts/tests/public-smoke.test.mjs",
+        "scripts/tests/accessibility-contracts.test.mjs",
+        "scripts/tests/browser-smoke.test.mjs",
+        ".github/workflows/quality.yml",
         "package.json"
       ],
       "headings": [
@@ -2400,6 +2555,9 @@
       "triggers": [
         "npm run verify",
         "npm run build",
+        "npm test",
+        "CI",
+        "smoke",
         "publicação",
         "checklist",
         "regressão"
@@ -2414,6 +2572,7 @@
       "evidenceSources": [
         "package.json",
         "index.html",
+        "scripts/public-manifest.mjs",
         "scripts/build.mjs",
         "vercel.json"
       ],

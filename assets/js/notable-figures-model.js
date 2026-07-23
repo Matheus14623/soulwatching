@@ -1,14 +1,21 @@
 import {
   NOTABLE_FIGURE_AREAS,
+  NOTABLE_FIGURE_TRAILS,
   NOTABLE_FIGURE_RELATION_TYPES,
   NOTABLE_FIGURES,
-} from '../data/notable-figures.js?v=great-minds-v2';
-import { getNotableFigureReferences } from '../data/notable-figure-references.js?v=great-minds-v2';
+  NOTABLE_METHOD_TIMELINE,
+  NOTABLE_METHOD_TIMELINE_CATEGORIES,
+} from '../data/notable-figures.js?v=great-minds-v3';
+import { getNotableFigureReferences } from '../data/notable-figure-references.js?v=great-minds-v3';
 import { findTheory } from './theory-model.js';
 
 const areaById = new Map(NOTABLE_FIGURE_AREAS.map((area) => [area.id, area]));
 const relationTypeById = new Map(
   NOTABLE_FIGURE_RELATION_TYPES.map((relationType) => [relationType.id, relationType]),
+);
+const trailById = new Map(NOTABLE_FIGURE_TRAILS.map((trail) => [trail.id, trail]));
+const timelineCategoryById = new Map(
+  NOTABLE_METHOD_TIMELINE_CATEGORIES.map((category) => [category.id, category]),
 );
 
 export function normalizeNotableFigureText(value = '') {
@@ -77,5 +84,66 @@ export function resolveNotableFigure(figureOrId) {
         });
       })
       .filter(Boolean)),
+  });
+}
+
+export function getNotableFigureTrails() {
+  return NOTABLE_FIGURE_TRAILS.map(resolveNotableFigureTrail).filter(Boolean);
+}
+
+export function findNotableFigureTrail(id, fallback = null) {
+  return trailById.get(id) || fallback;
+}
+
+export function resolveNotableFigureTrail(trailOrId) {
+  const trail = typeof trailOrId === 'string' ? findNotableFigureTrail(trailOrId) : trailOrId;
+  if (!trail) return null;
+
+  return Object.freeze({
+    ...trail,
+    steps: Object.freeze(trail.steps
+      .map((step) => {
+        const figure = resolveNotableFigure(step.figureId);
+        if (!figure) return null;
+        return Object.freeze({ ...step, figure });
+      })
+      .filter(Boolean)),
+  });
+}
+
+export function getNotableMethodTimelineCategories() {
+  return NOTABLE_METHOD_TIMELINE_CATEGORIES;
+}
+
+export function getNotableMethodTimeline(category = 'todas') {
+  const selectedCategory = timelineCategoryById.has(category) ? category : 'todas';
+
+  return NOTABLE_METHOD_TIMELINE
+    .filter((event) => selectedCategory === 'todas' || event.category === selectedCategory)
+    .map((event) => Object.freeze({
+      ...event,
+      categoryLabel: timelineCategoryById.get(event.category)?.label || event.category,
+      figures: Object.freeze(event.figureIds.map((figureId) => resolveNotableFigure(figureId)).filter(Boolean)),
+    }));
+}
+
+export function compareNotableFigures(leftOrId, rightOrId) {
+  const left = resolveNotableFigure(leftOrId);
+  const right = resolveNotableFigure(rightOrId);
+  if (!left || !right) return null;
+
+  const rightLinksByTheoryId = new Map(right.theoryLinks.map((link) => [link.theory.id, link]));
+  const sharedTheoryLinks = left.theoryLinks
+    .map((leftLink) => {
+      const rightLink = rightLinksByTheoryId.get(leftLink.theory.id);
+      if (!rightLink) return null;
+      return Object.freeze({ theory: leftLink.theory, leftLink, rightLink });
+    })
+    .filter(Boolean);
+
+  return Object.freeze({
+    left,
+    right,
+    sharedTheoryLinks: Object.freeze(sharedTheoryLinks),
   });
 }

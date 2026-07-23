@@ -69,7 +69,7 @@
         <div class="sky-atlas-shell">
           <div class="sky-atlas-heading">
             <div>
-              <p class="eyebrow">ATLAS CELESTE · 12 CAMPOS DE RECONHECIMENTO</p>
+              <p class="eyebrow">ATLAS CELESTE · CAMPOS DE RECONHECIMENTO</p>
               <h1 id="atlas-title">Você sabe identificar constelações?</h1>
             </div>
             <p id="atlas-instructions">
@@ -80,8 +80,8 @@
 
           <div class="sky-atlas-toolbar" aria-label="Controles do atlas">
             <div class="sky-atlas-readout" aria-live="polite">
-              <span>CAMPO ATIVO</span>
-              <strong data-atlas-position>01 / 12</strong>
+              <span data-atlas-readout-label>CAMPO ATIVO</span>
+              <strong data-atlas-position>-- / --</strong>
             </div>
             <div class="sky-atlas-navigation">
               <button class="sky-atlas-control" type="button" data-atlas-previous aria-label="Selecionar constelação anterior">←</button>
@@ -89,8 +89,24 @@
                 <span data-atlas-guide-label>Fixar linha-guia</span>
               </button>
               <button class="sky-atlas-control" type="button" data-atlas-next aria-label="Selecionar próxima constelação">→</button>
+              <button class="sky-atlas-control sky-atlas-control--wide sky-atlas-control--training" type="button" aria-pressed="false" data-atlas-training-toggle>
+                <span data-atlas-training-label>Modo treino</span>
+              </button>
             </div>
           </div>
+
+          <section class="sky-atlas-training" aria-labelledby="atlas-training-title" data-atlas-training hidden>
+            <div class="sky-atlas-training-copy">
+              <p data-atlas-training-progress>RODADA 01</p>
+              <h2 id="atlas-training-title" data-atlas-training-question>Qual constelação corresponde a este campo?</h2>
+              <p>As linhas e os nomes ficam ocultos até a resposta. Compare apenas a disposição e o brilho relativo das estrelas principais.</p>
+            </div>
+            <div class="sky-atlas-training-actions">
+              <div class="sky-atlas-training-answers" role="group" aria-labelledby="atlas-training-title" data-atlas-training-answers></div>
+              <p class="sky-atlas-training-feedback" data-atlas-training-feedback></p>
+              <button class="sky-atlas-control sky-atlas-control--wide" type="button" data-atlas-training-next hidden>Próximo campo</button>
+            </div>
+          </section>
 
           <div class="sky-atlas-discovery">
             <label class="sky-atlas-search">
@@ -98,7 +114,7 @@
               <input type="search" inputmode="search" autocomplete="off" placeholder="Constelação ou estrela" data-atlas-search />
             </label>
             <div class="sky-atlas-filters" aria-label="Filtrar pela melhor época de observação" data-atlas-filters></div>
-            <p class="sky-atlas-result-count" aria-live="polite" data-atlas-result-count>12 constelações disponíveis</p>
+            <p class="sky-atlas-result-count" aria-live="polite" data-atlas-result-count>Carregando campos</p>
           </div>
 
           <div class="sky-atlas-content">

@@ -2,7 +2,7 @@ import {
   getFeaturedNotableFigures,
   getNotableFigureCount,
   resolveNotableFigure,
-} from './notable-figures-model.js?v=great-minds-v2';
+} from './notable-figures-model.js?v=great-minds-v3';
 
 function createElement(tag, className, text) {
   const element = document.createElement(tag);

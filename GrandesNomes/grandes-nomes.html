@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="../assets/css/styles.css?v=smooth-flow-v1" />
     <link rel="stylesheet" href="../assets/css/observatory-pages.css?v=observatory-scale-v1" />
     <link rel="stylesheet" href="../assets/vendor/swiper/swiper-bundle.min.css?v=14.0.6" />
-    <link rel="stylesheet" href="./grandes-nomes.css?v=great-minds-v1" />
+    <link rel="stylesheet" href="./grandes-nomes.css?v=great-minds-v2" />
   </head>
   <body class="observatory-page-body notable-figures-page-body" data-mode="normal">
     <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
@@ -85,13 +85,13 @@
             </p>
             <div class="hero-actions">
               <a class="button button-primary" href="#galeria">Explorar galeria</a>
-              <a class="button button-secondary" href="#indice">Ver índice completo</a>
+              <a class="button button-secondary" href="#trilhas">Percorrer trilhas</a>
             </div>
           </div>
 
           <aside class="page-status-card notable-status-card" aria-label="Resumo da galeria">
             <span>campo de referência</span>
-            <strong><span data-notable-total>20</span> perfis</strong>
+            <strong><span data-notable-total>22</span> perfis</strong>
             <dl class="page-status-list">
               <div><dt>Áreas</dt><dd>3 campos de investigação</dd></div>
               <div><dt>Rotação</dt><dd>30 segundos entre perfis</dd></div>
@@ -122,7 +122,7 @@
           </div>
 
           <div class="notable-result-bar">
-            <p data-notable-result-count aria-live="polite">20 perfis disponíveis</p>
+            <p data-notable-result-count aria-live="polite">22 perfis disponíveis</p>
             <p class="notable-epistemic-note">Relação temática não significa endosso, autoria ou validação de uma linha do Observatório.</p>
           </div>
 
@@ -159,6 +159,70 @@
           </div>
 
           <div class="notable-detail" data-notable-detail></div>
+        </div>
+      </section>
+
+      <section class="section notable-compare-section" id="comparar" aria-labelledby="notable-compare-title">
+        <div class="container">
+          <div class="page-section-heading">
+            <div>
+              <p class="section-kicker">comparar trajetórias</p>
+              <h2 id="notable-compare-title">Duas contribuições, lado a lado.</h2>
+            </div>
+            <p id="notable-compare-description">
+              Compare problemas, métodos, marcos e conexões editoriais. Proximidade temática não transforma contextos históricos diferentes em equivalência.
+            </p>
+          </div>
+
+          <div class="notable-compare-controls" aria-describedby="notable-compare-description">
+            <label>
+              <span>Primeira trajetória</span>
+              <select data-compare-left></select>
+            </label>
+            <button class="notable-compare-swap" type="button" data-compare-swap aria-label="Trocar a ordem das trajetórias">
+              <span aria-hidden="true">⇄</span>
+              <span>Trocar lados</span>
+            </button>
+            <label>
+              <span>Segunda trajetória</span>
+              <select data-compare-right></select>
+            </label>
+          </div>
+          <p class="sr-only" data-compare-status role="status" aria-live="polite"></p>
+          <div class="notable-comparison" data-notable-comparison></div>
+        </div>
+      </section>
+
+      <section class="section notable-trails-section" id="trilhas" aria-labelledby="notable-trails-title">
+        <div class="container">
+          <div class="page-section-heading">
+            <div>
+              <p class="section-kicker">trilhas temáticas</p>
+              <h2 id="notable-trails-title">Siga uma pergunta através dos métodos.</h2>
+            </div>
+            <p>
+              Cada percurso organiza contribuições já catalogadas. A sequência é uma rota de leitura, não uma linha de influência direta entre todas as pessoas.
+            </p>
+          </div>
+          <div class="notable-trail-picker" role="group" aria-label="Escolher trilha temática" data-notable-trail-picker></div>
+          <div class="notable-trail-detail" data-notable-trail-detail></div>
+        </div>
+      </section>
+
+      <section class="section notable-method-section" id="linha-do-tempo" aria-labelledby="notable-method-title">
+        <div class="container">
+          <div class="page-section-heading">
+            <div>
+              <p class="section-kicker">linha do tempo de métodos</p>
+              <h2 id="notable-method-title">O que mudou na forma de investigar.</h2>
+            </div>
+            <p>
+              A cronologia destaca instrumentos, medições, modelos e testes. Os nomes aparecem como autoria e contexto, não como argumento de autoridade.
+            </p>
+          </div>
+          <div class="notable-method-filters" role="group" aria-label="Filtrar a linha do tempo por método" data-method-filters></div>
+          <p class="sr-only" data-method-status role="status" aria-live="polite"></p>
+          <ol class="notable-method-timeline" data-method-timeline></ol>
         </div>
       </section>
 
@@ -252,6 +316,6 @@
     </noscript>
 
     <script src="../assets/vendor/swiper/swiper-bundle.min.js?v=14.0.6"></script>
-    <script type="module" src="./grandes-nomes.js?v=great-minds-v2"></script>
+    <script type="module" src="./grandes-nomes.js?v=great-minds-v3"></script>
   </body>
 </html>

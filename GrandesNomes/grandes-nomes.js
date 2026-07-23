@@ -1,11 +1,16 @@
-import { NOTABLE_FIGURE_AREAS, NOTABLE_FIGURES } from '../assets/data/notable-figures.js?v=great-minds-v2';
+import { NOTABLE_FIGURE_AREAS, NOTABLE_FIGURES } from '../assets/data/notable-figures.js?v=great-minds-v3';
 import { initNavigation } from '../assets/js/navigation.js';
 import {
+  compareNotableFigures,
   filterNotableFigures,
   findNotableFigure,
+  findNotableFigureTrail,
   getNotableFigureArea,
+  getNotableFigureTrails,
+  getNotableMethodTimeline,
+  getNotableMethodTimelineCategories,
   resolveNotableFigure,
-} from '../assets/js/notable-figures-model.js?v=great-minds-v2';
+} from '../assets/js/notable-figures-model.js?v=great-minds-v3';
 import { smoothScrollToElement } from '../assets/js/smooth-scroll.js';
 import { debounce } from '../assets/js/utils.js';
 
@@ -196,6 +201,171 @@ function createIndexCard(figure) {
   return card;
 }
 
+function createFigureOption(figure) {
+  const option = document.createElement('option');
+  option.value = figure.id;
+  option.textContent = `${figure.name} · ${figure.role}`;
+  return option;
+}
+
+function createCompactTheoryLink(link) {
+  const anchor = createElement('a', 'comparison-theory-link');
+  anchor.href = `../Teorias/teorias.html?teoria=${encodeURIComponent(link.theory.slug)}`;
+  anchor.append(
+    createElement('span', '', link.theory.code),
+    createElement('strong', '', link.label),
+  );
+  return anchor;
+}
+
+function createTrajectoryPanel(figure, sideLabel) {
+  const panel = createElement('article', 'trajectory-panel');
+  panel.dataset.trajectoryFigure = figure.id;
+
+  const header = createElement('header', 'trajectory-panel-header');
+  header.append(
+    createElement('span', 'trajectory-side-label', sideLabel),
+    createElement('p', 'trajectory-panel-meta', `${figure.areaLabel} · ${figure.lifespan}`),
+    createElement('h3', '', figure.name),
+    createElement('p', 'trajectory-panel-role', figure.role),
+    createElement('p', 'trajectory-panel-summary', figure.summary),
+  );
+
+  const contributions = createElement('section', 'trajectory-panel-block');
+  contributions.append(createElement('h4', '', 'Problemas e contribuições'));
+  const contributionList = createElement('ul', 'trajectory-compact-list');
+  contributionList.append(...figure.contributions.map((contribution) => {
+    const item = document.createElement('li');
+    item.append(
+      createElement('strong', '', contribution.title),
+      createElement('span', '', contribution.description),
+    );
+    return item;
+  }));
+  contributions.append(contributionList);
+
+  const milestones = createElement('section', 'trajectory-panel-block');
+  milestones.append(createElement('h4', '', 'Marcos documentados'));
+  const milestoneList = createElement('ul', 'trajectory-milestone-list');
+  milestoneList.append(...figure.milestones.map((milestone) => createElement('li', '', milestone)));
+  milestones.append(milestoneList);
+
+  const connections = createElement('section', 'trajectory-panel-block');
+  connections.append(createElement('h4', '', 'Relações com o acervo'));
+  const connectionList = createElement('div', 'trajectory-theory-list');
+  if (figure.theoryLinks.length) {
+    connectionList.append(...figure.theoryLinks.map(createCompactTheoryLink));
+  } else {
+    connectionList.append(createElement('p', 'trajectory-no-connection', 'Sem relação editorial direta no catálogo atual.'));
+  }
+  connections.append(connectionList);
+
+  const openButton = createElement('button', 'trajectory-open-button', `Abrir dossiê de ${figure.name}`);
+  openButton.type = 'button';
+  openButton.dataset.featureFigure = figure.id;
+
+  panel.append(header, contributions, milestones, connections, openButton);
+  return panel;
+}
+
+function createComparison(comparison) {
+  const fragment = document.createDocumentFragment();
+  fragment.append(createTrajectoryPanel(comparison.left, 'Trajetória A'));
+
+  const intersection = createElement('aside', 'trajectory-intersection');
+  intersection.setAttribute('aria-label', 'Pontos de encontro da comparação');
+  intersection.append(
+    createElement('span', 'trajectory-intersection-symbol', '↔'),
+    createElement('h3', '', 'Pontos de encontro'),
+  );
+
+  if (comparison.sharedTheoryLinks.length) {
+    intersection.append(createElement(
+      'p',
+      '',
+      'As duas trajetórias aparecem nas linhas abaixo por relações editoriais independentes. Abra cada uma para comparar os limites declarados.',
+    ));
+    const list = createElement('div', 'trajectory-shared-list');
+    comparison.sharedTheoryLinks.forEach(({ theory }) => {
+      const link = createElement('a', '', `${theory.code} · ${theory.title}`);
+      link.href = `../Teorias/teorias.html?teoria=${encodeURIComponent(theory.slug)}`;
+      list.append(link);
+    });
+    intersection.append(list);
+  } else {
+    intersection.append(createElement(
+      'p',
+      '',
+      'Não há uma linha do Observatório ligada aos dois perfis ao mesmo tempo. A comparação permanece válida como contraste de problemas, métodos e épocas.',
+    ));
+  }
+
+  fragment.append(intersection, createTrajectoryPanel(comparison.right, 'Trajetória B'));
+  return fragment;
+}
+
+function createTrailDetail(trail) {
+  const article = createElement('article', 'notable-trail-card');
+  const header = createElement('header', 'notable-trail-header');
+  header.append(
+    createElement('span', 'notable-trail-kicker', trail.kicker),
+    createElement('h3', '', trail.label),
+    createElement('p', '', trail.description),
+  );
+
+  const list = createElement('ol', 'notable-trail-steps');
+  list.append(...trail.steps.map((step, index) => {
+    const item = document.createElement('li');
+    const marker = createElement('span', 'notable-trail-step-number', String(index + 1).padStart(2, '0'));
+    marker.setAttribute('aria-hidden', 'true');
+    const copy = createElement('div', 'notable-trail-step-copy');
+    copy.append(
+      createElement('span', 'notable-trail-step-person', `${step.figure.name} · ${step.figure.role}`),
+      createElement('h4', '', step.title),
+      createElement('p', '', step.description),
+    );
+    const button = createElement('button', 'notable-trail-open', 'Abrir perfil');
+    button.type = 'button';
+    button.dataset.featureFigure = step.figure.id;
+    button.setAttribute('aria-label', `Abrir o perfil de ${step.figure.name} na galeria`);
+    item.append(marker, copy, button);
+    return item;
+  }));
+
+  const outcome = createElement('footer', 'notable-trail-outcome');
+  outcome.append(
+    createElement('span', '', 'Síntese da rota'),
+    createElement('p', '', trail.outcome),
+  );
+  article.append(header, list, outcome);
+  return article;
+}
+
+function createTimelineItem(event) {
+  const item = document.createElement('li');
+  item.className = 'notable-method-event';
+
+  const date = createElement('span', 'notable-method-date', event.date);
+  const content = createElement('article', 'notable-method-card');
+  content.append(
+    createElement('span', 'notable-method-kind', `${event.categoryLabel} · ${event.method}`),
+    createElement('h3', '', event.title),
+    createElement('p', '', event.description),
+  );
+
+  const people = createElement('div', 'notable-method-people');
+  event.figures.forEach((figure) => {
+    const button = createElement('button', '', figure.name);
+    button.type = 'button';
+    button.dataset.featureFigure = figure.id;
+    button.setAttribute('aria-label', `Abrir o perfil de ${figure.name} na galeria`);
+    people.append(button);
+  });
+  content.append(people);
+  item.append(date, content);
+  return item;
+}
+
 function initNotableFiguresGallery() {
   const gallerySection = document.querySelector('#galeria');
   const carouselShell = document.querySelector('[data-notable-carousel-shell]');
@@ -215,15 +385,41 @@ function initNotableFiguresGallery() {
   const pagination = document.querySelector('[data-notable-pagination]');
   const total = document.querySelector('[data-notable-total]');
   const announcement = document.querySelector('[data-notable-announcement]');
+  const compareLeft = document.querySelector('[data-compare-left]');
+  const compareRight = document.querySelector('[data-compare-right]');
+  const compareSwap = document.querySelector('[data-compare-swap]');
+  const comparison = document.querySelector('[data-notable-comparison]');
+  const compareStatus = document.querySelector('[data-compare-status]');
+  const trailPicker = document.querySelector('[data-notable-trail-picker]');
+  const trailDetail = document.querySelector('[data-notable-trail-detail]');
+  const methodFilters = document.querySelector('[data-method-filters]');
+  const methodTimeline = document.querySelector('[data-method-timeline]');
+  const methodStatus = document.querySelector('[data-method-status]');
 
   if (!gallerySection || !carouselShell || !carousel || !slides || !detail || !index || !filters || !search) return;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = window.matchMedia('(any-pointer: fine)');
-  const requestedProfile = new URL(window.location.href).searchParams.get('perfil');
+  const initialUrl = new URL(window.location.href);
+  const requestedProfile = initialUrl.searchParams.get('perfil');
   const requestedFigure = findNotableFigure(requestedProfile);
   const initialFigure = requestedFigure || NOTABLE_FIGURES[0];
   const shouldCanonicalizeInitialProfile = Boolean(requestedProfile && !requestedFigure);
+  const requestedComparison = initialUrl.searchParams.get('comparar')
+    ?.split(',')
+    .map((slug) => findNotableFigure(slug))
+    .filter(Boolean);
+  const shouldCanonicalizeComparison = initialUrl.searchParams.has('comparar')
+    && (requestedComparison?.length !== 2 || requestedComparison[0]?.id === requestedComparison[1]?.id);
+  const defaultComparisonLeft = requestedComparison?.[0]
+    || findNotableFigure('albert-einstein')
+    || NOTABLE_FIGURES[0];
+  const defaultComparisonRight = requestedComparison?.find((figure) => figure.id !== defaultComparisonLeft.id)
+    || findNotableFigure('henrietta-swan-leavitt')
+    || NOTABLE_FIGURES.find((figure) => figure.id !== defaultComparisonLeft.id);
+  const trails = getNotableFigureTrails();
+  const requestedTrail = findNotableFigureTrail(initialUrl.searchParams.get('trilha'));
+  const shouldCanonicalizeTrail = initialUrl.searchParams.has('trilha') && !requestedTrail;
   const pauseReasons = new Set();
   let activeArea = 'todas';
   let query = '';
@@ -232,6 +428,8 @@ function initNotableFiguresGallery() {
   let swiper = null;
   let staticIndex = 0;
   let announceNextChange = false;
+  let activeTrailId = requestedTrail?.id || trails[0]?.id || '';
+  let activeMethodCategory = 'todas';
 
   if (total) total.textContent = String(NOTABLE_FIGURES.length);
 
@@ -282,6 +480,146 @@ function initNotableFiguresGallery() {
     const url = new URL(window.location.href);
     url.searchParams.set('perfil', figure.slug);
     window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+  }
+
+  function updateFeatureUrl(name, value) {
+    const url = new URL(window.location.href);
+    if (value) url.searchParams.set(name, value);
+    else url.searchParams.delete(name);
+    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+  }
+
+  function openFeatureFigure(figureId) {
+    if (!findNotableFigure(figureId)) return;
+    if (!visibleFigures.some((figure) => figure.id === figureId)) {
+      activeArea = 'todas';
+      query = '';
+      search.value = '';
+      syncFilterState();
+      applyFilters();
+    }
+    selectFigure(figureId, { scrollToGallery: true });
+  }
+
+  function bindFeatureButtons(container) {
+    container?.querySelectorAll('[data-feature-figure]').forEach((button) => {
+      button.addEventListener('click', () => openFeatureFigure(button.dataset.featureFigure));
+    });
+  }
+
+  function nextDifferentFigure(figureId) {
+    const currentIndex = NOTABLE_FIGURES.findIndex((figure) => figure.id === figureId);
+    return NOTABLE_FIGURES[(currentIndex + 1) % NOTABLE_FIGURES.length];
+  }
+
+  function renderComparison({ announce = false, updateUrl: shouldUpdateUrl = true } = {}) {
+    if (!compareLeft || !compareRight || !comparison) return;
+    const result = compareNotableFigures(compareLeft.value, compareRight.value);
+    if (!result) return;
+
+    comparison.replaceChildren(createComparison(result));
+    bindFeatureButtons(comparison);
+
+    if (shouldUpdateUrl) {
+      updateFeatureUrl('comparar', `${result.left.slug},${result.right.slug}`);
+    }
+    if (announce && compareStatus) {
+      compareStatus.textContent = `Comparação atualizada: ${result.left.name} e ${result.right.name}.`;
+    }
+  }
+
+  function initializeComparison() {
+    if (!compareLeft || !compareRight || !comparison || !defaultComparisonRight) return;
+    compareLeft.replaceChildren(...NOTABLE_FIGURES.map(createFigureOption));
+    compareRight.replaceChildren(...NOTABLE_FIGURES.map(createFigureOption));
+    compareLeft.value = defaultComparisonLeft.id;
+    compareRight.value = defaultComparisonRight.id;
+    renderComparison({ updateUrl: false });
+
+    compareLeft.addEventListener('change', () => {
+      if (compareLeft.value === compareRight.value) {
+        compareRight.value = nextDifferentFigure(compareLeft.value).id;
+      }
+      renderComparison({ announce: true });
+    });
+    compareRight.addEventListener('change', () => {
+      if (compareRight.value === compareLeft.value) {
+        compareLeft.value = nextDifferentFigure(compareRight.value).id;
+      }
+      renderComparison({ announce: true });
+    });
+    compareSwap?.addEventListener('click', () => {
+      const previousLeft = compareLeft.value;
+      compareLeft.value = compareRight.value;
+      compareRight.value = previousLeft;
+      renderComparison({ announce: true });
+      compareLeft.focus();
+    });
+  }
+
+  function renderTrailPicker() {
+    if (!trailPicker) return;
+    trailPicker.replaceChildren(...trails.map((trail) => {
+      const button = createElement('button', 'notable-trail-button');
+      button.type = 'button';
+      button.dataset.trailId = trail.id;
+      button.setAttribute('aria-pressed', String(trail.id === activeTrailId));
+      button.append(
+        createElement('span', '', trail.kicker),
+        createElement('strong', '', trail.label),
+      );
+      button.addEventListener('click', () => {
+        if (activeTrailId === trail.id) return;
+        activeTrailId = trail.id;
+        renderTrailPicker();
+        renderTrailDetail({ focus: true });
+        updateFeatureUrl('trilha', trail.id);
+      });
+      return button;
+    }));
+  }
+
+  function renderTrailDetail({ focus = false } = {}) {
+    if (!trailDetail) return;
+    const trail = trails.find((item) => item.id === activeTrailId) || trails[0];
+    if (!trail) return;
+    trailDetail.replaceChildren(createTrailDetail(trail));
+    bindFeatureButtons(trailDetail);
+    if (focus) {
+      const heading = trailDetail.querySelector('h3');
+      heading?.setAttribute('tabindex', '-1');
+      heading?.focus({ preventScroll: true });
+    }
+  }
+
+  function renderMethodFilters() {
+    if (!methodFilters) return;
+    const categories = getNotableMethodTimelineCategories();
+    methodFilters.replaceChildren(...categories.map((category) => {
+      const button = createElement('button', 'notable-method-filter', category.label);
+      button.type = 'button';
+      button.dataset.methodCategory = category.id;
+      button.setAttribute('aria-pressed', String(category.id === activeMethodCategory));
+      button.addEventListener('click', () => {
+        if (activeMethodCategory === category.id) return;
+        activeMethodCategory = category.id;
+        renderMethodFilters();
+        renderMethodTimeline({ announce: true });
+      });
+      return button;
+    }));
+  }
+
+  function renderMethodTimeline({ announce = false } = {}) {
+    if (!methodTimeline) return;
+    const events = getNotableMethodTimeline(activeMethodCategory);
+    methodTimeline.replaceChildren(...events.map(createTimelineItem));
+    bindFeatureButtons(methodTimeline);
+    if (announce && methodStatus) {
+      const label = getNotableMethodTimelineCategories()
+        .find((category) => category.id === activeMethodCategory)?.label;
+      methodStatus.textContent = `${events.length} eventos exibidos em ${label || 'todos os métodos'}.`;
+    }
   }
 
   function updateActiveState(figure, options = {}) {
@@ -382,7 +720,7 @@ function initNotableFiguresGallery() {
       autoplay: reducedMotion.matches || visibleFigures.length < 2
         ? false
         : {
-          delay: 10000,
+          delay: 30000,
           disableOnInteraction: false,
           pauseOnMouseEnter: false,
           waitForTransition: true,
@@ -527,7 +865,16 @@ function initNotableFiguresGallery() {
 
   renderFilters();
   applyFilters();
+  initializeComparison();
+  renderTrailPicker();
+  renderTrailDetail();
+  renderMethodFilters();
+  renderMethodTimeline();
   if (shouldCanonicalizeInitialProfile) updateUrl(initialFigure);
+  if (shouldCanonicalizeComparison && defaultComparisonRight) {
+    updateFeatureUrl('comparar', `${defaultComparisonLeft.slug},${defaultComparisonRight.slug}`);
+  }
+  if (shouldCanonicalizeTrail) updateFeatureUrl('trilha', activeTrailId);
 
   search.addEventListener('input', debounce(() => {
     query = search.value;

@@ -113,6 +113,36 @@ export const NOTABLE_FIGURE_REFERENCES = Object.freeze({
     kind: 'Perfil institucional',
     url: 'https://profiles.stanford.edu/leonard-susskind',
   }),
+  'poincare-mactutor': Object.freeze({
+    title: 'Henri Poincaré (1854–1912)',
+    institution: 'MacTutor · University of St Andrews',
+    kind: 'Biografia acadêmica',
+    url: 'https://mathshistory.st-andrews.ac.uk/Biographies/Poincare/',
+  }),
+  'poincare-foundations': Object.freeze({
+    title: 'The Foundations of Science',
+    institution: 'Project Gutenberg',
+    kind: 'Obra primária em domínio público',
+    url: 'https://www.gutenberg.org/ebooks/39713',
+  }),
+  'bell-cern-archives': Object.freeze({
+    title: 'Archives of John Stewart Bell',
+    institution: 'CERN Scientific Information Service',
+    kind: 'Arquivo institucional',
+    url: 'https://sis.web.cern.ch/archives/CERN_archive/guide/theory/isabell',
+  }),
+  'bell-epr-paper': Object.freeze({
+    title: 'On the Einstein Podolsky Rosen paradox',
+    institution: 'CERN Document Server',
+    kind: 'Artigo científico original',
+    url: 'https://cds.cern.ch/record/111654',
+  }),
+  'bell-aps-milestone': Object.freeze({
+    title: 'Quantum Milestones, 1964: John Stewart Bell Quietly Rings in New Era of Quantum Theory',
+    institution: 'American Physical Society',
+    kind: 'História institucional da física',
+    url: 'https://physics.aps.org/articles/v18/53',
+  }),
   'bacon-sep': Object.freeze({
     title: 'Francis Bacon',
     institution: 'Stanford Encyclopedia of Philosophy',

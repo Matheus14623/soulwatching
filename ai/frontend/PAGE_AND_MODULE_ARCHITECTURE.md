@@ -34,6 +34,13 @@ evidence_sources:
   - "Constelacoes/constelacoes.js"
   - "Arquivo/arquivo.html"
   - "Laboratorio/laboratorio.html"
+  - "Laboratorio/laboratorio.js"
+  - "Laboratorio/experimento.html"
+  - "Laboratorio/experimento.js"
+  - "Rotas/rotas.html"
+  - "Rotas/rotas.js"
+  - "Contribuicoes/contribuicoes.html"
+  - "Contribuicoes/contribuicoes.js"
   - "assets/js/main.js"
   - "assets/js/stellar-vision-info.js"
   - "assets/js/page-shell.js"
@@ -42,13 +49,21 @@ evidence_sources:
   - "assets/js/constellation-model.js"
   - "assets/js/constellation-chart.js"
   - "assets/js/constellations-preview.js"
+  - "assets/js/global-search.js"
+  - "assets/js/site-metrics.js"
+  - "assets/js/learning-paths-model.js"
+  - "assets/data/experiments.js"
+  - "assets/data/learning-paths.js"
+  - "assets/data/contributions.js"
 ---
 
 # Páginas e módulos do frontend
 
 ## Current Confirmed Structure
 
-`assets/js/main.js` inicializa os sistemas da home uma única vez, incluindo os recortes de Grandes Nomes e Constelações e o diálogo explicativo da Visão Estelar. `assets/js/page-shell.js` inicializa somente a navegação nas páginas estáticas. Teorias, Mapa, Grandes Nomes e Constelações importam navegação, modelos compartilhados e dados, mas controlam seus próprios estados e renderização.
+`assets/js/main.js` inicializa os sistemas da home uma única vez, incluindo os recortes de Grandes Nomes, Constelações e Rotas Guiadas e o diálogo explicativo da Visão Estelar. `assets/js/page-shell.js` inicializa somente a navegação na rota estática Arquivo. Teorias, Mapa, Grandes Nomes, Constelações, Laboratório, Rotas e Contribuições importam navegação, modelos compartilhados e dados, mas controlam seus próprios estados e renderização.
+
+`assets/js/navigation.js` é o ponto comum para menu, rolagem, busca global e métricas derivadas. A busca importa os seis catálogos pesquisáveis somente ao ser aberta. `Laboratorio/experimento.js` resolve metadados do catálogo central e importa sob demanda somente um dos quatro módulos em `Laboratorio/simulations/`. `learning-paths-model.js` resolve cada etapa contra os catálogos de perfis, teorias e experiências; títulos e links não são duplicados nas Rotas Guiadas.
 
 Ordem de estilos nas páginas internas:
 
@@ -59,15 +74,17 @@ Ordem de estilos nas páginas internas:
 ## Canonical Rules
 
 - Não duplique dados de teorias no HTML.
+- Não duplique contagens, slugs ou limites de experiências entre a home, o Arquivo, o Laboratório e as Rotas; derive-os dos catálogos centrais.
 - Não mova regras específicas de uma rota para o CSS global sem reutilização comprovada.
 - Preserve um único `h1`, landmarks semânticos, título e descrição próprios por página.
 - Um módulo compartilhado deve possuir responsabilidade transversal real; estado visual específico permanece no controlador da rota.
 - Use `textContent` ou escape explícito ao renderizar dados em HTML.
-- Mantenha paths e capitalização exatos para Linux, especialmente `Teorias`, `Mapa`, `GrandesNomes`, `Constelacoes`, `Arquivo` e `Laboratorio`.
+- Mantenha paths e capitalização exatos para Linux, especialmente `Teorias`, `Mapa`, `GrandesNomes`, `Constelacoes`, `Arquivo`, `Laboratorio`, `Rotas` e `Contribuicoes`.
 
 ## Entry Points
 
 - Navegação e rolagem: `assets/js/navigation.js` e `assets/js/smooth-scroll.js`.
+- Busca global e contagens: `assets/js/global-search.js` e `assets/js/site-metrics.js`.
 - Explicação da Visão Estelar: `assets/js/stellar-vision-info.js`.
 - Domínio de teorias: `assets/js/theory-model.js`.
 - Domínio de perfis históricos: `assets/js/notable-figures-model.js`.
@@ -75,6 +92,9 @@ Ordem de estilos nas páginas internas:
 - Domínio de constelações: `assets/js/constellation-model.js`.
 - Renderização SVG compartilhada do atlas e da home: `assets/js/constellation-chart.js`.
 - Recorte de constelações na home: `assets/js/constellations-preview.js`.
+- Catálogo e executor de experiências: `assets/data/experiments.js`, `Laboratorio/laboratorio.js` e `Laboratorio/experimento.js`.
+- Rotas Guiadas: `assets/data/learning-paths.js`, `assets/js/learning-paths-model.js`, `assets/js/learning-paths-preview.js` e `Rotas/rotas.js`.
+- Contribuições externas: `assets/data/contributions.js` e `Contribuicoes/contribuicoes.js`.
 - Utilitários genéricos: `assets/js/utils.js`.
 - Dados editoriais: `assets/data/`.
 

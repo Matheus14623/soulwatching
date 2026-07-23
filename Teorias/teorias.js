@@ -10,8 +10,11 @@ import { smoothScrollToElement } from '../assets/js/smooth-scroll.js';
 import {
   findTheory,
   getRelatedTheories,
+  getTheoryRelationBetween,
+  getTheoryRelations,
   theoryMatchesCategory,
 } from '../assets/js/theory-model.js';
+import { getNotableFigureConnections } from '../assets/js/theory-figure-model.js';
 import {
   THEORIES,
   THEORY_FILTERS,
@@ -30,6 +33,16 @@ function getInitialTheoryId() {
   return findTheory(requested)?.id || THEORIES[0]?.id || '';
 }
 
+function getInitialComparisonIds() {
+  const requested = new URL(window.location.href).searchParams.get('comparar') || '';
+  return [...new Set(requested
+    .split(',')
+    .map((value) => findTheory(value.trim())?.id)
+    .filter(Boolean))].slice(0, 2);
+}
+
+const initialComparisonIds = getInitialComparisonIds();
+
 const state = {
   query: '',
   category: 'todas',
@@ -37,6 +50,8 @@ const state = {
   reviewState: 'todos',
   concept: 'todos',
   activeId: getInitialTheoryId(),
+  compareFirstId: initialComparisonIds[0] || '',
+  compareSecondId: initialComparisonIds[1] || '',
 };
 
 function uniqueSorted(values) {
@@ -48,8 +63,16 @@ function getFilterLabel(id) {
 }
 
 function searchableText(theory) {
-  const relatedTitles = getRelatedTheories(theory).flatMap((item) => [item.code, item.title, item.shortTitle]);
+  const relations = getTheoryRelations(theory);
+  const relatedTitles = relations.flatMap((item) => [
+    item.theory.code,
+    item.theory.title,
+    item.theory.shortTitle,
+    item.relationLabel,
+    item.justification,
+  ]);
   const references = getTheoryReferences(theory.referenceIds).flatMap((item) => [item.title, item.authors]);
+  const figures = getNotableFigureConnections(theory).flatMap((item) => [item.figure.name, item.label, item.note]);
 
   return normalizeText([
     theory.code,
@@ -72,8 +95,15 @@ function searchableText(theory) {
     theory.concepts.join(' '),
     theory.questions.join(' '),
     theory.nextSteps.join(' '),
+    theory.claims.flatMap((claim) => [claim.label, claim.text]).join(' '),
+    theory.objections.flatMap((objection) => [objection.title, objection.statusLabel, objection.response]).join(' '),
+    theory.rubric.flatMap((criterion) => [criterion.label, criterion.question]).join(' '),
+    theory.decisionBoundary.revise,
+    theory.decisionBoundary.abandon,
+    theory.revision.changeSummary,
     relatedTitles.join(' '),
     references.join(' '),
+    figures.join(' '),
   ].join(' '));
 }
 
@@ -101,15 +131,148 @@ function tagsMarkup(tags = [], limit = 8) {
 }
 
 function relatedMarkup(theory) {
-  const related = getRelatedTheories(theory);
-  if (!related.length) return '<span class="muted-line">Ainda sem conexões catalogadas.</span>';
+  const relations = getTheoryRelations(theory);
+  if (!relations.length) return '<span class="muted-line">Ainda sem relações catalogadas.</span>';
 
-  return related.map((item) => `
-    <button class="related-chip" type="button" data-related-id="${escapeHtml(item.id)}">
-      <span>${escapeHtml(item.code)}</span>
-      ${escapeHtml(item.shortTitle || item.title)}
+  return relations.map((relation) => `
+    <button class="related-relation" type="button" data-related-id="${escapeHtml(relation.theory.id)}">
+      <span class="related-relation-title">
+        <strong>${escapeHtml(relation.theory.code)} · ${escapeHtml(relation.theory.shortTitle || relation.theory.title)}</strong>
+        <small>${escapeHtml(relation.relationLabel)}</small>
+      </span>
+      <span class="related-relation-note">${escapeHtml(relation.justification)}</span>
     </button>
   `).join('');
+}
+
+function claimReferencesMarkup(theory) {
+  if (!theory.claims.length) {
+    return '<p class="reference-empty">Nenhuma afirmação específica desta entrada está ligada a uma referência catalogada nesta versão.</p>';
+  }
+
+  return `
+    <ul class="claim-reference-list">
+      ${theory.claims.map((claim) => {
+        const references = getTheoryReferences(claim.referenceIds);
+        return `
+          <li>
+            <span class="claim-label">${escapeHtml(claim.label)}</span>
+            <p>${escapeHtml(claim.text)}</p>
+            <div class="claim-source-links" aria-label="Fontes ligadas a esta afirmação">
+              ${references.map((reference) => `
+                <a href="${escapeHtml(reference.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(reference.authors)} · ${escapeHtml(reference.year)}</a>
+              `).join('')}
+            </div>
+          </li>
+        `;
+      }).join('')}
+    </ul>
+  `;
+}
+
+function objectionsMarkup(theory) {
+  return `
+    <ul class="objection-list">
+      ${theory.objections.map((objection) => `
+        <li>
+          <div class="objection-heading">
+            <strong>${escapeHtml(objection.title)}</strong>
+            <span class="objection-state" data-objection-state="${escapeHtml(objection.status)}">${escapeHtml(objection.statusLabel)}</span>
+          </div>
+          <p>${escapeHtml(objection.response)}</p>
+        </li>
+      `).join('')}
+    </ul>
+  `;
+}
+
+function rubricMarkup(theory) {
+  return `
+    <p class="rubric-intro">Critérios próprios de <strong>${escapeHtml(theory.typeLabel.toLowerCase())}</strong>. Eles orientam a revisão; não formam uma nota.</p>
+    <ol class="rubric-list">
+      ${theory.rubric.map((criterion) => `
+        <li>
+          <span>${escapeHtml(criterion.label)}</span>
+          <p>${escapeHtml(criterion.question)}</p>
+        </li>
+      `).join('')}
+    </ol>
+  `;
+}
+
+function decisionBoundaryMarkup(theory) {
+  return `
+    <div class="decision-boundary-grid">
+      <article>
+        <span>Revisar quando</span>
+        <p>${escapeHtml(theory.decisionBoundary.revise)}</p>
+      </article>
+      <article>
+        <span>Abandonar ou encerrar quando</span>
+        <p>${escapeHtml(theory.decisionBoundary.abandon)}</p>
+      </article>
+    </div>
+  `;
+}
+
+function notableFiguresMarkup(theory) {
+  const connections = getNotableFigureConnections(theory);
+  if (!connections.length) {
+    return '<p class="reference-empty">Ainda não há uma relação histórica pública catalogada para esta linha.</p>';
+  }
+
+  return `
+    <ul class="theory-figure-list">
+      ${connections.map((connection) => `
+        <li>
+          <a href="../GrandesNomes/grandes-nomes.html?perfil=${encodeURIComponent(connection.figure.slug)}">
+            <strong>${escapeHtml(connection.figure.name)}</strong>
+            <span>${escapeHtml(connection.relationLabel)} · ${escapeHtml(connection.label)}</span>
+            <small>${escapeHtml(connection.note)}</small>
+          </a>
+        </li>
+      `).join('')}
+    </ul>
+  `;
+}
+
+function revisionMarkup(theory) {
+  const formatter = new Intl.DateTimeFormat('pt-BR', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+
+  return `
+    <section class="revision-history" aria-label="Histórico de revisão de ${escapeHtml(theory.title)}">
+      <span class="revision-history-label">Histórico individual</span>
+      <ol>
+        ${[...theory.revisionHistory].reverse().map((revision) => `
+          <li class="revision-record">
+            <div>
+              <span>${escapeHtml(revision.label)}</span>
+              <strong>Versão ${escapeHtml(revision.version)} · ${escapeHtml(formatter.format(new Date(`${revision.reviewedAt}T00:00:00Z`)))}</strong>
+            </div>
+            <p>${escapeHtml(revision.changeSummary)}</p>
+          </li>
+        `).join('')}
+      </ol>
+    </section>
+  `;
+}
+
+function versionNoticeMarkup(theory) {
+  const url = new URL(window.location.href);
+  const requestedTheory = findTheory(url.searchParams.get('teoria'));
+  const requestedVersion = url.searchParams.get('versao');
+  if (!requestedVersion || requestedTheory?.id !== theory.id) return '';
+
+  if (requestedVersion === theory.revision.version) {
+    return `<p class="version-link-notice" role="status">Este endereço identifica a versão ${escapeHtml(theory.revision.version)}, atualmente publicada.</p>`;
+  }
+
+  return `<p class="version-link-notice is-outdated" role="status">O endereço aponta para a versão ${escapeHtml(requestedVersion)}, que não está preservada nesta página. Exibindo a versão atual ${escapeHtml(theory.revision.version)}.</p>`;
 }
 
 function referencesMarkup(theory) {
@@ -275,17 +438,40 @@ function compactDetailMarkup(theory) {
       </div>
     </details>
     <details class="mobile-detail-disclosure">
-      <summary>Referências e relações</summary>
-      ${referencesMarkup(theory)}
+      <summary>Objeções e condição de saída</summary>
+      ${objectionsMarkup(theory)}
+      ${decisionBoundaryMarkup(theory)}
+    </details>
+    <details class="mobile-detail-disclosure">
+      <summary>Rubrica desta natureza</summary>
+      ${rubricMarkup(theory)}
+    </details>
+    <details class="mobile-detail-disclosure">
+      <summary>Afirmações, fontes e relações históricas</summary>
+      ${claimReferencesMarkup(theory)}
+      <div class="mobile-detail-section">
+        <h4>Bibliografia completa</h4>
+        ${referencesMarkup(theory)}
+      </div>
+      <div class="mobile-detail-section">
+        <h4>Grandes nomes relacionados</h4>
+        ${notableFiguresMarkup(theory)}
+      </div>
+    </details>
+    <details class="mobile-detail-disclosure">
+      <summary>Relações entre linhas</summary>
       <div class="mobile-detail-section">
         <h4>Linhas relacionadas</h4>
         <div class="related-chip-list">${relatedMarkup(theory)}</div>
       </div>
     </details>
+    ${revisionMarkup(theory)}
+    ${versionNoticeMarkup(theory)}
     <div class="mobile-detail-actions">
-      <a class="theory-permalink" href="?teoria=${encodeURIComponent(theory.slug)}">Link direto</a>
+      <button class="theory-permalink" type="button" data-copy-version-link="${escapeHtml(theory.id)}">Copiar link da versão</button>
       <a class="theory-map-link" href="../Mapa/mapa.html?teoria=${encodeURIComponent(theory.slug)}">Ver no mapa</a>
     </div>
+    <p class="copy-status" aria-live="polite" data-copy-status="${escapeHtml(theory.id)}"></p>
   `;
 }
 
@@ -337,6 +523,147 @@ function disclosure(title, content, open = false) {
       <div class="dossier-disclosure-content">${content}</div>
     </details>
   `;
+}
+
+async function copyText(value) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(value);
+    return;
+  }
+
+  const field = document.createElement('textarea');
+  field.className = 'clipboard-fallback';
+  field.value = value;
+  field.setAttribute('readonly', '');
+  document.body.append(field);
+  field.select();
+  const copied = document.execCommand('copy');
+  field.remove();
+  if (!copied) throw new Error('copy-failed');
+}
+
+function comparisonOptionMarkup(selectedId, unavailableId = '') {
+  return [
+    '<option value="">Escolha uma linha</option>',
+    ...THEORIES.map((theory) => `
+      <option value="${escapeHtml(theory.id)}"${theory.id === selectedId ? ' selected' : ''}${theory.id === unavailableId ? ' disabled' : ''}>
+        ${escapeHtml(theory.code)} · ${escapeHtml(theory.shortTitle || theory.title)}
+      </option>
+    `),
+  ].join('');
+}
+
+function renderComparisonControls() {
+  const first = $('[data-compare-first]');
+  const second = $('[data-compare-second]');
+  if (first) first.innerHTML = comparisonOptionMarkup(state.compareFirstId, state.compareSecondId);
+  if (second) second.innerHTML = comparisonOptionMarkup(state.compareSecondId, state.compareFirstId);
+}
+
+function comparisonHeaderMarkup(theory) {
+  return `
+    <button type="button" data-comparison-open="${escapeHtml(theory.id)}">
+      <span>${escapeHtml(theory.code)}</span>
+      <strong>${escapeHtml(theory.title)}</strong>
+      <small>Abrir dossiê</small>
+    </button>
+  `;
+}
+
+function comparisonFigureNames(theory) {
+  const figures = getNotableFigureConnections(theory);
+  return figures.length
+    ? figures.map((connection) => connection.figure.name).join(', ')
+    : 'Nenhuma relação histórica catalogada nesta versão.';
+}
+
+function renderComparison() {
+  const output = $('[data-comparison-output]');
+  const copyButton = $('[data-copy-comparison]');
+  if (!output) return;
+
+  const first = findTheory(state.compareFirstId);
+  const second = findTheory(state.compareSecondId);
+  const complete = Boolean(first && second && first.id !== second.id);
+  if (copyButton) copyButton.disabled = !complete;
+
+  if (!complete) {
+    output.innerHTML = `
+      <div class="comparison-empty" role="status">
+        <strong>${first || second ? 'Falta escolher a segunda linha.' : 'A comparação começa com duas escolhas.'}</strong>
+        <p>O dossiê principal continua independente dos filtros e da seleção feita aqui.</p>
+      </div>
+    `;
+    return;
+  }
+
+  const relation = getTheoryRelationBetween(first, second);
+  const rows = [
+    ['Natureza e estado', `${first.typeLabel} · ${first.reviewStateLabel}`, `${second.typeLabel} · ${second.reviewStateLabel}`],
+    ['Pergunta central', first.centralQuestion, second.centralQuestion],
+    ['Proposição', first.proposal, second.proposal],
+    ['Limite atual', first.review.limit, second.review.limit],
+    ['Caminho verificável', first.review.test, second.review.test],
+    ['Revisar quando', first.decisionBoundary.revise, second.decisionBoundary.revise],
+    ['Abandonar ou encerrar quando', first.decisionBoundary.abandon, second.decisionBoundary.abandon],
+    ['Grandes nomes relacionados', comparisonFigureNames(first), comparisonFigureNames(second)],
+    ['Revisão atual', `v${first.revision.version} · ${first.revision.reviewedAt}`, `v${second.revision.version} · ${second.revision.reviewedAt}`],
+  ];
+
+  output.innerHTML = `
+    ${relation ? `
+      <div class="comparison-relation" role="note">
+        <span>${escapeHtml(relation.relationLabel)}</span>
+        <p>${escapeHtml(relation.justification)}</p>
+      </div>
+    ` : '<p class="comparison-no-relation">Não há relação direta catalogada entre estas linhas. A comparação não cria uma.</p>'}
+    <div class="comparison-table-scroll" tabindex="0" role="region" aria-label="Tabela comparativa das linhas selecionadas">
+      <table class="comparison-table">
+        <caption class="sr-only">Comparação crítica entre ${escapeHtml(first.title)} e ${escapeHtml(second.title)}</caption>
+        <thead>
+          <tr>
+            <th scope="col">Critério</th>
+            <th scope="col">${comparisonHeaderMarkup(first)}</th>
+            <th scope="col">${comparisonHeaderMarkup(second)}</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map(([label, firstValue, secondValue]) => `
+            <tr>
+              <th scope="row">${escapeHtml(label)}</th>
+              <td>${escapeHtml(firstValue)}</td>
+              <td>${escapeHtml(secondValue)}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function syncComparisonUrl() {
+  const url = new URL(window.location.href);
+  const first = findTheory(state.compareFirstId);
+  const second = findTheory(state.compareSecondId);
+  if (first && second && first.id !== second.id) {
+    url.searchParams.set('comparar', `${first.slug},${second.slug}`);
+  } else {
+    url.searchParams.delete('comparar');
+  }
+  window.history.replaceState({
+    theory: findTheory(state.activeId)?.slug || '',
+    comparison: first && second ? [first.slug, second.slug] : [],
+  }, '', url);
+}
+
+function setComparison(slot, id, options = {}) {
+  const theory = findTheory(id);
+  const key = slot === 'second' ? 'compareSecondId' : 'compareFirstId';
+  const otherKey = slot === 'second' ? 'compareFirstId' : 'compareSecondId';
+  state[key] = theory && theory.id !== state[otherKey] ? theory.id : '';
+  renderComparisonControls();
+  renderComparison();
+  if (options.syncUrl !== false) syncComparisonUrl();
 }
 
 function renderDossier(theories) {
@@ -391,21 +718,25 @@ function renderDossier(theories) {
       ${reviewGridMarkup(theory)}
     </section>
 
-    ${disclosure('Perguntas abertas', `<ul>${listMarkup(theory.questions)}</ul>`, true)}
+    ${disclosure('Objeções registradas', objectionsMarkup(theory), true)}
+    ${disclosure('Condição de revisão ou abandono', decisionBoundaryMarkup(theory), true)}
+    ${disclosure('Rubrica desta natureza', rubricMarkup(theory))}
+    ${disclosure('Perguntas abertas', `<ul>${listMarkup(theory.questions)}</ul>`)}
     ${disclosure('Próximos passos', `<ul>${listMarkup(theory.nextSteps)}</ul>`)}
     ${disclosure('Conceitos relacionados', `<div class="tag-list">${tagsMarkup(theory.concepts)}</div>`)}
+    ${disclosure('Afirmações ligadas às fontes', claimReferencesMarkup(theory))}
     ${disclosure('Referências de contexto', referencesMarkup(theory))}
-    ${disclosure('Linhas relacionadas', `<div class="related-chip-list">${relatedMarkup(theory)}</div>`)}
+    ${disclosure('Grandes nomes relacionados', notableFiguresMarkup(theory))}
+    ${disclosure('Relações tipadas entre linhas', `<div class="related-chip-list">${relatedMarkup(theory)}</div>`)}
 
-    <div class="dossier-revision">
-      <span>${escapeHtml(theory.revision.label)}</span>
-      <span>versão ${escapeHtml(theory.revision.version)}</span>
-    </div>
+    ${revisionMarkup(theory)}
+    ${versionNoticeMarkup(theory)}
 
     <div class="dossier-actions">
-      <a class="theory-permalink" href="?teoria=${encodeURIComponent(theory.slug)}">Link direto</a>
+      <button class="theory-permalink" type="button" data-copy-version-link="${escapeHtml(theory.id)}">Copiar link da versão</button>
       <a class="theory-map-link" href="../Mapa/mapa.html?teoria=${encodeURIComponent(theory.slug)}">Ver no mapa</a>
     </div>
+    <p class="copy-status" aria-live="polite" data-copy-status="${escapeHtml(theory.id)}"></p>
   `;
 }
 
@@ -468,10 +799,16 @@ function syncActiveStates() {
   });
 }
 
-function syncUrl(theory) {
+function syncUrl(theory, options = {}) {
   const url = new URL(window.location.href);
   url.searchParams.set('teoria', theory.slug);
-  window.history.replaceState({ theory: theory.slug }, '', url);
+  if (!options.preserveVersion) url.searchParams.delete('versao');
+  window.history.replaceState({
+    theory: theory.slug,
+    comparison: [state.compareFirstId, state.compareSecondId]
+      .map((id) => findTheory(id)?.slug)
+      .filter(Boolean),
+  }, '', url);
 }
 
 function setActiveTheory(id, options = {}) {
@@ -491,8 +828,8 @@ function setActiveTheory(id, options = {}) {
 
   state.activeId = theory.id;
   syncActiveStates();
-  renderDossier(getFilteredTheories());
   if (options.syncUrl !== false) syncUrl(theory);
+  renderDossier(getFilteredTheories());
 
   if (options.scrollCard) {
     const card = document.querySelector(`[data-theory-card="${CSS.escape(theory.id)}"]`);
@@ -503,8 +840,10 @@ function setActiveTheory(id, options = {}) {
 
 function render() {
   const theories = getFilteredTheories();
+  let activeChanged = false;
   if (theories.length && !theories.some((theory) => theory.id === state.activeId)) {
     state.activeId = theories[0].id;
+    activeChanged = true;
   }
 
   renderCategoryFilters();
@@ -514,6 +853,7 @@ function render() {
   renderDossier(theories);
   updateSummary(theories);
   syncActiveStates();
+  if (activeChanged) syncUrl(theories[0]);
 }
 
 function closestFromEvent(event, selector) {
@@ -533,6 +873,27 @@ function resetFilters(options = {}) {
   if (options.focus !== false) search?.focus();
 }
 
+function setCopyStatus(theoryId, message) {
+  document.querySelectorAll(`[data-copy-status="${CSS.escape(theoryId)}"]`)
+    .forEach((element) => safeSetText(element, message));
+}
+
+async function copyVersionLink(theoryId) {
+  const theory = findTheory(theoryId);
+  if (!theory) return;
+  const url = new URL(window.location.href);
+  url.searchParams.set('teoria', theory.slug);
+  url.searchParams.set('versao', theory.revision.version);
+  url.hash = 'teorias';
+
+  try {
+    await copyText(url.toString());
+    setCopyStatus(theory.id, `Link da versão ${theory.revision.version} copiado.`);
+  } catch {
+    setCopyStatus(theory.id, 'Não foi possível copiar automaticamente. Use o endereço do navegador.');
+  }
+}
+
 function bindEvents() {
   const search = $('[data-theory-search]');
   const rail = $('[data-filter-rail]');
@@ -543,6 +904,11 @@ function bindEvents() {
   const kind = $('[data-kind-filter]');
   const review = $('[data-review-filter]');
   const concept = $('[data-concept-filter]');
+  const compareFirst = $('[data-compare-first]');
+  const compareSecond = $('[data-compare-second]');
+  const comparisonOutput = $('[data-comparison-output]');
+  const copyComparison = $('[data-copy-comparison]');
+  const clearComparison = $('[data-clear-comparison]');
 
   search?.addEventListener('input', debounce(() => {
     state.query = search.value.trim();
@@ -587,6 +953,12 @@ function bindEvents() {
   });
 
   grid?.addEventListener('click', (event) => {
+    const versionLink = closestFromEvent(event, '[data-copy-version-link]');
+    if (versionLink) {
+      copyVersionLink(versionLink.dataset.copyVersionLink);
+      return;
+    }
+
     const related = closestFromEvent(event, '[data-related-id]');
     if (related) {
       setActiveTheory(related.dataset.relatedId, { scrollCard: true });
@@ -598,16 +970,60 @@ function bindEvents() {
   });
 
   dossier?.addEventListener('click', (event) => {
+    const versionLink = closestFromEvent(event, '[data-copy-version-link]');
+    if (versionLink) {
+      copyVersionLink(versionLink.dataset.copyVersionLink);
+      return;
+    }
+
     const related = closestFromEvent(event, '[data-related-id]');
     if (related) setActiveTheory(related.dataset.relatedId, { scrollCard: true });
+  });
+
+  compareFirst?.addEventListener('change', () => setComparison('first', compareFirst.value));
+  compareSecond?.addEventListener('change', () => setComparison('second', compareSecond.value));
+
+  comparisonOutput?.addEventListener('click', (event) => {
+    const button = closestFromEvent(event, '[data-comparison-open]');
+    if (!button) return;
+    setActiveTheory(button.dataset.comparisonOpen, { scrollCard: true });
+  });
+
+  clearComparison?.addEventListener('click', () => {
+    state.compareFirstId = '';
+    state.compareSecondId = '';
+    renderComparisonControls();
+    renderComparison();
+    syncComparisonUrl();
+    compareFirst?.focus();
+  });
+
+  copyComparison?.addEventListener('click', async () => {
+    const status = $('[data-comparison-status]');
+    try {
+      syncComparisonUrl();
+      await copyText(window.location.href);
+      safeSetText(status, 'Link da comparação copiado.');
+    } catch {
+      safeSetText(status, 'Não foi possível copiar automaticamente. Use o endereço do navegador.');
+    }
   });
 
   reset?.addEventListener('click', () => resetFilters());
 
   window.addEventListener('popstate', () => {
-    const requested = new URL(window.location.href).searchParams.get('teoria');
+    const url = new URL(window.location.href);
+    const requested = url.searchParams.get('teoria');
     const theory = findTheory(requested);
     if (theory) setActiveTheory(theory.id, { syncUrl: false, scrollCard: true });
+    const comparisonIds = [...new Set((url.searchParams.get('comparar') || '')
+      .split(',')
+      .map((value) => findTheory(value.trim())?.id)
+      .filter(Boolean))].slice(0, 2);
+    state.compareFirstId = comparisonIds[0] || '';
+    state.compareSecondId = comparisonIds[1] || '';
+    renderComparisonControls();
+    renderComparison();
   });
 
   const syncInlineLayout = () => syncActiveStates();
@@ -619,9 +1035,12 @@ function boot() {
   initNavigation();
   renderResearchTracks();
   bindEvents();
+  renderComparisonControls();
+  renderComparison();
   render();
   const active = findTheory(state.activeId);
-  if (active) syncUrl(active);
+  const requested = new URL(window.location.href).searchParams.get('teoria');
+  if (active && !findTheory(requested)) syncUrl(active);
 }
 
 if (document.readyState === 'loading') {

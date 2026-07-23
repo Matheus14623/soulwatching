@@ -1,2 +1,4 @@
 PROJECT_REPORT.md
 dist/
+node_modules/
+.pnpm-store/

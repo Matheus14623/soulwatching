@@ -32,6 +32,13 @@ evidence_sources:
   - "assets/css/notable-figures-preview.css"
   - "Arquivo/arquivo.css"
   - "Laboratorio/laboratorio.css"
+  - "Laboratorio/experimento.css"
+  - "Rotas/rotas.css"
+  - "Contribuicoes/contribuicoes.css"
+  - "assets/css/global-search.css"
+  - "assets/js/navigation.js"
+  - "assets/js/contact.js"
+  - "scripts/tests/accessibility-contracts.test.mjs"
   - "index.html"
 ---
 
@@ -49,6 +56,10 @@ As estrelas permanecem visíveis sem depender das linhas. Hover e foco oferecem 
 
 Uma ilustração estelar de tubarão-baleia ocupa o fundo da área superior direita sem participar do catálogo de constelações. O componente usa um único SVG gerado no botão nomeado, com estrelas e linhas próprias, e reduz escala e opacidade nos breakpoints de 900 e 600 px. O retângulo visual permanece sem eventos; paths transparentes limitados à silhueta definem a hit-area para mouse e toque, enquanto foco de teclado e o nome acessível permanecem no botão. Hover, foco, clique e toque revelam o desenho e acionam uma sequência finita que retorna à geometria de repouso. Movimento reduzido mantém a revelação, mas remove qualquer deslocamento das partes da figura.
 
+A busca global usa `dialog`, título associado, campo nomeado, contador em região viva e resultados completos por link. `Ctrl+K` ou `Command+K` abre a superfície; setas percorrem os resultados e o fechamento devolve foco ao gatilho. Rotas Guiadas, comparação, treino e simuladores mantêm ações textuais, estados de progresso e anúncios pequenos em vez de depender de posição, cor ou animação.
+
+No menu compacto fechado, a navegação recebe `inert` e `aria-hidden`; ao cruzar o breakpoint, o controlador sincroniza novamente o estado. O botão de retorno ao topo também permanece `inert`, oculto e fora da ordem de tabulação até se tornar visível. No formulário de contato, cada mensagem possui `id` ligado ao campo por `aria-describedby`, `aria-invalid` só existe durante erro e o foco vai para o primeiro campo inválido. A ressonância oferece seis botões nomeados além de mouse e toque. Esses contratos possuem testes estáticos dedicados, mas ainda exigem conferência com tecnologia assistiva real.
+
 ## Canonical Rules
 
 - Reutilize tokens e padrões existentes antes de criar uma nova linguagem.
@@ -58,6 +69,8 @@ Uma ilustração estelar de tubarão-baleia ocupa o fundo da área superior dire
 - Preserve conteúdo equivalente no mobile; adapte layout, não significado.
 - Toda animação respeita `prefers-reduced-motion` no CSS e no JavaScript.
 - Carrosséis automáticos precisam de pausa visível, alternativa por teclado, estado textual e conteúdo completo fora de hover.
+- Diálogos precisam de título associado, fechamento previsível e devolução de foco; atalhos não substituem controles visíveis.
+- Elementos visualmente ocultos ou menus fechados não podem permanecer focáveis.
 - Não adicione comentários, blocos desativados ou notas de implementação em HTML, CSS ou JavaScript públicos. Orientações pertencem à documentação.
 - Evite declarações inline arbitrárias e novas camadas tardias de override. Custom properties derivadas dos dados, como `--accent`, `--accent-glow`, `--status-color`, `--x` e `--y`, são a exceção existente para cards e nós do mapa.
 

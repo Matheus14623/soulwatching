@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Laboratório do Observatório de Ideias de Matheus Camargo: experimentos leves com visão estelar, ressonância, constelações e interfaces conceituais." />
+    <meta name="description" content="Laboratório do Observatório de Ideias: visualizações, modos de treino e simuladores leves com premissas e limites explícitos." />
     <meta name="author" content="Matheus Camargo de Alencar" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#050712" />
@@ -69,7 +69,7 @@
             <p class="eyebrow">CÓDIGO · GESTO · VISUALIZAÇÃO</p>
             <h1 id="laboratory-title">Pensar também pode ser uma forma de interação.</h1>
             <p class="hero-lead">
-              O laboratório reúne experiências que já existem no observatório. Cada uma traduz uma pergunta em comportamento visual, som, navegação ou relação.
+              O laboratório reúne visualizações, instrumentos e modelos didáticos. Cada experiência declara a pergunta que explora, suas premissas e o limite do que permite concluir.
             </p>
             <div class="hero-actions">
               <a class="button button-primary" href="#experimentos">Ver experimentos</a>
@@ -79,10 +79,10 @@
 
           <aside class="page-status-card" aria-label="Estado atual do laboratório">
             <span>camada experimental</span>
-            <strong>4 campos ativos</strong>
+            <strong data-experiment-count-label>Campos ativos</strong>
             <dl class="page-status-list">
-              <div><dt>Canvas</dt><dd>visão estelar e ressonância</dd></div>
-              <div><dt>Dados</dt><dd>mapa conceitual e atlas astronômico</dd></div>
+              <div><dt>Campos</dt><dd data-experiment-count>carregando catálogo</dd></div>
+              <div><dt>Modelos</dt><dd>premissas e fronteiras visíveis</dd></div>
               <div><dt>Gestos</dt><dd>mouse, teclado e toque equivalentes</dd></div>
               <div><dt>Regra</dt><dd>efeito somente quando há função conceitual</dd></div>
             </dl>
@@ -95,53 +95,11 @@
           <div class="page-section-heading">
             <div>
               <p class="section-kicker">01 · Experimentos navegáveis</p>
-              <h2 id="experiments-title">Quatro formas de aproximar o campo.</h2>
+              <h2 id="experiments-title">Experimentos para ver, comparar e testar.</h2>
             </div>
           </div>
 
-          <div class="experiment-grid">
-            <a class="experiment-card experiment-card--stellar" href="../index.html#topo">
-              <div class="experiment-visual experiment-visual--stars" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-              <div class="experiment-copy">
-                <span>ativo · canvas 2D</span>
-                <h3>Visão estelar</h3>
-                <p>Uma camada opcional de deriva temporal que troca a fotografia do hero por um campo de estrelas controlado.</p>
-                <strong>Ativar na página inicial <span aria-hidden="true">↗</span></strong>
-              </div>
-            </a>
-
-            <a class="experiment-card experiment-card--sound" href="../index.html#ressonancia">
-              <div class="experiment-visual experiment-visual--strings" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-              <div class="experiment-copy">
-                <span>ativo · canvas + áudio opcional</span>
-                <h3>Ressonância</h3>
-                <p>Seis cordas respondem ao gesto. O som só é iniciado com consentimento explícito e o desenho pausa fora da tela.</p>
-                <strong>Abrir instrumento <span aria-hidden="true">↗</span></strong>
-              </div>
-            </a>
-
-            <a class="experiment-card experiment-card--map" href="../Mapa/mapa.html">
-              <div class="experiment-visual experiment-visual--nodes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-              <div class="experiment-copy">
-                <span>ativo · dados compartilhados</span>
-                <h3>Constelação</h3>
-                <p>Teorias e conexões viram uma interface leve, filtrável e acessível sem biblioteca de grafos.</p>
-                <strong>Explorar relações <span aria-hidden="true">↗</span></strong>
-              </div>
-            </a>
-
-            <a class="experiment-card experiment-card--constellations" href="../Constelacoes/constelacoes.html">
-              <div class="experiment-visual experiment-visual--constellations" aria-hidden="true">
-                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-              </div>
-              <div class="experiment-copy">
-                <span>ativo · SVG + dados astronômicos</span>
-                <h3>Atlas celeste</h3>
-                <p>Seis constelações revelam linhas-guia por mouse, teclado ou toque, com contexto científico e fontes públicas.</p>
-                <strong>Identificar constelações <span aria-hidden="true">↗</span></strong>
-              </div>
-            </a>
-          </div>
+          <div class="experiment-grid" data-experiment-grid></div>
         </div>
       </section>
 
@@ -178,9 +136,10 @@
 
       <section class="section">
         <div class="container note-panel">
-          <p class="section-kicker">próxima expansão</p>
-          <h3>O próximo experimento ainda não foi definido.</h3>
-          <p>Em Breve</p>
+          <p class="section-kicker">percursos conectados</p>
+          <h3>Não sabe qual modelo abrir primeiro?</h3>
+          <p>As Rotas Guiadas aproximam contexto histórico, teorias autorais e experimentos em uma sequência explicada.</p>
+          <a class="button button-primary" href="../Rotas/rotas.html">Escolher uma rota</a>
         </div>
       </section>
 
@@ -216,6 +175,6 @@
     </footer>
 
     <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo">↑</button>
-    <script type="module" src="../assets/js/page-shell.js?v=smooth-flow-v1"></script>
+    <script type="module" src="./laboratorio.js?v=laboratory-models-v1"></script>
   </body>
 </html>
