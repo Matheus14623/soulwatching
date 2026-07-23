@@ -62,7 +62,7 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 - Estado: `historical`
 - Decisão: `preserve`
 - Tamanho: `20821` bytes
-- SHA-256: `4309db4d21f8a8d05a931c0499a994ccb93289157fb754ec6d0f9f7768c5df6f`
+- SHA-256: `b73219d8631842a173b617cb73d52d265976d7a02bcc5ff0ed8019806c4fb8df`
 - Síntese: Snapshot arquitetural amplo do estado pós-expansão, preservado como histórico e subordinado aos nós canônicos atuais.
 - Destinos canônicos:
   - `project.architecture` — [ai/project/ARCHITECTURE.md](../project/ARCHITECTURE.md)
@@ -113,8 +113,8 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 - Tipo: `operational-guide`
 - Estado: `current`
 - Decisão: `preserve`
-- Tamanho: `10029` bytes
-- SHA-256: `51b29e7412ae8def8360a5c665b5a8515eef0e3f089c83e796409cf53d4a6bb4`
+- Tamanho: `10164` bytes
+- SHA-256: `77da3005cabc034a2a440c34d0267520baebe13ec5f14f3f65af649deca58bfd`
 - Síntese: Entrada operacional resumida para rotas, execução local, arquitetura pública e publicação.
 - Destinos canônicos:
   - `project.index` — [ai/project/INDEX.md](../project/INDEX.md)

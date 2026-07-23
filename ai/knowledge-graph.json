@@ -2209,6 +2209,8 @@
       "evidenceSources": [
         "package.json",
         "package-lock.json",
+        ".nvmrc",
+        "scripts/check-node-version.cjs",
         "scripts/public-manifest.mjs",
         "scripts/serve.mjs",
         "scripts/verify.mjs",

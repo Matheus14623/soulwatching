@@ -56,6 +56,7 @@ const requiredFiles = [
   'package.json',
   'package-lock.json',
   'scripts/build.mjs',
+  'scripts/check-node-version.cjs',
   'scripts/public-manifest.mjs',
   'scripts/serve.mjs',
   'scripts/tests/accessibility-contracts.test.mjs',
@@ -66,6 +67,7 @@ const requiredFiles = [
   'scripts/tests/test-server.mjs',
   'scripts/theory-sources.mjs',
   'vercel.json',
+  '.nvmrc',
   ...PUBLIC_REQUIRED_FILES,
 ];
 

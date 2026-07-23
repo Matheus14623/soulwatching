@@ -31,7 +31,15 @@ As URLs de teoria usam o parâmetro `teoria`, por exemplo:
 
 ## Como rodar localmente
 
-Requisito declarado: Node.js `>=18.17 <25`.
+Requisito declarado: Node.js `>=18.17 <25`. A versão recomendada e usada pela CI é a 22, registrada em `.nvmrc`.
+
+Com NVM:
+
+```bash
+nvm install 22
+nvm use 22
+node --version
+```
 
 ```bash
 npm run dev

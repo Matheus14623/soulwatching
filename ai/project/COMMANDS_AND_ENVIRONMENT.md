@@ -22,6 +22,8 @@ related_context:
 evidence_sources:
   - "package.json"
   - "package-lock.json"
+  - ".nvmrc"
+  - "scripts/check-node-version.cjs"
   - "scripts/public-manifest.mjs"
   - "scripts/serve.mjs"
   - "scripts/verify.mjs"
@@ -33,7 +35,7 @@ evidence_sources:
 
 ## Current Confirmed Structure
 
-O projeto declara ESM, não possui dependências no manifesto ou no lockfile e fixa suporte a Node.js `>=18.17 <25` em `engines`.
+O projeto declara ESM, não possui dependências no manifesto ou no lockfile e fixa suporte a Node.js `>=18.17 <25` em `engines`. A versão recomendada e usada pela CI é a 22, registrada em `.nvmrc`; o ciclo `prebuild` interrompe versões incompatíveis com uma orientação explícita antes de carregar os módulos do produto.
 
 | Comando | Efeito confirmado |
 | --- | --- |
