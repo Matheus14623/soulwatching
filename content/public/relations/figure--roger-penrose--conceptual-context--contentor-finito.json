@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--roger-penrose--conceptual-context--contentor-finito-r1",
+  "id": "figure--roger-penrose--conceptual-context--contentor-finito",
+  "order": 1,
+  "source": {
+    "type": "figure",
+    "id": "roger-penrose"
+  },
+  "target": {
+    "type": "theory",
+    "id": "contentor-finito"
+  },
+  "type": "conceptual-context",
+  "label": "Geometria local e estrutura global",
+  "justification": "A T-04 precisa distinguir compacidade topológica, representação conforme e propriedades causais.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

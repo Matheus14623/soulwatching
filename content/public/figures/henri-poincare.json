@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "henri-poincare-r1",
+  "order": 15,
+  "aliases": [],
+  "id": "henri-poincare",
+  "slug": "henri-poincare",
+  "name": "Henri Poincaré",
+  "lifespan": "1854–1912",
+  "area": "fisica-cosmos",
+  "role": "Matemática, física e filosofia da ciência",
+  "featuredRank": null,
+  "summary": "Criou métodos qualitativos para sistemas dinâmicos, renovou a mecânica celeste e ajudou a fundar a topologia moderna.",
+  "impact": "Ao estudar o problema dos três corpos, Poincaré mostrou que compreender uma dinâmica não exige sempre uma solução fechada: estabilidade, órbitas e estrutura global também podem ser investigadas qualitativamente. Seus trabalhos sobre recorrência têm hipóteses matemáticas precisas e não demonstram que o universo físico inteiro se repita.",
+  "contributions": [
+    {
+      "title": "Dinâmica qualitativa",
+      "description": "Investigou estabilidade e comportamento global de trajetórias quando soluções explícitas eram inalcançáveis."
+    },
+    {
+      "title": "Topologia e mecânica celeste",
+      "description": "Desenvolveu ferramentas de analysis situs e aplicou novas formas de raciocínio ao problema dos três corpos."
+    },
+    {
+      "title": "Hipótese e convenção",
+      "description": "Examinou o papel de definições, modelos, experiência e escolha de hipóteses na construção científica."
+    }
+  ],
+  "milestones": [
+    "Mémoire sur le problème des trois corps · 1890",
+    "Les méthodes nouvelles de la mécanique céleste · 1892–1899",
+    "La science et l’hypothèse · 1902"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/henri-poincare.webp",
+    "width": 640,
+    "height": 799,
+    "alt": "Retrato histórico de Henri Poincaré",
+    "credit": "Fotógrafo não identificado · Smithsonian Institution Libraries",
+    "license": "Sem restrições de direitos autorais conhecidas",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Portrait_of_Henri_Poincar%C3%A9_(1854-1912),_Mathematician_(2551042945).jpg"
+  },
+  "referenceIds": [
+    "poincare-mactutor",
+    "poincare-foundations"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--leonard-susskind--direct-reference--er-epr-sondas-r1",
+  "id": "figure--leonard-susskind--direct-reference--er-epr-sondas",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "leonard-susskind"
+  },
+  "target": {
+    "type": "theory",
+    "id": "er-epr-sondas"
+  },
+  "type": "direct-reference",
+  "label": "Conjectura ER=EPR",
+  "justification": "Susskind é coautor da referência direta da T-06. A conjectura trata estrutura teórica e não transforma emaranhamento em transporte controlável de mensagens.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

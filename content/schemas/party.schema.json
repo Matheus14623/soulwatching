@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observatorio.local/schemas/party.schema.json",
+  "title": "Pessoa ou organização de crédito público",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "entityType",
+    "revisionId",
+    "id",
+    "slug",
+    "aliases",
+    "partyType",
+    "displayName",
+    "publicProfileLinkAuthorized",
+    "publicLinks"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "entityType": {
+      "type": "string",
+      "const": "party"
+    },
+    "revisionId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-r[1-9][0-9]*$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "aliases": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      }
+    },
+    "partyType": {
+      "type": "string",
+      "enum": [
+        "person",
+        "organization"
+      ]
+    },
+    "displayName": {
+      "type": "string",
+      "minLength": 2
+    },
+    "publicProfileLinkAuthorized": {
+      "type": "boolean",
+      "const": true
+    },
+    "publicLinks": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "publicDescription": {
+      "type": "string",
+      "minLength": 10
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--cecilia-payne-gaposchkin--critical-boundary--observacao-nao-linear-r1",
+  "id": "figure--cecilia-payne-gaposchkin--critical-boundary--observacao-nao-linear",
+  "order": 1,
+  "source": {
+    "type": "figure",
+    "id": "cecilia-payne-gaposchkin"
+  },
+  "target": {
+    "type": "theory",
+    "id": "observacao-nao-linear"
+  },
+  "type": "critical-boundary",
+  "label": "Sinal não é estado direto",
+  "justification": "A T-01 deve tratar a luz observada como dado condicionado pelo caminho e pelo modelo, não como acesso transparente ao objeto.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "johannes-kepler-r1",
+  "order": 1,
+  "aliases": [],
+  "id": "johannes-kepler",
+  "slug": "johannes-kepler",
+  "name": "Johannes Kepler",
+  "lifespan": "1571–1630",
+  "area": "astronomia",
+  "role": "Astronomia matemática",
+  "featuredRank": null,
+  "summary": "Derivou as leis do movimento planetário ao permitir que a evidência substituísse a preferência por órbitas perfeitamente circulares.",
+  "impact": "Ao trabalhar com as observações precisas de Tycho Brahe, Kepler concluiu que os planetas descrevem elipses e variam de velocidade ao longo da órbita. Seu percurso mostra que um modelo pode preservar a ambição explicativa e ainda abandonar uma forma elegante quando os dados não a sustentam.",
+  "contributions": [
+    {
+      "title": "Órbitas elípticas",
+      "description": "Substituiu círculos e epiciclos por uma geometria que descrevia melhor as posições observadas."
+    },
+    {
+      "title": "Três leis planetárias",
+      "description": "Relacionou trajetória, áreas varridas, períodos orbitais e distâncias médias ao Sol."
+    },
+    {
+      "title": "Modelo corrigido por resíduos",
+      "description": "Tratou discrepâncias persistentes como informação sobre o modelo, não como ruído descartável."
+    }
+  ],
+  "milestones": [
+    "Astronomia Nova · 1609",
+    "Harmonices Mundi · 1619",
+    "Tabelas Rudolfinas · 1627"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/johannes-kepler.webp",
+    "width": 557,
+    "height": 800,
+    "alt": "Retrato histórico de Johannes Kepler",
+    "credit": "August Köhler · Kepler-Museum",
+    "license": "Domínio público",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:JKepler.jpg"
+  },
+  "referenceIds": [
+    "kepler-nasa"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "gao-jafferis-wall-r1",
+  "id": "gao-jafferis-wall",
+  "aliases": [],
+  "title": "Traversable Wormholes via a Double Trace Deformation",
+  "authors": "Ping Gao, Daniel L. Jafferis e Aron C. Wall",
+  "year": "2016",
+  "kind": "Artigo teórico",
+  "url": "https://arxiv.org/abs/1608.05687"
+}

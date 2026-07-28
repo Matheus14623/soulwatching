@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--john-stewart-bell--direct-reference--er-epr-sondas-r1",
+  "id": "figure--john-stewart-bell--direct-reference--er-epr-sondas",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "john-stewart-bell"
+  },
+  "target": {
+    "type": "theory",
+    "id": "er-epr-sondas"
+  },
+  "type": "direct-reference",
+  "label": "Localidade transformada em teste",
+  "justification": "O teorema de Bell é referência direta para a T-06: correlações não clássicas restringem variáveis ocultas locais, mas não fornecem canal de sinalização superluminal nem demonstram ER=EPR.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

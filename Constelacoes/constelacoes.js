@@ -1,4 +1,4 @@
-import { CONSTELLATIONS } from '../assets/data/constellations.js?v=constellation-atlas-v2';
+import { CONSTELLATIONS } from '../assets/data/generated/runtime/constellations.js';
 import { createConstellationChart } from '../assets/js/constellation-chart.js?v=constellation-atlas-v2';
 import {
   CONSTELLATION_SEASONS,
@@ -525,7 +525,7 @@ function moveToBoundary(position) {
   if (!state.visibleConstellations.length) return;
   const constellation = position === 'start'
     ? state.visibleConstellations[0]
-    : state.visibleConstellations.at(-1);
+    : state.visibleConstellations[state.visibleConstellations.length - 1];
   selectConstellation(constellation.id);
   getVisibleOption(constellation.id)?.focus({ preventScroll: true });
 }

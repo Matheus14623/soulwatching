@@ -1,4 +1,4 @@
-import { getActiveExperiments, getExperimentKind } from '../assets/data/experiments.js';
+import { getActiveExperiments, getExperimentKind } from '../assets/js/experiment-model.js';
 import { initNavigation } from '../assets/js/navigation.js';
 
 const visualMarkerCounts = Object.freeze({

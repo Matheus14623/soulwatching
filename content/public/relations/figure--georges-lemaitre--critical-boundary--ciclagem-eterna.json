@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--georges-lemaitre--critical-boundary--ciclagem-eterna-r1",
+  "id": "figure--georges-lemaitre--critical-boundary--ciclagem-eterna",
+  "order": 1,
+  "source": {
+    "type": "figure",
+    "id": "georges-lemaitre"
+  },
+  "target": {
+    "type": "theory",
+    "id": "ciclagem-eterna"
+  },
+  "type": "critical-boundary",
+  "label": "Origem não implica ciclo",
+  "justification": "A expansão e um estado inicial denso não fornecem por si só o bounce, o tratamento da entropia ou as previsões exigidas pela T-03.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

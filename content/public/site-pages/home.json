@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "entityType": "site-page",
+  "revisionId": "home-r2",
+  "order": 1,
+  "id": "home",
+  "label": "Início",
+  "functionalLabel": "Visão geral do Observatório",
+  "title": "Observatório de Ideias",
+  "description": "Um arquivo público de linhas de investigação, relações, referências, experimentos e percursos críticos.",
+  "keywords": [
+    "observatório",
+    "ideias",
+    "arquivo",
+    "ciência",
+    "filosofia",
+    "projeto"
+  ],
+  "matchPaths": [
+    "/",
+    "/index.html"
+  ],
+  "sections": [
+    {
+      "id": "rotas",
+      "label": "Escolher como começar",
+      "title": "Comece por uma pergunta",
+      "description": "Entradas assistidas para quem quer entender, explorar um tema ou ir diretamente ao acervo.",
+      "keywords": [
+        "começar",
+        "primeira visita",
+        "pergunta",
+        "orientação",
+        "rota guiada"
+      ]
+    },
+    {
+      "id": "glossario",
+      "label": "Nomes do sistema",
+      "title": "Entender o vocabulário do Observatório",
+      "description": "Tradução literal dos nomes editoriais usados na navegação.",
+      "keywords": [
+        "glossário",
+        "vocabulário",
+        "o que significa",
+        "teorias",
+        "mapa",
+        "publicações"
+      ]
+    },
+    {
+      "id": "visao-estelar",
+      "label": "Visão Estelar simulada",
+      "title": "Entender a Visão Estelar simulada",
+      "description": "Explicação científica e limites da representação acelerada do movimento próprio das estrelas.",
+      "keywords": [
+        "visão estelar",
+        "estrelas",
+        "movimento próprio",
+        "gaia",
+        "hipparcos",
+        "simulação"
+      ]
+    },
+    {
+      "id": "sobre",
+      "label": "Sobre",
+      "title": "Sobre o Observatório",
+      "description": "Propósito, autoria e limites editoriais do projeto.",
+      "keywords": [
+        "sobre",
+        "quem criou",
+        "objetivo",
+        "autoria",
+        "limites",
+        "apoio",
+        "beta editorial",
+        "critérios de saída"
+      ]
+    },
+    {
+      "id": "contato",
+      "label": "Contato",
+      "title": "Entrar em contato",
+      "description": "Canais públicos para contato, conversa e retorno sobre o projeto.",
+      "keywords": [
+        "contato",
+        "coordenadas",
+        "email",
+        "mensagem",
+        "falar"
+      ]
+    }
+  ]
+}

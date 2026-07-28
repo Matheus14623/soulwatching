@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "entityType": "site-page",
+  "revisionId": "contributions-r2",
+  "order": 10,
+  "id": "contributions",
+  "label": "Contribuir",
+  "functionalLabel": "Propor uma contribuição",
+  "title": "Contribuições | Observatório de Ideias",
+  "description": "Critérios, autoria, crédito e preparação de uma proposta para revisão editorial humana.",
+  "keywords": [
+    "contribuir",
+    "contribuição",
+    "propor conteúdo",
+    "autoria",
+    "crédito",
+    "revisão",
+    "apoio",
+    "pix"
+  ],
+  "matchPaths": [
+    "/Contribuicoes/contribuicoes.html",
+    "/Contribuicoes/contribuicoes"
+  ],
+  "sections": [
+    {
+      "id": "criterios",
+      "label": "Critérios de contribuição",
+      "title": "Entender os critérios de contribuição",
+      "description": "Formatos aceitos, crédito, fontes, independência e revisão.",
+      "keywords": [
+        "critérios",
+        "como contribuir",
+        "fontes",
+        "autoria",
+        "revisão"
+      ]
+    },
+    {
+      "id": "propor",
+      "label": "Propor uma contribuição",
+      "title": "Como contribuir com o Observatório",
+      "description": "Prepare uma proposta para avaliação editorial; o envio não publica conteúdo automaticamente.",
+      "keywords": [
+        "como contribuir",
+        "enviar proposta",
+        "participar",
+        "submissão"
+      ]
+    },
+    {
+      "id": "apoiar",
+      "label": "Apoiar o Observatório",
+      "title": "Apoiar voluntariamente o projeto",
+      "description": "QR Code e chave Pix para apoiar a manutenção sem obter influência editorial.",
+      "keywords": [
+        "apoio",
+        "apoiar",
+        "pix",
+        "qr code",
+        "manutenção"
+      ]
+    }
+  ]
+}

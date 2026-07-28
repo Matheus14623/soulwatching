@@ -1,4 +1,7 @@
-import { NOTABLE_FIGURE_AREAS, NOTABLE_FIGURES } from '../assets/data/notable-figures.js?v=great-minds-v3';
+import {
+  NOTABLE_FIGURE_AREAS,
+  NOTABLE_FIGURES,
+} from '../assets/data/generated/runtime/notable-figures.js';
 import { initNavigation } from '../assets/js/navigation.js';
 import {
   compareNotableFigures,
@@ -88,6 +91,12 @@ function createTheoryLink(link) {
     createElement('span', 'figure-theory-type', link.relationLabel),
     createElement('strong', '', link.label),
     createElement('p', '', link.note),
+    createElement(
+      'span',
+      `figure-theory-review${link.reviewPending ? ' is-pending' : ''}`,
+      link.reviewLabel,
+    ),
+    createElement('small', 'figure-theory-disclosure', link.reviewDisclosure),
   );
   const arrow = createElement('span', 'figure-theory-arrow', '↗');
   arrow.setAttribute('aria-hidden', 'true');
@@ -400,17 +409,25 @@ function initNotableFiguresGallery() {
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = window.matchMedia('(any-pointer: fine)');
+  const coarsePointer = window.matchMedia('(any-pointer: coarse)');
   const initialUrl = new URL(window.location.href);
   const requestedProfile = initialUrl.searchParams.get('perfil');
   const requestedFigure = findNotableFigure(requestedProfile);
   const initialFigure = requestedFigure || NOTABLE_FIGURES[0];
-  const shouldCanonicalizeInitialProfile = Boolean(requestedProfile && !requestedFigure);
-  const requestedComparison = initialUrl.searchParams.get('comparar')
+  const shouldCanonicalizeInitialProfile = Boolean(
+    requestedProfile && requestedProfile !== initialFigure.slug,
+  );
+  const requestedComparisonValue = initialUrl.searchParams.get('comparar');
+  const requestedComparison = requestedComparisonValue
     ?.split(',')
     .map((slug) => findNotableFigure(slug))
     .filter(Boolean);
   const shouldCanonicalizeComparison = initialUrl.searchParams.has('comparar')
-    && (requestedComparison?.length !== 2 || requestedComparison[0]?.id === requestedComparison[1]?.id);
+    && (
+      requestedComparison?.length !== 2
+      || requestedComparison[0]?.id === requestedComparison[1]?.id
+      || requestedComparisonValue !== requestedComparison.map(({ slug }) => slug).join(',')
+    );
   const defaultComparisonLeft = requestedComparison?.[0]
     || findNotableFigure('albert-einstein')
     || NOTABLE_FIGURES[0];
@@ -702,7 +719,7 @@ function initNotableFiguresGallery() {
       return;
     }
 
-    const isMouseOptimized = finePointer.matches;
+    const isMouseOptimized = finePointer.matches || !coarsePointer.matches;
 
     swiper = new SwiperConstructor(carousel, {
       a11y: {
@@ -917,7 +934,7 @@ function initNotableFiguresGallery() {
     }
     if (event.key === 'End') {
       event.preventDefault();
-      selectFigure(visibleFigures.at(-1).id);
+      selectFigure(visibleFigures[visibleFigures.length - 1].id);
     }
   });
 

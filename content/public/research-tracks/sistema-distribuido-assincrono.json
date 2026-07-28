@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "entityType": "research-track",
+  "revisionId": "sistema-distribuido-assincrono-r1",
+  "id": "sistema-distribuido-assincrono",
+  "code": "R-01",
+  "title": "Universo como sistema distribuído assíncrono",
+  "kind": "Ferramenta pedagógica",
+  "summary": "Uma analogia computacional para explorar relógios próprios, ausência de simultaneidade universal e ordenações diferentes de eventos separados espacialmente.",
+  "boundary": "A ordem de eventos ligados causalmente permanece invariável; a analogia não cria um relógio absoluto nem altera a relatividade.",
+  "nextStep": "Transformar a ideia em um simulador de eventos, referenciais e cones de luz.",
+  "slug": "sistema-distribuido-assincrono",
+  "aliases": [],
+  "order": 1
+}

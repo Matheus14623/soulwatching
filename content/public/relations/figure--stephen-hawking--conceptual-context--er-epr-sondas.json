@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--stephen-hawking--conceptual-context--er-epr-sondas-r1",
+  "id": "figure--stephen-hawking--conceptual-context--er-epr-sondas",
+  "order": 1,
+  "source": {
+    "type": "figure",
+    "id": "stephen-hawking"
+  },
+  "target": {
+    "type": "theory",
+    "id": "er-epr-sondas"
+  },
+  "type": "conceptual-context",
+  "label": "Paradoxo da informação",
+  "justification": "A T-06 se aproxima do debate sobre informação em horizontes, mas isso não torna emaranhamento um canal de comunicação.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

@@ -130,7 +130,7 @@
 .archive-orbit-panel p {
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -186,7 +186,7 @@
 .archive-search-field span {
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -269,7 +269,7 @@
 .archive-filter-chip small {
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
 }
 
 .advanced-filter-panel {
@@ -287,7 +287,7 @@
   gap: 1rem;
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   cursor: pointer;
@@ -299,7 +299,7 @@
 
 .advanced-filter-panel > summary span:last-child {
   color: var(--cyan);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
 }
 
 .advanced-filter-grid {
@@ -314,7 +314,7 @@
   gap: 0.42rem;
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -339,7 +339,7 @@
   justify-content: space-between;
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -434,7 +434,7 @@
 .archive-card-subtitle {
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   line-height: 1.55;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -452,7 +452,7 @@
   background: rgba(255,255,255,0.04);
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -502,7 +502,7 @@
   background: rgba(255,255,255,0.04);
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   line-height: 1.35;
   text-transform: uppercase;
 }
@@ -524,7 +524,7 @@
   margin: 0 0 0.48rem;
   color: var(--text);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -576,7 +576,7 @@
   background: rgba(255,255,255,0.045);
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   cursor: pointer;
 }
 
@@ -602,7 +602,7 @@
   padding: 0.85rem 0;
   color: var(--text);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
@@ -665,7 +665,7 @@
   border-radius: 999px;
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   line-height: 1.3;
   text-align: center;
   text-transform: uppercase;
@@ -732,7 +732,7 @@
 .research-track-card > div span {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
@@ -803,7 +803,7 @@
   border-left: 2px solid var(--accent);
   color: color-mix(in srgb, var(--accent) 82%, white);
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   line-height: 1.55;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -821,7 +821,7 @@
   background: color-mix(in srgb, var(--accent) 7%, transparent);
   color: var(--text);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   line-height: 1.5;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -840,7 +840,7 @@
 .theory-linkage span {
   color: var(--accent);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -857,7 +857,7 @@
   padding: 0.35rem 0;
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.75rem;
   text-align: left;
   cursor: pointer;
 }
@@ -871,7 +871,7 @@
 .dossier-section-heading span {
   color: var(--accent);
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -907,7 +907,7 @@
 .critical-review-grid span {
   color: var(--accent);
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }
@@ -959,7 +959,7 @@
 .reference-list span,
 .reference-empty {
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   line-height: 1.5;
 }
 
@@ -976,7 +976,7 @@
   border-radius: 999px;
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
 }
 
@@ -1018,7 +1018,7 @@
 .research-track-card > div small {
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -1047,7 +1047,7 @@
 .research-track-card dt {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }
@@ -1103,7 +1103,7 @@
   gap: 0.4rem;
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }
@@ -1142,7 +1142,7 @@
   border-radius: 999px;
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   line-height: 1.3;
   text-transform: uppercase;
   cursor: pointer;
@@ -1181,7 +1181,7 @@
 .comparison-relation span {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -1236,7 +1236,7 @@
   width: 10rem;
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
@@ -1258,7 +1258,7 @@
 .comparison-table thead button small {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -1307,7 +1307,7 @@
 .related-relation-title small,
 .related-relation-note {
   color: var(--muted);
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   line-height: 1.5;
 }
 
@@ -1316,6 +1316,30 @@
   font-family: var(--font-mono);
   letter-spacing: 0.06em;
   text-transform: uppercase;
+}
+
+.relation-review-state,
+.relation-review-disclosure {
+  display: block;
+  margin-top: 0.45rem;
+}
+
+.relation-review-state {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.relation-review-state.is-pending {
+  color: #ffcd5e;
+}
+
+.relation-review-disclosure {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
 }
 
 .claim-reference-list,
@@ -1351,7 +1375,7 @@
 .rubric-list span {
   color: var(--accent, var(--cyan));
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -1378,7 +1402,7 @@
   border-radius: 999px;
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.56rem;
+  font-size: 0.75rem;
   line-height: 1.35;
 }
 
@@ -1402,7 +1426,7 @@
   border-radius: 999px;
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.53rem;
+  font-size: 0.75rem;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
@@ -1448,7 +1472,7 @@
 .rubric-intro {
   margin: 0 0 0.55rem;
   color: var(--muted);
-  font-size: 0.74rem;
+  font-size: 0.75rem;
   line-height: 1.55;
 }
 
@@ -1470,14 +1494,14 @@
 .theory-figure-list span {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   line-height: 1.45;
   text-transform: uppercase;
 }
 
 .theory-figure-list small {
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   line-height: 1.5;
 }
 
@@ -1488,7 +1512,7 @@
 .revision-history-label {
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -1526,7 +1550,7 @@
 .revision-record strong {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -1535,7 +1559,7 @@
 .copy-status {
   margin: 0;
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   line-height: 1.5;
 }
 
@@ -1551,7 +1575,7 @@
   border-left: 2px solid var(--cyan);
   background: rgba(114, 236, 255, 0.04);
   color: var(--text-soft);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   line-height: 1.5;
 }
 

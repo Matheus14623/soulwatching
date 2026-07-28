@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "theory--instabilidade-vazio--derivacao--vacuo-genese-r1",
+  "id": "theory--instabilidade-vazio--derivacao--vacuo-genese",
+  "order": 6,
+  "source": {
+    "type": "theory",
+    "id": "instabilidade-vazio"
+  },
+  "target": {
+    "type": "theory",
+    "id": "vacuo-genese"
+  },
+  "type": "derivacao",
+  "label": "Derivação",
+  "justification": "A T-08 é o desdobramento geométrico e cosmológico da transição de vácuo examinada pela T-02.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "entityType": "experiment",
+  "revisionId": "astrobiologia-probabilistica-r1",
+  "id": "astrobiologia-probabilistica",
+  "slug": "astrobiologia-probabilistica",
+  "title": "Astrobiologia probabilística",
+  "shortTitle": "Astrobiologia",
+  "kind": "simulador",
+  "status": "active",
+  "technology": "Modelo probabilístico exploratório",
+  "href": "/Laboratorio/experimento.html?experimento=astrobiologia-probabilistica",
+  "summary": "Explora como suposições sobre etapas raras alteram a expectativa de mundos com sinais detectáveis.",
+  "question": "Como incertezas sucessivas se combinam quando quase todas as probabilidades ainda são desconhecidas?",
+  "boundary": "Os parâmetros são cenários escolhidos pelo visitante, não estimativas confirmadas da frequência de vida ou inteligência.",
+  "theoryIds": [
+    "backend-existencia",
+    "horizonte-sentidos"
+  ],
+  "moduleKey": "astrobiology",
+  "visual": "biosphere",
+  "aliases": [],
+  "order": 9
+}

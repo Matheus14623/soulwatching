@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Leitura de uma publicação revisada do Arquivo Editorial do Observatório de Ideias." />
+    <meta name="author" content="Observatório de Ideias" data-publication-author />
+    <meta name="robots" content="noindex, follow" data-publication-robots />
+    <meta name="theme-color" content="#050712" />
+    <meta property="og:title" content="Publicação | Observatório de Ideias" data-publication-og-title />
+    <meta property="og:description" content="Publicação revisada com autoria, fontes, licença e histórico editorial identificáveis." data-publication-og-description />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/assets/images/og-observatorio.jpg" />
+    <meta property="og:locale" content="pt_BR" />
+    <title>Publicação | Observatório de Ideias</title>
+    <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/styles.css?v=publication-v1" />
+    <link rel="stylesheet" href="/assets/css/observatory-pages.css?v=publication-v1" />
+    <link rel="stylesheet" href="/assets/css/site-navigation.css?v=site-navigation-v1" />
+    <link rel="stylesheet" href="/Arquivo/publicacao.css?v=publication-v1" />
+  </head>
+  <body class="observatory-page-body publication-page-body" data-mode="normal">
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
+
+    <header class="site-header" data-header>
+      <div class="header-shell">
+        <a class="brand" href="/index.html#topo" aria-label="Voltar ao início do Observatório">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span><strong>Observatório</strong><small>arquivo de ideias em órbita</small></span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle>
+          <span class="sr-only">Abrir menu</span>
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+        <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
+          <a href="/Rotas/rotas.html" title="Começar por uma pergunta">Começar</a>
+          <a href="/Teorias/teorias.html" title="Linhas de investigação autorais">Teorias</a>
+          <a href="/Mapa/mapa.html" title="Mapa de relações">Mapa</a>
+          <a href="/GrandesNomes/grandes-nomes.html" title="Pessoas, métodos e descobertas">Grandes nomes</a>
+          <a href="/Constelacoes/constelacoes.html" title="Atlas celeste">Constelações</a>
+          <a href="/Laboratorio/laboratorio.html" title="Simulações e modelos didáticos">Laboratório</a>
+          <a href="/Contribuicoes/contribuicoes.html" title="Propor uma contribuição">Contribuir</a>
+          <a href="/index.html#sobre" title="Sobre o Observatório">Sobre</a>
+        </nav>
+        <div class="status-pill" aria-live="polite" data-status-pill>
+          <span class="status-dot" aria-hidden="true"></span>
+          <span data-status-text>Arquivo editorial</span>
+        </div>
+        <span class="beta-badge" aria-label="Beta editorial: navegação e catálogos em evolução" title="Beta editorial: navegação e catálogos em evolução">Beta</span>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="section publication-state" data-publication-state aria-live="polite">
+        <div class="container empty-panel">
+          <p class="section-kicker">Arquivo editorial</p>
+          <h1 data-publication-state-title>Localizando a publicação…</h1>
+          <p data-publication-state-description>O conteúdo está sendo consultado no catálogo público.</p>
+          <a class="button button-secondary" href="/Arquivo/arquivo.html">Voltar às publicações</a>
+        </div>
+      </section>
+
+      <article class="publication-document" data-publication-document hidden>
+        <header class="publication-hero">
+          <div class="container publication-hero-grid">
+            <div>
+              <a class="publication-back-link" href="/Arquivo/arquivo.html">← Arquivo editorial</a>
+              <p class="eyebrow" data-publication-kicker></p>
+              <h1 data-publication-title></h1>
+              <p class="publication-summary" data-publication-summary></p>
+              <p class="publication-byline" data-publication-byline></p>
+            </div>
+            <aside class="page-status-card" aria-label="Metadados da publicação">
+              <span>estado editorial</span>
+              <strong data-publication-status></strong>
+              <dl class="page-status-list" data-publication-metadata></dl>
+            </aside>
+          </div>
+        </header>
+
+        <aside class="publication-notice" data-publication-notice role="note" hidden></aside>
+
+        <div class="container publication-layout">
+          <div class="publication-content" data-publication-body></div>
+          <aside class="publication-sidebar">
+            <section aria-labelledby="publication-credits-title">
+              <p class="section-kicker">Créditos</p>
+              <h2 id="publication-credits-title">Quem fez o quê</h2>
+              <ul class="publication-credit-list" data-publication-credits></ul>
+            </section>
+            <section aria-labelledby="publication-review-title">
+              <p class="section-kicker">Transparência</p>
+              <h2 id="publication-review-title">Revisão e licença</h2>
+              <div data-publication-transparency></div>
+            </section>
+          </aside>
+        </div>
+
+        <section class="section publication-references-section" data-publication-references-section hidden>
+          <div class="container">
+            <div class="page-section-heading">
+              <div>
+                <p class="section-kicker">Fontes</p>
+                <h2>Referências citadas</h2>
+              </div>
+            </div>
+            <ol class="publication-reference-list" data-publication-references></ol>
+          </div>
+        </section>
+
+        <section class="section publication-relations-section" data-publication-relations-section hidden>
+          <div class="container">
+            <div class="page-section-heading">
+              <div>
+                <p class="section-kicker">Contexto no acervo</p>
+                <h2>Relações editoriais explícitas</h2>
+              </div>
+            </div>
+            <ul class="publication-relation-list" data-publication-relations></ul>
+          </div>
+        </section>
+
+        <section class="section publication-assets-section" data-publication-assets-section hidden>
+          <div class="container">
+            <div class="page-section-heading">
+              <div>
+                <p class="section-kicker">Materiais</p>
+                <h2>Assets e direitos de uso</h2>
+              </div>
+            </div>
+            <div class="publication-asset-list" data-publication-assets></div>
+          </div>
+        </section>
+
+        <section class="section publication-history-section">
+          <div class="container">
+            <div class="page-section-heading">
+              <div>
+                <p class="section-kicker">Versionamento</p>
+                <h2>Histórico público de revisões</h2>
+              </div>
+            </div>
+            <ol class="publication-history" data-publication-history></ol>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p><strong>Arquivo Editorial</strong><br />Publicações com autoria, fontes e revisões identificáveis.</p>
+        <nav class="footer-links" aria-label="Navegação do rodapé" data-footer-nav>
+          <a href="/index.html#topo">Início</a>
+          <a href="/Rotas/rotas.html">Rotas guiadas</a>
+          <a href="/Teorias/teorias.html">Teorias</a>
+          <a href="/Mapa/mapa.html">Mapa</a>
+          <a href="/GrandesNomes/grandes-nomes.html">Grandes nomes</a>
+          <a href="/Constelacoes/constelacoes.html">Constelações</a>
+          <a href="/Laboratorio/laboratorio.html">Laboratório</a>
+          <a href="/Arquivo/arquivo.html">Publicações</a>
+          <a href="/Contribuicoes/contribuicoes.html">Contribuições</a>
+          <a href="/index.html#sobre">Sobre</a>
+          <a href="mailto:Matheuscamargodealencar@gmail.com">E-mail</a>
+          <a href="https://www.linkedin.com/in/gomin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
+      </div>
+    </footer>
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo" aria-hidden="true" tabindex="-1">↑</button>
+    <script type="module" src="/Arquivo/publicacao.js?v=publication-v1"></script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "theory--instabilidade-vazio--contexto-metodologico--backend-existencia-r1",
+  "id": "theory--instabilidade-vazio--contexto-metodologico--backend-existencia",
+  "order": 7,
+  "source": {
+    "type": "theory",
+    "id": "instabilidade-vazio"
+  },
+  "target": {
+    "type": "theory",
+    "id": "backend-existencia"
+  },
+  "type": "contexto-metodologico",
+  "label": "Contexto metodológico",
+  "justification": "A T-07 ajuda a tornar campo, potencial, premissas e objeções da T-02 explicitamente rastreáveis.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

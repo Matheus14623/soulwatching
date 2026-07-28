@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "entityType": "constellation",
+  "revisionId": "orion-r1",
+  "id": "orion",
+  "slug": "orion",
+  "name": "Órion",
+  "latinName": "Orion",
+  "abbreviation": "Ori",
+  "featuredRank": 2,
+  "seasonId": "verao",
+  "season": "Verão brasileiro · dezembro a março",
+  "signature": "TRÊS MARIAS",
+  "recognition": "Comece pelas três estrelas quase alinhadas do cinturão: Alnitak, Alnilam e Mintaka, conhecidas no Brasil como Três Marias.",
+  "fact": "As estrelas do desenho parecem próximas apenas por perspectiva. Alnitak, Alnilam e Mintaka estão a distâncias diferentes da Terra.",
+  "guideNote": "A forma de ampulheta ao redor do cinturão é um dos padrões mais fáceis de reconhecer no céu.",
+  "sourceIds": [
+    "iau-constellations",
+    "nasa-orion",
+    "on-seasons"
+  ],
+  "relatedConstellationIds": [
+    "touro",
+    "gemeos",
+    "cao-maior"
+  ],
+  "stars": [
+    {
+      "id": "betelgeuse",
+      "name": "Betelgeuse",
+      "designation": "α Ori",
+      "magnitude": 0.4,
+      "x": 27,
+      "y": 18,
+      "tone": "warm",
+      "role": "anchor",
+      "label": true,
+      "variable": true
+    },
+    {
+      "id": "bellatrix",
+      "name": "Bellatrix",
+      "designation": "γ Ori",
+      "magnitude": 1.6,
+      "x": 73,
+      "y": 23,
+      "tone": "cool",
+      "role": "guide",
+      "label": true
+    },
+    {
+      "id": "alnitak",
+      "name": "Alnitak",
+      "designation": "ζ Ori",
+      "magnitude": 1.8,
+      "x": 37,
+      "y": 49,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true,
+      "labelDy": 7
+    },
+    {
+      "id": "alnilam",
+      "name": "Alnilam",
+      "designation": "ε Ori",
+      "magnitude": 1.7,
+      "x": 50,
+      "y": 47,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true,
+      "labelDy": -5
+    },
+    {
+      "id": "mintaka",
+      "name": "Mintaka",
+      "designation": "δ Ori",
+      "magnitude": 2.2,
+      "x": 63,
+      "y": 44,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true,
+      "labelDy": 7
+    },
+    {
+      "id": "saiph",
+      "name": "Saiph",
+      "designation": "κ Ori",
+      "magnitude": 2.1,
+      "x": 32,
+      "y": 82,
+      "tone": "cool",
+      "role": "guide",
+      "label": true
+    },
+    {
+      "id": "rigel",
+      "name": "Rigel",
+      "designation": "β Ori",
+      "magnitude": 0.1,
+      "x": 74,
+      "y": 83,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true
+    }
+  ],
+  "lines": [
+    [
+      "bellatrix",
+      "betelgeuse"
+    ],
+    [
+      "bellatrix",
+      "mintaka"
+    ],
+    [
+      "mintaka",
+      "rigel"
+    ],
+    [
+      "betelgeuse",
+      "alnitak"
+    ],
+    [
+      "alnitak",
+      "saiph"
+    ],
+    [
+      "mintaka",
+      "alnilam"
+    ],
+    [
+      "alnilam",
+      "alnitak"
+    ],
+    [
+      "rigel",
+      "saiph"
+    ]
+  ],
+  "aliases": [],
+  "order": 2
+}

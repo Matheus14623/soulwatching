@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "entityType": "research-track",
+  "revisionId": "astrobiologia-em-camadas-r1",
+  "id": "astrobiologia-em-camadas",
+  "code": "R-02",
+  "title": "Astrobiologia em camadas",
+  "kind": "Projeto quantitativo",
+  "summary": "Separar abiogênese, vida complexa, inteligência, tecnologia e duração detectável para representar melhor as incertezas da busca por vida.",
+  "boundary": "Exoplanetas ampliam a amostra observacional, mas não tornam inteligência ou tecnologia resultados inevitáveis.",
+  "nextStep": "Construir um modelo probabilístico com distribuições para cada etapa e atualização por biossinaturas ou tecnossinaturas.",
+  "slug": "astrobiologia-em-camadas",
+  "aliases": [],
+  "order": 2
+}

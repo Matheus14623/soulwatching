@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "newton-oxford-r1",
+  "id": "newton-oxford",
+  "aliases": [],
+  "title": "His life and work at a glance",
+  "institution": "The Newton Project · University of Oxford",
+  "kind": "Biografia acadêmica",
+  "url": "https://newtonproject.ox.ac.uk/his-life-and-work-at-a-glance"
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--isaac-newton--historical-foundation--universo-buraco-negro-r1",
+  "id": "figure--isaac-newton--historical-foundation--universo-buraco-negro",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "isaac-newton"
+  },
+  "target": {
+    "type": "theory",
+    "id": "universo-buraco-negro"
+  },
+  "type": "historical-foundation",
+  "label": "Gravidade antes da geometria",
+  "justification": "A T-05 precisa distinguir a gravitação newtoniana da descrição relativística de espaço-tempo e de suas próprias hipóteses adicionais.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

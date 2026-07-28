@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--imre-lakatos--methodological-context--zero-epsilon-r1",
+  "id": "figure--imre-lakatos--methodological-context--zero-epsilon",
+  "order": 1,
+  "source": {
+    "type": "figure",
+    "id": "imre-lakatos"
+  },
+  "target": {
+    "type": "theory",
+    "id": "zero-epsilon"
+  },
+  "type": "methodological-context",
+  "label": "Critério para continuar ou parar",
+  "justification": "A T-09 se torna mais responsável quando registra se tentativas geram aprendizado novo ou apenas acumulam justificativas posteriores.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

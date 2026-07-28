@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--karl-popper--methodological-context--backend-existencia-r1",
+  "id": "figure--karl-popper--methodological-context--backend-existencia",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "karl-popper"
+  },
+  "target": {
+    "type": "theory",
+    "id": "backend-existencia"
+  },
+  "type": "methodological-context",
+  "label": "Hipóteses expostas a crítica",
+  "justification": "A T-07 pode usar testes, objeções e histórico de revisão como arquitetura, sem reduzir ciência inteira a uma regra de demarcação.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

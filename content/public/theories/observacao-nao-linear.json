@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "entityType": "theory",
+  "revisionId": "observacao-nao-linear-r1",
+  "order": 0,
+  "aliases": [],
+  "id": "observacao-nao-linear",
+  "slug": "observacao-nao-linear",
+  "code": "T-01",
+  "title": "Observação Não-Linear",
+  "shortTitle": "Observação não-linear",
+  "subtitle": "Inferência causal e observação distribuída do estado cósmico",
+  "kind": "hipotese-cientifica",
+  "reviewState": "reformulacao",
+  "independent": true,
+  "category": "informacao",
+  "filters": [
+    "cosmologia",
+    "informacao",
+    "tempo"
+  ],
+  "color": "#72ecff",
+  "glow": "rgba(114, 236, 255, 0.58)",
+  "position": {
+    "x": 15,
+    "y": 31
+  },
+  "summary": "Investiga como dados atrasados, lentes e observatórios distribuídos podem melhorar a reconstrução do estado provável de sistemas distantes sem ultrapassar o limite causal da luz.",
+  "proposal": "Modelos de cone de luz, atrasos de lentes e assimilação de dados podem produzir estimativas melhores do estado cósmico do que uma leitura isolada, embora não entreguem à Terra o presente exato de uma região causalmente inacessível.",
+  "questions": [
+    "Quanto uma arquitetura distribuída melhora a reconstrução de uma fonte observada com atraso?",
+    "Quais observáveis distinguem variações ambientais de expansão de um erro de inferência?",
+    "Como medir a qualidade da reconstrução quando novos dados chegam?"
+  ],
+  "concepts": [
+    "cone de luz",
+    "lookback time",
+    "lentes gravitacionais",
+    "inferência bayesiana",
+    "observação distribuída"
+  ],
+  "nextSteps": [
+    "Escolher um conjunto de dados de lentes ou uma simulação de cone de luz.",
+    "Definir uma métrica de erro antes da análise.",
+    "Comparar a reconstrução prevista com observações posteriores."
+  ],
+  "referenceIds": [
+    "hogg-distance",
+    "refsdal-lensing",
+    "suyu-time-delay"
+  ],
+  "objections": [
+    {
+      "id": "causalidade-superluminal",
+      "title": "A reconstrução permitiria ver o presente distante?",
+      "status": "incorporada",
+      "response": "Não. A linha foi restringida a inferência dentro do cone de luz e não reivindica acesso causal ao presente remoto."
+    },
+    {
+      "id": "ganho-reconstrucao",
+      "title": "O ganho sobre uma observação isolada ainda não foi quantificado",
+      "status": "aberta",
+      "response": "É necessário definir uma métrica de erro e testar a reconstrução contra observações posteriores."
+    }
+  ],
+  "decisionBoundary": {
+    "revise": "Revisar o modelo se observações adicionais não reduzirem o erro ou se o ganho depender de premissas não identificáveis.",
+    "abandon": "Abandonar a arquitetura proposta se ela não superar, em dados reservados, métodos convencionais de reconstrução sob o mesmo orçamento observacional."
+  },
+  "review": {
+    "assessment": "Promissora após reformulação",
+    "known": "A astronomia observa fontes no cone de luz passado. Lentes podem produzir imagens com trajetórias e atrasos diferentes, úteis para reconstrução e cosmologia.",
+    "focus": "Transformar o problema de “ver o presente” em um problema mensurável de inferência, latência e coordenação entre observatórios.",
+    "limit": "Nenhuma lente, sonda enviada agora ou correlação quântica faz a informação chegar antes do caminho causal mais rápido.",
+    "test": "Comparar previsões de um modelo de reconstrução com curvas de luz, atrasos de lentes, redshift drift ou observações posteriores."
+  },
+  "claimLinks": [
+    {
+      "id": "contexto-observacao",
+      "label": "Base observacional",
+      "field": "review.known",
+      "referenceIds": [
+        "hogg-distance",
+        "refsdal-lensing",
+        "suyu-time-delay"
+      ]
+    }
+  ],
+  "revisions": [
+    {
+      "revisionId": "observacao-nao-linear-r1",
+      "ordinal": 1,
+      "versionLabel": "2.1",
+      "reviewedAt": "2026-07-22",
+      "label": "Primeiro registro individual · jul. 2026",
+      "changeSummary": "A causalidade, as objeções e o critério de abandono passaram a integrar o dossiê individual.",
+      "responsibles": [
+        {
+          "name": "Matheus Camargo",
+          "role": "autor e responsável editorial"
+        }
+      ]
+    }
+  ]
+}

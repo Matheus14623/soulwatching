@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "entityType": "path",
+  "revisionId": "vazio-nao-e-nada-r1",
+  "id": "vazio-nao-e-nada",
+  "slug": "vazio-nao-e-nada",
+  "title": "Por que o vazio não é simplesmente “nada”",
+  "summary": "Distingue usos físicos e filosóficos do termo vazio antes de aproximar hipóteses próprias e cosmologia teórica.",
+  "audience": "Para desfazer uma ambiguidade recorrente",
+  "durationMinutes": 20,
+  "accent": "gold",
+  "steps": [
+    {
+      "type": "theory",
+      "id": "instabilidade-vazio",
+      "reason": "A teoria apresenta a pergunta central e declara em que sentido emprega “vazio”."
+    },
+    {
+      "type": "theory",
+      "id": "vacuo-genese",
+      "reason": "A derivação permite comparar continuidade conceitual, mudança de escopo e lacunas próprias."
+    },
+    {
+      "type": "figure",
+      "id": "stephen-hawking",
+      "reason": "A física de campos em espaço-tempo curvo mostra por que “vácuo” depende de estrutura teórica precisa."
+    },
+    {
+      "type": "theory",
+      "id": "zero-epsilon",
+      "reason": "A distinção entre ausência e quantidade pequena abre uma ponte metodológica, não uma equivalência física."
+    },
+    {
+      "type": "experiment",
+      "id": "zero-epsilon",
+      "reason": "O laboratório explicita como uma diferença pequena pode ser tratada sem converter analogia em prova."
+    }
+  ],
+  "aliases": [],
+  "order": 3
+}

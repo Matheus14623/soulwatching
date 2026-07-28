@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "entityType": "constellation",
+  "revisionId": "cao-maior-r1",
+  "id": "cao-maior",
+  "slug": "cao-maior",
+  "name": "Cão Maior",
+  "latinName": "Canis Major",
+  "abbreviation": "CMa",
+  "featuredRank": null,
+  "seasonId": "verao",
+  "season": "Verão brasileiro · dezembro a março",
+  "signature": "SIRIUS",
+  "recognition": "Use Sirius como ponto de partida: ela é muito brilhante e fica a sudeste de Órion nas noites de verão.",
+  "fact": "Sirius é a estrela de maior brilho aparente no céu noturno e está a cerca de 8,6 anos-luz do Sistema Solar.",
+  "guideNote": "O brilho de Sirius facilita encontrar o restante do padrão mesmo sob alguma poluição luminosa.",
+  "sourceIds": [
+    "iau-constellations",
+    "on-seasons"
+  ],
+  "relatedConstellationIds": [
+    "orion"
+  ],
+  "stars": [
+    {
+      "id": "sirius",
+      "name": "Sirius",
+      "designation": "α CMa",
+      "magnitude": -1.46,
+      "x": 18,
+      "y": 19,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true
+    },
+    {
+      "id": "mirzam",
+      "name": "Mirzam",
+      "designation": "β CMa",
+      "magnitude": 2,
+      "x": 45,
+      "y": 16,
+      "tone": "cool",
+      "role": "guide",
+      "label": true
+    },
+    {
+      "id": "muliphein",
+      "name": "Muliphein",
+      "designation": "γ CMa",
+      "magnitude": 4.1,
+      "x": 43,
+      "y": 39,
+      "tone": "cool",
+      "role": "guide",
+      "label": false
+    },
+    {
+      "id": "wezen",
+      "name": "Wezen",
+      "designation": "δ CMa",
+      "magnitude": 1.8,
+      "x": 59,
+      "y": 57,
+      "tone": "warm",
+      "role": "anchor",
+      "label": true
+    },
+    {
+      "id": "adhara",
+      "name": "Adhara",
+      "designation": "ε CMa",
+      "magnitude": 1.5,
+      "x": 42,
+      "y": 79,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true
+    },
+    {
+      "id": "furud",
+      "name": "Furud",
+      "designation": "ζ CMa",
+      "magnitude": 3,
+      "x": 24,
+      "y": 73,
+      "tone": "cool",
+      "role": "guide",
+      "label": false
+    },
+    {
+      "id": "aludra",
+      "name": "Aludra",
+      "designation": "η CMa",
+      "magnitude": 2.5,
+      "x": 80,
+      "y": 78,
+      "tone": "cool",
+      "role": "guide",
+      "label": true
+    }
+  ],
+  "lines": [
+    [
+      "sirius",
+      "mirzam"
+    ],
+    [
+      "sirius",
+      "muliphein"
+    ],
+    [
+      "muliphein",
+      "wezen"
+    ],
+    [
+      "sirius",
+      "wezen"
+    ],
+    [
+      "wezen",
+      "adhara"
+    ],
+    [
+      "adhara",
+      "furud"
+    ],
+    [
+      "wezen",
+      "aludra"
+    ]
+  ],
+  "aliases": [],
+  "order": 5
+}

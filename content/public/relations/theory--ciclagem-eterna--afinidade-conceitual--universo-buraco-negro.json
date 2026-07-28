@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "theory--ciclagem-eterna--afinidade-conceitual--universo-buraco-negro-r1",
+  "id": "theory--ciclagem-eterna--afinidade-conceitual--universo-buraco-negro",
+  "order": 9,
+  "source": {
+    "type": "theory",
+    "id": "ciclagem-eterna"
+  },
+  "target": {
+    "type": "theory",
+    "id": "universo-buraco-negro"
+  },
+  "type": "afinidade-conceitual",
+  "label": "Afinidade conceitual",
+  "justification": "As duas investigam cenários cosmológicos não triviais para origem e tempo, com mecanismos independentes.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

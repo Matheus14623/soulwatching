@@ -1,4 +1,4 @@
-import { LEARNING_PATHS } from '../data/learning-paths.js';
+import { LEARNING_PATHS } from '../data/generated/runtime/learning-paths.js';
 
 function createElement(tag, className, text) {
   const element = document.createElement(tag);

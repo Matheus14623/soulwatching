@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "nasa-exoplanet-archive-r1",
+  "id": "nasa-exoplanet-archive",
+  "aliases": [],
+  "title": "NASA Exoplanet Archive",
+  "authors": "NASA Exoplanet Science Institute",
+  "year": "acesso contínuo",
+  "kind": "Catálogo científico",
+  "url": "https://exoplanetarchive.ipac.caltech.edu/"
+}

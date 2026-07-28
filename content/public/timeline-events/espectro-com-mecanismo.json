@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entityType": "timeline-event",
+  "revisionId": "espectro-com-mecanismo-r1",
+  "order": 7,
+  "id": "espectro-com-mecanismo",
+  "date": "1925",
+  "sortYear": 1925,
+  "category": "medir",
+  "title": "O espectro deixa de ser uma tabela de aparências",
+  "method": "Inferência física com temperatura e ionização",
+  "description": "Linhas espectrais passam a revelar composição somente depois de controlar como as condições estelares transformam o sinal.",
+  "figureIds": [
+    "cecilia-payne-gaposchkin"
+  ]
+}

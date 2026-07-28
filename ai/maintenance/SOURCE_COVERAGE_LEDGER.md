@@ -113,8 +113,8 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 - Tipo: `operational-guide`
 - Estado: `current`
 - Decisão: `preserve`
-- Tamanho: `10164` bytes
-- SHA-256: `77da3005cabc034a2a440c34d0267520baebe13ec5f14f3f65af649deca58bfd`
+- Tamanho: `14957` bytes
+- SHA-256: `2773df3920d93a8fc966ce73509e0c96727a03667e1f23368ce2e3ca8e72457b`
 - Síntese: Entrada operacional resumida para rotas, execução local, arquitetura pública e publicação.
 - Destinos canônicos:
   - `project.index` — [ai/project/INDEX.md](../project/INDEX.md)
@@ -283,8 +283,8 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 - Tipo: `historical-audit`
 - Estado: `historical`
 - Decisão: `historical`
-- Tamanho: `72362` bytes
-- SHA-256: `6ec22f2b48fb5262ee14eeeb35b34fa1c128ca8d4a0b99e11aa025b5d9a2f2d9`
+- Tamanho: `72282` bytes
+- SHA-256: `0212a13c52204f4f1928a101c00cc78ba3c696a7c39e77e7ef9d2e6cff8bf6e2`
 - Síntese: Auditoria histórica anterior à arquitetura atual, útil para rastrear decisões e regressões sem definir o estado vigente.
 - Destinos canônicos:
   - `project.architecture` — [ai/project/ARCHITECTURE.md](../project/ARCHITECTURE.md)

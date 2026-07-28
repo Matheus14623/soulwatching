@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure-trail",
+  "revisionId": "filosofia-do-teste-r1",
+  "order": 3,
+  "id": "filosofia-do-teste",
+  "label": "Filosofia do teste",
+  "kicker": "viés → indução → hipótese → revisão",
+  "description": "Uma trilha sobre como perguntas, evidências e erros são organizados sem transformar um filósofo em árbitro único da ciência.",
+  "outcome": "Os métodos aparecem como ferramentas complementares: nenhuma regra isolada descreve toda a prática científica.",
+  "steps": [
+    {
+      "figureId": "francis-bacon",
+      "title": "Mapear fontes de erro",
+      "description": "Observação organizada exige reconhecer distorções de linguagem, hábito e autoridade."
+    },
+    {
+      "figureId": "david-hume",
+      "title": "Delimitar a indução",
+      "description": "Regularidade observada não produz sozinha uma conexão causal necessária."
+    },
+    {
+      "figureId": "henri-poincare",
+      "title": "Separar hipótese, convenção e experiência",
+      "description": "Modelos precisam declarar quais escolhas organizam os fatos sem criá-los arbitrariamente."
+    },
+    {
+      "figureId": "karl-popper",
+      "title": "Expor uma ideia ao risco",
+      "description": "Conjecturas ganham força quando aceitam condições públicas capazes de contrariá-las."
+    },
+    {
+      "figureId": "thomas-kuhn",
+      "title": "Observar métodos em comunidades reais",
+      "description": "História e anomalias mostram que critérios também têm desenvolvimento coletivo."
+    },
+    {
+      "figureId": "imre-lakatos",
+      "title": "Avaliar uma sequência de revisões",
+      "description": "Um programa é examinado pelo que suas mudanças explicam e antecipam ao longo do tempo."
+    }
+  ]
+}

@@ -31,7 +31,7 @@
   border-radius: 0.32rem;
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.52rem;
+  font-size: 0.75rem;
 }
 
 .global-search-dialog {
@@ -73,7 +73,7 @@
 .global-search-count,
 .global-search-footer {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }

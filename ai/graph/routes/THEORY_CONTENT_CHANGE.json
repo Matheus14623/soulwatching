@@ -16,5 +16,5 @@
       "condition": "Antes de considerar a alteração pronta para publicação."
     }
   ],
-  "relatedContext": ["domains.editorial-model", "external.theory-integration"]
+  "relatedContext": ["domains.editorial-model", "domains.content-operations", "external.theory-integration"]
 }

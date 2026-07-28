@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "bell-epr-paper-r1",
+  "id": "bell-epr-paper",
+  "aliases": [],
+  "title": "On the Einstein Podolsky Rosen paradox",
+  "institution": "CERN Document Server",
+  "kind": "Artigo científico original",
+  "url": "https://cds.cern.ch/record/111654"
+}

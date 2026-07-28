@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "theory--backend-existencia--contexto-metodologico--vacuo-genese-r1",
+  "id": "theory--backend-existencia--contexto-metodologico--vacuo-genese",
+  "order": 15,
+  "source": {
+    "type": "theory",
+    "id": "backend-existencia"
+  },
+  "target": {
+    "type": "theory",
+    "id": "vacuo-genese"
+  },
+  "type": "contexto-metodologico",
+  "label": "Contexto metodológico",
+  "justification": "A T-07 mantém explícita a dependência da T-08 em relação à linha principal, evitando duplicação conceitual.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

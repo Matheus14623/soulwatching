@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "entityType": "theory-taxonomy",
+  "filters": [
+    {
+      "id": "todas",
+      "label": "Todas"
+    },
+    {
+      "id": "cosmologia",
+      "label": "Cosmologia"
+    },
+    {
+      "id": "tempo",
+      "label": "Tempo"
+    },
+    {
+      "id": "vazio",
+      "label": "Vazio"
+    },
+    {
+      "id": "informacao",
+      "label": "Informação"
+    },
+    {
+      "id": "topologia",
+      "label": "Topologia"
+    },
+    {
+      "id": "existencial",
+      "label": "Existencial"
+    },
+    {
+      "id": "metodo",
+      "label": "Método"
+    }
+  ],
+  "types": [
+    {
+      "id": "hipotese-cientifica",
+      "label": "Hipótese científica",
+      "shortLabel": "Hipótese",
+      "description": "Propõe uma explicação física que ainda precisa de mecanismo, modelo e confronto com dados."
+    },
+    {
+      "id": "estudo-teorico",
+      "label": "Estudo teórico",
+      "shortLabel": "Estudo",
+      "description": "Investiga limites ou consequências de teorias existentes sem reivindicar uma nova lei física."
+    },
+    {
+      "id": "estrutura-conceitual",
+      "label": "Estrutura conceitual",
+      "shortLabel": "Framework",
+      "description": "Organiza perguntas, relações e critérios de análise."
+    },
+    {
+      "id": "linha-derivada",
+      "label": "Linha derivada",
+      "shortLabel": "Derivação",
+      "description": "Desdobra outra entrada e só se torna independente se formular uma pergunta própria."
+    },
+    {
+      "id": "heuristica",
+      "label": "Heurística",
+      "shortLabel": "Heurística",
+      "description": "Oferece uma regra prática de decisão, não uma afirmação cosmológica."
+    },
+    {
+      "id": "programa-pratico",
+      "label": "Programa prático",
+      "shortLabel": "Programa",
+      "description": "Converte perguntas em projetos, dados, simulações ou instrumentos verificáveis."
+    }
+  ],
+  "reviewStates": [
+    {
+      "id": "reformulacao",
+      "label": "Reformulação"
+    },
+    {
+      "id": "formalizacao",
+      "label": "Formalização"
+    },
+    {
+      "id": "delimitacao",
+      "label": "Delimitação"
+    },
+    {
+      "id": "consolidacao",
+      "label": "Consolidação"
+    },
+    {
+      "id": "execucao",
+      "label": "Execução"
+    }
+  ],
+  "objectionStates": [
+    {
+      "id": "aberta",
+      "label": "Aberta",
+      "description": "Ainda exige cálculo, fonte, dado ou decisão editorial."
+    },
+    {
+      "id": "respondida",
+      "label": "Respondida",
+      "description": "A formulação atual oferece uma resposta explícita, preservada para escrutínio."
+    },
+    {
+      "id": "incorporada",
+      "label": "Incorporada",
+      "description": "A objeção alterou o escopo ou o mecanismo da linha."
+    }
+  ],
+  "rubrics": {
+    "hipotese-cientifica": [
+      {
+        "id": "mecanismo",
+        "label": "Mecanismo",
+        "question": "O processo físico e suas variáveis estão definidos sem depender apenas de analogia?"
+      },
+      {
+        "id": "discriminacao",
+        "label": "Previsão discriminante",
+        "question": "Existe um resultado capaz de distinguir a proposta de explicações concorrentes?"
+      },
+      {
+        "id": "confronto",
+        "label": "Confronto empírico",
+        "question": "Dados, incertezas e condição de abandono foram declarados antes do teste?"
+      }
+    ],
+    "estudo-teorico": [
+      {
+        "id": "premissas",
+        "label": "Premissas",
+        "question": "O domínio, as condições iniciais e as hipóteses matemáticas estão explícitos?"
+      },
+      {
+        "id": "derivacao",
+        "label": "Derivação",
+        "question": "A conclusão decorre do formalismo sem saltos conceituais?"
+      },
+      {
+        "id": "escopo",
+        "label": "Escopo",
+        "question": "Está claro o que o resultado demonstra e o que permanece fora dele?"
+      }
+    ],
+    "estrutura-conceitual": [
+      {
+        "id": "rastreabilidade",
+        "label": "Rastreabilidade",
+        "question": "Premissas, objeções, fontes e mudanças podem ser recuperadas?"
+      },
+      {
+        "id": "separacao",
+        "label": "Separação epistemológica",
+        "question": "Fato, hipótese, metáfora e recomendação permanecem distintos?"
+      },
+      {
+        "id": "utilidade",
+        "label": "Utilidade comparável",
+        "question": "O framework melhora análises reais de forma observável e reproduzível?"
+      }
+    ],
+    "linha-derivada": [
+      {
+        "id": "pergunta-propria",
+        "label": "Pergunta própria",
+        "question": "A derivação responde a algo que a linha principal não cobre?"
+      },
+      {
+        "id": "heranca",
+        "label": "Dependências herdadas",
+        "question": "Mecanismos e premissas reutilizados estão ligados à origem?"
+      },
+      {
+        "id": "resultado-proprio",
+        "label": "Resultado distinto",
+        "question": "Há uma consequência verificável que justifique manter uma ficha separada?"
+      }
+    ],
+    "heuristica": [
+      {
+        "id": "variaveis",
+        "label": "Variáveis de decisão",
+        "question": "Benefício, dano, custo e alternativa estão explícitos?"
+      },
+      {
+        "id": "limite-risco",
+        "label": "Limite de risco",
+        "question": "Há teto de perda, reversibilidade e condição de parada?"
+      },
+      {
+        "id": "calibracao",
+        "label": "Calibração",
+        "question": "Previsões e resultados podem ser comparados sem justificativa posterior?"
+      }
+    ],
+    "programa-pratico": [
+      {
+        "id": "proveniencia",
+        "label": "Proveniência",
+        "question": "Dados, transformações e instrumentos podem ser auditados?"
+      },
+      {
+        "id": "reproducao",
+        "label": "Reprodução",
+        "question": "O procedimento reproduz primeiro um resultado conhecido?"
+      },
+      {
+        "id": "incerteza",
+        "label": "Incerteza",
+        "question": "Limites, erros e alternativas acompanham o resultado publicado?"
+      }
+    ]
+  }
+}

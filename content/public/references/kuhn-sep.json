@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "kuhn-sep-r1",
+  "id": "kuhn-sep",
+  "aliases": [],
+  "title": "Thomas Kuhn",
+  "institution": "Stanford Encyclopedia of Philosophy",
+  "kind": "Referência acadêmica",
+  "url": "https://plato.stanford.edu/entries/thomas-kuhn/"
+}

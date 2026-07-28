@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "francis-bacon-r1",
+  "order": 17,
+  "aliases": [],
+  "id": "francis-bacon",
+  "slug": "francis-bacon",
+  "name": "Francis Bacon",
+  "lifespan": "1561–1626",
+  "area": "filosofia-metodo",
+  "role": "Filosofia natural e método",
+  "featuredRank": null,
+  "summary": "Defendeu uma investigação organizada da natureza, atenta a observações, experimentos e fontes sistemáticas de erro.",
+  "impact": "Bacon não criou sozinho o método científico moderno, mas sua crítica aos “ídolos” do pensamento e sua defesa de investigação cooperativa influenciaram ideais posteriores de ciência experimental. Seu método indutivo histórico também tem limites e não substitui hipóteses, matemática ou teste estatístico.",
+  "contributions": [
+    {
+      "title": "Ídolos do pensamento",
+      "description": "Catalogou tendências que distorcem observação, linguagem, tradição e julgamento."
+    },
+    {
+      "title": "Investigação organizada",
+      "description": "Defendeu coleta planejada de casos, variações e experimentos para construir conhecimento."
+    },
+    {
+      "title": "Ciência como esforço coletivo",
+      "description": "Imaginou instituições e instrumentos acumulando resultados além do pesquisador isolado."
+    }
+  ],
+  "milestones": [
+    "The Advancement of Learning · 1605",
+    "Novum Organum · 1620",
+    "New Atlantis · 1626"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/francis-bacon.webp",
+    "width": 640,
+    "height": 786,
+    "alt": "Retrato histórico de Francis Bacon",
+    "credit": "Paul van Somer I",
+    "license": "Domínio público",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Somer_Francis_Bacon.jpg"
+  },
+  "referenceIds": [
+    "bacon-sep"
+  ]
+}

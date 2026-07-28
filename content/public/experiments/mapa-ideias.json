@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "entityType": "experiment",
+  "revisionId": "mapa-ideias-r1",
+  "id": "mapa-ideias",
+  "slug": "mapa-ideias",
+  "title": "Mapa de ideias",
+  "shortTitle": "Mapa de ideias",
+  "kind": "visualizacao",
+  "status": "active",
+  "technology": "SVG e dados tipados",
+  "href": "/Mapa/mapa.html",
+  "summary": "Mostra relações editoriais entre hipóteses, estudos e estruturas conceituais sem sugerir que proximidade visual seja evidência científica.",
+  "question": "Quais ideias compartilham premissas, tensões ou dependências?",
+  "boundary": "As linhas representam relações editoriais justificadas, não causalidade nem validação entre teorias.",
+  "theoryIds": [],
+  "moduleKey": null,
+  "visual": "nodes",
+  "aliases": [],
+  "order": 3
+}

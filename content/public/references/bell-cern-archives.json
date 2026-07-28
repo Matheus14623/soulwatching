@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "bell-cern-archives-r1",
+  "id": "bell-cern-archives",
+  "aliases": [],
+  "title": "Archives of John Stewart Bell",
+  "institution": "CERN Scientific Information Service",
+  "kind": "Arquivo institucional",
+  "url": "https://sis.web.cern.ch/archives/CERN_archive/guide/theory/isabell"
+}

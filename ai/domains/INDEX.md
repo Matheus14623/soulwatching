@@ -21,6 +21,7 @@ related_context:
   - "domains.editorial-model"
   - "domains.theory-catalog"
   - "domains.notable-figures"
+  - "domains.content-operations"
 evidence_sources:
   - "assets/data/theories.js"
   - "assets/data/research-tracks.js"
@@ -41,6 +42,7 @@ Leia este escopo quando a tarefa alterar o significado público do observatório
 - [Modelo editorial e publicação](EDITORIAL_MODEL.md)
 - [Catálogo de linhas de investigação](THEORY_CATALOG.md)
 - [Catálogo de grandes nomes](NOTABLE_FIGURES_CATALOG.md)
+- [Operações de conteúdo e relações](CONTENT_OPERATIONS_AND_RELATIONS.md)
 
 ## Vocabulário central
 

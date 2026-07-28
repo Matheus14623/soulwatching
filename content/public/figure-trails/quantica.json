@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure-trail",
+  "revisionId": "quantica-r1",
+  "order": 2,
+  "id": "quantica",
+  "label": "Quântica",
+  "kicker": "quanta → correlação → informação",
+  "description": "Como um problema sobre luz e realidade chegou a testes de localidade, horizontes e descrições holográficas.",
+  "outcome": "A trilha separa resultado experimental, interpretação e conjectura para evitar que “quântico” funcione como explicação genérica.",
+  "steps": [
+    {
+      "figureId": "albert-einstein",
+      "title": "Dar conteúdo físico aos quanta e formular EPR",
+      "description": "O efeito fotoelétrico e o argumento EPR abrem problemas diferentes sobre quantização e completude."
+    },
+    {
+      "figureId": "john-stewart-bell",
+      "title": "Transformar localidade em desigualdade",
+      "description": "Premissas sobre explicações locais produzem limites confrontáveis com medições."
+    },
+    {
+      "figureId": "stephen-hawking",
+      "title": "Investigar campos quânticos em horizontes",
+      "description": "A emissão térmica torna a informação de buracos negros um problema físico."
+    },
+    {
+      "figureId": "juan-maldacena",
+      "title": "Construir uma dualidade precisa",
+      "description": "AdS/CFT oferece uma forma definida de relacionar gravitação e teoria quântica."
+    },
+    {
+      "figureId": "leonard-susskind",
+      "title": "Examinar informação e complementaridade",
+      "description": "Holografia e ER=EPR são tratadas com seus domínios e caráter conjectural explícitos."
+    }
+  ]
+}

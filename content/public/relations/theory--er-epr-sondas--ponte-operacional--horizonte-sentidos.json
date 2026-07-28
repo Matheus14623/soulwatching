@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "theory--er-epr-sondas--ponte-operacional--horizonte-sentidos-r1",
+  "id": "theory--er-epr-sondas--ponte-operacional--horizonte-sentidos",
+  "order": 14,
+  "source": {
+    "type": "theory",
+    "id": "er-epr-sondas"
+  },
+  "target": {
+    "type": "theory",
+    "id": "horizonte-sentidos"
+  },
+  "type": "ponte-operacional",
+  "label": "Ponte operacional",
+  "justification": "Simulações reproduzíveis de circuitos podem transformar o estudo da T-06 em um projeto prático da T-10.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

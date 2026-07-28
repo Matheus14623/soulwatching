@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--roger-penrose--historical-foundation--universo-buraco-negro-r1",
+  "id": "figure--roger-penrose--historical-foundation--universo-buraco-negro",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "roger-penrose"
+  },
+  "target": {
+    "type": "theory",
+    "id": "universo-buraco-negro"
+  },
+  "type": "historical-foundation",
+  "label": "Colapso e estrutura causal",
+  "justification": "A T-05 toca buracos negros e tempo; os teoremas de Penrose delimitam o que segue da relatividade e o que ainda seria hipótese adicional.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

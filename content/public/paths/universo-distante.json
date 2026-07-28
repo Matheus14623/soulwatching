@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "entityType": "path",
+  "revisionId": "universo-distante-r1",
+  "id": "universo-distante",
+  "slug": "universo-distante",
+  "title": "Observar o Universo distante",
+  "summary": "Da observação telescópica à medida de distâncias e ao cuidado com aquilo que uma interface pode realmente mostrar.",
+  "audience": "Para começar pela astronomia observacional",
+  "durationMinutes": 18,
+  "accent": "cyan",
+  "steps": [
+    {
+      "type": "figure",
+      "id": "galileo-galilei",
+      "reason": "O telescópio ampliou o alcance da observação e também tornou explícita a dependência de instrumentos."
+    },
+    {
+      "type": "figure",
+      "id": "henrietta-swan-leavitt",
+      "reason": "A relação período–luminosidade das Cefeidas abriu um método para estimar distâncias."
+    },
+    {
+      "type": "figure",
+      "id": "cecilia-payne-gaposchkin",
+      "reason": "A espectroscopia revelou composição e condições físicas estelares além da aparência visual."
+    },
+    {
+      "type": "theory",
+      "id": "horizonte-sentidos",
+      "reason": "A linha pergunta como limites sensoriais e instrumentais moldam o que conseguimos inferir."
+    },
+    {
+      "type": "experiment",
+      "id": "visao-estelar",
+      "reason": "A visualização encerra a rota distinguindo movimento estelar real de uma representação acelerada."
+    }
+  ],
+  "aliases": [],
+  "order": 1
+}

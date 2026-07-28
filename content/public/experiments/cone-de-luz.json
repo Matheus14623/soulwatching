@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "entityType": "experiment",
+  "revisionId": "cone-de-luz-r1",
+  "id": "cone-de-luz",
+  "slug": "cone-de-luz",
+  "title": "Cone de luz e referenciais",
+  "shortTitle": "Cone de luz",
+  "kind": "simulador",
+  "status": "active",
+  "technology": "SVG e transformações de Lorentz",
+  "href": "/Laboratorio/experimento.html?experimento=cone-de-luz",
+  "summary": "Compara coordenadas de um evento em dois referenciais inerciais e classifica sua separação causal.",
+  "question": "O que muda de um referencial para outro e o que permanece invariante?",
+  "boundary": "O modelo usa uma dimensão espacial, unidades com c = 1 e referenciais inerciais; não representa gravidade nem aceleração.",
+  "theoryIds": [
+    "observacao-nao-linear",
+    "universo-buraco-negro",
+    "horizonte-sentidos"
+  ],
+  "moduleKey": "light-cone",
+  "visual": "light-cone",
+  "aliases": [],
+  "order": 5
+}

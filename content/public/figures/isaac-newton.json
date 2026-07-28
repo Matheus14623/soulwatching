@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "isaac-newton-r1",
+  "order": 6,
+  "aliases": [],
+  "id": "isaac-newton",
+  "slug": "isaac-newton",
+  "name": "Isaac Newton",
+  "lifespan": "1642–1727",
+  "area": "fisica-cosmos",
+  "role": "Física e matemática",
+  "featuredRank": null,
+  "summary": "Unificou movimentos terrestres e celestes por meio de leis matemáticas e da gravitação universal.",
+  "impact": "Os Principia forneceram uma arquitetura capaz de explicar queda, projéteis, órbitas e marés com as mesmas regras. A mecânica newtoniana continua extremamente precisa em seu domínio, embora relatividade e mecânica quântica definam limites onde seus conceitos de espaço, tempo e gravidade precisam ser ampliados.",
+  "contributions": [
+    {
+      "title": "Leis do movimento",
+      "description": "Organizou força, massa, aceleração e ação recíproca em uma estrutura quantitativa."
+    },
+    {
+      "title": "Gravitação universal",
+      "description": "Conectou órbitas planetárias e fenômenos terrestres sob uma mesma lei."
+    },
+    {
+      "title": "Óptica e cálculo",
+      "description": "Investigou a decomposição da luz e desenvolveu métodos matemáticos para variação contínua."
+    }
+  ],
+  "milestones": [
+    "Philosophiæ Naturalis Principia Mathematica · 1687",
+    "Gravitação universal",
+    "Opticks · 1704"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/isaac-newton.webp",
+    "width": 640,
+    "height": 771,
+    "alt": "Retrato histórico de Isaac Newton",
+    "credit": "Godfrey Kneller · University of Cambridge",
+    "license": "Domínio público",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Portrait_of_Sir_Isaac_Newton,_1689_(brightened).jpg"
+  },
+  "referenceIds": [
+    "newton-oxford"
+  ]
+}

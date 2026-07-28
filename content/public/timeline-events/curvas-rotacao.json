@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entityType": "timeline-event",
+  "revisionId": "curvas-rotacao-r1",
+  "order": 12,
+  "id": "curvas-rotacao",
+  "date": "Década de 1970",
+  "sortYear": 1970,
+  "category": "medir",
+  "title": "Movimento visível denuncia massa não luminosa",
+  "method": "Espectrografia e curvas de rotação em grandes raios",
+  "description": "Velocidades orbitais sistematicamente altas expõem uma diferença entre matéria luminosa e dinâmica galáctica.",
+  "figureIds": [
+    "vera-rubin"
+  ]
+}

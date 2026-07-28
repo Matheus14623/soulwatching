@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--imre-lakatos--methodological-context--backend-existencia-r1",
+  "id": "figure--imre-lakatos--methodological-context--backend-existencia",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "imre-lakatos"
+  },
+  "target": {
+    "type": "theory",
+    "id": "backend-existencia"
+  },
+  "type": "methodological-context",
+  "label": "Linhas como programas revisáveis",
+  "justification": "A T-07 pode distinguir núcleo, hipóteses auxiliares, previsões, objeções e versões sem usar essa estrutura como selo de cientificidade.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

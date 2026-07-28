@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entityType": "timeline-event",
+  "revisionId": "simetria-conservacao-r1",
+  "order": 6,
+  "id": "simetria-conservacao",
+  "date": "1918",
+  "sortYear": 1918,
+  "category": "modelar",
+  "title": "Simetrias revelam leis de conservação",
+  "method": "Teorema estrutural entre invariância e quantidades conservadas",
+  "description": "Uma relação matemática precisa conecta simetrias contínuas das leis físicas a energia, momento e outras conservações.",
+  "figureIds": [
+    "emmy-noether"
+  ]
+}

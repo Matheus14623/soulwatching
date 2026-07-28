@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entityType": "timeline-event",
+  "revisionId": "residuos-orbitais-r1",
+  "order": 1,
+  "id": "residuos-orbitais",
+  "date": "1609",
+  "sortYear": 1609.1,
+  "category": "modelar",
+  "title": "Resíduos corrigem a forma das órbitas",
+  "method": "Comparação quantitativa entre previsão e posição observada",
+  "description": "Discrepâncias persistentes deixam de ser descartadas e passam a indicar que o modelo circular precisava ser substituído.",
+  "figureIds": [
+    "johannes-kepler"
+  ]
+}

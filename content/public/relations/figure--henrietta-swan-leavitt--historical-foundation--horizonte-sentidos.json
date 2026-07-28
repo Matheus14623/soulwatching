@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--henrietta-swan-leavitt--historical-foundation--horizonte-sentidos-r1",
+  "id": "figure--henrietta-swan-leavitt--historical-foundation--horizonte-sentidos",
+  "order": 1,
+  "source": {
+    "type": "figure",
+    "id": "henrietta-swan-leavitt"
+  },
+  "target": {
+    "type": "theory",
+    "id": "horizonte-sentidos"
+  },
+  "type": "historical-foundation",
+  "label": "Arquivos como instrumentos",
+  "justification": "A T-10 encontra aqui um exemplo de como dados acumulados podem estender a escala humana de observação.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "subrahmanyan-chandrasekhar-r1",
+  "order": 10,
+  "aliases": [],
+  "id": "subrahmanyan-chandrasekhar",
+  "slug": "subrahmanyan-chandrasekhar",
+  "name": "Subrahmanyan Chandrasekhar",
+  "lifespan": "1910–1995",
+  "area": "fisica-cosmos",
+  "role": "Astrofísica teórica",
+  "featuredRank": null,
+  "summary": "Determinou um limite de massa para anãs brancas e construiu uma teoria rigorosa da estrutura e evolução estelar.",
+  "impact": "Ao combinar relatividade especial, mecânica quântica e estatística, Chandrasekhar mostrou que a pressão de degenerescência não sustenta uma anã branca acima de uma massa crítica. O resultado abriu o caminho conceitual para compreender destinos estelares que incluem estrelas de nêutrons e buracos negros.",
+  "contributions": [
+    {
+      "title": "Limite de Chandrasekhar",
+      "description": "Estabeleceu a massa máxima aproximada de uma anã branca estável."
+    },
+    {
+      "title": "Estrutura e evolução estelar",
+      "description": "Desenvolveu tratamentos matemáticos de transporte, equilíbrio e estabilidade em estrelas."
+    },
+    {
+      "title": "Teoria de buracos negros",
+      "description": "Produziu uma síntese matemática influente sobre soluções e perturbações de buracos negros."
+    }
+  ],
+  "milestones": [
+    "Limite de massa para anãs brancas",
+    "An Introduction to the Study of Stellar Structure · 1939",
+    "The Mathematical Theory of Black Holes · 1983"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/subrahmanyan-chandrasekhar.webp",
+    "width": 539,
+    "height": 800,
+    "alt": "Retrato de Subrahmanyan Chandrasekhar",
+    "credit": "AIP Emilio Segrè Visual Archives, Gift of Kameshwar Wali",
+    "license": "Licença AIP de atribuição",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Subrahmanyan_Chandrasekhar.jpg"
+  },
+  "referenceIds": [
+    "chandrasekhar-nobel"
+  ]
+}

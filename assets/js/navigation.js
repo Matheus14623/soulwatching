@@ -2,14 +2,20 @@ import { $, $$ } from './utils.js';
 import { initGlobalSearch } from './global-search.js?v=global-search-v1';
 import { initSiteMetrics } from './site-metrics.js?v=site-metrics-v1';
 import { initSmoothScrolling, smoothScrollTo } from './smooth-scroll.js';
+import { syncSiteNavigation } from './site-navigation.js?v=site-navigation-v1';
 
 export function initNavigation() {
+  syncSiteNavigation();
   const header = $('[data-header]');
   const toggle = $('[data-menu-toggle]');
   const nav = $('[data-primary-nav]');
   const backToTop = $('[data-back-to-top]');
   const mobileMenu = window.matchMedia('(max-width: 1080px)');
-  const links = $$('a[href^="#"]', nav || document);
+  const navLinks = $$('a', nav || document);
+  const links = [
+    ...$$('a[href^="#"]', nav || document),
+    ...$$('[data-local-navigation-links] a[href^="#"]'),
+  ];
   const sections = links
     .map((link) => document.getElementById(link.getAttribute('href').slice(1)))
     .filter(Boolean);
@@ -17,6 +23,11 @@ export function initNavigation() {
   initSmoothScrolling();
   initGlobalSearch();
   void initSiteMetrics();
+  if (new URL(window.location.href).searchParams.has('rota')) {
+    void import('./route-continuity.js?v=route-continuity-v1')
+      .then(({ initRouteContinuity }) => initRouteContinuity())
+      .catch((error) => console.error('Não foi possível restaurar o contexto da rota.', error));
+  }
 
   const setMenuState = (isOpen, options = {}) => {
     if (!toggle || !nav) return;
@@ -53,7 +64,7 @@ export function initNavigation() {
     setMenuState(!isOpen, { focusFirst: !isOpen });
   });
 
-  links.forEach((link) => {
+  navLinks.forEach((link) => {
     link.addEventListener('click', closeMenu);
   });
 

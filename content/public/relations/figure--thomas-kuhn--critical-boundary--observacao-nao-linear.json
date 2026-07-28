@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--thomas-kuhn--critical-boundary--observacao-nao-linear-r1",
+  "id": "figure--thomas-kuhn--critical-boundary--observacao-nao-linear",
+  "order": 1,
+  "source": {
+    "type": "figure",
+    "id": "thomas-kuhn"
+  },
+  "target": {
+    "type": "theory",
+    "id": "observacao-nao-linear"
+  },
+  "type": "critical-boundary",
+  "label": "Observação orientada por modelos",
+  "justification": "A T-01 precisa explicitar como instrumentos e modelos selecionam o que é reconstruído, sem concluir que os dados sejam arbitrários.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

@@ -22,6 +22,7 @@ related_context:
   - "project.boundaries"
   - "frontend.design-accessibility"
   - "domains.theory-catalog"
+  - "domains.content-operations"
 evidence_sources:
   - "Arquivo/arquivo.html"
   - "Laboratorio/laboratorio.html"
@@ -92,4 +93,4 @@ Revise linguagem, procedência, privacidade, distinção epistemológica e prese
 ## To Verify
 
 - Schema e rota canônica do primeiro ensaio, registro ou conteúdo externo completo.
-- Decisão atual sobre manter telefone pessoal no conteúdo público.
+- O telefone pessoal foi retirado do conteúdo público; e-mail, LinkedIn e GitHub permanecem como canais profissionais.

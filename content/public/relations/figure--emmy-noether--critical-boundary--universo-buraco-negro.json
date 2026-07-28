@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--emmy-noether--critical-boundary--universo-buraco-negro-r1",
+  "id": "figure--emmy-noether--critical-boundary--universo-buraco-negro",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "emmy-noether"
+  },
+  "target": {
+    "type": "theory",
+    "id": "universo-buraco-negro"
+  },
+  "type": "critical-boundary",
+  "label": "Simetrias e conservação",
+  "justification": "Qualquer formalização da T-05 precisa declarar simetrias, quantidades conservadas e domínio de validade em vez de apoiar-se apenas em analogia geométrica.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

@@ -19,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/styles.css?v=guided-routes-v1" />
     <link rel="stylesheet" href="../assets/css/observatory-pages.css?v=guided-routes-v1" />
+    <link rel="stylesheet" href="../assets/css/site-navigation.css?v=site-navigation-v1" />
     <link rel="stylesheet" href="./rotas.css?v=guided-routes-v1" />
   </head>
   <body class="observatory-page-body routes-page-body" data-mode="normal">
@@ -35,19 +36,20 @@
           <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
         </button>
         <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
-          <a href="../index.html#topo">Início</a>
-          <a href="../Teorias/teorias.html">Teorias</a>
-          <a href="../Mapa/mapa.html">Mapa</a>
-          <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
-          <a href="../Constelacoes/constelacoes.html">Constelações</a>
-          <a href="../Laboratorio/laboratorio.html">Laboratório</a>
-          <a href="#rotas" aria-current="page">Rotas</a>
+          <a href="./rotas.html" aria-current="page" title="Começar por uma pergunta">Começar</a>
+          <a href="../Teorias/teorias.html" title="Linhas de investigação autorais">Teorias</a>
+          <a href="../Mapa/mapa.html" title="Mapa de relações">Mapa</a>
+          <a href="../GrandesNomes/grandes-nomes.html" title="Pessoas, métodos e descobertas">Grandes nomes</a>
+          <a href="../Constelacoes/constelacoes.html" title="Atlas celeste">Constelações</a>
+          <a href="../Laboratorio/laboratorio.html" title="Simulações e modelos didáticos">Laboratório</a>
+          <a href="../Contribuicoes/contribuicoes.html" title="Propor uma contribuição">Contribuir</a>
+          <a href="../index.html#sobre" title="Sobre o Observatório">Sobre</a>
         </nav>
         <div class="status-pill" aria-live="polite" data-status-pill>
           <span class="status-dot" aria-hidden="true"></span>
           <span data-status-text>Percurso guiado</span>
         </div>
-        <span class="beta-badge" aria-label="Modelo em versão beta">Beta</span>
+        <span class="beta-badge" aria-label="Beta editorial: navegação e catálogos em evolução" title="Beta editorial: navegação e catálogos em evolução">Beta</span>
       </div>
     </header>
 
@@ -65,12 +67,12 @@
           </div>
           <aside class="page-status-card" aria-label="Como as rotas funcionam">
             <span>orientação editorial</span>
-            <strong data-site-route-count-label>Percursos disponíveis</strong>
+            <strong data-site-route-count-label data-content-metric="paths" data-content-format="guided-routes">Percursos disponíveis</strong>
             <dl class="page-status-list">
               <div><dt>Passos</dt><dd>curtos e justificáveis</dd></div>
               <div><dt>Ordem</dt><dd>sugerida, nunca obrigatória</dd></div>
               <div><dt>Fontes</dt><dd>mantidas nos dossiês de origem</dd></div>
-              <div><dt>Progresso</dt><dd>apenas nesta sessão</dd></div>
+              <div><dt>Progresso</dt><dd>preservado no link da etapa</dd></div>
             </dl>
           </aside>
         </div>
@@ -137,12 +139,20 @@
     <footer class="site-footer">
       <div class="container footer-grid">
         <p><strong>Rotas guiadas</strong><br />Percursos editoriais pelo Observatório de Ideias.</p>
-        <nav class="footer-links" aria-label="Navegação do rodapé">
+        <nav class="footer-links" aria-label="Navegação do rodapé" data-footer-nav>
           <a href="../index.html#topo">Início</a>
+          <a href="./rotas.html">Rotas guiadas</a>
           <a href="../Teorias/teorias.html">Teorias</a>
+          <a href="../Mapa/mapa.html">Mapa</a>
           <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
+          <a href="../Constelacoes/constelacoes.html">Constelações</a>
           <a href="../Laboratorio/laboratorio.html">Laboratório</a>
+          <a href="../Arquivo/arquivo.html">Publicações</a>
           <a href="../Contribuicoes/contribuicoes.html">Contribuições</a>
+          <a href="../index.html#sobre">Sobre</a>
+          <a href="mailto:Matheuscamargodealencar@gmail.com">E-mail</a>
+          <a href="https://www.linkedin.com/in/gomin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer">GitHub</a>
         </nav>
       </div>
     </footer>

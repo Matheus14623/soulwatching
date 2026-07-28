@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entityType": "timeline-event",
+  "revisionId": "telescopio-evidencia-r1",
+  "order": 0,
+  "id": "telescopio-evidencia",
+  "date": "1609–1610",
+  "sortYear": 1609,
+  "category": "observar",
+  "title": "O telescópio vira evidência astronômica",
+  "method": "Instrumento, registro e observação repetível",
+  "description": "Observações telescópicas ampliam o campo visível e obrigam a separar sinal instrumental, interpretação e conclusão cosmológica.",
+  "figureIds": [
+    "galileo-galilei"
+  ]
+}

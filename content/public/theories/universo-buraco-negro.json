@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "entityType": "theory",
+  "revisionId": "universo-buraco-negro-r1",
+  "order": 4,
+  "aliases": [],
+  "id": "universo-buraco-negro",
+  "slug": "universo-buraco-negro",
+  "code": "T-05",
+  "title": "Gênese Gravitacional do Tempo",
+  "shortTitle": "Gênese do tempo",
+  "subtitle": "Relógios, vazios e cosmologia inhomogênea como projeto principal",
+  "kind": "hipotese-cientifica",
+  "reviewState": "delimitacao",
+  "independent": true,
+  "category": "tempo",
+  "filters": [
+    "tempo",
+    "cosmologia",
+    "topologia"
+  ],
+  "color": "#7ca7ff",
+  "glow": "rgba(124, 167, 255, 0.52)",
+  "position": {
+    "x": 85,
+    "y": 55
+  },
+  "summary": "Prioriza diferenças comparáveis de tempo próprio e expansão entre ambientes cósmicos, mantendo a hipótese de universo-filho como uma linha separada e de longo prazo.",
+  "proposal": "Geometrias inhomogêneas podem produzir diferenças de tempo próprio e expansão que devem ser calculadas e comparadas com observações antes de qualquer interpretação mais ampla.",
+  "questions": [
+    "Qual diferença de tempo próprio é prevista entre vazios e paredes cósmicas?",
+    "O efeito permanece compatível com supernovas, BAO, CMB, lentes e sirenes padrão?",
+    "Que dinâmica adicional seria necessária para um modelo de universo-filho em buraco negro?"
+  ],
+  "concepts": [
+    "tempo próprio",
+    "backreaction",
+    "vazios cósmicos",
+    "timescape",
+    "universo-filho"
+  ],
+  "nextSteps": [
+    "Modelar Δτ/τ e a diferença de expansão entre ambientes.",
+    "Confrontar o modelo com mais de uma classe de observável.",
+    "Manter universo-filho, seta do tempo e ondas gravitacionais como projetos distintos."
+  ],
+  "referenceIds": [
+    "hogg-distance",
+    "seifert-timescape",
+    "poplawski-black-hole"
+  ],
+  "objections": [
+    {
+      "id": "horizontes-equivalentes",
+      "title": "Horizonte observável não é horizonte de Schwarzschild",
+      "status": "incorporada",
+      "response": "A linha principal passou a priorizar relógios e inhomogeneidade; universo-filho permanece separado e de longo prazo."
+    },
+    {
+      "id": "vantagem-observacional",
+      "title": "A vantagem sobre cosmologias de referência ainda não foi estabelecida",
+      "status": "aberta",
+      "response": "O modelo precisa confrontar simultaneamente mais de uma classe de observável e suas covariâncias."
+    }
+  ],
+  "decisionBoundary": {
+    "revise": "Revisar o mecanismo se a diferença de tempo próprio for degenerada com efeitos já modelados ou exigir parâmetros incompatíveis entre observáveis.",
+    "abandon": "Abandonar a formulação específica se ela não alcançar consistência conjunta com supernovas, BAO, CMB, lentes e sirenes padrão."
+  },
+  "review": {
+    "assessment": "Núcleo observacional promissor; teses precisam ser separadas",
+    "known": "Tempo próprio depende da métrica e da trajetória. Cosmologias inhomogêneas e backreaction são linhas reais de investigação.",
+    "focus": "Calcular diferenças entre relógios e expansão em ambientes cósmicos antes de avançar para hipóteses de universo-filho.",
+    "limit": "Horizonte observável não é horizonte de Schwarzschild, e gravidade externa não fornece por si só uma derivação da seta do tempo.",
+    "test": "Comparar previsões de relógios e expansão com supernovas, BAO, CMB, lentes, sirenes padrão ou redshift drift."
+  },
+  "claimLinks": [
+    {
+      "id": "contexto-tempo-proprio",
+      "label": "Base observacional",
+      "field": "review.known",
+      "referenceIds": [
+        "hogg-distance",
+        "seifert-timescape"
+      ]
+    },
+    {
+      "id": "contexto-universo-filho",
+      "label": "Hipótese de comparação",
+      "field": "summary",
+      "referenceIds": [
+        "poplawski-black-hole"
+      ]
+    }
+  ],
+  "revisions": [
+    {
+      "revisionId": "universo-buraco-negro-r1",
+      "ordinal": 1,
+      "versionLabel": "2.1",
+      "reviewedAt": "2026-07-22",
+      "label": "Primeiro registro individual · jul. 2026",
+      "changeSummary": "A revisão individual mantém universo-filho como hipótese separada e registra a exigência de confronto observacional conjunto.",
+      "responsibles": [
+        {
+          "name": "Matheus Camargo",
+          "role": "autor e responsável editorial"
+        }
+      ]
+    }
+  ]
+}

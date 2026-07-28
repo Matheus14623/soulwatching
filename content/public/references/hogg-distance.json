@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "hogg-distance-r1",
+  "id": "hogg-distance",
+  "aliases": [],
+  "title": "Distance measures in cosmology",
+  "authors": "David W. Hogg",
+  "year": "1999",
+  "kind": "Artigo de referência",
+  "url": "https://arxiv.org/abs/astro-ph/9905116"
+}

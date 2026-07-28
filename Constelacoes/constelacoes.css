@@ -353,12 +353,12 @@
 
 .sky-atlas-readout span {
   color: var(--muted);
-  font-size: 0.61rem;
+  font-size: 0.75rem;
 }
 
 .sky-atlas-readout strong {
   color: var(--cyan);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
 }
 
@@ -384,7 +384,7 @@
 .sky-atlas-control--wide {
   min-width: 11.5rem;
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -416,7 +416,7 @@
 .sky-atlas-training-feedback {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -562,7 +562,7 @@
 
 .sky-atlas-search > span {
   color: var(--cyan);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
 }
 
 .sky-atlas-search input {
@@ -577,7 +577,7 @@
 }
 
 .sky-atlas-search input::placeholder {
-  color: rgba(169, 181, 200, 0.58);
+  color: var(--muted);
 }
 
 .sky-atlas-search input:focus {
@@ -605,7 +605,7 @@
   border-radius: 999px;
   background: transparent;
   color: var(--muted);
-  font-size: 0.59rem;
+  font-size: 0.75rem;
   cursor: pointer;
 }
 
@@ -621,7 +621,7 @@
   min-width: 9rem;
   margin: 0 0 0.75rem;
   color: var(--muted);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   text-align: right;
 }
 
@@ -698,7 +698,7 @@
   width: 100%;
   color: rgba(168, 184, 207, 0.7);
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -801,7 +801,7 @@
 .sky-atlas-detail-sources > span,
 .sky-atlas-detail-badge {
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.75rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }
@@ -834,7 +834,7 @@
   border-radius: 999px;
   color: var(--text-soft);
   background: rgba(255, 255, 255, 0.035);
-  font-size: 0.56rem;
+  font-size: 0.75rem;
 }
 
 .sky-atlas-detail-section {
@@ -846,7 +846,7 @@
   margin: 0 0 0.4rem;
   color: var(--text);
   font-family: var(--font-mono);
-  font-size: 0.67rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -884,7 +884,7 @@
   background: rgba(114, 236, 255, 0.055);
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   cursor: pointer;
 }
 
@@ -914,7 +914,7 @@
   border-radius: 999px;
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.59rem;
+  font-size: 0.75rem;
   transition: color 160ms ease, border-color 160ms ease;
 }
 
@@ -945,7 +945,7 @@
 .sky-atlas-catalog-heading p,
 .sky-atlas-catalog-heading span {
   margin: 0;
-  font-size: 0.59rem;
+  font-size: 0.75rem;
 }
 
 .sky-atlas-catalog-heading p {
@@ -1034,7 +1034,7 @@
 .sky-atlas-index-meta {
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.55rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -1069,7 +1069,7 @@
 .sky-atlas-scroll-cue {
   margin: 0.55rem 0 0;
   color: var(--muted);
-  font-size: 0.56rem;
+  font-size: 0.75rem;
   text-align: right;
 }
 
@@ -1095,7 +1095,7 @@
 .sky-atlas-reading-grid span {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -1128,7 +1128,7 @@
   margin: 0 auto 0 0;
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -1136,7 +1136,7 @@
 .sky-atlas-reading-source a {
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.75rem;
 }
 
 .sky-atlas-reading-source a:hover,
@@ -1272,7 +1272,7 @@
 
   .sky-atlas-stage-readout,
   .sky-atlas-stage-legend {
-    font-size: 0.52rem;
+    font-size: 0.75rem;
   }
 
   .sky-atlas-stage-readout {

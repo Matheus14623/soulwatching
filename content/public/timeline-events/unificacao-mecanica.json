@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entityType": "timeline-event",
+  "revisionId": "unificacao-mecanica-r1",
+  "order": 2,
+  "id": "unificacao-mecanica",
+  "date": "1687",
+  "sortYear": 1687,
+  "category": "modelar",
+  "title": "Terra e céu entram na mesma estrutura matemática",
+  "method": "Unificação por leis e dedução quantitativa",
+  "description": "Queda, projéteis, órbitas e marés passam a ser tratados como consequências de uma mesma mecânica.",
+  "figureIds": [
+    "isaac-newton"
+  ]
+}

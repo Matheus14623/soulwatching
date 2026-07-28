@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "albert-einstein-r1",
+  "order": 7,
+  "aliases": [],
+  "id": "albert-einstein",
+  "slug": "albert-einstein",
+  "name": "Albert Einstein",
+  "lifespan": "1879–1955",
+  "area": "fisica-cosmos",
+  "role": "Física teórica",
+  "featuredRank": 1,
+  "summary": "Reformulou espaço, tempo e gravitação e ajudou a estabelecer a realidade física dos quanta de luz.",
+  "impact": "A relatividade especial vinculou medidas de espaço e tempo ao estado de movimento; a relatividade geral descreveu gravidade como geometria dinâmica do espaço-tempo. Einstein também explicou o efeito fotoelétrico e, com Podolsky e Rosen, formulou um desafio decisivo aos fundamentos da mecânica quântica.",
+  "contributions": [
+    {
+      "title": "Relatividade especial",
+      "description": "Reorganizou simultaneidade, energia, momento, espaço e tempo sem um referencial absoluto."
+    },
+    {
+      "title": "Relatividade geral",
+      "description": "Relacionou matéria e energia à curvatura do espaço-tempo e previu novos efeitos gravitacionais."
+    },
+    {
+      "title": "Quanta e problema EPR",
+      "description": "Contribuiu para a teoria quântica e tornou o emaranhamento um problema físico e conceitual explícito."
+    }
+  ],
+  "milestones": [
+    "Artigos do annus mirabilis · 1905",
+    "Equações da relatividade geral · 1915",
+    "Artigo Einstein–Podolsky–Rosen · 1935"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/albert-einstein.webp?v=portrait-2",
+    "width": 515,
+    "height": 800,
+    "alt": "Retrato de Albert Einstein",
+    "credit": "Harris & Ewing Studio · Smithsonian National Portrait Gallery",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Albert_Einstein_1921.jpg"
+  },
+  "referenceIds": [
+    "einstein-nobel",
+    "einstein-epr"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--karl-popper--critical-boundary--ciclagem-eterna-r1",
+  "id": "figure--karl-popper--critical-boundary--ciclagem-eterna",
+  "order": 1,
+  "source": {
+    "type": "figure",
+    "id": "karl-popper"
+  },
+  "target": {
+    "type": "theory",
+    "id": "ciclagem-eterna"
+  },
+  "type": "critical-boundary",
+  "label": "Previsão capaz de perder",
+  "justification": "A T-03 só avança quando escolhe um formalismo e deriva uma assinatura que possa ser distinguida de modelos concorrentes.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

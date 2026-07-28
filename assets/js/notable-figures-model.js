@@ -5,9 +5,10 @@ import {
   NOTABLE_FIGURES,
   NOTABLE_METHOD_TIMELINE,
   NOTABLE_METHOD_TIMELINE_CATEGORIES,
-} from '../data/notable-figures.js?v=great-minds-v3';
-import { getNotableFigureReferences } from '../data/notable-figure-references.js?v=great-minds-v3';
+} from '../data/generated/runtime/notable-figures.js';
+import { getNotableFigureReferences } from './reference-model.js';
 import { findTheory } from './theory-model.js';
+import { getRelationReviewPresentation } from './relation-review.js';
 
 const areaById = new Map(NOTABLE_FIGURE_AREAS.map((area) => [area.id, area]));
 const relationTypeById = new Map(
@@ -27,7 +28,11 @@ export function normalizeNotableFigureText(value = '') {
 }
 
 export function findNotableFigure(id, fallback = null) {
-  return NOTABLE_FIGURES.find((figure) => figure.id === id || figure.slug === id) || fallback;
+  return NOTABLE_FIGURES.find((figure) => (
+    figure.id === id
+    || figure.slug === id
+    || figure.aliases?.includes(id)
+  )) || fallback;
 }
 
 export function getNotableFigureArea(areaId) {
@@ -77,9 +82,13 @@ export function resolveNotableFigure(figureOrId) {
         const theory = findTheory(link.theoryId);
         const relationType = relationTypeById.get(link.relationType);
         if (!theory || !relationType) return null;
+        const review = getRelationReviewPresentation(link);
         return Object.freeze({
           ...link,
           relationLabel: relationType.label,
+          reviewLabel: review.label,
+          reviewDisclosure: review.disclosure,
+          reviewPending: review.pending,
           theory,
         });
       })

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "hawking-cambridge-r1",
+  "id": "hawking-cambridge",
+  "aliases": [],
+  "title": "Stephen Hawking: a life in science",
+  "institution": "University of Cambridge",
+  "kind": "Biografia institucional",
+  "url": "https://www.cam.ac.uk/stories/stephen-hawking"
+}

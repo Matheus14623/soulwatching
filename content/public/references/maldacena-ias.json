@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "maldacena-ias-r1",
+  "id": "maldacena-ias",
+  "aliases": [],
+  "title": "Juan Maldacena",
+  "institution": "Institute for Advanced Study",
+  "kind": "Perfil institucional",
+  "url": "https://www.ias.edu/scholars/maldacena"
+}

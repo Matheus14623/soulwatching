@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "bacon-sep-r1",
+  "id": "bacon-sep",
+  "aliases": [],
+  "title": "Francis Bacon",
+  "institution": "Stanford Encyclopedia of Philosophy",
+  "kind": "Referência acadêmica",
+  "url": "https://plato.stanford.edu/entries/francis-bacon/"
+}

@@ -97,9 +97,9 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
-  color: rgba(151, 167, 191, 0.62);
+  color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.55rem;
+  font-size: 0.75rem;
   letter-spacing: 0.12em;
 }
 
@@ -126,7 +126,7 @@
 .sky-guide-preview-action {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }

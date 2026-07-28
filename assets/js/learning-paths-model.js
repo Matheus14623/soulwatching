@@ -1,23 +1,37 @@
-import { EXPERIMENTS } from '../data/experiments.js';
-import { LEARNING_PATHS } from '../data/learning-paths.js';
-import { NOTABLE_FIGURES } from '../data/notable-figures.js';
-import { THEORIES } from '../data/theories.js';
+import { EXPERIMENTS } from '../data/generated/runtime/experiments.js';
+import { LEARNING_PATHS } from '../data/generated/runtime/learning-paths.js';
+import { NOTABLE_FIGURES } from '../data/generated/runtime/notable-figures.js';
+import { PUBLICATIONS } from '../data/generated/runtime/publications.js';
+import { THEORIES } from '../data/generated/runtime/theories.js';
 
 const entityCollections = Object.freeze({
   theory: THEORIES,
   figure: NOTABLE_FIGURES,
   experiment: EXPERIMENTS,
+  publication: PUBLICATIONS,
 });
 
 const typeLabels = Object.freeze({
   theory: 'Teoria ou linha de investigação',
   figure: 'Grande nome',
   experiment: 'Experimento',
+  publication: 'Publicação',
 });
+
+export { LEARNING_PATHS };
+
+export function findLearningPath(id, fallback = null) {
+  return LEARNING_PATHS.find((path) => (
+    path.id === id
+    || path.slug === id
+    || path.aliases?.includes(id)
+  )) || fallback;
+}
 
 function entityHref(type, entity) {
   if (type === 'theory') return `/Teorias/teorias.html?teoria=${encodeURIComponent(entity.slug)}`;
   if (type === 'figure') return `/GrandesNomes/grandes-nomes.html?perfil=${encodeURIComponent(entity.slug)}#galeria`;
+  if (type === 'publication') return `/Arquivo/publicacoes/${encodeURIComponent(entity.slug)}.html`;
   return entity.href;
 }
 
@@ -31,7 +45,11 @@ function entitySummary(entity) {
 
 export function resolveLearningPathStep(step) {
   const collection = entityCollections[step.type] || [];
-  const entity = collection.find((item) => item.id === step.id || item.slug === step.id);
+  const entity = collection.find((item) => (
+    item.id === step.id
+    || item.slug === step.id
+    || item.aliases?.includes(step.id)
+  ));
   if (!entity) return null;
   return Object.freeze({
     ...step,

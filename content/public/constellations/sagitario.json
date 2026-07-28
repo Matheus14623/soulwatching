@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "entityType": "constellation",
+  "revisionId": "sagitario-r1",
+  "id": "sagitario",
+  "slug": "sagitario",
+  "name": "Sagitário",
+  "latinName": "Sagittarius",
+  "abbreviation": "Sgr",
+  "featuredRank": null,
+  "seasonId": "inverno",
+  "season": "Inverno brasileiro · junho a setembro",
+  "signature": "BULE DE CHÁ",
+  "recognition": "Procure primeiro o Bule de Chá: uma alça, um corpo e um bico formados por estrelas brilhantes no campo da Via Láctea.",
+  "fact": "O Bule de Chá é um asterismo dentro de Sagitário, não a constelação inteira. A direção do centro da Via Láctea fica nessa região do céu.",
+  "guideNote": "Em céu escuro, a faixa luminosa da Via Láctea parece subir como vapor acima do Bule.",
+  "sourceIds": [
+    "iau-constellations",
+    "nasa-asterisms",
+    "esa-sagittarius"
+  ],
+  "relatedConstellationIds": [
+    "escorpiao"
+  ],
+  "stars": [
+    {
+      "id": "kaus-borealis",
+      "name": "Kaus Borealis",
+      "designation": "λ Sgr",
+      "magnitude": 2.8,
+      "x": 49,
+      "y": 18,
+      "tone": "warm",
+      "role": "guide",
+      "label": true
+    },
+    {
+      "id": "kaus-media",
+      "name": "Kaus Media",
+      "designation": "δ Sgr",
+      "magnitude": 2.7,
+      "x": 41,
+      "y": 48,
+      "tone": "warm",
+      "role": "guide",
+      "label": true
+    },
+    {
+      "id": "kaus-australis",
+      "name": "Kaus Australis",
+      "designation": "ε Sgr",
+      "magnitude": 1.8,
+      "x": 45,
+      "y": 80,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true,
+      "labelDy": -5
+    },
+    {
+      "id": "ascella",
+      "name": "Ascella",
+      "designation": "ζ Sgr",
+      "magnitude": 2.6,
+      "x": 67,
+      "y": 73,
+      "tone": "cool",
+      "role": "guide",
+      "label": true
+    },
+    {
+      "id": "tau",
+      "name": "Tau Sagittarii",
+      "designation": "τ Sgr",
+      "magnitude": 3.3,
+      "x": 80,
+      "y": 54,
+      "tone": "warm",
+      "role": "guide",
+      "label": false
+    },
+    {
+      "id": "nunki",
+      "name": "Nunki",
+      "designation": "σ Sgr",
+      "magnitude": 2.1,
+      "x": 72,
+      "y": 28,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true
+    },
+    {
+      "id": "alnasl",
+      "name": "Alnasl",
+      "designation": "γ² Sgr",
+      "magnitude": 3,
+      "x": 18,
+      "y": 59,
+      "tone": "warm",
+      "role": "guide",
+      "label": true
+    }
+  ],
+  "lines": [
+    [
+      "kaus-borealis",
+      "kaus-media"
+    ],
+    [
+      "kaus-media",
+      "kaus-australis"
+    ],
+    [
+      "kaus-australis",
+      "ascella"
+    ],
+    [
+      "ascella",
+      "tau"
+    ],
+    [
+      "tau",
+      "nunki"
+    ],
+    [
+      "nunki",
+      "kaus-borealis"
+    ],
+    [
+      "kaus-media",
+      "alnasl"
+    ],
+    [
+      "alnasl",
+      "kaus-australis"
+    ]
+  ],
+  "aliases": [],
+  "order": 6
+}

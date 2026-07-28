@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "entityType": "site-page",
+  "revisionId": "figures-r1",
+  "order": 5,
+  "id": "figures",
+  "label": "Grandes nomes",
+  "functionalLabel": "Pessoas, métodos e descobertas",
+  "title": "Grandes nomes | Observatório de Ideias",
+  "description": "Galeria crítica de pessoas, métodos e descobertas que mudaram a forma de investigar o mundo.",
+  "keywords": [
+    "grandes nomes",
+    "cientistas",
+    "filósofos",
+    "trajetórias",
+    "descobertas",
+    "métodos"
+  ],
+  "matchPaths": [
+    "/GrandesNomes/grandes-nomes.html",
+    "/GrandesNomes/grandes-nomes"
+  ],
+  "sections": [
+    {
+      "id": "como-ler",
+      "label": "Como ler",
+      "title": "Como interpretar as conexões históricas",
+      "description": "Distingue contribuição estabelecida, relação editorial com o acervo e limite da relação.",
+      "keywords": [
+        "como ler",
+        "referência",
+        "endosso",
+        "conexões",
+        "limites"
+      ]
+    },
+    {
+      "id": "galeria",
+      "label": "Galeria de perfis",
+      "title": "Explorar pessoas e contribuições",
+      "description": "Perfis históricos com impacto, limites, fontes e relações com linhas autorais.",
+      "keywords": [
+        "galeria",
+        "perfis",
+        "cientistas",
+        "filósofos"
+      ]
+    },
+    {
+      "id": "comparar",
+      "label": "Comparar trajetórias",
+      "title": "Comparar duas trajetórias",
+      "description": "Contraste entre problemas, métodos, escalas e legados.",
+      "keywords": [
+        "comparar pessoas",
+        "trajetórias",
+        "métodos"
+      ]
+    },
+    {
+      "id": "trilhas",
+      "label": "Trilhas temáticas",
+      "title": "Seguir uma trilha de descobertas",
+      "description": "Sequências temáticas sobre medir, gravidade, quântica e filosofia do teste.",
+      "keywords": [
+        "trilhas",
+        "distâncias",
+        "gravidade",
+        "quântica",
+        "filosofia do teste"
+      ]
+    },
+    {
+      "id": "linha-do-tempo",
+      "label": "Linha do tempo",
+      "title": "Linha do tempo de métodos e descobertas",
+      "description": "Eventos organizados pelo método e pela descoberta, não apenas por biografias.",
+      "keywords": [
+        "linha do tempo",
+        "métodos",
+        "descobertas",
+        "cronologia"
+      ]
+    },
+    {
+      "id": "indice",
+      "label": "Índice",
+      "title": "Índice completo de perfis",
+      "description": "Acesso direto a todos os perfis disponíveis no catálogo.",
+      "keywords": [
+        "índice",
+        "todos os perfis",
+        "lista de cientistas"
+      ]
+    }
+  ]
+}

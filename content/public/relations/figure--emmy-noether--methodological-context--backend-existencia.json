@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--emmy-noether--methodological-context--backend-existencia-r1",
+  "id": "figure--emmy-noether--methodological-context--backend-existencia",
+  "order": 1,
+  "source": {
+    "type": "figure",
+    "id": "emmy-noether"
+  },
+  "target": {
+    "type": "theory",
+    "id": "backend-existencia"
+  },
+  "type": "methodological-context",
+  "label": "Estrutura sem literalismo",
+  "justification": "A T-07 pode aprender com relações estruturais rigorosas, sem concluir que uma organização elegante seja por si só uma descrição física.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

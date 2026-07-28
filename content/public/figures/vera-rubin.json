@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "vera-rubin-r1",
+  "order": 4,
+  "aliases": [],
+  "id": "vera-rubin",
+  "slug": "vera-rubin",
+  "name": "Vera Rubin",
+  "lifespan": "1928–2016",
+  "area": "astronomia",
+  "role": "Astronomia extragaláctica",
+  "featuredRank": null,
+  "summary": "Produziu evidência observacional decisiva de massa não luminosa ao medir curvas de rotação de galáxias espirais.",
+  "impact": "Com Kent Ford e outros colaboradores, Rubin observou que estrelas nas regiões externas de galáxias orbitavam rápido demais para a massa visível disponível. As curvas aproximadamente planas fortaleceram o caso moderno para halos de matéria escura, sem torná-la autora original dessa hipótese.",
+  "contributions": [
+    {
+      "title": "Curvas de rotação galáctica",
+      "description": "Mediu velocidades estelares em grandes raios com espectrografia sensível."
+    },
+    {
+      "title": "Evidência para matéria escura",
+      "description": "Mostrou uma discrepância sistemática entre dinâmica observada e matéria luminosa."
+    },
+    {
+      "title": "Escala extragaláctica",
+      "description": "Investigou movimentos e estrutura de galáxias além da Via Láctea."
+    }
+  ],
+  "milestones": [
+    "Estudos de Andrômeda com Kent Ford",
+    "Curvas de rotação de galáxias espirais",
+    "Evidência observacional para halos não luminosos"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/vera-rubin.webp",
+    "width": 485,
+    "height": 800,
+    "alt": "Vera Rubin ao lado de globos astronômicos",
+    "credit": "Photograph by Mark Godfrey, courtesy of AIP Emilio Segrè Visual Archives, Gift of Vera Rubin",
+    "license": "Licença AIP de atribuição",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vera_Rubin_with_antique_globes.jpg"
+  },
+  "referenceIds": [
+    "rubin-carnegie"
+  ]
+}

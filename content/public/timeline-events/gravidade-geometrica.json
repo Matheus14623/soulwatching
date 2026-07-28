@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entityType": "timeline-event",
+  "revisionId": "gravidade-geometrica-r1",
+  "order": 5,
+  "id": "gravidade-geometrica",
+  "date": "1915",
+  "sortYear": 1915,
+  "category": "modelar",
+  "title": "Gravidade passa a ser geometria dinâmica",
+  "method": "Princípios físicos convertidos em equações de campo",
+  "description": "A relatividade geral reorganiza espaço, tempo, matéria e movimento e produz previsões observacionais próprias.",
+  "figureIds": [
+    "albert-einstein"
+  ]
+}

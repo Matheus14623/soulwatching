@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "entityType": "timeline-event",
+  "revisionId": "dualidade-holografica-r1",
+  "order": 14,
+  "id": "dualidade-holografica",
+  "date": "1997",
+  "sortYear": 1997,
+  "category": "modelar",
+  "title": "Holografia ganha uma dualidade calculável",
+  "method": "Correspondência entre duas descrições teóricas",
+  "description": "Uma teoria gravitacional e uma teoria quântica de campos são relacionadas sob condições matemáticas definidas, sem equivaler a qualquer cosmologia.",
+  "figureIds": [
+    "juan-maldacena",
+    "leonard-susskind"
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "entityType": "theory",
+  "revisionId": "er-epr-sondas-r1",
+  "order": 5,
+  "aliases": [],
+  "id": "er-epr-sondas",
+  "slug": "er-epr-sondas",
+  "code": "T-06",
+  "title": "ER=EPR e Sondas Quânticas",
+  "shortTitle": "Limites de sondagem",
+  "subtitle": "Scrambling, entrelaçamento e limites operacionais de leitura",
+  "kind": "estudo-teorico",
+  "reviewState": "delimitacao",
+  "independent": true,
+  "category": "informacao",
+  "filters": [
+    "informacao",
+    "tempo",
+    "topologia"
+  ],
+  "color": "#ff9ef2",
+  "glow": "rgba(255, 158, 242, 0.46)",
+  "position": {
+    "x": 48,
+    "y": 14
+  },
+  "summary": "Reformula a ideia de sonda como estudo de informação quântica, scrambling e limites de recuperação, sem prometer telemetria do interior de um buraco negro.",
+  "proposal": "Circuitos e modelos holográficos podem investigar como informação se dispersa e é reconstruída, preservando causalidade e a impossibilidade de sinalização pelo entrelaçamento.",
+  "questions": [
+    "Que informação pode ser recuperada em um modelo de scrambling?",
+    "Como ruído e decoerência alteram a recuperação?",
+    "Quais resultados pertencem ao simulador e quais poderiam ter interpretação gravitacional?"
+  ],
+  "concepts": [
+    "ER=EPR",
+    "scrambling",
+    "teleportação quântica",
+    "no-signalling",
+    "modelos holográficos"
+  ],
+  "nextSteps": [
+    "Implementar um protocolo de scrambling ou teleportação em circuito.",
+    "Medir recuperação sob canais ruidosos.",
+    "Registrar explicitamente o limite de no-signalling."
+  ],
+  "referenceIds": [
+    "maldacena-susskind",
+    "gao-jafferis-wall",
+    "information-causality"
+  ],
+  "objections": [
+    {
+      "id": "entrelacamento-canal",
+      "title": "Entrelaçamento não funciona como canal de telemetria",
+      "status": "incorporada",
+      "response": "A promessa de sonda foi substituída por um estudo de scrambling, recuperação e no-signalling."
+    },
+    {
+      "id": "ponte-gravidade",
+      "title": "A interpretação gravitacional de resultados em circuitos é limitada",
+      "status": "aberta",
+      "response": "Cada resultado deverá separar o que pertence ao simulador do que depende de uma correspondência holográfica específica."
+    }
+  ],
+  "decisionBoundary": {
+    "revise": "Revisar o alcance se a recuperação depender de pós-seleção, canal clássico ou condições ausentes no cenário gravitacional comparado.",
+    "abandon": "Abandonar qualquer arquitetura apresentada como sonda se ela exigir sinalização controlada pelo entrelaçamento ou leitura operacional do interior."
+  },
+  "review": {
+    "assessment": "Inviável como sonda; útil como estudo teórico",
+    "known": "ER=EPR, scrambling, teleportação e wormholes atravessáveis aparecem em contextos teóricos específicos.",
+    "focus": "Estudar recuperação de informação e causalidade em circuitos e modelos reduzidos.",
+    "limit": "A metade externa de um par entrelaçado não revela dados escolhidos no interior; comparar correlações exige canal clássico.",
+    "test": "Executar protocolos em simuladores, medir fidelidade e comparar os resultados com modelos de informação quântica."
+  },
+  "claimLinks": [
+    {
+      "id": "contexto-er-epr",
+      "label": "Contexto teórico",
+      "field": "review.known",
+      "referenceIds": [
+        "maldacena-susskind",
+        "gao-jafferis-wall"
+      ]
+    },
+    {
+      "id": "limite-sinalizacao",
+      "label": "Limite operacional",
+      "field": "review.limit",
+      "referenceIds": [
+        "information-causality"
+      ]
+    }
+  ],
+  "revisions": [
+    {
+      "revisionId": "er-epr-sondas-r1",
+      "ordinal": 1,
+      "versionLabel": "2.1",
+      "reviewedAt": "2026-07-22",
+      "label": "Primeiro registro individual · jul. 2026",
+      "changeSummary": "O histórico individual registra o abandono da promessa de telemetria e preserva apenas o programa de informação quântica.",
+      "responsibles": [
+        {
+          "name": "Matheus Camargo",
+          "role": "autor e responsável editorial"
+        }
+      ]
+    }
+  ]
+}

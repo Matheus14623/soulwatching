@@ -1,6 +1,230 @@
 {
   "generated": true,
   "nodes": {
+    "domains.content-operations": {
+      "canonicalFor": [
+        "arquitetura-alvo de entidades, referências, relações, geração de catálogos, submissões e futura persistência"
+      ],
+      "conditionalContext": [
+        {
+          "condition": "Quando houver risco de misturar material privado, submissão, dados pessoais privados ou artefato público.",
+          "id": "project.boundaries"
+        },
+        {
+          "condition": "Quando a mudança alterar geração, allowlist ou conteúdo copiado para dist.",
+          "id": "infrastructure.static-deploy"
+        },
+        {
+          "condition": "Antes de migrar uma entidade, relação, referência ou publicação.",
+          "id": "quality.validation-release"
+        }
+      ],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "assets/data/theories.js",
+        "assets/data/theory-references.js",
+        "assets/data/notable-figures.js",
+        "assets/data/notable-figure-references.js",
+        "assets/data/experiments.js",
+        "assets/data/learning-paths.js",
+        "assets/data/contributions.js",
+        "assets/js/theory-model.js",
+        "assets/js/theory-figure-model.js",
+        "assets/js/global-search.js",
+        "scripts/build.mjs",
+        "scripts/public-manifest.mjs",
+        "scripts/verify.mjs"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Operações de conteúdo e relações"
+        },
+        {
+          "level": 2,
+          "text": "Purpose"
+        },
+        {
+          "level": 2,
+          "text": "Current Confirmed Structure"
+        },
+        {
+          "level": 2,
+          "text": "Problemas a resolver"
+        },
+        {
+          "level": 3,
+          "text": "Acoplamento"
+        },
+        {
+          "level": 3,
+          "text": "Granularidade"
+        },
+        {
+          "level": 3,
+          "text": "Relações distribuídas"
+        },
+        {
+          "level": 3,
+          "text": "Referências paralelas"
+        },
+        {
+          "level": 3,
+          "text": "Fronteira pública ampla"
+        },
+        {
+          "level": 3,
+          "text": "Evolução editorial incompleta"
+        },
+        {
+          "level": 2,
+          "text": "Modelo de responsabilidade"
+        },
+        {
+          "level": 2,
+          "text": "Estrutura-alvo recomendada"
+        },
+        {
+          "level": 2,
+          "text": "Contratos por tipo"
+        },
+        {
+          "level": 3,
+          "text": "Revisões"
+        },
+        {
+          "level": 3,
+          "text": "Slugs e aliases"
+        },
+        {
+          "level": 2,
+          "text": "Registro central de relações"
+        },
+        {
+          "level": 2,
+          "text": "Referências e afirmações"
+        },
+        {
+          "level": 2,
+          "text": "Fachada de leitura"
+        },
+        {
+          "level": 2,
+          "text": "Pipeline de autoria e geração"
+        },
+        {
+          "level": 2,
+          "text": "Inclusão de uma linha de investigação"
+        },
+        {
+          "level": 2,
+          "text": "Inclusão de um perfil"
+        },
+        {
+          "level": 2,
+          "text": "Contribuições: dois modelos, não um"
+        },
+        {
+          "level": 3,
+          "text": "Submissão privada futura"
+        },
+        {
+          "level": 3,
+          "text": "Publicação pública"
+        },
+        {
+          "level": 3,
+          "text": "Papéis e crédito"
+        },
+        {
+          "level": 3,
+          "text": "Snapshots públicos"
+        },
+        {
+          "level": 3,
+          "text": "Automação correta"
+        },
+        {
+          "level": 2,
+          "text": "Preparação para backend"
+        },
+        {
+          "level": 2,
+          "text": "Estratégia de migração"
+        },
+        {
+          "level": 3,
+          "text": "Passo 1 — schemas e segurança"
+        },
+        {
+          "level": 3,
+          "text": "Passo 2 — formato granular piloto"
+        },
+        {
+          "level": 3,
+          "text": "Passo 3 — relações e referências"
+        },
+        {
+          "level": 3,
+          "text": "Passo 4 — índices e fachada"
+        },
+        {
+          "level": 3,
+          "text": "Passo 5 — publicações e contribuições"
+        },
+        {
+          "level": 2,
+          "text": "Invariants"
+        },
+        {
+          "level": 2,
+          "text": "Validation"
+        },
+        {
+          "level": 2,
+          "text": "Critérios de aceitação"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "domains.content-operations",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/domains/CONTENT_OPERATIONS_AND_RELATIONS.md",
+      "relatedContext": [
+        "domains.editorial-model",
+        "domains.theory-catalog",
+        "domains.notable-figures",
+        "project.architecture",
+        "project.maturity-roadmap"
+      ],
+      "requiredContext": [
+        "domains.index"
+      ],
+      "scope": "domains",
+      "sourceFiles": [
+        "ai/domains/CONTENT_OPERATIONS_AND_RELATIONS.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Operações de conteúdo e relações",
+      "triggers": [
+        "novo conteúdo",
+        "schema",
+        "relação central",
+        "referência compartilhada",
+        "gerador de conteúdo",
+        "contribuição",
+        "submissão",
+        "backend",
+        "banco de dados",
+        "migração de dados",
+        "ContentRepository"
+      ]
+    },
     "domains.editorial-model": {
       "canonicalFor": [
         "voz pública, classificação de formatos, privacidade e passagem de rascunho para publicação"
@@ -58,7 +282,8 @@
       "relatedContext": [
         "project.boundaries",
         "frontend.design-accessibility",
-        "domains.theory-catalog"
+        "domains.theory-catalog",
+        "domains.content-operations"
       ],
       "requiredContext": [
         "domains.index"
@@ -128,7 +353,8 @@
       "relatedContext": [
         "domains.editorial-model",
         "domains.theory-catalog",
-        "domains.notable-figures"
+        "domains.notable-figures",
+        "domains.content-operations"
       ],
       "requiredContext": [
         "root.index"
@@ -212,6 +438,7 @@
       "path": "ai/domains/NOTABLE_FIGURES_CATALOG.md",
       "relatedContext": [
         "domains.editorial-model",
+        "domains.content-operations",
         "frontend.pages-modules",
         "frontend.user-flows"
       ],
@@ -302,7 +529,8 @@
       "path": "ai/domains/THEORY_CATALOG.md",
       "relatedContext": [
         "external.theory-integration",
-        "domains.editorial-model"
+        "domains.editorial-model",
+        "domains.content-operations"
       ],
       "requiredContext": [
         "domains.index"
@@ -2309,7 +2537,8 @@
       "relatedContext": [
         "project.architecture",
         "project.commands",
-        "project.boundaries"
+        "project.boundaries",
+        "project.maturity-roadmap"
       ],
       "requiredContext": [
         "root.index"
@@ -2327,6 +2556,206 @@
         "arquitetura",
         "comandos",
         "legado"
+      ]
+    },
+    "project.maturity-roadmap": {
+      "canonicalFor": [
+        "priorização do amadurecimento geral, redução de complexidade inicial e preparação do produto para crescer"
+      ],
+      "conditionalContext": [
+        {
+          "condition": "Quando o ciclo alterar navegação, descoberta, continuidade ou leitura de uma superfície.",
+          "id": "frontend.user-flows"
+        },
+        {
+          "condition": "Quando o ciclo alterar autoria, catálogos, relações, fontes, revisões ou contribuições.",
+          "id": "domains.content-operations"
+        },
+        {
+          "condition": "Antes de encerrar qualquer ciclo de amadurecimento.",
+          "id": "quality.validation-release"
+        }
+      ],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "index.html",
+        "Teorias/teorias.html",
+        "GrandesNomes/grandes-nomes.html",
+        "Rotas/rotas.html",
+        "Contribuicoes/contribuicoes.html",
+        "assets/css/styles.css",
+        "assets/js/navigation.js",
+        "assets/js/global-search.js",
+        "assets/data/theories.js",
+        "assets/data/notable-figures.js",
+        "assets/data/contributions.js",
+        "scripts/build.mjs",
+        "scripts/public-manifest.mjs",
+        "scripts/tests/browser-smoke.test.mjs"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Plano de maturidade do produto"
+        },
+        {
+          "level": 2,
+          "text": "Purpose"
+        },
+        {
+          "level": 2,
+          "text": "Decisão executiva"
+        },
+        {
+          "level": 2,
+          "text": "Baseline da auditoria"
+        },
+        {
+          "level": 2,
+          "text": "Diagnóstico"
+        },
+        {
+          "level": 3,
+          "text": "1. A primeira visita oferece caminhos demais com peso semelhante"
+        },
+        {
+          "level": 3,
+          "text": "2. A navegação não possui um contrato único"
+        },
+        {
+          "level": 3,
+          "text": "3. A linguagem poética às vezes substitui o rótulo funcional"
+        },
+        {
+          "level": 3,
+          "text": "4. A profundidade está presente, mas nem sempre em camadas"
+        },
+        {
+          "level": 3,
+          "text": "5. A continuidade de uma Rota Guiada se perde no conteúdo"
+        },
+        {
+          "level": 3,
+          "text": "6. A modelagem já é rica, porém distribuída"
+        },
+        {
+          "level": 3,
+          "text": "7. Automação editorial e submissão são problemas diferentes"
+        },
+        {
+          "level": 3,
+          "text": "8. A qualidade estrutural é mais madura que a qualidade de jornada"
+        },
+        {
+          "level": 2,
+          "text": "Contrato de experiência por intenção"
+        },
+        {
+          "level": 2,
+          "text": "Princípios do amadurecimento"
+        },
+        {
+          "level": 2,
+          "text": "Plano priorizado"
+        },
+        {
+          "level": 3,
+          "text": "Fase 0 — decisões e guardrails"
+        },
+        {
+          "level": 3,
+          "text": "Fase 1 — orientação e continuidade"
+        },
+        {
+          "level": 3,
+          "text": "Fase 2 — leitura em camadas e acessibilidade operacional"
+        },
+        {
+          "level": 3,
+          "text": "Fase 3 — plataforma de conteúdo estática"
+        },
+        {
+          "level": 3,
+          "text": "Fase 4 — operações editoriais e contribuições"
+        },
+        {
+          "level": 3,
+          "text": "Fase 5 — backend somente por gatilho"
+        },
+        {
+          "level": 2,
+          "text": "Qualidade, desempenho e operação"
+        },
+        {
+          "level": 2,
+          "text": "Métricas de sucesso"
+        },
+        {
+          "level": 3,
+          "text": "Descoberta"
+        },
+        {
+          "level": 3,
+          "text": "Continuidade"
+        },
+        {
+          "level": 3,
+          "text": "Manutenção"
+        },
+        {
+          "level": 3,
+          "text": "Inclusão e qualidade"
+        },
+        {
+          "level": 2,
+          "text": "Avaliação formativa com pessoas"
+        },
+        {
+          "level": 2,
+          "text": "Ordem recomendada de execução"
+        },
+        {
+          "level": 2,
+          "text": "Não fazer agora"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "project.maturity-roadmap",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/project/MATURITY_ROADMAP.md",
+      "relatedContext": [
+        "project.architecture",
+        "project.boundaries",
+        "frontend.design-accessibility",
+        "domains.editorial-model",
+        "quality.performance-accessibility",
+        "infrastructure.static-deploy"
+      ],
+      "requiredContext": [
+        "project.index"
+      ],
+      "scope": "project",
+      "sourceFiles": [
+        "ai/project/MATURITY_ROADMAP.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Plano de maturidade do produto",
+      "triggers": [
+        "pente-fino",
+        "maturidade",
+        "roadmap",
+        "onboarding",
+        "nova pessoa usuária",
+        "arquitetura de informação",
+        "escalabilidade",
+        "preparação para backend",
+        "dívida técnica"
       ]
     },
     "quality.index": {
@@ -2505,6 +2934,8 @@
         "scripts/public-manifest.mjs",
         "scripts/tests/public-smoke.test.mjs",
         "scripts/tests/accessibility-contracts.test.mjs",
+        "scripts/tests/feature-contracts.test.mjs",
+        "scripts/tests/contributions-contracts.test.mjs",
         "scripts/tests/browser-smoke.test.mjs",
         ".github/workflows/quality.yml",
         "package.json"
@@ -2658,6 +3089,10 @@
         },
         {
           "level": 3,
+          "text": "content-platform-evolution"
+        },
+        {
+          "level": 3,
           "text": "frontend-change"
         },
         {
@@ -2700,6 +3135,7 @@
       "scope": "project",
       "sourceFiles": [
         "ai/graph/routes/BUILD_DEPLOY_CHANGE.json",
+        "ai/graph/routes/CONTENT_PLATFORM_EVOLUTION.json",
         "ai/graph/routes/FRONTEND_CHANGE.json",
         "ai/graph/routes/GENERAL_ORIENTATION.json",
         "ai/graph/routes/INTERACTIVE_EXPERIMENT_CHANGE.json",
@@ -2743,6 +3179,39 @@
         "infrastructure.static-deploy"
       ]
     },
+    "content-platform-evolution": {
+      "conditionalContext": [
+        {
+          "condition": "Quando a mudança tocar submissões, dados pessoais, materiais privados ou a fronteira do artefato público.",
+          "id": "project.boundaries"
+        },
+        {
+          "condition": "Quando imports, adaptadores, módulos de runtime ou entrypoints forem alterados.",
+          "id": "project.architecture"
+        },
+        {
+          "condition": "Quando geração, allowlist, build ou deploy forem alterados.",
+          "id": "infrastructure.static-deploy"
+        },
+        {
+          "condition": "Antes de considerar qualquer etapa da migração pronta.",
+          "id": "quality.validation-release"
+        }
+      ],
+      "description": "Reorganizar schemas, entidades, referências, relações, geradores, contribuições ou preparar persistência futura.",
+      "id": "content-platform-evolution",
+      "relatedContext": [
+        "domains.editorial-model",
+        "domains.theory-catalog",
+        "domains.notable-figures"
+      ],
+      "requiredContext": [
+        "root.index",
+        "project.maturity-roadmap",
+        "domains.index",
+        "domains.content-operations"
+      ]
+    },
     "frontend-change": {
       "conditionalContext": [
         {
@@ -2776,7 +3245,8 @@
       "id": "general-orientation",
       "relatedContext": [
         "project.architecture",
-        "project.boundaries"
+        "project.boundaries",
+        "project.maturity-roadmap"
       ],
       "requiredContext": [
         "root.index",
@@ -2850,6 +3320,7 @@
       "id": "publication-change",
       "relatedContext": [
         "project.boundaries",
+        "domains.content-operations",
         "frontend.design-accessibility"
       ],
       "requiredContext": [
@@ -2896,6 +3367,7 @@
       "id": "theory-content-change",
       "relatedContext": [
         "domains.editorial-model",
+        "domains.content-operations",
         "external.theory-integration"
       ],
       "requiredContext": [

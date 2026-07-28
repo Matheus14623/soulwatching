@@ -1,7 +1,7 @@
 import {
   CONSTELLATIONS,
   CONSTELLATION_REFERENCES,
-} from '../data/constellations.js?v=constellation-atlas-v2';
+} from '../data/generated/runtime/constellations.js';
 
 export const CONSTELLATION_SEASONS = Object.freeze([
   Object.freeze({ id: 'all', label: 'Todas' }),
@@ -16,6 +16,7 @@ const constellationById = new Map(
     [constellation.id, constellation],
     [constellation.slug, constellation],
     [constellation.abbreviation.toLowerCase(), constellation],
+    ...(constellation.aliases || []).map((alias) => [alias.toLowerCase(), constellation]),
   ]),
 );
 

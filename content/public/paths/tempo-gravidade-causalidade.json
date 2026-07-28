@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "entityType": "path",
+  "revisionId": "tempo-gravidade-causalidade-r1",
+  "id": "tempo-gravidade-causalidade",
+  "slug": "tempo-gravidade-causalidade",
+  "title": "Tempo, gravidade e causalidade",
+  "summary": "Uma rota entre relatividade, simetrias, horizontes e as restrições causais representadas por um cone de luz.",
+  "audience": "Para conectar física e modelos de espaço-tempo",
+  "durationMinutes": 22,
+  "accent": "purple",
+  "steps": [
+    {
+      "type": "figure",
+      "id": "albert-einstein",
+      "reason": "A relatividade reorganiza as relações entre medidas de espaço, tempo, energia e gravidade."
+    },
+    {
+      "type": "figure",
+      "id": "emmy-noether",
+      "reason": "O vínculo entre simetrias e leis de conservação oferece uma linguagem estrutural para a física."
+    },
+    {
+      "type": "theory",
+      "id": "universo-buraco-negro",
+      "reason": "A hipótese é lida como proposta especulativa, com suas dependências e limites expostos."
+    },
+    {
+      "type": "theory",
+      "id": "observacao-nao-linear",
+      "reason": "A entrada amplia a discussão sobre referência, observação e descrição sem confundi-las com leis estabelecidas."
+    },
+    {
+      "type": "experiment",
+      "id": "cone-de-luz",
+      "reason": "O simulador separa mudanças de coordenadas de invariantes causais em um caso controlado."
+    }
+  ],
+  "aliases": [],
+  "order": 2
+}

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "entityType": "constellation",
+  "revisionId": "cruzeiro-do-sul-r1",
+  "id": "cruzeiro-do-sul",
+  "slug": "cruzeiro-do-sul",
+  "name": "Cruzeiro do Sul",
+  "latinName": "Crux",
+  "abbreviation": "Cru",
+  "featuredRank": 1,
+  "seasonId": "outono",
+  "season": "Céu austral · destaque de março a junho",
+  "signature": "CRUZ COMPACTA",
+  "recognition": "Procure uma cruz pequena e inclinada. O eixo mais longo liga Gacrux, no topo, a Acrux, na base.",
+  "fact": "Crux é a menor das 88 constelações oficiais. Alpha e Beta Centauri ficam fora dela, mas funcionam como apontadoras para encontrá-la.",
+  "guideNote": "O prolongamento aproximado do eixo Gacrux–Acrux ajuda a localizar o polo sul celeste; é uma orientação aproximada, não uma seta direta.",
+  "sourceIds": [
+    "iau-constellations",
+    "eso-crux"
+  ],
+  "relatedConstellationIds": [
+    "centauro",
+    "vela"
+  ],
+  "stars": [
+    {
+      "id": "gacrux",
+      "name": "Gacrux",
+      "designation": "γ Cru",
+      "magnitude": 1.6,
+      "x": 49,
+      "y": 13,
+      "tone": "warm",
+      "role": "anchor",
+      "label": true
+    },
+    {
+      "id": "acrux",
+      "name": "Acrux",
+      "designation": "α Cru",
+      "magnitude": 0.8,
+      "x": 54,
+      "y": 86,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true
+    },
+    {
+      "id": "imai",
+      "name": "Imai",
+      "designation": "δ Cru",
+      "magnitude": 2.8,
+      "x": 18,
+      "y": 48,
+      "tone": "cool",
+      "role": "guide",
+      "label": true
+    },
+    {
+      "id": "mimosa",
+      "name": "Mimosa",
+      "designation": "β Cru",
+      "magnitude": 1.3,
+      "x": 84,
+      "y": 54,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true
+    },
+    {
+      "id": "ginan",
+      "name": "Ginan",
+      "designation": "ε Cru",
+      "magnitude": 3.6,
+      "x": 65,
+      "y": 37,
+      "tone": "warm",
+      "role": "context",
+      "label": false
+    }
+  ],
+  "lines": [
+    [
+      "gacrux",
+      "acrux"
+    ],
+    [
+      "imai",
+      "mimosa"
+    ]
+  ],
+  "aliases": [],
+  "order": 1
+}

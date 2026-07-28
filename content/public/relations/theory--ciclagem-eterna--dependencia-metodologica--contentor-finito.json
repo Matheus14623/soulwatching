@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "theory--ciclagem-eterna--dependencia-metodologica--contentor-finito-r1",
+  "id": "theory--ciclagem-eterna--dependencia-metodologica--contentor-finito",
+  "order": 8,
+  "source": {
+    "type": "theory",
+    "id": "ciclagem-eterna"
+  },
+  "target": {
+    "type": "theory",
+    "id": "contentor-finito"
+  },
+  "type": "dependencia-metodologica",
+  "label": "Dependência metodológica",
+  "justification": "Uma cosmologia cíclica precisa declarar condições dinâmicas e de medida antes de invocar recorrência.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--albert-einstein--historical-foundation--universo-buraco-negro-r1",
+  "id": "figure--albert-einstein--historical-foundation--universo-buraco-negro",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "albert-einstein"
+  },
+  "target": {
+    "type": "theory",
+    "id": "universo-buraco-negro"
+  },
+  "type": "historical-foundation",
+  "label": "Tempo próprio e gravitação",
+  "justification": "A T-05 parte de temas descritos pela relatividade geral, mas sua gênese proposta para o tempo não é consequência automática das equações de Einstein.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

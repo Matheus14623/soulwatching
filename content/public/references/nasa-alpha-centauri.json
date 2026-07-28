@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "nasa-alpha-centauri-r1",
+  "id": "nasa-alpha-centauri",
+  "aliases": [],
+  "title": "O sistema estelar Alpha Centauri",
+  "institution": "NASA Science",
+  "url": "https://science.nasa.gov/exoplanets/other-stars-other-worlds/our-nearest-celestial-neighbor-an-exotic-3-star-system/",
+  "kind": "Material institucional"
+}

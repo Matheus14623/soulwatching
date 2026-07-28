@@ -26,6 +26,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/styles.css?v=smooth-flow-v1" />
     <link rel="stylesheet" href="../assets/css/observatory-pages.css?v=observatory-scale-v1" />
+    <link rel="stylesheet" href="../assets/css/site-navigation.css?v=site-navigation-v1" />
     <link rel="stylesheet" href="./arquivo.css?v=observatory-scale-v1" />
   </head>
   <body class="observatory-page-body archive-page-body" data-mode="normal">
@@ -44,21 +45,21 @@
         </button>
 
         <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
-          <a href="../index.html#topo">Início</a>
-          <a href="../Teorias/teorias.html">Teorias</a>
-          <a href="../Mapa/mapa.html">Mapa</a>
-          <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
-          <a href="../Constelacoes/constelacoes.html">Constelações</a>
-          <a href="#arquivo" aria-current="page">Arquivo</a>
-          <a href="../Laboratorio/laboratorio.html">Laboratório</a>
-          <a href="../index.html#contato">Coordenadas</a>
+          <a href="../Rotas/rotas.html" title="Começar por uma pergunta">Começar</a>
+          <a href="../Teorias/teorias.html" title="Linhas de investigação autorais">Teorias</a>
+          <a href="../Mapa/mapa.html" title="Mapa de relações">Mapa</a>
+          <a href="../GrandesNomes/grandes-nomes.html" title="Pessoas, métodos e descobertas">Grandes nomes</a>
+          <a href="../Constelacoes/constelacoes.html" title="Atlas celeste">Constelações</a>
+          <a href="../Laboratorio/laboratorio.html" title="Simulações e modelos didáticos">Laboratório</a>
+          <a href="../Contribuicoes/contribuicoes.html" title="Propor uma contribuição">Contribuir</a>
+          <a href="../index.html#sobre" title="Sobre o Observatório">Sobre</a>
         </nav>
 
         <div class="status-pill" aria-live="polite" data-status-pill>
           <span class="status-dot" aria-hidden="true"></span>
           <span data-status-text>Arquivo em formação</span>
         </div>
-        <span class="beta-badge" aria-label="Modelo em versão beta">Beta</span>
+        <span class="beta-badge" aria-label="Beta editorial: navegação e catálogos em evolução" title="Beta editorial: navegação e catálogos em evolução">Beta</span>
       </div>
     </header>
 
@@ -76,7 +77,7 @@
 
           <aside class="page-status-card" aria-label="Estado editorial do arquivo">
             <span>estado editorial</span>
-            <strong>0 ensaios e registros</strong>
+            <strong data-publication-count-label data-content-metric="publications" data-content-format="reviewed-publications">0 publicações revisadas</strong>
             <dl class="page-status-list">
               <div><dt>Ensaios</dt><dd>estrutura inicial</dd></div>
               <div><dt>Registros</dt><dd>campo preparado</dd></div>
@@ -100,25 +101,25 @@
               <span>publicado · arquivo central</span>
               <h3>Teorias</h3>
               <p>Hipóteses estruturadas com pergunta, premissa, estágio, tensão e relações.</p>
-              <strong><span data-site-theory-count>10</span> linhas catalogadas</strong>
+              <strong><span data-site-theory-count data-content-metric="theories">10</span> linhas catalogadas</strong>
             </a>
             <article class="archive-type-card">
               <span>estrutura inicial</span>
               <h3>Ensaios</h3>
               <p>Textos longos para desenvolver uma tese com contexto, objeções, fontes e histórico de revisão.</p>
-              <strong>nenhum publicado</strong>
+              <strong data-publication-type-count="ensaio" data-content-metric="publicationType:ensaio" data-content-format="published-publication-type">nenhum publicado</strong>
             </article>
             <article class="archive-type-card">
               <span>campo preparado</span>
               <h3>Registros</h3>
               <p>Notas conceituais curtas, vinculadas a uma pergunta ou teoria; não são registros pessoais cotidianos.</p>
-              <strong>nenhum publicado</strong>
+              <strong data-publication-type-count="nota-tecnica" data-content-metric="publicationType:nota-tecnica" data-content-format="published-publication-type">nenhum publicado</strong>
             </article>
             <a class="archive-type-card" href="../Laboratorio/laboratorio.html">
               <span>experimentos ativos</span>
               <h3>Laboratório</h3>
               <p>Interfaces, canvas e protótipos que investigam uma ideia por gesto, visualização ou código.</p>
-              <strong data-site-experiment-count-label>experimentos navegáveis</strong>
+              <strong data-site-experiment-count-label data-content-metric="activeExperiments" data-content-format="navigable-fields">experimentos navegáveis</strong>
             </a>
             <a class="archive-type-card" href="../Contribuicoes/contribuicoes.html">
               <span>curadoria aberta</span>
@@ -130,7 +131,20 @@
         </div>
       </section>
 
-      <section class="section archive-empty-section" aria-labelledby="empty-archive-title">
+      <section class="section archive-publications-section" id="publicacoes" data-publication-section aria-labelledby="archive-publications-title" hidden>
+        <div class="container">
+          <div class="page-section-heading">
+            <div>
+              <p class="section-kicker">Publicações revisadas</p>
+              <h2 id="archive-publications-title">Textos com autoria, fontes e histórico identificáveis.</h2>
+            </div>
+            <p data-publication-count-label data-content-metric="publications" data-content-format="reviewed-publications">0 publicações revisadas</p>
+          </div>
+          <div class="publication-grid" data-publication-list></div>
+        </div>
+      </section>
+
+      <section class="section archive-empty-section" data-publication-empty aria-labelledby="empty-archive-title">
           <div class="container empty-panel">
             <p class="section-kicker">arquivo em formação</p>
             <h2 id="empty-archive-title">A primeira publicação ainda não entrou em órbita.</h2>
@@ -179,20 +193,25 @@
     <footer class="site-footer">
       <div class="container footer-grid">
         <p><strong>Arquivo Editorial</strong><br />Estrutura em formação do Observatório de Matheus Camargo.</p>
-        <nav class="footer-links" aria-label="Navegação e links profissionais">
+        <nav class="footer-links" aria-label="Navegação e links profissionais" data-footer-nav>
           <a href="../index.html#topo">Início</a>
+          <a href="../Rotas/rotas.html">Rotas guiadas</a>
           <a href="../Teorias/teorias.html">Teorias</a>
           <a href="../Mapa/mapa.html">Mapa</a>
           <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
           <a href="../Constelacoes/constelacoes.html">Constelações</a>
           <a href="../Laboratorio/laboratorio.html">Laboratório</a>
+          <a href="./arquivo.html">Publicações</a>
+          <a href="../Contribuicoes/contribuicoes.html">Contribuições</a>
+          <a href="../index.html#sobre">Sobre</a>
           <a href="mailto:Matheuscamargodealencar@gmail.com">E-mail</a>
+          <a href="https://www.linkedin.com/in/gomin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer">GitHub</a>
         </nav>
       </div>
     </footer>
 
     <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo">↑</button>
-    <script type="module" src="../assets/js/page-shell.js?v=smooth-flow-v1"></script>
+    <script type="module" src="./arquivo.js?v=publication-v1"></script>
   </body>
 </html>

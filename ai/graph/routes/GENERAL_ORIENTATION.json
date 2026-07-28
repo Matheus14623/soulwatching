@@ -3,5 +3,5 @@
   "description": "Entender o repositório, localizar responsabilidades ou preparar uma tarefa ainda sem escopo definido.",
   "requiredContext": ["root.index", "project.index"],
   "conditionalContext": [],
-  "relatedContext": ["project.architecture", "project.boundaries"]
+  "relatedContext": ["project.architecture", "project.boundaries", "project.maturity-roadmap"]
 }

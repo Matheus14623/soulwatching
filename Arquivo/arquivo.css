@@ -47,7 +47,7 @@ a.archive-type-card:focus-visible {
 .archive-type-card > strong {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -74,6 +74,61 @@ a.archive-type-card:focus-visible {
   padding-top: clamp(3rem, 6vw, 5rem);
   padding-bottom: clamp(3rem, 6vw, 5rem);
   background: var(--bg-2);
+}
+
+.archive-publications-section {
+  background: var(--bg-2);
+}
+
+.publication-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.publication-card {
+  display: grid;
+  align-content: start;
+  min-height: 22rem;
+  padding: clamp(1.15rem, 3vw, 1.6rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(114, 236, 255, 0.1), transparent 15rem),
+    rgba(255, 255, 255, 0.035);
+}
+
+.publication-card-meta,
+.publication-card-authors {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.publication-card h3 {
+  margin: 1rem 0 0.55rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  line-height: 1;
+}
+
+.publication-card-summary {
+  color: var(--text-soft);
+}
+
+.publication-card-link {
+  align-self: end;
+  justify-self: start;
+  margin-top: 1.5rem;
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+.publication-card-notice {
+  padding: 0.75rem;
+  border-left: 2px solid #ffcd5e;
+  background: rgba(255, 205, 94, 0.07);
+  color: #fff1c2;
 }
 
 .archive-workflow-section {
@@ -105,7 +160,7 @@ a.archive-type-card:focus-visible {
 .archive-workflow li > span {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.12em;
 }
 
@@ -164,7 +219,7 @@ a.archive-type-card:focus-visible {
 .archive-schema-list dt {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -181,7 +236,8 @@ a.archive-type-card:focus-visible {
 }
 
 @media (max-width: 760px) {
-  .archive-type-grid {
+  .archive-type-grid,
+  .publication-grid {
     grid-template-columns: 1fr;
   }
 

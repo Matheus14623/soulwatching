@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "entityType": "constellation",
+  "revisionId": "gemeos-r1",
+  "id": "gemeos",
+  "slug": "gemeos",
+  "name": "Gêmeos",
+  "latinName": "Gemini",
+  "abbreviation": "Gem",
+  "featuredRank": null,
+  "seasonId": "verao",
+  "season": "Verão brasileiro · dezembro a março",
+  "signature": "CASTOR E POLLUX",
+  "recognition": "Partindo de Órion, siga de Rigel pelo cinturão e por Betelgeuse até o par Castor e Pollux. Duas cadeias quase paralelas descem a partir delas.",
+  "fact": "Castor e Pollux parecem formar um par no céu, mas não constituem um sistema físico entre si. Castor é um sistema múltiplo; Pollux é uma gigante com um planeta conhecido.",
+  "guideNote": "Pollux é a mais brilhante das duas. O aglomerado M35 fica perto do pé marcado por Propus e aparece melhor em céu escuro ou com instrumento.",
+  "sourceIds": [
+    "iau-constellations",
+    "nasa-gemini"
+  ],
+  "relatedConstellationIds": [
+    "orion",
+    "touro"
+  ],
+  "stars": [
+    {
+      "id": "pollux",
+      "name": "Pollux",
+      "designation": "β Gem",
+      "magnitude": 1.2,
+      "x": 68,
+      "y": 17,
+      "tone": "warm",
+      "role": "anchor",
+      "label": true
+    },
+    {
+      "id": "castor",
+      "name": "Castor",
+      "designation": "α Gem",
+      "magnitude": 1.6,
+      "x": 30,
+      "y": 16,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true,
+      "combined": true
+    },
+    {
+      "id": "alhena",
+      "name": "Alhena",
+      "designation": "γ Gem",
+      "magnitude": 1.9,
+      "x": 78,
+      "y": 83,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true,
+      "labelDy": -5
+    },
+    {
+      "id": "tejat",
+      "name": "Tejat",
+      "designation": "μ Gem",
+      "magnitude": 2.9,
+      "x": 31,
+      "y": 61,
+      "tone": "warm",
+      "role": "guide",
+      "label": true
+    },
+    {
+      "id": "mebsuta",
+      "name": "Mebsuta",
+      "designation": "ε Gem",
+      "magnitude": 3.1,
+      "x": 36,
+      "y": 38,
+      "tone": "warm",
+      "role": "guide",
+      "label": true
+    },
+    {
+      "id": "propus",
+      "name": "Propus",
+      "designation": "η Gem",
+      "magnitude": 3.3,
+      "x": 22,
+      "y": 83,
+      "tone": "warm",
+      "role": "guide",
+      "label": true,
+      "variable": true,
+      "labelDy": -5
+    },
+    {
+      "id": "wasat",
+      "name": "Wasat",
+      "designation": "δ Gem",
+      "magnitude": 3.5,
+      "x": 61,
+      "y": 42,
+      "tone": "white",
+      "role": "guide",
+      "label": true
+    },
+    {
+      "id": "mekbuda",
+      "name": "Mekbuda",
+      "designation": "ζ Gem",
+      "magnitude": 4,
+      "x": 65,
+      "y": 63,
+      "tone": "warm",
+      "role": "guide",
+      "label": false,
+      "variable": true
+    }
+  ],
+  "lines": [
+    [
+      "castor",
+      "pollux"
+    ],
+    [
+      "castor",
+      "mebsuta"
+    ],
+    [
+      "mebsuta",
+      "tejat"
+    ],
+    [
+      "tejat",
+      "propus"
+    ],
+    [
+      "pollux",
+      "wasat"
+    ],
+    [
+      "wasat",
+      "mekbuda"
+    ],
+    [
+      "mekbuda",
+      "alhena"
+    ],
+    [
+      "mebsuta",
+      "wasat"
+    ]
+  ],
+  "aliases": [],
+  "order": 8
+}

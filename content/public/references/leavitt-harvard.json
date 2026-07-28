@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "leavitt-harvard-r1",
+  "id": "leavitt-harvard",
+  "aliases": [],
+  "title": "Henrietta Swan Leavitt",
+  "institution": "Harvard College Observatory",
+  "kind": "Biografia institucional",
+  "url": "https://platestacks.cfa.harvard.edu/women-at-hco/henrietta-swan-leavitt"
+}

@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation-type-taxonomy",
+  "types": [
+    {
+      "id": "derivacao",
+      "label": "Derivação",
+      "description": "Uma linha desdobra uma pergunta ou mecanismo da outra.",
+      "sourceType": "theory",
+      "targetType": "theory",
+      "symmetric": false,
+      "inverseLabel": "Derivada de",
+      "requiresJustification": true,
+      "requiresReference": false
+    },
+    {
+      "id": "dependencia-metodologica",
+      "label": "Dependência metodológica",
+      "description": "Uma linha precisa satisfazer condições explicitadas pela outra.",
+      "sourceType": "theory",
+      "targetType": "theory",
+      "symmetric": false,
+      "inverseLabel": "É requisito metodológico para",
+      "requiresJustification": true,
+      "requiresReference": false
+    },
+    {
+      "id": "contexto-metodologico",
+      "label": "Contexto metodológico",
+      "description": "As linhas compartilham uma forma de organizar, testar ou revisar argumentos.",
+      "sourceType": "theory",
+      "targetType": "theory",
+      "symmetric": true,
+      "inverseLabel": "Contexto metodológico",
+      "requiresJustification": true,
+      "requiresReference": false
+    },
+    {
+      "id": "afinidade-conceitual",
+      "label": "Afinidade conceitual",
+      "description": "Há vocabulário ou problema comum sem implicar apoio empírico.",
+      "sourceType": "theory",
+      "targetType": "theory",
+      "symmetric": true,
+      "inverseLabel": "Afinidade conceitual",
+      "requiresJustification": true,
+      "requiresReference": false
+    },
+    {
+      "id": "tensao-critica",
+      "label": "Tensão crítica",
+      "description": "Uma linha explicita um limite que restringe a interpretação da outra.",
+      "sourceType": "theory",
+      "targetType": "theory",
+      "symmetric": true,
+      "inverseLabel": "Tensão crítica",
+      "requiresJustification": true,
+      "requiresReference": true
+    },
+    {
+      "id": "observavel-compartilhado",
+      "label": "Observável compartilhado",
+      "description": "As linhas podem ser confrontadas com parte do mesmo conjunto de observações.",
+      "sourceType": "theory",
+      "targetType": "theory",
+      "symmetric": true,
+      "inverseLabel": "Observável compartilhado",
+      "requiresJustification": true,
+      "requiresReference": true
+    },
+    {
+      "id": "ponte-operacional",
+      "label": "Ponte operacional",
+      "description": "Uma linha oferece um caminho prático para examinar a outra.",
+      "sourceType": "theory",
+      "targetType": "theory",
+      "symmetric": false,
+      "inverseLabel": "Oferece ponte operacional para",
+      "requiresJustification": true,
+      "requiresReference": false
+    },
+    {
+      "id": "direct-reference",
+      "label": "Referência direta",
+      "sourceType": "figure",
+      "targetType": "theory",
+      "symmetric": false,
+      "inverseLabel": "Relacionado diretamente a",
+      "requiresJustification": true,
+      "requiresReference": true
+    },
+    {
+      "id": "historical-foundation",
+      "label": "Fundamento histórico",
+      "sourceType": "figure",
+      "targetType": "theory",
+      "symmetric": false,
+      "inverseLabel": "Tem como fundamento histórico",
+      "requiresJustification": true,
+      "requiresReference": true
+    },
+    {
+      "id": "methodological-context",
+      "label": "Contexto metodológico",
+      "sourceType": "figure",
+      "targetType": "theory",
+      "symmetric": false,
+      "inverseLabel": "Recebe contexto metodológico de",
+      "requiresJustification": true,
+      "requiresReference": false
+    },
+    {
+      "id": "critical-boundary",
+      "label": "Limite crítico",
+      "sourceType": "figure",
+      "targetType": "theory",
+      "symmetric": false,
+      "inverseLabel": "Tem como limite crítico",
+      "requiresJustification": true,
+      "requiresReference": true
+    },
+    {
+      "id": "conceptual-context",
+      "label": "Contexto conceitual",
+      "sourceType": "figure",
+      "targetType": "theory",
+      "symmetric": false,
+      "inverseLabel": "Recebe contexto conceitual de",
+      "requiresJustification": true,
+      "requiresReference": false
+    },
+    {
+      "id": "examines-theory",
+      "label": "Examina a linha",
+      "description": "A publicação analisa afirmações, métodos, limites ou resultados de uma linha do catálogo.",
+      "sourceType": "publication",
+      "targetType": "theory",
+      "symmetric": false,
+      "inverseLabel": "É examinada pela publicação",
+      "requiresJustification": true,
+      "requiresReference": true
+    },
+    {
+      "id": "discusses-figure",
+      "label": "Discute a contribuição histórica",
+      "description": "A publicação discute de forma documentada o trabalho ou o método de um perfil histórico.",
+      "sourceType": "publication",
+      "targetType": "figure",
+      "symmetric": false,
+      "inverseLabel": "É discutido pela publicação",
+      "requiresJustification": true,
+      "requiresReference": true
+    },
+    {
+      "id": "responds-to-publication",
+      "label": "Responde à publicação",
+      "description": "A publicação apresenta resposta, crítica ou continuação rastreável de outra publicação.",
+      "sourceType": "publication",
+      "targetType": "publication",
+      "symmetric": false,
+      "inverseLabel": "Recebe resposta da publicação",
+      "requiresJustification": true,
+      "requiresReference": true
+    },
+    {
+      "id": "illustrates-theory",
+      "label": "Ilustra a linha",
+      "description": "O experimento torna uma pergunta, limite ou mecanismo da linha explorável em um modelo delimitado.",
+      "sourceType": "experiment",
+      "targetType": "theory",
+      "symmetric": false,
+      "inverseLabel": "É ilustrada pelo experimento",
+      "requiresJustification": true,
+      "requiresReference": true
+    }
+  ]
+}

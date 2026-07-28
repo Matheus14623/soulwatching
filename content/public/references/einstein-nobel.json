@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "einstein-nobel-r1",
+  "id": "einstein-nobel",
+  "aliases": [],
+  "title": "Albert Einstein — Facts",
+  "institution": "Nobel Prize",
+  "kind": "Perfil institucional",
+  "url": "https://www.nobelprize.org/prizes/physics/1921/einstein/facts/"
+}

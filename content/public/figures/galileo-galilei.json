@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "galileo-galilei-r1",
+  "order": 0,
+  "aliases": [],
+  "id": "galileo-galilei",
+  "slug": "galileo-galilei",
+  "name": "Galileo Galilei",
+  "lifespan": "1564–1642",
+  "area": "astronomia",
+  "role": "Astronomia e física experimental",
+  "featuredRank": null,
+  "summary": "Transformou o telescópio em instrumento astronômico e articulou observação, experimento e descrição matemática do movimento.",
+  "impact": "Suas observações do relevo lunar, dos satélites de Júpiter, das fases de Vênus e das manchas solares enfraqueceram a imagem de um céu perfeito e imutável. O valor de seu trabalho está também no método: instrumentos ampliam os sentidos, mas seus sinais ainda precisam de interpretação.",
+  "contributions": [
+    {
+      "title": "Telescópio aplicado ao céu",
+      "description": "Aprimorou instrumentos existentes e os usou para produzir evidências astronômicas repetíveis."
+    },
+    {
+      "title": "Movimento em linguagem matemática",
+      "description": "Desenvolveu análises de queda, aceleração e inércia que prepararam a física clássica."
+    },
+    {
+      "title": "Observação contra autoridade",
+      "description": "Defendeu que modelos do cosmos devem responder a fenômenos observáveis e argumentos públicos."
+    }
+  ],
+  "milestones": [
+    "Sidereus Nuncius · 1610",
+    "Dialogo sopra i due massimi sistemi · 1632",
+    "Discorsi e dimostrazioni matematiche · 1638"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/galileo-galilei.webp",
+    "width": 630,
+    "height": 800,
+    "alt": "Retrato histórico de Galileo Galilei",
+    "credit": "Justus Sustermans · Royal Museums Greenwich",
+    "license": "Domínio público",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Galileo_Galilei_(1564-1642)_RMG_BHC2700.tiff"
+  },
+  "referenceIds": [
+    "galileo-museo"
+  ]
+}

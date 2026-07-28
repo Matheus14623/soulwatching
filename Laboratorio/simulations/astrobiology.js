@@ -70,7 +70,7 @@ export function mountSimulation(root, { announce }) {
     const probabilities = fields.slice(1).map((field) => 10 ** Number(field.input.value));
     const labels = ['Mundos candidatos', 'Com vida', 'Com vida complexa', 'Com tecnologia', 'Com sinal detectável', 'Coincidentes no tempo'];
     const stages = [worldCount];
-    probabilities.forEach((probability) => stages.push(stages.at(-1) * probability));
+    probabilities.forEach((probability) => stages.push(stages[stages.length - 1] * probability));
     const {
       combinedProbability,
       expectedCount: lambda,

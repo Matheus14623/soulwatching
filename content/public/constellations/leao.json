@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "entityType": "constellation",
+  "revisionId": "leao-r1",
+  "id": "leao",
+  "slug": "leao",
+  "name": "Leão",
+  "latinName": "Leo",
+  "abbreviation": "Leo",
+  "featuredRank": null,
+  "seasonId": "outono",
+  "season": "Outono brasileiro · março a junho",
+  "signature": "FOICE DE LEÃO",
+  "recognition": "Regulus marca a base de uma forma parecida com um ponto de interrogação invertido. Zosma, Chertan e Denebola formam o triângulo traseiro.",
+  "fact": "Algieba parece uma estrela a olho nu, mas um telescópio separa o ponto em duas estrelas amareladas.",
+  "guideNote": "A Foice é um asterismo dentro de Leão, não um limite oficial da constelação.",
+  "sourceIds": [
+    "iau-constellations",
+    "nasa-leo",
+    "nasa-asterisms"
+  ],
+  "relatedConstellationIds": [],
+  "stars": [
+    {
+      "id": "regulus",
+      "name": "Regulus",
+      "designation": "α Leo",
+      "magnitude": 1.4,
+      "x": 40,
+      "y": 79,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true,
+      "labelDy": -5
+    },
+    {
+      "id": "algieba",
+      "name": "Algieba",
+      "designation": "γ Leo",
+      "magnitude": 2,
+      "x": 42,
+      "y": 48,
+      "tone": "warm",
+      "role": "anchor",
+      "label": true,
+      "combined": true
+    },
+    {
+      "id": "denebola",
+      "name": "Denebola",
+      "designation": "β Leo",
+      "magnitude": 2.1,
+      "x": 84,
+      "y": 51,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true
+    },
+    {
+      "id": "zosma",
+      "name": "Zosma",
+      "designation": "δ Leo",
+      "magnitude": 2.6,
+      "x": 62,
+      "y": 49,
+      "tone": "white",
+      "role": "guide",
+      "label": true,
+      "labelDy": -5
+    },
+    {
+      "id": "epsilon-leonis",
+      "name": "Epsilon Leonis",
+      "designation": "ε Leo",
+      "magnitude": 3,
+      "x": 23,
+      "y": 13,
+      "tone": "warm",
+      "role": "guide",
+      "label": false
+    },
+    {
+      "id": "chertan",
+      "name": "Chertan",
+      "designation": "θ Leo",
+      "magnitude": 3.3,
+      "x": 60,
+      "y": 71,
+      "tone": "white",
+      "role": "guide",
+      "label": true
+    },
+    {
+      "id": "adhafera",
+      "name": "Adhafera",
+      "designation": "ζ Leo",
+      "magnitude": 3.4,
+      "x": 35,
+      "y": 35,
+      "tone": "white",
+      "role": "guide",
+      "label": true,
+      "labelDx": 5,
+      "labelDy": -4
+    },
+    {
+      "id": "rasalas",
+      "name": "Rasalas",
+      "designation": "μ Leo",
+      "magnitude": 3.9,
+      "x": 25,
+      "y": 26,
+      "tone": "warm",
+      "role": "guide",
+      "label": true,
+      "labelDx": -5,
+      "labelAnchor": "end"
+    }
+  ],
+  "lines": [
+    [
+      "regulus",
+      "algieba"
+    ],
+    [
+      "algieba",
+      "adhafera"
+    ],
+    [
+      "adhafera",
+      "rasalas"
+    ],
+    [
+      "rasalas",
+      "epsilon-leonis"
+    ],
+    [
+      "algieba",
+      "zosma"
+    ],
+    [
+      "zosma",
+      "denebola"
+    ],
+    [
+      "denebola",
+      "chertan"
+    ],
+    [
+      "chertan",
+      "zosma"
+    ],
+    [
+      "chertan",
+      "regulus"
+    ]
+  ],
+  "aliases": [],
+  "order": 9
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "theory--backend-existencia--contexto-metodologico--zero-epsilon-r1",
+  "id": "theory--backend-existencia--contexto-metodologico--zero-epsilon",
+  "order": 16,
+  "source": {
+    "type": "theory",
+    "id": "backend-existencia"
+  },
+  "target": {
+    "type": "theory",
+    "id": "zero-epsilon"
+  },
+  "type": "contexto-metodologico",
+  "label": "Contexto metodológico",
+  "justification": "A T-07 fornece histórico e critérios para auditar decisões tomadas com a heurística da T-09.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

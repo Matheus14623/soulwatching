@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "entityType": "site-page",
+  "revisionId": "routes-r1",
+  "order": 2,
+  "id": "routes",
+  "label": "Rotas guiadas",
+  "functionalLabel": "Começar por uma pergunta",
+  "title": "Rotas guiadas | Observatório de Ideias",
+  "description": "Percursos editoriais que conectam pessoas, conceitos, linhas autorais e experimentos em uma ordem explicada.",
+  "keywords": [
+    "rotas guiadas",
+    "começar",
+    "percurso",
+    "etapas",
+    "orientação"
+  ],
+  "matchPaths": [
+    "/Rotas/rotas.html",
+    "/Rotas/rotas"
+  ],
+  "sections": [
+    {
+      "id": "rotas",
+      "label": "Escolher uma rota",
+      "title": "Escolher uma pergunta de partida",
+      "description": "Catálogo de percursos para iniciar a exploração com contexto.",
+      "keywords": [
+        "escolher rota",
+        "pergunta",
+        "catálogo de percursos"
+      ]
+    },
+    {
+      "id": "percurso",
+      "label": "Percurso atual",
+      "title": "Retomar um percurso guiado",
+      "description": "Etapa atual, motivo da passagem e acesso ao conteúdo completo.",
+      "keywords": [
+        "retomar",
+        "próxima etapa",
+        "progresso",
+        "percurso"
+      ]
+    }
+  ]
+}

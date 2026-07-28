@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "entityType": "site-page",
+  "revisionId": "experiment-r1",
+  "order": 9,
+  "id": "experiment",
+  "label": "Experimento",
+  "functionalLabel": "Executor de simulação",
+  "title": "Experimento | Observatório de Ideias",
+  "description": "Superfície compartilhada para executar uma simulação e consultar seus limites.",
+  "keywords": [
+    "experimento",
+    "simulador",
+    "controles",
+    "premissas",
+    "limites"
+  ],
+  "matchPaths": [
+    "/Laboratorio/experimento.html",
+    "/Laboratorio/experimento"
+  ],
+  "sections": [
+    {
+      "id": "simulador",
+      "label": "Controles do experimento",
+      "title": "Usar o simulador",
+      "description": "Entradas, cálculo local e resultado do modelo selecionado.",
+      "keywords": [
+        "controles",
+        "simulador",
+        "resultado"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entityType": "timeline-event",
+  "revisionId": "dinamica-qualitativa-r1",
+  "order": 3,
+  "id": "dinamica-qualitativa",
+  "date": "1889–1890",
+  "sortYear": 1889,
+  "category": "modelar",
+  "title": "A estrutura da dinâmica substitui a solução fechada",
+  "method": "Estabilidade, espaço de fases e análise qualitativa",
+  "description": "O problema dos três corpos mostra que trajetórias podem ser estudadas por sua organização global mesmo sem fórmula explícita geral.",
+  "figureIds": [
+    "henri-poincare"
+  ]
+}

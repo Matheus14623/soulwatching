@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "information-causality-r1",
+  "id": "information-causality",
+  "aliases": [],
+  "title": "Information causality as a physical principle",
+  "authors": "Marcin Pawłowski et al.",
+  "year": "2009",
+  "kind": "Artigo científico",
+  "url": "https://doi.org/10.1038/nature08400"
+}

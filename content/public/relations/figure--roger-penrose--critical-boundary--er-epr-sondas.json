@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--roger-penrose--critical-boundary--er-epr-sondas-r1",
+  "id": "figure--roger-penrose--critical-boundary--er-epr-sondas",
+  "order": 2,
+  "source": {
+    "type": "figure",
+    "id": "roger-penrose"
+  },
+  "target": {
+    "type": "theory",
+    "id": "er-epr-sondas"
+  },
+  "type": "critical-boundary",
+  "label": "Horizontes e causalidade",
+  "justification": "A T-06 deve respeitar a estrutura causal clássica ao discutir pontes geométricas e informação quântica.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

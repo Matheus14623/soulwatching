@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "assani-presser-r1",
+  "id": "assani-presser",
+  "aliases": [],
+  "title": "A survey of the return times theorem",
+  "authors": "Idris Assani e Kamil Presser",
+  "year": "2012",
+  "kind": "Revisão matemática",
+  "url": "https://arxiv.org/abs/1209.0856"
+}

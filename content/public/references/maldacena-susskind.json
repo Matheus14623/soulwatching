@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "maldacena-susskind-r1",
+  "id": "maldacena-susskind",
+  "aliases": [
+    "maldacena-susskind-er-epr"
+  ],
+  "title": "Cool horizons for entangled black holes",
+  "authors": "Juan Maldacena e Leonard Susskind",
+  "year": "2013",
+  "kind": "Artigo teórico",
+  "url": "https://arxiv.org/abs/1306.0533",
+  "institution": "arXiv"
+}

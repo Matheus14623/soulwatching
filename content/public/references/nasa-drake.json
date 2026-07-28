@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "nasa-drake-r1",
+  "id": "nasa-drake",
+  "aliases": [],
+  "title": "Are We Alone in the Universe? Revisiting the Drake Equation",
+  "authors": "NASA Science",
+  "year": "2024",
+  "kind": "Material institucional",
+  "url": "https://science.nasa.gov/universe/exoplanets/are-we-alone-in-the-universe-revisiting-the-drake-equation/"
+}

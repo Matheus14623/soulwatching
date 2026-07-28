@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "theory--backend-existencia--ponte-operacional--horizonte-sentidos-r1",
+  "id": "theory--backend-existencia--ponte-operacional--horizonte-sentidos",
+  "order": 17,
+  "source": {
+    "type": "theory",
+    "id": "backend-existencia"
+  },
+  "target": {
+    "type": "theory",
+    "id": "horizonte-sentidos"
+  },
+  "type": "ponte-operacional",
+  "label": "Ponte operacional",
+  "justification": "A T-10 oferece projetos concretos nos quais a arquitetura crítica da T-07 pode ser avaliada.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

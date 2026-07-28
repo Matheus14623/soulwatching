@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "poplawski-black-hole-r1",
+  "id": "poplawski-black-hole",
+  "aliases": [],
+  "title": "Universe in a black hole with spin and torsion",
+  "authors": "Nikodem J. Popławski",
+  "year": "2020",
+  "kind": "Artigo teórico",
+  "url": "https://arxiv.org/abs/2007.11556"
+}

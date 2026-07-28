@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "iau-star-names-r1",
+  "id": "iau-star-names",
+  "aliases": [],
+  "title": "Nomes próprios de estrelas reconhecidos pela IAU",
+  "institution": "União Astronômica Internacional",
+  "url": "https://iauarchive.eso.org/public/themes/naming_stars/",
+  "kind": "Material institucional"
+}

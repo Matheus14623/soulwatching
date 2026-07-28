@@ -3,4 +3,4 @@ export {
   THEORY_FILTERS,
   THEORY_REVIEW_STATES,
   THEORY_TYPES,
-} from '../data/theories.js';
+} from '../data/generated/runtime/theories.js';

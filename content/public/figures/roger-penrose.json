@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "roger-penrose-r1",
+  "order": 11,
+  "aliases": [],
+  "id": "roger-penrose",
+  "slug": "roger-penrose",
+  "name": "Roger Penrose",
+  "lifespan": "1931–",
+  "area": "fisica-cosmos",
+  "role": "Matemática e relatividade",
+  "featuredRank": null,
+  "summary": "Mostrou que singularidades gravitacionais surgem em condições gerais e criou ferramentas geométricas para estudar causalidade global.",
+  "impact": "O teorema de 1965 usou superfícies aprisionadas para demonstrar que o colapso relativístico leva à incompletude geodésica sem depender de simetria perfeita. Diagramas conformes tornaram relações causais e infinitos mais legíveis; outras propostas de Penrose, como a censura cósmica, permanecem conjecturas.",
+  "contributions": [
+    {
+      "title": "Teorema de singularidade",
+      "description": "Estabeleceu uma consequência geral do colapso gravitacional sob hipóteses físicas declaradas."
+    },
+    {
+      "title": "Geometria causal",
+      "description": "Desenvolveu diagramas conformes e métodos globais para espaço-tempos relativísticos."
+    },
+    {
+      "title": "Twistors e conjecturas",
+      "description": "Abriu programas matemáticos influentes, mantendo separação entre resultados e questões ainda abertas."
+    }
+  ],
+  "milestones": [
+    "Gravitational Collapse and Space-Time Singularities · 1965",
+    "Diagramas conformes de Penrose",
+    "Twistor theory"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/roger-penrose.webp",
+    "width": 633,
+    "height": 800,
+    "alt": "Retrato de Roger Penrose",
+    "credit": "Cirone-Musi · Festival della Scienza",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Roger_Penrose_at_Festival_della_Scienza_Oct_29_2011.jpg"
+  },
+  "referenceIds": [
+    "penrose-nobel"
+  ]
+}

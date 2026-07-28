@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "entityType": "experiment",
+  "revisionId": "ressonancia-r1",
+  "id": "ressonancia",
+  "slug": "ressonancia",
+  "title": "Ressonância",
+  "shortTitle": "Ressonância",
+  "kind": "instrumento",
+  "status": "active",
+  "technology": "Canvas 2D e Web Audio",
+  "href": "/index.html#ressonancia",
+  "summary": "Seis cordas respondem ao gesto e ao teclado para explorar visualmente frequência, perturbação e amortecimento.",
+  "question": "Como uma perturbação local se torna um padrão que persiste e depois se dissipa?",
+  "boundary": "É um instrumento expressivo, não um medidor físico calibrado nem uma reprodução de um instrumento real.",
+  "theoryIds": [
+    "observacao-nao-linear"
+  ],
+  "moduleKey": null,
+  "visual": "strings",
+  "aliases": [],
+  "order": 2
+}

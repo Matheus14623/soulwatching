@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "galileo-museo-r1",
+  "id": "galileo-museo",
+  "aliases": [],
+  "title": "Galileo Galilei",
+  "institution": "Museo Galileo",
+  "kind": "Biografia institucional",
+  "url": "https://catalogue.museogalileo.it/biography/GalileoGalilei.html"
+}

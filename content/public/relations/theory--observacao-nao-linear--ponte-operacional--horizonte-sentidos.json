@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "theory--observacao-nao-linear--ponte-operacional--horizonte-sentidos-r1",
+  "id": "theory--observacao-nao-linear--ponte-operacional--horizonte-sentidos",
+  "order": 3,
+  "source": {
+    "type": "theory",
+    "id": "observacao-nao-linear"
+  },
+  "target": {
+    "type": "theory",
+    "id": "horizonte-sentidos"
+  },
+  "type": "ponte-operacional",
+  "label": "Ponte operacional",
+  "justification": "A T-10 oferece um caminho de dados e reprodução para testar estratégias de inferência formuladas na T-01.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "entityType": "site-page",
+  "revisionId": "archive-r1",
+  "order": 7,
+  "id": "archive",
+  "label": "Publicações",
+  "functionalLabel": "Arquivo editorial",
+  "title": "Arquivo editorial | Observatório de Ideias",
+  "description": "Área pública de ensaios, registros e fragmentos revisados, com estado editorial explícito.",
+  "keywords": [
+    "publicações",
+    "arquivo editorial",
+    "ensaios",
+    "registros",
+    "fragmentos"
+  ],
+  "matchPaths": [
+    "/Arquivo/arquivo.html",
+    "/Arquivo/arquivo",
+    "/Arquivo/publicacao.html",
+    "/Arquivo/publicacao"
+  ],
+  "sections": [
+    {
+      "id": "arquivo",
+      "label": "Arquivo editorial",
+      "title": "Entender o arquivo de publicações",
+      "description": "Natureza dos formatos e estado atual do acervo editorial.",
+      "keywords": [
+        "arquivo",
+        "publicações",
+        "ensaios",
+        "registros"
+      ]
+    },
+    {
+      "id": "processo",
+      "label": "Processo editorial",
+      "title": "Como uma publicação entra no arquivo",
+      "description": "Critérios de preparação, revisão e publicação.",
+      "keywords": [
+        "processo editorial",
+        "revisão",
+        "publicar"
+      ]
+    }
+  ]
+}

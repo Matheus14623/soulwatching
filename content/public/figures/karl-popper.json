@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "karl-popper-r1",
+  "order": 19,
+  "aliases": [],
+  "id": "karl-popper",
+  "slug": "karl-popper",
+  "name": "Karl Popper",
+  "lifespan": "1902–1994",
+  "area": "filosofia-metodo",
+  "role": "Filosofia da ciência",
+  "featuredRank": 3,
+  "summary": "Defendeu conjecturas arriscadas, testes severos e crítica pública como motores do conhecimento científico.",
+  "impact": "Popper propôs a falseabilidade como critério de demarcação e enfatizou que teorias não são verificadas por acúmulo de confirmações. Sua filosofia é influente, mas não funciona como algoritmo universal: disciplinas reais usam evidência, modelos, estatística e revisão de maneiras mais variadas.",
+  "contributions": [
+    {
+      "title": "Falseabilidade",
+      "description": "Pediu que afirmações científicas exponham condições observáveis capazes de contrariá-las."
+    },
+    {
+      "title": "Conjecturas e refutações",
+      "description": "Descreveu o avanço do conhecimento como proposição, crítica, erro e reformulação."
+    },
+    {
+      "title": "Racionalismo crítico",
+      "description": "Substituiu busca de certeza por comparação pública entre explicações falíveis."
+    }
+  ],
+  "milestones": [
+    "The Logic of Scientific Discovery · 1934/1959",
+    "Conjectures and Refutations · 1963",
+    "Objective Knowledge · 1972"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/karl-popper.webp",
+    "width": 600,
+    "height": 769,
+    "alt": "Retrato de Karl Popper",
+    "credit": "LSE Library",
+    "license": "Sem restrições conhecidas",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karl_Popper.jpg"
+  },
+  "referenceIds": [
+    "popper-sep"
+  ]
+}

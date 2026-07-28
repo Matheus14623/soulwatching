@@ -7,6 +7,7 @@ import { CONSTELLATIONS } from '../../assets/data/constellations.js';
 import { CONTRIBUTION_POLICY, CONTRIBUTION_TYPES } from '../../assets/data/contributions.js';
 import { EXPERIMENTS } from '../../assets/data/experiments.js';
 import { LEARNING_PATHS } from '../../assets/data/learning-paths.js';
+import { PUBLICATIONS } from '../../assets/data/generated/runtime/publications.js';
 import {
   NOTABLE_FIGURES,
   NOTABLE_FIGURE_TRAILS,
@@ -35,16 +36,14 @@ test('catálogos centrais têm IDs únicos e referências resolvíveis', async (
     assert.ok(unique(collection.map((item) => item.id)));
     assert.ok(unique(collection.map((item) => item.slug)));
   }
-  assert.equal(NOTABLE_FIGURES.length, 22);
   assert.ok(NOTABLE_FIGURES.some((figure) => figure.id === 'henri-poincare'));
   assert.ok(NOTABLE_FIGURES.some((figure) => figure.id === 'john-stewart-bell'));
-  assert.equal(EXPERIMENTS.length, 9);
-  assert.equal(LEARNING_PATHS.length, 4);
 
   const collections = {
     theory: new Set(THEORIES.map((item) => item.id)),
     figure: new Set(NOTABLE_FIGURES.map((item) => item.id)),
     experiment: new Set(EXPERIMENTS.map((item) => item.id)),
+    publication: new Set(PUBLICATIONS.map((item) => item.id)),
   };
   for (const path of LEARNING_PATHS) {
     assert.ok(path.steps.length >= 3, path.id);
@@ -88,7 +87,7 @@ test('relações, rubricas e histórico crítico das teorias preservam integrida
 
 test('trilhas e cronologia de Grandes Nomes apontam para perfis existentes', () => {
   const figureIds = new Set(NOTABLE_FIGURES.map((figure) => figure.id));
-  assert.equal(NOTABLE_FIGURE_TRAILS.length, 4);
+  assert.ok(NOTABLE_FIGURE_TRAILS.length > 0);
   assert.ok(NOTABLE_METHOD_TIMELINE.length >= 15);
   for (const trail of NOTABLE_FIGURE_TRAILS) {
     trail.steps.forEach((step) => assert.ok(figureIds.has(step.figureId), `${trail.id}:${step.figureId}`));

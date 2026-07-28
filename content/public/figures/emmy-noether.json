@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "emmy-noether-r1",
+  "order": 8,
+  "aliases": [],
+  "id": "emmy-noether",
+  "slug": "emmy-noether",
+  "name": "Emmy Noether",
+  "lifespan": "1882–1935",
+  "area": "fisica-cosmos",
+  "role": "Matemática e física matemática",
+  "featuredRank": null,
+  "summary": "Revelou a ligação entre simetrias contínuas e leis de conservação e transformou áreas centrais da álgebra moderna.",
+  "impact": "O teorema de Noether mostra que invariâncias de uma ação física correspondem a quantidades conservadas. Essa ponte tornou simetria uma ferramenta estrutural da física moderna. Seu trabalho algébrico também mudou o estudo de anéis, ideais e representações.",
+  "contributions": [
+    {
+      "title": "Primeiro teorema de Noether",
+      "description": "Relacionou simetrias contínuas globais a leis de conservação."
+    },
+    {
+      "title": "Segundo teorema de Noether",
+      "description": "Conectou simetrias locais a identidades entre equações de campo."
+    },
+    {
+      "title": "Álgebra abstrata",
+      "description": "Consolidou métodos estruturais que influenciaram matemática e física do século XX."
+    }
+  ],
+  "milestones": [
+    "Invariante Variationsprobleme · 1918",
+    "Teoremas de Noether",
+    "Estrutura moderna de anéis e ideais"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/emmy-noether.webp",
+    "width": 598,
+    "height": 800,
+    "alt": "Retrato de Emmy Noether",
+    "credit": "Autor não identificado · acervo histórico",
+    "license": "Domínio público",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emmy_Noether_(3x4_cropped).jpg"
+  },
+  "referenceIds": [
+    "noether-st-andrews"
+  ]
+}

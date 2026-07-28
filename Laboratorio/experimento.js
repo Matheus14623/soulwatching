@@ -1,4 +1,4 @@
-import { findExperiment, getExperimentKind } from '../assets/data/experiments.js';
+import { findExperiment, getExperimentKind } from '../assets/js/experiment-model.js';
 import { findTheory } from '../assets/js/theory-model.js';
 import { initNavigation } from '../assets/js/navigation.js';
 

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "entityType": "experiment",
+  "revisionId": "atlas-celeste-r1",
+  "id": "atlas-celeste",
+  "slug": "atlas-celeste",
+  "title": "Atlas celeste",
+  "shortTitle": "Atlas celeste",
+  "kind": "visualizacao",
+  "status": "active",
+  "technology": "SVG e dados astronômicos",
+  "href": "/Constelacoes/constelacoes.html",
+  "summary": "Apresenta campos esquemáticos para reconhecer constelações e asterismos sem se passar por um planetário de posição e horário.",
+  "question": "Como aprender a reconhecer padrões no céu sem confundir desenho cultural com proximidade física?",
+  "boundary": "Os campos preservam padrões relativos para aprendizagem; não substituem uma carta celeste calculada para local, data e hora.",
+  "theoryIds": [
+    "horizonte-sentidos"
+  ],
+  "moduleKey": null,
+  "visual": "constellations",
+  "aliases": [],
+  "order": 4
+}

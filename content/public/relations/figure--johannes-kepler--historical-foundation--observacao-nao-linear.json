@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--johannes-kepler--historical-foundation--observacao-nao-linear-r1",
+  "id": "figure--johannes-kepler--historical-foundation--observacao-nao-linear",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "johannes-kepler"
+  },
+  "target": {
+    "type": "theory",
+    "id": "observacao-nao-linear"
+  },
+  "type": "historical-foundation",
+  "label": "Reconstrução a partir de dados",
+  "justification": "O ajuste entre órbita e observações oferece um paralelo metodológico para inferências feitas com sinais incompletos ou atrasados.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

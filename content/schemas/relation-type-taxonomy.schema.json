@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observatorio.local/schemas/relation-type-taxonomy.schema.json",
+  "title": "Vocabulário central de relações",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "entityType",
+    "types"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "entityType": {
+      "type": "string",
+      "const": "relation-type-taxonomy"
+    },
+    "types": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "sourceType",
+          "targetType",
+          "symmetric",
+          "inverseLabel",
+          "requiresJustification",
+          "requiresReference"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 5
+          },
+          "sourceType": {
+            "type": "string",
+            "enum": [
+              "theory",
+              "figure",
+              "publication",
+              "experiment"
+            ]
+          },
+          "targetType": {
+            "type": "string",
+            "enum": [
+              "theory",
+              "figure",
+              "publication",
+              "experiment"
+            ]
+          },
+          "symmetric": {
+            "type": "boolean"
+          },
+          "inverseLabel": {
+            "type": "string",
+            "minLength": 1
+          },
+          "requiresJustification": {
+            "type": "boolean"
+          },
+          "requiresReference": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

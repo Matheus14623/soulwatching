@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "leonard-susskind-r1",
+  "order": 14,
+  "aliases": [],
+  "id": "leonard-susskind",
+  "slug": "leonard-susskind",
+  "name": "Leonard Susskind",
+  "lifespan": "1940–",
+  "area": "fisica-cosmos",
+  "role": "Teoria de cordas e gravidade quântica",
+  "featuredRank": null,
+  "summary": "É um dos pioneiros da teoria de cordas e desenvolveu ideias centrais sobre complementaridade, holografia e informação em buracos negros.",
+  "impact": "Susskind participou das formulações iniciais da teoria de cordas e ajudou a consolidar o princípio holográfico e a complementaridade de buracos negros. Seu trabalho enfatiza que uma descrição consistente de horizontes precisa reconciliar gravitação, unitariedade e limites de observadores diferentes.",
+  "contributions": [
+    {
+      "title": "Pioneirismo em teoria de cordas",
+      "description": "Contribuiu de forma independente às primeiras interpretações de modelos de cordas para interações fundamentais."
+    },
+    {
+      "title": "Holografia e complementaridade",
+      "description": "Desenvolveu princípios para tratar informação e observadores em presença de horizontes."
+    },
+    {
+      "title": "ER=EPR",
+      "description": "Coformulou com Maldacena uma conjectura que liga geometria de pontes e emaranhamento."
+    }
+  ],
+  "milestones": [
+    "Formulações iniciais da teoria de cordas",
+    "Complementaridade de buracos negros",
+    "Cool horizons for entangled black holes · 2013"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/leonard-susskind.webp",
+    "width": 640,
+    "height": 537,
+    "alt": "Retrato de Leonard Susskind",
+    "credit": "Acmedogs",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:LeonardSusskindStanfordNov2013.jpg"
+  },
+  "referenceIds": [
+    "susskind-stanford",
+    "maldacena-susskind-er-epr"
+  ]
+}

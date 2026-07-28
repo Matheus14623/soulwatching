@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "entityType": "site-page",
+  "revisionId": "laboratory-r1",
+  "order": 8,
+  "id": "laboratory",
+  "label": "Laboratório",
+  "functionalLabel": "Simulações e modelos didáticos",
+  "title": "Laboratório | Observatório de Ideias",
+  "description": "Experimentos interativos com pergunta, premissas, controles e limites visíveis.",
+  "keywords": [
+    "laboratório",
+    "experimentos",
+    "simulações",
+    "modelos",
+    "visualizações"
+  ],
+  "matchPaths": [
+    "/Laboratorio/laboratorio.html",
+    "/Laboratorio/laboratorio"
+  ],
+  "sections": [
+    {
+      "id": "experimentos",
+      "label": "Experimentos",
+      "title": "Explorar simulações e modelos",
+      "description": "Catálogo dos experimentos interativos disponíveis.",
+      "keywords": [
+        "experimentos",
+        "simuladores",
+        "modelos interativos"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "entityType": "constellation",
+  "revisionId": "touro-r1",
+  "id": "touro",
+  "slug": "touro",
+  "name": "Touro",
+  "latinName": "Taurus",
+  "abbreviation": "Tau",
+  "featuredRank": null,
+  "seasonId": "verao",
+  "season": "Verão brasileiro · novembro a fevereiro",
+  "signature": "V DAS HÍADES",
+  "recognition": "Prolongue o cinturão de Órion no sentido oposto a Sirius até Aldebaran. Ela se destaca em laranja junto ao V das Híades; os braços seguem em direção a Elnath e Tianguan.",
+  "fact": "Aldebaran aparece na direção das Híades, mas está em primeiro plano e não pertence ao aglomerado. O alinhamento é um efeito de perspectiva.",
+  "guideNote": "Alcyone marca as Plêiades, um aglomerado aberto na região de Touro. Ele aparece isolado aqui porque não integra a linha-guia principal.",
+  "sourceIds": [
+    "iau-constellations",
+    "nasa-taurus",
+    "on-seasons"
+  ],
+  "relatedConstellationIds": [
+    "orion",
+    "gemeos"
+  ],
+  "stars": [
+    {
+      "id": "aldebaran",
+      "name": "Aldebaran",
+      "designation": "α Tau",
+      "magnitude": 0.9,
+      "x": 54,
+      "y": 63,
+      "tone": "warm",
+      "role": "anchor",
+      "label": true,
+      "labelDx": 5,
+      "labelDy": 7
+    },
+    {
+      "id": "elnath",
+      "name": "Elnath",
+      "designation": "β Tau",
+      "magnitude": 1.7,
+      "x": 82,
+      "y": 18,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true
+    },
+    {
+      "id": "alcyone",
+      "name": "Alcyone",
+      "designation": "η Tau",
+      "magnitude": 2.9,
+      "x": 18,
+      "y": 25,
+      "tone": "cool",
+      "role": "landmark",
+      "label": true
+    },
+    {
+      "id": "tianguan",
+      "name": "Tianguan",
+      "designation": "ζ Tau",
+      "magnitude": 3,
+      "x": 77,
+      "y": 82,
+      "tone": "cool",
+      "role": "guide",
+      "label": true,
+      "labelDy": -5
+    },
+    {
+      "id": "ain",
+      "name": "Ain",
+      "designation": "ε Tau",
+      "magnitude": 3.5,
+      "x": 63,
+      "y": 40,
+      "tone": "warm",
+      "role": "guide",
+      "label": true
+    },
+    {
+      "id": "prima-hyadum",
+      "name": "Prima Hyadum",
+      "designation": "γ Tau",
+      "magnitude": 3.7,
+      "x": 43,
+      "y": 53,
+      "tone": "white",
+      "role": "guide",
+      "label": false
+    },
+    {
+      "id": "secunda-hyadum",
+      "name": "Secunda Hyadum",
+      "designation": "δ Tau",
+      "magnitude": 3.8,
+      "x": 53,
+      "y": 48,
+      "tone": "white",
+      "role": "guide",
+      "label": false
+    }
+  ],
+  "lines": [
+    [
+      "prima-hyadum",
+      "secunda-hyadum"
+    ],
+    [
+      "secunda-hyadum",
+      "ain"
+    ],
+    [
+      "ain",
+      "elnath"
+    ],
+    [
+      "prima-hyadum",
+      "aldebaran"
+    ],
+    [
+      "aldebaran",
+      "tianguan"
+    ]
+  ],
+  "aliases": [],
+  "order": 7
+}

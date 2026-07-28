@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--juan-maldacena--conceptual-context--universo-buraco-negro-r1",
+  "id": "figure--juan-maldacena--conceptual-context--universo-buraco-negro",
+  "order": 1,
+  "source": {
+    "type": "figure",
+    "id": "juan-maldacena"
+  },
+  "target": {
+    "type": "theory",
+    "id": "universo-buraco-negro"
+  },
+  "type": "conceptual-context",
+  "label": "Gravidade e descrição holográfica",
+  "justification": "A T-05 pode comparar suas intuições a modelos holográficos definidos, sem generalizar AdS/CFT para qualquer cosmologia.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

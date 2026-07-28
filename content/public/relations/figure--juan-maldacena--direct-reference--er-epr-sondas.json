@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--juan-maldacena--direct-reference--er-epr-sondas-r1",
+  "id": "figure--juan-maldacena--direct-reference--er-epr-sondas",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "juan-maldacena"
+  },
+  "target": {
+    "type": "theory",
+    "id": "er-epr-sondas"
+  },
+  "type": "direct-reference",
+  "label": "ER=EPR em sua fonte original",
+  "justification": "A T-06 cita uma conjectura coformulada por Maldacena. O paper não fornece comunicação superluminal nem confirma a arquitetura de sondas proposta.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "theory--instabilidade-vazio--afinidade-conceitual--contentor-finito-r1",
+  "id": "theory--instabilidade-vazio--afinidade-conceitual--contentor-finito",
+  "order": 5,
+  "source": {
+    "type": "theory",
+    "id": "instabilidade-vazio"
+  },
+  "target": {
+    "type": "theory",
+    "id": "contentor-finito"
+  },
+  "type": "afinidade-conceitual",
+  "label": "Afinidade conceitual",
+  "justification": "Estabilidade e recorrência dependem de espaço de estados e dinâmica definidos, mas um resultado não implica o outro.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

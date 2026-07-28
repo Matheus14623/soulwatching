@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "entityType": "theory",
+  "revisionId": "backend-existencia-r1",
+  "order": 6,
+  "aliases": [],
+  "id": "backend-existencia",
+  "slug": "backend-existencia",
+  "code": "T-07",
+  "title": "Cosmologia Lógica: o Backend da Existência",
+  "shortTitle": "Backend da existência",
+  "subtitle": "Uma arquitetura editorial para perguntas, modelos e limites",
+  "kind": "estrutura-conceitual",
+  "reviewState": "consolidacao",
+  "independent": true,
+  "category": "metodo",
+  "filters": [
+    "metodo",
+    "cosmologia",
+    "tempo",
+    "existencial"
+  ],
+  "color": "#b7f7ff",
+  "glow": "rgba(183, 247, 255, 0.42)",
+  "position": {
+    "x": 50,
+    "y": 48
+  },
+  "summary": "Organiza o acervo como um sistema de perguntas, premissas, mecanismos, evidências, objeções e revisões.",
+  "proposal": "A linguagem de sistemas pode tornar hipóteses complexas mais rastreáveis quando funciona como método de organização, não como afirmação de que o universo seja literalmente software.",
+  "questions": [
+    "Quais metáforas esclarecem o modelo e quais importam pressupostos indevidos?",
+    "Como tornar cada dependência, objeção e fonte visível?",
+    "Que critérios mostram se o framework melhora a qualidade das perguntas?"
+  ],
+  "concepts": [
+    "arquitetura de ideias",
+    "rastreabilidade",
+    "premissa",
+    "objeção",
+    "versionamento"
+  ],
+  "nextSteps": [
+    "Aplicar a mesma estrutura crítica a todas as entradas.",
+    "Registrar mudanças de escopo e objeções respondidas.",
+    "Avaliar o método pela clareza e pela reprodução das análises."
+  ],
+  "referenceIds": [],
+  "objections": [
+    {
+      "id": "metafora-literal",
+      "title": "A metáfora de software pode ser confundida com mecanismo físico",
+      "status": "respondida",
+      "response": "A entrada está classificada como estrutura conceitual e rejeita explicitamente a leitura literal do universo como software."
+    },
+    {
+      "id": "ganho-framework",
+      "title": "A utilidade do framework ainda precisa ser comparada",
+      "status": "aberta",
+      "response": "Seu valor deve aparecer na rastreabilidade, na reprodução das análises e na identificação de contradições reais."
+    }
+  ],
+  "decisionBoundary": {
+    "revise": "Revisar a arquitetura quando seus campos não capturarem objeções ou criarem mais ambiguidade do que rastreabilidade.",
+    "abandon": "Abandonar uma regra do framework quando ela não melhorar análises repetidas ou induzir equivalência entre metáfora e explicação física."
+  },
+  "review": {
+    "assessment": "Forte como framework; não é teoria física",
+    "known": "Modelos editoriais podem melhorar rastreabilidade, comparação e aprendizado sem produzir uma lei cosmológica.",
+    "focus": "Usar a metáfora de backend para organizar o acervo e revelar dependências ou contradições.",
+    "limit": "Uma metáfora de software não fornece automaticamente equações, previsões ou um programador do universo.",
+    "test": "Avaliar se o framework melhora fontes, objeções, histórico de revisão e reprodução de análises."
+  },
+  "claimLinks": [],
+  "revisions": [
+    {
+      "revisionId": "backend-existencia-r1",
+      "ordinal": 1,
+      "versionLabel": "2.1",
+      "reviewedAt": "2026-07-22",
+      "label": "Primeiro registro individual · jul. 2026",
+      "changeSummary": "O primeiro registro individual fixa a natureza metodológica e explicita como a utilidade do framework deve ser testada.",
+      "responsibles": [
+        {
+          "name": "Matheus Camargo",
+          "role": "autor e responsável editorial"
+        }
+      ]
+    }
+  ]
+}

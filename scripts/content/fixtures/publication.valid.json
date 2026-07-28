@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "entityType": "publication",
+  "revisionId": "fixture-publication-r1",
+  "id": "fixture-publication",
+  "slug": "fixture-publication",
+  "aliases": [
+    "fixture-publication-legacy"
+  ],
+  "title": "Publicação de contrato",
+  "summary": "Fixture não pública usada somente para comprovar o contrato editorial e a projeção externa.",
+  "body": [
+    {
+      "id": "escopo",
+      "heading": "Escopo",
+      "paragraphs": [
+        "Este texto existe exclusivamente dentro da suíte de testes e não representa uma publicação do Observatório."
+      ]
+    }
+  ],
+  "publicationType": "nota-tecnica",
+  "authorshipOrigin": "external",
+  "availabilityState": "published",
+  "credits": [
+    {
+      "displayName": "Pessoa de teste",
+      "order": 1,
+      "roles": [
+        "author",
+        "research"
+      ],
+      "authorizedLinks": []
+    }
+  ],
+  "textLicense": {
+    "identifier": "CC-BY-4.0",
+    "label": "Creative Commons Atribuição 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "rightsHolder": "Pessoa de teste"
+  },
+  "assetRights": [],
+  "claimLinks": [
+    {
+      "claimId": "escopo-fixture",
+      "contentBlockId": "escopo",
+      "sources": [
+        {
+          "referenceId": "hogg-distance",
+          "role": "contextualizes"
+        }
+      ]
+    }
+  ],
+  "publicDeclarations": {
+    "publicNameAuthorization": "confirmed",
+    "finalVersionApproval": "confirmed",
+    "conflictOfInterest": {
+      "state": "none-declared"
+    },
+    "editorialReview": {
+      "state": "completed",
+      "description": "Revisão editorial de estrutura realizada para a fixture.",
+      "peerReview": false
+    }
+  },
+  "referenceIds": [
+    "hogg-distance"
+  ],
+  "revisions": [
+    {
+      "revisionId": "fixture-publication-r1",
+      "ordinal": 1,
+      "revisionEventType": "initial-publication",
+      "publishedAt": "2026-07-27",
+      "changeSummary": "Criação da fixture estrutural não pública.",
+      "publicSnapshot": {
+        "title": "Publicação de contrato",
+        "summary": "Fixture não pública usada somente para comprovar o contrato editorial e a projeção externa.",
+        "body": [
+          {
+            "id": "escopo",
+            "heading": "Escopo",
+            "paragraphs": [
+              "Este texto existe exclusivamente dentro da suíte de testes e não representa uma publicação do Observatório."
+            ]
+          }
+        ],
+        "referenceIds": [
+          "hogg-distance"
+        ],
+        "claimIds": [
+          "escopo-fixture"
+        ],
+        "textLicenseIdentifier": "CC-BY-4.0",
+        "assetIds": []
+      },
+      "creditSnapshot": [
+        {
+          "displayName": "Pessoa de teste",
+          "order": 1,
+          "roles": [
+            "author",
+            "research"
+          ],
+          "authorizedLinks": []
+        }
+      ],
+      "contentHash": "sha256:b135173d8ff821e6234eaa49294aa125ddf91fa14b2da62f5dc468d4c36e705c"
+    }
+  ]
+}

@@ -27,7 +27,7 @@
   background: rgba(255,255,255,0.04);
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   cursor: pointer;
   transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
@@ -158,13 +158,13 @@
 .idea-map-node span {
   color: var(--accent);
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
 }
 
 .idea-map-node strong {
   margin-top: 0.18rem;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   line-height: 1.25;
 }
 
@@ -211,7 +211,7 @@
 .idea-map-core strong {
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -233,7 +233,7 @@
 .map-detail-kicker {
   color: var(--accent);
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -259,7 +259,7 @@
   margin-bottom: 0.45rem;
   color: var(--text);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -270,7 +270,8 @@
 }
 
 .map-related-button {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
   min-height: 2.6rem;
   padding: 0.55rem 0.65rem;
   align-items: center;
@@ -283,10 +284,54 @@
   cursor: pointer;
 }
 
-.map-related-button span {
+.map-related-code,
+.map-related-type {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
+}
+
+.map-related-button strong {
+  color: var(--text);
+  font-size: 0.8rem;
+}
+
+.map-related-type,
+.map-related-justification,
+.map-related-review,
+.map-related-disclosure {
+  grid-column: 1 / -1;
+}
+
+.map-related-type {
+  margin-top: 0.3rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.map-related-justification {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.map-related-review {
+  margin-top: 0.6rem;
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.map-related-review.is-pending {
+  color: #ffcd5e;
+}
+
+.map-related-disclosure {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
 }
 
 .map-detail-actions {
@@ -306,7 +351,7 @@
   border-radius: 999px;
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.75rem;
   text-align: center;
   text-transform: uppercase;
 }
@@ -321,7 +366,7 @@
   margin: 1rem 0 0;
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   text-align: center;
 }
 
@@ -345,7 +390,7 @@
 .map-axis-card span {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }

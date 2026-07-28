@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observatorio.local/schemas/experiment.schema.json",
+  "title": "Experimento público",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "entityType",
+    "revisionId",
+    "id",
+    "slug",
+    "aliases",
+    "order",
+    "title",
+    "shortTitle",
+    "kind",
+    "status",
+    "technology",
+    "href",
+    "summary",
+    "question",
+    "boundary",
+    "theoryIds",
+    "moduleKey",
+    "visual"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "entityType": {
+      "type": "string",
+      "const": "experiment"
+    },
+    "revisionId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-r[1-9][0-9]*$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "aliases": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      }
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "shortTitle": {
+      "type": "string",
+      "minLength": 2
+    },
+    "kind": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "technology": {
+      "type": "string",
+      "minLength": 1
+    },
+    "href": {
+      "type": "string",
+      "pattern": "^/(?!/)"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 20
+    },
+    "question": {
+      "type": "string",
+      "minLength": 10
+    },
+    "boundary": {
+      "type": "string",
+      "minLength": 20
+    },
+    "theoryIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      }
+    },
+    "moduleKey": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        null,
+        "light-cone",
+        "zero-epsilon",
+        "finite-recurrence",
+        "astrobiology"
+      ]
+    },
+    "visual": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    }
+  },
+  "additionalProperties": false
+}

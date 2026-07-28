@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "entityType": "experiment",
+  "revisionId": "recorrencia-finita-r1",
+  "id": "recorrencia-finita",
+  "slug": "recorrencia-finita",
+  "title": "Modelo finito de recorrência",
+  "shortTitle": "Recorrência finita",
+  "kind": "simulador",
+  "status": "active",
+  "technology": "Sistema dinâmico discreto",
+  "href": "/Laboratorio/experimento.html?experimento=recorrencia-finita",
+  "summary": "Segue a evolução determinística de um conjunto finito de estados até encontrar uma repetição e separar transiente de ciclo.",
+  "question": "O que a finitude do espaço de estados garante — e o que ela não garante?",
+  "boundary": "A repetição de um estado em um modelo finito não demonstra recorrência do Universo nem passagem por todos os estados possíveis.",
+  "theoryIds": [
+    "contentor-finito",
+    "ciclagem-eterna"
+  ],
+  "moduleKey": "finite-recurrence",
+  "visual": "cycle",
+  "aliases": [],
+  "order": 7
+}

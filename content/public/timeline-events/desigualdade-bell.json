@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "entityType": "timeline-event",
+  "revisionId": "desigualdade-bell-r1",
+  "order": 10,
+  "id": "desigualdade-bell",
+  "date": "1964",
+  "sortYear": 1964,
+  "category": "testar",
+  "title": "Uma disputa sobre localidade ganha desigualdades",
+  "method": "Premissas explícitas convertidas em correlações testáveis",
+  "description": "O problema EPR passa de debate interpretativo a uma classe de testes que distingue previsões quânticas de modelos locais específicos.",
+  "figureIds": [
+    "john-stewart-bell",
+    "albert-einstein"
+  ]
+}

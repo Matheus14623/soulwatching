@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "entityType": "research-track",
+  "revisionId": "energia-ondas-relogios-r1",
+  "id": "energia-ondas-relogios",
+  "code": "R-03",
+  "title": "Energia, ondas gravitacionais e relógios",
+  "kind": "Trilha de estudo",
+  "summary": "Investigar como energia, momento, pressão e perturbações gravitacionais entram na geometria e afetam medições de tempo.",
+  "boundary": "A pergunta pertence à relatividade e à metrologia; não constitui, por si só, uma nova teoria.",
+  "nextStep": "Criar uma sequência de cálculos e experimentos com relógios relativísticos, interferometria ou pulsar timing.",
+  "slug": "energia-ondas-relogios",
+  "aliases": [],
+  "order": 3
+}

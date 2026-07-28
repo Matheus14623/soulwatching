@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "steinhardt-turok-r1",
+  "id": "steinhardt-turok",
+  "aliases": [],
+  "title": "A cyclic model of the universe",
+  "authors": "Paul J. Steinhardt e Neil Turok",
+  "year": "2002",
+  "kind": "Artigo científico",
+  "url": "https://doi.org/10.1126/science.1070462"
+}

@@ -2,12 +2,17 @@ import {
   THEORIES,
   THEORY_RELATIONS,
   THEORY_RELATION_TYPES,
-} from '../data/theories.js';
+} from '../data/generated/runtime/theories.js';
+import { getRelationReviewPresentation } from './relation-review.js';
 
 const relationTypeById = new Map(THEORY_RELATION_TYPES.map((item) => [item.id, item]));
 
 export function findTheory(id, fallback = null) {
-  return THEORIES.find((theory) => theory.id === id || theory.slug === id) || fallback;
+  return THEORIES.find((theory) => (
+    theory.id === id
+    || theory.slug === id
+    || theory.aliases?.includes(id)
+  )) || fallback;
 }
 
 export function theoryMatchesCategory(theory, category) {
@@ -31,13 +36,20 @@ export function getTheoryRelations(theoryOrId) {
       const relatedTheory = findTheory(outbound ? relation.targetId : relation.sourceId);
       const relationType = getTheoryRelationType(relation.type);
       if (!relatedTheory || !relationType) return null;
+      const review = getRelationReviewPresentation(relation);
 
       return Object.freeze({
         ...relation,
-        id: [relation.sourceId, relation.targetId].sort().join('::'),
+        id: relation.id || `${relation.sourceId}->${relation.targetId}:${relation.type}`,
         direction: outbound ? 'outbound' : 'inbound',
-        relationLabel: relationType.label,
+        relationLabel: outbound || relationType.symmetric
+          ? relationType.label
+          : relationType.inverseLabel || relationType.label,
         relationDescription: relationType.description,
+        relationType,
+        reviewLabel: review.label,
+        reviewDisclosure: review.disclosure,
+        reviewPending: review.pending,
         theory: relatedTheory,
       });
     })

@@ -1,3 +1,16 @@
+const contentCategoryLabels = Object.freeze({
+  page: 'Navegação',
+  section: 'Navegação',
+  theory: 'Teorias',
+  figure: 'Grandes nomes',
+  publication: 'Publicações',
+  constellation: 'Atlas celeste',
+  experiment: 'Laboratório',
+  route: 'Rotas guiadas',
+  'research-track': 'Radar de desenvolvimento',
+  reference: 'Fontes',
+});
+
 const searchState = {
   entries: null,
   entriesPromise: null,
@@ -34,94 +47,28 @@ function ensureStylesheet() {
   document.head.append(link);
 }
 
-function textFrom(items) {
-  return items.filter(Boolean).join(' ');
-}
-
 async function loadEntries() {
   if (searchState.entries) return searchState.entries;
   if (searchState.entriesPromise) return searchState.entriesPromise;
   searchState.loadError = null;
   searchState.entriesPromise = (async () => {
-    const [theoryModule, figureModule, constellationModule, experimentModule, routeModule, contributionModule] = await Promise.all([
-      import('../data/theories.js'),
-      import('../data/notable-figures.js'),
-      import('../data/constellations.js'),
-      import('../data/experiments.js'),
-      import('../data/learning-paths.js'),
-      import('../data/contributions.js'),
-    ]);
+    const contentIndexModule = await import('../data/generated/search-index.js');
 
-    const entries = [
-      ...theoryModule.THEORIES.map((theory) => ({
-        id: `theory:${theory.id}`,
-        type: 'theory',
-        category: 'Teorias',
-        title: theory.title,
-        summary: theory.summary,
-        href: `/Teorias/teorias.html?teoria=${encodeURIComponent(theory.slug)}`,
-        searchText: textFrom([
-          theory.title,
-          theory.subtitle,
-          theory.summary,
-          theory.proposal,
-          theory.centralQuestion,
-          theory.category,
-          ...(theory.concepts || []),
-          ...(theory.questions || []),
-          ...(theory.objections || []).flatMap((objection) => [objection.title, objection.response]),
-        ]),
-      })),
-      ...figureModule.NOTABLE_FIGURES.map((figure) => ({
-        id: `figure:${figure.id}`,
-        type: 'figure',
-        category: 'Grandes nomes',
-        title: figure.name,
-        summary: figure.summary,
-        href: `/GrandesNomes/grandes-nomes.html?perfil=${encodeURIComponent(figure.slug)}#galeria`,
-        searchText: textFrom([figure.name, figure.role, figure.summary, figure.impact, ...(figure.milestones || [])]),
-      })),
-      ...constellationModule.CONSTELLATIONS.map((constellation) => ({
-        id: `constellation:${constellation.id}`,
-        type: 'constellation',
-        category: 'Atlas celeste',
-        title: constellation.name,
-        summary: constellation.signature,
-        href: `/Constelacoes/constelacoes.html?constelacao=${encodeURIComponent(constellation.slug)}#atlas`,
-        searchText: textFrom([constellation.name, constellation.latinName, constellation.abbreviation, constellation.signature, constellation.recognition, ...constellation.stars.map((star) => star.name)]),
-      })),
-      ...experimentModule.EXPERIMENTS.map((experiment) => ({
-        id: `experiment:${experiment.id}`,
-        type: 'experiment',
-        category: 'Laboratório',
-        title: experiment.title,
-        summary: experiment.summary,
-        href: experiment.href,
-        searchText: textFrom([experiment.title, experiment.shortTitle, experiment.summary, experiment.question, experiment.technology]),
-      })),
-      ...routeModule.LEARNING_PATHS.map((route) => ({
-        id: `route:${route.id}`,
-        type: 'route',
-        category: 'Rotas guiadas',
-        title: route.title,
-        summary: route.summary,
-        href: `/Rotas/rotas.html?rota=${encodeURIComponent(route.slug)}#percurso`,
-        searchText: textFrom([route.title, route.summary, route.audience, ...route.steps.map((step) => step.reason)]),
-      })),
-      ...contributionModule.CONTRIBUTIONS.map((contribution) => ({
-        id: `contribution:${contribution.id}`,
-        type: 'contribution',
-        category: 'Contribuições',
-        title: contribution.title,
-        summary: contribution.summary,
-        href: `/Contribuicoes/contribuicoes.html#${encodeURIComponent(contribution.slug)}`,
-        searchText: textFrom([contribution.title, contribution.summary, ...contribution.authors.map((author) => author.creditName)]),
-      })),
-    ].map((entry) => Object.freeze({
+    const entries = contentIndexModule.CONTENT_SEARCH_INDEX
+      .map((entry) => ({
+        id: `${entry.type}:${entry.id}`,
+        type: entry.type,
+        category: entry.category || contentCategoryLabels[entry.type] || 'Acervo',
+        title: entry.title,
+        summary: entry.summary,
+        href: entry.url,
+        searchText: entry.terms,
+      }))
+      .map((entry) => Object.freeze({
       ...entry,
       normalizedTitle: normalize(entry.title),
       normalizedText: normalize(entry.searchText),
-    }));
+      }));
     searchState.entries = Object.freeze(entries);
     return searchState.entries;
   })();
@@ -317,7 +264,10 @@ async function openSearch() {
 }
 
 function createTrigger(nav) {
+  const groupLabel = createElement('span', 'primary-nav-group-label', 'Buscar');
+  groupLabel.setAttribute('aria-hidden', 'true');
   const trigger = createElement('button', 'global-search-trigger');
+  trigger.dataset.navGroup = 'Buscar';
   trigger.type = 'button';
   trigger.setAttribute('aria-haspopup', 'dialog');
   trigger.setAttribute('aria-label', 'Abrir busca global. Atalho Control K ou Command K.');
@@ -327,7 +277,7 @@ function createTrigger(nav) {
     createElement('kbd', '', '⌘K'),
   );
   trigger.addEventListener('click', openSearch);
-  nav.append(trigger);
+  nav.append(groupLabel, trigger);
   searchState.trigger = trigger;
 }
 

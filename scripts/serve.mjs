@@ -1,22 +1,58 @@
+import './check-node-version.cjs';
 import { createReadStream } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { dirname, extname, isAbsolute, relative, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import {
-  PUBLIC_BUILD_DIRECTORIES,
   PUBLIC_BUILD_FILES,
+  PUBLIC_REQUIRED_FILES,
   PUBLIC_ROUTES,
 } from './public-manifest.mjs';
+import { compileContent } from './content/compiler.mjs';
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const mode = process.argv.includes('--dist') ? 'dist' : 'source';
-const root = mode === 'dist' ? resolve(projectRoot, 'dist') : projectRoot;
+const configuredDistRoot = process.env.OBSERVATORIO_DIST_ROOT;
+const root = mode === 'dist'
+  ? resolve(configuredDistRoot || resolve(projectRoot, 'dist'))
+  : projectRoot;
+const deploymentHeadersEnabled = (
+  mode === 'dist'
+  && process.env.OBSERVATORIO_DEPLOY_HEADERS === '1'
+);
+const deploymentHeaders = deploymentHeadersEnabled
+  ? Object.fromEntries(
+    (
+      JSON.parse(await readFile(resolve(projectRoot, 'vercel.json'), 'utf8'))
+        .headers
+        ?.find(({ source }) => source === '/(.*)')
+        ?.headers || []
+    ).map(({ key, value }) => [key.toLowerCase(), value]),
+  )
+  : {};
 const host = 'localhost';
 const requestedPort = Number(process.env.PORT || 5173);
 const port = Number.isInteger(requestedPort) && requestedPort >= 0 && requestedPort <= 65535
   ? requestedPort
   : 5173;
+
+if (mode === 'source') {
+  await compileContent({ writeRuntime: true, writeIntegrityReport: true });
+}
+
+const runtimeDirectory = resolve(root, 'assets', 'data', 'generated', 'runtime');
+const { PUBLICATIONS } = await import(
+  pathToFileURL(resolve(runtimeDirectory, 'publications.js')).href
+);
+const { NOTABLE_FIGURES } = mode === 'source'
+  ? await import(pathToFileURL(resolve(runtimeDirectory, 'notable-figures.js')).href)
+  : { NOTABLE_FIGURES: [] };
+const allowedSourceFiles = new Set([
+  ...PUBLIC_BUILD_FILES,
+  ...PUBLIC_REQUIRED_FILES,
+  ...NOTABLE_FIGURES.map(({ portrait }) => portrait.src.split(/[?#]/, 1)[0]),
+].map((path) => path.replaceAll('\\', '/').replace(/^\/+/, '')));
 
 const mimeTypes = new Map([
   ['.avif', 'image/avif'],
@@ -42,6 +78,15 @@ for (const route of PUBLIC_ROUTES) {
   routeFiles.set(route.url, route.file);
   routeFiles.set(route.cleanUrl, route.file);
 }
+for (const publication of PUBLICATIONS) {
+  for (const slug of [publication.slug, ...publication.aliases]) {
+    const publicationFile = mode === 'dist'
+      ? `Arquivo/publicacoes/${slug}.html`
+      : 'Arquivo/publicacao.html';
+    routeFiles.set(`/Arquivo/publicacoes/${slug}`, publicationFile);
+    routeFiles.set(`/Arquivo/publicacoes/${slug}.html`, publicationFile);
+  }
+}
 
 function normalizePublicPath(path) {
   return path.replaceAll('\\', '/').replace(/^\/+/, '');
@@ -54,10 +99,7 @@ function isInsideRoot(path) {
 
 function isAllowedSourcePath(path) {
   const publicPath = normalizePublicPath(relative(projectRoot, path));
-  if (PUBLIC_BUILD_FILES.includes(publicPath)) return true;
-  return PUBLIC_BUILD_DIRECTORIES.some((directory) => (
-    publicPath === directory || publicPath.startsWith(`${directory}/`)
-  ));
+  return allowedSourceFiles.has(publicPath);
 }
 
 function resolveRequestPath(rawUrl) {
@@ -75,6 +117,7 @@ async function sendNotFound(response, method) {
   const notFoundPath = resolve(root, 'index.html');
   const notFound = await readFile(notFoundPath).catch(() => Buffer.from('Página não encontrada.'));
   response.writeHead(404, {
+    ...deploymentHeaders,
     'content-type': 'text/html; charset=utf-8',
     'x-content-type-options': 'nosniff',
   });
@@ -84,7 +127,7 @@ async function sendNotFound(response, method) {
 const server = createServer(async (request, response) => {
   const method = request.method || 'GET';
   if (!['GET', 'HEAD'].includes(method)) {
-    response.writeHead(405, { allow: 'GET, HEAD' });
+    response.writeHead(405, { ...deploymentHeaders, allow: 'GET, HEAD' });
     response.end();
     return;
   }
@@ -99,6 +142,7 @@ const server = createServer(async (request, response) => {
 
     const type = mimeTypes.get(extname(filePath).toLowerCase()) || 'application/octet-stream';
     response.writeHead(200, {
+      ...deploymentHeaders,
       'cache-control': type.startsWith('image/') ? 'public, max-age=86400' : 'no-cache',
       'content-length': info.size,
       'content-type': type,
@@ -108,6 +152,7 @@ const server = createServer(async (request, response) => {
     else createReadStream(filePath).pipe(response);
   } catch {
     response.writeHead(400, {
+      ...deploymentHeaders,
       'content-type': 'text/plain; charset=utf-8',
       'x-content-type-options': 'nosniff',
     });

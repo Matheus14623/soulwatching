@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--henrietta-swan-leavitt--historical-foundation--observacao-nao-linear-r1",
+  "id": "figure--henrietta-swan-leavitt--historical-foundation--observacao-nao-linear",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "henrietta-swan-leavitt"
+  },
+  "target": {
+    "type": "theory",
+    "id": "observacao-nao-linear"
+  },
+  "type": "historical-foundation",
+  "label": "Inferir distância por sinais atrasados",
+  "justification": "A T-01 lida com observação remota e reconstrução. Leavitt mostra como uma relação calibrável converte luz recebida em inferência mensurável.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

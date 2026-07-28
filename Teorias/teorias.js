@@ -20,9 +20,9 @@ import {
   THEORY_FILTERS,
   THEORY_REVIEW_STATES,
   THEORY_TYPES,
-} from '../assets/data/theories.js';
-import { getTheoryReferences } from '../assets/data/theory-references.js';
-import { RESEARCH_TRACKS } from '../assets/data/research-tracks.js';
+} from '../assets/data/generated/runtime/theories.js';
+import { RESEARCH_TRACKS } from '../assets/data/generated/runtime/research-tracks.js';
+import { getTheoryReferences } from '../assets/js/reference-model.js';
 
 const collator = new Intl.Collator('pt-BR', { sensitivity: 'base' });
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -141,6 +141,8 @@ function relatedMarkup(theory) {
         <small>${escapeHtml(relation.relationLabel)}</small>
       </span>
       <span class="related-relation-note">${escapeHtml(relation.justification)}</span>
+      <span class="relation-review-state${relation.reviewPending ? ' is-pending' : ''}">${escapeHtml(relation.reviewLabel)}</span>
+      <span class="relation-review-disclosure">${escapeHtml(relation.reviewDisclosure)}</span>
     </button>
   `).join('');
 }
@@ -229,6 +231,8 @@ function notableFiguresMarkup(theory) {
             <strong>${escapeHtml(connection.figure.name)}</strong>
             <span>${escapeHtml(connection.relationLabel)} · ${escapeHtml(connection.label)}</span>
             <small>${escapeHtml(connection.note)}</small>
+            <small class="relation-review-state${connection.reviewPending ? ' is-pending' : ''}">${escapeHtml(connection.reviewLabel)}</small>
+            <small class="relation-review-disclosure">${escapeHtml(connection.reviewDisclosure)}</small>
           </a>
         </li>
       `).join('')}
@@ -484,7 +488,7 @@ function cardMarkup(theory) {
     : '';
 
   return `
-    <article class="archive-theory-card${active ? ' is-active' : ''}${theory.independent === false ? ' is-derived' : ''}" style="--accent:${theory.color}; --accent-glow:${theory.glow};" data-theory-card="${escapeHtml(theory.id)}">
+    <article class="archive-theory-card${active ? ' is-active' : ''}${theory.independent === false ? ' is-derived' : ''}" data-theory-card="${escapeHtml(theory.id)}">
       <button class="archive-card-trigger" type="button" data-theory-id="${escapeHtml(theory.id)}" aria-label="Abrir ${escapeHtml(theory.code)}: ${escapeHtml(theory.title)}"${expansionAttributes}>
         <span class="archive-card-meta-line">
           <span class="theory-code">${escapeHtml(theory.code)}</span>
@@ -513,6 +517,11 @@ function renderCards(theories) {
   if (!grid) return;
 
   grid.innerHTML = theories.map(cardMarkup).join('');
+  theories.forEach((theory) => {
+    const card = grid.querySelector(`[data-theory-card="${theory.id}"]`);
+    card?.style.setProperty('--accent', theory.color);
+    card?.style.setProperty('--accent-glow', theory.glow);
+  });
   if (empty) empty.hidden = theories.length > 0;
 }
 
@@ -615,6 +624,8 @@ function renderComparison() {
       <div class="comparison-relation" role="note">
         <span>${escapeHtml(relation.relationLabel)}</span>
         <p>${escapeHtml(relation.justification)}</p>
+        <small class="relation-review-state${relation.reviewPending ? ' is-pending' : ''}">${escapeHtml(relation.reviewLabel)}</small>
+        <small class="relation-review-disclosure">${escapeHtml(relation.reviewDisclosure)}</small>
       </div>
     ` : '<p class="comparison-no-relation">Não há relação direta catalogada entre estas linhas. A comparação não cria uma.</p>'}
     <div class="comparison-table-scroll" tabindex="0" role="region" aria-label="Tabela comparativa das linhas selecionadas">
@@ -663,7 +674,23 @@ function setComparison(slot, id, options = {}) {
   state[key] = theory && theory.id !== state[otherKey] ? theory.id : '';
   renderComparisonControls();
   renderComparison();
+  if (state.compareFirstId && state.compareSecondId) {
+    const comparisonTool = document.getElementById('comparar');
+    if (comparisonTool instanceof HTMLDetailsElement) comparisonTool.open = true;
+  }
   if (options.syncUrl !== false) syncComparisonUrl();
+}
+
+function syncComparisonDisclosure() {
+  const comparisonTool = document.getElementById('comparar');
+  if (!(comparisonTool instanceof HTMLDetailsElement)) return;
+  if ((state.compareFirstId && state.compareSecondId) || window.location.hash === '#comparar') {
+    comparisonTool.open = true;
+  }
+  safeSetText(
+    $('[data-comparison-disclosure-label]'),
+    comparisonTool.open ? 'Fechar ferramenta' : 'Abrir ferramenta',
+  );
 }
 
 function renderDossier(theories) {
@@ -909,6 +936,7 @@ function bindEvents() {
   const comparisonOutput = $('[data-comparison-output]');
   const copyComparison = $('[data-copy-comparison]');
   const clearComparison = $('[data-clear-comparison]');
+  const comparisonTool = document.getElementById('comparar');
 
   search?.addEventListener('input', debounce(() => {
     state.query = search.value.trim();
@@ -998,6 +1026,9 @@ function bindEvents() {
     compareFirst?.focus();
   });
 
+  comparisonTool?.addEventListener('toggle', syncComparisonDisclosure);
+  window.addEventListener('hashchange', syncComparisonDisclosure);
+
   copyComparison?.addEventListener('click', async () => {
     const status = $('[data-comparison-status]');
     try {
@@ -1024,6 +1055,7 @@ function bindEvents() {
     state.compareSecondId = comparisonIds[1] || '';
     renderComparisonControls();
     renderComparison();
+    syncComparisonDisclosure();
   });
 
   const syncInlineLayout = () => syncActiveStates();
@@ -1037,10 +1069,20 @@ function boot() {
   bindEvents();
   renderComparisonControls();
   renderComparison();
+  syncComparisonDisclosure();
   render();
   const active = findTheory(state.activeId);
-  const requested = new URL(window.location.href).searchParams.get('teoria');
-  if (active && !findTheory(requested)) syncUrl(active);
+  const url = new URL(window.location.href);
+  const requested = url.searchParams.get('teoria');
+  if (active && requested !== active.slug) syncUrl(active, { preserveVersion: true });
+  const requestedComparison = url.searchParams.get('comparar');
+  const canonicalComparison = [state.compareFirstId, state.compareSecondId]
+    .map((id) => findTheory(id)?.slug)
+    .filter(Boolean)
+    .join(',');
+  if (requestedComparison !== null && requestedComparison !== canonicalComparison) {
+    syncComparisonUrl();
+  }
 }
 
 if (document.readyState === 'loading') {

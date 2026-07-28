@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--subrahmanyan-chandrasekhar--methodological-context--horizonte-sentidos-r1",
+  "id": "figure--subrahmanyan-chandrasekhar--methodological-context--horizonte-sentidos",
+  "order": 1,
+  "source": {
+    "type": "figure",
+    "id": "subrahmanyan-chandrasekhar"
+  },
+  "target": {
+    "type": "theory",
+    "id": "horizonte-sentidos"
+  },
+  "type": "methodological-context",
+  "label": "Teoria confrontada com estrelas",
+  "justification": "A T-10 pode usar evolução estelar como exemplo de ligação entre modelos matemáticos, espectros e populações observadas.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

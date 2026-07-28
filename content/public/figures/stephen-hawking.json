@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "stephen-hawking-r1",
+  "order": 12,
+  "aliases": [],
+  "id": "stephen-hawking",
+  "slug": "stephen-hawking",
+  "name": "Stephen Hawking",
+  "lifespan": "1942–2018",
+  "area": "fisica-cosmos",
+  "role": "Gravitação e cosmologia quântica",
+  "featuredRank": null,
+  "summary": "Conectou buracos negros, termodinâmica e teoria quântica ao prever emissão térmica por horizontes.",
+  "impact": "A radiação Hawking mostrou que buracos negros não são completamente negros quando campos quânticos são considerados em espaço-tempo curvo. O resultado uniu temperatura, entropia e geometria e tornou o destino da informação um problema central da física teórica.",
+  "contributions": [
+    {
+      "title": "Radiação Hawking",
+      "description": "Previu um espectro térmico associado a buracos negros em tratamento semiclássico."
+    },
+    {
+      "title": "Teoremas de singularidade",
+      "description": "Com Penrose e outros, desenvolveu resultados globais para cosmologia e colapso."
+    },
+    {
+      "title": "Termodinâmica de horizontes",
+      "description": "Ajudou a estabelecer relações entre área, entropia, temperatura e evolução de buracos negros."
+    }
+  ],
+  "milestones": [
+    "Teoremas Hawking–Penrose",
+    "Black hole explosions? · 1974",
+    "Particle Creation by Black Holes · 1975"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/stephen-hawking.webp?v=portrait-2",
+    "width": 515,
+    "height": 800,
+    "alt": "Retrato de Stephen Hawking",
+    "credit": "²°¹°°",
+    "license": "Domínio público mundial",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Stephen_Hawking_050506.jpg"
+  },
+  "referenceIds": [
+    "hawking-cambridge"
+  ]
+}

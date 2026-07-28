@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "nasa-carina-r1",
+  "id": "nasa-carina",
+  "aliases": [],
+  "title": "A Nebulosa de Carina",
+  "institution": "NASA Science",
+  "url": "https://science.nasa.gov/asset/hubble/carina-nebula-2/",
+  "kind": "Material institucional"
+}

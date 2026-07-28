@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "refsdal-lensing-r1",
+  "id": "refsdal-lensing",
+  "aliases": [],
+  "title": "On the possibility of determining Hubble’s parameter from gravitational lensing",
+  "authors": "Sjur Refsdal",
+  "year": "1964",
+  "kind": "Artigo científico",
+  "url": "https://academic.oup.com/mnras/article/128/4/295/2601704"
+}

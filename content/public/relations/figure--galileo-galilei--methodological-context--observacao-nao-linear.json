@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--galileo-galilei--methodological-context--observacao-nao-linear-r1",
+  "id": "figure--galileo-galilei--methodological-context--observacao-nao-linear",
+  "order": 1,
+  "source": {
+    "type": "figure",
+    "id": "galileo-galilei"
+  },
+  "target": {
+    "type": "theory",
+    "id": "observacao-nao-linear"
+  },
+  "type": "methodological-context",
+  "label": "Observação mediada",
+  "justification": "A T-01 compartilha o problema de transformar sinais indiretos em uma reconstrução responsável, sem ultrapassar limites causais.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

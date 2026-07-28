@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "entityType": "research-track",
+  "revisionId": "materia-identidade-consciencia-r1",
+  "id": "materia-identidade-consciencia",
+  "code": "R-04",
+  "title": "Matéria, identidade e consciência",
+  "kind": "Ensaio filosófico",
+  "summary": "Examinar pessoas como padrões temporários de matéria cósmica e distinguir continuidade material, memória, identidade e consciência.",
+  "boundary": "Reciclagem de constituintes não preserva automaticamente identidade; formulações como “o universo pensa” permanecem metafóricas.",
+  "nextStep": "Desenvolver um ensaio com definições claras e diálogo entre filosofia da mente, física e biologia.",
+  "slug": "materia-identidade-consciencia",
+  "aliases": [],
+  "order": 4
+}

@@ -1,4 +1,4 @@
-import { CONTRIBUTION_TYPES } from '../data/contributions.js';
+import { PUBLICATION_TYPES as CONTRIBUTION_TYPES } from '../data/generated/runtime/publications.js';
 
 export const CONTRIBUTION_PROPOSAL_LIMITS = Object.freeze({
   name: Object.freeze({ min: 2, max: 120 }),
@@ -10,6 +10,7 @@ export const CONTRIBUTION_PROPOSAL_LIMITS = Object.freeze({
 });
 
 export const CONTRIBUTION_MAILTO_MAX_LENGTH = 7000;
+export const CONTRIBUTION_TEXT_MAX_LENGTH = 12000;
 
 const typeById = new Map(CONTRIBUTION_TYPES.map((type) => [type.id, type]));
 const EMAIL_PATTERN = /^[A-Z0-9.!$%&'*+\-/=_^`{|}~]+@[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?(?:\.[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?)+$/i;
@@ -55,6 +56,7 @@ export function normalizeContributionProposal(input) {
   const type = normalizeSingleLine(input.type);
   if (!typeById.has(type)) fail('type', 'selecione um formato permitido');
   if (input.rights !== true) fail('rights', 'confirme autoria ou permissão de compartilhamento');
+  if (input.privacy !== true) fail('privacy', 'confirme a finalidade de uso dos dados de contato');
 
   const proposal = {
     name: normalizeSingleLine(input.name),
@@ -66,6 +68,7 @@ export function normalizeContributionProposal(input) {
     summary: normalizeMultiline(input.summary),
     sources: normalizeMultiline(input.sources),
     rights: true,
+    privacy: true,
   };
 
   for (const field of ['name', 'credit', 'title', 'summary', 'sources']) {
@@ -74,9 +77,19 @@ export function normalizeContributionProposal(input) {
   return Object.freeze(proposal);
 }
 
-export function buildContributionMailto(input, contactEmail) {
+function proposalFileName(title) {
+  const slug = normalizeSingleLine(title)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 72);
+  return `proposta-observatorio-${slug || 'sem-titulo'}.txt`;
+}
+
+export function buildContributionText(input) {
   const proposal = normalizeContributionProposal(input);
-  const recipient = normalizeEmail(contactEmail);
   const subject = `Proposta para o Observatório: ${proposal.title}`;
   const body = [
     'PROPOSTA DE CONTRIBUIÇÃO EXTERNA',
@@ -93,11 +106,29 @@ export function buildContributionMailto(input, contactEmail) {
     'FONTES PRINCIPAIS',
     proposal.sources,
     '',
-    'Declaração: confirmo autoria ou permissão de compartilhamento e reconheço que o envio não garante publicação.',
+    'DECLARAÇÕES DESTA ETAPA',
+    '- Confirmo autoria ou permissão para compartilhar a proposta para avaliação.',
+    '- Entendo que texto, imagens, dados e código terão direitos verificados separadamente antes de qualquer publicação.',
+    '- Autorizo o uso do nome de contato e do e-mail somente para avaliar e responder esta proposta.',
+    '- Entendo que o envio não garante publicação e que crédito, licença e versão final exigem aprovação posterior.',
   ].join('\n');
-  const mailto = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  if (body.length > CONTRIBUTION_TEXT_MAX_LENGTH) {
+    throw new RangeError('A proposta ultrapassou o limite do documento de texto.');
+  }
+  return Object.freeze({
+    proposal,
+    subject,
+    body,
+    fileName: proposalFileName(proposal.title),
+  });
+}
+
+export function buildContributionMailto(input, contactEmail) {
+  const serialized = buildContributionText(input);
+  const recipient = normalizeEmail(contactEmail);
+  const mailto = `mailto:${recipient}?subject=${encodeURIComponent(serialized.subject)}&body=${encodeURIComponent(serialized.body)}`;
   if (mailto.length > CONTRIBUTION_MAILTO_MAX_LENGTH) {
     throw new RangeError('A proposta ficou extensa demais para ser preparada por link de e-mail.');
   }
-  return Object.freeze({ mailto, proposal, subject, body });
+  return Object.freeze({ ...serialized, mailto });
 }

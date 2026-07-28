@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "entityType": "theory",
+  "revisionId": "instabilidade-vazio-r1",
+  "order": 1,
+  "aliases": [],
+  "id": "instabilidade-vazio",
+  "slug": "instabilidade-vazio",
+  "code": "T-02",
+  "title": "Instabilidade Probabilística do Vazio",
+  "shortTitle": "Vazio instável",
+  "subtitle": "Estabilidade, transições e decaimento em estados de vácuo definidos",
+  "kind": "hipotese-cientifica",
+  "reviewState": "formalizacao",
+  "independent": true,
+  "category": "vazio",
+  "filters": [
+    "cosmologia",
+    "vazio"
+  ],
+  "color": "#ad8cff",
+  "glow": "rgba(173, 140, 255, 0.58)",
+  "position": {
+    "x": 72,
+    "y": 23
+  },
+  "summary": "Pergunta sob quais condições um estado de vácuo metastável pode decair e produzir uma transição cosmológica com consequências observáveis.",
+  "proposal": "Em um modelo com campo, potencial e mínimos definidos, um falso vácuo pode decair por tunelamento. A consequência depende da ação, da geometria e da taxa de nucleação, não de uma instabilidade obrigatória do “nada”.",
+  "questions": [
+    "Qual campo e qual potencial definem o estado de vácuo estudado?",
+    "A taxa de decaimento é compatível com a idade do universo?",
+    "Que assinatura distinguiria essa transição de outros processos cosmológicos?"
+  ],
+  "concepts": [
+    "falso vácuo",
+    "potencial de campo",
+    "tunelamento",
+    "nucleação de bolhas",
+    "transição de fase"
+  ],
+  "nextSteps": [
+    "Definir um potencial V(φ) com falso e verdadeiro mínimos.",
+    "Calcular ou simular a ação de bounce e a taxa de nucleação.",
+    "Derivar uma assinatura observável do modelo escolhido."
+  ],
+  "referenceIds": [
+    "coleman-deluccia",
+    "hiller-vacuum"
+  ],
+  "objections": [
+    {
+      "id": "vacuo-como-nada",
+      "title": "Vácuo físico não equivale a nada absoluto",
+      "status": "incorporada",
+      "response": "A formulação agora exige campo, potencial e estado de vácuo definidos antes de discutir decaimento."
+    },
+    {
+      "id": "modelo-ausente",
+      "title": "O potencial e a taxa de nucleação ainda não foram calculados",
+      "status": "aberta",
+      "response": "Sem V(φ), ação de bounce e escala, a linha permanece uma pergunta legítima, não um modelo completo."
+    }
+  ],
+  "decisionBoundary": {
+    "revise": "Revisar o recorte se o potencial escolhido for incompatível com limites experimentais ou produzir uma vida do vácuo inconsistente.",
+    "abandon": "Abandonar o mecanismo específico se nenhuma região de parâmetros fisicamente admissível produzir a transição e a assinatura declaradas."
+  },
+  "review": {
+    "assessment": "Núcleo legítimo; mecanismo ainda incompleto",
+    "known": "Decaimento de falso vácuo e estabilidade eletrofraca são problemas reais de teoria quântica de campos e cosmologia.",
+    "focus": "Substituir o “nada absoluto” por um estado físico explicitamente definido e calcular suas transições possíveis.",
+    "limit": "Vácuo quântico não é ausência de campos ou leis; incerteza energia-tempo não obriga energia a surgir nem torna um novo Big Bang inevitável.",
+    "test": "Especificar V(φ), estimar a taxa de decaimento e procurar assinaturas compatíveis com uma transição de fase."
+  },
+  "claimLinks": [
+    {
+      "id": "contexto-decaimento",
+      "label": "Base teórica",
+      "field": "review.known",
+      "referenceIds": [
+        "coleman-deluccia",
+        "hiller-vacuum"
+      ]
+    }
+  ],
+  "revisions": [
+    {
+      "revisionId": "instabilidade-vazio-r1",
+      "ordinal": 1,
+      "versionLabel": "2.1",
+      "reviewedAt": "2026-07-22",
+      "label": "Primeiro registro individual · jul. 2026",
+      "changeSummary": "O dossiê individual registra a distinção entre vácuo físico e nada, além da condição de abandono do mecanismo.",
+      "responsibles": [
+        {
+          "name": "Matheus Camargo",
+          "role": "autor e responsável editorial"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "entityType": "theory",
+  "revisionId": "ciclagem-eterna-r1",
+  "order": 2,
+  "aliases": [],
+  "id": "ciclagem-eterna",
+  "slug": "ciclagem-eterna",
+  "code": "T-03",
+  "title": "Ciclagem Eterna e Reboot do Vácuo",
+  "shortTitle": "Reboot cósmico",
+  "subtitle": "Condições para uma cosmologia cíclica com mecanismo definido",
+  "kind": "hipotese-cientifica",
+  "reviewState": "reformulacao",
+  "independent": true,
+  "category": "cosmologia",
+  "filters": [
+    "cosmologia",
+    "vazio",
+    "topologia"
+  ],
+  "color": "#f6d56d",
+  "glow": "rgba(246, 213, 109, 0.52)",
+  "position": {
+    "x": 64,
+    "y": 76
+  },
+  "summary": "Examina se o Big Bang pode ser uma transição entre fases cósmicas dentro de um modelo cíclico específico, em vez de combinar vários mecanismos incompatíveis.",
+  "proposal": "Um ciclo só é defensável quando um formalismo explica contração ou transição, bounce, evolução da entropia e previsões próprias.",
+  "questions": [
+    "Qual formalismo produz a transição entre ciclos?",
+    "Como o modelo trata singularidade e crescimento da entropia?",
+    "Qual assinatura primordial o diferencia de uma cosmologia não cíclica?"
+  ],
+  "concepts": [
+    "cosmologia cíclica",
+    "bounce",
+    "entropia",
+    "espectro primordial",
+    "transição cosmológica"
+  ],
+  "nextSteps": [
+    "Escolher um único formalismo cíclico para estudo.",
+    "Declarar o mecanismo de bounce e o tratamento da entropia.",
+    "Derivar uma previsão capaz de perder para os dados."
+  ],
+  "referenceIds": [
+    "ashtekar-singh-lqc",
+    "steinhardt-turok"
+  ],
+  "objections": [
+    {
+      "id": "mistura-mecanismos",
+      "title": "Mecanismos cosmológicos distintos foram combinados sem derivação",
+      "status": "incorporada",
+      "response": "A linha passou a exigir a escolha de um único formalismo antes de ligar bounce, entropia e observáveis."
+    },
+    {
+      "id": "entropia-ciclos",
+      "title": "A evolução da entropia entre ciclos permanece sem solução",
+      "status": "aberta",
+      "response": "O formalismo escolhido deverá demonstrar como trata crescimento entrópico sem recorrer apenas à repetição verbal do ciclo."
+    }
+  ],
+  "decisionBoundary": {
+    "revise": "Revisar a proposta se o formalismo escolhido exigir condições iniciais ou assinaturas incompatíveis com observações cosmológicas.",
+    "abandon": "Abandonar a versão cíclica estudada se ela não produzir uma transição consistente e ao menos uma previsão distinguível de modelos não cíclicos."
+  },
+  "review": {
+    "assessment": "Especulativa; precisa ser reconstruída",
+    "known": "Existem modelos cíclicos, ekpiróticos e de cosmologia quântica em loop com mecanismos e previsões diferentes.",
+    "focus": "Escolher um modelo e perguntar se ele produz uma transição consistente e uma assinatura observável.",
+    "limit": "Big Freeze, decaimento do próton, recorrência e buracos negros não formam automaticamente uma cadeia causal comum.",
+    "test": "Derivar espectro primordial, não gaussianidade, fundo de ondas gravitacionais ou outra assinatura exclusiva do formalismo."
+  },
+  "claimLinks": [
+    {
+      "id": "contexto-ciclico",
+      "label": "Modelos de comparação",
+      "field": "review.known",
+      "referenceIds": [
+        "ashtekar-singh-lqc",
+        "steinhardt-turok"
+      ]
+    }
+  ],
+  "revisions": [
+    {
+      "revisionId": "ciclagem-eterna-r1",
+      "ordinal": 1,
+      "versionLabel": "2.1",
+      "reviewedAt": "2026-07-22",
+      "label": "Primeiro registro individual · jul. 2026",
+      "changeSummary": "O primeiro histórico individual fixa a exigência de um único formalismo, objeções abertas e critérios de saída.",
+      "responsibles": [
+        {
+          "name": "Matheus Camargo",
+          "role": "autor e responsável editorial"
+        }
+      ]
+    }
+  ]
+}

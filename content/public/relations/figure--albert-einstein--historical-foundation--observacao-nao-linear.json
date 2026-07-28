@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--albert-einstein--historical-foundation--observacao-nao-linear-r1",
+  "id": "figure--albert-einstein--historical-foundation--observacao-nao-linear",
+  "order": 1,
+  "source": {
+    "type": "figure",
+    "id": "albert-einstein"
+  },
+  "target": {
+    "type": "theory",
+    "id": "observacao-nao-linear"
+  },
+  "type": "historical-foundation",
+  "label": "Causalidade, luz e lentes",
+  "justification": "Cones de luz e lentes gravitacionais estruturam o problema da T-01; eles não permitem receber informação fora do limite causal.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

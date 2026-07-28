@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--thomas-kuhn--methodological-context--backend-existencia-r1",
+  "id": "figure--thomas-kuhn--methodological-context--backend-existencia",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "thomas-kuhn"
+  },
+  "target": {
+    "type": "theory",
+    "id": "backend-existencia"
+  },
+  "type": "methodological-context",
+  "label": "Versões e mudanças de enquadramento",
+  "justification": "A T-07 pode registrar mudanças de linguagem e pressupostos, mas não deve chamar toda revisão de “mudança de paradigma”.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

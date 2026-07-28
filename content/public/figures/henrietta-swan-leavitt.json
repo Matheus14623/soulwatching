@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "henrietta-swan-leavitt-r1",
+  "order": 2,
+  "aliases": [],
+  "id": "henrietta-swan-leavitt",
+  "slug": "henrietta-swan-leavitt",
+  "name": "Henrietta Swan Leavitt",
+  "lifespan": "1868–1921",
+  "area": "astronomia",
+  "role": "Astronomia observacional",
+  "featuredRank": 2,
+  "summary": "Descobriu a relação entre período e luminosidade das Cefeidas, criando uma etapa decisiva da escala de distâncias cósmicas.",
+  "impact": "Comparando placas fotográficas das Nuvens de Magalhães, Leavitt reconheceu que Cefeidas mais luminosas pulsavam em períodos maiores. Como estavam aproximadamente à mesma distância, a relação permitiu estimar luminosidade intrínseca e, depois de calibrada, medir distâncias muito além da paralaxe direta.",
+  "contributions": [
+    {
+      "title": "Relação período–luminosidade",
+      "description": "Conectou uma grandeza temporal observável à luminosidade intrínseca de estrelas variáveis."
+    },
+    {
+      "title": "Escala de distâncias",
+      "description": "Forneceu uma régua que tornou possível estimar distâncias extragalácticas."
+    },
+    {
+      "title": "Leitura sistemática de arquivos",
+      "description": "Extraiu uma regularidade física de séries extensas de placas e medições repetidas."
+    }
+  ],
+  "milestones": [
+    "1777 Variables in the Magellanic Clouds · 1908",
+    "Estudo de 25 Cefeidas · 1912",
+    "Base da escala de distâncias extragalácticas"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/henrietta-leavitt.webp",
+    "width": 602,
+    "height": 800,
+    "alt": "Retrato de Henrietta Swan Leavitt",
+    "credit": "Autor não identificado · acervo histórico",
+    "license": "Domínio público nos Estados Unidos",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Henrietta_Swan_Leavitt.jpg"
+  },
+  "referenceIds": [
+    "leavitt-harvard"
+  ]
+}

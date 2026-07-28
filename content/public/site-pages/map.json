@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "entityType": "site-page",
+  "revisionId": "map-r1",
+  "order": 4,
+  "id": "map",
+  "label": "Mapa",
+  "functionalLabel": "Mapa de relações",
+  "title": "Mapa de relações | Observatório de Ideias",
+  "description": "Visualização navegável de relações tipadas entre linhas de investigação.",
+  "keywords": [
+    "mapa",
+    "relações",
+    "conexões",
+    "afinidade",
+    "tensão",
+    "derivação"
+  ],
+  "matchPaths": [
+    "/Mapa/mapa.html",
+    "/Mapa/mapa"
+  ],
+  "sections": [
+    {
+      "id": "constelacao",
+      "label": "Mapa de relações",
+      "title": "Explorar relações entre ideias",
+      "description": "Selecione uma linha e veja relações justificadas com outras entradas.",
+      "keywords": [
+        "explorar mapa",
+        "relações tipadas",
+        "ideias conectadas"
+      ]
+    },
+    {
+      "id": "eixos",
+      "label": "Eixos conceituais",
+      "title": "Entender os eixos do mapa",
+      "description": "Leitura complementar dos temas que atravessam o catálogo.",
+      "keywords": [
+        "eixos",
+        "temas",
+        "conceitos"
+      ]
+    }
+  ]
+}

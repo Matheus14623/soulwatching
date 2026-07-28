@@ -1,35 +1,9 @@
-import { readFile, readdir, stat } from 'node:fs/promises';
-import { spawnSync } from 'node:child_process';
+import './check-node-version.cjs';
+import { lstat, readFile, readdir, stat } from 'node:fs/promises';
 import { resolve, dirname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import {
-  THEORIES,
-  THEORY_FILTERS,
-  THEORY_REVIEW_STATES,
-  THEORY_TYPES,
-} from '../assets/data/theories.js';
-import { THEORY_REFERENCES } from '../assets/data/theory-references.js';
-import { RESEARCH_TRACKS } from '../assets/data/research-tracks.js';
-import {
-  NOTABLE_FIGURE_AREAS,
-  NOTABLE_FIGURE_RELATION_TYPES,
-  NOTABLE_FIGURES,
-} from '../assets/data/notable-figures.js';
-import { NOTABLE_FIGURE_REFERENCES } from '../assets/data/notable-figure-references.js';
-import {
-  CONSTELLATIONS,
-  CONSTELLATION_REFERENCES,
-} from '../assets/data/constellations.js';
-import {
-  CONTRIBUTIONS,
-  CONTRIBUTION_LINK_TYPES,
-  CONTRIBUTION_ROLES,
-  CONTRIBUTION_SOURCE_TYPES,
-  CONTRIBUTION_STATUSES,
-  CONTRIBUTION_TYPES,
-  validateContributionCatalog,
-} from '../assets/data/contributions.js';
-import { THEORY_SOURCE_FILES } from './theory-sources.mjs';
+import { compileContent } from './content/compiler.mjs';
+import { checkSourceSyntax } from './check-syntax.mjs';
 import {
   PUBLIC_BUILD_DIRECTORIES,
   PUBLIC_BUILD_FILES,
@@ -40,32 +14,57 @@ import {
 } from './public-manifest.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const contentCompilation = await compileContent({ writeRuntime: true });
+if (contentCompilation.report.warnings.length) {
+  console.warn(
+    `Avisos editoriais não bloqueantes: ${contentCompilation.report.warnings.join(' | ')}`,
+  );
+}
+await checkSourceSyntax();
+
+const [
+  theoryModule,
+  theoryReferenceModule,
+  researchTrackModule,
+  notableFigureModule,
+  constellationModule,
+  publicationModule,
+] = await Promise.all([
+  import('../assets/data/theories.js'),
+  import('../assets/data/theory-references.js'),
+  import('../assets/data/research-tracks.js'),
+  import('../assets/data/notable-figures.js'),
+  import('../assets/data/constellations.js'),
+  import('../assets/data/generated/runtime/publications.js'),
+]);
+
+const {
+  THEORIES,
+  THEORY_FILTERS,
+  THEORY_REVIEW_STATES,
+  THEORY_TYPES,
+} = theoryModule;
+const { THEORY_REFERENCES } = theoryReferenceModule;
+const { RESEARCH_TRACKS } = researchTrackModule;
+const { NOTABLE_FIGURES } = notableFigureModule;
+const {
+  CONSTELLATIONS,
+  CONSTELLATION_REFERENCES,
+} = constellationModule;
+const {
+  EXTERNAL_CONTRIBUTIONS,
+  PUBLICATION_CREDIT_ROLES,
+  PUBLICATION_TYPES,
+} = publicationModule;
 const requiredFiles = [
-  'AGENTS.md',
-  'ai/INDEX.md',
-  'ai/ROUTING.md',
-  'ai/knowledge.schema.json',
-  'ai/knowledge-graph.json',
-  'ai/maintenance/SOURCE_COVERAGE_LEDGER.md',
-  'ai/tools/build-knowledge-graph.mjs',
-  'ai/tools/build-source-coverage-ledger.mjs',
-  'README.md',
-  'DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md',
-  'docs/INTEGRACAO_TEORIAS.md',
-  '.github/workflows/quality.yml',
   'package.json',
   'package-lock.json',
+  'scripts/build-deploy.mjs',
   'scripts/build.mjs',
   'scripts/check-node-version.cjs',
   'scripts/public-manifest.mjs',
+  'scripts/public-metadata.mjs',
   'scripts/serve.mjs',
-  'scripts/tests/accessibility-contracts.test.mjs',
-  'scripts/tests/browser-smoke.test.mjs',
-  'scripts/tests/contributions-contracts.test.mjs',
-  'scripts/tests/feature-contracts.test.mjs',
-  'scripts/tests/public-smoke.test.mjs',
-  'scripts/tests/test-server.mjs',
-  'scripts/theory-sources.mjs',
   'vercel.json',
   '.nvmrc',
   ...PUBLIC_REQUIRED_FILES,
@@ -99,9 +98,14 @@ function isCoveredByBuildManifest(path) {
 
 async function listPublicFiles(directory) {
   const entries = await readdir(join(root, directory), { withFileTypes: true });
-  const files = await Promise.all(entries.map((entry) => {
+  const files = await Promise.all(entries.map(async (entry) => {
     const path = normalizeManifestPath(join(directory, entry.name));
-    return entry.isDirectory() ? listPublicFiles(path) : [path];
+    const info = await lstat(join(root, path));
+    if (info.isSymbolicLink()) {
+      errors.push(`Link simbólico não permitido em diretório público: ${path}`);
+      return [];
+    }
+    return info.isDirectory() ? listPublicFiles(path) : [path];
   }));
   return files.flat();
 }
@@ -122,6 +126,17 @@ const publicFiles = [
   ...PUBLIC_BUILD_FILES.map(normalizeManifestPath),
   ...(await Promise.all(PUBLIC_BUILD_DIRECTORIES.map(listPublicFiles))).flat(),
 ];
+const allowedPublicFiles = new Set([
+  ...PUBLIC_BUILD_FILES,
+  ...PUBLIC_REQUIRED_FILES,
+  ...NOTABLE_FIGURES.map(({ portrait }) => (
+    normalizeManifestPath(portrait.src.split(/[?#]/, 1)[0])
+  )),
+].map(normalizeManifestPath));
+const unregisteredPublicFiles = publicFiles.filter((file) => !allowedPublicFiles.has(file));
+if (unregisteredPublicFiles.length) {
+  errors.push(`Arquivo não registrado no manifesto público: ${unregisteredPublicFiles.join(', ')}`);
+}
 const discoveredHtmlFiles = publicFiles.filter((file) => file.endsWith('.html'));
 const unregisteredHtmlFiles = discoveredHtmlFiles.filter((file) => !PUBLIC_HTML_FILES.includes(file));
 if (unregisteredHtmlFiles.length) {
@@ -172,6 +187,7 @@ const publicDataFiles = [
   'assets/data/notable-figure-references.js',
   'assets/data/constellations.js',
   'assets/data/contributions.js',
+  ...(await listPublicFiles('content/public')).filter((file) => file.endsWith('.json')),
 ];
 const publicData = (await Promise.all(
   publicDataFiles.map((file) => readFile(join(root, file), 'utf8')),
@@ -202,16 +218,29 @@ if (/BlackHoleRenderer|data-black-hole|black-hole-(?:canvas|overlay|system)|blac
 }
 
 function isExternal(ref) {
-  return /^(https?:|mailto:|tel:|#|javascript:)/i.test(ref);
+  return /^(?:https?:|mailto:|tel:|#|javascript:|\/\/)/i.test(ref);
+}
+
+function resolveLocalReference(file, ref) {
+  const normalizedRef = ref.replaceAll('\\', '/');
+  if (normalizedRef.startsWith('/')) {
+    return normalizeManifestPath(normalizedRef.replace(/^\/+/, ''));
+  }
+
+  const resolved = normalizeManifestPath(join(dirname(file), normalizedRef));
+  if (resolved === '..' || resolved.startsWith('../')) return null;
+  return resolved;
 }
 
 for (const [file, html] of htmlByFile) {
-  const base = dirname(file);
   const refs = [...html.matchAll(/(?:src|href)="([^"#?]+)(?:[?#][^"]*)?"/g)].map((match) => match[1]);
   for (const ref of refs) {
     if (isExternal(ref)) continue;
-    const resolved = normalize(join(base, ref));
-    if (resolved.startsWith('..')) continue;
+    const resolved = resolveLocalReference(file, ref);
+    if (!resolved) {
+      errors.push(`Referência local escapa da raiz pública em ${file}: ${ref}`);
+      continue;
+    }
     if (!(await fileExists(resolved))) errors.push(`Referência local inexistente em ${file}: ${ref}`);
   }
 
@@ -226,18 +255,13 @@ for (const jsFile of publicCodeFiles.filter((file) => file.endsWith('.js'))) {
   if (/console\.log\(/.test(js)) errors.push(`console.log encontrado em ${jsFile}`);
 }
 
-try {
-  validateContributionCatalog(CONTRIBUTIONS);
-} catch (error) {
-  errors.push(`Catálogo de contribuições inválido: ${error.message}`);
+if (EXTERNAL_CONTRIBUTIONS.some(({ authorshipOrigin }) => authorshipOrigin !== 'external')) {
+  errors.push('Projeção de contribuições contém publicação sem autoria externa');
 }
 
 for (const [label, definitions] of [
-  ['tipos de contribuição', CONTRIBUTION_TYPES],
-  ['status de contribuição', CONTRIBUTION_STATUSES],
-  ['papéis de contribuição', CONTRIBUTION_ROLES],
-  ['tipos de link de contribuição', CONTRIBUTION_LINK_TYPES],
-  ['tipos de fonte de contribuição', CONTRIBUTION_SOURCE_TYPES],
+  ['tipos de publicação', PUBLICATION_TYPES],
+  ['papéis de crédito', PUBLICATION_CREDIT_ROLES],
 ]) {
   if (!definitions.length) {
     errors.push(`Catálogo vazio: ${label}`);
@@ -315,9 +339,6 @@ for (const theory of THEORIES) {
   const unknownReferences = theory.referenceIds.filter((id) => !referenceIds.has(id));
   if (unknownReferences.length) errors.push(`Referências desconhecidas em ${theory.id}: ${unknownReferences.join(', ')}`);
 
-  const sourcePath = THEORY_SOURCE_FILES[theory.id];
-  if (!sourcePath) errors.push(`Fonte editorial não mapeada para ${theory.id}`);
-  else if (!(await fileExists(sourcePath))) errors.push(`Fonte editorial inexistente em ${theory.id}: ${sourcePath}`);
 }
 
 for (const theory of THEORIES) {
@@ -338,117 +359,6 @@ for (const [id, reference] of Object.entries(THEORY_REFERENCES)) {
     if (!['https:', 'http:'].includes(url.protocol)) errors.push(`URL de referência inválida: ${id}`);
   } catch {
     errors.push(`URL de referência inválida: ${id}`);
-  }
-}
-
-const notableFigureIds = new Set();
-const notableFigureSlugs = new Set();
-const notableAreaIds = new Set(NOTABLE_FIGURE_AREAS.map((area) => area.id));
-const notableRelationTypeIds = new Set(
-  NOTABLE_FIGURE_RELATION_TYPES.map((relationType) => relationType.id),
-);
-const notableReferenceIds = new Set(Object.keys(NOTABLE_FIGURE_REFERENCES));
-const featuredRanks = [];
-
-for (const figure of NOTABLE_FIGURES) {
-  const missing = [
-    'id', 'slug', 'name', 'lifespan', 'area', 'role', 'portrait',
-    'summary', 'impact', 'contributions', 'milestones', 'sourceIds', 'theoryLinks',
-  ].filter((field) => figure[field] === undefined || figure[field] === '');
-  if (missing.length) errors.push(`Perfil incompleto em ${figure.id || figure.name}: ${missing.join(', ')}`);
-
-  if (notableFigureIds.has(figure.id)) errors.push(`ID de grande nome duplicado: ${figure.id}`);
-  if (notableFigureSlugs.has(figure.slug)) errors.push(`Slug de grande nome duplicado: ${figure.slug}`);
-  notableFigureIds.add(figure.id);
-  notableFigureSlugs.add(figure.slug);
-
-  if (!notableAreaIds.has(figure.area) || figure.area === 'todas') {
-    errors.push(`Área desconhecida em ${figure.id}: ${figure.area}`);
-  }
-  if (!Array.isArray(figure.contributions) || figure.contributions.length < 3) {
-    errors.push(`Contribuições insuficientes em ${figure.id}`);
-  }
-  if (!Array.isArray(figure.milestones) || figure.milestones.length < 3) {
-    errors.push(`Marcos insuficientes em ${figure.id}`);
-  }
-  if (!Array.isArray(figure.sourceIds) || !figure.sourceIds.length) {
-    errors.push(`Fontes ausentes em ${figure.id}`);
-  }
-  if (!Array.isArray(figure.theoryLinks)) {
-    errors.push(`Conexões com o Observatório inválidas em ${figure.id}`);
-  }
-
-  const unknownSources = figure.sourceIds.filter((id) => !notableReferenceIds.has(id));
-  if (unknownSources.length) errors.push(`Fontes desconhecidas em ${figure.id}: ${unknownSources.join(', ')}`);
-
-  for (const link of Array.isArray(figure.theoryLinks) ? figure.theoryLinks : []) {
-    if (!theoryIds.has(link.theoryId)) {
-      errors.push(`Teoria desconhecida em ${figure.id}: ${link.theoryId}`);
-    }
-    if (!notableRelationTypeIds.has(link.relationType)) {
-      errors.push(`Tipo de relação desconhecido em ${figure.id}: ${link.relationType}`);
-    }
-    if (!link.label || !link.note) errors.push(`Relação incompleta em ${figure.id}`);
-  }
-
-  if (!figure.portrait?.src || !figure.portrait?.alt || !figure.portrait?.credit
-    || !figure.portrait?.license || !figure.portrait?.sourceUrl || !figure.portrait?.modifications) {
-    errors.push(`Metadados de retrato incompletos em ${figure.id}`);
-  } else {
-    const portraitPath = figure.portrait.src.split(/[?#]/, 1)[0];
-    if (!/^assets[\\/]images[\\/]grandes-nomes[\\/]/i.test(portraitPath)) {
-      errors.push(`Retrato fora do diretório público esperado em ${figure.id}`);
-    }
-    if (!portraitPath.toLowerCase().endsWith('.webp')) {
-      errors.push(`Retrato não otimizado como WebP em ${figure.id}`);
-    }
-    if (!Number.isInteger(figure.portrait.width) || figure.portrait.width < 1
-      || !Number.isInteger(figure.portrait.height) || figure.portrait.height < 1) {
-      errors.push(`Dimensões de retrato inválidas em ${figure.id}`);
-    }
-    if (!(await fileExists(portraitPath))) {
-      errors.push(`Retrato ausente em ${figure.id}: ${portraitPath}`);
-    }
-    try {
-      const sourceUrl = new URL(figure.portrait.sourceUrl);
-      if (!['https:', 'http:'].includes(sourceUrl.protocol)) throw new Error();
-    } catch {
-      errors.push(`URL de retrato inválida em ${figure.id}`);
-    }
-    if (/^CC/i.test(figure.portrait.license)) {
-      try {
-        const licenseUrl = new URL(figure.portrait.licenseUrl);
-        if (licenseUrl.protocol !== 'https:') throw new Error();
-      } catch {
-        errors.push(`URL da licença Creative Commons inválida em ${figure.id}`);
-      }
-    }
-  }
-
-  if (figure.featuredRank !== null) {
-    if (!Number.isInteger(figure.featuredRank) || figure.featuredRank < 1) {
-      errors.push(`Posição de destaque inválida em ${figure.id}`);
-    } else {
-      featuredRanks.push(figure.featuredRank);
-    }
-  }
-}
-
-if (featuredRanks.length !== 3 || new Set(featuredRanks).size !== 3
-  || featuredRanks.sort((a, b) => a - b).join(',') !== '1,2,3') {
-  errors.push('A home precisa de exatamente três grandes nomes com posições 1, 2 e 3.');
-}
-
-for (const [id, reference] of Object.entries(NOTABLE_FIGURE_REFERENCES)) {
-  if (!reference.title || !reference.institution || !reference.kind || !reference.url) {
-    errors.push(`Referência de grande nome incompleta: ${id}`);
-    continue;
-  }
-  try {
-    const url = new URL(reference.url);
-    if (!['https:', 'http:'].includes(url.protocol)) throw new Error();
-  } catch {
-    errors.push(`URL de referência de grande nome inválida: ${id}`);
   }
 }
 
@@ -621,20 +531,6 @@ for (const track of RESEARCH_TRACKS) {
   if (missing.length) errors.push(`Linha do radar incompleta em ${track.id || track.code}: ${missing.join(', ')}`);
   if (trackIds.has(track.id)) errors.push(`ID duplicado no radar: ${track.id}`);
   trackIds.add(track.id);
-}
-
-for (const script of [
-  'ai/tools/build-source-coverage-ledger.mjs',
-  'ai/tools/build-knowledge-graph.mjs',
-]) {
-  const result = spawnSync(process.execPath, [join(root, script), '--check'], {
-    cwd: root,
-    encoding: 'utf8',
-  });
-  if (result.status !== 0) {
-    const detail = String(result.stderr || result.stdout || '').trim();
-    errors.push(`Base de conhecimento inválida em ${script}${detail ? `: ${detail}` : ''}`);
-  }
 }
 
 if (errors.length) {

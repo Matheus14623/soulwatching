@@ -1,21 +1,26 @@
 import {
-  CONTRIBUTIONS,
-  CONTRIBUTION_POLICY,
-  CONTRIBUTION_TYPES,
-} from '../assets/data/contributions.js';
+  EXTERNAL_CONTRIBUTIONS as CONTRIBUTIONS,
+  PUBLICATION_TYPES as CONTRIBUTION_TYPES,
+} from '../assets/data/generated/runtime/publications.js';
+import { CONTRIBUTION_POLICY } from '../assets/js/contribution-policy.js';
 import { SITE_CONFIG } from '../assets/js/config.js';
 import {
   CONTRIBUTION_PROPOSAL_LIMITS,
   buildContributionMailto,
+  buildContributionText,
 } from '../assets/js/contribution-proposal.js';
+import {
+  clearContributionDraft,
+  loadContributionDraft,
+  saveContributionDraft,
+} from '../assets/js/contribution-draft.js';
 import { initNavigation } from '../assets/js/navigation.js';
+import {
+  createPublicationView,
+  publicationHref,
+} from '../assets/js/publication-model.js';
+import { initPixSupport } from '../assets/js/pix-support.js';
 
-const dateFormatter = new Intl.DateTimeFormat('pt-BR', {
-  day: '2-digit',
-  month: 'long',
-  timeZone: 'UTC',
-  year: 'numeric',
-});
 const allowedTypeIds = new Set(CONTRIBUTION_TYPES.map((type) => type.id));
 const dom = {};
 
@@ -24,22 +29,6 @@ function createElement(tag, className, text) {
   if (className) element.className = className;
   if (text !== undefined) element.textContent = text;
   return element;
-}
-
-function createExternalLink(label, url, className = '') {
-  const link = createElement('a', className, label);
-  link.href = url;
-  link.target = '_blank';
-  link.rel = 'noopener noreferrer';
-  link.setAttribute('aria-label', `${label} — abre em uma nova aba`);
-  return link;
-}
-
-function createTime(date) {
-  const time = document.createElement('time');
-  time.dateTime = date;
-  time.textContent = dateFormatter.format(new Date(`${date}T00:00:00Z`));
-  return time;
 }
 
 function renderTypes() {
@@ -66,115 +55,14 @@ function renderPolicy() {
   dom.policy.replaceChildren(...Object.values(CONTRIBUTION_POLICY).map((item) => createElement('li', '', item)));
 }
 
-function createLinkList(links, label) {
-  if (!links.length) return null;
-  const nav = createElement('nav', 'contribution-link-list');
-  nav.setAttribute('aria-label', label);
-  links.forEach((link) => nav.append(createExternalLink(`${link.typeLabel}: ${link.label}`, link.url)));
-  return nav;
-}
-
-function createContributorItem(contributor) {
-  const item = createElement('li', 'contribution-contributor');
-  const header = createElement('div', 'contribution-contributor-heading');
-  header.append(
-    createElement('strong', '', contributor.creditName),
-    createElement('span', '', contributor.roleLabel),
-  );
-  item.append(header, createElement('p', '', contributor.contribution));
-  const links = createLinkList(contributor.links, `Links públicos autorizados de ${contributor.creditName}`);
-  if (links) item.append(links);
-  return item;
-}
-
-function createContributorsSection(contribution) {
-  const section = createElement('section', 'contribution-entry-section');
-  section.append(createElement('h4', '', 'Autoria e papéis'));
-  const list = createElement('ul', 'contribution-contributor-list');
-  list.append(...contribution.contributors.map(createContributorItem));
-  section.append(list);
-  return section;
-}
-
 function createDefinition(label, value) {
   const wrapper = document.createElement('div');
-  wrapper.append(createElement('dt', '', label));
-  const description = document.createElement('dd');
-  if (value instanceof Node) description.append(value);
-  else description.textContent = value;
-  wrapper.append(description);
+  wrapper.append(createElement('dt', '', label), createElement('dd', '', value));
   return wrapper;
 }
 
-function createProvenanceSection(contribution) {
-  const { provenance } = contribution;
-  const section = createElement('section', 'contribution-entry-section contribution-provenance');
-  section.append(createElement('h4', '', 'Proveniência editorial'));
-  const origin = provenance.origin.url
-    ? createExternalLink(provenance.origin.label, provenance.origin.url)
-    : provenance.origin.label;
-  const list = document.createElement('dl');
-  list.append(
-    createDefinition('Origem', origin),
-    createDefinition('Recebida em', createTime(provenance.receivedAt)),
-    createDefinition('Publicada em', createTime(provenance.publishedAt)),
-    createDefinition('Permissão', provenance.permissionStatement),
-    createDefinition('Responsabilidade editorial', provenance.editorialResponsibility),
-  );
-  section.append(list);
-  return section;
-}
-
-function createSourcesSection(contribution) {
-  const section = createElement('section', 'contribution-entry-section contribution-entry-sources');
-  section.append(createElement('h4', '', 'Fontes e materiais citados'));
-  const list = document.createElement('ol');
-  contribution.sources.forEach((source) => {
-    const item = document.createElement('li');
-    item.append(
-      createExternalLink(source.title, source.url),
-      createElement('span', '', `${source.authors} · ${source.year} · ${source.typeLabel}`),
-    );
-    list.append(item);
-  });
-  section.append(list);
-  return section;
-}
-
-function createLicenseSection(contribution) {
-  const section = createElement('section', 'contribution-entry-section contribution-entry-license');
-  section.append(createElement('h4', '', 'Licença de publicação'));
-  const line = document.createElement('p');
-  line.append(createElement('strong', '', contribution.license.identifier), document.createTextNode(' · '));
-  if (contribution.license.url) {
-    line.append(createExternalLink(contribution.license.label, contribution.license.url));
-  } else {
-    line.append(document.createTextNode(contribution.license.label));
-  }
-  section.append(line);
-  return section;
-}
-
-function createRevisionsSection(contribution) {
-  const section = createElement('section', 'contribution-entry-section contribution-revisions');
-  section.append(createElement('h4', '', 'Histórico completo de revisões'));
-  const list = document.createElement('ol');
-  contribution.revisions.forEach((revision) => {
-    const item = document.createElement('li');
-    const header = createElement('div', 'contribution-revision-heading');
-    header.append(createElement('strong', '', `Versão ${revision.version}`), createTime(revision.reviewedAt));
-    item.append(
-      header,
-      createElement('p', '', revision.summary),
-      createElement('span', '', `Responsáveis: ${revision.responsibles.map((person) => person.creditName).join(', ')}`),
-    );
-    list.append(item);
-  });
-  section.append(list);
-  return section;
-}
-
-function createContributionEntry(contribution) {
+function createContributionEntry(source) {
+  const contribution = createPublicationView(source);
   const article = createElement('article', 'contribution-entry');
   const titleId = `contribution-${contribution.slug}-title`;
   article.id = contribution.slug;
@@ -182,23 +70,57 @@ function createContributionEntry(contribution) {
 
   const title = createElement('h3', '', contribution.title);
   title.id = titleId;
-  const authorNames = contribution.authors.map((author) => author.creditName).join(', ');
+  const authorNames = contribution.authors.map((author) => author.displayName).join(', ');
   article.append(
-    createElement('span', 'section-kicker', `${contribution.typeLabel} · ${contribution.statusLabel}`),
+    createElement('span', 'section-kicker', `${contribution.typeLabel} · ${contribution.availabilityLabel}`),
     title,
     createElement('p', 'contribution-entry-byline', `Autoria: ${authorNames}`),
     createElement('p', 'contribution-entry-summary', contribution.summary),
   );
+  if (contribution.publicNotice) {
+    const notice = createElement('aside', 'contribution-public-notice');
+    notice.setAttribute('role', 'note');
+    notice.append(
+      createElement('h4', '', `Aviso editorial · ${contribution.availabilityLabel}`),
+      createElement('p', '', contribution.publicNotice.reason),
+    );
+    article.append(notice);
+  }
 
-  const links = createLinkList(contribution.links, `Links autorizados da contribuição ${contribution.title}`);
-  if (links) article.append(links);
-  article.append(
-    createContributorsSection(contribution),
-    createProvenanceSection(contribution),
-    createSourcesSection(contribution),
-    createLicenseSection(contribution),
-    createRevisionsSection(contribution),
+  const provenance = createElement('section', 'contribution-entry-section contribution-provenance');
+  provenance.append(createElement('h4', '', 'Proveniência editorial'));
+  const metadata = document.createElement('dl');
+  metadata.append(
+    createDefinition('Origem', contribution.originLabel),
+    createDefinition(
+      'Revisão atual',
+      contribution.latestRevision
+        ? `Versão ${contribution.latestRevision.ordinal} · ${contribution.latestRevision.publishedAt}`
+        : 'não informada',
+    ),
+    createDefinition('Licença', contribution.textLicense.label),
+    createDefinition('Revisão editorial', contribution.publicDeclarations.editorialReview.description),
   );
+  provenance.append(metadata);
+
+  const credits = createElement('section', 'contribution-entry-section');
+  credits.append(createElement('h4', '', 'Créditos publicados'));
+  const creditList = createElement('ul', 'contribution-contributor-list');
+  contribution.credits.forEach((credit) => {
+    const item = createElement('li', 'contribution-contributor');
+    const heading = createElement('div', 'contribution-contributor-heading');
+    heading.append(
+      createElement('strong', '', credit.displayName),
+      createElement('span', '', credit.roleLabels.join(' · ')),
+    );
+    item.append(heading);
+    creditList.append(item);
+  });
+  credits.append(creditList);
+
+  const link = createElement('a', 'button button-secondary', 'Ler publicação completa');
+  link.href = publicationHref(contribution.slug, { nested: true });
+  article.append(credits, provenance, link);
   return article;
 }
 
@@ -280,7 +202,132 @@ function proposalFromForm(data) {
     summary: data.get('summary'),
     sources: data.get('sources'),
     rights: data.has('rights'),
+    privacy: data.has('privacy'),
   };
+}
+
+function currentProposal() {
+  return proposalFromForm(new FormData(dom.form));
+}
+
+function setStatus(message, { error = false } = {}) {
+  dom.status.classList.toggle('is-error', error);
+  dom.status.textContent = message;
+}
+
+function hidePreview() {
+  dom.preview.hidden = true;
+  dom.preview.removeAttribute('data-ready');
+}
+
+function showPreview({ moveFocus = true } = {}) {
+  if (!validateForm()) {
+    setStatus('Revise os campos indicados antes de preparar a prévia.', { error: true });
+    return null;
+  }
+  try {
+    const serialized = buildContributionText(currentProposal());
+    dom.previewTitle.textContent = serialized.subject;
+    dom.previewBody.textContent = serialized.body;
+    dom.preview.hidden = false;
+    dom.preview.dataset.ready = 'true';
+    if (moveFocus) {
+      dom.preview.scrollIntoView({
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+        block: 'start',
+      });
+      dom.previewHeading.focus({ preventScroll: true });
+    }
+    setStatus('Prévia pronta. Confira o texto antes de copiar, baixar ou abrir o e-mail.');
+    return serialized;
+  } catch (error) {
+    setStatus(
+      error instanceof Error ? error.message : 'Não foi possível preparar a prévia.',
+      { error: true },
+    );
+    return null;
+  }
+}
+
+function formDraft() {
+  const data = new FormData(dom.form);
+  return {
+    name: data.get('name'),
+    email: data.get('email'),
+    credit: data.get('credit'),
+    type: data.get('type'),
+    title: data.get('title'),
+    summary: data.get('summary'),
+    sources: data.get('sources'),
+  };
+}
+
+function restoreDraft(draft) {
+  Object.entries(draft.fields).forEach(([name, value]) => {
+    const field = dom.form.elements.namedItem(name);
+    if (!(field instanceof HTMLInputElement || field instanceof HTMLSelectElement || field instanceof HTMLTextAreaElement)) return;
+    if (field instanceof HTMLInputElement && field.type === 'checkbox') field.checked = value === true;
+    else field.value = String(value ?? '');
+    syncCustomValidity(field);
+    clearFieldError(field);
+  });
+  for (const name of ['rights', 'privacy']) {
+    const consent = dom.form.elements.namedItem(name);
+    if (consent instanceof HTMLInputElement) {
+      consent.checked = false;
+      clearFieldError(consent);
+    }
+  }
+  hidePreview();
+}
+
+async function copyPreview() {
+  const serialized = showPreview({ moveFocus: false });
+  if (!serialized) return;
+  try {
+    if (!navigator.clipboard?.writeText) throw new Error('clipboard-unavailable');
+    await navigator.clipboard.writeText(serialized.body);
+    setStatus('Proposta copiada. Você pode colá-la no canal que preferir.');
+  } catch {
+    const selection = window.getSelection();
+    selection?.removeAllRanges();
+    const range = document.createRange();
+    range.selectNodeContents(dom.previewBody);
+    selection?.addRange(range);
+    dom.previewBody.focus({ preventScroll: true });
+    setStatus('A cópia automática não está disponível. O texto foi selecionado; use Ctrl+C ou Command+C.');
+  }
+}
+
+function downloadPreview() {
+  const serialized = showPreview({ moveFocus: false });
+  if (!serialized) return;
+  const url = URL.createObjectURL(new Blob([serialized.body], { type: 'text/plain;charset=utf-8' }));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = serialized.fileName;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 0);
+  setStatus('Arquivo de texto preparado no seu dispositivo.');
+}
+
+function openMailClient() {
+  if (!validateForm()) {
+    setStatus('Revise os campos indicados antes de abrir o e-mail.', { error: true });
+    return;
+  }
+  try {
+    const { mailto } = buildContributionMailto(currentProposal(), SITE_CONFIG.contactEmail);
+    setStatus('Abrindo seu aplicativo de e-mail. Revise a mensagem antes de enviar.');
+    window.location.href = mailto;
+  } catch (error) {
+    setStatus(
+      error instanceof RangeError
+        ? `${error.message} Use “Baixar .txt” e anexe ou cole o texto em uma mensagem para ${SITE_CONFIG.contactEmail}.`
+        : 'Não foi possível preparar a proposta. Revise os campos e tente novamente.',
+      { error: true },
+    );
+  }
 }
 
 function bindForm() {
@@ -289,33 +336,51 @@ function bindForm() {
     if (!(field instanceof HTMLInputElement || field instanceof HTMLSelectElement || field instanceof HTMLTextAreaElement)) return;
     syncCustomValidity(field);
     if (field.checkValidity()) clearFieldError(field);
+    hidePreview();
   });
 
   dom.form.addEventListener('submit', (event) => {
     event.preventDefault();
-    dom.status.classList.remove('is-error');
-    dom.status.textContent = '';
-    if (!validateForm()) {
-      dom.status.classList.add('is-error');
-      dom.status.textContent = 'Revise os campos indicados antes de preparar o e-mail.';
+    setStatus('');
+    showPreview();
+  });
+
+  dom.saveDraft.addEventListener('click', () => {
+    const result = saveContributionDraft(formDraft());
+    setStatus(
+      result.ok
+        ? 'Rascunho salvo somente neste navegador. Ele não foi enviado ao Observatório.'
+        : 'Este navegador não permitiu salvar o rascunho.',
+      { error: !result.ok },
+    );
+  });
+
+  dom.loadDraft.addEventListener('click', () => {
+    const draft = loadContributionDraft();
+    if (!draft) {
+      setStatus('Nenhum rascunho local foi encontrado.');
       return;
     }
-    try {
-      const data = new FormData(dom.form);
-      const { mailto } = buildContributionMailto(proposalFromForm(data), SITE_CONFIG.contactEmail);
-      dom.status.textContent = 'Abrindo seu aplicativo de e-mail. Revise a mensagem antes de enviar.';
-      window.location.href = mailto;
-    } catch (error) {
-      dom.status.classList.add('is-error');
-      dom.status.textContent = error instanceof RangeError
-        ? `${error.message} Resuma os campos ou envie diretamente para ${SITE_CONFIG.contactEmail}.`
-        : 'Não foi possível preparar a proposta. Revise os campos e tente novamente.';
-    }
+    restoreDraft(draft);
+    setStatus('Rascunho local restaurado. Revise os campos antes de continuar.');
   });
+
+  dom.clearDraft.addEventListener('click', () => {
+    const cleared = clearContributionDraft();
+    setStatus(
+      cleared ? 'Rascunho local apagado.' : 'Não foi possível acessar o armazenamento local.',
+      { error: !cleared },
+    );
+  });
+
+  dom.copyPreview.addEventListener('click', copyPreview);
+  dom.downloadPreview.addEventListener('click', downloadPreview);
+  dom.openMail.addEventListener('click', openMailClient);
 }
 
 function boot() {
   initNavigation();
+  initPixSupport();
   Object.assign(dom, {
     types: document.querySelector('[data-contribution-types]'),
     typeSelect: document.querySelector('[data-contribution-type-select]'),
@@ -323,8 +388,19 @@ function boot() {
     list: document.querySelector('[data-contribution-list]'),
     form: document.querySelector('[data-contribution-form]'),
     status: document.querySelector('[data-contribution-status]'),
+    saveDraft: document.querySelector('[data-contribution-save-draft]'),
+    loadDraft: document.querySelector('[data-contribution-load-draft]'),
+    clearDraft: document.querySelector('[data-contribution-clear-draft]'),
+    preview: document.querySelector('[data-contribution-preview]'),
+    previewHeading: document.querySelector('[data-contribution-preview-heading]'),
+    previewTitle: document.querySelector('[data-contribution-preview-title]'),
+    previewBody: document.querySelector('[data-contribution-preview-body]'),
+    copyPreview: document.querySelector('[data-contribution-copy]'),
+    downloadPreview: document.querySelector('[data-contribution-download]'),
+    openMail: document.querySelector('[data-contribution-open-mail]'),
   });
   if (Object.values(dom).some((element) => !element)) return;
+  loadContributionDraft();
   renderTypes();
   renderPolicy();
   renderPublished();

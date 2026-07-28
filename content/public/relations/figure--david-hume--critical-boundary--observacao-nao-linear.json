@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--david-hume--critical-boundary--observacao-nao-linear-r1",
+  "id": "figure--david-hume--critical-boundary--observacao-nao-linear",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "david-hume"
+  },
+  "target": {
+    "type": "theory",
+    "id": "observacao-nao-linear"
+  },
+  "type": "critical-boundary",
+  "label": "Causa inferida, não vista",
+  "justification": "A T-01 deve explicitar como passa de sinais atrasados e correlações para hipóteses causais, incluindo incerteza e alternativas.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

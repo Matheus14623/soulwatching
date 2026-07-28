@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--subrahmanyan-chandrasekhar--historical-foundation--universo-buraco-negro-r1",
+  "id": "figure--subrahmanyan-chandrasekhar--historical-foundation--universo-buraco-negro",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "subrahmanyan-chandrasekhar"
+  },
+  "target": {
+    "type": "theory",
+    "id": "universo-buraco-negro"
+  },
+  "type": "historical-foundation",
+  "label": "Colapso com mecanismo",
+  "justification": "A física de objetos compactos oferece à T-05 um padrão de formalização: equações de estado, limiares e condições iniciais explícitas.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

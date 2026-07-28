@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "nasa-leo-r1",
+  "id": "nasa-leo",
+  "aliases": [],
+  "title": "Padrões e objetos na constelação de Leão",
+  "institution": "NASA Science",
+  "url": "https://science.nasa.gov/solar-system/skywatching/night-sky-network/celestial-wonders-in-leo/",
+  "kind": "Material institucional"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "thomas-kuhn-r1",
+  "order": 20,
+  "aliases": [],
+  "id": "thomas-kuhn",
+  "slug": "thomas-kuhn",
+  "name": "Thomas Kuhn",
+  "lifespan": "1922–1996",
+  "area": "filosofia-metodo",
+  "role": "História e filosofia da ciência",
+  "featuredRank": null,
+  "summary": "Analisou como paradigmas, ciência normal, anomalias e revoluções reorganizam problemas e padrões de uma comunidade científica.",
+  "impact": "Kuhn mostrou que mudanças científicas não são apenas acréscimos lineares de fatos: elas podem alterar instrumentos, exemplos, linguagem e critérios compartilhados. Sua obra não implica que qualquer visão valha tanto quanto outra nem dispensa evidência e argumentação.",
+  "contributions": [
+    {
+      "title": "Paradigmas e ciência normal",
+      "description": "Descreveu períodos em que uma comunidade resolve problemas sob exemplos e compromissos compartilhados."
+    },
+    {
+      "title": "Anomalias e revoluções",
+      "description": "Analisou crises em que o quadro vigente deixa de organizar problemas persistentes."
+    },
+    {
+      "title": "História como evidência filosófica",
+      "description": "Usou episódios científicos reais para testar imagens abstratas de progresso."
+    }
+  ],
+  "milestones": [
+    "The Copernican Revolution · 1957",
+    "The Structure of Scientific Revolutions · 1962",
+    "The Essential Tension · 1977"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/thomas-kuhn.webp?v=portrait-2",
+    "width": 600,
+    "height": 740,
+    "alt": "Ilustração de Thomas Kuhn",
+    "credit": "Davi.trip",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Thomas-kuhn-portrait.png"
+  },
+  "referenceIds": [
+    "kuhn-sep"
+  ]
+}

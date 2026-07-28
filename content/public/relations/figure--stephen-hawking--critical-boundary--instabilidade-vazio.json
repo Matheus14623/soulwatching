@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--stephen-hawking--critical-boundary--instabilidade-vazio-r1",
+  "id": "figure--stephen-hawking--critical-boundary--instabilidade-vazio",
+  "order": 2,
+  "source": {
+    "type": "figure",
+    "id": "stephen-hawking"
+  },
+  "target": {
+    "type": "theory",
+    "id": "instabilidade-vazio"
+  },
+  "type": "critical-boundary",
+  "label": "Fenômenos quânticos distintos",
+  "justification": "Radiação de horizonte, flutuação de campo e decaimento de falso vácuo são mecanismos diferentes e não devem ser fundidos.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

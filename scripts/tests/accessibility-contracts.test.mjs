@@ -1,10 +1,39 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
+import { readdir, readFile } from 'node:fs/promises';
+import { dirname, join, relative, resolve } from 'node:path';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
+
+async function findStylesheets(directory) {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const nested = await Promise.all(entries.map(async (entry) => {
+    const path = join(directory, entry.name);
+    if (entry.isDirectory()) return findStylesheets(path);
+    return path.endsWith('.css') ? [path] : [];
+  }));
+  return nested.flat();
+}
+
+function relativeLuminance(hex) {
+  const channels = hex.match(/[a-f\d]{2}/gi).map((value) => Number.parseInt(value, 16) / 255);
+  const [red, green, blue] = channels.map((value) => (
+    value <= 0.04045
+      ? value / 12.92
+      : ((value + 0.055) / 1.055) ** 2.4
+  ));
+  return (0.2126 * red) + (0.7152 * green) + (0.0722 * blue);
+}
+
+function contrastRatio(foreground, background) {
+  const foregroundLuminance = relativeLuminance(foreground);
+  const backgroundLuminance = relativeLuminance(background);
+  return (
+    (Math.max(foregroundLuminance, backgroundLuminance) + 0.05)
+    / (Math.min(foregroundLuminance, backgroundLuminance) + 0.05)
+  );
+}
 
 test('home oferece seis controles acessíveis para a ressonância', async () => {
   const html = await readFile(resolve(root, 'index.html'), 'utf8');
@@ -75,4 +104,61 @@ test('treino do Atlas usa uma única região para anunciar a resposta', async ()
   assert.match(announcement, /aria-live="polite"/);
   assert.match(announcement, /aria-atomic="true"/);
   assert.match(script, /announce\(dom\.trainingFeedback\.textContent\)/);
+});
+
+test('texto informativo público mantém piso tipográfico de 12 px', async () => {
+  const stylesheetRoots = [
+    'assets/css',
+    'Arquivo',
+    'Constelacoes',
+    'Contribuicoes',
+    'GrandesNomes',
+    'Laboratorio',
+    'Mapa',
+    'Rotas',
+    'Teorias',
+  ];
+  const stylesheets = (
+    await Promise.all(stylesheetRoots.map((path) => findStylesheets(resolve(root, path))))
+  ).flat();
+
+  for (const stylesheet of stylesheets) {
+    const css = await readFile(stylesheet, 'utf8');
+    const declarations = [...css.matchAll(/font-size\s*:\s*([^;}{]+)/gi)];
+    for (const [, value] of declarations) {
+      const remValues = [...value.matchAll(/(\d*\.?\d+)rem/gi)]
+        .map((match) => Number.parseFloat(match[1]));
+      for (const size of remValues) {
+        assert.ok(
+          size >= 0.75,
+          `${relative(root, stylesheet)} contém font-size ${size}rem, abaixo do piso de 0.75rem.`,
+        );
+      }
+    }
+  }
+});
+
+test('foco global permanece visível mesmo em componentes que zeram outline base', async () => {
+  const css = await readFile(resolve(root, 'assets/css/styles.css'), 'utf8');
+  assert.match(
+    css,
+    /:where\(a,\s*button,\s*input,\s*textarea,\s*select,\s*summary,\s*\[tabindex\]\):focus-visible\s*\{[\s\S]*?outline:\s*3px[^;]+!important/,
+  );
+});
+
+test('texto secundário mantém contraste AA no fundo mais claro previsto', async () => {
+  const css = await readFile(resolve(root, 'assets/css/styles.css'), 'utf8');
+  const muted = css.match(/--muted-2:\s*(#[a-f\d]{6})/i)?.[1];
+  const background = css.match(/--bg-3:\s*(#[a-f\d]{6})/i)?.[1];
+  assert.ok(muted && background);
+  assert.ok(
+    contrastRatio(muted, background) >= 4.5,
+    `Contraste de ${muted} sobre ${background} precisa ser pelo menos 4.5:1.`,
+  );
+});
+
+test('filtro de teorias restaura foco equivalente depois do re-render', async () => {
+  const script = await readFile(resolve(root, 'assets/js/theory-lab.js'), 'utf8');
+  assert.match(script, /renderAll\(\{\s*restoreFilterId:\s*state\.activeFilter\s*\}\)/);
+  assert.match(script, /restoredFilter\?\.focus\(\{\s*preventScroll:\s*true\s*\}\)/);
 });

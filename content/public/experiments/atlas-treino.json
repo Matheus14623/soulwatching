@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "entityType": "experiment",
+  "revisionId": "atlas-treino-r1",
+  "id": "atlas-treino",
+  "slug": "atlas-treino",
+  "title": "Modo treino do Atlas",
+  "shortTitle": "Treino do Atlas",
+  "kind": "treino",
+  "status": "active",
+  "technology": "SVG e interação acessível",
+  "href": "/Constelacoes/constelacoes.html?modo=treino",
+  "summary": "Oculta linhas e nomes para transformar o reconhecimento de padrões em uma sequência curta de tentativas com resposta imediata.",
+  "question": "Você reconhece uma constelação apenas pela disposição relativa de suas estrelas principais?",
+  "boundary": "O exercício treina padrões esquemáticos; condições reais de observação variam com céu, orientação, latitude, data e horário.",
+  "theoryIds": [
+    "horizonte-sentidos"
+  ],
+  "moduleKey": null,
+  "visual": "quiz",
+  "aliases": [],
+  "order": 8
+}

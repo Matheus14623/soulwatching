@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entityType": "timeline-event",
+  "revisionId": "horizonte-quantico-r1",
+  "order": 13,
+  "id": "horizonte-quantico",
+  "date": "1974",
+  "sortYear": 1974,
+  "category": "modelar",
+  "title": "Horizontes entram no cálculo quântico",
+  "method": "Teoria quântica de campos em espaço-tempo curvo",
+  "description": "O tratamento semiclássico prevê emissão térmica e torna informação e termodinâmica problemas centrais dos buracos negros.",
+  "figureIds": [
+    "stephen-hawking"
+  ]
+}

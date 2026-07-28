@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "theory--observacao-nao-linear--observavel-compartilhado--universo-buraco-negro-r1",
+  "id": "theory--observacao-nao-linear--observavel-compartilhado--universo-buraco-negro",
+  "order": 1,
+  "source": {
+    "type": "theory",
+    "id": "observacao-nao-linear"
+  },
+  "target": {
+    "type": "theory",
+    "id": "universo-buraco-negro"
+  },
+  "type": "observavel-compartilhado",
+  "label": "Observável compartilhado",
+  "justification": "Ambas dependem de geometrias, tempos de propagação e observáveis cosmológicos, embora investiguem perguntas diferentes.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

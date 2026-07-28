@@ -26,6 +26,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/styles.css?v=smooth-flow-v1" />
     <link rel="stylesheet" href="../assets/css/observatory-pages.css?v=observatory-scale-v1" />
+    <link rel="stylesheet" href="../assets/css/site-navigation.css?v=site-navigation-v1" />
     <link rel="stylesheet" href="./mapa.css?v=theory-clarity-v2" />
   </head>
   <body class="observatory-page-body map-page-body" data-mode="normal">
@@ -49,14 +50,14 @@
         </button>
 
         <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
-          <a href="../index.html#topo">Início</a>
-          <a href="../Teorias/teorias.html">Teorias</a>
-          <a href="#constelacao" aria-current="page">Mapa</a>
-          <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
-          <a href="../Constelacoes/constelacoes.html">Constelações</a>
-          <a href="../Arquivo/arquivo.html">Arquivo</a>
-          <a href="../Laboratorio/laboratorio.html">Laboratório</a>
-          <a href="../index.html#contato">Coordenadas</a>
+          <a href="../Rotas/rotas.html" title="Começar por uma pergunta">Começar</a>
+          <a href="../Teorias/teorias.html" title="Linhas de investigação autorais">Teorias</a>
+          <a href="./mapa.html" aria-current="page" title="Mapa de relações">Mapa</a>
+          <a href="../GrandesNomes/grandes-nomes.html" title="Pessoas, métodos e descobertas">Grandes nomes</a>
+          <a href="../Constelacoes/constelacoes.html" title="Atlas celeste">Constelações</a>
+          <a href="../Laboratorio/laboratorio.html" title="Simulações e modelos didáticos">Laboratório</a>
+          <a href="../Contribuicoes/contribuicoes.html" title="Propor uma contribuição">Contribuir</a>
+          <a href="../index.html#sobre" title="Sobre o Observatório">Sobre</a>
         </nav>
 
         <div class="status-pill" aria-live="polite" data-status-pill>
@@ -64,7 +65,7 @@
           <span data-status-text>Mapa de relações</span>
         </div>
 
-        <span class="beta-badge" aria-label="Modelo em versão beta">Beta</span>
+        <span class="beta-badge" aria-label="Beta editorial: navegação e catálogos em evolução" title="Beta editorial: navegação e catálogos em evolução">Beta</span>
       </div>
     </header>
 
@@ -79,16 +80,16 @@
             </p>
             <div class="hero-actions">
               <a class="button button-primary" href="#constelacao">Explorar mapa de ideias</a>
-              <a class="button button-secondary" href="../Teorias/teorias.html">Abrir arquivo de teorias</a>
+              <a class="button button-secondary" href="../Teorias/teorias.html">Abrir catálogo de teorias</a>
             </div>
           </div>
 
           <aside class="page-status-card" aria-label="Estado atual do mapa">
             <span>campo atual</span>
-            <strong><span data-map-theory-total>10</span> entradas</strong>
+            <strong><span data-map-theory-total data-content-metric="theories">10</span> entradas</strong>
             <dl class="page-status-list">
-              <div><dt>Relações</dt><dd><span data-map-relation-total>0</span> conexões únicas catalogadas</dd></div>
-              <div><dt>Eixos</dt><dd><span data-map-filter-total>7</span> categorias navegáveis</dd></div>
+              <div><dt>Relações</dt><dd><span data-map-relation-total data-content-metric="theoryRelations">0</span> conexões únicas catalogadas</dd></div>
+              <div><dt>Eixos</dt><dd><span data-map-filter-total data-content-metric="theoryAxes">7</span> categorias navegáveis</dd></div>
               <div><dt>Estado</dt><dd>mapa leve de relações conceituais</dd></div>
             </dl>
           </aside>
@@ -185,14 +186,19 @@
     <footer class="site-footer">
       <div class="container footer-grid">
         <p><strong>Mapa de Ideias</strong><br />Relações conceituais do Observatório de Matheus Camargo.</p>
-        <nav class="footer-links" aria-label="Navegação e links profissionais">
+        <nav class="footer-links" aria-label="Navegação e links profissionais" data-footer-nav>
           <a href="../index.html#topo">Início</a>
+          <a href="../Rotas/rotas.html">Rotas guiadas</a>
           <a href="../Teorias/teorias.html">Teorias</a>
+          <a href="./mapa.html">Mapa</a>
           <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
           <a href="../Constelacoes/constelacoes.html">Constelações</a>
-          <a href="../Arquivo/arquivo.html">Arquivo</a>
           <a href="../Laboratorio/laboratorio.html">Laboratório</a>
+          <a href="../Arquivo/arquivo.html">Publicações</a>
+          <a href="../Contribuicoes/contribuicoes.html">Contribuições</a>
+          <a href="../index.html#sobre">Sobre</a>
           <a href="mailto:Matheuscamargodealencar@gmail.com">E-mail</a>
+          <a href="https://www.linkedin.com/in/gomin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer">GitHub</a>
         </nav>
       </div>

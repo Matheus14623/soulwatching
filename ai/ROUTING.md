@@ -35,6 +35,18 @@ Alterar servidor local, verificação, allowlist pública, build ou configuraç�
   - [Fronteiras, fontes de verdade e legado](project/REPOSITORY_BOUNDARIES.md): Quando houver risco de incluir documentação, fontes editoriais ou artefatos internos em dist/.
 - Contexto relacionado: [Comandos e ambiente](project/COMMANDS_AND_ENVIRONMENT.md), [Configuração de deploy da Vercel](../vercel.json).
 
+### content-platform-evolution
+
+Reorganizar schemas, entidades, referências, relações, geradores, contribuições ou preparar persistência futura.
+
+- Contexto obrigatório: [Base de conhecimento do Observatório de Ideias](INDEX.md), [Plano de maturidade do produto](project/MATURITY_ROADMAP.md), [Índice do domínio editorial](domains/INDEX.md), [Operações de conteúdo e relações](domains/CONTENT_OPERATIONS_AND_RELATIONS.md).
+- Contexto condicional:
+  - [Fronteiras, fontes de verdade e legado](project/REPOSITORY_BOUNDARIES.md): Quando a mudança tocar submissões, dados pessoais, materiais privados ou a fronteira do artefato público.
+  - [Arquitetura atual](project/ARCHITECTURE.md): Quando imports, adaptadores, módulos de runtime ou entrypoints forem alterados.
+  - [Build estático e deploy](infrastructure/STATIC_BUILD_AND_DEPLOY.md): Quando geração, allowlist, build ou deploy forem alterados.
+  - [Validação e release](quality/VALIDATION_AND_RELEASE.md): Antes de considerar qualquer etapa da migração pronta.
+- Contexto relacionado: [Modelo editorial e publicação](domains/EDITORIAL_MODEL.md), [Catálogo de linhas de investigação](domains/THEORY_CATALOG.md), [Catálogo de grandes nomes](domains/NOTABLE_FIGURES_CATALOG.md).
+
 ### frontend-change
 
 Alterar página, componente, estilo, navegação ou estado de interface.
@@ -52,7 +64,7 @@ Entender o repositório, localizar responsabilidades ou preparar uma tarefa aind
 
 - Contexto obrigatório: [Base de conhecimento do Observatório de Ideias](INDEX.md), [Índice do projeto](project/INDEX.md).
 - Contexto condicional: nenhum.
-- Contexto relacionado: [Arquitetura atual](project/ARCHITECTURE.md), [Fronteiras, fontes de verdade e legado](project/REPOSITORY_BOUNDARIES.md).
+- Contexto relacionado: [Arquitetura atual](project/ARCHITECTURE.md), [Fronteiras, fontes de verdade e legado](project/REPOSITORY_BOUNDARIES.md), [Plano de maturidade do produto](project/MATURITY_ROADMAP.md).
 
 ### interactive-experiment-change
 
@@ -83,7 +95,7 @@ Criar ou revisar ensaio, registro, fragmento, página de leitura ou o catálogo 
   - [Arquitetura atual](project/ARCHITECTURE.md): Quando a primeira publicação exigir nova rota, catálogo ou decisão estrutural.
   - [Build estático e deploy](infrastructure/STATIC_BUILD_AND_DEPLOY.md): Quando novos HTML, dados ou assets precisarem entrar no artefato público.
   - [Validação e release](quality/VALIDATION_AND_RELEASE.md): Antes de considerar o conteúdo pronto para publicação.
-- Contexto relacionado: [Fronteiras, fontes de verdade e legado](project/REPOSITORY_BOUNDARIES.md), [Design, responsividade e acessibilidade](frontend/DESIGN_AND_ACCESSIBILITY.md).
+- Contexto relacionado: [Fronteiras, fontes de verdade e legado](project/REPOSITORY_BOUNDARIES.md), [Operações de conteúdo e relações](domains/CONTENT_OPERATIONS_AND_RELATIONS.md), [Design, responsividade e acessibilidade](frontend/DESIGN_AND_ACCESSIBILITY.md).
 
 ### testing-review
 
@@ -103,4 +115,4 @@ Adicionar, revisar, reclassificar ou relacionar uma linha de investigação.
   - [Fluxos do usuário e estado](frontend/USER_FLOWS.md): Quando a mudança alterar busca, filtros, URL, seleção ou navegação entre superfícies.
   - [Catálogo de grandes nomes](domains/NOTABLE_FIGURES_CATALOG.md): Quando a linha receber ou revisar uma conexão pública com um perfil histórico.
   - [Validação e release](quality/VALIDATION_AND_RELEASE.md): Antes de considerar a alteração pronta para publicação.
-- Contexto relacionado: [Modelo editorial e publicação](domains/EDITORIAL_MODEL.md), [Integração e escala das linhas de investigação](../docs/INTEGRACAO_TEORIAS.md).
+- Contexto relacionado: [Modelo editorial e publicação](domains/EDITORIAL_MODEL.md), [Operações de conteúdo e relações](domains/CONTENT_OPERATIONS_AND_RELATIONS.md), [Integração e escala das linhas de investigação](../docs/INTEGRACAO_TEORIAS.md).

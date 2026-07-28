@@ -1,0 +1,24 @@
+{
+  "id": "content-platform-evolution",
+  "description": "Reorganizar schemas, entidades, referências, relações, geradores, contribuições ou preparar persistência futura.",
+  "requiredContext": ["root.index", "project.maturity-roadmap", "domains.index", "domains.content-operations"],
+  "conditionalContext": [
+    {
+      "id": "project.boundaries",
+      "condition": "Quando a mudança tocar submissões, dados pessoais, materiais privados ou a fronteira do artefato público."
+    },
+    {
+      "id": "project.architecture",
+      "condition": "Quando imports, adaptadores, módulos de runtime ou entrypoints forem alterados."
+    },
+    {
+      "id": "infrastructure.static-deploy",
+      "condition": "Quando geração, allowlist, build ou deploy forem alterados."
+    },
+    {
+      "id": "quality.validation-release",
+      "condition": "Antes de considerar qualquer etapa da migração pronta."
+    }
+  ],
+  "relatedContext": ["domains.editorial-model", "domains.theory-catalog", "domains.notable-figures"]
+}

@@ -1,4 +1,13 @@
 PROJECT_REPORT.md
 dist/
+.dist-next/
+.dist-previous/
 node_modules/
 .pnpm-store/
+.content-drafts/
+.content-reports/
+.content-cache/
+assets/data/generated/
+content/private/
+submissions/
+private-attachments/

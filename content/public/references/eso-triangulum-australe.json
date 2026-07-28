@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "eso-triangulum-australe-r1",
+  "id": "eso-triangulum-australe",
+  "aliases": [],
+  "title": "Triângulo Austral no céu meridional",
+  "institution": "Observatório Europeu do Sul",
+  "url": "https://www.eso.org/public/germany/images/ats/",
+  "kind": "Material institucional"
+}

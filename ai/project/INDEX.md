@@ -17,6 +17,7 @@ related_context:
   - "project.architecture"
   - "project.commands"
   - "project.boundaries"
+  - "project.maturity-roadmap"
 evidence_sources:
   - "README.md"
   - "package.json"
@@ -33,6 +34,7 @@ Leia este escopo para entender a aplicação antes de escolher uma camada espec�
 - [Arquitetura atual](ARCHITECTURE.md): stack, rotas, entrypoints e dependências entre módulos.
 - [Comandos e ambiente](COMMANDS_AND_ENVIRONMENT.md): desenvolvimento, verificação, build e limitações do runtime.
 - [Fronteiras e legado](REPOSITORY_BOUNDARIES.md): fonte de verdade, conteúdo privado, derivados e precedência documental.
+- [Plano de maturidade](MATURITY_ROADMAP.md): diagnóstico integral, prioridades, gates e preparação para crescimento sem acrescentar novas áreas.
 
 ## Pontos de entrada confirmados
 

@@ -30,6 +30,7 @@ conditional_context:
 related_context:
   - "external.theory-integration"
   - "domains.editorial-model"
+  - "domains.content-operations"
 evidence_sources:
   - "assets/data/theories.js"
   - "assets/data/theory-references.js"

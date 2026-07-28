@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "entityType": "publication-taxonomy",
+  "types": [
+    {
+      "id": "ensaio",
+      "label": "Ensaio",
+      "description": "Argumento autoral com escopo, fontes e distinção clara entre fato, interpretação e proposta."
+    },
+    {
+      "id": "nota-tecnica",
+      "label": "Nota técnica",
+      "description": "Explicação reproduzível de método, modelo, cálculo, código ou conjunto de dados."
+    },
+    {
+      "id": "visualizacao",
+      "label": "Visualização",
+      "description": "Representação visual acompanhada de origem dos dados, limites e licença de uso."
+    },
+    {
+      "id": "revisao-objecao",
+      "label": "Revisão ou objeção",
+      "description": "Crítica rastreável a uma ideia publicada, com justificativa e referências verificáveis."
+    },
+    {
+      "id": "linha-convidada",
+      "label": "Linha de investigação convidada",
+      "description": "Hipótese ou estrutura conceitual de outra autoria, publicada em área própria e sem confusão de titularidade."
+    }
+  ],
+  "creditRoles": [
+    {
+      "id": "author",
+      "label": "Autoria"
+    },
+    {
+      "id": "coauthor",
+      "label": "Coautoria"
+    },
+    {
+      "id": "editor",
+      "label": "Edição"
+    },
+    {
+      "id": "reviewer",
+      "label": "Revisão editorial"
+    },
+    {
+      "id": "translator",
+      "label": "Tradução"
+    },
+    {
+      "id": "research",
+      "label": "Pesquisa e dados"
+    },
+    {
+      "id": "visualization",
+      "label": "Visualização"
+    },
+    {
+      "id": "illustrator",
+      "label": "Ilustração"
+    },
+    {
+      "id": "developer",
+      "label": "Desenvolvimento"
+    }
+  ]
+}

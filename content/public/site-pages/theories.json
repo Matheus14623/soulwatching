@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "entityType": "site-page",
+  "revisionId": "theories-r1",
+  "order": 3,
+  "id": "theories",
+  "label": "Teorias",
+  "functionalLabel": "Linhas de investigação autorais",
+  "title": "Linhas de investigação | Observatório de Ideias",
+  "description": "Catálogo crítico que separa contexto conhecido, proposta autoral, objeções, critérios de revisão e fontes.",
+  "keywords": [
+    "teorias",
+    "linhas de investigação",
+    "hipóteses",
+    "propostas autorais",
+    "fontes",
+    "objeções"
+  ],
+  "matchPaths": [
+    "/Teorias/teorias.html",
+    "/Teorias/teorias",
+    "/teorias.html"
+  ],
+  "sections": [
+    {
+      "id": "como-ler",
+      "label": "Como ler",
+      "title": "Como interpretar uma linha de investigação",
+      "description": "Camadas que separam contexto conhecido, proposta autoral, limite atual e caminho verificável.",
+      "keywords": [
+        "como ler",
+        "interpretar",
+        "contexto",
+        "proposta",
+        "limites"
+      ]
+    },
+    {
+      "id": "teorias",
+      "label": "Catálogo de teorias",
+      "title": "Explorar linhas de investigação",
+      "description": "Busca, filtros e dossiês das linhas autorais do Observatório.",
+      "keywords": [
+        "catálogo",
+        "buscar teoria",
+        "filtros",
+        "dossiê"
+      ]
+    },
+    {
+      "id": "comparar",
+      "label": "Comparar teorias",
+      "title": "Comparar duas linhas de investigação",
+      "description": "Comparação editorial pelos mesmos critérios, sem transformar proximidade em evidência.",
+      "keywords": [
+        "comparar",
+        "diferenças",
+        "relações",
+        "critérios"
+      ]
+    },
+    {
+      "id": "radar",
+      "label": "Radar",
+      "title": "Radar de desenvolvimento",
+      "description": "Ideias e formatos que ainda não justificam uma linha de investigação independente.",
+      "keywords": [
+        "radar",
+        "desenvolvimento",
+        "ideias futuras"
+      ]
+    }
+  ]
+}

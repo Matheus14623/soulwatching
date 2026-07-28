@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "entityType": "constellation",
+  "revisionId": "vela-r1",
+  "id": "vela",
+  "slug": "vela",
+  "name": "Vela",
+  "latinName": "Vela",
+  "abbreviation": "Vel",
+  "featuredRank": null,
+  "seasonId": "outono",
+  "season": "Céu austral · destaque de fevereiro a maio",
+  "signature": "VELA E FALSA CRUZ",
+  "recognition": "Procure uma vela ampla entre Gamma² Velorum, Alsephina, Markeb, Mu Velorum e Suhail. Suhail, de tom mais quente, ajuda a separar um lado do desenho.",
+  "fact": "Vela representa as velas da antiga Argo Navis, constelação histórica dividida em regiões modernas como Carina, Vela e Puppis.",
+  "guideNote": "Alsephina e Markeb, com Avior e Aspidiske em Carina, formam a Falsa Cruz. Ela é maior e menos compacta que Crux e não deve ser usada sozinha para orientação sul.",
+  "sourceIds": [
+    "iau-constellations",
+    "eso-vela",
+    "eso-crux"
+  ],
+  "relatedConstellationIds": [
+    "carina",
+    "cruzeiro-do-sul"
+  ],
+  "stars": [
+    {
+      "id": "gamma2-velorum",
+      "name": "Gamma² Velorum",
+      "designation": "γ² Vel",
+      "magnitude": 1.7,
+      "x": 20,
+      "y": 72,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true,
+      "combined": true,
+      "labelDy": -5
+    },
+    {
+      "id": "alsephina",
+      "name": "Alsephina",
+      "designation": "δ Vel",
+      "magnitude": 2,
+      "x": 30,
+      "y": 25,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true
+    },
+    {
+      "id": "suhail",
+      "name": "Suhail",
+      "designation": "λ Vel",
+      "magnitude": 2.2,
+      "x": 41,
+      "y": 84,
+      "tone": "warm",
+      "role": "anchor",
+      "label": true,
+      "labelDy": -5
+    },
+    {
+      "id": "markeb",
+      "name": "Markeb",
+      "designation": "κ Vel",
+      "magnitude": 2.5,
+      "x": 67,
+      "y": 20,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true
+    },
+    {
+      "id": "mu-velorum",
+      "name": "Mu Velorum",
+      "designation": "μ Vel",
+      "magnitude": 2.7,
+      "x": 70,
+      "y": 76,
+      "tone": "warm",
+      "role": "guide",
+      "label": false,
+      "combined": true
+    },
+    {
+      "id": "phi-velorum",
+      "name": "Phi Velorum",
+      "designation": "φ Vel",
+      "magnitude": 3.5,
+      "x": 82,
+      "y": 48,
+      "tone": "cool",
+      "role": "guide",
+      "label": false
+    }
+  ],
+  "lines": [
+    [
+      "gamma2-velorum",
+      "alsephina"
+    ],
+    [
+      "alsephina",
+      "markeb"
+    ],
+    [
+      "markeb",
+      "phi-velorum"
+    ],
+    [
+      "phi-velorum",
+      "mu-velorum"
+    ],
+    [
+      "mu-velorum",
+      "suhail"
+    ],
+    [
+      "suhail",
+      "gamma2-velorum"
+    ],
+    [
+      "alsephina",
+      "suhail"
+    ]
+  ],
+  "aliases": [],
+  "order": 11
+}

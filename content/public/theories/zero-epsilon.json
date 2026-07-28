@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "entityType": "theory",
+  "revisionId": "zero-epsilon-r1",
+  "order": 8,
+  "aliases": [],
+  "id": "zero-epsilon",
+  "slug": "zero-epsilon",
+  "code": "T-09",
+  "title": "Zero vs. Epsilon",
+  "shortTitle": "Zero vs epsilon",
+  "subtitle": "Uma heurística de ação com orçamento de risco",
+  "kind": "heuristica",
+  "reviewState": "consolidacao",
+  "independent": true,
+  "category": "existencial",
+  "filters": [
+    "existencial",
+    "metodo",
+    "tempo"
+  ],
+  "color": "#f7df87",
+  "glow": "rgba(247, 223, 135, 0.42)",
+  "position": {
+    "x": 18,
+    "y": 86
+  },
+  "summary": "Transforma a diferença entre não tentar e tentar em uma regra de decisão que inclui custo, reversibilidade, aprendizado e condição de parada.",
+  "proposal": "Uma ação com chance positiva pode ser racional quando seu benefício esperado e seu valor de informação superam riscos, custos e alternativas.",
+  "questions": [
+    "Qual é o teto de perda aceitável?",
+    "A tentativa é reversível e produz aprendizado?",
+    "Que evidência determina continuar, pausar ou abandonar?"
+  ],
+  "concepts": [
+    "utilidade esperada",
+    "risco",
+    "reversibilidade",
+    "valor de informação",
+    "condição de parada"
+  ],
+  "nextSteps": [
+    "Definir benefício, dano, custo e melhor alternativa.",
+    "Registrar previsões antes das decisões.",
+    "Revisar a calibração após uma amostra suficiente."
+  ],
+  "referenceIds": [],
+  "objections": [
+    {
+      "id": "chance-nao-basta",
+      "title": "Chance positiva não basta para justificar uma tentativa",
+      "status": "incorporada",
+      "response": "A heurística agora exige benefício, dano, custo de oportunidade, reversibilidade e condição de parada."
+    },
+    {
+      "id": "calibracao-ausente",
+      "title": "A regra ainda não possui uma série de decisões calibrada",
+      "status": "aberta",
+      "response": "Previsões precisam ser registradas antes da ação e comparadas com resultados em uma amostra suficiente."
+    }
+  ],
+  "decisionBoundary": {
+    "revise": "Revisar os limiares quando decisões registradas mostrarem subestimação recorrente de dano, custo ou alternativas.",
+    "abandon": "Abandonar a regra em domínios nos quais tentativas não sejam reversíveis, o teto de perda não possa ser imposto ou o aprendizado não seja mensurável."
+  },
+  "review": {
+    "assessment": "Boa heurística quando inclui custos",
+    "known": "Probabilidade positiva não basta para tornar uma ação racional; valor, dano e custo de oportunidade também importam.",
+    "focus": "Usar epsilon como gatilho para tentativas reversíveis, limitadas e informativas.",
+    "limit": "A regra não é uma lei psicológica nem uma teoria cosmológica, e pode recomendar ações ruins quando o custo é alto.",
+    "test": "Manter um registro prévio de decisões, previsões, custos e resultados para revisar a calibração."
+  },
+  "claimLinks": [],
+  "revisions": [
+    {
+      "revisionId": "zero-epsilon-r1",
+      "ordinal": 1,
+      "versionLabel": "2.1",
+      "reviewedAt": "2026-07-22",
+      "label": "Primeiro registro individual · jul. 2026",
+      "changeSummary": "O histórico individual transforma a máxima original em uma heurística limitada por risco, reversibilidade e calibração.",
+      "responsibles": [
+        {
+          "name": "Matheus Camargo",
+          "role": "autor e responsável editorial"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "entityType": "theory",
+  "revisionId": "horizonte-sentidos-r1",
+  "order": 9,
+  "aliases": [],
+  "id": "horizonte-sentidos",
+  "slug": "horizonte-sentidos",
+  "code": "T-10",
+  "title": "Maldição do Horizonte e Extensão dos Sentidos",
+  "shortTitle": "Horizonte dos sentidos",
+  "subtitle": "Dados, instrumentos e software como programa de investigação",
+  "kind": "programa-pratico",
+  "reviewState": "execucao",
+  "independent": true,
+  "category": "informacao",
+  "filters": [
+    "informacao",
+    "cosmologia",
+    "existencial"
+  ],
+  "color": "#8fd8ff",
+  "glow": "rgba(143, 216, 255, 0.42)",
+  "position": {
+    "x": 22,
+    "y": 55
+  },
+  "summary": "Converte curiosidade cosmológica em projetos reproduzíveis com catálogos, espectros, curvas de luz, simulações e análise de incertezas.",
+  "proposal": "Instrumentos e modelos estendem a capacidade de medir o universo quando seus limites, dados e suposições permanecem explícitos.",
+  "questions": [
+    "Qual pergunta do acervo pode virar um projeto de dados em até doze semanas?",
+    "Como separar observação, transformação do sinal e inferência do modelo?",
+    "Que resultado conhecido deve ser reproduzido antes de procurar algo novo?"
+  ],
+  "concepts": [
+    "astrofísica computacional",
+    "dados públicos",
+    "reprodutibilidade",
+    "incerteza",
+    "instrumentação"
+  ],
+  "nextSteps": [
+    "Escolher um catálogo público e uma pergunta restrita.",
+    "Reproduzir um resultado conhecido com incertezas documentadas.",
+    "Publicar código, dados derivados e limitações do pipeline."
+  ],
+  "referenceIds": [
+    "nasa-exoplanet-archive",
+    "nasa-drake"
+  ],
+  "objections": [
+    {
+      "id": "simulacao-observacao",
+      "title": "Simulação e instrumento podem ser confundidos com observação",
+      "status": "respondida",
+      "response": "A linha separa aquisição, transformação do sinal, modelo e inferência, e exige limites explícitos."
+    },
+    {
+      "id": "projeto-ausente",
+      "title": "O primeiro projeto reproduzível ainda precisa ser concluído",
+      "status": "aberta",
+      "response": "A execução começa por um catálogo público, uma pergunta restrita e a reprodução de um resultado conhecido."
+    }
+  ],
+  "decisionBoundary": {
+    "revise": "Revisar o projeto quando a procedência, as incertezas ou a reprodução do resultado de controle falharem.",
+    "abandon": "Encerrar um pipeline específico se ele não reproduzir o controle após auditoria de dados, transformação e implementação."
+  },
+  "review": {
+    "assessment": "A linha mais executável agora",
+    "known": "A astronomia moderna converte sinais em dados, modelos e inferências verificáveis.",
+    "focus": "Usar programação como extensão instrumental e transformar perguntas amplas em projetos reproduzíveis.",
+    "limit": "Simulação não é observação e instrumento não remove horizonte causal nem garante interpretação correta.",
+    "test": "Concluir um projeto curto que adquira dados, reproduza um resultado publicado e estime incertezas."
+  },
+  "claimLinks": [
+    {
+      "id": "contexto-dados-publicos",
+      "label": "Infraestrutura observacional",
+      "field": "review.known",
+      "referenceIds": [
+        "nasa-exoplanet-archive"
+      ]
+    }
+  ],
+  "revisions": [
+    {
+      "revisionId": "horizonte-sentidos-r1",
+      "ordinal": 1,
+      "versionLabel": "2.1",
+      "reviewedAt": "2026-07-22",
+      "label": "Primeiro registro individual · jul. 2026",
+      "changeSummary": "A revisão individual explicita proveniência, controle reproduzível e critérios para interromper um pipeline.",
+      "responsibles": [
+        {
+          "name": "Matheus Camargo",
+          "role": "autor e responsável editorial"
+        }
+      ]
+    }
+  ]
+}

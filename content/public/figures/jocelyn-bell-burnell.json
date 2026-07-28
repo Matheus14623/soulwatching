@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "jocelyn-bell-burnell-r1",
+  "order": 5,
+  "aliases": [],
+  "id": "jocelyn-bell-burnell",
+  "slug": "jocelyn-bell-burnell",
+  "name": "Jocelyn Bell Burnell",
+  "lifespan": "1943–",
+  "area": "astronomia",
+  "role": "Radioastronomia",
+  "featuredRank": null,
+  "summary": "Identificou os primeiros pulsares ao reconhecer um sinal periódico incomum em registros de um radiotelescópio.",
+  "impact": "Ainda como pós-graduanda, Bell Burnell distinguiu pulsos regulares de interferência terrestre e ajudou a estabelecer sua origem astronômica. A descoberta abriu uma nova classe de objetos compactos e tornou pulsares ferramentas para investigar gravidade, matéria densa e meios interestelares.",
+  "contributions": [
+    {
+      "title": "Descoberta dos pulsares",
+      "description": "Reconheceu em 1967 o primeiro sinal de uma fonte de rádio rapidamente pulsante."
+    },
+    {
+      "title": "Análise cuidadosa de anomalias",
+      "description": "Insistiu na investigação de um traço pequeno e recorrente em grandes volumes de registros."
+    },
+    {
+      "title": "Novas sondas cósmicas",
+      "description": "Pulsares passaram a funcionar como relógios naturais e laboratórios de física extrema."
+    }
+  ],
+  "milestones": [
+    "Primeiro sinal de pulsar · 1967",
+    "Observation of a Rapidly Pulsating Radio Source · 1968",
+    "Consolidação da astronomia de pulsares"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/jocelyn-bell-burnell.webp",
+    "width": 573,
+    "height": 800,
+    "alt": "Retrato de Jocelyn Bell Burnell",
+    "credit": "Astronomical Institute of the Czech Academy of Sciences · recorte por Anrie",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Launch_of_IYA_2009,_Paris_-_Grygar,_Bell_Burnell_cropped.jpg",
+    "modifications": "Recorte anterior por Anrie; redimensionamento e conversão para WebP pelo Observatório."
+  },
+  "referenceIds": [
+    "bell-burnell-royal-society"
+  ]
+}

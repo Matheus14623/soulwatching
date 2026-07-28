@@ -3,11 +3,11 @@ import { $, escapeHtml, safeSetText } from '../assets/js/utils.js';
 import { smoothScrollToElement } from '../assets/js/smooth-scroll.js';
 import {
   findTheory,
-  getRelatedTheories,
+  getTheoryRelations,
   getUniqueTheoryRelations,
   theoryMatchesCategory,
 } from '../assets/js/theory-model.js';
-import { THEORIES, THEORY_FILTERS } from '../assets/data/theories.js';
+import { THEORIES, THEORY_FILTERS } from '../assets/data/generated/runtime/theories.js';
 
 const axisDescriptions = {
   cosmologia: 'Escala do universo, ciclos, origem, expansão e horizontes.',
@@ -71,21 +71,32 @@ function renderMap() {
     const active = theory.id === state.activeId;
     const muted = !matchesCategory(theory);
     return `
-      <button class="idea-map-node${active ? ' is-active' : ''}${muted ? ' is-muted' : ''}" type="button" data-map-node="${escapeHtml(theory.id)}" style="--x:${theory.position.x}%; --y:${theory.position.y}%; --accent:${theory.color}; --accent-glow:${theory.glow};" aria-pressed="${active}" aria-label="Selecionar ${escapeHtml(theory.code)}: ${escapeHtml(theory.title)}"${muted ? ' disabled' : ''}>
+      <button class="idea-map-node${active ? ' is-active' : ''}${muted ? ' is-muted' : ''}" type="button" data-map-node="${escapeHtml(theory.id)}" aria-pressed="${active}" aria-label="Selecionar ${escapeHtml(theory.code)}: ${escapeHtml(theory.title)}"${muted ? ' disabled' : ''}>
         <span>${escapeHtml(theory.code)} · ${escapeHtml(theory.typeShortLabel)}</span>
         <strong>${escapeHtml(theory.shortTitle)}</strong>
       </button>
     `;
   }).join('');
+  THEORIES.forEach((theory) => {
+    const node = nodes.querySelector(`[data-map-node="${theory.id}"]`);
+    node?.style.setProperty('--x', `${theory.position.x}%`);
+    node?.style.setProperty('--y', `${theory.position.y}%`);
+    node?.style.setProperty('--accent', theory.color);
+    node?.style.setProperty('--accent-glow', theory.glow);
+  });
 }
 
 function relatedMarkup(theory) {
-  const related = getRelatedTheories(theory);
-  if (!related.length) return '<p>Nenhuma relação catalogada neste momento.</p>';
-  return related.map((item) => `
-    <button class="map-related-button" type="button" data-related-theory="${escapeHtml(item.id)}">
-      <span>${escapeHtml(item.code)}</span>
-      ${escapeHtml(item.shortTitle)}
+  const relations = getTheoryRelations(theory);
+  if (!relations.length) return '<p>Nenhuma relação catalogada neste momento.</p>';
+  return relations.map((relation) => `
+    <button class="map-related-button" type="button" data-related-theory="${escapeHtml(relation.theory.id)}">
+      <span class="map-related-code">${escapeHtml(relation.theory.code)}</span>
+      <strong>${escapeHtml(relation.theory.shortTitle)}</strong>
+      <span class="map-related-type">${escapeHtml(relation.relationLabel)}</span>
+      <span class="map-related-justification">${escapeHtml(relation.justification)}</span>
+      <span class="map-related-review${relation.reviewPending ? ' is-pending' : ''}">${escapeHtml(relation.reviewLabel)}</span>
+      <span class="map-related-disclosure">${escapeHtml(relation.reviewDisclosure)}</span>
     </button>
   `).join('');
 }
@@ -94,7 +105,7 @@ function renderDetail() {
   const panel = $('[data-map-detail]');
   const theory = findTheory(state.activeId);
   if (!panel || !theory) return;
-  const relatedCount = getRelatedTheories(theory).length;
+  const relatedCount = getTheoryRelations(theory).length;
 
   panel.style.setProperty('--accent', theory.color);
   panel.style.setProperty('--accent-glow', theory.glow);

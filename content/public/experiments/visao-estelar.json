@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "entityType": "experiment",
+  "revisionId": "visao-estelar-r1",
+  "id": "visao-estelar",
+  "slug": "visao-estelar",
+  "title": "Visão estelar simulada",
+  "shortTitle": "Visão estelar",
+  "kind": "visualizacao",
+  "status": "active",
+  "technology": "Canvas 2D",
+  "href": "/index.html#topo",
+  "summary": "Torna perceptível o movimento próprio das estrelas em uma escala temporal acelerada e declaradamente simulada.",
+  "question": "Como perceber um deslocamento real que normalmente exige intervalos muito maiores do que uma vida humana?",
+  "boundary": "A animação é uma visualização conceitual; não reconstrói posições astrométricas futuras de estrelas específicas.",
+  "theoryIds": [
+    "horizonte-sentidos"
+  ],
+  "moduleKey": null,
+  "visual": "stars",
+  "aliases": [],
+  "order": 1
+}

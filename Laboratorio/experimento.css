@@ -73,7 +73,7 @@
 .recurrence-state,
 .astro-stage span {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
@@ -187,7 +187,7 @@
   border-radius: 999px;
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -370,7 +370,7 @@
 .astro-stage strong {
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   text-align: right;
 }
 

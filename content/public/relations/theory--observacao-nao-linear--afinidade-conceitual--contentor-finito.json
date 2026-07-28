@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "theory--observacao-nao-linear--afinidade-conceitual--contentor-finito-r1",
+  "id": "theory--observacao-nao-linear--afinidade-conceitual--contentor-finito",
+  "order": 2,
+  "source": {
+    "type": "theory",
+    "id": "observacao-nao-linear"
+  },
+  "target": {
+    "type": "theory",
+    "id": "contentor-finito"
+  },
+  "type": "afinidade-conceitual",
+  "label": "Afinidade conceitual",
+  "justification": "Reconstruções de estado precisam declarar espaço de estados e dinâmica; isso aproxima o método da T-04 sem implicar recorrência.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--henri-poincare--historical-foundation--ciclagem-eterna-r1",
+  "id": "figure--henri-poincare--historical-foundation--ciclagem-eterna",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "henri-poincare"
+  },
+  "target": {
+    "type": "theory",
+    "id": "ciclagem-eterna"
+  },
+  "type": "historical-foundation",
+  "label": "Recorrência sob condições definidas",
+  "justification": "A recorrência de Poincaré exige um sistema dinâmico com hipóteses matemáticas específicas. Ela não prova, por si, a repetição cosmológica proposta na T-03.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

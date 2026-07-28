@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--galileo-galilei--historical-foundation--horizonte-sentidos-r1",
+  "id": "figure--galileo-galilei--historical-foundation--horizonte-sentidos",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "galileo-galilei"
+  },
+  "target": {
+    "type": "theory",
+    "id": "horizonte-sentidos"
+  },
+  "type": "historical-foundation",
+  "label": "Instrumentos como extensão dos sentidos",
+  "justification": "O uso do telescópio oferece um precedente histórico para a T-10: ampliar percepção exige calibrar instrumento, sinal e inferência.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

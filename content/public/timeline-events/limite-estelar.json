@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entityType": "timeline-event",
+  "revisionId": "limite-estelar-r1",
+  "order": 9,
+  "id": "limite-estelar",
+  "date": "1930–1931",
+  "sortYear": 1930,
+  "category": "modelar",
+  "title": "Um limite matemático prevê destinos estelares",
+  "method": "Modelo relativístico de equilíbrio e pressão quântica",
+  "description": "O cálculo de uma massa-limite mostra onde uma anã branca já não pode sustentar seu próprio equilíbrio.",
+  "figureIds": [
+    "subrahmanyan-chandrasekhar"
+  ]
+}

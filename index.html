@@ -25,8 +25,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/styles.css?v=smooth-flow-v1" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=smooth-flow-v3" />
     <link rel="stylesheet" href="assets/css/observatory-pages.css?v=observatory-scale-v1" />
+    <link rel="stylesheet" href="assets/css/site-navigation.css?v=site-navigation-v1" />
     <link rel="stylesheet" href="assets/css/constellation-chart.css?v=constellation-atlas-v2" />
     <link rel="stylesheet" href="assets/css/constellations-preview.css?v=constellation-atlas-v2" />
     <link rel="stylesheet" href="assets/css/notable-figures-preview.css?v=great-minds-v1" />
@@ -52,13 +53,14 @@
         </button>
 
         <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
-          <a href="Teorias/teorias.html">Teorias</a>
-          <a href="Mapa/mapa.html">Mapa</a>
-          <a href="GrandesNomes/grandes-nomes.html">Grandes nomes</a>
-          <a href="Constelacoes/constelacoes.html">Constelações</a>
-          <a href="Arquivo/arquivo.html">Arquivo</a>
-          <a href="Laboratorio/laboratorio.html">Laboratório</a>
-          <a href="#sobre">Sobre</a>
+          <a href="Rotas/rotas.html" title="Começar por uma pergunta">Começar</a>
+          <a href="Teorias/teorias.html" title="Linhas de investigação autorais">Teorias</a>
+          <a href="Mapa/mapa.html" title="Mapa de relações">Mapa</a>
+          <a href="GrandesNomes/grandes-nomes.html" title="Pessoas, métodos e descobertas">Grandes nomes</a>
+          <a href="Constelacoes/constelacoes.html" title="Atlas celeste">Constelações</a>
+          <a href="Laboratorio/laboratorio.html" title="Simulações e modelos didáticos">Laboratório</a>
+          <a href="Contribuicoes/contribuicoes.html" title="Propor uma contribuição">Contribuir</a>
+          <a href="#sobre" title="Sobre o Observatório">Sobre</a>
         </nav>
 
         <div class="status-pill" aria-live="polite" data-status-pill>
@@ -66,7 +68,7 @@
           <span data-status-text>Campo de ideias</span>
         </div>
 
-        <span class="beta-badge" aria-label="Modelo em versão beta">Beta</span>
+        <span class="beta-badge" aria-label="Beta editorial: navegação e catálogos em evolução" title="Beta editorial: navegação e catálogos em evolução">Beta</span>
       </div>
     </header>
 
@@ -86,10 +88,13 @@
             <p class="hero-lead">
               Nem todo pensamento nasce pronto: alguns começam como ruído, intuição, dúvida ou colisão entre conceitos.
             </p>
+            <p class="microcopy">
+              Este site organiza linhas autorais, referências históricas e simulações, sempre separando proposta, contexto científico e limite.
+            </p>
             <div class="hero-actions">
-              <a class="button button-primary" href="Teorias/teorias.html">Explorar teorias</a>
-              <a class="button button-secondary" href="Mapa/mapa.html">Abrir mapa de ideias</a>
-              <div class="stellar-vision-controls">
+              <a class="button button-primary" href="Rotas/rotas.html">Começar por uma pergunta</a>
+              <a class="button button-secondary" href="Teorias/teorias.html">Explorar por assunto</a>
+              <div class="stellar-vision-controls" id="visao-estelar">
                 <button class="button button-ghost" type="button" data-observer-toggle aria-pressed="false">
                   <span data-toggle-label>Ativar visão estelar</span>
                 </button>
@@ -106,7 +111,11 @@
                 </button>
               </div>
             </div>
-            <p class="microcopy">As ideias aqui não são verdades finais. São estruturas em desenvolvimento.</p>
+            <p class="microcopy">
+              <a href="#sobre">Entender o projeto</a>
+              ·
+              <a href="Contribuicoes/contribuicoes.html">Participar</a>
+            </p>
           </div>
 
           <div class="hero-visual" aria-hidden="true">
@@ -123,6 +132,7 @@
             </div>
           </div>
         </div>
+
       </section>
 
       <section class="section aperture-section" id="campo" aria-labelledby="campo-title">
@@ -144,7 +154,7 @@
             </div>
 
             <figure class="aperture-profile profile-card profile-card-human" >
-              <img  src="assets/images/camargo.png" width="640" height="640" alt="Foto de Matheus Camargo sentado próximo a uma janela" loading="lazy" decoding="async" />
+              <img  src="assets/images/camargo.webp" width="640" height="640" alt="Foto de Matheus Camargo sentado próximo a uma janela" loading="lazy" decoding="async" />
               <figcaption></figcaption>
             </figure>
 
@@ -165,69 +175,88 @@
           </div>
 
           <div class="gateway-grid" aria-label="Áreas do Observatório de Ideias">
+            <a class="gateway-card gateway-card--featured" href="Rotas/rotas.html">
+              <span class="gateway-index">01 · orientação</span>
+              <h3>Rotas guiadas</h3>
+              <p>Percursos curtos entre história da ciência, teorias autorais e experiências interativas, com cada passagem explicada.</p>
+              <span class="gateway-meta" data-site-route-count-label data-content-metric="paths" data-content-format="guided-routes">rotas disponíveis</span>
+            </a>
+
             <a class="gateway-card gateway-card--featured" href="Teorias/teorias.html">
-              <span class="gateway-index">01 · arquivo central</span>
+              <span class="gateway-index">02 · catálogo central</span>
               <h3>Linhas de investigação</h3>
               <p>Hipóteses, estudos e programas com contexto, proposição, limite e caminho de teste.</p>
-              <span class="gateway-meta"><strong data-theory-total>10</strong> linhas catalogadas</span>
+              <span class="gateway-meta"><strong data-theory-total data-content-metric="theories">10</strong> linhas catalogadas</span>
             </a>
 
             <a class="gateway-card" href="Mapa/mapa.html">
-              <span class="gateway-index">02 · relações</span>
-              <h3>Mapa de ideias</h3>
+              <span class="gateway-index">03 · relações</span>
+              <h3>Mapa de relações</h3>
               <p>Uma leitura visual das conexões entre teorias, categorias e conceitos recorrentes.</p>
-              <span class="gateway-meta"><strong data-relation-total>0</strong> relações mapeadas</span>
-            </a>
-
-            <a class="gateway-card" href="Arquivo/arquivo.html">
-              <span class="gateway-index">03 · escrita</span>
-              <h3>Arquivo</h3>
-              <p>Estrutura editorial para ensaios e registros, sem preencher o espaço com publicações fictícias.</p>
-              <span class="gateway-meta">arquivo em formação</span>
+              <span class="gateway-meta"><strong data-relation-total data-content-metric="theoryRelations">0</strong> relações mapeadas</span>
             </a>
 
             <a class="gateway-card" href="Laboratorio/laboratorio.html">
               <span class="gateway-index">04 · experimentos</span>
               <h3>Laboratório</h3>
               <p>Visualizações, treino e simuladores com premissas, cálculos e limites de interpretação expostos.</p>
-              <span class="gateway-meta" data-site-experiment-count-label>campos navegáveis</span>
+              <span class="gateway-meta" data-site-experiment-count-label data-content-metric="activeExperiments" data-content-format="navigable-fields">campos navegáveis</span>
             </a>
 
             <a class="gateway-card" href="GrandesNomes/grandes-nomes.html">
               <span class="gateway-index">05 · referências</span>
               <h3>Grandes nomes</h3>
               <p>Trajetórias que mudaram a astronomia, a física e os critérios usados para pensar a ciência.</p>
-              <span class="gateway-meta" data-notable-profile-count="summary">perfis documentados</span>
+              <span class="gateway-meta" data-notable-profile-count="summary" data-content-metric="figures" data-content-format="documented-profiles">perfis documentados</span>
             </a>
 
             <a class="gateway-card" href="Constelacoes/constelacoes.html">
               <span class="gateway-index">06 · céu observável</span>
               <h3>Constelações</h3>
               <p>Um atlas educativo para reconhecer padrões estelares, estrelas de referência e asterismos.</p>
-              <span class="gateway-meta"><span data-constellation-count>12</span> campos para explorar</span>
-            </a>
-
-            <a class="gateway-card gateway-card--featured" href="Rotas/rotas.html">
-              <span class="gateway-index">07 · orientação</span>
-              <h3>Rotas guiadas</h3>
-              <p>Percursos curtos entre história da ciência, teorias autorais e experiências interativas, com cada passagem explicada.</p>
-              <span class="gateway-meta" data-site-route-count-label>rotas disponíveis</span>
+              <span class="gateway-meta"><span data-constellation-count data-content-metric="constellations">12</span> campos para explorar</span>
             </a>
 
             <a class="gateway-card gateway-card--wide" href="Contribuicoes/contribuicoes.html">
-              <span class="gateway-index">08 · autoria convidada</span>
+              <span class="gateway-index">07 · autoria convidada</span>
               <h3>Contribuições</h3>
               <p>Uma área para propor ensaios, notas, visualizações e objeções com crédito, fontes e revisão identificáveis.</p>
               <span class="gateway-meta">curadoria aberta</span>
             </a>
 
             <a class="gateway-card gateway-card--external" href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer" aria-label="Abrir projetos técnicos de Matheus Camargo no GitHub em uma nova aba">
-              <span class="gateway-index">09 · presença técnica</span>
+              <span class="gateway-index">08 · presença técnica</span>
               <h3>Projetos e código</h3>
               <p>Sistemas, experimentos e implementações que conectam a prática técnica às perguntas do observatório.</p>
               <span class="gateway-meta">abrir GitHub <span aria-hidden="true">↗</span></span>
             </a>
           </div>
+        </div>
+      </section>
+
+      <section class="section public-glossary-section" id="glossario" aria-labelledby="public-glossary-title">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">NOMES DO SISTEMA</span>
+              <h2 id="public-glossary-title">A metáfora orienta; o nome funcional explica.</h2>
+            </div>
+            <p>Antes de explorar, veja o sentido literal dos principais destinos. Assim, a identidade visual permanece sem esconder a função de cada área.</p>
+          </div>
+          <dl class="public-glossary" data-public-glossary>
+            <div>
+              <dt>Teorias <span>Linhas de investigação autorais</span></dt>
+              <dd>Hipóteses em desenvolvimento com contexto, limites e caminhos de teste.</dd>
+            </div>
+            <div>
+              <dt>Mapa <span>Relações editoriais</span></dt>
+              <dd>Índice visual; proximidade não constitui evidência.</dd>
+            </div>
+            <div>
+              <dt>Laboratório <span>Simulações didáticas</span></dt>
+              <dd>Modelos interativos com premissas e limites explícitos.</dd>
+            </div>
+          </dl>
         </div>
       </section>
 
@@ -247,8 +276,8 @@
           </div>
 
           <div class="theory-index-strip" aria-label="Resumo das linhas de investigação">
-            <span><strong data-theory-total>10</strong> linhas catalogadas</span>
-            <span><strong data-filter-total>7</strong> eixos de filtro</span>
+            <span><strong data-theory-total data-content-metric="theories">10</strong> linhas catalogadas</span>
+            <span><strong data-filter-total data-content-metric="theoryAxes">7</strong> eixos de filtro</span>
           </div>
 
           <div class="theory-toolbar" aria-label="Filtros das linhas de investigação">
@@ -331,7 +360,7 @@
           <div class="notable-preview-grid" aria-label="Destaques da área Grandes Nomes" data-notable-figures-preview></div>
 
           <div class="notable-preview-footer">
-            <a class="button button-secondary" href="GrandesNomes/grandes-nomes.html" data-notable-profile-count="action">Explorar os perfis</a>
+            <a class="button button-secondary" href="GrandesNomes/grandes-nomes.html" data-notable-profile-count="action" data-content-metric="figures" data-content-format="explore-profiles">Explorar os perfis</a>
           </div>
         </div>
       </section>
@@ -465,12 +494,32 @@
             <p class="section-kicker">11 · Sobre o autor do campo</p>
             <h2 id="about-title">Matheus Camargo não é o centro do sistema. É o ponto humano de onde a observação parte.</h2>
             <p>
-              Desenvolvedor full-stack e observador de padrões, eu uso a linguagem de sistemas para pensar o cosmos: tempo como variável local, luz como mensageira atrasada, universo como arquitetura assíncrona. O interesse não está em parecer definitivo, mas em participar do mistério com honestidade intelectual.
+              Desenvolvedor full-stack e observador de padrões, Matheus usa a linguagem de sistemas para pensar o cosmos: tempo como variável local, luz como mensageira atrasada, universo como arquitetura assíncrona. O interesse está em investigar o mistério com honestidade intelectual, sem apresentar conclusões provisórias como definitivas.
             </p>
             <p>
               Este espaço existe para que perguntas não fiquem soltas. Algumas nasceram da janela, da rotina, da física, da filosofia ou da programação. Outras ainda não têm forma suficiente. Todas carregam a mesma tentativa: organizar o ruído sem matar o assombro.
             </p>
+            <aside class="about-status-note" aria-label="Escopo do status Beta" data-site-status-summary>
+              <h3>Beta editorial</h3>
+              <p>O selo descreve a maturidade editorial e técnica da navegação e dos catálogos; não mede a validade científica de uma ideia.</p>
+              <p>O selo sai quando estes critérios forem atendidos:</p>
+              <ul>
+                <li>navegação uniforme em todas as rotas públicas;</li>
+                <li>schemas e geração de conteúdo estáveis;</li>
+                <li>jornadas críticas automatizadas;</li>
+                <li>primeira avaliação formativa com pessoas concluída.</li>
+              </ul>
+            </aside>
           </div>
+        </div>
+
+        <div class="container about-support-invitation" id="apoio">
+          <span class="about-support-mark" aria-hidden="true">✦</span>
+          <div>
+            <strong>Ajude a manter este campo em órbita.</strong>
+            <p>Se o Observatório foi útil para você, existe uma forma voluntária de apoiar sua manutenção sem interferir na independência editorial.</p>
+          </div>
+          <a class="button button-secondary" href="Contribuicoes/contribuicoes.html#apoiar">Conhecer a forma de apoio</a>
         </div>
       </section>
 
@@ -525,18 +574,6 @@
                 <span>
                   <small>E-mail</small>
                   <strong>Matheuscamargodealencar@gmail.com</strong>
-                </span>
-              </a>
-
-              <a class="contact-link" href="tel:+5511913639989" aria-label="Ligar para Matheus Camargo no telefone 11 91363-9989">
-                <span class="contact-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M8.2 4.8 6 6.6c-.7.6-.8 1.6-.4 2.4 2 4.2 5.2 7.4 9.4 9.4.8.4 1.8.2 2.4-.4l1.8-2.2-3.7-2.2-1.2 1.2c-2.2-1.1-4-2.9-5.1-5.1l1.2-1.2z" />
-                  </svg>
-                </span>
-                <span>
-                  <small>Telefone</small>
-                  <strong>11 91363-9989</strong>
                 </span>
               </a>
 
@@ -680,18 +717,20 @@
     <footer class="site-footer">
       <div class="container footer-grid">
         <p>
-          <strong>Status: Desenvolvimento | BETA TEST</strong><br />
-          Um WebSite vivo conectado a Matheus Camargo de Alencar.
+          <strong>Status: <span data-site-status-label>Beta editorial</span></strong><br />
+          <span data-site-status-description>Navegação e catálogos em evolução.</span>
         </p>
-        <nav class="footer-links" aria-label="Navegação e links profissionais">
+        <nav class="footer-links" aria-label="Navegação e links profissionais" data-footer-nav>
+          <a href="index.html#topo">Início</a>
+          <a href="Rotas/rotas.html">Rotas guiadas</a>
           <a href="Teorias/teorias.html">Teorias</a>
           <a href="Mapa/mapa.html">Mapa</a>
           <a href="GrandesNomes/grandes-nomes.html">Grandes nomes</a>
           <a href="Constelacoes/constelacoes.html">Constelações</a>
-          <a href="Arquivo/arquivo.html">Arquivo</a>
           <a href="Laboratorio/laboratorio.html">Laboratório</a>
-          <a href="Rotas/rotas.html">Rotas guiadas</a>
+          <a href="Arquivo/arquivo.html">Publicações</a>
           <a href="Contribuicoes/contribuicoes.html">Contribuições</a>
+          <a href="#sobre">Sobre</a>
           <a href="mailto:Matheuscamargodealencar@gmail.com">E-mail</a>
           <a href="https://www.linkedin.com/in/gomin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer">GitHub</a>

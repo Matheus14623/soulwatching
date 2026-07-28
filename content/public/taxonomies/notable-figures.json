@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure-taxonomy",
+  "areas": [
+    {
+      "id": "todas",
+      "label": "Todos os campos"
+    },
+    {
+      "id": "astronomia",
+      "label": "Astronomia e observação"
+    },
+    {
+      "id": "fisica-cosmos",
+      "label": "Física, matemática e cosmos"
+    },
+    {
+      "id": "filosofia-metodo",
+      "label": "Filosofia e método"
+    }
+  ],
+  "timelineCategories": [
+    {
+      "id": "todas",
+      "label": "Todos os métodos"
+    },
+    {
+      "id": "observar",
+      "label": "Observar"
+    },
+    {
+      "id": "medir",
+      "label": "Medir"
+    },
+    {
+      "id": "modelar",
+      "label": "Modelar"
+    },
+    {
+      "id": "testar",
+      "label": "Testar"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "esa-sagittarius-r1",
+  "id": "esa-sagittarius",
+  "aliases": [],
+  "title": "A constelação de Sagitário",
+  "institution": "Agência Espacial Europeia",
+  "url": "https://www.esa.int/ESA_Multimedia/Images/2003/05/Sagittarius_constellation",
+  "kind": "Material institucional"
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--isaac-newton--critical-boundary--contentor-finito-r1",
+  "id": "figure--isaac-newton--critical-boundary--contentor-finito",
+  "order": 1,
+  "source": {
+    "type": "figure",
+    "id": "isaac-newton"
+  },
+  "target": {
+    "type": "theory",
+    "id": "contentor-finito"
+  },
+  "type": "critical-boundary",
+  "label": "Dinâmica não determina topologia",
+  "justification": "Leis locais de movimento não bastam para escolher a topologia global proposta na T-04; esse passo exige formalismo e observáveis próprios.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

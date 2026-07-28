@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "poincare-mactutor-r1",
+  "id": "poincare-mactutor",
+  "aliases": [],
+  "title": "Henri Poincaré (1854–1912)",
+  "institution": "MacTutor · University of St Andrews",
+  "kind": "Biografia acadêmica",
+  "url": "https://mathshistory.st-andrews.ac.uk/Biographies/Poincare/"
+}

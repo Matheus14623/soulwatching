@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "entityType": "constellation",
+  "revisionId": "centauro-r1",
+  "id": "centauro",
+  "slug": "centauro",
+  "name": "Centauro",
+  "latinName": "Centaurus",
+  "abbreviation": "Cen",
+  "featuredRank": null,
+  "seasonId": "outono",
+  "season": "Céu austral · destaque de março a junho",
+  "signature": "AS APONTADORAS",
+  "recognition": "Comece pelo par brilhante Alpha Centauri e Hadar. As duas estrelas ficam próximas do Cruzeiro do Sul no céu.",
+  "fact": "Alpha Centauri A, B e Proxima formam o sistema estelar vizinho mais próximo do Sistema Solar. Proxima é fraca demais para ser vista a olho nu.",
+  "guideNote": "Alpha Centauri e Hadar são chamadas de apontadoras porque ajudam a localizar o Cruzeiro do Sul.",
+  "sourceIds": [
+    "iau-constellations",
+    "nasa-alpha-centauri",
+    "eso-crux"
+  ],
+  "relatedConstellationIds": [
+    "cruzeiro-do-sul"
+  ],
+  "stars": [
+    {
+      "id": "alpha-centauri",
+      "name": "Alpha Centauri",
+      "designation": "α Cen",
+      "magnitude": -0.3,
+      "x": 19,
+      "y": 79,
+      "tone": "warm",
+      "role": "anchor",
+      "label": true,
+      "combined": true,
+      "labelDy": -6
+    },
+    {
+      "id": "hadar",
+      "name": "Hadar",
+      "designation": "β Cen",
+      "magnitude": 0.6,
+      "x": 37,
+      "y": 66,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true
+    },
+    {
+      "id": "epsilon",
+      "name": "Epsilon Centauri",
+      "designation": "ε Cen",
+      "magnitude": 2.3,
+      "x": 51,
+      "y": 44,
+      "tone": "cool",
+      "role": "guide",
+      "label": false
+    },
+    {
+      "id": "muhlifain",
+      "name": "Muhlifain",
+      "designation": "γ Cen",
+      "magnitude": 2.2,
+      "x": 69,
+      "y": 29,
+      "tone": "cool",
+      "role": "guide",
+      "label": true
+    },
+    {
+      "id": "eta",
+      "name": "Eta Centauri",
+      "designation": "η Cen",
+      "magnitude": 2.3,
+      "x": 63,
+      "y": 61,
+      "tone": "cool",
+      "role": "guide",
+      "label": false
+    },
+    {
+      "id": "menkent",
+      "name": "Menkent",
+      "designation": "θ Cen",
+      "magnitude": 2.1,
+      "x": 80,
+      "y": 76,
+      "tone": "warm",
+      "role": "guide",
+      "label": true
+    }
+  ],
+  "lines": [
+    [
+      "alpha-centauri",
+      "hadar"
+    ],
+    [
+      "hadar",
+      "epsilon"
+    ],
+    [
+      "epsilon",
+      "muhlifain"
+    ],
+    [
+      "epsilon",
+      "eta"
+    ],
+    [
+      "eta",
+      "menkent"
+    ]
+  ],
+  "aliases": [],
+  "order": 4
+}

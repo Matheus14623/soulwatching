@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "kepler-nasa-r1",
+  "id": "kepler-nasa",
+  "aliases": [],
+  "title": "Orbits and Kepler’s Laws",
+  "institution": "NASA Science",
+  "kind": "Material institucional",
+  "url": "https://science.nasa.gov/solar-system/orbits-and-keplers-laws/"
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "nasa-asterisms-r1",
+  "id": "nasa-asterisms",
+  "aliases": [],
+  "title": "O que são asterismos?",
+  "institution": "NASA Science",
+  "url": "https://science.nasa.gov/solar-system/skywatching/what-are-asterisms/",
+  "kind": "Material institucional"
+}

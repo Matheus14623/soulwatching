@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "theory--universo-buraco-negro--tensao-critica--er-epr-sondas-r1",
+  "id": "theory--universo-buraco-negro--tensao-critica--er-epr-sondas",
+  "order": 13,
+  "source": {
+    "type": "theory",
+    "id": "universo-buraco-negro"
+  },
+  "target": {
+    "type": "theory",
+    "id": "er-epr-sondas"
+  },
+  "type": "tensao-critica",
+  "label": "Tensão crítica",
+  "justification": "Horizontes e informação aproximam as perguntas, mas a leitura operacional da T-06 não sustenta a cosmologia proposta na T-05.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "entityType": "constellation",
+  "revisionId": "triangulo-austral-r1",
+  "id": "triangulo-austral",
+  "slug": "triangulo-austral",
+  "name": "Triângulo Austral",
+  "latinName": "Triangulum Australe",
+  "abbreviation": "TrA",
+  "featuredRank": null,
+  "seasonId": "inverno",
+  "season": "Céu austral · destaque de maio a agosto",
+  "signature": "TRIÂNGULO COMPACTO",
+  "recognition": "Busque um triângulo compacto e quase equilátero. Atria é o vértice mais brilhante; Beta e Gamma Trianguli Australis completam a forma.",
+  "fact": "As três estrelas formam um triângulo apenas na nossa linha de visão. Elas estão a distâncias diferentes e não constituem uma estrutura física.",
+  "guideNote": "No Sul e em boa parte do Sudeste, permanece acima do horizonte por longos períodos. Mais ao norte do Brasil, aparece mais baixo no céu.",
+  "sourceIds": [
+    "iau-constellations",
+    "iau-star-names",
+    "eso-triangulum-australe"
+  ],
+  "relatedConstellationIds": [],
+  "stars": [
+    {
+      "id": "atria",
+      "name": "Atria",
+      "designation": "α TrA",
+      "magnitude": 1.9,
+      "x": 50,
+      "y": 15,
+      "tone": "warm",
+      "role": "anchor",
+      "label": true
+    },
+    {
+      "id": "beta-tra",
+      "name": "Beta Trianguli Australis",
+      "chartLabel": "Beta TrA",
+      "designation": "β TrA",
+      "magnitude": 2.9,
+      "x": 18,
+      "y": 78,
+      "tone": "white",
+      "role": "guide",
+      "label": true,
+      "labelDy": -5
+    },
+    {
+      "id": "gamma-tra",
+      "name": "Gamma Trianguli Australis",
+      "chartLabel": "Gamma TrA",
+      "designation": "γ TrA",
+      "magnitude": 2.9,
+      "x": 83,
+      "y": 75,
+      "tone": "cool",
+      "role": "guide",
+      "label": true,
+      "labelDy": -5
+    },
+    {
+      "id": "delta-tra",
+      "name": "Delta Trianguli Australis",
+      "designation": "δ TrA",
+      "magnitude": 3.9,
+      "x": 72,
+      "y": 36,
+      "tone": "white",
+      "role": "context",
+      "label": false
+    }
+  ],
+  "lines": [
+    [
+      "atria",
+      "beta-tra"
+    ],
+    [
+      "beta-tra",
+      "gamma-tra"
+    ],
+    [
+      "gamma-tra",
+      "atria"
+    ]
+  ],
+  "aliases": [],
+  "order": 12
+}

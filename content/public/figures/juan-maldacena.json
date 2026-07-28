@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "juan-maldacena-r1",
+  "order": 13,
+  "aliases": [],
+  "id": "juan-maldacena",
+  "slug": "juan-maldacena",
+  "name": "Juan Maldacena",
+  "lifespan": "1968–",
+  "area": "fisica-cosmos",
+  "role": "Gravidade quântica e teoria de cordas",
+  "featuredRank": null,
+  "summary": "Propôs a correspondência AdS/CFT, uma formulação central da holografia moderna, e coformulou a conjectura ER=EPR.",
+  "impact": "A correspondência AdS/CFT relaciona uma teoria gravitacional em um espaço com uma teoria quântica sem gravidade em sua fronteira. Ela oferece uma definição concreta de holografia em condições específicas. Com Leonard Susskind, Maldacena propôs que certas conexões geométricas e o emaranhamento podem ser duas descrições relacionadas.",
+  "contributions": [
+    {
+      "title": "Correspondência AdS/CFT",
+      "description": "Conjecturou uma dualidade precisa entre gravidade em espaço anti-de Sitter e teoria conforme de campos."
+    },
+    {
+      "title": "Holografia calculável",
+      "description": "Abriu ferramentas para estudar buracos negros, plasma quântico e gravidade por uma descrição dual."
+    },
+    {
+      "title": "ER=EPR",
+      "description": "Com Susskind, formulou uma relação conjectural entre pontes de Einstein–Rosen e emaranhamento."
+    }
+  ],
+  "milestones": [
+    "The Large N Limit… · 1997",
+    "Desenvolvimento da dualidade gauge–gravidade",
+    "Cool horizons for entangled black holes · 2013"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/juan-maldacena.webp?v=portrait-2",
+    "width": 640,
+    "height": 727,
+    "alt": "Retrato de Juan Maldacena",
+    "credit": "Okinawa Institute of Science and Technology (OIST)",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "sourceUrl": "https://www.oist.jp/news-center/photos/prof-juan-maldacena-institute-advanced-studies-princeton"
+  },
+  "referenceIds": [
+    "maldacena-ias",
+    "maldacena-ads-cft",
+    "maldacena-susskind-er-epr"
+  ]
+}

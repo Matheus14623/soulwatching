@@ -1,0 +1,213 @@
+{
+  "schemaVersion": 1,
+  "entityType": "constellation",
+  "revisionId": "escorpiao-r1",
+  "id": "escorpiao",
+  "slug": "escorpiao",
+  "name": "Escorpião",
+  "latinName": "Scorpius",
+  "abbreviation": "Sco",
+  "featuredRank": 3,
+  "seasonId": "inverno",
+  "season": "Inverno brasileiro · maio a setembro",
+  "signature": "CAUDA CURVA",
+  "recognition": "Encontre Antares, de tom alaranjado, e acompanhe a sequência curva de estrelas até o ferrão marcado por Shaula e Lesath.",
+  "fact": "Antares é uma supergigante avermelhada que marca o coração do padrão. A longa curva faz Escorpião se parecer mais com seu nome do que muitas constelações.",
+  "guideNote": "Perto da cauda estão M6 e M7, dois aglomerados estelares muito conhecidos em observação binocular.",
+  "sourceIds": [
+    "iau-constellations",
+    "iau-star-names",
+    "on-seasons"
+  ],
+  "relatedConstellationIds": [
+    "sagitario"
+  ],
+  "stars": [
+    {
+      "id": "acrab",
+      "name": "Acrab",
+      "designation": "β Sco",
+      "magnitude": 2.6,
+      "x": 18,
+      "y": 14,
+      "tone": "cool",
+      "role": "guide",
+      "label": true
+    },
+    {
+      "id": "dschubba",
+      "name": "Dschubba",
+      "designation": "δ Sco",
+      "magnitude": 2.3,
+      "x": 35,
+      "y": 20,
+      "tone": "cool",
+      "role": "guide",
+      "label": true,
+      "variable": true
+    },
+    {
+      "id": "antares",
+      "name": "Antares",
+      "designation": "α Sco",
+      "magnitude": 0.9,
+      "x": 44,
+      "y": 36,
+      "tone": "warm",
+      "role": "anchor",
+      "label": true,
+      "variable": true
+    },
+    {
+      "id": "larawag",
+      "name": "Larawag",
+      "designation": "ε Sco",
+      "magnitude": 2.3,
+      "x": 48,
+      "y": 49,
+      "tone": "warm",
+      "role": "guide",
+      "label": false
+    },
+    {
+      "id": "xamidimura",
+      "name": "Xamidimura",
+      "designation": "μ¹ Sco",
+      "magnitude": 3,
+      "x": 56,
+      "y": 59,
+      "tone": "cool",
+      "role": "guide",
+      "label": false
+    },
+    {
+      "id": "zeta2",
+      "name": "Zeta² Scorpii",
+      "designation": "ζ² Sco",
+      "magnitude": 3.6,
+      "x": 68,
+      "y": 65,
+      "tone": "warm",
+      "role": "guide",
+      "label": false
+    },
+    {
+      "id": "eta",
+      "name": "Eta Scorpii",
+      "designation": "η Sco",
+      "magnitude": 3.3,
+      "x": 79,
+      "y": 71,
+      "tone": "white",
+      "role": "guide",
+      "label": false
+    },
+    {
+      "id": "sargas",
+      "name": "Sargas",
+      "designation": "θ Sco",
+      "magnitude": 1.9,
+      "x": 76,
+      "y": 82,
+      "tone": "white",
+      "role": "anchor",
+      "label": true,
+      "labelDy": -5
+    },
+    {
+      "id": "iota1",
+      "name": "Iota¹ Scorpii",
+      "designation": "ι¹ Sco",
+      "magnitude": 3,
+      "x": 64,
+      "y": 87,
+      "tone": "white",
+      "role": "guide",
+      "label": false
+    },
+    {
+      "id": "kappa",
+      "name": "Kappa Scorpii",
+      "designation": "κ Sco",
+      "magnitude": 2.4,
+      "x": 52,
+      "y": 80,
+      "tone": "cool",
+      "role": "guide",
+      "label": false
+    },
+    {
+      "id": "shaula",
+      "name": "Shaula",
+      "designation": "λ Sco",
+      "magnitude": 1.6,
+      "x": 43,
+      "y": 88,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true,
+      "labelDy": -6
+    },
+    {
+      "id": "lesath",
+      "name": "Lesath",
+      "designation": "υ Sco",
+      "magnitude": 2.7,
+      "x": 36,
+      "y": 81,
+      "tone": "cool",
+      "role": "guide",
+      "label": true,
+      "labelDx": -5,
+      "labelAnchor": "end"
+    }
+  ],
+  "lines": [
+    [
+      "acrab",
+      "dschubba"
+    ],
+    [
+      "dschubba",
+      "antares"
+    ],
+    [
+      "antares",
+      "larawag"
+    ],
+    [
+      "larawag",
+      "xamidimura"
+    ],
+    [
+      "xamidimura",
+      "zeta2"
+    ],
+    [
+      "zeta2",
+      "eta"
+    ],
+    [
+      "eta",
+      "sargas"
+    ],
+    [
+      "sargas",
+      "iota1"
+    ],
+    [
+      "iota1",
+      "kappa"
+    ],
+    [
+      "kappa",
+      "shaula"
+    ],
+    [
+      "kappa",
+      "lesath"
+    ]
+  ],
+  "aliases": [],
+  "order": 3
+}

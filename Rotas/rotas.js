@@ -1,6 +1,11 @@
-import { LEARNING_PATHS, findLearningPath } from '../assets/data/learning-paths.js';
-import { getResolvedLearningPaths, resolveLearningPath } from '../assets/js/learning-paths-model.js';
+import {
+  LEARNING_PATHS,
+  findLearningPath,
+  getResolvedLearningPaths,
+  resolveLearningPath,
+} from '../assets/js/learning-paths-model.js';
 import { initNavigation } from '../assets/js/navigation.js';
+import { withRouteContext } from '../assets/js/route-continuity.js';
 import { prefersReducedMotion } from '../assets/js/utils.js';
 
 const palette = Object.freeze({
@@ -121,7 +126,7 @@ function renderStep({ updateUrl = true, focusCard = false, shouldAnnounce = true
   dom.stepTitle.textContent = step.title;
   dom.reason.textContent = step.reason;
   dom.stepSummary.textContent = step.summary;
-  dom.link.href = step.href;
+  dom.link.href = withRouteContext(step.href, state.path, state.stepIndex);
   dom.link.textContent = step.type === 'experiment' ? 'Abrir experimento' : 'Abrir conteúdo completo';
   dom.previous.disabled = state.stepIndex === 0;
   dom.next.disabled = state.stepIndex === total - 1;

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entityType": "timeline-event",
+  "revisionId": "expansao-observavel-r1",
+  "order": 8,
+  "id": "expansao-observavel",
+  "date": "1927–1931",
+  "sortYear": 1927,
+  "category": "medir",
+  "title": "Expansão cósmica conecta modelo e observação",
+  "method": "Solução relativística confrontada com distâncias e velocidades",
+  "description": "A dinâmica do universo deixa de ser apenas possibilidade matemática e ganha uma relação quantitativa observável.",
+  "figureIds": [
+    "georges-lemaitre"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "john-stewart-bell-r1",
+  "order": 16,
+  "aliases": [],
+  "id": "john-stewart-bell",
+  "slug": "john-stewart-bell",
+  "name": "John Stewart Bell",
+  "lifespan": "1928–1990",
+  "area": "fisica-cosmos",
+  "role": "Fundamentos quânticos e física teórica",
+  "featuredRank": null,
+  "summary": "Transformou o debate sobre localidade e variáveis ocultas em desigualdades que podem ser confrontadas experimentalmente.",
+  "impact": "O teorema de Bell mostrou que nenhuma teoria que satisfaça as premissas locais consideradas reproduz todas as previsões quânticas. Violações experimentais de desigualdades de Bell restringem classes de explicação local; elas não permitem enviar informação mais rápido que a luz nem escolhem sozinhas uma interpretação da mecânica quântica.",
+  "contributions": [
+    {
+      "title": "Teorema de Bell",
+      "description": "Derivou uma incompatibilidade testável entre certas teorias de variáveis ocultas locais e previsões quânticas."
+    },
+    {
+      "title": "Fundamentos levados ao laboratório",
+      "description": "Converteu uma disputa conceitual sobre EPR em correlações mensuráveis e sujeitas a experimentos."
+    },
+    {
+      "title": "Física teórica no CERN",
+      "description": "Também trabalhou em teoria quântica de campos, simetrias, aceleradores e problemas de partículas."
+    }
+  ],
+  "milestones": [
+    "On the Einstein Podolsky Rosen paradox · 1964",
+    "The theory of local beables · 1975",
+    "Speakable and Unspeakable in Quantum Mechanics · 1987"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/john-stewart-bell.webp",
+    "width": 640,
+    "height": 649,
+    "alt": "Retrato de John Stewart Bell no CERN em 1982",
+    "credit": "CERN · PhotoLab Archives",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Physicist_John_Bell_at_CERN,_June_1982.png"
+  },
+  "referenceIds": [
+    "bell-cern-archives",
+    "bell-epr-paper",
+    "bell-aps-milestone"
+  ]
+}

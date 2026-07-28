@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "suyu-time-delay-r1",
+  "id": "suyu-time-delay",
+  "aliases": [],
+  "title": "Two accurate time-delay distances from strong lensing",
+  "authors": "S. H. Suyu et al.",
+  "year": "2013",
+  "kind": "Artigo científico",
+  "url": "https://arxiv.org/abs/1208.6010"
+}

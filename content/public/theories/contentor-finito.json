@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "entityType": "theory",
+  "revisionId": "contentor-finito-r1",
+  "order": 3,
+  "aliases": [],
+  "id": "contentor-finito",
+  "slug": "contentor-finito",
+  "code": "T-04",
+  "title": "Topologia do Contentor Finito",
+  "shortTitle": "Contentor finito",
+  "subtitle": "Condições matemáticas de recorrência em cosmologias finitas",
+  "kind": "estudo-teorico",
+  "reviewState": "formalizacao",
+  "independent": true,
+  "category": "topologia",
+  "filters": [
+    "topologia",
+    "tempo",
+    "cosmologia"
+  ],
+  "color": "#68f0cb",
+  "glow": "rgba(104, 240, 203, 0.48)",
+  "position": {
+    "x": 29,
+    "y": 76
+  },
+  "summary": "Investiga quais hipóteses de medida, dinâmica e topologia permitiriam recorrência em um modelo cosmológico.",
+  "proposal": "Alguns sistemas dinâmicos que preservam medida em espaços de medida finita apresentam retornos arbitrariamente próximos. Aplicar isso ao universo exige demonstrar cada condição.",
+  "questions": [
+    "Qual medida é preservada pela dinâmica proposta?",
+    "O espaço de fase relevante tem medida finita?",
+    "O retorno seria aproximado, exato ou restrito a um subconjunto de estados?"
+  ],
+  "concepts": [
+    "recorrência de Poincaré",
+    "medida invariante",
+    "espaço de fase",
+    "ergodicidade",
+    "topologia"
+  ],
+  "nextSteps": [
+    "Construir um modelo reduzido com Hamiltoniano e medida explícitos.",
+    "Demonstrar recorrência ou produzir um contraexemplo no modelo.",
+    "Separar finitude espacial, sistema fechado e espaço de fase finito."
+  ],
+  "referenceIds": [
+    "assani-presser",
+    "dyson-kleban-susskind"
+  ],
+  "objections": [
+    {
+      "id": "finitude-repeticao",
+      "title": "Finitude espacial não implica repetição exata",
+      "status": "incorporada",
+      "response": "A formulação separa topologia espacial, medida finita, dinâmica e tipo de retorno."
+    },
+    {
+      "id": "hipoteses-teorema",
+      "title": "As condições do teorema ainda não foram demonstradas para um modelo cosmológico",
+      "status": "aberta",
+      "response": "O próximo passo é construir um sistema reduzido com Hamiltoniano e medida explícitos."
+    }
+  ],
+  "decisionBoundary": {
+    "revise": "Revisar o alcance cosmológico se a recorrência aparecer apenas em subconjuntos ou depender de uma medida sem interpretação física.",
+    "abandon": "Abandonar a aplicação proposta ao universo se o modelo não preservar medida ou não possuir espaço de fase de medida finita."
+  },
+  "review": {
+    "assessment": "Boa pergunta matemática; conclusão cósmica exagerada",
+    "known": "O teorema de recorrência estabelece retornos sob condições precisas de medida e dinâmica.",
+    "focus": "Identificar quais cosmologias satisfazem essas condições e o que exatamente retorna.",
+    "limit": "Universo finito não implica estados finitos, visita a todas as possibilidades ou repetição exata de pessoas e eventos.",
+    "test": "Provar o resultado em um modelo reduzido e confrontar separadamente as premissas geométricas e dinâmicas."
+  },
+  "claimLinks": [
+    {
+      "id": "contexto-recorrencia",
+      "label": "Resultado matemático",
+      "field": "review.known",
+      "referenceIds": [
+        "assani-presser"
+      ]
+    },
+    {
+      "id": "contexto-cosmologico",
+      "label": "Aplicação cosmológica",
+      "field": "review.focus",
+      "referenceIds": [
+        "dyson-kleban-susskind"
+      ]
+    }
+  ],
+  "revisions": [
+    {
+      "revisionId": "contentor-finito-r1",
+      "ordinal": 1,
+      "versionLabel": "2.1",
+      "reviewedAt": "2026-07-22",
+      "label": "Primeiro registro individual · jul. 2026",
+      "changeSummary": "O registro individual separa o teorema matemático de sua aplicação cosmológica e explicita condições de abandono.",
+      "responsibles": [
+        {
+          "name": "Matheus Camargo",
+          "role": "autor e responsável editorial"
+        }
+      ]
+    }
+  ]
+}

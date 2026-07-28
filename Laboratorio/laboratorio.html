@@ -26,6 +26,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/styles.css?v=smooth-flow-v1" />
     <link rel="stylesheet" href="../assets/css/observatory-pages.css?v=observatory-scale-v1" />
+    <link rel="stylesheet" href="../assets/css/site-navigation.css?v=site-navigation-v1" />
     <link rel="stylesheet" href="./laboratorio.css?v=observatory-scale-v1" />
   </head>
   <body class="observatory-page-body laboratory-page-body" data-mode="normal">
@@ -44,21 +45,21 @@
         </button>
 
         <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
-          <a href="../index.html#topo">Início</a>
-          <a href="../Teorias/teorias.html">Teorias</a>
-          <a href="../Mapa/mapa.html">Mapa</a>
-          <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
-          <a href="../Constelacoes/constelacoes.html">Constelações</a>
-          <a href="../Arquivo/arquivo.html">Arquivo</a>
-          <a href="#experimentos" aria-current="page">Laboratório</a>
-          <a href="../index.html#contato">Coordenadas</a>
+          <a href="../Rotas/rotas.html" title="Começar por uma pergunta">Começar</a>
+          <a href="../Teorias/teorias.html" title="Linhas de investigação autorais">Teorias</a>
+          <a href="../Mapa/mapa.html" title="Mapa de relações">Mapa</a>
+          <a href="../GrandesNomes/grandes-nomes.html" title="Pessoas, métodos e descobertas">Grandes nomes</a>
+          <a href="../Constelacoes/constelacoes.html" title="Atlas celeste">Constelações</a>
+          <a href="./laboratorio.html" aria-current="page" title="Simulações e modelos didáticos">Laboratório</a>
+          <a href="../Contribuicoes/contribuicoes.html" title="Propor uma contribuição">Contribuir</a>
+          <a href="../index.html#sobre" title="Sobre o Observatório">Sobre</a>
         </nav>
 
         <div class="status-pill" aria-live="polite" data-status-pill>
           <span class="status-dot" aria-hidden="true"></span>
           <span data-status-text>Experimentos ativos</span>
         </div>
-        <span class="beta-badge" aria-label="Modelo em versão beta">Beta</span>
+        <span class="beta-badge" aria-label="Beta editorial: navegação e catálogos em evolução" title="Beta editorial: navegação e catálogos em evolução">Beta</span>
       </div>
     </header>
 
@@ -79,9 +80,9 @@
 
           <aside class="page-status-card" aria-label="Estado atual do laboratório">
             <span>camada experimental</span>
-            <strong data-experiment-count-label>Campos ativos</strong>
+            <strong data-experiment-count-label data-content-metric="activeExperiments" data-content-format="active-fields">Campos ativos</strong>
             <dl class="page-status-list">
-              <div><dt>Campos</dt><dd data-experiment-count>carregando catálogo</dd></div>
+              <div><dt>Campos</dt><dd data-experiment-count data-content-metric="activeExperiments" data-content-format="navigable-experiences">carregando catálogo</dd></div>
               <div><dt>Modelos</dt><dd>premissas e fronteiras visíveis</dd></div>
               <div><dt>Gestos</dt><dd>mouse, teclado e toque equivalentes</dd></div>
               <div><dt>Regra</dt><dd>efeito somente quando há função conceitual</dd></div>
@@ -148,11 +149,11 @@
           <div>
             <p class="section-kicker">da interface ao conteúdo</p>
             <h2>O laboratório aproxima. As teorias sustentam a investigação.</h2>
-            <p>Depois de experimentar o gesto, retorne ao arquivo para ler pergunta, hipótese e tensão.</p>
+            <p>Depois de experimentar o gesto, retorne ao catálogo de teorias para ler pergunta, hipótese e tensão.</p>
           </div>
           <div class="hero-actions">
             <a class="button button-primary" href="../Teorias/teorias.html">Explorar teorias</a>
-            <a class="button button-secondary" href="../index.html#contato">Abrir coordenadas</a>
+            <a class="button button-secondary" href="../index.html#contato">Entrar em contato</a>
           </div>
         </div>
       </section>
@@ -161,14 +162,19 @@
     <footer class="site-footer">
       <div class="container footer-grid">
         <p><strong>Laboratório</strong><br />Experimentos técnicos e conceituais do Observatório.</p>
-        <nav class="footer-links" aria-label="Navegação e links profissionais">
+        <nav class="footer-links" aria-label="Navegação e links profissionais" data-footer-nav>
           <a href="../index.html#topo">Início</a>
+          <a href="../Rotas/rotas.html">Rotas guiadas</a>
           <a href="../Teorias/teorias.html">Teorias</a>
           <a href="../Mapa/mapa.html">Mapa</a>
           <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
           <a href="../Constelacoes/constelacoes.html">Constelações</a>
-          <a href="../Arquivo/arquivo.html">Arquivo</a>
+          <a href="./laboratorio.html">Laboratório</a>
+          <a href="../Arquivo/arquivo.html">Publicações</a>
+          <a href="../Contribuicoes/contribuicoes.html">Contribuições</a>
+          <a href="../index.html#sobre">Sobre</a>
           <a href="mailto:Matheuscamargodealencar@gmail.com">E-mail</a>
+          <a href="https://www.linkedin.com/in/gomin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer">GitHub</a>
         </nav>
       </div>

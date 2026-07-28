@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "eso-vela-r1",
+  "id": "eso-vela",
+  "aliases": [],
+  "title": "Mapa da constelação de Vela",
+  "institution": "Observatório Europeu do Sul",
+  "url": "https://www.eso.org/public/images/eso1336d/",
+  "kind": "Material institucional"
+}

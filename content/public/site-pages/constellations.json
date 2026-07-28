@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "entityType": "site-page",
+  "revisionId": "constellations-r1",
+  "order": 6,
+  "id": "constellations",
+  "label": "Constelações",
+  "functionalLabel": "Atlas celeste",
+  "title": "Atlas de constelações | Observatório de Ideias",
+  "description": "Atlas interativo para reconhecer padrões estelares, nomes, estrelas e limites de representação.",
+  "keywords": [
+    "constelações",
+    "atlas celeste",
+    "estrelas",
+    "identificar",
+    "treino"
+  ],
+  "matchPaths": [
+    "/Constelacoes/constelacoes.html",
+    "/Constelacoes/constelacoes"
+  ],
+  "sections": [
+    {
+      "id": "atlas",
+      "label": "Atlas celeste",
+      "title": "Identificar constelações",
+      "description": "Explore os campos de estrelas ou use o modo de treino.",
+      "keywords": [
+        "identificar constelações",
+        "atlas",
+        "treino",
+        "linha-guia"
+      ]
+    },
+    {
+      "id": "como-ler",
+      "label": "Como ler o atlas",
+      "title": "Aprender a ler o mapa do céu",
+      "description": "Orientações sobre padrões, magnitude aparente e projeção.",
+      "keywords": [
+        "como ler",
+        "magnitude",
+        "projeção",
+        "céu"
+      ]
+    }
+  ]
+}

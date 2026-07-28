@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--georges-lemaitre--historical-foundation--universo-buraco-negro-r1",
+  "id": "figure--georges-lemaitre--historical-foundation--universo-buraco-negro",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "georges-lemaitre"
+  },
+  "target": {
+    "type": "theory",
+    "id": "universo-buraco-negro"
+  },
+  "type": "historical-foundation",
+  "label": "Cosmologia relativística dinâmica",
+  "justification": "A T-05 precisa ser comparada a soluções cosmológicas explícitas e não apenas à imagem geral de espaço-tempo curvo.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

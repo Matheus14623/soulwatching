@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--david-hume--methodological-context--backend-existencia-r1",
+  "id": "figure--david-hume--methodological-context--backend-existencia",
+  "order": 1,
+  "source": {
+    "type": "figure",
+    "id": "david-hume"
+  },
+  "target": {
+    "type": "theory",
+    "id": "backend-existencia"
+  },
+  "type": "methodological-context",
+  "label": "Separar observação e inferência",
+  "justification": "A T-07 ganha rigor quando registra quais etapas vêm de dados, convenções, modelos e analogias.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

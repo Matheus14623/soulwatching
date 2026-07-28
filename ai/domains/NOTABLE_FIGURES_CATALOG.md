@@ -24,6 +24,7 @@ conditional_context:
     condition: "Quando um perfil receber, remover ou revisar uma conexão com uma linha do Observatório."
 related_context:
   - "domains.editorial-model"
+  - "domains.content-operations"
   - "frontend.pages-modules"
   - "frontend.user-flows"
 evidence_sources:

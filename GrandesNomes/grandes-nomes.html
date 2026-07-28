@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html class="has-local-navigation" lang="pt-BR">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,6 +26,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/styles.css?v=smooth-flow-v1" />
     <link rel="stylesheet" href="../assets/css/observatory-pages.css?v=observatory-scale-v1" />
+    <link rel="stylesheet" href="../assets/css/site-navigation.css?v=site-navigation-v1" />
     <link rel="stylesheet" href="../assets/vendor/swiper/swiper-bundle.min.css?v=14.0.6" />
     <link rel="stylesheet" href="./grandes-nomes.css?v=great-minds-v2" />
   </head>
@@ -50,14 +51,14 @@
         </button>
 
         <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
-          <a href="../index.html#topo">Início</a>
-          <a href="../Teorias/teorias.html">Teorias</a>
-          <a href="../Mapa/mapa.html">Mapa</a>
-          <a href="#galeria" aria-current="page">Grandes nomes</a>
-          <a href="../Constelacoes/constelacoes.html">Constelações</a>
-          <a href="../Arquivo/arquivo.html">Arquivo</a>
-          <a href="../Laboratorio/laboratorio.html">Laboratório</a>
-          <a href="../index.html#contato">Coordenadas</a>
+          <a href="../Rotas/rotas.html" title="Começar por uma pergunta">Começar</a>
+          <a href="../Teorias/teorias.html" title="Linhas de investigação autorais">Teorias</a>
+          <a href="../Mapa/mapa.html" title="Mapa de relações">Mapa</a>
+          <a href="./grandes-nomes.html" aria-current="page" title="Pessoas, métodos e descobertas">Grandes nomes</a>
+          <a href="../Constelacoes/constelacoes.html" title="Atlas celeste">Constelações</a>
+          <a href="../Laboratorio/laboratorio.html" title="Simulações e modelos didáticos">Laboratório</a>
+          <a href="../Contribuicoes/contribuicoes.html" title="Propor uma contribuição">Contribuir</a>
+          <a href="../index.html#sobre" title="Sobre o Observatório">Sobre</a>
         </nav>
 
         <div class="status-pill" aria-live="polite" data-status-pill>
@@ -65,7 +66,7 @@
           <span data-status-text>Grandes nomes</span>
         </div>
 
-        <span class="beta-badge" aria-label="Modelo em versão beta">Modelo Beta</span>
+        <span class="beta-badge" aria-label="Beta editorial: navegação e catálogos em evolução" title="Beta editorial: navegação e catálogos em evolução">Beta</span>
       </div>
     </header>
 
@@ -91,13 +92,59 @@
 
           <aside class="page-status-card notable-status-card" aria-label="Resumo da galeria">
             <span>campo de referência</span>
-            <strong><span data-notable-total>22</span> perfis</strong>
+            <strong><span data-notable-total data-content-metric="figures">22</span> perfis</strong>
             <dl class="page-status-list">
               <div><dt>Áreas</dt><dd>3 campos de investigação</dd></div>
               <div><dt>Rotação</dt><dd>30 segundos entre perfis</dd></div>
               <div><dt>Leitura</dt><dd>Contribuição, obras, fontes e limites</dd></div>
             </dl>
           </aside>
+        </div>
+      </section>
+
+      <nav class="local-page-navigation" aria-label="Nesta página" data-local-navigation>
+        <div class="container local-page-navigation-shell">
+          <span class="local-page-navigation-label">Nesta página</span>
+          <div class="local-page-navigation-links" data-local-navigation-links>
+            <a href="#como-ler">Como ler</a>
+            <a href="#galeria">Galeria</a>
+            <a href="#comparar">Comparar</a>
+            <a href="#trilhas">Trilhas</a>
+            <a href="#linha-do-tempo">Linha do tempo</a>
+            <a href="#indice">Índice</a>
+          </div>
+        </div>
+      </nav>
+
+      <section class="section notable-reading-section" id="como-ler" aria-labelledby="notable-reading-title">
+        <div class="container">
+          <div class="page-section-heading">
+            <div>
+              <p class="section-kicker">como ler as conexões</p>
+              <h2 id="notable-reading-title">Referência não é selo de aprovação.</h2>
+            </div>
+            <p>
+              As relações com o catálogo do Observatório são editoriais e rastreáveis. Elas mostram proximidade histórica, conceitual ou metodológica e também registram fronteiras importantes.
+            </p>
+          </div>
+
+          <div class="notable-reading-grid">
+            <article>
+              <span>01</span>
+              <h3>Contribuição estabelecida</h3>
+              <p>O que a pessoa publicou, demonstrou, mediu ou tornou tecnicamente possível dentro de um contexto verificável.</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Relação com o acervo</h3>
+              <p>Onde uma linha do Observatório utiliza um conceito, uma referência direta, um método ou um problema histórico relacionado.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Limite da relação</h3>
+              <p>O que não pode ser concluído dessa proximidade: nenhuma associação implica validação, concordância ou equivalência entre propostas.</p>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -122,7 +169,7 @@
           </div>
 
           <div class="notable-result-bar">
-            <p data-notable-result-count aria-live="polite">22 perfis disponíveis</p>
+            <p data-notable-result-count data-content-metric="figures" data-content-format="available-profiles" aria-live="polite">22 perfis disponíveis</p>
             <p class="notable-epistemic-note">Relação temática não significa endosso, autoria ou validação de uma linha do Observatório.</p>
           </div>
 
@@ -226,38 +273,6 @@
         </div>
       </section>
 
-      <section class="section notable-reading-section" aria-labelledby="notable-reading-title">
-        <div class="container">
-          <div class="page-section-heading">
-            <div>
-              <p class="section-kicker">como ler as conexões</p>
-              <h2 id="notable-reading-title">Referência não é selo de aprovação.</h2>
-            </div>
-            <p>
-              As relações com o catálogo do Observatório são editoriais e rastreáveis. Elas mostram proximidade histórica, conceitual ou metodológica e também registram fronteiras importantes.
-            </p>
-          </div>
-
-          <div class="notable-reading-grid">
-            <article>
-              <span>01</span>
-              <h3>Contribuição estabelecida</h3>
-              <p>O que a pessoa publicou, demonstrou, mediu ou tornou tecnicamente possível dentro de um contexto verificável.</p>
-            </article>
-            <article>
-              <span>02</span>
-              <h3>Relação com o acervo</h3>
-              <p>Onde uma linha do Observatório utiliza um conceito, uma referência direta, um método ou um problema histórico relacionado.</p>
-            </article>
-            <article>
-              <span>03</span>
-              <h3>Limite da relação</h3>
-              <p>O que não pode ser concluído dessa proximidade: nenhuma associação implica validação, concordância ou equivalência entre propostas.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
       <section class="section notable-index-section" id="indice" aria-labelledby="notable-index-title">
         <div class="container">
           <div class="page-section-heading">
@@ -294,14 +309,19 @@
           <strong>Observatório de Ideias</strong><br />
           Uma galeria crítica de contribuições que ampliaram o campo do conhecimento.
         </p>
-        <nav class="footer-links" aria-label="Navegação e links profissionais">
+        <nav class="footer-links" aria-label="Navegação e links profissionais" data-footer-nav>
           <a href="../index.html#topo">Início</a>
+          <a href="../Rotas/rotas.html">Rotas guiadas</a>
           <a href="../Teorias/teorias.html">Teorias</a>
           <a href="../Mapa/mapa.html">Mapa</a>
+          <a href="./grandes-nomes.html">Grandes nomes</a>
           <a href="../Constelacoes/constelacoes.html">Constelações</a>
-          <a href="../Arquivo/arquivo.html">Arquivo</a>
           <a href="../Laboratorio/laboratorio.html">Laboratório</a>
+          <a href="../Arquivo/arquivo.html">Publicações</a>
+          <a href="../Contribuicoes/contribuicoes.html">Contribuições</a>
+          <a href="../index.html#sobre">Sobre</a>
           <a href="mailto:Matheuscamargodealencar@gmail.com">E-mail</a>
+          <a href="https://www.linkedin.com/in/gomin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer">GitHub</a>
         </nav>
       </div>

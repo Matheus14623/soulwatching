@@ -111,7 +111,7 @@
 .notable-search-field span {
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.75rem;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
@@ -158,7 +158,7 @@
   color: var(--text-soft);
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: color 160ms ease, border-color 160ms ease, background 160ms ease, transform 160ms ease;
@@ -185,7 +185,7 @@
   margin-bottom: clamp(1.2rem, 3vw, 2rem);
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   line-height: 1.55;
 }
 
@@ -248,7 +248,7 @@
   color: var(--text-soft);
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
@@ -418,7 +418,7 @@
 .notable-slide-meta {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
@@ -443,7 +443,7 @@
   z-index: 3;
   color: rgba(255, 255, 255, 0.74);
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.75rem;
   letter-spacing: 0.12em;
 }
 
@@ -454,7 +454,7 @@
   margin: 0.35rem auto 0;
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.75rem;
   line-height: 1.6;
   text-align: center;
 }
@@ -572,7 +572,7 @@
 .figure-theory-type {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
@@ -589,7 +589,7 @@
 .figure-dossier-life {
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
 }
 
 .figure-dossier-impact {
@@ -637,7 +637,7 @@
 .figure-contribution-card span {
   color: var(--gold);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
 }
 
 .figure-contribution-card h4 {
@@ -734,7 +734,7 @@
 .figure-theory-code {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
 }
 
 .figure-theory-copy strong {
@@ -748,6 +748,29 @@
   color: var(--text-soft);
   font-size: 0.84rem;
   line-height: 1.58;
+}
+
+.figure-theory-review,
+.figure-theory-disclosure {
+  display: block;
+  margin-top: 0.45rem;
+}
+
+.figure-theory-review {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.figure-theory-review.is-pending {
+  color: #ffcd5e;
+}
+
+.figure-theory-disclosure {
+  color: var(--muted);
+  font-size: 0.78rem;
 }
 
 .figure-theory-arrow {
@@ -796,7 +819,7 @@
   align-self: end;
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   line-height: 1.6;
 }
 
@@ -839,7 +862,7 @@
 .notable-trail-outcome span {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.75rem;
   letter-spacing: 0.09em;
   line-height: 1.5;
   text-transform: uppercase;
@@ -879,7 +902,7 @@
   color: var(--text-soft);
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: border-color 160ms ease, color 160ms ease, background 160ms ease, transform 160ms ease;
@@ -1019,7 +1042,7 @@
 .comparison-theory-link span {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
 }
 
 .comparison-theory-link strong,
@@ -1045,7 +1068,7 @@
   color: var(--text-soft);
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.07em;
   text-transform: uppercase;
   transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
@@ -1137,7 +1160,7 @@
 .notable-trail-button span {
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   line-height: 1.45;
   text-transform: uppercase;
@@ -1220,7 +1243,7 @@
   border-radius: 50%;
   color: var(--gold);
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
 }
 
 .notable-trail-step-copy h4 {
@@ -1276,7 +1299,7 @@
   color: var(--text-soft);
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
@@ -1396,7 +1419,7 @@
 .notable-reading-grid span {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
 }
 
 .notable-reading-grid h3 {
@@ -1455,7 +1478,7 @@
 .notable-index-meta {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -1480,7 +1503,7 @@
   margin-top: 1rem;
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -1553,7 +1576,7 @@
   .notable-control {
     min-width: 0;
     padding-inline: 0.55rem;
-    font-size: 0.58rem;
+    font-size: 0.75rem;
   }
 
   .notable-slide {

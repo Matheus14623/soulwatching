@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "david-hume-r1",
+  "order": 18,
+  "aliases": [],
+  "id": "david-hume",
+  "slug": "david-hume",
+  "name": "David Hume",
+  "lifespan": "1711–1776",
+  "area": "filosofia-metodo",
+  "role": "Epistemologia e filosofia",
+  "featuredRank": null,
+  "summary": "Formulou problemas duradouros sobre causalidade, indução e a passagem de observações finitas para expectativas gerais.",
+  "impact": "Hume argumentou que observar uma sequência repetida não revela por si só uma conexão necessária nem justifica logicamente que o futuro seguirá o passado. O problema da indução não torna a ciência impossível; ele obriga a distinguir dado, hábito, hipótese e grau de confiança.",
+  "contributions": [
+    {
+      "title": "Problema da indução",
+      "description": "Questionou a justificativa não circular de generalizações baseadas em regularidades passadas."
+    },
+    {
+      "title": "Análise da causalidade",
+      "description": "Separou sucessão observada da ideia de conexão necessária entre eventos."
+    },
+    {
+      "title": "Empirismo crítico",
+      "description": "Exigiu que conceitos retornem às impressões, operações e evidências que lhes dão conteúdo."
+    }
+  ],
+  "milestones": [
+    "A Treatise of Human Nature · 1739–1740",
+    "An Enquiry Concerning Human Understanding · 1748",
+    "Problema moderno da indução"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/david-hume.webp",
+    "width": 640,
+    "height": 775,
+    "alt": "Retrato histórico de David Hume",
+    "credit": "Allan Ramsay · National Galleries Scotland",
+    "license": "Domínio público",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:David_Hume_Ramsay.jpg"
+  },
+  "referenceIds": [
+    "hume-sep"
+  ]
+}

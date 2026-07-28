@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "lemaitre-iau-r1",
+  "id": "lemaitre-iau",
+  "aliases": [],
+  "title": "Resolution to rename the Hubble law",
+  "institution": "International Astronomical Union",
+  "kind": "Documento institucional",
+  "url": "https://www.iau.org/IAU/Iau/Publications/List-of-Resolutions.aspx"
+}

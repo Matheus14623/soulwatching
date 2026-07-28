@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "georges-lemaitre-r1",
+  "order": 9,
+  "aliases": [],
+  "id": "georges-lemaitre",
+  "slug": "georges-lemaitre",
+  "name": "Georges Lemaître",
+  "lifespan": "1894–1966",
+  "area": "fisica-cosmos",
+  "role": "Cosmologia e física teórica",
+  "featuredRank": null,
+  "summary": "Derivou um universo em expansão e uma relação distância–velocidade antes de formular a hipótese do átomo primordial.",
+  "impact": "Em 1927, Lemaître combinou relatividade geral e dados disponíveis para obter uma solução cosmológica em expansão e estimar a constante associada. Depois, propôs que o universo observável teria evoluído de um estado inicial extremamente concentrado, ideia historicamente ligada ao desenvolvimento do Big Bang.",
+  "contributions": [
+    {
+      "title": "Universo em expansão",
+      "description": "Construiu uma solução relativística dinâmica e ligou distância a velocidade de recessão."
+    },
+    {
+      "title": "Síntese entre teoria e observação",
+      "description": "Articulou equações cosmológicas com medidas astronômicas de sua época."
+    },
+    {
+      "title": "Átomo primordial",
+      "description": "Propôs uma origem cósmica quente e densa, anterior à formulação moderna do modelo do Big Bang."
+    }
+  ],
+  "milestones": [
+    "Artigo do universo em expansão · 1927",
+    "Relação hoje chamada Hubble–Lemaître",
+    "Hipótese do átomo primordial · 1931"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/georges-lemaitre.webp",
+    "width": 535,
+    "height": 800,
+    "alt": "Retrato de Georges Lemaître",
+    "credit": "Autor não identificado · acervo histórico",
+    "license": "Domínio público",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:GLemaitre30.jpg"
+  },
+  "referenceIds": [
+    "lemaitre-iau",
+    "lemaitre-primeval-atom"
+  ]
+}

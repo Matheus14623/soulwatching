@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--jocelyn-bell-burnell--historical-foundation--horizonte-sentidos-r1",
+  "id": "figure--jocelyn-bell-burnell--historical-foundation--horizonte-sentidos",
+  "order": 0,
+  "source": {
+    "type": "figure",
+    "id": "jocelyn-bell-burnell"
+  },
+  "target": {
+    "type": "theory",
+    "id": "horizonte-sentidos"
+  },
+  "type": "historical-foundation",
+  "label": "Sinal fraco, descoberta forte",
+  "justification": "A T-10 pode usar pulsares como exemplo de dados públicos, análise temporal e instrumentação transformando um limite sensorial.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

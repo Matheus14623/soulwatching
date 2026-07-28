@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Atlas educativo para reconhecer 12 constelações no céu: explore estrelas de referência, revele linhas-guia e encontre padrões visíveis do Brasil." />
+    <meta name="description" data-content-metric="constellations" data-content-format="constellation-meta-description" content="Atlas educativo para reconhecer 12 constelações no céu: explore estrelas de referência, revele linhas-guia e encontre padrões visíveis do Brasil." />
     <meta name="author" content="Matheus Camargo de Alencar" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#03050d" />
 
     <meta property="og:title" content="Constelações | Observatório de Ideias" />
-    <meta property="og:description" content="Um atlas celeste interativo para aprender a reconhecer 12 constelações e suas estrelas de referência." />
+    <meta property="og:description" data-content-metric="constellations" data-content-format="constellation-og-description" content="Um atlas celeste interativo para aprender a reconhecer 12 constelações e suas estrelas de referência." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="../assets/images/og-observatorio.jpg" />
     <meta property="og:locale" content="pt_BR" />
@@ -26,6 +26,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/styles.css?v=smooth-flow-v1" />
     <link rel="stylesheet" href="../assets/css/observatory-pages.css?v=observatory-scale-v1" />
+    <link rel="stylesheet" href="../assets/css/site-navigation.css?v=site-navigation-v1" />
     <link rel="stylesheet" href="../assets/css/constellation-chart.css?v=constellation-atlas-v2" />
     <link rel="stylesheet" href="./constelacoes.css?v=constellation-atlas-v3" />
   </head>
@@ -45,21 +46,21 @@
         </button>
 
         <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
-          <a href="../index.html#topo">Início</a>
-          <a href="../Teorias/teorias.html">Teorias</a>
-          <a href="../Mapa/mapa.html">Mapa</a>
-          <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
-          <a href="#atlas" aria-current="page">Constelações</a>
-          <a href="../Arquivo/arquivo.html">Arquivo</a>
-          <a href="../Laboratorio/laboratorio.html">Laboratório</a>
-          <a href="../index.html#contato">Coordenadas</a>
+          <a href="../Rotas/rotas.html" title="Começar por uma pergunta">Começar</a>
+          <a href="../Teorias/teorias.html" title="Linhas de investigação autorais">Teorias</a>
+          <a href="../Mapa/mapa.html" title="Mapa de relações">Mapa</a>
+          <a href="../GrandesNomes/grandes-nomes.html" title="Pessoas, métodos e descobertas">Grandes nomes</a>
+          <a href="./constelacoes.html" aria-current="page" title="Atlas celeste">Constelações</a>
+          <a href="../Laboratorio/laboratorio.html" title="Simulações e modelos didáticos">Laboratório</a>
+          <a href="../Contribuicoes/contribuicoes.html" title="Propor uma contribuição">Contribuir</a>
+          <a href="../index.html#sobre" title="Sobre o Observatório">Sobre</a>
         </nav>
 
         <div class="status-pill" aria-live="polite" data-status-pill>
           <span class="status-dot" aria-hidden="true"></span>
           <span data-status-text>Atlas celeste</span>
         </div>
-        <span class="beta-badge" aria-label="Modelo em versão beta">Beta</span>
+        <span class="beta-badge" aria-label="Beta editorial: navegação e catálogos em evolução" title="Beta editorial: navegação e catálogos em evolução">Beta</span>
       </div>
     </header>
 
@@ -206,14 +207,19 @@
     <footer class="site-footer">
       <div class="container footer-grid">
         <p><strong>Atlas de constelações</strong><br />Reconhecimento visual com contexto científico e linhas-guia acessíveis.</p>
-        <nav class="footer-links" aria-label="Navegação e links profissionais">
+        <nav class="footer-links" aria-label="Navegação e links profissionais" data-footer-nav>
           <a href="../index.html#topo">Início</a>
+          <a href="../Rotas/rotas.html">Rotas guiadas</a>
           <a href="../Teorias/teorias.html">Teorias</a>
           <a href="../Mapa/mapa.html">Mapa</a>
           <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
-          <a href="../Arquivo/arquivo.html">Arquivo</a>
+          <a href="./constelacoes.html">Constelações</a>
           <a href="../Laboratorio/laboratorio.html">Laboratório</a>
+          <a href="../Arquivo/arquivo.html">Publicações</a>
+          <a href="../Contribuicoes/contribuicoes.html">Contribuições</a>
+          <a href="../index.html#sobre">Sobre</a>
           <a href="mailto:Matheuscamargodealencar@gmail.com">E-mail</a>
+          <a href="https://www.linkedin.com/in/gomin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer">GitHub</a>
         </nav>
       </div>

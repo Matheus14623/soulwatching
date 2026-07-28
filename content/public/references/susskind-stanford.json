@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "susskind-stanford-r1",
+  "id": "susskind-stanford",
+  "aliases": [],
+  "title": "Leonard Susskind",
+  "institution": "Stanford University",
+  "kind": "Perfil institucional",
+  "url": "https://profiles.stanford.edu/leonard-susskind"
+}

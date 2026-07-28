@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "iau-constellations-r1",
+  "id": "iau-constellations",
+  "aliases": [],
+  "title": "As 88 constelações e seus limites",
+  "institution": "União Astronômica Internacional",
+  "url": "https://www.iau.org/Iau/Science/What-we-do/The-Constellations.aspx",
+  "kind": "Material institucional"
+}

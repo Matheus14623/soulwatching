@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "entityType": "theory",
+  "revisionId": "vacuo-genese-r1",
+  "order": 7,
+  "aliases": [],
+  "id": "vacuo-genese",
+  "slug": "vacuo-genese",
+  "code": "T-08",
+  "title": "Gênese por Flutuação do Vácuo",
+  "shortTitle": "Gênese do vácuo",
+  "subtitle": "Derivação integrada à investigação sobre estabilidade do vácuo",
+  "kind": "linha-derivada",
+  "reviewState": "consolidacao",
+  "independent": false,
+  "category": "vazio",
+  "filters": [
+    "vazio",
+    "cosmologia",
+    "tempo"
+  ],
+  "color": "#c99bff",
+  "glow": "rgba(201, 155, 255, 0.44)",
+  "position": {
+    "x": 84,
+    "y": 82
+  },
+  "summary": "Registra o desdobramento cosmológico da T-02 e permanece vinculado a ela até formular mecanismo e observáveis próprios.",
+  "proposal": "Uma segunda ficha só se justifica se estudar especificamente a geometria, evolução e observáveis no interior de uma bolha de vácuo.",
+  "questions": [
+    "Qual pergunta desta linha não é respondida pela T-02?",
+    "Que geometria descreve a região após a nucleação?",
+    "Quais observáveis pertencem ao interior da bolha?"
+  ],
+  "concepts": [
+    "vácuo metastável",
+    "bolha de vácuo",
+    "cosmogênese",
+    "geometria",
+    "linha derivada"
+  ],
+  "nextSteps": [
+    "Manter a linha vinculada à T-02 no catálogo.",
+    "Definir uma pergunta independente antes de separá-la.",
+    "Reutilizar o modelo de campo e a taxa de nucleação da linha principal."
+  ],
+  "referenceIds": [
+    "coleman-deluccia",
+    "hiller-vacuum"
+  ],
+  "objections": [
+    {
+      "id": "duplicacao-t02",
+      "title": "A linha ainda se sobrepõe à T-02",
+      "status": "incorporada",
+      "response": "A ficha permanece declaradamente derivada e herda campo, potencial e taxa de nucleação da linha principal."
+    },
+    {
+      "id": "resultado-proprio",
+      "title": "Ainda não existe consequência geométrica própria",
+      "status": "aberta",
+      "response": "A independência depende de derivar evolução ou observável que não seja apenas repetição do decaimento do vácuo."
+    }
+  ],
+  "decisionBoundary": {
+    "revise": "Revisar a separação se a pergunta puder ser respondida integralmente dentro da T-02.",
+    "abandon": "Reintegrar e encerrar a ficha independente se nenhum resultado geométrico ou observacional próprio for derivado."
+  },
+  "review": {
+    "assessment": "Não constitui uma teoria independente",
+    "known": "Transições de fase e cosmologia de bolhas são problemas reais quando o modelo é especificado.",
+    "focus": "Distinguir estabilidade do vácuo da evolução geométrica de uma bolha após a nucleação.",
+    "limit": "Flutuação, tunelamento, inflação e novo Big Bang não são sinônimos; a formulação atual se sobrepõe à T-02.",
+    "test": "Usar o mesmo campo e potencial da T-02 e derivar uma consequência geométrica ou observacional própria."
+  },
+  "claimLinks": [
+    {
+      "id": "contexto-bolhas",
+      "label": "Base teórica herdada",
+      "field": "review.known",
+      "referenceIds": [
+        "coleman-deluccia",
+        "hiller-vacuum"
+      ]
+    }
+  ],
+  "revisions": [
+    {
+      "revisionId": "vacuo-genese-r1",
+      "ordinal": 1,
+      "versionLabel": "2.1",
+      "reviewedAt": "2026-07-22",
+      "label": "Primeiro registro individual · jul. 2026",
+      "changeSummary": "A revisão individual formaliza a dependência da T-02 e o critério objetivo para manter ou reintegrar esta ficha.",
+      "responsibles": [
+        {
+          "name": "Matheus Camargo",
+          "role": "autor e responsável editorial"
+        }
+      ]
+    }
+  ]
+}

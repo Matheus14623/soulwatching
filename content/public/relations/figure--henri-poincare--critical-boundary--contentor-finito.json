@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "figure--henri-poincare--critical-boundary--contentor-finito-r1",
+  "id": "figure--henri-poincare--critical-boundary--contentor-finito",
+  "order": 1,
+  "source": {
+    "type": "figure",
+    "id": "henri-poincare"
+  },
+  "target": {
+    "type": "theory",
+    "id": "contentor-finito"
+  },
+  "type": "critical-boundary",
+  "label": "Topologia precisa de formalização",
+  "justification": "Os métodos topológicos de Poincaré oferecem linguagem para a T-04, mas não selecionam uma topologia do universo nem substituem observáveis capazes de distingui-la.",
+  "referenceIds": [],
+  "reviewState": "pending"
+}

@@ -293,15 +293,15 @@ Na home, os links são: Teorias, Mapa, Arquivo, Filosofia, Sobre e Contato. “T
 
 **Função:** ligar o arquivo intelectual à presença profissional.
 
-**Composição:** título, cartão com fotografia pessoal e imagem associada ao GitHub, quatro links e formulário.
+**Composição:** título, cartões de presença profissional, três canais públicos e formulário.
 
-**Comportamento:** os links usam `mailto:`, `tel:` e URLs externas. O formulário não possui backend: valida localmente, compõe uma mensagem e abre o cliente de e-mail.
+**Comportamento:** os links usam `mailto:` e URLs externas. O formulário não possui backend: valida localmente, compõe uma mensagem e abre o cliente de e-mail.
 
 ### 5.12 Footer
 
 **Função:** reforçar o estado Beta, a autoria e atalhos externos.
 
-**Composição:** texto de status e links para e-mail, telefone, LinkedIn e GitHub. Na página de teorias, o footer contém Início, Contato, E-mail e GitHub.
+**Composição:** texto de status e links para e-mail, LinkedIn e GitHub. O manifesto institucional mantém os mesmos destinos de navegação em todas as páginas.
 
 ### 5.13 Página dedicada de teorias
 
@@ -671,7 +671,7 @@ São cards estáticos com número/formato, título e descrição. Devem ser usad
 
 ### 8.9 Links de contato
 
-Grid com ícone circular, label monoespaçado e valor. Links externos abrem nova aba com `noopener noreferrer`; e-mail e telefone usam protocolos nativos.
+Grid com ícone circular, label monoespaçado e valor. Links externos abrem nova aba com `noopener noreferrer`; o e-mail usa o protocolo nativo `mailto:`.
 
 ### 8.10 Formulário
 
@@ -993,7 +993,7 @@ Matheus aparece em três camadas:
 
 1. **Origem do campo:** o painel inicial o apresenta como desenvolvedor, organizador de sistemas e autor de perguntas.
 2. **Autor humano:** a seção Sobre explica a relação entre software, cosmologia, tempo e percepção.
-3. **Presença profissional:** Contato conecta fotografia, GitHub, LinkedIn, e-mail e telefone.
+3. **Presença profissional:** Contato conecta fotografia, GitHub, LinkedIn e e-mail.
 
 A identidade pessoal é construída por contexto e não por autoelogio. A frase mais importante para manutenção é: “Matheus Camargo não é o centro do sistema. É o ponto humano de onde a observação parte.”
 
@@ -1016,11 +1016,10 @@ A identidade pessoal é construída por contexto e não por autoelogio. A frase 
 | Canal | Valor implementado | Onde aparece |
 |---|---|---|
 | E-mail | `Matheuscamargodealencar@gmail.com` | config, seção Contato, footer da home e footer de Teorias |
-| Telefone | `11 91363-9989` / `tel:+5511913639989` | config, seção Contato e footer da home |
 | LinkedIn | `https://www.linkedin.com/in/gomin/` | config, seção Contato e footer da home |
 | GitHub | `https://github.com/Matheus14623` | config, seção Contato e ambos os footers |
 
-Os quatro dados fornecidos estão implementados.
+Os três canais profissionais acima permanecem públicos. O telefone pessoal foi retirado da interface.
 
 ### 14.2 Fonte de verdade parcial
 
@@ -1036,7 +1035,7 @@ Ao mudar contato, revisar:
 
 ### 14.3 Comportamento de links
 
-- e-mail e telefone abrem handlers do sistema;
+- o e-mail abre o handler do sistema;
 - LinkedIn e GitHub abrem nova aba;
 - links externos usam `rel="noopener noreferrer"`;
 - links de contato principais possuem `aria-label` descritivo;
@@ -1695,4 +1694,3 @@ O projeto deve evoluir por refinamento: corrigir inconsistências mobile e de pe
 | `Teorias/teorias.css` | dossiê desktop e expansão mobile |
 | `index.html` | conteúdo, números estáticos, contatos e ordem de seções |
 | `assets/js/config.js` | destinatário e assunto do formulário; não atualiza HTML sozinho |
-

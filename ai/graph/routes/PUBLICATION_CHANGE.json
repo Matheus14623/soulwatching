@@ -16,5 +16,5 @@
       "condition": "Antes de considerar o conteúdo pronto para publicação."
     }
   ],
-  "relatedContext": ["project.boundaries", "frontend.design-accessibility"]
+  "relatedContext": ["project.boundaries", "domains.content-operations", "frontend.design-accessibility"]
 }

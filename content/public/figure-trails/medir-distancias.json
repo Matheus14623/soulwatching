@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure-trail",
+  "revisionId": "medir-distancias-r1",
+  "order": 0,
+  "id": "medir-distancias",
+  "label": "Medir distâncias",
+  "kicker": "instrumento → calibração → escala",
+  "description": "Como sinais pequenos e indiretos foram convertidos em medidas capazes de ampliar a escala do universo observável.",
+  "outcome": "Ao final, fica claro por que nenhuma distância cósmica vem de uma única fotografia: cada degrau depende de calibração e limites próprios.",
+  "steps": [
+    {
+      "figureId": "galileo-galilei",
+      "title": "Ampliar o que pode ser observado",
+      "description": "O telescópio mostra o valor e o risco de estender os sentidos por instrumentos."
+    },
+    {
+      "figureId": "johannes-kepler",
+      "title": "Modelar uma órbita com os resíduos",
+      "description": "Posições acumuladas corrigem a geometria preferida quando a previsão falha."
+    },
+    {
+      "figureId": "henrietta-swan-leavitt",
+      "title": "Calibrar uma luminosidade intrínseca",
+      "description": "O período das Cefeidas cria um novo degrau para a escala de distâncias."
+    },
+    {
+      "figureId": "georges-lemaitre",
+      "title": "Relacionar distância e expansão",
+      "description": "Soluções cosmológicas passam a dialogar com dados de galáxias distantes."
+    }
+  ]
+}

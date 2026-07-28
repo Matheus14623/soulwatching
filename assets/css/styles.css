@@ -11,7 +11,7 @@
   --text: #f5f7fb;
   --text-soft: #c8d3df;
   --muted: #8996a9;
-  --muted-2: #5f6d80;
+  --muted-2: #8290a4;
   --cyan: #72ecff;
   --cyan-deep: #164e63;
   --blue: #7ca7ff;
@@ -39,7 +39,6 @@
 }
 
 html {
-  min-width: 320px;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + 1.25rem);
   background: var(--bg);
@@ -120,9 +119,9 @@ code {
   font-family: var(--font-mono);
 }
 
-:focus-visible {
-  outline: 2px solid var(--cyan);
-  outline-offset: 4px;
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 3px solid #8ff1ff !important;
+  outline-offset: 3px;
 }
 
 .container {
@@ -234,7 +233,7 @@ code {
   margin-top: 0.05rem;
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
 }
@@ -288,7 +287,7 @@ code {
   background: rgba(255, 255, 255, 0.045);
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   white-space: nowrap;
 }
 
@@ -530,7 +529,7 @@ body[data-mode="observer"] .hero-structure {
   margin-bottom: 1rem;
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -698,7 +697,7 @@ body.is-stellar-vision-info-open {
 .stellar-vision-dialog-label {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.16em;
   line-height: 1.5;
@@ -790,7 +789,7 @@ body.is-stellar-vision-info-open {
   background: rgba(114, 236, 255, 0.045);
   color: #cceff6;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   line-height: 1.4;
 }
 
@@ -895,7 +894,7 @@ body.is-stellar-vision-info-open {
   background: rgba(5, 7, 18, 0.74);
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
 }
 
 .coordinate-a { left: 6%; top: 38%; }
@@ -911,7 +910,7 @@ body.is-stellar-vision-info-open {
   background: rgba(3, 12, 22, 0.62);
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   line-height: 1.7;
   backdrop-filter: blur(10px);
@@ -985,7 +984,7 @@ body[data-mode="observer"] .data-point {
 .form-field label {
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.75rem;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
@@ -1114,7 +1113,7 @@ body[data-mode="observer"] .data-point {
 .status-badge,
 .tag {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -1169,7 +1168,7 @@ body[data-mode="observer"] .data-point {
 .theory-detail .detail-kicker {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -1306,7 +1305,7 @@ body[data-mode="observer"] .data-point {
 
 .map-node span {
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   color: var(--muted);
 }
 
@@ -1385,7 +1384,7 @@ body[data-mode="observer"] .data-point {
   margin-bottom: 0.82rem;
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -1438,7 +1437,7 @@ body[data-mode="observer"] .data-point {
 .compass-button small {
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -1488,7 +1487,7 @@ body[data-mode="observer"] .data-point {
 .panel-label {
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -1569,7 +1568,7 @@ body[data-mode="observer"] .data-point {
   bottom: 1rem;
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -1641,6 +1640,67 @@ body[data-mode="observer"] .data-point {
 
 .about-section p {
   font-size: 1.06rem;
+}
+
+.about-support-invitation {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 1rem 1.25rem;
+  align-items: center;
+  margin-top: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  border: 1px solid rgba(114, 236, 255, 0.2);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 0% 50%, rgba(114, 236, 255, 0.09), transparent 14rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.018));
+  scroll-margin-top: calc(var(--header-height) + 1.5rem);
+}
+
+.about-support-mark {
+  display: grid;
+  width: 3.25rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(114, 236, 255, 0.28);
+  border-radius: 50%;
+  background: rgba(114, 236, 255, 0.07);
+  color: var(--cyan);
+  font-size: 1.1rem;
+  box-shadow: 0 0 30px rgba(114, 236, 255, 0.08);
+}
+
+.about-support-invitation strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+}
+
+.about-support-invitation p {
+  max-width: 66ch;
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+.about-support-invitation .button {
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .about-support-invitation {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .about-support-invitation > div {
+    min-width: 0;
+  }
+
+  .about-support-invitation .button {
+    grid-column: 1 / -1;
+    white-space: normal;
+  }
 }
 
 .contact-section {
@@ -1747,7 +1807,7 @@ body[data-mode="observer"] .data-point {
   display: block;
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -1943,7 +2003,7 @@ body[data-mode="observer"] .data-point {
   border-radius: 999px;
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
@@ -2008,7 +2068,7 @@ body[data-mode="observer"] .data-point {
   align-self: end;
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -2474,7 +2534,7 @@ body.is-structural-vision .hero::after {
   display: block;
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -2576,7 +2636,7 @@ body.structural-pulse.is-structural-vision .structural-overlay {
   }
 
   .structural-time-indicator span {
-    font-size: 0.53rem;
+    font-size: 0.75rem;
     letter-spacing: 0.13em;
   }
 
@@ -2681,7 +2741,7 @@ img {
   margin-bottom: 0.7rem;
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -2725,7 +2785,7 @@ img {
   background: rgba(255, 255, 255, 0.045);
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -2805,7 +2865,7 @@ img {
   background: rgba(5,8,18,0.76);
   color: var(--text-soft);
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   cursor: pointer;
 }
 
@@ -2858,7 +2918,7 @@ img {
   margin-bottom: 0.75rem !important;
   color: var(--muted) !important;
   font-family: var(--font-mono);
-  font-size: 0.72rem !important;
+  font-size: 0.75rem !important;
   letter-spacing: 0.08em;
   line-height: 1.55 !important;
   text-transform: uppercase;
@@ -2882,7 +2942,7 @@ img {
 .detail-meta span {
   padding: 0.32rem 0.5rem;
   color: var(--muted);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
 }
 
 .theory-card .tag-list {
@@ -2895,7 +2955,7 @@ img {
   border-left: 2px solid var(--accent);
   color: color-mix(in srgb, var(--accent) 82%, white) !important;
   font-family: var(--font-mono);
-  font-size: 0.66rem !important;
+  font-size: 0.75rem !important;
   line-height: 1.5 !important;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -3093,7 +3153,7 @@ img {
   display: block;
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
 }
@@ -3267,7 +3327,7 @@ img {
   }
 
   .map-node strong {
-    font-size: 0.68rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -3290,7 +3350,7 @@ img {
     rgba(8, 12, 27, 0.88);
   color: rgba(223, 248, 255, 0.96);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   line-height: 1;
@@ -3368,7 +3428,7 @@ img {
 }
 
 .contact-orbit-system .identity-node figcaption strong {
-  font-size: clamp(0.72rem, 1vw, 0.92rem);
+  font-size: clamp(0.75rem, 1vw, 0.92rem);
 }
 
 .contact-orbit-system .contact-coordinate-panel {
@@ -3430,7 +3490,7 @@ img {
   .beta-badge {
     right: 3.2rem;
     padding: 0.24rem 0.52rem;
-    font-size: 0.56rem;
+    font-size: 0.75rem;
     letter-spacing: 0.12em;
   }
 
@@ -3604,7 +3664,7 @@ img {
   display: block;
   color: var(--cyan);
   font-family: var(--font-mono);
-  font-size: 0.52rem;
+  font-size: 0.75rem;
   line-height: 1.1;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -3615,7 +3675,7 @@ img {
   display: block;
   margin-top: 0.12rem;
   color: var(--text);
-  font-size: clamp(0.68rem, 0.82vw, 0.82rem);
+  font-size: clamp(0.75rem, 0.82vw, 0.82rem);
   line-height: 1.1;
   white-space: nowrap;
 }
@@ -3727,10 +3787,10 @@ img {
   }
 
   .contact-section .contact-identity-showcase .identity-node figcaption span {
-    font-size: 0.47rem;
+    font-size: 0.75rem;
   }
 
   .contact-section .contact-identity-showcase .identity-node figcaption strong {
-    font-size: 0.64rem;
+    font-size: 0.75rem;
   }
 }

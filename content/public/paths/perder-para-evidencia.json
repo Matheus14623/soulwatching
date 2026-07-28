@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "entityType": "path",
+  "revisionId": "perder-para-evidencia-r1",
+  "id": "perder-para-evidencia",
+  "slug": "perder-para-evidencia",
+  "title": "Aprender a perder para a evidência",
+  "summary": "Métodos, objeções e critérios de abandono para tratar uma ideia como investigação, não como identidade pessoal.",
+  "audience": "Para começar pelo método crítico",
+  "durationMinutes": 24,
+  "accent": "green",
+  "steps": [
+    {
+      "type": "figure",
+      "id": "johannes-kepler",
+      "reason": "O abandono de círculos perfeitos diante dos dados ilustra revisão de uma estrutura preferida."
+    },
+    {
+      "type": "figure",
+      "id": "karl-popper",
+      "reason": "A falseabilidade ajuda a perguntar o que contaria contra uma proposta."
+    },
+    {
+      "type": "figure",
+      "id": "imre-lakatos",
+      "reason": "Programas de pesquisa permitem avaliar evolução, ajustes protetores e ganho explicativo ao longo do tempo."
+    },
+    {
+      "type": "theory",
+      "id": "ciclagem-eterna",
+      "reason": "A entrada funciona como caso para aplicar objeções, dependências e critérios explícitos de revisão."
+    },
+    {
+      "type": "experiment",
+      "id": "recorrencia-finita",
+      "reason": "O modelo mostra como uma conclusão rigorosa pode ser menor do que a interpretação intuitiva inicial."
+    }
+  ],
+  "aliases": [],
+  "order": 4
+}

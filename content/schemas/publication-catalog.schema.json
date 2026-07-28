@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observatorio.local/schemas/publication-catalog.schema.json",
+  "title": "Catálogo editorial vazio ou gerado",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "entityType",
+    "items"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "entityType": {
+      "type": "string",
+      "const": "publication-catalog"
+    },
+    "items": {
+      "type": "array",
+      "maxItems": 0
+    }
+  },
+  "additionalProperties": false
+}

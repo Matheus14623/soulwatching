@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure",
+  "revisionId": "cecilia-payne-gaposchkin-r1",
+  "order": 3,
+  "aliases": [],
+  "id": "cecilia-payne-gaposchkin",
+  "slug": "cecilia-payne-gaposchkin",
+  "name": "Cecilia Payne-Gaposchkin",
+  "lifespan": "1900–1979",
+  "area": "astronomia",
+  "role": "Astrofísica estelar",
+  "featuredRank": null,
+  "summary": "Demonstrou que hidrogênio e hélio dominam a composição estelar ao interpretar espectros com física de ionização.",
+  "impact": "Sua tese mostrou que a intensidade das linhas espectrais não traduzia diretamente abundância química: temperatura e ionização alteravam o sinal. Essa correção levou à conclusão, inicialmente contestada, de que as estrelas têm composição muito diferente da crosta terrestre.",
+  "contributions": [
+    {
+      "title": "Composição das estrelas",
+      "description": "Estabeleceu a predominância de hidrogênio e hélio em atmosferas estelares."
+    },
+    {
+      "title": "Espectro com mecanismo físico",
+      "description": "Aplicou a equação de ionização de Saha para separar abundância, temperatura e estado atômico."
+    },
+    {
+      "title": "Astrofísica quantitativa",
+      "description": "Ligou classificação espectral a condições físicas mensuráveis, não apenas a aparência das linhas."
+    }
+  ],
+  "milestones": [
+    "Stellar Atmospheres · 1925",
+    "Composição estelar dominada por H e He",
+    "Estudos extensos de estrelas variáveis"
+  ],
+  "portrait": {
+    "src": "assets/images/grandes-nomes/cecilia-payne-gaposchkin.webp",
+    "width": 640,
+    "height": 493,
+    "alt": "Retrato de Cecilia Payne-Gaposchkin trabalhando",
+    "credit": "Smithsonian Institution · Science Service",
+    "license": "Domínio público nos Estados Unidos",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cecilia_Helena_Payne-Gaposchkin_(1900-1979)_-_Science_Service.jpg"
+  },
+  "referenceIds": [
+    "payne-harvard"
+  ]
+}

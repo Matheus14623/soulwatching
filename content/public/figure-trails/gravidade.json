@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "entityType": "figure-trail",
+  "revisionId": "gravidade-r1",
+  "order": 1,
+  "id": "gravidade",
+  "label": "Gravidade",
+  "kicker": "queda → órbita → geometria → horizonte",
+  "description": "Uma trajetória pelas mudanças de método que ligaram movimento terrestre, órbitas, espaço-tempo e objetos compactos.",
+  "outcome": "A gravidade aparece como uma sequência de domínios e aproximações, não como uma única explicação que permaneceu intacta.",
+  "steps": [
+    {
+      "figureId": "galileo-galilei",
+      "title": "Medir o movimento",
+      "description": "Experimentos e idealizações tornam queda e aceleração problemas quantitativos."
+    },
+    {
+      "figureId": "isaac-newton",
+      "title": "Unificar Terra e céu",
+      "description": "A mesma estrutura descreve projéteis, marés e órbitas em seu domínio de validade."
+    },
+    {
+      "figureId": "albert-einstein",
+      "title": "Reformular espaço e tempo",
+      "description": "Gravidade passa a ser tratada como geometria dinâmica do espaço-tempo."
+    },
+    {
+      "figureId": "subrahmanyan-chandrasekhar",
+      "title": "Calcular o limite de sustentação",
+      "description": "Pressão quântica e relatividade delimitam o equilíbrio de anãs brancas."
+    },
+    {
+      "figureId": "roger-penrose",
+      "title": "Demonstrar a formação de singularidades",
+      "description": "Métodos globais mostram consequências gerais do colapso gravitacional."
+    },
+    {
+      "figureId": "stephen-hawking",
+      "title": "Colocar o horizonte em regime quântico",
+      "description": "Radiação térmica conecta gravitação, campos quânticos e termodinâmica."
+    }
+  ]
+}

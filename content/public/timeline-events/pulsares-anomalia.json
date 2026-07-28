@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entityType": "timeline-event",
+  "revisionId": "pulsares-anomalia-r1",
+  "order": 11,
+  "id": "pulsares-anomalia",
+  "date": "1967",
+  "sortYear": 1967,
+  "category": "observar",
+  "title": "Uma anomalia pequena revela uma nova classe de estrelas",
+  "method": "Inspeção sistemática, repetição e exclusão de interferência",
+  "description": "Um traço periódico mantido sob investigação transforma registros extensos de rádio em evidência para pulsares.",
+  "figureIds": [
+    "jocelyn-bell-burnell"
+  ]
+}

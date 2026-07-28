@@ -3,6 +3,9 @@ name: Qualidade
 on:
   push:
   pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 11 * * 1"
 
 permissions:
   contents: read
@@ -12,6 +15,30 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  node-compatibility:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+        node-version:
+          - 22
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v4
+      - name: Preparar Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+      - name: Instalar manifesto
+        run: npm ci --ignore-scripts
+      - name: Validar compatibilidade do build
+        run: npm run build
+        env:
+          PUBLIC_SITE_ORIGIN: https://observatorio.example
+
   verify-build-smoke:
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -23,13 +50,40 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - name: Preparar navegador real
+        id: setup-chrome
+        uses: browser-actions/setup-chrome@v2
+        with:
+          chrome-version: stable
+          install-dependencies: true
       - name: Validar manifesto npm
         run: npm ci --ignore-scripts
       - name: Testar base de conhecimento
         run: npm run knowledge:test
-      - name: Conferir documentação derivada
-        run: npm run knowledge:check
-      - name: Verificar contratos públicos
-        run: npm run verify
+      - name: Verificar contratos editoriais e públicos
+        run: npm run verify:editorial
       - name: Verificar, construir e testar rotas públicas
         run: npm test
+        env:
+          BROWSER_BIN: ${{ steps.setup-chrome.outputs.chrome-path }}
+          PUBLIC_SITE_ORIGIN: https://observatorio.example
+          REQUIRE_BROWSER_SMOKE: "1"
+
+  external-link-health:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v4
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Instalar manifesto
+        run: npm ci --ignore-scripts
+      - name: Compilar o catálogo
+        run: npm run content:build
+      - name: Verificar links externos
+        run: npm run check:links

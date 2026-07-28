@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "nasa-gemini-r1",
+  "id": "nasa-gemini",
+  "aliases": [],
+  "title": "A constelação de Gêmeos",
+  "institution": "NASA Science",
+  "url": "https://science.nasa.gov/solar-system/skywatching/night-sky-network/gemini-constellation/",
+  "kind": "Material institucional"
+}

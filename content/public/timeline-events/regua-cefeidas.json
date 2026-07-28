@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entityType": "timeline-event",
+  "revisionId": "regua-cefeidas-r1",
+  "order": 4,
+  "id": "regua-cefeidas",
+  "date": "1912",
+  "sortYear": 1912,
+  "category": "medir",
+  "title": "Uma regularidade temporal vira régua cósmica",
+  "method": "Calibração entre período e luminosidade",
+  "description": "A repetição de medições em placas fotográficas permite inferir luminosidades e, depois de calibrada, grandes distâncias.",
+  "figureIds": [
+    "henrietta-swan-leavitt"
+  ]
+}

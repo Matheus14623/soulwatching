@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entityType": "reference",
+  "revisionId": "nasa-orion-r1",
+  "id": "nasa-orion",
+  "aliases": [],
+  "title": "Descobrindo o Universo por meio de Órion",
+  "institution": "NASA Science",
+  "url": "https://science.nasa.gov/universe/stories/quick-reads/discovering-the-universe-through-the-constellation-orion/",
+  "kind": "Material institucional"
+}

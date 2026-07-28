@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "entityType": "constellation",
+  "revisionId": "carina-r1",
+  "id": "carina",
+  "slug": "carina",
+  "name": "Carina",
+  "latinName": "Carina",
+  "abbreviation": "Car",
+  "featuredRank": null,
+  "seasonId": "verao",
+  "season": "Céu austral · destaque de janeiro a abril",
+  "signature": "CANOPUS E A QUILHA",
+  "recognition": "Comece por Canopus, muito brilhante ao sul de Sirius, e acompanhe a quilha em direção a Avior, Aspidiske e Miaplacidus.",
+  "fact": "Canopus é a segunda estrela de maior brilho aparente no céu noturno. A mesma constelação abriga a Nebulosa de Carina, uma extensa região de formação estelar.",
+  "guideNote": "Carina, Vela e Puppis formavam a antiga Argo Navis. No céu representado na bandeira brasileira, Canopus corresponde a Goiás.",
+  "sourceIds": [
+    "iau-constellations",
+    "nasa-carina",
+    "on-brazilian-sky"
+  ],
+  "relatedConstellationIds": [
+    "vela"
+  ],
+  "stars": [
+    {
+      "id": "canopus",
+      "name": "Canopus",
+      "designation": "α Car",
+      "magnitude": -0.7,
+      "x": 18,
+      "y": 82,
+      "tone": "white",
+      "role": "anchor",
+      "label": true,
+      "labelDy": -5
+    },
+    {
+      "id": "miaplacidus",
+      "name": "Miaplacidus",
+      "designation": "β Car",
+      "magnitude": 1.7,
+      "x": 75,
+      "y": 77,
+      "tone": "cool",
+      "role": "anchor",
+      "label": true,
+      "labelDy": -5
+    },
+    {
+      "id": "avior",
+      "name": "Avior",
+      "designation": "ε Car",
+      "magnitude": 1.9,
+      "x": 35,
+      "y": 53,
+      "tone": "warm",
+      "role": "anchor",
+      "label": true
+    },
+    {
+      "id": "aspidiske",
+      "name": "Aspidiske",
+      "designation": "ι Car",
+      "magnitude": 2.2,
+      "x": 62,
+      "y": 34,
+      "tone": "white",
+      "role": "anchor",
+      "label": true,
+      "labelDy": -5
+    },
+    {
+      "id": "theta-carinae",
+      "name": "Theta Carinae",
+      "designation": "θ Car",
+      "magnitude": 2.7,
+      "x": 52,
+      "y": 57,
+      "tone": "cool",
+      "role": "guide",
+      "label": false
+    },
+    {
+      "id": "upsilon-carinae",
+      "name": "Upsilon Carinae",
+      "designation": "υ Car",
+      "magnitude": 3,
+      "x": 80,
+      "y": 48,
+      "tone": "white",
+      "role": "guide",
+      "label": false,
+      "combined": true
+    },
+    {
+      "id": "omega-carinae",
+      "name": "Omega Carinae",
+      "designation": "ω Car",
+      "magnitude": 3.3,
+      "x": 48,
+      "y": 83,
+      "tone": "cool",
+      "role": "guide",
+      "label": false
+    }
+  ],
+  "lines": [
+    [
+      "canopus",
+      "avior"
+    ],
+    [
+      "avior",
+      "aspidiske"
+    ],
+    [
+      "aspidiske",
+      "upsilon-carinae"
+    ],
+    [
+      "upsilon-carinae",
+      "miaplacidus"
+    ],
+    [
+      "miaplacidus",
+      "omega-carinae"
+    ],
+    [
+      "omega-carinae",
+      "theta-carinae"
+    ],
+    [
+      "theta-carinae",
+      "aspidiske"
+    ]
+  ],
+  "aliases": [],
+  "order": 10
+}

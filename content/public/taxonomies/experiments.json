@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "entityType": "experiment-taxonomy",
+  "kinds": [
+    {
+      "id": "visualizacao",
+      "label": "Visualização conceitual"
+    },
+    {
+      "id": "instrumento",
+      "label": "Instrumento interativo"
+    },
+    {
+      "id": "simulador",
+      "label": "Simulador didático"
+    },
+    {
+      "id": "treino",
+      "label": "Modo de treino"
+    }
+  ],
+  "statuses": [
+    {
+      "id": "active",
+      "label": "Ativo"
+    },
+    {
+      "id": "planned",
+      "label": "Planejado"
+    },
+    {
+      "id": "archived",
+      "label": "Arquivado"
+    }
+  ],
+  "visuals": [
+    "stars",
+    "strings",
+    "nodes",
+    "constellations",
+    "light-cone",
+    "epsilon",
+    "cycle",
+    "quiz",
+    "biosphere"
+  ]
+}

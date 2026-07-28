@@ -13,7 +13,7 @@ import {
   getUniqueTheoryRelations,
   theoryMatchesCategory,
 } from './theory-model.js';
-import { THEORIES, THEORY_FILTERS } from '../data/theories.js';
+import { THEORIES, THEORY_FILTERS } from '../data/generated/runtime/theories.js';
 
 const state = {
   activeFilter: 'todas',
@@ -58,7 +58,7 @@ function listMarkup(items) {
   return items.map((item) => `<li>${escapeHtml(item)}</li>`).join('');
 }
 
-function renderFilters() {
+function renderFilters(options = {}) {
   const filters = $('[data-theory-filters]');
   if (!filters) return;
 
@@ -71,9 +71,14 @@ function renderFilters() {
   $$('[data-theory-filter]', filters).forEach((button) => {
     button.addEventListener('click', () => {
       state.activeFilter = button.dataset.theoryFilter || 'todas';
-      renderAll();
+      renderAll({ restoreFilterId: state.activeFilter });
     });
   });
+
+  if (options.restoreFilterId) {
+    const restoredFilter = $(`[data-theory-filter="${options.restoreFilterId}"]`, filters);
+    restoredFilter?.focus({ preventScroll: true });
+  }
 }
 
 function getVisibleTheories(theories, grid) {
@@ -98,7 +103,7 @@ function renderCards(theories) {
   if (empty) empty.hidden = theories.length > 0;
 
   grid.innerHTML = visibleTheories.map((theory) => `
-    <article class="theory-card${theory.id === state.activeTheoryId ? ' is-active' : ''}" tabindex="0" role="button" aria-pressed="${theory.id === state.activeTheoryId}" data-theory-id="${theory.id}" style="--accent:${theory.color}; --accent-glow:${theory.glow}; --status-color:${theory.color};">
+    <article class="theory-card${theory.id === state.activeTheoryId ? ' is-active' : ''}" tabindex="0" role="button" aria-pressed="${theory.id === state.activeTheoryId}" data-theory-id="${theory.id}">
       <div class="theory-card-top">
         <span class="theory-code">${escapeHtml(theory.code)}</span>
         <span class="status-badge">${escapeHtml(theory.typeShortLabel)}</span>
@@ -117,6 +122,12 @@ function renderCards(theories) {
   `).join('');
 
   $$('[data-theory-id]', grid).forEach((card) => {
+    const theory = findTheory(card.dataset.theoryId);
+    if (theory) {
+      card.style.setProperty('--accent', theory.color);
+      card.style.setProperty('--accent-glow', theory.glow);
+      card.style.setProperty('--status-color', theory.color);
+    }
     const activate = () => setActiveTheory(card.dataset.theoryId, { scroll: false });
     card.addEventListener('click', activate);
     card.addEventListener('keydown', (event) => {
@@ -241,20 +252,27 @@ function renderMap() {
     .map(([source, target]) => `<line x1="${source.position.x}" y1="${source.position.y}" x2="${target.position.x}" y2="${target.position.y}"></line>`)
     .join('');
   nodes.innerHTML = THEORIES.map((theory) => `
-    <button class="map-node${theory.id === state.activeTheoryId ? ' is-active' : ''}" type="button" data-map-node="${theory.id}" style="--x:${theory.position.x}%; --y:${theory.position.y}%; --accent:${theory.color}; --accent-glow:${theory.glow};" aria-label="Abrir entrada ${escapeHtml(theory.title)}">
+    <button class="map-node${theory.id === state.activeTheoryId ? ' is-active' : ''}" type="button" data-map-node="${theory.id}" aria-label="Abrir entrada ${escapeHtml(theory.title)}">
       <span>${escapeHtml(theory.code)} · ${escapeHtml(theory.typeShortLabel)}</span>
       <strong>${escapeHtml(theory.shortTitle)}</strong>
     </button>
   `).join('');
 
   $$('[data-map-node]', nodes).forEach((node) => {
+    const theory = findTheory(node.dataset.mapNode);
+    if (theory) {
+      node.style.setProperty('--x', `${theory.position.x}%`);
+      node.style.setProperty('--y', `${theory.position.y}%`);
+      node.style.setProperty('--accent', theory.color);
+      node.style.setProperty('--accent-glow', theory.glow);
+    }
     node.addEventListener('click', () => setActiveTheory(node.dataset.mapNode, { scroll: true }));
   });
 }
 
-function renderAll() {
+function renderAll(options = {}) {
   updateArchiveStats();
-  renderFilters();
+  renderFilters(options);
   const theories = filteredTheories();
   const grid = $('[data-theory-grid]');
   const visibleTheories = getVisibleTheories(theories, grid);

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relation",
+  "revisionId": "theory--contentor-finito--contexto-metodologico--backend-existencia-r1",
+  "id": "theory--contentor-finito--contexto-metodologico--backend-existencia",
+  "order": 11,
+  "source": {
+    "type": "theory",
+    "id": "contentor-finito"
+  },
+  "target": {
+    "type": "theory",
+    "id": "backend-existencia"
+  },
+  "type": "contexto-metodologico",
+  "label": "Contexto metodológico",
+  "justification": "A T-07 oferece rastreabilidade para expor as premissas necessárias à aplicação cosmológica da recorrência.",
+  "referenceIds": [],
+  "reviewState": "reviewed"
+}

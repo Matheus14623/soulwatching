@@ -25,10 +25,10 @@ export function readResponse(url, options = {}) {
   });
 }
 
-export async function startServer(flag) {
+export async function startServer(flag, { environment = {} } = {}) {
   const child = spawn(process.execPath, ['scripts/serve.mjs', flag], {
     cwd: projectRoot,
-    env: { ...process.env, PORT: '0' },
+    env: { ...process.env, ...environment, PORT: '0' },
     stdio: ['ignore', 'pipe', 'pipe'],
   });
 
