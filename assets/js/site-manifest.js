@@ -118,7 +118,7 @@ const ABOUT_PAGE = Object.freeze({
 });
 
 export const FOOTER_EXTERNAL_LINKS = Object.freeze([
-  Object.freeze({ id: 'email', label: 'E-mail', href: 'mailto:Matheuscamargodealencar@gmail.com' }),
+  Object.freeze({ id: 'email', label: 'E-mail', href: 'mailto:soulwatching@gmail.com' }),
   Object.freeze({ id: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/gomin/', external: true }),
   Object.freeze({ id: 'github', label: 'GitHub', href: 'https://github.com/Matheus14623', external: true }),
 ]);

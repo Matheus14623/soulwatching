@@ -1015,7 +1015,7 @@ A identidade pessoal é construída por contexto e não por autoelogio. A frase 
 
 | Canal | Valor implementado | Onde aparece |
 |---|---|---|
-| E-mail | `Matheuscamargodealencar@gmail.com` | config, seção Contato, footer da home e footer de Teorias |
+| E-mail | `soulwatching@gmail.com` | config, seção Contato, footer da home e footer de Teorias |
 | LinkedIn | `https://www.linkedin.com/in/gomin/` | config, seção Contato e footer da home |
 | GitHub | `https://github.com/Matheus14623` | config, seção Contato e ambos os footers |
 

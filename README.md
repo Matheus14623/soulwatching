@@ -232,7 +232,7 @@ O build usa `scripts/public-manifest.mjs` como lista explícita de páginas e as
 
 ## Contato e presença profissional
 
-- E-mail: `Matheuscamargodealencar@gmail.com`
+- E-mail: `soulwatching@gmail.com`
 - LinkedIn: `https://www.linkedin.com/in/gomin/`
 - GitHub: `https://github.com/Matheus14623`
 
