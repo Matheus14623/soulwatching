@@ -50,6 +50,20 @@ Abra `http://localhost:5173`.
 
 Não abra os HTML diretamente por `file://`, porque os módulos JavaScript precisam de um servidor. Prefira o servidor do projeto: um servidor genérico apontado para a raiz pode expor documentação e materiais que não pertencem ao site público.
 
+### Dashboard editorial local
+
+```bash
+npm run dashboard
+```
+
+Abra `http://localhost:4174`. A dashboard é uma ferramenta privada do próprio repositório para criar um workspace a partir de uma teoria vigente, editar os campos por formulário, salvar o rascunho, analisar diff e impacto, decidir relações afetadas, gerar um preview isolado e aplicar o mesmo manifesto pelo núcleo editorial existente.
+
+O processo aceita somente conexões locais, não é uma rota do site e nunca entra em `dist/` ou na Vercel. Rascunhos ficam em `.content-drafts/editorial-dashboard/` e previews temporários em `.content-cache/editorial-dashboard/`; ambos continuam ignorados pelo Git. A instalação na fonte canônica exige análise atual, preview correspondente e confirmação explícita da nova revisão. Encerrar a dashboard não publica nem faz deploy.
+
+Se um rascunho local ficar incompleto ou adulterado, ele reaparece como item de recuperação: não pode ser retomado nem interpretado como conteúdo válido, mas pode ser excluído com segurança pela própria interface. A ferramenta não tenta reparar silenciosamente arquivos privados e continua recusando caminhos ou links simbólicos inseguros.
+
+Para validar os contratos desse fluxo, use `npm run test:dashboard`. `npm run test:dashboard:preview` executa adicionalmente um build real em workspace-sombra, abre o preview protegido e comprova que a fonte canônica permaneceu inalterada.
+
 ## Verificação e build
 
 ```bash
@@ -171,6 +185,8 @@ Use `npm run check:links` para a verificação online de destinos externos — e
 |   |-- verify.mjs
 |   |-- verify-editorial.mjs
 |   `-- tests/
+|-- tools/
+|   `-- editorial-dashboard/        # painel local privado; excluído do artefato público
 |-- .github/workflows/quality.yml
 |-- dist/                           # artefato público gerado e ignorado pelo Git
 |-- DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md
@@ -182,7 +198,9 @@ Use `npm run check:links` para a verificação online de destinos externos — e
 
 O projeto preserva a stack estática existente: HTML semântico, CSS próprio e módulos ES nativos, sem framework. A galeria usa somente o Swiper 14.0.6 fixado e servido localmente, mantendo o deploy direto na Vercel sem dependência de CDN em runtime.
 
-`content/public/` é a fonte canônica granular para teorias, perfis, partes públicas autorizadas, publicações, constelações, experiências, rotas guiadas, radar, metadados de páginas institucionais, referências, relações, taxonomias e ledger de revisões. O compilador valida essa fonte pelos contratos de `content/schemas/` e gera módulos imutáveis em `assets/data/generated/`. Os módulos históricos em `assets/data/` permanecem apenas como adaptadores de compatibilidade; código novo deve consumir `ContentRepository` ou os exports gerados específicos. Modelos compartilhados resolvem relações, projeções inversas e etapas guiadas; cada rota controla apenas sua apresentação.
+`content/public/` é a fonte canônica granular para teorias, perfis, partes públicas autorizadas, publicações, constelações, experiências, rotas guiadas, radar, metadados de páginas institucionais, referências, relações, taxonomias e ledgers de revisão. O ledger editorial registra, por revisão de teoria, perfil, publicação ou experimento, a classe da mudança, os caminhos alterados e o hash canônico do registro; assim, uma edição direta sem novo `revisionId` é recusada. O ledger específico de publicações continua protegendo hashes e datas das versões publicadas, incluindo o snapshot público e os créditos. O compilador valida essa fonte pelos contratos de `content/schemas/` e gera módulos imutáveis em `assets/data/generated/`. Os módulos históricos em `assets/data/` permanecem apenas como adaptadores de compatibilidade; código novo deve consumir `ContentRepository` ou os exports gerados específicos. Modelos compartilhados resolvem relações, projeções inversas e etapas guiadas; cada rota controla apenas sua apresentação.
+
+Relações com `reviewState: "reviewed"` registram em `reviewedAgainst` as revisões de origem e destino consideradas. O compilador deriva `needs-review` quando uma revisão semântica ou estrutural posterior invalida essa vigência. Mudanças editoriais, de apresentação ou metadados não invalidam relações por si só. O estado é calculado; não substitui uma decisão humana nem altera automaticamente `reviewState`.
 
 `assets/js/content-source.js`, `content-repository.js` e `content-platform.js` formam a fronteira de leitura. O snapshot reúne entidades, taxonomias, coleções auxiliares, relações, referências, busca e métricas compondo os mesmos módulos públicos, sem duplicar os catálogos no download. `StaticContentSource` é a implementação ativa; `HttpContentSource` já implementa o mesmo contrato, cache e timeout, mas permanece inativo porque o projeto ainda não possui endpoint nem backend. As telas atuais continuam consumindo projeções estáticas específicas para manter inicialização síncrona e carregamento seletivo; ativar uma API exigirá migrar gradualmente essa inicialização para o repositório, não remodelar o conteúdo. A busca global usa o índice público gerado e não precisa baixar os dossiês completos.
 
@@ -214,7 +232,37 @@ O projeto preserva a stack estática existente: HTML semântico, CSS próprio e 
 
 Para adicionar ou revisar teorias, consulte o contrato canônico em [ai/domains/THEORY_CATALOG.md](ai/domains/THEORY_CATALOG.md). Para perfis, retratos, fontes e conexões da galeria, consulte [ai/domains/NOTABLE_FIGURES_CATALOG.md](ai/domains/NOTABLE_FIGURES_CATALOG.md). A operação unificada está em [ai/domains/CONTENT_OPERATIONS_AND_RELATIONS.md](ai/domains/CONTENT_OPERATIONS_AND_RELATIONS.md).
 
-Use `npm run content:new -- --type <tipo> --id meu-id` para criar um rascunho local fora da árvore pública. Os tipos aceitos são `theory`, `figure`, `party`, `publication`, `constellation`, `experiment`, `path`, `research-track`, `site-page`, `reference` e `relation`. O comando não inventa conteúdo e o rascunho não entra no build. Depois da revisão editorial, forneça um JSON completo com `--source`; a instalação e as compilações concorrentes compartilham um lock durante leitura, validação, ledger, escrita e geração, e a instalação desfaz falhas capturadas. Esse mecanismo não substitui um journal editorial contra encerramento abrupto do processo; o journal e o manifesto de hashes existentes protegem especificamente o runtime gerado. Rode `npm run content:check` para validar a fonte, `npm run content:build` para regenerar os módulos e `npm run content:report` para atualizar o relatório privado de integridade. O relatório inclui uma fila estruturada dos vínculos legados experimento→teoria que exigem decisão editorial; ela prepara origem e destino, mas não inventa tipo, justificativa nem evidência.
+Use `npm run content:new -- --type <tipo> --id meu-id` para criar um rascunho local fora da árvore pública. Os tipos aceitos são `theory`, `figure`, `party`, `publication`, `constellation`, `experiment`, `path`, `research-track`, `site-page`, `reference` e `relation`. O comando não inventa conteúdo e o rascunho não entra no build. Depois da revisão editorial, forneça um JSON completo com `--source`; uma substituição de teoria, perfil, publicação, experimento ou relação também exige `--change-class <classe>` e `--force`.
+
+Mudanças que precisam atualizar mais de um registro usam um manifesto privado fora de `content/public/`:
+
+```json
+{
+  "schemaVersion": 1,
+  "operations": [
+    {
+      "type": "theory",
+      "id": "observacao-nao-linear",
+      "source": "./rascunhos/observacao-nao-linear.json",
+      "changeClass": "semantic",
+      "force": true
+    },
+    {
+      "type": "relation",
+      "id": "figure--exemplo--methodological-context--observacao-nao-linear",
+      "source": "./rascunhos/relacao-revisada.json",
+      "changeClass": "structural",
+      "force": true
+    }
+  ]
+}
+```
+
+`npm run content:impact -- --manifest <arquivo.json>` calcula o diff, a classe efetiva, as relações diretamente afetadas, referências, afirmações, experiências, percursos e superfícies geradas sem escrever na fonte canônica. Antes de autorizar, ele monta o conjunto inteiro em memória e executa a mesma integridade cruzada usada pelo compilador e pela aplicação; operações repetidas, referências bibliográficas duplicadas, endpoints inválidos, créditos inconsistentes e ledgers incorretos falham ainda na análise. `npm run content:apply -- --manifest <arquivo.json>` aplica o mesmo conjunto como uma transação: registros, ledgers, relatório privado e runtime são validados sob o mesmo lock e restaurados se o gate ou a compilação falhar. Uma relação antes revisada que ficou desatualizada bloqueia a publicação até ser reavaliada ou descontinuada no mesmo conjunto; relações que já estavam pendentes são avisos, não decisões inventadas pelo código.
+
+As relações revisadas anteriores a esse contrato usam `mode: "legacy-baseline"` apenas para fixar mecanicamente as revisões então vigentes, sem atribuir data ou responsável fictícios. Os 32 registros `r1` desse retrato são protegidos por hashes canônicos: não podem ser reescritos, removidos nem ampliados silenciosamente. A primeira mudança exige `r2` ou superior e uma decisão explícita por `editorial-review` ou `deprecated`. Uma revisão editorial explícita exige data e responsável autorizados para publicação.
+
+A instalação e as compilações concorrentes compartilham um lock durante leitura, validação, ledger, escrita e geração. `content:new --source` reutiliza o mesmo carregador privado, a mesma validação integral e o mesmo gate dos manifestos; não existe uma rota simplificada de escrita. O mecanismo desfaz falhas capturadas, mas não substitui um journal editorial contra encerramento abrupto do processo; o journal e o manifesto de hashes existentes protegem especificamente o runtime gerado. Rode `npm run content:check` para validar a fonte, `npm run content:build` para regenerar os módulos e `npm run content:report` para atualizar o relatório privado de integridade. O relatório inclui relações que precisam de nova revisão, baselines legados e a fila estruturada dos vínculos experimento→teoria que exigem decisão editorial; ele prepara o impacto, mas não inventa tipo, justificativa, evidência nem aprovação.
 
 Publicações internas e contribuições externas compartilham o mesmo contrato público de autoria, direitos, declarações, referências e histórico. Dados de contato, submissões originais, provas de consentimento e notas privadas nunca pertencem a `content/public/`. As raízes `.content-drafts/`, `.content-reports/`, `content/private/`, `submissions/` e `private-attachments/` são locais e estão excluídas do Git e do manifesto público.
 

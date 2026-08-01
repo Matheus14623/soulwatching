@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observatorio.local/schemas/editorial-revision-ledger.schema.json",
+  "title": "Registro das classes de mudança por revisão editorial",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "entityType",
+    "entries"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "entityType": {
+      "type": "string",
+      "const": "editorial-revision-ledger"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "entityType",
+          "entityId",
+          "revisions"
+        ],
+        "properties": {
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "theory",
+              "figure",
+              "publication",
+              "experiment"
+            ]
+          },
+          "entityId": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "revisions": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "revisionId",
+                "changeClass",
+                "changedPaths",
+                "contentHash"
+              ],
+              "properties": {
+                "revisionId": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-r[1-9][0-9]*$"
+                },
+                "changeClass": {
+                  "type": "string",
+                  "enum": [
+                    "editorial",
+                    "presentation",
+                    "metadata",
+                    "semantic",
+                    "structural"
+                  ]
+                },
+                "changedPaths": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "^(?:/(?:[^~/]|~0|~1)*)+$"
+                  }
+                },
+                "contentHash": {
+                  "type": "string",
+                  "pattern": "^sha256:[a-f0-9]{64}$"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

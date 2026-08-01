@@ -16,5 +16,10 @@
   "label": "Observação mediada",
   "justification": "A T-01 compartilha o problema de transformar sinais indiretos em uma reconstrução responsável, sem ultrapassar limites causais.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "galileo-galilei-r1",
+    "targetRevisionId": "observacao-nao-linear-r1"
+  }
 }

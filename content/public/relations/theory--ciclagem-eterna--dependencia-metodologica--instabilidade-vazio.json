@@ -17,5 +17,10 @@
   "justification": "Qualquer reboot baseado em vácuo precisa herdar um campo, um potencial e uma taxa de transição explicitados na T-02.",
   "referenceIds": [],
   "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "ciclagem-eterna-r1",
+    "targetRevisionId": "instabilidade-vazio-r1"
+  },
   "legacyDirection": "reversed"
 }

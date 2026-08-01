@@ -16,5 +16,10 @@
   "label": "Dados antes do espetáculo",
   "justification": "A T-10 pode aprender com a passagem de tabelas observacionais para um modelo que assume erros e critérios de comparação.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "johannes-kepler-r1",
+    "targetRevisionId": "horizonte-sentidos-r1"
+  }
 }

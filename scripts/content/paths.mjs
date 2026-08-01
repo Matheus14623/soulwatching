@@ -5,6 +5,11 @@ export const PROJECT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..
 export const CONTENT_ROOT = resolve(PROJECT_ROOT, 'content');
 export const PUBLIC_CONTENT_ROOT = resolve(CONTENT_ROOT, 'public');
 export const SCHEMA_ROOT = resolve(CONTENT_ROOT, 'schemas');
+export const EDITORIAL_REVISION_LEDGER_PATH = resolve(
+  PUBLIC_CONTENT_ROOT,
+  'catalogs',
+  'editorial-revision-ledger.json',
+);
 export const GENERATED_ROOT = resolve(PROJECT_ROOT, 'assets', 'data', 'generated');
 export const GENERATED_RUNTIME_ROOT = resolve(GENERATED_ROOT, 'runtime');
 export const REPORT_ROOT = resolve(PROJECT_ROOT, '.content-reports');

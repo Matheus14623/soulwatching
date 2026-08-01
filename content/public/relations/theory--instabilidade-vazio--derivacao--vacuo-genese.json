@@ -16,5 +16,10 @@
   "label": "Derivação",
   "justification": "A T-08 é o desdobramento geométrico e cosmológico da transição de vácuo examinada pela T-02.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "instabilidade-vazio-r1",
+    "targetRevisionId": "vacuo-genese-r1"
+  }
 }

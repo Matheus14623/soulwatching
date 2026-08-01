@@ -16,5 +16,10 @@
   "label": "Separar observação e inferência",
   "justification": "A T-07 ganha rigor quando registra quais etapas vêm de dados, convenções, modelos e analogias.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "david-hume-r1",
+    "targetRevisionId": "backend-existencia-r1"
+  }
 }

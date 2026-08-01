@@ -16,5 +16,10 @@
   "label": "Contexto metodológico",
   "justification": "A T-07 fornece histórico e critérios para auditar decisões tomadas com a heurística da T-09.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "backend-existencia-r1",
+    "targetRevisionId": "zero-epsilon-r1"
+  }
 }

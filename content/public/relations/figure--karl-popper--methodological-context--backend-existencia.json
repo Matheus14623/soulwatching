@@ -16,5 +16,10 @@
   "label": "Hipóteses expostas a crítica",
   "justification": "A T-07 pode usar testes, objeções e histórico de revisão como arquitetura, sem reduzir ciência inteira a uma regra de demarcação.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "karl-popper-r1",
+    "targetRevisionId": "backend-existencia-r1"
+  }
 }

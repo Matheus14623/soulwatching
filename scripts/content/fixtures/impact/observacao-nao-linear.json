@@ -1,0 +1,566 @@
+{
+  "schemaVersion": 1,
+  "fixtureId": "impact-observacao-nao-linear",
+  "description": "Recorte mínimo e isolado da T-01 para validar impacto editorial sem alterar o catálogo público.",
+  "theory": {
+    "r1": {
+      "entityType": "theory",
+      "id": "observacao-nao-linear",
+      "revisionId": "observacao-nao-linear-r1",
+      "title": "Observação Não-Linear",
+      "color": "#72ecff",
+      "summary": "Investiga como dados atrasados, lentes e observatórios distribuídos podem melhorar a reconstrução do estado provável de sistemas distantes sem ultrapassar o limite causal da luz.",
+      "proposal": "Tratar observações recebidas em tempos diferentes como restrições parciais de uma reconstrução probabilística, sem confundir inferência com observação instantânea.",
+      "questions": [
+        "Quais observáveis realmente reduzem a incerteza da reconstrução?"
+      ],
+      "objections": [
+        {
+          "id": "ganho-reconstrucao",
+          "status": "open",
+          "text": "O ganho precisa ser comparado com modelos convencionais de reconstrução."
+        }
+      ],
+      "review": {
+        "known": "Atrasos de propagação e de lente podem ser medidos, mas não removem o limite causal."
+      },
+      "referenceIds": [
+        "hogg-distance",
+        "refsdal-lensing",
+        "suyu-time-delay"
+      ],
+      "claimLinks": [
+        {
+          "id": "contexto-observacao",
+          "field": "review.known",
+          "referenceIds": [
+            "hogg-distance",
+            "refsdal-lensing",
+            "suyu-time-delay"
+          ]
+        }
+      ]
+    },
+    "r2": {
+      "entityType": "theory",
+      "id": "observacao-nao-linear",
+      "revisionId": "observacao-nao-linear-r2",
+      "title": "Observação Não-Linear",
+      "color": "#72ecff",
+      "summary": "Investiga como dados atrasados, lentes e observatórios distribuídos podem melhorar a reconstrução do estado provável de sistemas distantes sem ultrapassar o limite causal da luz.",
+      "proposal": "Tratar observações recebidas em tempos diferentes como restrições testáveis de uma reconstrução probabilística, comparando o ganho informacional com modelos convencionais e sem confundir inferência com observação instantânea.",
+      "questions": [
+        "Quais observáveis realmente reduzem a incerteza da reconstrução?",
+        "Qual métrica separa ganho informacional real de simples ajuste do modelo?"
+      ],
+      "objections": [
+        {
+          "id": "ganho-reconstrucao",
+          "status": "open",
+          "text": "O ganho precisa superar um baseline convencional pré-registrado e manter desempenho fora da amostra."
+        }
+      ],
+      "review": {
+        "known": "Atrasos de propagação e de lente podem ser medidos, mas não removem o limite causal."
+      },
+      "referenceIds": [
+        "hogg-distance",
+        "refsdal-lensing",
+        "suyu-time-delay",
+        "fixture-model-comparison"
+      ],
+      "claimLinks": [
+        {
+          "id": "contexto-observacao",
+          "field": "review.known",
+          "referenceIds": [
+            "hogg-distance",
+            "refsdal-lensing",
+            "suyu-time-delay"
+          ]
+        }
+      ]
+    }
+  },
+  "changeScenarios": {
+    "semantic": {
+      "changeClass": "structural",
+      "changedPaths": [
+        "/objections/0/text",
+        "/proposal",
+        "/questions/1",
+        "/referenceIds/3"
+      ]
+    },
+    "presentation": {
+      "changeClass": "presentation",
+      "changedPaths": [
+        "/color"
+      ]
+    },
+    "editorial": {
+      "changeClass": "editorial",
+      "changedPaths": [
+        "/revisions/1/changeSummary"
+      ]
+    }
+  },
+  "endpoints": [
+    {
+      "entityType": "figure",
+      "entityId": "albert-einstein",
+      "revisions": [
+        {
+          "revisionId": "albert-einstein-r1",
+          "changeClass": "semantic",
+          "changedPaths": []
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "cecilia-payne-gaposchkin",
+      "revisions": [
+        {
+          "revisionId": "cecilia-payne-gaposchkin-r1",
+          "changeClass": "semantic",
+          "changedPaths": []
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "david-hume",
+      "revisions": [
+        {
+          "revisionId": "david-hume-r1",
+          "changeClass": "semantic",
+          "changedPaths": []
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "galileo-galilei",
+      "revisions": [
+        {
+          "revisionId": "galileo-galilei-r1",
+          "changeClass": "semantic",
+          "changedPaths": []
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "henrietta-swan-leavitt",
+      "revisions": [
+        {
+          "revisionId": "henrietta-swan-leavitt-r1",
+          "changeClass": "semantic",
+          "changedPaths": []
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "jocelyn-bell-burnell",
+      "revisions": [
+        {
+          "revisionId": "jocelyn-bell-burnell-r1",
+          "changeClass": "semantic",
+          "changedPaths": []
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "johannes-kepler",
+      "revisions": [
+        {
+          "revisionId": "johannes-kepler-r1",
+          "changeClass": "semantic",
+          "changedPaths": []
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "thomas-kuhn",
+      "revisions": [
+        {
+          "revisionId": "thomas-kuhn-r1",
+          "changeClass": "semantic",
+          "changedPaths": []
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "vera-rubin",
+      "revisions": [
+        {
+          "revisionId": "vera-rubin-r1",
+          "changeClass": "semantic",
+          "changedPaths": []
+        }
+      ]
+    },
+    {
+      "entityType": "theory",
+      "entityId": "contentor-finito",
+      "revisions": [
+        {
+          "revisionId": "contentor-finito-r1",
+          "changeClass": "semantic",
+          "changedPaths": []
+        }
+      ]
+    },
+    {
+      "entityType": "theory",
+      "entityId": "er-epr-sondas",
+      "revisions": [
+        {
+          "revisionId": "er-epr-sondas-r1",
+          "changeClass": "semantic",
+          "changedPaths": []
+        }
+      ]
+    },
+    {
+      "entityType": "theory",
+      "entityId": "horizonte-sentidos",
+      "revisions": [
+        {
+          "revisionId": "horizonte-sentidos-r1",
+          "changeClass": "semantic",
+          "changedPaths": []
+        }
+      ]
+    },
+    {
+      "entityType": "theory",
+      "entityId": "observacao-nao-linear",
+      "revisions": [
+        {
+          "revisionId": "observacao-nao-linear-r1",
+          "changeClass": "semantic",
+          "changedPaths": []
+        }
+      ]
+    },
+    {
+      "entityType": "theory",
+      "entityId": "universo-buraco-negro",
+      "revisions": [
+        {
+          "revisionId": "universo-buraco-negro-r1",
+          "changeClass": "semantic",
+          "changedPaths": []
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "id": "figure--albert-einstein--historical-foundation--observacao-nao-linear",
+      "source": {
+        "type": "figure",
+        "id": "albert-einstein"
+      },
+      "target": {
+        "type": "theory",
+        "id": "observacao-nao-linear"
+      },
+      "type": "historical-foundation",
+      "label": "Causalidade, luz e lentes",
+      "reviewState": "pending"
+    },
+    {
+      "id": "figure--cecilia-payne-gaposchkin--critical-boundary--observacao-nao-linear",
+      "source": {
+        "type": "figure",
+        "id": "cecilia-payne-gaposchkin"
+      },
+      "target": {
+        "type": "theory",
+        "id": "observacao-nao-linear"
+      },
+      "type": "critical-boundary",
+      "label": "Sinal não é estado direto",
+      "reviewState": "pending"
+    },
+    {
+      "id": "figure--david-hume--critical-boundary--observacao-nao-linear",
+      "source": {
+        "type": "figure",
+        "id": "david-hume"
+      },
+      "target": {
+        "type": "theory",
+        "id": "observacao-nao-linear"
+      },
+      "type": "critical-boundary",
+      "label": "Causa inferida, não vista",
+      "reviewState": "pending"
+    },
+    {
+      "id": "figure--galileo-galilei--methodological-context--observacao-nao-linear",
+      "source": {
+        "type": "figure",
+        "id": "galileo-galilei"
+      },
+      "target": {
+        "type": "theory",
+        "id": "observacao-nao-linear"
+      },
+      "type": "methodological-context",
+      "label": "Observação mediada",
+      "reviewState": "reviewed",
+      "reviewedAgainst": {
+        "mode": "legacy-baseline",
+        "sourceRevisionId": "galileo-galilei-r1",
+        "targetRevisionId": "observacao-nao-linear-r1"
+      }
+    },
+    {
+      "id": "figure--henrietta-swan-leavitt--historical-foundation--observacao-nao-linear",
+      "source": {
+        "type": "figure",
+        "id": "henrietta-swan-leavitt"
+      },
+      "target": {
+        "type": "theory",
+        "id": "observacao-nao-linear"
+      },
+      "type": "historical-foundation",
+      "label": "Inferir distância por sinais atrasados",
+      "reviewState": "pending"
+    },
+    {
+      "id": "figure--jocelyn-bell-burnell--methodological-context--observacao-nao-linear",
+      "source": {
+        "type": "figure",
+        "id": "jocelyn-bell-burnell"
+      },
+      "target": {
+        "type": "theory",
+        "id": "observacao-nao-linear"
+      },
+      "type": "methodological-context",
+      "label": "Tempo, ruído e inferência",
+      "reviewState": "reviewed",
+      "reviewedAgainst": {
+        "mode": "legacy-baseline",
+        "sourceRevisionId": "jocelyn-bell-burnell-r1",
+        "targetRevisionId": "observacao-nao-linear-r1"
+      }
+    },
+    {
+      "id": "figure--johannes-kepler--historical-foundation--observacao-nao-linear",
+      "source": {
+        "type": "figure",
+        "id": "johannes-kepler"
+      },
+      "target": {
+        "type": "theory",
+        "id": "observacao-nao-linear"
+      },
+      "type": "historical-foundation",
+      "label": "Reconstrução a partir de dados",
+      "reviewState": "pending"
+    },
+    {
+      "id": "figure--thomas-kuhn--critical-boundary--observacao-nao-linear",
+      "source": {
+        "type": "figure",
+        "id": "thomas-kuhn"
+      },
+      "target": {
+        "type": "theory",
+        "id": "observacao-nao-linear"
+      },
+      "type": "critical-boundary",
+      "label": "Observação orientada por modelos",
+      "reviewState": "pending"
+    },
+    {
+      "id": "figure--vera-rubin--methodological-context--observacao-nao-linear",
+      "source": {
+        "type": "figure",
+        "id": "vera-rubin"
+      },
+      "target": {
+        "type": "theory",
+        "id": "observacao-nao-linear"
+      },
+      "type": "methodological-context",
+      "label": "Inferir o invisível pelo movimento",
+      "reviewState": "reviewed",
+      "reviewedAgainst": {
+        "mode": "legacy-baseline",
+        "sourceRevisionId": "vera-rubin-r1",
+        "targetRevisionId": "observacao-nao-linear-r1"
+      }
+    },
+    {
+      "id": "theory--observacao-nao-linear--afinidade-conceitual--contentor-finito",
+      "source": {
+        "type": "theory",
+        "id": "observacao-nao-linear"
+      },
+      "target": {
+        "type": "theory",
+        "id": "contentor-finito"
+      },
+      "type": "afinidade-conceitual",
+      "label": "Afinidade conceitual",
+      "reviewState": "reviewed",
+      "reviewedAgainst": {
+        "mode": "legacy-baseline",
+        "sourceRevisionId": "observacao-nao-linear-r1",
+        "targetRevisionId": "contentor-finito-r1"
+      }
+    },
+    {
+      "id": "theory--observacao-nao-linear--observavel-compartilhado--universo-buraco-negro",
+      "source": {
+        "type": "theory",
+        "id": "observacao-nao-linear"
+      },
+      "target": {
+        "type": "theory",
+        "id": "universo-buraco-negro"
+      },
+      "type": "observavel-compartilhado",
+      "label": "Observável compartilhado",
+      "reviewState": "pending"
+    },
+    {
+      "id": "theory--observacao-nao-linear--ponte-operacional--horizonte-sentidos",
+      "source": {
+        "type": "theory",
+        "id": "observacao-nao-linear"
+      },
+      "target": {
+        "type": "theory",
+        "id": "horizonte-sentidos"
+      },
+      "type": "ponte-operacional",
+      "label": "Ponte operacional",
+      "reviewState": "reviewed",
+      "reviewedAgainst": {
+        "mode": "legacy-baseline",
+        "sourceRevisionId": "observacao-nao-linear-r1",
+        "targetRevisionId": "horizonte-sentidos-r1"
+      }
+    },
+    {
+      "id": "theory--observacao-nao-linear--tensao-critica--er-epr-sondas",
+      "source": {
+        "type": "theory",
+        "id": "observacao-nao-linear"
+      },
+      "target": {
+        "type": "theory",
+        "id": "er-epr-sondas"
+      },
+      "type": "tensao-critica",
+      "label": "Tensão crítica",
+      "reviewState": "pending"
+    }
+  ],
+  "experiments": [
+    {
+      "entityType": "experiment",
+      "id": "cone-de-luz",
+      "revisionId": "cone-de-luz-r1",
+      "title": "Cone de luz e referenciais",
+      "theoryIds": [
+        "observacao-nao-linear",
+        "universo-buraco-negro",
+        "horizonte-sentidos"
+      ]
+    },
+    {
+      "entityType": "experiment",
+      "id": "ressonancia",
+      "revisionId": "ressonancia-r1",
+      "title": "Ressonância",
+      "theoryIds": [
+        "observacao-nao-linear"
+      ]
+    }
+  ],
+  "paths": [
+    {
+      "entityType": "path",
+      "id": "tempo-gravidade-causalidade",
+      "revisionId": "tempo-gravidade-causalidade-r1",
+      "title": "Tempo, gravidade e causalidade",
+      "steps": [
+        {
+          "type": "figure",
+          "id": "albert-einstein"
+        },
+        {
+          "type": "theory",
+          "id": "universo-buraco-negro"
+        },
+        {
+          "type": "theory",
+          "id": "observacao-nao-linear"
+        },
+        {
+          "type": "experiment",
+          "id": "cone-de-luz"
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "entityType": "reference",
+      "id": "hogg-distance",
+      "revisionId": "hogg-distance-r1",
+      "title": "Distance measures in cosmology"
+    },
+    {
+      "entityType": "reference",
+      "id": "refsdal-lensing",
+      "revisionId": "refsdal-lensing-r1",
+      "title": "On the possibility of determining Hubble’s parameter from gravitational lensing"
+    },
+    {
+      "entityType": "reference",
+      "id": "suyu-time-delay",
+      "revisionId": "suyu-time-delay-r1",
+      "title": "Two accurate time-delay distances from strong lensing"
+    },
+    {
+      "entityType": "reference",
+      "id": "fixture-model-comparison",
+      "revisionId": "fixture-model-comparison-r1",
+      "title": "Referência sintética exclusiva da fixture para comparação de modelos"
+    }
+  ],
+  "expected": {
+    "directRelations": 13,
+    "reviewedRelations": 5,
+    "pendingRelations": 8,
+    "semanticBlockers": 5,
+    "presentationBlockers": 0,
+    "editorialBlockers": 0,
+    "experiments": 2,
+    "paths": 1,
+    "references": 4,
+    "claims": 1,
+    "semanticBlockerIds": [
+      "figure--galileo-galilei--methodological-context--observacao-nao-linear",
+      "figure--jocelyn-bell-burnell--methodological-context--observacao-nao-linear",
+      "figure--vera-rubin--methodological-context--observacao-nao-linear",
+      "theory--observacao-nao-linear--afinidade-conceitual--contentor-finito",
+      "theory--observacao-nao-linear--ponte-operacional--horizonte-sentidos"
+    ]
+  }
+}

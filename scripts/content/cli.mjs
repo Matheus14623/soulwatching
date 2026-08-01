@@ -5,7 +5,17 @@ import {
   compileContent,
   rollbackGeneratedRuntime,
 } from './compiler.mjs';
-import { installContentRecord } from './install-record.mjs';
+import {
+  assertEditorialImpactAllowed,
+  analyzeEditorialChangeSet,
+  analyzeManifestOperations,
+  loadChangeSetManifest,
+  loadPrivateDraftOperation,
+} from './change-set.mjs';
+import {
+  installContentChangeSet,
+} from './install-record.mjs';
+import { CONTENT_NEW_TYPES } from './content-contracts.mjs';
 import { PROJECT_ROOT, PUBLIC_CONTENT_ROOT } from './paths.mjs';
 
 const [command = 'check', ...args] = process.argv.slice(2);
@@ -248,21 +258,8 @@ async function scaffold() {
   const type = option('type');
   const id = option('id');
   const source = option('source');
-  const supportedTypes = [
-    'theory',
-    'figure',
-    'party',
-    'publication',
-    'constellation',
-    'experiment',
-    'path',
-    'research-track',
-    'site-page',
-    'reference',
-    'relation',
-  ];
-  if (!supportedTypes.includes(type)) {
-    throw new Error(`content:new aceita --type ${supportedTypes.join(', ')}`);
+  if (!CONTENT_NEW_TYPES.includes(type)) {
+    throw new Error(`content:new aceita --type ${CONTENT_NEW_TYPES.join(', ')}`);
   }
   if (
     type === 'relation'
@@ -277,6 +274,9 @@ async function scaffold() {
     const draftRoot = requestedDraftRoot
       ? resolve(PROJECT_ROOT, requestedDraftRoot)
       : resolve(PROJECT_ROOT, '.content-drafts');
+    if (!isInside(PROJECT_ROOT, draftRoot)) {
+      throw new Error('--draft-dir precisa permanecer dentro do projeto');
+    }
     if (isInside(PUBLIC_CONTENT_ROOT, draftRoot)) {
       throw new Error('--draft-dir deve ficar fora de content/public');
     }
@@ -296,40 +296,50 @@ async function scaffold() {
     return;
   }
 
-  const sourcePath = resolve(PROJECT_ROOT, source);
-  const record = JSON.parse(await readFile(sourcePath, 'utf8'));
-  if (record.entityType !== type || record.id !== id) {
-    throw new Error(`A fonte deve declarar entityType "${type}" e id "${id}"`);
-  }
-
-  const directoryByType = {
-    theory: 'theories',
-    figure: 'figures',
-    party: 'parties',
-    publication: 'publications',
-    constellation: 'constellations',
-    experiment: 'experiments',
-    path: 'paths',
-    'research-track': 'research-tracks',
-    'site-page': 'site-pages',
-    reference: 'references',
-    relation: 'relations',
-  };
-  const destination = resolve(PUBLIC_CONTENT_ROOT, directoryByType[type], `${id}.json`);
-  const ledgerPath = resolve(
-    PUBLIC_CONTENT_ROOT,
-    'catalogs',
-    'publication-revision-ledger.json',
-  );
-  await mkdir(dirname(destination), { recursive: true });
-  await installContentRecord({
-    destination,
+  const operation = await loadPrivateDraftOperation({
+    allowedTypes: CONTENT_NEW_TYPES,
+    changeClass: option('change-class'),
     force: hasFlag('force'),
-    ledgerPath,
-    record,
+    id,
+    label: 'content:new --source',
+    source,
+    sourceBase: PROJECT_ROOT,
     type,
   });
-  console.log(`Registro instalado em ${destination.replace(PROJECT_ROOT, '.').replaceAll('\\', '/')}`);
+  await installContentChangeSet({
+    analyzeImpact: analyzeEditorialChangeSet,
+    operations: [operation],
+    validateImpact: assertEditorialImpactAllowed,
+  });
+  console.log(
+    `Registro instalado em ${operation.destination
+      .replace(PROJECT_ROOT, '.')
+      .replaceAll('\\', '/')}`,
+  );
+}
+
+async function reportChangeSetImpact() {
+  const manifest = option('manifest');
+  if (!manifest) throw new Error('Informe --manifest <arquivo.json>');
+  const prepared = await loadChangeSetManifest(manifest);
+  const { impact } = await analyzeManifestOperations(prepared.operations);
+  console.log(JSON.stringify(impact, null, 2));
+}
+
+async function applyChangeSet() {
+  const manifest = option('manifest');
+  if (!manifest) throw new Error('Informe --manifest <arquivo.json>');
+  const prepared = await loadChangeSetManifest(manifest);
+  const result = await installContentChangeSet({
+    analyzeImpact: analyzeEditorialChangeSet,
+    operations: prepared.operations,
+    validateImpact: assertEditorialImpactAllowed,
+  });
+  console.log(
+    `Change set instalado: ${result.installed
+      .map(({ id, type }) => `${type}:${id}`)
+      .join(', ')}.`,
+  );
 }
 
 if (command === 'check') {
@@ -351,6 +361,10 @@ if (command === 'check') {
   );
 } else if (command === 'new') {
   await scaffold();
+} else if (command === 'impact') {
+  await reportChangeSetImpact();
+} else if (command === 'apply') {
+  await applyChangeSet();
 } else if (command === 'rollback') {
   await rollbackGeneratedRuntime();
   console.log(
@@ -358,5 +372,7 @@ if (command === 'check') {
     + '`npm run content:build -- --check`; o próximo build normal recompilará a fonte canônica.',
   );
 } else {
-  throw new Error(`Comando desconhecido "${command}". Use check, build, report, new ou rollback.`);
+  throw new Error(
+    `Comando desconhecido "${command}". Use check, build, report, new, impact, apply ou rollback.`,
+  );
 }

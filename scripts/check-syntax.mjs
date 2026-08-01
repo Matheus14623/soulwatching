@@ -22,10 +22,14 @@ const sourceRoots = Object.freeze([
   'Rotas',
   'Teorias',
   'scripts',
+  'tools',
 ]);
 
-async function listFiles(directory) {
-  const entries = await readdir(directory, { withFileTypes: true });
+async function listFiles(directory, { optional = false } = {}) {
+  const entries = await readdir(directory, { withFileTypes: true }).catch((error) => {
+    if (optional && error.code === 'ENOENT') return [];
+    throw error;
+  });
   const files = [];
   for (const entry of entries) {
     const path = join(directory, entry.name);
@@ -78,7 +82,10 @@ export function validateCssText(source, label = 'CSS') {
 
 export async function checkSourceSyntax() {
   const files = (
-    await Promise.all(sourceRoots.map((directory) => listFiles(join(root, directory))))
+    await Promise.all(sourceRoots.map((directory) => listFiles(
+      join(root, directory),
+      { optional: directory === 'tools' },
+    )))
   ).flat();
   const errors = [];
   const scriptExtensions = new Set(['.js', '.mjs', '.cjs']);

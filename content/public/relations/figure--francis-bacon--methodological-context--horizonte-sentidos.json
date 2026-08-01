@@ -16,5 +16,10 @@
   "label": "Programa observacional",
   "justification": "A T-10 se aproxima do ideal de investigação acumulativa quando define dados, instrumentos, controles e resultados reproduzíveis.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "francis-bacon-r1",
+    "targetRevisionId": "horizonte-sentidos-r1"
+  }
 }

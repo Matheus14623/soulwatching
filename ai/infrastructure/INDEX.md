@@ -20,6 +20,7 @@ evidence_sources:
   - "scripts/public-manifest.mjs"
   - "scripts/build.mjs"
   - "scripts/serve.mjs"
+  - "tools/editorial-dashboard/server.mjs"
   - ".github/workflows/quality.yml"
   - "vercel.json"
 ---
@@ -34,7 +35,7 @@ Leia este escopo para mudanças no ciclo de publicação ou na fronteira entre r
 
 ## Estado confirmado
 
-A Vercel executa `npm run build` e publica `dist/`. O repositório possui CI de qualidade em push e pull request, mas não automatiza deploy, rollback ou promoção de ambientes. Não há containers, infraestrutura como código ou ambientes múltiplos declarados.
+A Vercel executa `npm run build` e publica `dist/`. O repositório possui CI de qualidade em push e pull request, mas não automatiza deploy, rollback ou promoção de ambientes. A dashboard editorial é um processo separado, exclusivo de loopback e deliberadamente ausente do artefato público; seu preview existe apenas em cache local efêmero. Não há containers, infraestrutura como código ou ambientes múltiplos declarados.
 
 ## Quando atualizar
 

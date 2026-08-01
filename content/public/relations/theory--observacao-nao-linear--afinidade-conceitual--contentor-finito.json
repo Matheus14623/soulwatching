@@ -16,5 +16,10 @@
   "label": "Afinidade conceitual",
   "justification": "Reconstruções de estado precisam declarar espaço de estados e dinâmica; isso aproxima o método da T-04 sem implicar recorrência.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "observacao-nao-linear-r1",
+    "targetRevisionId": "contentor-finito-r1"
+  }
 }

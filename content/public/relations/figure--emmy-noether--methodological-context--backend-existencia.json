@@ -16,5 +16,10 @@
   "label": "Estrutura sem literalismo",
   "justification": "A T-07 pode aprender com relações estruturais rigorosas, sem concluir que uma organização elegante seja por si só uma descrição física.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "emmy-noether-r1",
+    "targetRevisionId": "backend-existencia-r1"
+  }
 }

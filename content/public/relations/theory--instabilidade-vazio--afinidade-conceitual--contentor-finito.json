@@ -16,5 +16,10 @@
   "label": "Afinidade conceitual",
   "justification": "Estabilidade e recorrência dependem de espaço de estados e dinâmica definidos, mas um resultado não implica o outro.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "instabilidade-vazio-r1",
+    "targetRevisionId": "contentor-finito-r1"
+  }
 }

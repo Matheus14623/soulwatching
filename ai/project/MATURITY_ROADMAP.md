@@ -30,6 +30,7 @@ related_context:
   - "project.boundaries"
   - "frontend.design-accessibility"
   - "domains.editorial-model"
+  - "domains.editorial-dashboard"
   - "quality.performance-accessibility"
   - "infrastructure.static-deploy"
 evidence_sources:
@@ -41,9 +42,15 @@ evidence_sources:
   - "assets/css/styles.css"
   - "assets/js/navigation.js"
   - "assets/js/global-search.js"
-  - "assets/data/theories.js"
-  - "assets/data/notable-figures.js"
-  - "assets/data/contributions.js"
+  - "content/public/theories/observacao-nao-linear.json"
+  - "content/public/figures/albert-einstein.json"
+  - "content/public/catalogs/publications.json"
+  - "content/public/catalogs/editorial-revision-ledger.json"
+  - "scripts/content/change-set.mjs"
+  - "scripts/content/compiler.mjs"
+  - "scripts/content/editorial-impact.mjs"
+  - "scripts/content/install-record.mjs"
+  - "assets/js/content-repository.js"
   - "scripts/build.mjs"
   - "scripts/public-manifest.mjs"
   - "scripts/tests/browser-smoke.test.mjs"
@@ -55,7 +62,7 @@ evidence_sources:
 
 Orientar o próximo período do Observatório sem acrescentar novas áreas. A prioridade é tornar o sistema mais compreensível na primeira visita, mais eficiente para quem já sabe o que procura, mais previsível para manutenção e preparado para receber persistência no futuro sem reescrever a experiência atual.
 
-Este documento registra direção e ordem de implementação. Ele não afirma que as capacidades recomendadas já existem.
+Este documento registra direção e ordem de implementação. O estado confirmado abaixo separa entregas já realizadas de recomendações ainda abertas.
 
 ## Decisão executiva
 
@@ -70,6 +77,16 @@ O produto já possui profundidade editorial, identidade visual, URLs diretas, re
 
 Não se recomenda migrar para SPA, framework, CMS, banco de grafos ou backend neste ciclo. O site estático ainda é uma base adequada; a preparação deve ocorrer nos contratos, nos schemas e na fronteira de dados.
 
+## Estado de execução
+
+| Capacidade | Estado confirmado | Próximo passo |
+| --- | --- | --- |
+| Plataforma de conteúdo estática | Implementada com fonte granular, schemas, compilador, relações, referências, runtime gerado e fachada de leitura. | Manter compatibilidade e reduzir as dívidas dentro dos budgets. |
+| Dependência editorial | Implementada com ledger por revisão, `reviewedAgainst`, `needs-review`, classes, impacto direto, gate e aplicação atômica por manifesto. | Validar o fluxo local com uso editorial real e reduzir a dívida relacional. |
+| Operações editoriais públicas | Contratos, revisões, contribuições e publicação possuem base estrutural; o catálogo público permanece vazio onde não há material real. | Validar o primeiro fluxo editorial completo sem inventar conteúdo. |
+| Dashboard editorial | Primeiro fluxo local de teorias implementado com workspace, formulário, impacto, decisões, preview-sombra e aplicação protegida. | Endurecer o piloto antes de ampliar para outros tipos. |
+| Backend e persistência privada | Não implementados e não necessários no estado atual. | Iniciar somente pelos gatilhos da Fase 5. |
+
 ## Baseline da auditoria
 
 Os números abaixo são um retrato da auditoria de julho de 2026 e não devem virar constantes de produto.
@@ -80,12 +97,12 @@ Os números abaixo são um retrato da auditoria de julho de 2026 e não devem vi
 | Home | 13 seções, 39 títulos e 71 candidatos à ordem de foco no conteúdo principal em desktop | A riqueza editorial compete com a orientação inicial. |
 | Teorias | 55 candidatos à ordem de foco no conteúdo principal em desktop e 76 em 390 px | Filtros, comparação e auditoria aparecem com peso alto antes da escolha básica. |
 | Grandes Nomes | 81 candidatos à ordem de foco no conteúdo principal; página com mais de 14 mil px em desktop | A profundidade precisa de navegação local e revelação progressiva. |
-| Catálogos | teorias, perfis, relações, referências, experiências, rotas e contribuições vivem em módulos JavaScript | O conteúdo é estruturado, mas autoria e consumo ainda estão acoplados ao runtime. |
-| Dependência dos dados | 19 módulos de produto importam diretamente `assets/data` | Uma futura troca de armazenamento teria alcance amplo. |
+| Catálogos | teorias, perfis, relações, referências, experiências, rotas e demais registros públicos vivem em `content/public/` | A autoria é granular e validada; o runtime é derivado. |
+| Dependência dos dados | imports diretos novos dos módulos legados estão em zero | A fachada e os exports gerados preservam a troca futura de armazenamento. |
 | Contribuições | schema público robusto, catálogo vazio e entrada por `mailto:` | A publicação pode crescer; a submissão privada ainda não é um sistema. |
-| Artefato público | `assets/data` é copiado recursivamente para `dist/` | Dados privados de submissão e contato nunca podem entrar nessa árvore; identidade pública autorizada exige allowlist própria. |
-| Build | aproximadamente 4 MB; imagens representam a maior parte | Há margem de otimização sem redesenho. |
-| QA | contratos, build e smoke existem; navegador pode ser ignorado quando ausente | A maturidade de release ainda depende de QA manual para jornadas e acessibilidade. |
+| Artefato público | o compilador projeta o runtime e o build usa allowlist | Dados privados de submissão, rascunho e contato permanecem fora de `content/public` e `dist/`. |
+| Build | imagens continuam representando a maior parte do peso | Há margem de otimização sem redesenho. |
+| QA | contratos, build e smoke existem; navegador é obrigatório na CI | Regressão visual e testes com pessoas ainda complementam a automação. |
 
 As jornadas foram inspecionadas em 1440 × 900 e 390 × 844 sem overflow horizontal ou erros de console observados. Isso confirma boa adaptação visual, mas não elimina a carga cognitiva nem substitui teste com pessoas, teclado e leitor de tela.
 
@@ -113,9 +130,9 @@ Teorias e Grandes Nomes oferecem recursos adequados para uma leitura avançada. 
 
 A etapa é preservada dentro da página de Rotas, mas o link para uma teoria, perfil ou experiência não leva contexto suficiente para mostrar de onde a pessoa veio, como retomar ou qual é a próxima etapa. A rota orienta a partida, mas não acompanha a leitura.
 
-### 6. A modelagem já é rica, porém distribuída
+### 6. A modelagem foi centralizada, mas a operação ainda é técnica
 
-Relações teoria–teoria, perfil–teoria, experiência–teoria e etapas de rota usam fontes diferentes. A relação inversa entre perfis e teorias é corretamente derivada, mas a criação de uma conexão nova ainda depende de conhecer qual catálogo possui a aresta. Referências equivalentes também podem aparecer em catálogos separados.
+Entidades, referências e relações possuem fontes granulares e projeções inversas. Relações revisadas registram as revisões consideradas, e CLI e dashboard local usam o mesmo diff, impacto e gate antes da instalação atômica. O fluxo de teorias já funciona sem edição manual de JSON; ainda falta validar sua operação prolongada e cobrir outros tipos.
 
 ### 7. Automação editorial e submissão são problemas diferentes
 
@@ -233,6 +250,8 @@ Gate:
 
 **Objetivo:** adicionar ou relacionar conteúdo por dados validados, sem editar controladores de interface.
 
+**Estado confirmado:** a baseline, o contrato de dependência editorial e o primeiro fluxo assistido local foram entregues. As pendências atuais são endurecimento do piloto, ampliação seletiva dos formulários e redução da dívida existente, não uma nova migração dos catálogos.
+
 Entregas:
 
 - separar schemas, conteúdo público autoral e artefatos gerados;
@@ -243,6 +262,9 @@ Entregas:
 - introduzir uma fachada `ContentRepository` com adaptador estático;
 - gerar índices de busca, métricas e catálogos de runtime;
 - oferecer comandos equivalentes a `content:new`, `content:check` e `content:build`;
+- manter ledger de classes por revisão e registrar os extremos avaliados nas relações revisadas;
+- calcular impacto direto e bloquear relações revisadas que ficaram desatualizadas;
+- aplicar entidades, relações e ledgers como um único conjunto recuperável;
 - rejeitar relações quebradas, fontes ausentes, slugs ambíguos e conteúdo privado no build.
 
 Gate:
@@ -257,6 +279,8 @@ Gate:
 ### Fase 4 — operações editoriais e contribuições
 
 **Objetivo:** tornar publicação, correção e crédito previsíveis antes de introduzir persistência.
+
+**Estado confirmado:** contratos públicos, vigência relacional, análise de impacto, gate, instalação por manifesto, dashboard local de teorias e preview-sombra foram implementados. A submissão privada, a colaboração remota e os formulários dos demais tipos permanecem futuros. A interface administrativa segue a [especificação funcional da dashboard editorial](../domains/EDITORIAL_DASHBOARD_SPECIFICATION.md) e reutiliza o núcleo da CLI.
 
 Entregas:
 
@@ -277,7 +301,7 @@ Gate:
 - o primeiro conteúdo externo pode ser publicado sem inventar um contrato durante a implementação;
 - crédito, licença, revisão, fontes, estado e relações aparecem a partir dos dados;
 - corrigir ou retirar não apaga silenciosamente o registro histórico;
-- submissão bem-sucedida gera recibo ou protocolo; falha preserva o texto; a pessoa vê estado e próxima ação;
+- no fluxo sem persistência, falha preserva o texto e a pessoa vê a próxima ação; recibo ou protocolo só se torna gate quando existir backend de submissão;
 - nenhuma transição para publicação ocorre sem decisão humana identificada;
 - nenhuma submissão privada entra na árvore pública, nos módulos enviados ao navegador ou em `dist/`; o Git privado também não vira sistema de submissão.
 
@@ -373,8 +397,10 @@ Registrar sucesso, tempo, hesitação, rótulo interpretado incorretamente e nec
 6. Schemas e conteúdo por entidade.
 7. Registro central de relações e referências.
 8. Fachada de acesso, geradores e comandos editoriais.
-9. Contrato completo de publicação e contribuição.
-10. Backend apenas após os gatilhos.
+9. Ledger, vigência das relações, impacto, gate e transação por manifesto — concluído.
+10. Dashboard local, decisões assistidas e preview — primeiro fluxo de teorias concluído.
+11. Contrato completo de publicação e contribuição.
+12. Backend apenas após os gatilhos.
 
 ## Não fazer agora
 
@@ -383,7 +409,7 @@ Registrar sucesso, tempo, hesitação, rótulo interpretado incorretamente e nec
 - duplicar resumos para cada superfície;
 - migrar todo o frontend para framework;
 - publicar contribuição diretamente após envio;
-- colocar submissões ou anexos privados em `assets/data`;
+- colocar submissões ou anexos privados em `content/public`, runtime gerado ou qualquer diretório copiado para `dist/`;
 - trocar IDs, slugs ou URLs para “limpar” a estrutura;
 - adotar banco de grafos porque o produto possui relações;
 - usar IA para validar alegação científica, aceitar ou rejeitar contribuição, atribuir autoria, alterar estado editorial ou publicar sem revisão humana identificada;
@@ -397,3 +423,4 @@ Registrar sucesso, tempo, hesitação, rótulo interpretado incorretamente e nec
 - Escopo e critério de saída do selo Beta.
 - Valores iniciais dos budgets de peso e interação.
 - Resultado do primeiro teste de navegação com cinco participantes.
+- Necessidade de um ledger histórico próprio para relações; na fase atual, revisões anteriores são recuperadas pelo Git.

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observatorio.local/schemas/editorial-change-set.schema.json",
+  "title": "Manifesto privado de mudança editorial atômica",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "operations"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "operations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "id",
+          "source"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "theory",
+              "figure",
+              "party",
+              "publication",
+              "experiment",
+              "reference",
+              "relation"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-{1,2}[a-z0-9]+)*$"
+          },
+          "source": {
+            "type": "string",
+            "minLength": 6
+          },
+          "changeClass": {
+            "type": "string",
+            "enum": [
+              "editorial",
+              "presentation",
+              "metadata",
+              "semantic",
+              "structural"
+            ]
+          },
+          "force": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

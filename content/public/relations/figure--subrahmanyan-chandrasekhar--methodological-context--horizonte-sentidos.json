@@ -16,5 +16,10 @@
   "label": "Teoria confrontada com estrelas",
   "justification": "A T-10 pode usar evolução estelar como exemplo de ligação entre modelos matemáticos, espectros e populações observadas.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "subrahmanyan-chandrasekhar-r1",
+    "targetRevisionId": "horizonte-sentidos-r1"
+  }
 }

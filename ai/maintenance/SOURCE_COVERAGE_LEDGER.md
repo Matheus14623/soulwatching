@@ -45,7 +45,7 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 | Fonte | Tipo | Estado | Decisão | Headings | Destinos |
 | --- | --- | --- | --- | ---: | ---: |
 | [DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md](../../DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md) | architecture-guide | historical | preserve | 27 | 9 |
-| [README.md](../../README.md) | operational-guide | current | preserve | 11 | 5 |
+| [README.md](../../README.md) | operational-guide | current | preserve | 12 | 5 |
 | [docs/INTEGRACAO_TEORIAS.md](../../docs/INTEGRACAO_TEORIAS.md) | domain-guide | historical | preserve | 11 | 4 |
 | [docs/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026.docx](../../docs/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026.docx) | editorial-review | internal | reference | 25 | 4 |
 | [docs/PROTOCOLO_RIGOROSO_VALIDACAO_DE_TEORIAS_E_ESTRUTURACAO_DO_PENSAMENTO.docx](../../docs/PROTOCOLO_RIGOROSO_VALIDACAO_DE_TEORIAS_E_ESTRUTURACAO_DO_PENSAMENTO.docx) | methodology-manual | internal | reference | 20 | 4 |
@@ -113,8 +113,8 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 - Tipo: `operational-guide`
 - Estado: `current`
 - Decisão: `preserve`
-- Tamanho: `14957` bytes
-- SHA-256: `2773df3920d93a8fc966ce73509e0c96727a03667e1f23368ce2e3ca8e72457b`
+- Tamanho: `19724` bytes
+- SHA-256: `bd5d2a065a49c809210b5652c2f4b8ddb610316dac065c5f82d67de5aec328e4`
 - Síntese: Entrada operacional resumida para rotas, execução local, arquitetura pública e publicação.
 - Destinos canônicos:
   - `project.index` — [ai/project/INDEX.md](../project/INDEX.md)
@@ -129,6 +129,7 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
   - `H1` Observatório de Ideias
   - `H2` Rotas principais
   - `H2` Como rodar localmente
+  - `H3` Dashboard editorial local
   - `H2` Verificação e build
   - `H2` Estrutura
   - `H2` Arquitetura
@@ -283,8 +284,8 @@ Decisões: [source-coverage-decisions.json](source-coverage-decisions.json). Ger
 - Tipo: `historical-audit`
 - Estado: `historical`
 - Decisão: `historical`
-- Tamanho: `72282` bytes
-- SHA-256: `0212a13c52204f4f1928a101c00cc78ba3c696a7c39e77e7ef9d2e6cff8bf6e2`
+- Tamanho: `72271` bytes
+- SHA-256: `1061a7ad1888dee869b2a2b8f01c0cf6d7e5b8e041cb329b6754577ab70e703c`
 - Síntese: Auditoria histórica anterior à arquitetura atual, útil para rastrear decisões e regressões sem definir o estado vigente.
 - Destinos canônicos:
   - `project.architecture` — [ai/project/ARCHITECTURE.md](../project/ARCHITECTURE.md)

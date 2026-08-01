@@ -16,5 +16,10 @@
   "label": "Dependência metodológica",
   "justification": "Uma cosmologia cíclica precisa declarar condições dinâmicas e de medida antes de invocar recorrência.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "ciclagem-eterna-r1",
+    "targetRevisionId": "contentor-finito-r1"
+  }
 }

@@ -16,5 +16,10 @@
   "label": "Ponte operacional",
   "justification": "Simulações reproduzíveis de circuitos podem transformar o estudo da T-06 em um projeto prático da T-10.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "er-epr-sondas-r1",
+    "targetRevisionId": "horizonte-sentidos-r1"
+  }
 }

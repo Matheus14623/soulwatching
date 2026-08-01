@@ -16,5 +16,10 @@
   "label": "Afinidade conceitual",
   "justification": "As duas investigam cenários cosmológicos não triviais para origem e tempo, com mecanismos independentes.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "ciclagem-eterna-r1",
+    "targetRevisionId": "universo-buraco-negro-r1"
+  }
 }

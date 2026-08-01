@@ -16,5 +16,10 @@
   "label": "Organizar vieses e evidências",
   "justification": "A T-07 pode converter seus próprios pressupostos e objeções em elementos rastreáveis, sem tratar a metáfora de sistema como mecanismo físico.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "francis-bacon-r1",
+    "targetRevisionId": "backend-existencia-r1"
+  }
 }

@@ -5,7 +5,7 @@ scope: "domains"
 kind: "canonical-reference"
 status: "canonical"
 canonical_for:
-  - "arquitetura-alvo de entidades, referências, relações, geração de catálogos, submissões e futura persistência"
+  - "arquitetura implementada e evolução de entidades, referências, relações, geração de catálogos, submissões e futura persistência"
 triggers:
   - "novo conteúdo"
   - "schema"
@@ -31,79 +31,95 @@ related_context:
   - "domains.editorial-model"
   - "domains.theory-catalog"
   - "domains.notable-figures"
+  - "domains.editorial-dashboard"
   - "project.architecture"
   - "project.maturity-roadmap"
 evidence_sources:
-  - "assets/data/theories.js"
-  - "assets/data/theory-references.js"
-  - "assets/data/notable-figures.js"
-  - "assets/data/notable-figure-references.js"
-  - "assets/data/experiments.js"
-  - "assets/data/learning-paths.js"
-  - "assets/data/contributions.js"
-  - "assets/js/theory-model.js"
-  - "assets/js/theory-figure-model.js"
-  - "assets/js/global-search.js"
-  - "scripts/build.mjs"
-  - "scripts/public-manifest.mjs"
-  - "scripts/verify.mjs"
+  - "content/schemas/entity.schema.json"
+  - "content/schemas/theory.schema.json"
+  - "content/schemas/relation.schema.json"
+  - "content/schemas/reference.schema.json"
+  - "content/schemas/editorial-change-set.schema.json"
+  - "content/schemas/editorial-revision-ledger.schema.json"
+  - "content/public/catalogs/editorial-revision-ledger.json"
+  - "content/public/theories/observacao-nao-linear.json"
+  - "content/public/taxonomies/relation-types.json"
+  - "scripts/content/change-set.mjs"
+  - "scripts/content/cli.mjs"
+  - "scripts/content/compiler.mjs"
+  - "scripts/content/editorial-impact.mjs"
+  - "scripts/content/editorial-revision-ledger.mjs"
+  - "scripts/content/install-record.mjs"
+  - "scripts/content/revision-policy.mjs"
+  - "scripts/content/direct-import-policy.mjs"
+  - "scripts/tests/editorial-impact-contracts.test.mjs"
+  - "scripts/tests/editorial-change-set-contracts.test.mjs"
+  - "scripts/tests/editorial-dashboard-contracts.test.mjs"
+  - "scripts/tests/observacao-impact-fixture.test.mjs"
+  - "scripts/content/fixtures/impact/observacao-nao-linear.json"
+  - "tools/editorial-dashboard/server.mjs"
+  - "tools/editorial-dashboard/services/editorial-workflow.mjs"
+  - "tools/editorial-dashboard/services/preview-service.mjs"
+  - "tools/editorial-dashboard/services/workspace-store.mjs"
+  - "assets/js/content-repository.js"
+  - "assets/js/content-source.js"
 ---
 
 # Operações de conteúdo e relações
 
 ## Purpose
 
-Definir como o Observatório deve evoluir de catálogos JavaScript estruturados para uma plataforma de conteúdo validada, gerada e substituível por persistência futura, sem quebrar a aplicação multipágina nem duplicar relações.
+Definir a plataforma de conteúdo validada do Observatório, seus contratos de autoria, geração, leitura e evolução para persistência futura, sem quebrar a aplicação multipágina nem duplicar relações.
 
-Este é um contrato de arquitetura-alvo. A estrutura recomendada, os comandos editoriais e a fachada descritos abaixo ainda não existem, salvo quando a seção declarar o estado atual.
+Este documento é o proprietário da arquitetura de conteúdo. Requisitos de interface, análise de impacto assistida, fluxo da dashboard e critérios de aceitação do painel pertencem à [especificação funcional da dashboard editorial](EDITORIAL_DASHBOARD_SPECIFICATION.md).
 
 ## Current Confirmed Structure
 
-- `assets/data/theories.js` mantém linhas de investigação e relações teoria–teoria.
-- `assets/data/theory-references.js` mantém referências das linhas.
-- `assets/data/notable-figures.js` mantém perfis, conexões perfil–teoria, trilhas e linha do tempo.
-- `assets/data/notable-figure-references.js` mantém referências dos perfis.
-- `assets/data/constellations.js` mantém campos do Atlas, fontes e metadados de reconhecimento.
-- `assets/data/experiments.js` mantém experiências e seus vínculos com teorias.
-- `assets/data/learning-paths.js` mantém percursos ordenados por catálogos existentes.
-- `assets/data/research-tracks.js` mantém itens do radar ainda não promovidos a linhas independentes.
-- `assets/data/contributions.js` reúne vocabulário, validadores, dados públicos e projeções de contribuição.
-- `theory-figure-model.js` deriva corretamente a relação inversa nos dossiês de teoria a partir da conexão declarada no perfil.
-- busca, métricas e interfaces importam os módulos públicos diretamente.
-- o build copia `assets/data` recursivamente para o artefato público.
-- não há backend, banco, conta, upload, API ou armazenamento de submissão.
+- `content/public/` é a fonte canônica granular das entidades, relações, referências, taxonomias, percursos, coleções e metadados institucionais públicos.
+- `content/schemas/` define os contratos JSON Schema por tipo.
+- `scripts/content/compiler.mjs` valida schemas e integridade cruzada, resolve referências, aliases e relações e gera o runtime público.
+- `scripts/content/cli.mjs` implementa `content:new`, `content:check`, `content:build`, `content:report`, `content:impact`, `content:apply` e `content:rollback`.
+- `scripts/content/revision-policy.mjs` preserva revisões e aliases publicados durante substituições.
+- `content/public/catalogs/editorial-revision-ledger.json` registra a sequência completa das revisões de teorias, perfis, publicações e experimentos, com classe de mudança e caminhos alterados.
+- `scripts/content/editorial-impact.mjs` produz diff determinístico, classificação conservadora, vigência derivada das relações e impacto direto.
+- `scripts/content/install-record.mjs` aplica um ou vários registros, seus ledgers e o runtime em uma única transação com lock e restauração em caso de falha capturada.
+- `assets/data/generated/` é saída derivada, não versionada e destinada ao navegador.
+- módulos históricos em `assets/data/` preservam compatibilidade, mas não são fonte autoral.
+- `ContentRepository` consulta entidades, relações, referências, busca e coleções sem conhecer o armazenamento físico.
+- `StaticContentSource` é a implementação ativa; `HttpContentSource` implementa o mesmo contrato de leitura, mas permanece inativo porque não existe endpoint.
+- imports diretos novos dos módulos legados são bloqueados e o budget atual é zero.
+- build e servidor preservam a fronteira pública por allowlist.
+- há uma dashboard editorial exclusivamente local, sem backend remoto, banco, conta, upload ou armazenamento de submissão; sua API existe apenas no processo de loopback e nunca é publicada.
 
-Os registros já possuem boa riqueza editorial. O problema não é ausência de estrutura, mas a combinação de quatro responsabilidades em um mesmo lugar: autoria, validação, forma de runtime e transporte público.
+A plataforma estática, o contrato de dependência editorial e o primeiro fluxo assistido foram implementados. Diff, classificação, análise de impacto, gate e instalação atômica são operáveis tanto pela linha de comando quanto pela dashboard local, sempre pelo mesmo manifesto privado. O próximo limite é validar o piloto em uso real e ampliar os formulários somente depois disso.
 
 ## Problemas a resolver
 
-### Acoplamento
+### Vigência e decisão das relações
 
-Consumidores conhecem o caminho físico dos catálogos. Trocar a origem dos dados por arquivos gerados ou API exigiria alterar muitos imports.
+Relações revisadas registram as revisões de origem e destino consideradas em `reviewedAgainst`. O compilador consulta o ledger editorial e deriva `needs-review` quando encontra uma mudança semântica ou estrutural posterior. Essa automação detecta dependência desatualizada, mas não confirma, reescreve, reclassifica nem descontinua a relação; essas continuam sendo decisões editoriais explícitas.
 
-### Granularidade
+### Operação editorial
 
-Arquivos extensos aumentam conflito de edição, tornam a revisão de uma entidade menos isolada e incentivam contagens ou índices manuais.
+Os comandos fornecem diff, impacto, gate e instalação transacional. A dashboard local torna o manifesto operável por formulário para teorias, apresenta as dependências e coordena decisões e preview; o arquivo continua técnico, privado e gerado pela ferramenta. Os demais tipos ainda não possuem autoria completa por interface.
 
-### Relações distribuídas
+### Granularidade seletiva
 
-Uma pessoa precisa saber em qual lado declarar cada conexão. Uma relação perfil–teoria é declarada no perfil; teoria–teoria em outro módulo; experiência–teoria em outro. A interface deriva algumas inversões, mas não existe um contrato comum de procedência, evidência e revisão.
+Perguntas permanecem como strings, objeções possuem identidade apenas dentro da teoria e conceitos são textos. Eles só devem ganhar entidade própria quando houver reuso, relação, revisão ou citação independente.
 
-### Referências paralelas
+### Dívida relacional e bibliográfica
 
-Catálogos de referência separados podem representar a mesma obra ou fonte com IDs e metadados diferentes.
+Vínculos legados experimento–teoria ainda precisam de decisão editorial para migração. Relações que exigem evidência específica não podem receber fonte inventada pelo gerador.
 
-### Fronteira pública ampla
+O compilador usa budgets máximos para impedir crescimento silencioso: `experimentTheoryLinksAwaitingMigration` ≤ 12, `relationsAwaitingEvidence` ≤ 31 e `legacyRelationReviewBaselines` ≤ 32. Esses valores são limites técnicos da dívida herdada, não metas nem contagens editoriais a reproduzir na interface. Eles podem diminuir após decisões reais e não devem ser elevados para fazer uma mudança passar.
 
-Qualquer arquivo colocado em uma árvore copiada recursivamente pode alcançar `dist/`. Isso é aceitável apenas para dados destinados ao público.
+### Snapshots e operação privada
 
-### Evolução editorial incompleta
-
-Revisões atuais registram a versão mais recente, mas não recuperam snapshots históricos. Contribuições possuem contrato público, mas não um documento completo, workflow de correção ou submissão privada.
+Publicações possuem ledger imutável e as entidades relacionáveis possuem ledger de classes por revisão, mas teorias ainda não oferecem recuperação completa de snapshots históricos. O ledger editorial prova a sequência e o tipo de mudança; ele não armazena o corpo antigo. Relações também não possuem um ledger histórico próprio: revisões anteriores continuam recuperáveis pelo histórico do Git. Não existem submissão privada, anexos, auditoria persistente nem fluxo multiusuário.
 
 ## Modelo de responsabilidade
 
-Separar cinco camadas:
+Separar responsabilidades por camada:
 
 | Camada | Responsabilidade | Pode conter dados privados? |
 | --- | --- | --- |
@@ -124,50 +140,28 @@ Dados pessoais precisam de classificação explícita:
 
 O fato de o repositório Git ser privado não o transforma em sistema de gestão de submissões. Antes de existir armazenamento apropriado, contatos, permissões, pareceres e anexos permanecem na ferramenta de comunicação escolhida, com política de retenção, e fora do Git.
 
-## Estrutura-alvo recomendada
+## Estrutura implementada
 
 ```text
 content/
   schemas/
-    entity.schema.json
-    theory.schema.json
-    figure.schema.json
-    constellation.schema.json
-    experiment.schema.json
-    publication.schema.json
-    relation.schema.json
-    reference.schema.json
+    <tipo>.schema.json
   public/
-    theories/
-      <id>.json
-    figures/
-      <id>.json
+    catalogs/
+      editorial-revision-ledger.json
+      publication-revision-ledger.json
     constellations/
-      <id>.json
     experiments/
-      <id>.json
-    research-tracks/
-      <id>.json
-    publications/
-      <id>.json
-    references/
-      <id>.json
-    relations/
-      <id>.json
-    paths/
-      <id>.json
+    figures/
     figure-trails/
-      <id>.json
-    timeline-events/
-      <id>.json
-    taxonomies/
-      <id>.json
+    paths/
+    references/
+    relations/
+    research-tracks/
     site-pages/
-      <id>.json
-    presentation/
-      home-featured.json
-      map-layout.json
-      experiment-runtime.json
+    taxonomies/
+    theories/
+    timeline-events/
 assets/
   data/
     generated/
@@ -176,11 +170,16 @@ assets/
       content-metrics.js
 .content-reports/
     integrity-report.json
+.content-drafts/
+    <tipo>/
+      <id>.json
 ```
 
-`assets/data/generated` é a única saída destinada ao navegador e precisa ser incluída explicitamente no manifesto público. `.content-reports` é derivado local ou de CI, permanece fora da allowlist e nunca entra em `dist/`. A política recomendada é gerar ambos deterministicamente em desenvolvimento, verificação e build, sem versionar saídas; somente as fontes e os schemas são canônicos. Nunca colocar em `content/public` rascunho privado, dado de contato, token, anexo de submissão, prova de permissão, parecer privado ou material bruto. Resumo de revisão deliberadamente editado para publicação é permitido no histórico público. Nome de crédito e links públicos só entram por autorização específica e por campos incluídos na allowlist do schema público.
+`content:new` cria rascunhos em `.content-drafts/` por padrão; esse diretório fica fora de `content/public`. Tipos sem registros públicos ainda podem não possuir diretório próprio, embora o schema, o compilador e o comando já aceitem o tipo.
 
-Durante a migração, adaptadores em `assets/data` preservam os exports atuais. O objetivo não é obrigar o navegador a buscar dezenas de arquivos; o gerador pode continuar entregando bundles JavaScript compactos.
+`assets/data/generated` é a saída destinada ao navegador e entra no artefato somente pelo pipeline autorizado. `.content-reports` é derivado local ou de CI, permanece fora da allowlist e nunca entra em `dist/`. Ambos são gerados deterministicamente e não são versionados; somente fontes e schemas são canônicos. Nunca colocar em `content/public` rascunho privado, dado de contato, token, anexo de submissão, prova de permissão, parecer privado ou material bruto. Resumo de revisão deliberadamente editado para publicação é permitido no histórico público. Nome de crédito e links públicos só entram por autorização específica e por campos permitidos pelo schema público.
+
+Adaptadores em `assets/data` preservam exports compatíveis, sem obrigar o navegador a buscar cada arquivo autoral. Código de produto novo consome exports gerados ou `ContentRepository`.
 
 ## Contratos por tipo
 
@@ -196,7 +195,7 @@ Schemas específicos completam o contrato por capacidades como `Addressable`, `C
 
 Taxonomias, trilhas, linha do tempo, radar e metadados de páginas institucionais também são conteúdo governado. Eles precisam de schema e geração próprios; não devem reaparecer como arrays ou títulos manuais dentro de controladores.
 
-IDs semânticos já publicados permanecem como chaves legadas válidas. Nos catálogos principais, `id` e `slug` coincidem atualmente; `code` é um identificador editorial separado nas teorias. A migração deve preservar esses valores, não normalizá-los por estética. Um identificador interno de banco poderá ser adicionado no futuro, sem substituir o ID público nas URLs e relações.
+IDs semânticos já publicados permanecem válidos. Nos catálogos principais, `id` e `slug` coincidem atualmente; `code` é um identificador editorial separado nas teorias. Alterações preservam esses valores e usam aliases para slugs anteriores. Um identificador interno de banco poderá ser adicionado no futuro, sem substituir o ID público nas URLs e relações.
 
 ### Revisões
 
@@ -222,11 +221,12 @@ Vínculos de citação, avisos de correção e snapshots apontam para `revisionI
 
 ## Registro central de relações
 
-Relações de domínio devem se tornar entidades de primeira classe. Forma recomendada:
+Relações de domínio são entidades de primeira classe. Forma reduzida do contrato vigente:
 
 ```json
 {
-  "id": "rel-0001",
+  "id": "figure--figure-id--historical-foundation--theory-id",
+  "revisionId": "figure--figure-id--historical-foundation--theory-id-r1",
   "source": { "type": "figure", "id": "figure-id" },
   "target": { "type": "theory", "id": "theory-id" },
   "type": "historical-foundation",
@@ -234,7 +234,13 @@ Relações de domínio devem se tornar entidades de primeira classe. Forma recom
   "justification": "Explicação pública, delimitada e verificável.",
   "referenceIds": ["reference-id"],
   "reviewState": "reviewed",
-  "revisionId": "rel-0001-r1"
+  "reviewedAgainst": {
+    "mode": "editorial-review",
+    "sourceRevisionId": "figure-id-r2",
+    "targetRevisionId": "theory-id-r3",
+    "reviewedAt": "2026-08-01",
+    "reviewedBy": "responsavel-publico-autorizado"
+  }
 }
 ```
 
@@ -247,6 +253,11 @@ Regras:
 - simetria ou rótulo inverso é propriedade do tipo, não cópia manual;
 - evidência por referência é recomendada quando a relação fizer afirmação histórica ou técnica;
 - o gerador produz índices por origem e destino;
+- toda relação com `reviewState: "reviewed"` declara `reviewedAgainst`;
+- `mode: "editorial-review"` exige data e responsável cuja exposição pública foi autorizada;
+- `mode: "legacy-baseline"` fixa somente as revisões vigentes antes da introdução do contrato e proíbe data ou responsável inventados;
+- o conteúdo completo dos 32 vínculos legados `r1` é protegido por hash canônico; não pode ser alterado, removido nem usado como modelo para novos IDs;
+- a saída de `legacy-baseline` exige nova revisão ordinal e decisão `editorial-review` ou `deprecated`;
 - apresentação visual não altera o significado;
 - relação ausente é preferível a afinidade vaga.
 
@@ -258,9 +269,28 @@ Vínculos legados sem justificativa, como associações puramente enumeradas ent
 
 Etapas de Rotas Guiadas continuam em registros de percurso, pois ordem, razão pedagógica e próximo passo não são equivalentes a uma relação ontológica. O percurso referencia entidades e pode consultar o registro central para contexto.
 
+### Ledger editorial e estado derivado
+
+`content/public/catalogs/editorial-revision-ledger.json` cobre as entidades que podem ser extremos de relações: `theory`, `figure`, `publication` e `experiment`. Cada entrada é identificada pelo par tipo–ID e mantém uma sequência completa `r1`, `r2`, …; cada revisão registra:
+
+- `revisionId`;
+- classe efetiva da mudança;
+- caminhos alterados em JSON Pointer.
+- hash canônico do registro público naquela revisão.
+
+O compilador exige que a última revisão do ledger corresponda ao `revisionId` e ao hash do registro atual e rejeita lacunas, duplicatas, ordem não determinística ou edição direta sem nova revisão. Na instalação, o ledger é atualizado mecanicamente a partir do diff. Os hashes antigos permanecem como prova de integridade, mas o ledger não duplica snapshots editoriais completos.
+
+O estado `needs-review` é derivado, não autoral. Para uma relação `reviewed`, o compilador percorre as revisões posteriores às duas revisões fixadas em `reviewedAgainst`. A existência de qualquer mudança `semantic` ou `structural` torna a relação bloqueante até uma decisão explícita. Mudanças `editorial`, `presentation` e `metadata` posteriores preservam a vigência. Relações `pending` e `deprecated` não são promovidas automaticamente a bloqueio. O runtime expõe `reviewStatus` como `current`, `needs-review`, `pending` ou `deprecated`, além dos motivos e das revisões atuais; `ContentRepository` aceita filtro explícito por `needsReview`.
+
+### Classes de mudança
+
+O vocabulário fechado é `editorial`, `presentation`, `metadata`, `semantic` e `structural`, em ordem crescente de risco. O diff usa JSON Pointer e uma classificação conservadora por raiz de campo. A classe declarada pela pessoa editora pode elevar o risco sugerido, mas nunca reduzi-lo; campo desconhecido é tratado como `structural`. Somente `semantic` e `structural` invalidam a vigência de relações.
+
+Substituições de teoria, perfil, publicação, experimento ou relação exigem classe explícita. Uma entidade nova recebe `structural` como baseline inicial. A classificação registrada no ledger é a classe efetiva após comparar declaração e diff.
+
 ## Referências e afirmações
 
-Criar um catálogo único de referências públicas com:
+O catálogo único de referências públicas registra:
 
 - ID estável;
 - título, autores, instituição e publicadora em campos distintos;
@@ -274,7 +304,7 @@ Criar um catálogo único de referências públicas com:
 
 Entidades apontam para IDs. Afirmações que exigem sustentação específica registram `entityRevisionId`, `contentBlockId` ou `claimId`, `referenceId`, papel da fonte (`supports`, `contextualizes` ou `contrasts`) e página, seção ou locator quando aplicável. Bibliografia geral permanece separada. Duas superfícies que usam a mesma obra não criam duas referências.
 
-O gerador deve produzir:
+O gerador produz:
 
 - referências resolvidas por entidade;
 - relatório de referências órfãs;
@@ -284,7 +314,7 @@ O gerador deve produzir:
 
 ## Fachada de leitura
 
-Introduzir uma fronteira assíncrona de carregamento e seletores síncronos sobre um snapshot:
+A fronteira implementada usa carregamento assíncrono e seletores síncronos sobre um snapshot:
 
 ```text
 ContentSource
@@ -298,14 +328,18 @@ ContentRepository(snapshot)
   search(query, filters)
 ```
 
-O primeiro `ContentSource` importa módulos gerados e resolve o snapshot imediatamente. Um source HTTP futuro implementa a mesma promessa. Depois de um único bootstrap assíncrono, filtros, relações e busca operam sincronicamente sobre o snapshot imutável. Controladores não importam a implementação de armazenamento; recebem o repositório ou modelos que o utilizam.
+`StaticContentSource` importa módulos gerados e resolve o snapshot. `HttpContentSource` implementa a mesma promessa, cache e timeout, mas não está ativado por ausência de endpoint. Depois de um único bootstrap assíncrono, filtros, relações e busca operam sincronicamente sobre o snapshot imutável. A migração dos controladores preservou projeções estáticas específicas quando elas evitam carregar o catálogo completo; novos consumidores não conhecem a implementação de armazenamento.
 
 ## Pipeline de autoria e geração
 
-Fluxo-alvo:
+Fluxo implementado:
 
 ```text
 arquivo de entidade
+  -> diff e classe efetiva
+  -> ledger editorial proposto
+  -> análise de impacto direto
+  -> gate de decisões editoriais
   -> validação de schema
   -> validação semântica e cruzada
   -> resolução de aliases, fontes e relações
@@ -316,14 +350,31 @@ arquivo de entidade
   -> dist por allowlist
 ```
 
-Comandos recomendados, ainda não implementados:
+Comandos implementados:
 
-- `content:new --type theory --id <id>` cria somente um esqueleto válido;
+- `content:new --type theory --id <id>` cria um esqueleto não publicável fora de `content/public`;
 - `content:check` valida schemas e integridade;
 - `content:build` gera os módulos de runtime;
-- `content:report` lista órfãos, lacunas e duplicatas prováveis.
+- `content:report` lista órfãos, lacunas, relações que precisam de revisão e dívidas editoriais;
+- `content:impact --manifest <arquivo.json>` analisa um conjunto de mudanças sem escrever na fonte canônica;
+- `content:apply --manifest <arquivo.json>` aplica o conjunto autorizado de forma atômica;
+- `content:rollback` restaura o último runtime válido como contingência, sem alterar a fonte canônica.
 
 O gerador não escreve decisões editoriais. Ele não inventa resumo, estado, crédito, fonte, conexão ou revisão. O runtime é construído somente a partir de campos expressamente permitidos pelo schema público; campo desconhecido falha na validação em vez de ser copiado por conveniência.
+
+O manifesto é um arquivo privado, dentro do projeto e fora de `content/public/`. Seu schema aceita operações sobre `theory`, `figure`, `party`, `publication`, `experiment`, `reference` e `relation`; cada operação aponta para um rascunho JSON também privado. Toda substituição no manifesto exige `force: true` e `changeClass`, inclusive para partes e referências, para que análise e aplicação usem o mesmo contrato. Operações repetidas para a mesma entidade são recusadas. Antes de responder que a mudança é permitida, `content:impact` executa a mesma política de substituição usada por `content:apply`, valida schemas e dados privados, monta todas as fontes propostas em memória e chama a mesma integridade cruzada do compilador — inclusive unicidade bibliográfica, aliases, endpoints, tipos de relação, rastreabilidade, créditos, referências e ledgers. `content:new --source` usa o mesmo carregador privado e o mesmo gate; não existe um caminho simplificado de instalação. A análise retorna, por entidade:
+
+- diff e classificação declarada, sugerida e efetiva;
+- relações diretas e seus estados;
+- referências adicionadas ou removidas;
+- afirmações atingidas;
+- experiências e percursos que usam a entidade;
+- arquivos gerados e superfícies públicas conhecidas;
+- avisos e bloqueios.
+
+O gate bloqueia uma relação anteriormente revisada quando uma mudança invalidante a deixou desatualizada. Rebaixá-la para `pending` no mesmo conjunto não resolve a decisão; é necessário revisá-la contra as novas revisões ou descontinuá-la explicitamente. Relações que já estavam `pending` permanecem aviso. Dívidas bibliográficas e vínculos legados permanecem não bloqueantes apenas dentro de budgets explícitos, que não podem crescer.
+
+`content:apply` usa o mesmo lock para ler o estado anterior, analisar o conjunto, atualizar os registros e os ledgers, compilar e gerar o relatório. Falha de gate, schema, integridade ou compilação restaura todos os arquivos tocados pela transação, inclusive o relatório privado caso ele já tenha sido escrito. Um gate recusado não substitui o relatório canônico do último estado válido; seus bloqueios permanecem na saída de `content:impact` ou no erro da operação. O mecanismo cobre erros capturados; encerramento abrupto do processo ainda não possui journal de fonte autoral.
 
 Ordem operacional:
 
@@ -337,29 +388,31 @@ Chaves de comportamento, como `moduleKey` dos experimentos, resolvem somente uma
 
 ## Inclusão de uma linha de investigação
 
-Depois da migração, o fluxo deve ser:
+O fluxo vigente é:
 
 1. criar um arquivo de entidade a partir do schema;
 2. registrar a proveniência editorial privada no mecanismo permitido, fora do runtime;
 3. registrar fontes já existentes ou adicionar novas referências normalizadas;
 4. declarar afirmações, objeções, critérios de revisão e histórico;
 5. adicionar relações justificadas no registro central;
-6. executar validação e geração;
-7. revisar as projeções em Teorias, Mapa, busca, Rotas e Grandes Nomes;
-8. publicar sem alterar controlador, HTML ou contagem manual.
+6. agrupar a nova revisão e as decisões sobre relações afetadas em um manifesto;
+7. executar `content:impact` e confirmar que nenhuma decisão humana foi substituída por automação;
+8. instalar o conjunto com `content:apply`, executar validação e geração;
+9. revisar as projeções em Teorias, Mapa, busca, Rotas e Grandes Nomes;
+10. publicar sem alterar controlador, HTML ou contagem manual.
 
 Uma conexão nova com um perfil histórico deve aparecer nos dois dossiês a partir da mesma aresta. Se não houver justificativa rigorosa, nenhum dos lados recebe a conexão.
 
 ## Inclusão de um perfil
 
-O fluxo equivalente deve exigir:
+O fluxo equivalente exige:
 
 1. entidade e retrato autorizado;
 2. fontes normalizadas;
 3. contribuições e limites históricos;
 4. créditos e direitos;
 5. relações justificadas quando existirem;
-6. geração de índices, destaques, comparação e busca a partir dos dados.
+6. instalação validada e geração de índices, destaques, comparação e busca a partir dos dados.
 
 Trilhas e linha do tempo referenciam IDs de perfis; não copiam biografias.
 
@@ -484,54 +537,42 @@ O catálogo público deve continuar disponível mesmo se o painel ou a API estiv
 
 A política de retenção precisa separar contato privado apagável de crédito público necessário à atribuição e integridade histórica. Antes de operar o backend, definir quando o crédito pode ser anonimizado, como isso interage com licença, retirada e histórico e quais obrigações impedem exclusão imediata, com revisão jurídica adequada.
 
-## Estratégia de migração
+## Estado da evolução
 
-### Passo 1 — schemas e segurança
+### Baseline concluída
 
-- inventariar campos atuais e consumidores;
-- definir schemas sem alterar o runtime;
-- proibir campos privados na árvore pública;
-- validar IDs, slugs, aliases e referências.
+- schemas públicos por tipo;
+- fonte granular em JSON;
+- referências normalizadas;
+- registro central de relações;
+- aliases e política de revisões;
+- compilador e relatório de integridade;
+- runtime, busca e métricas gerados;
+- `ContentRepository`, sources estático e HTTP;
+- bloqueio de imports diretos legados;
+- instalação com lock e rollback do runtime;
+- contratos e fixtures de conteúdo.
 
-### Passo 2 — formato granular piloto
+### Dependência editorial concluída
 
-- migrar um catálogo de baixo risco como piloto;
-- testar se uma pessoa mantenedora adiciona entidade e relação sem conhecer o runtime;
-- gerar exatamente o export atual;
-- comparar snapshots semânticos;
-- manter reexports compatíveis.
+- ledger de classes e caminhos por revisão para entidades relacionáveis;
+- `reviewedAgainst` com modos `legacy-baseline` e `editorial-review`;
+- derivação determinística de `needs-review`;
+- diff e classificação conservadora de mudanças;
+- impacto direto sobre relações, referências, afirmações, experiências, percursos e superfícies geradas;
+- manifesto privado para análise e aplicação atômica;
+- gate proporcional, rollback de todos os arquivos tocados e budgets de dívida;
+- contratos automatizados usando Observação Não-Linear como entidade de referência.
 
-### Passo 3 — relações e referências
+### Próximo incremento de operação
 
-- normalizar fontes;
-- criar registro central;
-- adaptar `theory-model` e `theory-figure-model`;
-- comprovar que inversões e URLs permanecem iguais.
+A dashboard local usa a plataforma existente; não cria uma segunda fonte de verdade nem duplica diff, classificação, impacto, gate ou transação. Seu primeiro incremento torna o manifesto operável por formulário, exibe decisões de relação e oferece preview isolado. Escopo, fluxo e gates estão na [especificação funcional da dashboard editorial](EDITORIAL_DASHBOARD_SPECIFICATION.md).
 
-### Passo 4 — índices e fachada
+Também permanecem decisões de domínio independentes da interface: critérios de promoção de perguntas, objeções e conceitos, redução editorial das dívidas existentes e snapshots completos de teorias.
 
-- gerar busca e métricas;
-- fazer modelos consumirem `ContentRepository`;
-- impedir imports novos diretamente dos arquivos físicos;
-- adicionar regra de arquitetura ao verificador.
+### Futuro condicionado
 
-### Passo 5 — publicações e contribuições
-
-- introduzir rota completa, revisões e estados públicos;
-- separar submissão privada;
-- somente então avaliar persistência.
-
-Cada passo deve ser reversível enquanto os exports atuais forem preservados. Não migrar todos os catálogos de uma vez.
-
-Cada piloto precisa declarar:
-
-- uma única fonte de verdade durante a etapa;
-- fixture dourada ou snapshot semântico e teste de paridade dos exports;
-- chave explícita para selecionar o adaptador antigo ou o novo;
-- retenção do último snapshot válido;
-- procedimento de rollback;
-- migração por `schemaVersion`;
-- proibição de editar simultaneamente fonte antiga e nova.
+Integração Git remota, API, banco, autenticação e armazenamento de anexos só entram pelos gatilhos de operação e privacidade. Toda migração preserva exports, URLs, último snapshot válido e um único proprietário canônico por etapa.
 
 ## Invariants
 
@@ -549,10 +590,14 @@ Cada piloto precisa declarar:
 
 ## Validation
 
-Antes de aceitar a plataforma de conteúdo:
+Ao alterar a plataforma de conteúdo:
 
 - validar todos os schemas e vocabulários;
 - testar IDs, aliases, relações e referências quebradas;
+- testar sequência completa do ledger, classes, JSON Pointers e correspondência com a revisão atual;
+- testar `reviewedAgainst`, `needs-review`, impacto direto e separação entre blockers, pending e deprecated;
+- provar que mudanças editoriais, de apresentação e metadados não escondem uma mudança semanticamente invalidante anterior;
+- testar manifesto fora da árvore pública, aplicação atômica e restauração integral após falha;
 - comparar exports gerados com os contratos existentes;
 - executar busca, filtros, URLs diretas e relações inversas;
 - construir DTOs públicos por allowlist, rejeitar campos desconhecidos e usar canary de campo proibido para provar que o gerador não o publica;
@@ -565,6 +610,10 @@ Antes de aceitar a plataforma de conteúdo:
 
 - nova teoria, perfil ou publicação não exige editar HTML ou controlador;
 - conexão perfil–teoria é declarada uma vez;
+- uma relação revisada declara as duas revisões contra as quais foi avaliada;
+- uma mudança semântica ou estrutural não pode ser publicada com relação revisada desatualizada;
+- uma mudança não invalidante preserva a vigência sem apagar uma invalidante anterior;
+- o manifesto atualiza entidade, relações e ledgers em uma única transação ou restaura o estado anterior;
 - referências não são duplicadas por superfície;
 - aliases preservam links antigos;
 - uma correção atualiza todas as projeções e mantém histórico;
@@ -575,7 +624,8 @@ Antes de aceitar a plataforma de conteúdo:
 
 ## To Verify
 
-- formato autoral final por entidade: JSON, YAML ou Markdown com frontmatter.
-- formato e armazenamento de snapshots públicos imutáveis, a decidir antes da primeira publicação externa.
-- vocabulário completo de tipos de relação por par de entidades.
+- necessidade e formato de um ledger histórico próprio para relações além do histórico do Git;
+- política de snapshots completos e recuperáveis para teorias;
+- critérios para transformar pergunta, objeção ou conceito em entidade independente;
+- vocabulário adicional de tipos de relação somente quando surgir par de entidades real;
 - thresholds operacionais que, somados aos gatilhos de segurança e privacidade, justificam iniciar persistência.

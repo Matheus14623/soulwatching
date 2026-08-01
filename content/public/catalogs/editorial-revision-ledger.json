@@ -1,0 +1,498 @@
+{
+  "schemaVersion": 1,
+  "entityType": "editorial-revision-ledger",
+  "entries": [
+    {
+      "entityType": "experiment",
+      "entityId": "astrobiologia-probabilistica",
+      "revisions": [
+        {
+          "revisionId": "astrobiologia-probabilistica-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:32ab9fa52f6e1bf5af60545b1e9555690de756af363b9dd51986a3429ac9461e"
+        }
+      ]
+    },
+    {
+      "entityType": "experiment",
+      "entityId": "atlas-celeste",
+      "revisions": [
+        {
+          "revisionId": "atlas-celeste-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:ba5a4cb8a76469192cf2919d96d487fb8b6c988373451bb45df80921e05ad8a4"
+        }
+      ]
+    },
+    {
+      "entityType": "experiment",
+      "entityId": "atlas-treino",
+      "revisions": [
+        {
+          "revisionId": "atlas-treino-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:858e0e45a23a4577fd8d02d7ad5d883099697c6066e65d24d3c99e036eaa2a7b"
+        }
+      ]
+    },
+    {
+      "entityType": "experiment",
+      "entityId": "cone-de-luz",
+      "revisions": [
+        {
+          "revisionId": "cone-de-luz-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:02aefd4b8bdf91be461a22c97d4cccc3d105d6057e2f6c039b6e291c4efc56f0"
+        }
+      ]
+    },
+    {
+      "entityType": "experiment",
+      "entityId": "mapa-ideias",
+      "revisions": [
+        {
+          "revisionId": "mapa-ideias-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:e2ce0a2451664b4debda9a422c078038affcf346b6240bd1c5560a8cafd8162c"
+        }
+      ]
+    },
+    {
+      "entityType": "experiment",
+      "entityId": "recorrencia-finita",
+      "revisions": [
+        {
+          "revisionId": "recorrencia-finita-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:ed38bc2b70e1972384412e04386439a38b18f745d14d05c12763185cd44c7614"
+        }
+      ]
+    },
+    {
+      "entityType": "experiment",
+      "entityId": "ressonancia",
+      "revisions": [
+        {
+          "revisionId": "ressonancia-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:32ed191529bbc34864fd2c93aa8bff8015580d5bbc77d35c369152b5c27c2823"
+        }
+      ]
+    },
+    {
+      "entityType": "experiment",
+      "entityId": "visao-estelar",
+      "revisions": [
+        {
+          "revisionId": "visao-estelar-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:a7a9b3daa7532204363cb79669a41e870b5da264daedb1f3d0678b80f7e9176c"
+        }
+      ]
+    },
+    {
+      "entityType": "experiment",
+      "entityId": "zero-epsilon",
+      "revisions": [
+        {
+          "revisionId": "zero-epsilon-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:55795af99efbe8203d7906861cf28f6779769ee044c1d3f5aa00e8fbf15ee008"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "albert-einstein",
+      "revisions": [
+        {
+          "revisionId": "albert-einstein-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:411982b1f9461c075a15fbc59df34df19eb9b6d92d86fbcce0fff91849074ec5"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "cecilia-payne-gaposchkin",
+      "revisions": [
+        {
+          "revisionId": "cecilia-payne-gaposchkin-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:ad1bf32b01015255aae6abb37b110886e09adc23b656cf24a50a225c7dde291c"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "david-hume",
+      "revisions": [
+        {
+          "revisionId": "david-hume-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:f91db4d12494aa1b4af059df1a1d46ccdcb5a060c76c0b216f00385e15af533f"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "emmy-noether",
+      "revisions": [
+        {
+          "revisionId": "emmy-noether-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:7308283c1dfe3d8270bed0be755d681afdde40d4a0786046b5a45a0f957c21f1"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "francis-bacon",
+      "revisions": [
+        {
+          "revisionId": "francis-bacon-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:ca323b1e07dc4a4e9e415addb68d2c716fbd6797df62972ceef23933bf14b749"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "galileo-galilei",
+      "revisions": [
+        {
+          "revisionId": "galileo-galilei-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:d45f769d6923267e8c0d46246be32be57755d100d0a8feb5b788ac2636d4cda0"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "georges-lemaitre",
+      "revisions": [
+        {
+          "revisionId": "georges-lemaitre-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:17a9f7e20489b4a9c93d41866ab3442bdb2b6e4d9a405f0c5086e5c1ff5b665e"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "henri-poincare",
+      "revisions": [
+        {
+          "revisionId": "henri-poincare-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:39d61a2ac1ace8624d9ac0a63348be6699bfea8d96c5f6bd2af2711fe290b0c3"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "henrietta-swan-leavitt",
+      "revisions": [
+        {
+          "revisionId": "henrietta-swan-leavitt-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:13f01b08497ec52161623a74b46b078a0eab054f3eae780b47a48ca718fc7593"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "imre-lakatos",
+      "revisions": [
+        {
+          "revisionId": "imre-lakatos-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:f8d1bc282250053098de069787dd6dd4da7d492a16f74bfa9c84fce1266bbb91"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "isaac-newton",
+      "revisions": [
+        {
+          "revisionId": "isaac-newton-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:94cdde3d14b2080a2d5de5e730bb0a9484776cb08cdc934e5c68f15dfbc1525e"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "jocelyn-bell-burnell",
+      "revisions": [
+        {
+          "revisionId": "jocelyn-bell-burnell-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:1f0d10120309c6e3afc9c18914956c06fe12ba8fef740e3ea1c334e46e2161d7"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "johannes-kepler",
+      "revisions": [
+        {
+          "revisionId": "johannes-kepler-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:466db88ebbf37b8486a059933773145c2d4145a34bfcf2944ad3bc4243610538"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "john-stewart-bell",
+      "revisions": [
+        {
+          "revisionId": "john-stewart-bell-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:547768d8b7fe0adba08a7fb6d73b600379cf2bf194000cce39b99bbf6ff6ef6f"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "juan-maldacena",
+      "revisions": [
+        {
+          "revisionId": "juan-maldacena-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:2f85bd5ef5fc51e8d66362285cdccae49f5d5123d5219474b3813c2ab60bc402"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "karl-popper",
+      "revisions": [
+        {
+          "revisionId": "karl-popper-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:7de805af7705cfd1d9a5955ad3598d0e08f47519dd89addead06d071208a7829"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "leonard-susskind",
+      "revisions": [
+        {
+          "revisionId": "leonard-susskind-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:d68704972b526a49356fd0716d735ec9e4dcd98a6244f6afbaba73d3214daa7a"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "roger-penrose",
+      "revisions": [
+        {
+          "revisionId": "roger-penrose-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:cbb05ab338aade580a0b816668fbd0030f13f942b7013e6a677f593db4372aef"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "stephen-hawking",
+      "revisions": [
+        {
+          "revisionId": "stephen-hawking-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:b6a07be48ce11a04e50c85d83a23e97fb9785208efad8ec2beffdbfc905e2b24"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "subrahmanyan-chandrasekhar",
+      "revisions": [
+        {
+          "revisionId": "subrahmanyan-chandrasekhar-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:c968864ec733e9371ea0ac5fc181836f93cc39943744463ff0936720902793d6"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "thomas-kuhn",
+      "revisions": [
+        {
+          "revisionId": "thomas-kuhn-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:14d27bb45af0f4fa790ebcec4d6260ba29a9107cfbadb8942cd0da843d2cd16a"
+        }
+      ]
+    },
+    {
+      "entityType": "figure",
+      "entityId": "vera-rubin",
+      "revisions": [
+        {
+          "revisionId": "vera-rubin-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:6994928157af9baca3a7e07ae5809e92749a8155b0127c9015fb161d8ffa75d4"
+        }
+      ]
+    },
+    {
+      "entityType": "theory",
+      "entityId": "backend-existencia",
+      "revisions": [
+        {
+          "revisionId": "backend-existencia-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:b8bd8a3caeec3feac7d009482f66dc095d552ff82cd1f0060733e6c358b17079"
+        }
+      ]
+    },
+    {
+      "entityType": "theory",
+      "entityId": "ciclagem-eterna",
+      "revisions": [
+        {
+          "revisionId": "ciclagem-eterna-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:90bc6575d7977d3693edca12b84369ba939f3c9d73858672796037e8fc6fe0df"
+        }
+      ]
+    },
+    {
+      "entityType": "theory",
+      "entityId": "contentor-finito",
+      "revisions": [
+        {
+          "revisionId": "contentor-finito-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:838a4f14a285d09435662cca7869b96d5f40c6577ff16bf9ccf1436ebb659c0a"
+        }
+      ]
+    },
+    {
+      "entityType": "theory",
+      "entityId": "er-epr-sondas",
+      "revisions": [
+        {
+          "revisionId": "er-epr-sondas-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:14048ec8a5eaf693f5fbda884be313eabd93f2e0bc077a58bf22542c1238b5e4"
+        }
+      ]
+    },
+    {
+      "entityType": "theory",
+      "entityId": "horizonte-sentidos",
+      "revisions": [
+        {
+          "revisionId": "horizonte-sentidos-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:ea6e1352a3aaaa6896f31625c8d3214c76f797897986986bf1e715dd47590b4e"
+        }
+      ]
+    },
+    {
+      "entityType": "theory",
+      "entityId": "instabilidade-vazio",
+      "revisions": [
+        {
+          "revisionId": "instabilidade-vazio-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:aab5dd9058c4afcb9087cf9e4705811e0f4010a3f2dfbb22492f9ee969f4ce97"
+        }
+      ]
+    },
+    {
+      "entityType": "theory",
+      "entityId": "observacao-nao-linear",
+      "revisions": [
+        {
+          "revisionId": "observacao-nao-linear-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:da94f01e13e8355254f3301165ed38a67cc4befc58f1e5064d870548442a309d"
+        }
+      ]
+    },
+    {
+      "entityType": "theory",
+      "entityId": "universo-buraco-negro",
+      "revisions": [
+        {
+          "revisionId": "universo-buraco-negro-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:47f426185c5931ee1c8b4dc3248f67eea58cdebee64239894438a98bd8dbb308"
+        }
+      ]
+    },
+    {
+      "entityType": "theory",
+      "entityId": "vacuo-genese",
+      "revisions": [
+        {
+          "revisionId": "vacuo-genese-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:7169309f6ccba53e8f5fe56fdcd2cb5705f53c675d08aa115ef20a82b19a41e4"
+        }
+      ]
+    },
+    {
+      "entityType": "theory",
+      "entityId": "zero-epsilon",
+      "revisions": [
+        {
+          "revisionId": "zero-epsilon-r1",
+          "changeClass": "structural",
+          "changedPaths": [],
+          "contentHash": "sha256:1e066fc565025b5481248e9f8639af9c90bfa67749ff667e17914cb90f3e68b3"
+        }
+      ]
+    }
+  ]
+}

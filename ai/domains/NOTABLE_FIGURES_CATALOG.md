@@ -25,16 +25,23 @@ conditional_context:
 related_context:
   - "domains.editorial-model"
   - "domains.content-operations"
+  - "domains.editorial-dashboard"
   - "frontend.pages-modules"
   - "frontend.user-flows"
 evidence_sources:
-  - "assets/data/notable-figures.js"
-  - "assets/data/notable-figure-references.js"
+  - "content/schemas/figure.schema.json"
+  - "content/public/catalogs/editorial-revision-ledger.json"
+  - "content/public/figures/albert-einstein.json"
+  - "content/public/taxonomies/notable-figures.json"
+  - "content/public/figure-trails/gravidade.json"
+  - "content/public/timeline-events/gravidade-geometrica.json"
+  - "content/public/relations/figure--albert-einstein--historical-foundation--observacao-nao-linear.json"
   - "assets/js/notable-figures-model.js"
   - "assets/js/theory-figure-model.js"
   - "GrandesNomes/grandes-nomes.html"
   - "GrandesNomes/grandes-nomes.js"
-  - "scripts/verify.mjs"
+  - "scripts/content/compiler.mjs"
+  - "scripts/content/editorial-impact.mjs"
 ---
 
 # Catálogo de grandes nomes
@@ -47,13 +54,13 @@ O catálogo não é um panteão de autoridade. A presença de uma pessoa, uma re
 
 ## Estrutura confirmada
 
-`assets/data/notable-figures.js` é a fonte única dos 22 perfis e das três áreas públicas. Cada perfil possui `id`, `slug`, nome, período de vida, área, função, destaque opcional, retrato, resumo, impacto, pelo menos três contribuições, marcos, fontes e conexões editoriais. `assets/data/notable-figure-references.js` mantém as referências institucionais, acadêmicas ou primárias; `assets/js/notable-figures-model.js` resolve busca, filtros, fontes, áreas, teorias, comparação, trilhas e linha do tempo sem duplicar slugs do catálogo de teorias.
+`content/public/figures/` é a fonte canônica granular dos perfis; contagens e áreas são derivadas da taxonomia. Cada perfil possui `id`, `slug`, nome, período de vida, área, função, destaque opcional, retrato, resumo, impacto, contribuições, marcos e referências. Conexões editoriais com teorias são declaradas em `content/public/relations/`, e as referências institucionais, acadêmicas ou primárias são reutilizadas a partir de `content/public/references/`. O ledger editorial registra a sequência, a classe e os caminhos alterados de cada revisão do perfil. O compilador gera as projeções consumidas por `notable-figures-model.js`, que resolve busca, filtros, fontes, áreas, teorias, comparação, trilhas e linha do tempo sem duplicar slugs.
 
 Os três destaques da home são definidos por `featuredRank` e renderizados a partir dos mesmos dados. A rota completa usa `?perfil=<slug>` para seleção direta, `?comparar=<slug>,<slug>` para duas trajetórias e `?trilha=<id>` para uma sequência temática.
 
 Henri Poincaré integra o catálogo pela dinâmica qualitativa, estabilidade e mudança de métodos em sistemas dinâmicos; John Stewart Bell, pela desigualdade que tornou testável uma diferença entre previsões quânticas e teorias locais de variáveis ocultas. As inclusões possuem fontes e retratos locais com licença ou estado de direitos documentado e não são apresentadas como autoridades sobre linhas autorais.
 
-`NOTABLE_METHOD_TIMELINE` reúne 15 eventos de método ou descoberta, filtráveis por observar, medir, modelar e testar. `NOTABLE_FIGURE_TRAILS` declara quatro percursos: medir distâncias, gravidade, quântica e filosofia do teste. Esses recortes referenciam perfis existentes; não criam biografias paralelas nem uma hierarquia de importância.
+Eventos de método ou descoberta vivem em `content/public/timeline-events/` e são filtráveis por observar, medir, modelar e testar. Percursos temáticos vivem em `content/public/figure-trails/`, incluindo medir distâncias, gravidade, quântica e filosofia do teste. Esses recortes referenciam perfis existentes; não criam biografias paralelas nem uma hierarquia de importância.
 
 ## Regras editoriais
 
@@ -63,6 +70,8 @@ Henri Poincaré integra o catálogo pela dinâmica qualitativa, estabilidade e m
 - Não atribua a uma única pessoa processos coletivos quando a própria história exigir predecessores, colaboradores ou disputas de crédito.
 - Não publique comentários sobre bastidores, ferramentas, validação por IA ou relações pessoais do autor.
 - Uma conexão com o Observatório precisa declarar `relationType`, rótulo e nota delimitadora.
+- Uma conexão revisada fixa em `reviewedAgainst` as revisões do perfil e da teoria consideradas. Mudança semântica ou estrutural posterior deriva `needs-review`; o sistema não confirma nem reescreve a relação por conta própria.
+- Baselines técnicos legados não possuem data nem responsável inventados. Uma revisão editorial nova exige identidade pública autorizada e data.
 - A comparação deve manter critérios equivalentes e linguagem descritiva; não produz ranking de pessoas.
 - Linha do tempo e trilhas descrevem encadeamentos editoriais, não uma história completa nem crédito exclusivo por descobertas coletivas.
 
@@ -82,13 +91,14 @@ As referências devem preferir instituições científicas, universidades, acade
 
 ## Evolução do catálogo
 
-Para adicionar um perfil, inclua dados, retrato otimizado e referência no catálogo central; só então defina conexões justificadas que resolvam para IDs existentes em `assets/data/theories.js`. `theoryLinks` pode permanecer vazio quando não houver uma relação pública rigorosa. `theory-figure-model.js` torna essas relações visíveis também no dossiê da teoria, sem edição duplicada. Revise destaque, filtros, índice, comparação, trilhas, linha do tempo, navegação por URL, crédito, build e comportamento responsivo. Não crie uma fonte paralela na home ou no HTML.
+Para adicionar um perfil, crie um rascunho com `content:new`, inclua os dados, o retrato otimizado e referências do catálogo central e instale o registro depois da revisão. Só então defina relações justificadas que resolvam para IDs existentes; nenhuma relação é obrigatória quando não houver conexão pública rigorosa. Em uma substituição, declare a classe da mudança e agrupe o perfil e as decisões sobre relações afetadas num manifesto privado; execute `content:impact` antes de `content:apply`. O compilador e `theory-figure-model.js` tornam a aresta visível também no dossiê da teoria, sem edição duplicada. Revise destaque, filtros, índice, comparação, trilhas, linha do tempo, navegação por URL, crédito, build e comportamento responsivo. Não crie uma fonte paralela na home ou no HTML.
 
 ## Validação
 
-`npm run verify` rejeita IDs ou slugs duplicados, áreas e tipos de relação inválidos, fontes ausentes, retratos incompletos, teorias inexistentes e um conjunto de destaques diferente de três posições únicas. Complete com teste visual, teclado, movimento reduzido, busca, filtros e navegação direta.
+`npm run content:check` rejeita IDs ou slugs duplicados, áreas e tipos de relação inválidos, fontes ausentes, retratos incompletos, destinos inexistentes, ledger divergente, relação revisada sem baseline e um conjunto de destaques diferente de três posições únicas. Mudanças semânticas ou estruturais com relações revisadas desatualizadas bloqueiam o gate. `npm run verify` confirma as projeções públicas. Complete com teste visual, teclado, movimento reduzido, busca, filtros e navegação direta.
 
 ## To Verify
 
 - Revisão periódica da disponibilidade das fontes externas e de mudanças de licença.
-- Critério editorial para ampliar o catálogo além de 22 perfis sem reduzir comparação e desempenho.
+- Critério editorial para ampliar o catálogo sem reduzir comparação e desempenho.
+- Necessidade de histórico relacional próprio além do Git.

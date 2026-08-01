@@ -3,7 +3,7 @@
   "nodes": {
     "domains.content-operations": {
       "canonicalFor": [
-        "arquitetura-alvo de entidades, referências, relações, geração de catálogos, submissões e futura persistência"
+        "arquitetura implementada e evolução de entidades, referências, relações, geração de catálogos, submissões e futura persistência"
       ],
       "conditionalContext": [
         {
@@ -21,19 +21,34 @@
       ],
       "documentType": "canonical-reference",
       "evidenceSources": [
-        "assets/data/theories.js",
-        "assets/data/theory-references.js",
-        "assets/data/notable-figures.js",
-        "assets/data/notable-figure-references.js",
-        "assets/data/experiments.js",
-        "assets/data/learning-paths.js",
-        "assets/data/contributions.js",
-        "assets/js/theory-model.js",
-        "assets/js/theory-figure-model.js",
-        "assets/js/global-search.js",
-        "scripts/build.mjs",
-        "scripts/public-manifest.mjs",
-        "scripts/verify.mjs"
+        "content/schemas/entity.schema.json",
+        "content/schemas/theory.schema.json",
+        "content/schemas/relation.schema.json",
+        "content/schemas/reference.schema.json",
+        "content/schemas/editorial-change-set.schema.json",
+        "content/schemas/editorial-revision-ledger.schema.json",
+        "content/public/catalogs/editorial-revision-ledger.json",
+        "content/public/theories/observacao-nao-linear.json",
+        "content/public/taxonomies/relation-types.json",
+        "scripts/content/change-set.mjs",
+        "scripts/content/cli.mjs",
+        "scripts/content/compiler.mjs",
+        "scripts/content/editorial-impact.mjs",
+        "scripts/content/editorial-revision-ledger.mjs",
+        "scripts/content/install-record.mjs",
+        "scripts/content/revision-policy.mjs",
+        "scripts/content/direct-import-policy.mjs",
+        "scripts/tests/editorial-impact-contracts.test.mjs",
+        "scripts/tests/editorial-change-set-contracts.test.mjs",
+        "scripts/tests/editorial-dashboard-contracts.test.mjs",
+        "scripts/tests/observacao-impact-fixture.test.mjs",
+        "scripts/content/fixtures/impact/observacao-nao-linear.json",
+        "tools/editorial-dashboard/server.mjs",
+        "tools/editorial-dashboard/services/editorial-workflow.mjs",
+        "tools/editorial-dashboard/services/preview-service.mjs",
+        "tools/editorial-dashboard/services/workspace-store.mjs",
+        "assets/js/content-repository.js",
+        "assets/js/content-source.js"
       ],
       "headings": [
         {
@@ -54,27 +69,23 @@
         },
         {
           "level": 3,
-          "text": "Acoplamento"
+          "text": "Vigência e decisão das relações"
         },
         {
           "level": 3,
-          "text": "Granularidade"
+          "text": "Operação editorial"
         },
         {
           "level": 3,
-          "text": "Relações distribuídas"
+          "text": "Granularidade seletiva"
         },
         {
           "level": 3,
-          "text": "Referências paralelas"
+          "text": "Dívida relacional e bibliográfica"
         },
         {
           "level": 3,
-          "text": "Fronteira pública ampla"
-        },
-        {
-          "level": 3,
-          "text": "Evolução editorial incompleta"
+          "text": "Snapshots e operação privada"
         },
         {
           "level": 2,
@@ -82,7 +93,7 @@
         },
         {
           "level": 2,
-          "text": "Estrutura-alvo recomendada"
+          "text": "Estrutura implementada"
         },
         {
           "level": 2,
@@ -99,6 +110,14 @@
         {
           "level": 2,
           "text": "Registro central de relações"
+        },
+        {
+          "level": 3,
+          "text": "Ledger editorial e estado derivado"
+        },
+        {
+          "level": 3,
+          "text": "Classes de mudança"
         },
         {
           "level": 2,
@@ -150,27 +169,23 @@
         },
         {
           "level": 2,
-          "text": "Estratégia de migração"
+          "text": "Estado da evolução"
         },
         {
           "level": 3,
-          "text": "Passo 1 — schemas e segurança"
+          "text": "Baseline concluída"
         },
         {
           "level": 3,
-          "text": "Passo 2 — formato granular piloto"
+          "text": "Dependência editorial concluída"
         },
         {
           "level": 3,
-          "text": "Passo 3 — relações e referências"
+          "text": "Próximo incremento de operação"
         },
         {
           "level": 3,
-          "text": "Passo 4 — índices e fachada"
-        },
-        {
-          "level": 3,
-          "text": "Passo 5 — publicações e contribuições"
+          "text": "Futuro condicionado"
         },
         {
           "level": 2,
@@ -197,6 +212,7 @@
         "domains.editorial-model",
         "domains.theory-catalog",
         "domains.notable-figures",
+        "domains.editorial-dashboard",
         "project.architecture",
         "project.maturity-roadmap"
       ],
@@ -225,6 +241,451 @@
         "ContentRepository"
       ]
     },
+    "domains.editorial-dashboard": {
+      "canonicalFor": [
+        "escopo, fluxos, requisitos e critérios de aceitação da dashboard editorial privada"
+      ],
+      "conditionalContext": [
+        {
+          "condition": "Quando o fluxo tocar publicação, contribuição externa, crédito, correção, retirada ou retratação.",
+          "id": "domains.editorial-model"
+        },
+        {
+          "condition": "Quando a solução tocar autenticação, dados privados, submissões, anexos ou deploy remoto.",
+          "id": "project.boundaries"
+        },
+        {
+          "condition": "Quando a especificação sair do planejamento e passar a orientar implementação.",
+          "id": "project.architecture"
+        },
+        {
+          "condition": "Quando o fluxo passar de rascunho local para preview, commit, build ou publicação.",
+          "id": "infrastructure.static-deploy"
+        },
+        {
+          "condition": "Antes de considerar um incremento da dashboard pronto.",
+          "id": "quality.validation-release"
+        }
+      ],
+      "documentType": "canonical-reference",
+      "evidenceSources": [
+        "content/schemas/theory.schema.json",
+        "content/schemas/relation.schema.json",
+        "content/schemas/reference.schema.json",
+        "content/schemas/editorial-change-set.schema.json",
+        "content/schemas/editorial-revision-ledger.schema.json",
+        "content/public/catalogs/editorial-revision-ledger.json",
+        "content/public/theories/observacao-nao-linear.json",
+        "content/public/taxonomies/relation-types.json",
+        "scripts/content/change-set.mjs",
+        "scripts/content/cli.mjs",
+        "scripts/content/compiler.mjs",
+        "scripts/content/editorial-impact.mjs",
+        "scripts/content/editorial-revision-ledger.mjs",
+        "scripts/content/install-record.mjs",
+        "scripts/content/revision-policy.mjs",
+        "scripts/tests/editorial-impact-contracts.test.mjs",
+        "scripts/tests/editorial-change-set-contracts.test.mjs",
+        "scripts/tests/editorial-dashboard-contracts.test.mjs",
+        "scripts/tests/observacao-impact-fixture.test.mjs",
+        "scripts/content/fixtures/impact/observacao-nao-linear.json",
+        "tools/editorial-dashboard/server.mjs",
+        "tools/editorial-dashboard/services/catalog-service.mjs",
+        "tools/editorial-dashboard/services/editorial-workflow.mjs",
+        "tools/editorial-dashboard/services/preview-service.mjs",
+        "tools/editorial-dashboard/services/security.mjs",
+        "tools/editorial-dashboard/services/workspace-store.mjs",
+        "tools/editorial-dashboard/app/index.html",
+        "tools/editorial-dashboard/app/main.js",
+        "assets/js/content-repository.js",
+        "assets/js/content-source.js",
+        "package.json"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "text": "Especificação funcional da dashboard editorial"
+        },
+        {
+          "level": 2,
+          "text": "Purpose"
+        },
+        {
+          "level": 2,
+          "text": "Decisão executiva"
+        },
+        {
+          "level": 2,
+          "text": "Baseline confirmada"
+        },
+        {
+          "level": 2,
+          "text": "Problema"
+        },
+        {
+          "level": 2,
+          "text": "Objetivos do produto"
+        },
+        {
+          "level": 2,
+          "text": "Não objetivos do primeiro incremento"
+        },
+        {
+          "level": 2,
+          "text": "Princípios e invariantes"
+        },
+        {
+          "level": 3,
+          "text": "Uma fonte e várias projeções"
+        },
+        {
+          "level": 3,
+          "text": "Automação mecânica e decisão humana"
+        },
+        {
+          "level": 3,
+          "text": "Público e privado são pipelines diferentes"
+        },
+        {
+          "level": 3,
+          "text": "Identidade não depende de apresentação"
+        },
+        {
+          "level": 3,
+          "text": "Histórico publicado é imutável"
+        },
+        {
+          "level": 3,
+          "text": "Disponibilidade pública independe do painel"
+        },
+        {
+          "level": 2,
+          "text": "Modelo editorial operado pela dashboard"
+        },
+        {
+          "level": 3,
+          "text": "Entidades de primeira classe já existentes"
+        },
+        {
+          "level": 3,
+          "text": "Elementos internos à teoria"
+        },
+        {
+          "level": 3,
+          "text": "Pessoas, perfis e crédito"
+        },
+        {
+          "level": 3,
+          "text": "Rotas Guiadas"
+        },
+        {
+          "level": 2,
+          "text": "Classificação de mudança"
+        },
+        {
+          "level": 2,
+          "text": "Vigência das relações"
+        },
+        {
+          "level": 3,
+          "text": "Estado implementado"
+        },
+        {
+          "level": 3,
+          "text": "Contrato vigente"
+        },
+        {
+          "level": 3,
+          "text": "Decisões disponíveis"
+        },
+        {
+          "level": 2,
+          "text": "Análise de impacto"
+        },
+        {
+          "level": 3,
+          "text": "Entradas"
+        },
+        {
+          "level": 3,
+          "text": "Saídas"
+        },
+        {
+          "level": 3,
+          "text": "Profundidade"
+        },
+        {
+          "level": 3,
+          "text": "Política de gate"
+        },
+        {
+          "level": 2,
+          "text": "Estados operacionais"
+        },
+        {
+          "level": 2,
+          "text": "Perfis de acesso"
+        },
+        {
+          "level": 3,
+          "text": "Primeiro incremento"
+        },
+        {
+          "level": 3,
+          "text": "Evolução remota"
+        },
+        {
+          "level": 2,
+          "text": "Requisitos funcionais"
+        },
+        {
+          "level": 3,
+          "text": "RF-01 — Visão geral"
+        },
+        {
+          "level": 3,
+          "text": "RF-02 — Catálogo unificado"
+        },
+        {
+          "level": 3,
+          "text": "RF-03 — Formulário por schema"
+        },
+        {
+          "level": 3,
+          "text": "RF-04 — Cadastro de teoria"
+        },
+        {
+          "level": 3,
+          "text": "RF-05 — Biblioteca de referências"
+        },
+        {
+          "level": 3,
+          "text": "RF-06 — Editor de relações"
+        },
+        {
+          "level": 3,
+          "text": "RF-07 — Revisões e diff"
+        },
+        {
+          "level": 3,
+          "text": "RF-08 — Análise de impacto"
+        },
+        {
+          "level": 3,
+          "text": "RF-09 — Preview"
+        },
+        {
+          "level": 3,
+          "text": "RF-10 — Instalação"
+        },
+        {
+          "level": 3,
+          "text": "RF-11 — Publicação"
+        },
+        {
+          "level": 3,
+          "text": "RF-12 — Auditoria"
+        },
+        {
+          "level": 3,
+          "text": "RF-13 — Remoção segura"
+        },
+        {
+          "level": 3,
+          "text": "RF-14 — Recuperação"
+        },
+        {
+          "level": 2,
+          "text": "Arquitetura de informação da dashboard"
+        },
+        {
+          "level": 3,
+          "text": "1. Visão geral"
+        },
+        {
+          "level": 3,
+          "text": "2. Conteúdos"
+        },
+        {
+          "level": 3,
+          "text": "3. Relações"
+        },
+        {
+          "level": 3,
+          "text": "4. Referências"
+        },
+        {
+          "level": 3,
+          "text": "5. Revisão"
+        },
+        {
+          "level": 3,
+          "text": "6. Preview"
+        },
+        {
+          "level": 3,
+          "text": "7. Builds"
+        },
+        {
+          "level": 3,
+          "text": "8. Configuração"
+        },
+        {
+          "level": 2,
+          "text": "Arquitetura por etapas"
+        },
+        {
+          "level": 3,
+          "text": "Etapa A — dashboard local"
+        },
+        {
+          "level": 3,
+          "text": "Etapa B — dashboard remota baseada em Git"
+        },
+        {
+          "level": 3,
+          "text": "Etapa C — serviço editorial com persistência"
+        },
+        {
+          "level": 2,
+          "text": "Segurança e privacidade"
+        },
+        {
+          "level": 2,
+          "text": "Requisitos não funcionais"
+        },
+        {
+          "level": 3,
+          "text": "RNF-01 — Compatibilidade"
+        },
+        {
+          "level": 3,
+          "text": "RNF-02 — Determinismo"
+        },
+        {
+          "level": 3,
+          "text": "RNF-03 — Acessibilidade"
+        },
+        {
+          "level": 3,
+          "text": "RNF-04 — Desempenho"
+        },
+        {
+          "level": 3,
+          "text": "RNF-05 — Recuperabilidade"
+        },
+        {
+          "level": 3,
+          "text": "RNF-06 — Observabilidade"
+        },
+        {
+          "level": 3,
+          "text": "RNF-07 — Portabilidade"
+        },
+        {
+          "level": 3,
+          "text": "RNF-08 — Testabilidade"
+        },
+        {
+          "level": 3,
+          "text": "RNF-09 — Usabilidade editorial"
+        },
+        {
+          "level": 3,
+          "text": "RNF-10 — Escalabilidade editorial"
+        },
+        {
+          "level": 2,
+          "text": "Piloto obrigatório: Observação Não-Linear"
+        },
+        {
+          "level": 3,
+          "text": "Cenário"
+        },
+        {
+          "level": 3,
+          "text": "Resultado esperado"
+        },
+        {
+          "level": 2,
+          "text": "Critérios de aceitação do MVP"
+        },
+        {
+          "level": 2,
+          "text": "Métricas de sucesso"
+        },
+        {
+          "level": 2,
+          "text": "Ordem de implementação"
+        },
+        {
+          "level": 3,
+          "text": "Fase 0 — contrato"
+        },
+        {
+          "level": 3,
+          "text": "Fase 1 — dependência editorial"
+        },
+        {
+          "level": 3,
+          "text": "Fase 2 — dashboard local mínima"
+        },
+        {
+          "level": 3,
+          "text": "Fase 3 — piloto e endurecimento"
+        },
+        {
+          "level": 3,
+          "text": "Fase 4 — cobertura dos demais tipos"
+        },
+        {
+          "level": 3,
+          "text": "Fase 5 — operação remota"
+        },
+        {
+          "level": 2,
+          "text": "Decisões fechadas no primeiro incremento"
+        },
+        {
+          "level": 2,
+          "text": "Decisões explicitamente abertas"
+        },
+        {
+          "level": 2,
+          "text": "To Verify"
+        }
+      ],
+      "id": "domains.editorial-dashboard",
+      "kind": "canonical-reference",
+      "notes": [],
+      "path": "ai/domains/EDITORIAL_DASHBOARD_SPECIFICATION.md",
+      "relatedContext": [
+        "domains.theory-catalog",
+        "domains.notable-figures",
+        "project.maturity-roadmap"
+      ],
+      "requiredContext": [
+        "domains.index",
+        "domains.content-operations"
+      ],
+      "scope": "domains",
+      "sourceFiles": [
+        "ai/domains/EDITORIAL_DASHBOARD_SPECIFICATION.md"
+      ],
+      "status": "canonical",
+      "supersededBy": [],
+      "supersedes": [],
+      "title": "Especificação funcional da dashboard editorial",
+      "triggers": [
+        "dashboard editorial",
+        "painel editorial",
+        "cadastro de conteúdo",
+        "análise de impacto",
+        "revisão de relação",
+        "preview editorial",
+        "publicação administrativa"
+      ]
+    },
     "domains.editorial-model": {
       "canonicalFor": [
         "voz pública, classificação de formatos, privacidade e passagem de rascunho para publicação"
@@ -236,6 +697,9 @@
         "Laboratorio/laboratorio.html",
         "Contribuicoes/contribuicoes.html",
         "assets/data/contributions.js",
+        "content/schemas/publication.schema.json",
+        "content/public/catalogs/publications.json",
+        "scripts/publication-pages.mjs",
         "index.html",
         "docs/INTEGRACAO_TEORIAS.md",
         "scripts/build.mjs",
@@ -283,7 +747,8 @@
         "project.boundaries",
         "frontend.design-accessibility",
         "domains.theory-catalog",
-        "domains.content-operations"
+        "domains.content-operations",
+        "domains.editorial-dashboard"
       ],
       "requiredContext": [
         "domains.index"
@@ -315,12 +780,12 @@
       "conditionalContext": [],
       "documentType": "scope-index",
       "evidenceSources": [
-        "assets/data/theories.js",
-        "assets/data/research-tracks.js",
-        "assets/data/notable-figures.js",
-        "assets/data/experiments.js",
-        "assets/data/learning-paths.js",
-        "assets/data/contributions.js",
+        "content/public/theories/observacao-nao-linear.json",
+        "content/public/taxonomies/theories.json",
+        "content/public/taxonomies/notable-figures.json",
+        "content/public/taxonomies/experiments.json",
+        "content/public/paths/perder-para-evidencia.json",
+        "content/public/catalogs/publications.json",
         "docs/INTEGRACAO_TEORIAS.md",
         "Arquivo/arquivo.html"
       ],
@@ -354,7 +819,8 @@
         "domains.editorial-model",
         "domains.theory-catalog",
         "domains.notable-figures",
-        "domains.content-operations"
+        "domains.content-operations",
+        "domains.editorial-dashboard"
       ],
       "requiredContext": [
         "root.index"
@@ -375,7 +841,9 @@
         "privacidade editorial",
         "grandes nomes",
         "contribuição externa",
-        "autoria"
+        "autoria",
+        "dashboard editorial",
+        "análise de impacto"
       ]
     },
     "domains.notable-figures": {
@@ -390,13 +858,19 @@
       ],
       "documentType": "canonical-reference",
       "evidenceSources": [
-        "assets/data/notable-figures.js",
-        "assets/data/notable-figure-references.js",
+        "content/schemas/figure.schema.json",
+        "content/public/catalogs/editorial-revision-ledger.json",
+        "content/public/figures/albert-einstein.json",
+        "content/public/taxonomies/notable-figures.json",
+        "content/public/figure-trails/gravidade.json",
+        "content/public/timeline-events/gravidade-geometrica.json",
+        "content/public/relations/figure--albert-einstein--historical-foundation--observacao-nao-linear.json",
         "assets/js/notable-figures-model.js",
         "assets/js/theory-figure-model.js",
         "GrandesNomes/grandes-nomes.html",
         "GrandesNomes/grandes-nomes.js",
-        "scripts/verify.mjs"
+        "scripts/content/compiler.mjs",
+        "scripts/content/editorial-impact.mjs"
       ],
       "headings": [
         {
@@ -439,6 +913,7 @@
       "relatedContext": [
         "domains.editorial-model",
         "domains.content-operations",
+        "domains.editorial-dashboard",
         "frontend.pages-modules",
         "frontend.user-flows"
       ],
@@ -482,15 +957,18 @@
       ],
       "documentType": "canonical-reference",
       "evidenceSources": [
-        "assets/data/theories.js",
-        "assets/data/theory-references.js",
-        "assets/data/research-tracks.js",
+        "content/schemas/theory.schema.json",
+        "content/public/catalogs/editorial-revision-ledger.json",
+        "content/public/theories/observacao-nao-linear.json",
+        "content/public/taxonomies/theories.json",
+        "content/public/relations/theory--observacao-nao-linear--afinidade-conceitual--contentor-finito.json",
+        "content/public/research-tracks/astrobiologia-em-camadas.json",
         "assets/js/theory-model.js",
         "assets/js/theory-figure-model.js",
-        "assets/data/notable-figures.js",
         "Teorias/teorias.js",
         "scripts/theory-sources.mjs",
-        "scripts/verify.mjs",
+        "scripts/content/compiler.mjs",
+        "scripts/content/editorial-impact.mjs",
         "docs/PARECER_CRITICO_INTEGRAL_DAS_TEORIAS_2026.docx"
       ],
       "headings": [
@@ -530,7 +1008,8 @@
       "relatedContext": [
         "external.theory-integration",
         "domains.editorial-model",
-        "domains.content-operations"
+        "domains.content-operations",
+        "domains.editorial-dashboard"
       ],
       "requiredContext": [
         "domains.index"
@@ -1229,21 +1708,21 @@
         "assets/js/smooth-scroll.js",
         "assets/js/contact.js",
         "GrandesNomes/grandes-nomes.js",
-        "assets/data/notable-figures.js",
+        "content/public/figures/albert-einstein.json",
         "Constelacoes/constelacoes.js",
         "Constelacoes/whale-shark-easter-egg.js",
         "Constelacoes/constelacoes.css",
         "assets/js/constellation-chart.js",
-        "assets/data/constellations.js",
+        "content/public/constellations/orion.json",
         "assets/js/global-search.js",
-        "assets/data/experiments.js",
+        "content/public/taxonomies/experiments.json",
         "Laboratorio/laboratorio.js",
         "Laboratorio/experimento.js",
         "Laboratorio/simulations/light-cone.js",
         "Laboratorio/simulations/zero-epsilon.js",
         "Laboratorio/simulations/finite-recurrence.js",
         "Laboratorio/simulations/astrobiology.js",
-        "assets/data/learning-paths.js",
+        "content/public/paths/perder-para-evidencia.json",
         "assets/js/learning-paths-model.js",
         "Rotas/rotas.js",
         "assets/vendor/swiper/LICENSE",
@@ -1566,6 +2045,7 @@
         "scripts/public-manifest.mjs",
         "scripts/build.mjs",
         "scripts/serve.mjs",
+        "tools/editorial-dashboard/server.mjs",
         ".github/workflows/quality.yml",
         "vercel.json"
       ],
@@ -1634,6 +2114,8 @@
         "scripts/serve.mjs",
         "scripts/public-manifest.mjs",
         "scripts/tests/public-smoke.test.mjs",
+        "scripts/tests/editorial-dashboard-contracts.test.mjs",
+        "tools/editorial-dashboard/server.mjs",
         "vercel.json",
         ".gitignore",
         "robots.txt",
@@ -2295,9 +2777,19 @@
         "assets/js/main.js",
         "assets/js/page-shell.js",
         "assets/js/global-search.js",
-        "assets/data/experiments.js",
-        "assets/data/learning-paths.js",
+        "assets/js/content-repository.js",
+        "assets/js/content-source.js",
+        "content/schemas/entity.schema.json",
+        "content/schemas/editorial-change-set.schema.json",
+        "content/public/catalogs/editorial-revision-ledger.json",
+        "content/public/taxonomies/experiments.json",
+        "content/public/paths/perder-para-evidencia.json",
+        "scripts/content/change-set.mjs",
+        "scripts/content/compiler.mjs",
+        "scripts/content/editorial-impact.mjs",
+        "scripts/content/install-record.mjs",
         "scripts/public-manifest.mjs",
+        "tools/editorial-dashboard/server.mjs",
         "assets/js/notable-figures-model.js",
         "assets/js/constellation-model.js",
         "assets/js/constellation-chart.js",
@@ -2372,6 +2864,9 @@
         "scripts/public-manifest.mjs",
         "scripts/build.mjs",
         "scripts/serve.mjs",
+        "scripts/content/compiler.mjs",
+        "scripts/content/paths.mjs",
+        "content/schemas/entity.schema.json",
         "scripts/theory-sources.mjs",
         "docs/INTEGRACAO_TEORIAS.md",
         "DOCUMENTACAO_OBSERVATORIO_ATUALIZADA.md",
@@ -2439,6 +2934,9 @@
         "package-lock.json",
         ".nvmrc",
         "scripts/check-node-version.cjs",
+        "scripts/content/change-set.mjs",
+        "scripts/content/cli.mjs",
+        "scripts/content/install-record.mjs",
         "scripts/public-manifest.mjs",
         "scripts/serve.mjs",
         "scripts/verify.mjs",
@@ -2586,9 +3084,15 @@
         "assets/css/styles.css",
         "assets/js/navigation.js",
         "assets/js/global-search.js",
-        "assets/data/theories.js",
-        "assets/data/notable-figures.js",
-        "assets/data/contributions.js",
+        "content/public/theories/observacao-nao-linear.json",
+        "content/public/figures/albert-einstein.json",
+        "content/public/catalogs/publications.json",
+        "content/public/catalogs/editorial-revision-ledger.json",
+        "scripts/content/change-set.mjs",
+        "scripts/content/compiler.mjs",
+        "scripts/content/editorial-impact.mjs",
+        "scripts/content/install-record.mjs",
+        "assets/js/content-repository.js",
         "scripts/build.mjs",
         "scripts/public-manifest.mjs",
         "scripts/tests/browser-smoke.test.mjs"
@@ -2605,6 +3109,10 @@
         {
           "level": 2,
           "text": "Decisão executiva"
+        },
+        {
+          "level": 2,
+          "text": "Estado de execução"
         },
         {
           "level": 2,
@@ -2636,7 +3144,7 @@
         },
         {
           "level": 3,
-          "text": "6. A modelagem já é rica, porém distribuída"
+          "text": "6. A modelagem foi centralizada, mas a operação ainda é técnica"
         },
         {
           "level": 3,
@@ -2732,6 +3240,7 @@
         "project.boundaries",
         "frontend.design-accessibility",
         "domains.editorial-model",
+        "domains.editorial-dashboard",
         "quality.performance-accessibility",
         "infrastructure.static-deploy"
       ],
@@ -2771,6 +3280,13 @@
         "scripts/tests/public-smoke.test.mjs",
         "scripts/tests/accessibility-contracts.test.mjs",
         "scripts/tests/browser-smoke.test.mjs",
+        "scripts/tests/editorial-impact-contracts.test.mjs",
+        "scripts/tests/editorial-change-set-contracts.test.mjs",
+        "scripts/tests/editorial-dashboard-contracts.test.mjs",
+        "tools/editorial-dashboard/tests/apply-preview-contracts.test.mjs",
+        "tools/editorial-dashboard/tests/server-contracts.test.mjs",
+        "tools/editorial-dashboard/tests/ui-context-contracts.test.mjs",
+        "scripts/tests/observacao-impact-fixture.test.mjs",
         ".github/workflows/quality.yml",
         "assets/js/observer.js",
         "assets/js/resonance.js"
@@ -2936,6 +3452,15 @@
         "scripts/tests/accessibility-contracts.test.mjs",
         "scripts/tests/feature-contracts.test.mjs",
         "scripts/tests/contributions-contracts.test.mjs",
+        "scripts/tests/content-platform-contracts.test.mjs",
+        "scripts/tests/editorial-impact-contracts.test.mjs",
+        "scripts/tests/editorial-dashboard-contracts.test.mjs",
+        "tools/editorial-dashboard/tests/apply-preview-contracts.test.mjs",
+        "tools/editorial-dashboard/tests/preview-smoke.mjs",
+        "tools/editorial-dashboard/tests/server-contracts.test.mjs",
+        "tools/editorial-dashboard/tests/ui-context-contracts.test.mjs",
+        "tools/editorial-dashboard/tests/workflow-contracts.test.mjs",
+        "tools/editorial-dashboard/tests/workspace-contracts.test.mjs",
         "scripts/tests/browser-smoke.test.mjs",
         ".github/workflows/quality.yml",
         "package.json"
@@ -2952,6 +3477,10 @@
         {
           "level": 2,
           "text": "Required Checks"
+        },
+        {
+          "level": 2,
+          "text": "Gate editorial de relações"
         },
         {
           "level": 2,
@@ -3194,8 +3723,12 @@
           "id": "infrastructure.static-deploy"
         },
         {
-          "condition": "Antes de considerar qualquer etapa da migração pronta.",
+          "condition": "Antes de considerar qualquer etapa da evolução pronta.",
           "id": "quality.validation-release"
+        },
+        {
+          "condition": "Quando a mudança planejar ou implementar dashboard, cadastro assistido, análise de impacto, revisão por diff, preview ou publicação administrativa.",
+          "id": "domains.editorial-dashboard"
         }
       ],
       "description": "Reorganizar schemas, entidades, referências, relações, geradores, contribuições ou preparar persistência futura.",

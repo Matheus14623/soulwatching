@@ -15,6 +15,8 @@ triggers:
   - "grandes nomes"
   - "contribuição externa"
   - "autoria"
+  - "dashboard editorial"
+  - "análise de impacto"
 required_context:
   - "root.index"
 related_context:
@@ -22,13 +24,14 @@ related_context:
   - "domains.theory-catalog"
   - "domains.notable-figures"
   - "domains.content-operations"
+  - "domains.editorial-dashboard"
 evidence_sources:
-  - "assets/data/theories.js"
-  - "assets/data/research-tracks.js"
-  - "assets/data/notable-figures.js"
-  - "assets/data/experiments.js"
-  - "assets/data/learning-paths.js"
-  - "assets/data/contributions.js"
+  - "content/public/theories/observacao-nao-linear.json"
+  - "content/public/taxonomies/theories.json"
+  - "content/public/taxonomies/notable-figures.json"
+  - "content/public/taxonomies/experiments.json"
+  - "content/public/paths/perder-para-evidencia.json"
+  - "content/public/catalogs/publications.json"
   - "docs/INTEGRACAO_TEORIAS.md"
   - "Arquivo/arquivo.html"
 ---
@@ -43,6 +46,7 @@ Leia este escopo quando a tarefa alterar o significado público do observatório
 - [Catálogo de linhas de investigação](THEORY_CATALOG.md)
 - [Catálogo de grandes nomes](NOTABLE_FIGURES_CATALOG.md)
 - [Operações de conteúdo e relações](CONTENT_OPERATIONS_AND_RELATIONS.md)
+- [Especificação funcional da dashboard editorial](EDITORIAL_DASHBOARD_SPECIFICATION.md)
 
 ## Vocabulário central
 

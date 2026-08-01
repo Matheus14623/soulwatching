@@ -16,5 +16,10 @@
   "label": "Versões e mudanças de enquadramento",
   "justification": "A T-07 pode registrar mudanças de linguagem e pressupostos, mas não deve chamar toda revisão de “mudança de paradigma”.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "thomas-kuhn-r1",
+    "targetRevisionId": "backend-existencia-r1"
+  }
 }

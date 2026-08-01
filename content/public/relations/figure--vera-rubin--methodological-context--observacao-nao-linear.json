@@ -16,5 +16,10 @@
   "label": "Inferir o invisível pelo movimento",
   "justification": "A T-01 compartilha a necessidade de reconstruir estados a partir de efeitos observáveis, com alternativas e incertezas explícitas.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "vera-rubin-r1",
+    "targetRevisionId": "observacao-nao-linear-r1"
+  }
 }

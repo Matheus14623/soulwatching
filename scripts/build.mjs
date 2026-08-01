@@ -199,7 +199,7 @@ await Promise.all(outputFiles
     if (synchronized !== source) await writeFile(file, synchronized, 'utf8');
   }));
 const forbiddenExtensions = /\.(?:bak|cjs|docx|json|md|pdf|py)$/i;
-const forbiddenDirectories = /(?:^|[\\/])(?:ai|content|docs|ia|scripts|submissions|private-attachments|\.content-drafts|\.content-reports)(?:[\\/]|$)/i;
+const forbiddenDirectories = /(?:^|[\\/])(?:ai|content|docs|ia|scripts|tools|submissions|private-attachments|\.content-drafts|\.content-reports|\.content-cache)(?:[\\/]|$)/i;
 const privateCanary = 'CONTENT_PRIVATE_CANARY_DO_NOT_PUBLISH';
 const forbiddenGeneratedField = /["'](?:address|consentEvidence|email|permissionProof|phone|privateContactData|privateDecisionNotes|privateReviewNotes|reviewerEmail|secret|submission|submissionId|telephone|token)["']\s*:/i;
 const extensionPolicies = Object.freeze([

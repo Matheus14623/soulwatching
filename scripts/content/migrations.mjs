@@ -2,6 +2,7 @@ export const CURRENT_SCHEMA_VERSIONS = Object.freeze({
   constellation: 1,
   experiment: 1,
   'experiment-taxonomy': 1,
+  'editorial-revision-ledger': 1,
   figure: 1,
   'figure-taxonomy': 1,
   'figure-trail': 1,

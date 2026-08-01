@@ -44,7 +44,8 @@ Reorganizar schemas, entidades, referências, relações, geradores, contribuiç
   - [Fronteiras, fontes de verdade e legado](project/REPOSITORY_BOUNDARIES.md): Quando a mudança tocar submissões, dados pessoais, materiais privados ou a fronteira do artefato público.
   - [Arquitetura atual](project/ARCHITECTURE.md): Quando imports, adaptadores, módulos de runtime ou entrypoints forem alterados.
   - [Build estático e deploy](infrastructure/STATIC_BUILD_AND_DEPLOY.md): Quando geração, allowlist, build ou deploy forem alterados.
-  - [Validação e release](quality/VALIDATION_AND_RELEASE.md): Antes de considerar qualquer etapa da migração pronta.
+  - [Validação e release](quality/VALIDATION_AND_RELEASE.md): Antes de considerar qualquer etapa da evolução pronta.
+  - [Especificação funcional da dashboard editorial](domains/EDITORIAL_DASHBOARD_SPECIFICATION.md): Quando a mudança planejar ou implementar dashboard, cadastro assistido, análise de impacto, revisão por diff, preview ou publicação administrativa.
 - Contexto relacionado: [Modelo editorial e publicação](domains/EDITORIAL_MODEL.md), [Catálogo de linhas de investigação](domains/THEORY_CATALOG.md), [Catálogo de grandes nomes](domains/NOTABLE_FIGURES_CATALOG.md).
 
 ### frontend-change

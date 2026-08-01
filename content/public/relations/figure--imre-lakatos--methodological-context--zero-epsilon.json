@@ -16,5 +16,10 @@
   "label": "Critério para continuar ou parar",
   "justification": "A T-09 se torna mais responsável quando registra se tentativas geram aprendizado novo ou apenas acumulam justificativas posteriores.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "imre-lakatos-r1",
+    "targetRevisionId": "zero-epsilon-r1"
+  }
 }

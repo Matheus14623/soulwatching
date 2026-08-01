@@ -16,5 +16,10 @@
   "label": "Contexto metodológico",
   "justification": "A T-07 oferece rastreabilidade para expor as premissas necessárias à aplicação cosmológica da recorrência.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "contentor-finito-r1",
+    "targetRevisionId": "backend-existencia-r1"
+  }
 }

@@ -16,5 +16,10 @@
   "label": "Gravidade e descrição holográfica",
   "justification": "A T-05 pode comparar suas intuições a modelos holográficos definidos, sem generalizar AdS/CFT para qualquer cosmologia.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "juan-maldacena-r1",
+    "targetRevisionId": "universo-buraco-negro-r1"
+  }
 }

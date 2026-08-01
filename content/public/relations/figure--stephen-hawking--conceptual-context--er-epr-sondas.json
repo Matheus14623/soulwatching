@@ -16,5 +16,10 @@
   "label": "Paradoxo da informação",
   "justification": "A T-06 se aproxima do debate sobre informação em horizontes, mas isso não torna emaranhamento um canal de comunicação.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "stephen-hawking-r1",
+    "targetRevisionId": "er-epr-sondas-r1"
+  }
 }

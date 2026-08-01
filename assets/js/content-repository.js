@@ -129,6 +129,8 @@ export class ContentRepository {
       relationType = null,
       counterpartType = null,
       reviewState = null,
+      reviewStatus = null,
+      needsReview = null,
     } = filters;
     const results = [];
     const entityId = entityKey(ref.type, ref.id);
@@ -156,6 +158,8 @@ export class ContentRepository {
       if (direction === 'inbound' && !inbound) continue;
       if (relationType && relation.type !== relationType) continue;
       if (reviewState && relation.reviewState !== reviewState) continue;
+      if (reviewStatus && relation.reviewStatus !== reviewStatus) continue;
+      if (typeof needsReview === 'boolean' && Boolean(relation.needsReview) !== needsReview) continue;
 
       const counterpartRef = outbound ? relation.target : relation.source;
       if (counterpartType && counterpartRef.type !== counterpartType) continue;

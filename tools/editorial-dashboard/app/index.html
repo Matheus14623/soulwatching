@@ -1,0 +1,1164 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#050712">
+    <title>Observatório Editorial</title>
+    <link rel="stylesheet" href="./dashboard.css">
+    <script type="module" src="./main.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#editorial-main" data-skip-link>Ir para o conteúdo principal</a>
+
+    <div class="editorial-backdrop" aria-hidden="true"></div>
+
+    <header class="editorial-header">
+      <div class="editorial-brand">
+        <span class="editorial-brand-mark" aria-hidden="true"></span>
+        <span>
+          <strong>Observatório Editorial</strong>
+          <small>camada privada de manutenção</small>
+        </span>
+      </div>
+
+      <div class="editorial-header-status">
+        <span class="local-only-pill">
+          <span aria-hidden="true">●</span>
+          Somente neste computador
+        </span>
+        <span class="server-state" data-server-state>
+          <span class="server-state-dot" aria-hidden="true"></span>
+          <span data-server-state-label>Conectando…</span>
+        </span>
+      </div>
+
+      <button
+        class="icon-button editorial-menu-toggle"
+        type="button"
+        aria-controls="editorial-sidebar"
+        aria-expanded="false"
+        data-sidebar-toggle
+      >
+        <span class="sr-only">Abrir navegação da dashboard</span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+    </header>
+
+    <div class="editorial-app-shell">
+      <aside class="editorial-sidebar" id="editorial-sidebar" data-sidebar>
+        <nav aria-label="Fluxo editorial">
+          <p class="sidebar-label">Operação</p>
+          <button class="sidebar-link is-active" type="button" data-view-target="catalog" aria-current="page">
+            <span class="sidebar-link-index" aria-hidden="true">01</span>
+            <span>
+              <strong>Conteúdos</strong>
+              <small>Catálogo e rascunhos</small>
+            </span>
+          </button>
+          <button class="sidebar-link" type="button" data-view-target="editor" disabled>
+            <span class="sidebar-link-index" aria-hidden="true">02</span>
+            <span>
+              <strong>Editar revisão</strong>
+              <small>Teoria em workspace</small>
+            </span>
+          </button>
+          <button class="sidebar-link" type="button" data-view-target="impact" disabled>
+            <span class="sidebar-link-index" aria-hidden="true">03</span>
+            <span>
+              <strong>Revisar impacto</strong>
+              <small>Diff e relações</small>
+            </span>
+          </button>
+          <button class="sidebar-link" type="button" data-view-target="preview" disabled>
+            <span class="sidebar-link-index" aria-hidden="true">04</span>
+            <span>
+              <strong>Preview</strong>
+              <small>Artefato isolado</small>
+            </span>
+          </button>
+          <button class="sidebar-link" type="button" data-view-target="apply" disabled>
+            <span class="sidebar-link-index" aria-hidden="true">05</span>
+            <span>
+              <strong>Aplicar</strong>
+              <small>Instalação validada</small>
+            </span>
+          </button>
+        </nav>
+
+        <div class="sidebar-context">
+          <p class="sidebar-label">Estado da fonte</p>
+          <dl>
+            <div>
+              <dt>Fingerprint</dt>
+              <dd data-source-fingerprint>—</dd>
+            </div>
+            <div>
+              <dt>Última validação</dt>
+              <dd data-last-validation>—</dd>
+            </div>
+          </dl>
+          <p>Nenhum rascunho desta interface entra no site público antes da aplicação validada.</p>
+        </div>
+      </aside>
+
+      <button class="sidebar-scrim" type="button" tabindex="-1" aria-label="Fechar navegação" data-sidebar-scrim></button>
+
+      <main class="editorial-main" id="editorial-main" tabindex="-1" data-editorial-main>
+        <div class="global-status sr-only" role="status" aria-live="polite" aria-atomic="true" data-live-status></div>
+
+        <section class="editorial-view catalog-view is-active" data-view="catalog" aria-labelledby="catalog-title">
+          <div class="view-heading">
+            <div>
+              <p class="eyebrow">01 · Conteúdo canônico</p>
+              <h1 id="catalog-title">Escolha uma linha para criar uma nova revisão.</h1>
+              <p class="view-lead">
+                O registro publicado permanece intacto. A dashboard cria um workspace privado para edição, validação e análise.
+              </p>
+            </div>
+            <button class="button button-secondary" type="button" data-refresh-catalog>
+              Atualizar catálogo
+            </button>
+          </div>
+
+          <div class="overview-grid" aria-label="Resumo editorial" data-overview>
+            <article class="metric-card">
+              <span>Teorias públicas</span>
+              <strong data-metric="theories">—</strong>
+              <small>registros canônicos</small>
+            </article>
+            <article class="metric-card">
+              <span>Relações</span>
+              <strong data-metric="relations">—</strong>
+              <small>arestas editoriais</small>
+            </article>
+            <article class="metric-card metric-card-warning">
+              <span>Revisão necessária</span>
+              <strong data-metric="needsReview">—</strong>
+              <small>estado derivado</small>
+            </article>
+            <article class="metric-card">
+              <span>Rascunhos locais</span>
+              <strong data-metric="drafts">—</strong>
+              <small>fora da fonte pública</small>
+            </article>
+          </div>
+
+          <section class="drafts-panel" aria-labelledby="drafts-heading">
+            <div class="drafts-panel-heading">
+              <div>
+                <p class="panel-kicker">Continuidade local</p>
+                <h2 id="drafts-heading">Rascunhos locais</h2>
+                <p>Retome uma revisão já iniciada ou descarte um workspace que não será usado.</p>
+              </div>
+              <span class="drafts-count" data-drafts-count>0 ativos</span>
+            </div>
+            <div class="draft-list" data-workspace-list aria-busy="true">
+              <p class="empty-state">Carregando rascunhos…</p>
+            </div>
+          </section>
+
+          <div class="catalog-toolbar">
+            <label class="search-control" for="catalog-search">
+              <span>Buscar no catálogo</span>
+              <input
+                id="catalog-search"
+                type="search"
+                autocomplete="off"
+                placeholder="Título, código ou conceito"
+                data-catalog-search
+              >
+            </label>
+            <div class="catalog-filter" role="group" aria-label="Tipo de conteúdo">
+              <span>Tipo</span>
+              <button type="button" class="filter-chip is-active" aria-pressed="true">Teorias</button>
+              <span class="future-chip" aria-label="Outros tipos serão habilitados em uma etapa futura">demais tipos em breve</span>
+            </div>
+          </div>
+
+          <div class="catalog-feedback" role="status" aria-live="polite" data-catalog-feedback>
+            Carregando teorias…
+          </div>
+
+          <div class="catalog-list" data-catalog-list aria-busy="true"></div>
+        </section>
+
+        <section class="editorial-view workspace-view" data-view="editor" aria-labelledby="editor-title" hidden>
+          <div class="workspace-heading">
+            <div>
+              <button class="text-button back-button" type="button" data-back-to-catalog>
+                <span aria-hidden="true">←</span>
+                Voltar ao catálogo
+              </button>
+              <p class="eyebrow">02 · Nova revisão privada</p>
+              <h1 id="editor-title" data-workspace-title>Editar teoria</h1>
+              <p class="view-lead" data-workspace-subtitle>
+                Preencha o registro estruturado. Identidade e histórico anterior permanecem somente leitura.
+              </p>
+            </div>
+            <div class="workspace-state-card">
+              <span class="workspace-state-label">Workspace</span>
+              <strong data-workspace-status>Não iniciado</strong>
+              <small data-workspace-id>—</small>
+            </div>
+          </div>
+
+          <ol class="workflow-steps" aria-label="Etapas da alteração">
+            <li class="is-current" data-workflow-step="draft">
+              <span>1</span>
+              <strong>Rascunho</strong>
+            </li>
+            <li data-workflow-step="impact">
+              <span>2</span>
+              <strong>Impacto</strong>
+            </li>
+            <li data-workflow-step="decisions">
+              <span>3</span>
+              <strong>Decisões</strong>
+            </li>
+            <li data-workflow-step="preview">
+              <span>4</span>
+              <strong>Preview</strong>
+            </li>
+            <li data-workflow-step="apply">
+              <span>5</span>
+              <strong>Aplicar</strong>
+            </li>
+          </ol>
+
+          <div class="workspace-layout">
+            <form class="theory-editor" data-theory-form novalidate>
+              <div class="form-error-summary" role="alert" tabindex="-1" data-form-error-summary hidden>
+                <strong>Revise os campos indicados.</strong>
+                <ul data-form-error-list></ul>
+              </div>
+
+              <section class="editor-section" aria-labelledby="identity-heading">
+                <div class="editor-section-heading">
+                  <span aria-hidden="true">01</span>
+                  <div>
+                    <h2 id="identity-heading">Identidade preservada</h2>
+                    <p>Esses valores ligam URLs, relações e histórico. A revisão atual não os reescreve.</p>
+                  </div>
+                </div>
+                <dl class="identity-grid">
+                  <div>
+                    <dt>Código</dt>
+                    <dd data-identity="code">—</dd>
+                  </div>
+                  <div>
+                    <dt>ID estável</dt>
+                    <dd data-identity="id">—</dd>
+                  </div>
+                  <div>
+                    <dt>Slug público</dt>
+                    <dd data-identity="slug">—</dd>
+                  </div>
+                  <div>
+                    <dt>Nova revisão</dt>
+                    <dd data-identity="revisionId">—</dd>
+                  </div>
+                  <div class="identity-grid-wide">
+                    <dt>Título</dt>
+                    <dd data-identity="title">—</dd>
+                  </div>
+                  <div class="identity-grid-wide">
+                    <dt>Subtítulo</dt>
+                    <dd data-identity="subtitle">—</dd>
+                  </div>
+                </dl>
+              </section>
+
+              <section class="editor-section" aria-labelledby="central-idea-heading">
+                <div class="editor-section-heading">
+                  <span aria-hidden="true">02</span>
+                  <div>
+                    <h2 id="central-idea-heading">Ideia central</h2>
+                    <p>Resumo para reconhecimento rápido e proposta completa da linha.</p>
+                  </div>
+                </div>
+                <div class="form-stack">
+                  <label class="form-field" for="theory-summary">
+                    <span>Resumo</span>
+                    <textarea
+                      id="theory-summary"
+                      rows="4"
+                      data-field="summary"
+                      data-schema-path="summary"
+                      aria-describedby="theory-summary-help theory-summary-error"
+                    ></textarea>
+                    <small id="theory-summary-help">Apresente escopo, mecanismo e limite sem transformar a proposta em conclusão.</small>
+                    <small class="field-error" id="theory-summary-error" data-error-for="summary"></small>
+                  </label>
+                  <label class="form-field" for="theory-proposal">
+                    <span>Proposta atual</span>
+                    <textarea
+                      id="theory-proposal"
+                      rows="6"
+                      data-field="proposal"
+                      data-schema-path="proposal"
+                      aria-describedby="theory-proposal-help theory-proposal-error"
+                    ></textarea>
+                    <small id="theory-proposal-help">Declare o que está sendo investigado e o que não está sendo afirmado.</small>
+                    <small class="field-error" id="theory-proposal-error" data-error-for="proposal"></small>
+                  </label>
+                </div>
+              </section>
+
+              <section class="editor-section" aria-labelledby="questions-heading">
+                <div class="editor-section-heading editor-section-heading-action">
+                  <span aria-hidden="true">03</span>
+                  <div>
+                    <h2 id="questions-heading">Perguntas e conceitos</h2>
+                    <p>Itens independentes, ordenados e editáveis sem trabalhar diretamente em JSON.</p>
+                  </div>
+                </div>
+
+                <div class="repeatable-group">
+                  <div class="repeatable-heading">
+                    <h3>Perguntas</h3>
+                    <button class="small-button" type="button" data-add-list-item="questions">Adicionar pergunta</button>
+                  </div>
+                  <div data-list-editor="questions"></div>
+                </div>
+
+                <div class="repeatable-group">
+                  <div class="repeatable-heading">
+                    <h3>Conceitos</h3>
+                    <button class="small-button" type="button" data-add-list-item="concepts">Adicionar conceito</button>
+                  </div>
+                  <div data-list-editor="concepts"></div>
+                </div>
+
+                <div class="repeatable-group">
+                  <div class="repeatable-heading">
+                    <h3>Próximos passos</h3>
+                    <button class="small-button" type="button" data-add-list-item="nextSteps">Adicionar passo</button>
+                  </div>
+                  <div data-list-editor="nextSteps"></div>
+                </div>
+              </section>
+
+              <section class="editor-section" aria-labelledby="objections-heading">
+                <div class="editor-section-heading">
+                  <span aria-hidden="true">04</span>
+                  <div>
+                    <h2 id="objections-heading">Objeções</h2>
+                    <p>Cada objeção preserva um identificador local estável e uma resposta pública delimitada.</p>
+                  </div>
+                </div>
+                <div class="repeatable-heading">
+                  <h3>Objeções catalogadas</h3>
+                  <button class="small-button" type="button" data-add-objection>Adicionar objeção</button>
+                </div>
+                <div class="objection-editor-list" data-objections-editor></div>
+              </section>
+
+              <section class="editor-section" aria-labelledby="boundaries-heading">
+                <div class="editor-section-heading">
+                  <span aria-hidden="true">05</span>
+                  <div>
+                    <h2 id="boundaries-heading">Limites de decisão</h2>
+                    <p>Critérios públicos para revisar ou abandonar a linha.</p>
+                  </div>
+                </div>
+                <div class="two-column-fields">
+                  <label class="form-field" for="decision-revise">
+                    <span>Revisar quando</span>
+                    <textarea
+                      id="decision-revise"
+                      rows="5"
+                      data-field="decisionBoundary.revise"
+                      data-schema-path="decisionBoundary.revise"
+                      aria-describedby="decision-revise-error"
+                    ></textarea>
+                    <small class="field-error" id="decision-revise-error" data-error-for="decisionBoundary.revise"></small>
+                  </label>
+                  <label class="form-field" for="decision-abandon">
+                    <span>Abandonar ou encerrar quando</span>
+                    <textarea
+                      id="decision-abandon"
+                      rows="5"
+                      data-field="decisionBoundary.abandon"
+                      data-schema-path="decisionBoundary.abandon"
+                      aria-describedby="decision-abandon-error"
+                    ></textarea>
+                    <small class="field-error" id="decision-abandon-error" data-error-for="decisionBoundary.abandon"></small>
+                  </label>
+                </div>
+              </section>
+
+              <section class="editor-section" aria-labelledby="review-heading">
+                <div class="editor-section-heading">
+                  <span aria-hidden="true">06</span>
+                  <div>
+                    <h2 id="review-heading">Revisão crítica</h2>
+                    <p>Separe conhecimento estabelecido, foco autoral, limite e teste.</p>
+                  </div>
+                </div>
+                <div class="form-stack">
+                  <label class="form-field" for="review-assessment">
+                    <span>Avaliação atual</span>
+                    <input
+                      id="review-assessment"
+                      type="text"
+                      data-field="review.assessment"
+                      data-schema-path="review.assessment"
+                      aria-describedby="review-assessment-error"
+                    >
+                    <small class="field-error" id="review-assessment-error" data-error-for="review.assessment"></small>
+                  </label>
+                  <label class="form-field" for="review-known">
+                    <span>O que é conhecido</span>
+                    <textarea
+                      id="review-known"
+                      rows="4"
+                      data-field="review.known"
+                      data-schema-path="review.known"
+                      aria-describedby="review-known-error"
+                    ></textarea>
+                    <small class="field-error" id="review-known-error" data-error-for="review.known"></small>
+                  </label>
+                  <label class="form-field" for="review-focus">
+                    <span>Foco da investigação</span>
+                    <textarea
+                      id="review-focus"
+                      rows="4"
+                      data-field="review.focus"
+                      data-schema-path="review.focus"
+                      aria-describedby="review-focus-error"
+                    ></textarea>
+                    <small class="field-error" id="review-focus-error" data-error-for="review.focus"></small>
+                  </label>
+                  <label class="form-field" for="review-limit">
+                    <span>Limite</span>
+                    <textarea
+                      id="review-limit"
+                      rows="4"
+                      data-field="review.limit"
+                      data-schema-path="review.limit"
+                      aria-describedby="review-limit-error"
+                    ></textarea>
+                    <small class="field-error" id="review-limit-error" data-error-for="review.limit"></small>
+                  </label>
+                  <label class="form-field" for="review-test">
+                    <span>Como testar</span>
+                    <textarea
+                      id="review-test"
+                      rows="4"
+                      data-field="review.test"
+                      data-schema-path="review.test"
+                      aria-describedby="review-test-error"
+                    ></textarea>
+                    <small class="field-error" id="review-test-error" data-error-for="review.test"></small>
+                  </label>
+                </div>
+              </section>
+
+              <section class="editor-section" aria-labelledby="references-heading">
+                <div class="editor-section-heading">
+                  <span aria-hidden="true">07</span>
+                  <div>
+                    <h2 id="references-heading">Referências</h2>
+                    <p>Use IDs da biblioteca central. A validação impedirá fontes ausentes ou duplicadas.</p>
+                  </div>
+                </div>
+                <div class="repeatable-heading">
+                  <h3>Bibliografia geral</h3>
+                  <button class="small-button" type="button" data-add-list-item="referenceIds">Adicionar referência</button>
+                </div>
+                <div data-list-editor="referenceIds"></div>
+                <p class="section-note">
+                  Os vínculos de afirmações específicas existentes são preservados nesta primeira interface.
+                </p>
+              </section>
+
+              <section class="editor-section" aria-labelledby="revision-heading">
+                <div class="editor-section-heading">
+                  <span aria-hidden="true">08</span>
+                  <div>
+                    <h2 id="revision-heading">Registro da nova revisão</h2>
+                    <p>Esses dados formarão o histórico público da teoria.</p>
+                  </div>
+                </div>
+                <div class="two-column-fields">
+                  <label class="form-field" for="revision-version-label">
+                    <span>Versão pública</span>
+                    <input
+                      id="revision-version-label"
+                      type="text"
+                      data-revision-field="versionLabel"
+                      data-schema-path="revisions.*.versionLabel"
+                      aria-describedby="revision-version-label-error"
+                    >
+                    <small class="field-error" id="revision-version-label-error" data-error-for="revisions.versionLabel"></small>
+                  </label>
+                  <label class="form-field" for="revision-reviewed-at">
+                    <span>Data da revisão</span>
+                    <input
+                      id="revision-reviewed-at"
+                      type="date"
+                      data-revision-field="reviewedAt"
+                      data-schema-path="revisions.*.reviewedAt"
+                      aria-describedby="revision-reviewed-at-error"
+                    >
+                    <small class="field-error" id="revision-reviewed-at-error" data-error-for="revisions.reviewedAt"></small>
+                  </label>
+                  <label class="form-field field-span" for="revision-label">
+                    <span>Rótulo da revisão</span>
+                    <input
+                      id="revision-label"
+                      type="text"
+                      data-revision-field="label"
+                      data-schema-path="revisions.*.label"
+                      aria-describedby="revision-label-error"
+                    >
+                    <small class="field-error" id="revision-label-error" data-error-for="revisions.label"></small>
+                  </label>
+                  <label class="form-field field-span" for="revision-summary">
+                    <span>Resumo da mudança</span>
+                    <textarea
+                      id="revision-summary"
+                      rows="4"
+                      data-revision-field="changeSummary"
+                      data-schema-path="revisions.*.changeSummary"
+                      aria-describedby="revision-summary-error"
+                    ></textarea>
+                    <small class="field-error" id="revision-summary-error" data-error-for="revisions.changeSummary"></small>
+                  </label>
+                  <label class="form-field" for="revision-responsible-name">
+                    <span>Nome público responsável</span>
+                    <input id="revision-responsible-name" type="text" data-responsible-field="name">
+                    <small>Inclua somente identidade autorizada para publicação.</small>
+                  </label>
+                  <label class="form-field" for="revision-responsible-role">
+                    <span>Papel público</span>
+                    <input id="revision-responsible-role" type="text" data-responsible-field="role">
+                  </label>
+                </div>
+                <label class="consent-field">
+                  <input type="checkbox" data-public-identity-authorization>
+                  <span>Confirmo que o nome e o papel acima podem aparecer no histórico público desta revisão.</span>
+                </label>
+              </section>
+
+              <section class="editor-section" aria-labelledby="classification-heading">
+                <div class="editor-section-heading">
+                  <span aria-hidden="true">09</span>
+                  <div>
+                    <h2 id="classification-heading">Classe declarada</h2>
+                    <p>O motor pode elevar a classificação, mas nunca reduzir silenciosamente o risco.</p>
+                  </div>
+                </div>
+                <fieldset class="change-class-grid">
+                  <legend>Como você classifica esta mudança?</legend>
+                  <label>
+                    <input type="radio" name="change-class" value="editorial">
+                    <span><strong>Editorial</strong><small>Clareza sem mudança de sentido</small></span>
+                  </label>
+                  <label>
+                    <input type="radio" name="change-class" value="presentation">
+                    <span><strong>Apresentação</strong><small>Cor, posição ou destaque</small></span>
+                  </label>
+                  <label>
+                    <input type="radio" name="change-class" value="metadata">
+                    <span><strong>Metadados</strong><small>Busca, rótulo ou classificação auxiliar</small></span>
+                  </label>
+                  <label>
+                    <input type="radio" name="change-class" value="semantic" checked>
+                    <span><strong>Semântica</strong><small>Proposta, pergunta, limite ou teste</small></span>
+                  </label>
+                  <label>
+                    <input type="radio" name="change-class" value="structural">
+                    <span><strong>Estrutural</strong><small>Identidade, relação ou referência</small></span>
+                  </label>
+                </fieldset>
+              </section>
+
+              <div class="editor-actions">
+                <p data-unsaved-state>
+                  <span aria-hidden="true">○</span>
+                  Nenhuma alteração não salva.
+                </p>
+                <div>
+                  <button class="button button-secondary" type="button" data-discard-form>Restaurar último salvamento</button>
+                  <button class="button button-primary" type="submit" data-save-draft>Salvar rascunho</button>
+                </div>
+              </div>
+            </form>
+
+            <aside class="workspace-summary" aria-labelledby="workspace-summary-heading">
+              <p class="panel-kicker">Estado operacional</p>
+              <h2 id="workspace-summary-heading">Antes de analisar</h2>
+              <dl>
+                <div>
+                  <dt>Registro</dt>
+                  <dd data-summary-entity>—</dd>
+                </div>
+                <div>
+                  <dt>Da revisão</dt>
+                  <dd data-summary-from-revision>—</dd>
+                </div>
+                <div>
+                  <dt>Para a revisão</dt>
+                  <dd data-summary-to-revision>—</dd>
+                </div>
+                <div>
+                  <dt>Classe declarada</dt>
+                  <dd data-summary-change-class>Semântica</dd>
+                </div>
+              </dl>
+              <div class="summary-callout">
+                <strong>O que acontece ao salvar?</strong>
+                <p>Somente o workspace privado é atualizado. A fonte pública não é modificada.</p>
+              </div>
+              <button class="button button-secondary button-full" type="button" data-run-validation disabled>
+                Validar rascunho salvo
+              </button>
+              <button class="button button-primary button-full" type="button" data-run-impact disabled>
+                Calcular impacto
+              </button>
+            </aside>
+          </div>
+        </section>
+
+        <section class="editorial-view impact-view" data-view="impact" aria-labelledby="impact-title" hidden>
+          <div class="view-heading">
+            <div>
+              <p class="eyebrow">03 · Revisão antes da aplicação</p>
+              <h1 id="impact-title">Diff, dependências e decisões humanas.</h1>
+              <p class="view-lead">
+                O motor localiza automaticamente os consumidores. Você decide se cada relação continua editorialmente adequada.
+              </p>
+            </div>
+            <button class="button button-secondary" type="button" data-rerun-impact>
+              Recalcular impacto
+            </button>
+          </div>
+
+          <div class="impact-state-panel" data-impact-state>
+            <div class="impact-state-icon" aria-hidden="true">…</div>
+            <div>
+              <span>Estado do conjunto</span>
+              <h2>Aguardando análise</h2>
+              <p>Salve o rascunho e execute a análise de impacto.</p>
+            </div>
+          </div>
+
+          <div class="impact-classification-grid" data-impact-classification hidden>
+            <article>
+              <span>Declarada</span>
+              <strong data-classification="declared">—</strong>
+            </article>
+            <article>
+              <span>Sugerida pelo diff</span>
+              <strong data-classification="suggested">—</strong>
+            </article>
+            <article>
+              <span>Classe efetiva</span>
+              <strong data-classification="effective">—</strong>
+            </article>
+            <article>
+              <span>Caminhos alterados</span>
+              <strong data-classification="paths">—</strong>
+            </article>
+          </div>
+
+          <div class="impact-tabs" role="tablist" aria-label="Detalhes do impacto">
+            <button type="button" role="tab" aria-selected="true" aria-controls="impact-panel-diff" id="impact-tab-diff" data-impact-tab="diff">
+              Conteúdo
+            </button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="impact-panel-relations" id="impact-tab-relations" data-impact-tab="relations" tabindex="-1">
+              Relações
+              <span data-relations-count>0</span>
+            </button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="impact-panel-references" id="impact-tab-references" data-impact-tab="references" tabindex="-1">
+              Fontes e usos
+            </button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="impact-panel-surfaces" id="impact-tab-surfaces" data-impact-tab="surfaces" tabindex="-1">
+              Superfícies
+            </button>
+          </div>
+
+          <section class="impact-tab-panel" role="tabpanel" id="impact-panel-diff" aria-labelledby="impact-tab-diff" data-impact-panel="diff">
+            <div class="panel-heading">
+              <div>
+                <p class="panel-kicker">Comparação por campo</p>
+                <h2>O que mudou nesta revisão</h2>
+              </div>
+              <button class="text-button" type="button" data-toggle-technical-diff aria-expanded="false">
+                Mostrar caminhos técnicos
+              </button>
+            </div>
+            <div class="diff-list" data-diff-list>
+              <p class="empty-state">Nenhum diff calculado.</p>
+            </div>
+          </section>
+
+          <section class="impact-tab-panel" role="tabpanel" id="impact-panel-relations" aria-labelledby="impact-tab-relations" data-impact-panel="relations" hidden>
+            <div class="panel-heading">
+              <div>
+                <p class="panel-kicker">Julgamento humano</p>
+                <h2>Relações diretamente afetadas</h2>
+              </div>
+            </div>
+
+            <div class="reviewer-identity-panel">
+              <div>
+                <h3>Identidade pública da revisão relacional</h3>
+                <p>
+                  Obrigatória ao confirmar ou revisar uma relação. O identificador da parte será gravado em
+                  <code>reviewedBy</code>; os demais dados criam sua identidade pública quando ela ainda não existir.
+                </p>
+              </div>
+              <div class="reviewer-fields">
+                <label class="form-field" for="relation-reviewer-party-id">
+                  <span>ID público da parte</span>
+                  <input
+                    id="relation-reviewer-party-id"
+                    type="text"
+                    inputmode="text"
+                    autocomplete="off"
+                    list="party-options"
+                    placeholder="ex.: matheus-camargo"
+                    data-relation-reviewer-party-id
+                  >
+                  <small>Use letras minúsculas, números e hífens. Um ID existente será reutilizado.</small>
+                </label>
+                <label class="form-field" for="relation-reviewer-display-name">
+                  <span>Nome público</span>
+                  <input id="relation-reviewer-display-name" type="text" data-relation-reviewer-display-name>
+                  <small>Necessário somente ao cadastrar uma nova parte pública.</small>
+                </label>
+                <label class="form-field" for="relation-reviewer-party-type">
+                  <span>Tipo de parte</span>
+                  <select id="relation-reviewer-party-type" data-relation-reviewer-party-type>
+                    <option value="person">Pessoa</option>
+                    <option value="organization">Organização</option>
+                  </select>
+                </label>
+                <label class="form-field" for="relation-reviewed-at">
+                  <span>Data</span>
+                  <input id="relation-reviewed-at" type="date" data-relation-reviewed-at>
+                </label>
+                <label class="form-field field-span" for="relation-reviewer-public-links">
+                  <span>Links públicos opcionais</span>
+                  <input
+                    id="relation-reviewer-public-links"
+                    type="text"
+                    inputmode="url"
+                    placeholder="URLs separadas por vírgula"
+                    data-relation-reviewer-public-links
+                  >
+                </label>
+                <label class="consent-field field-span">
+                  <input type="checkbox" data-relation-identity-authorization>
+                  <span>
+                    Confirmo autorização para publicar o ID, o nome e os links informados como identidade responsável
+                    por esta revisão.
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="blocker-list" data-blocker-list></div>
+            <div class="relation-decision-list" data-relation-decision-list>
+              <p class="empty-state">Execute a análise para carregar relações.</p>
+            </div>
+          </section>
+
+          <section class="impact-tab-panel" role="tabpanel" id="impact-panel-references" aria-labelledby="impact-tab-references" data-impact-panel="references" hidden>
+            <div class="panel-heading">
+              <div>
+                <p class="panel-kicker">Rastreabilidade</p>
+                <h2>Fontes, afirmações e consumidores</h2>
+              </div>
+            </div>
+            <div class="impact-detail-grid">
+              <article>
+                <h3>Referências adicionadas</h3>
+                <ul data-impact-list="referencesAdded"></ul>
+              </article>
+              <article>
+                <h3>Referências removidas</h3>
+                <ul data-impact-list="referencesRemoved"></ul>
+              </article>
+              <article>
+                <h3>Afirmações afetadas</h3>
+                <ul data-impact-list="claimsAffected"></ul>
+              </article>
+              <article>
+                <h3>Referências órfãs</h3>
+                <ul data-impact-list="orphanReferenceIds"></ul>
+              </article>
+            </div>
+          </section>
+
+          <section class="impact-tab-panel" role="tabpanel" id="impact-panel-surfaces" aria-labelledby="impact-tab-surfaces" data-impact-panel="surfaces" hidden>
+            <div class="panel-heading">
+              <div>
+                <p class="panel-kicker">Propagação mecânica</p>
+                <h2>Onde a mudança será refletida</h2>
+              </div>
+            </div>
+            <div class="impact-detail-grid">
+              <article>
+                <h3>Experimentos</h3>
+                <ul data-impact-list="experimentsAffected"></ul>
+              </article>
+              <article>
+                <h3>Rotas Guiadas</h3>
+                <ul data-impact-list="pathsAffected"></ul>
+              </article>
+              <article class="field-span">
+                <h3>Arquivos e superfícies geradas</h3>
+                <ul class="surface-list" data-impact-list="surfaces"></ul>
+              </article>
+            </div>
+          </section>
+
+          <div class="view-footer-actions">
+            <button class="button button-secondary" type="button" data-return-to-editor>Voltar ao rascunho</button>
+            <button class="button button-primary" type="button" data-continue-preview disabled>
+              Gerar preview isolado
+            </button>
+          </div>
+        </section>
+
+        <section class="editorial-view preview-view" data-view="preview" aria-labelledby="preview-title" hidden>
+          <div class="view-heading">
+            <div>
+              <p class="eyebrow">04 · Build em workspace isolado</p>
+              <h1 id="preview-title">Confira a projeção pública antes de instalar.</h1>
+              <p class="view-lead">
+                O preview usa uma cópia temporária. Ele não modifica o conteúdo canônico nem publica na Vercel.
+              </p>
+            </div>
+            <button class="button button-secondary" type="button" data-generate-preview>
+              Gerar novo preview
+            </button>
+          </div>
+
+          <div class="preview-status-card" data-preview-status>
+            <span class="preview-status-icon" aria-hidden="true">◇</span>
+            <div>
+              <strong>Preview ainda não gerado</strong>
+              <p>Conclua as decisões obrigatórias e inicie o build isolado.</p>
+            </div>
+          </div>
+
+          <div class="preview-toolbar">
+            <div class="viewport-switcher" role="group" aria-label="Largura da prévia">
+              <button type="button" class="is-active" aria-pressed="true" data-preview-viewport="desktop">Desktop</button>
+              <button type="button" aria-pressed="false" data-preview-viewport="tablet">Tablet</button>
+              <button type="button" aria-pressed="false" data-preview-viewport="mobile">Celular</button>
+            </div>
+            <a class="text-link is-disabled" tabindex="-1" target="_blank" rel="noopener noreferrer" aria-disabled="true" data-open-preview>
+              Abrir preview em nova aba
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div class="preview-frame-shell" data-preview-frame-shell="desktop">
+            <div class="preview-frame-placeholder" data-preview-placeholder>
+              <span aria-hidden="true">✦</span>
+              <strong>O artefato isolado aparecerá aqui.</strong>
+              <p>O processo pode levar alguns instantes porque executa validação e build reais.</p>
+            </div>
+            <iframe
+              title="Preview isolado do Observatório"
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+              data-preview-frame
+              hidden
+            ></iframe>
+          </div>
+
+          <div class="preview-checklist">
+            <h2>Antes de continuar</h2>
+            <ul>
+              <li>Confira o dossiê da teoria e os textos alterados.</li>
+              <li>Verifique cards, relações inversas, busca e mapa quando listados no impacto.</li>
+              <li>Teste pelo menos uma largura desktop e uma largura de celular.</li>
+            </ul>
+          </div>
+
+          <div class="view-footer-actions">
+            <button class="button button-secondary" type="button" data-return-to-impact>Voltar ao impacto</button>
+            <button class="button button-primary" type="button" data-continue-apply disabled>
+              Revisar aplicação
+            </button>
+          </div>
+        </section>
+
+        <section class="editorial-view apply-view" data-view="apply" aria-labelledby="apply-title" hidden>
+          <div class="view-heading">
+            <div>
+              <p class="eyebrow">05 · Instalação na fonte canônica</p>
+              <h1 id="apply-title">Última conferência antes de aplicar.</h1>
+              <p class="view-lead">
+                Aplicar instala o conjunto validado em <code>content/public</code>. Isso ainda não cria commit nem realiza deploy.
+              </p>
+            </div>
+          </div>
+
+          <div class="apply-layout">
+            <section class="apply-summary" aria-labelledby="apply-summary-title">
+              <p class="panel-kicker">Conjunto aprovado</p>
+              <h2 id="apply-summary-title">Resumo da operação</h2>
+              <dl>
+                <div>
+                  <dt>Entidade</dt>
+                  <dd data-apply-entity>—</dd>
+                </div>
+                <div>
+                  <dt>Revisão</dt>
+                  <dd data-apply-revision>—</dd>
+                </div>
+                <div>
+                  <dt>Classe efetiva</dt>
+                  <dd data-apply-class>—</dd>
+                </div>
+                <div>
+                  <dt>Decisões relacionais</dt>
+                  <dd data-apply-decisions>—</dd>
+                </div>
+                <div>
+                  <dt>Digest do impacto</dt>
+                  <dd class="digest-value" data-apply-digest>—</dd>
+                </div>
+              </dl>
+            </section>
+
+            <section class="apply-confirmation" aria-labelledby="apply-confirmation-title">
+              <div class="danger-mark" aria-hidden="true">!</div>
+              <h2 id="apply-confirmation-title">Confirmação explícita</h2>
+              <p>
+                O servidor recalculará o impacto sob lock. Se o workspace ou a fonte tiverem mudado, a operação será recusada e exigirá nova revisão.
+              </p>
+              <label class="consent-field">
+                <input type="checkbox" data-apply-reviewed>
+                <span>Revisei o diff, as relações e o preview deste conjunto.</span>
+              </label>
+              <label class="form-field" for="apply-confirmation-input">
+                <span>Digite APLICAR para continuar</span>
+                <input
+                  id="apply-confirmation-input"
+                  type="text"
+                  autocomplete="off"
+                  spellcheck="false"
+                  data-apply-confirmation-input
+                >
+              </label>
+              <button class="button button-danger button-full" type="button" data-open-apply-dialog disabled>
+                Aplicar conjunto validado
+              </button>
+            </section>
+          </div>
+
+          <div class="operation-boundary-note">
+            <strong>Limite desta etapa</strong>
+            <p>
+              A dashboard registra a instalação local. Commit, integração e deploy continuam sendo etapas separadas do fluxo Git e da Vercel.
+            </p>
+          </div>
+
+          <div class="view-footer-actions">
+            <button class="button button-secondary" type="button" data-return-to-preview>Voltar ao preview</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="confirmation-dialog" aria-labelledby="confirmation-dialog-title" data-apply-dialog>
+      <div class="confirmation-dialog-shell">
+        <div class="dialog-mark" aria-hidden="true">✦</div>
+        <p class="panel-kicker">Confirmação final</p>
+        <h2 id="confirmation-dialog-title">Aplicar esta revisão na fonte canônica?</h2>
+        <p>
+          A operação será validada novamente. Em caso de falha capturada, os arquivos tocados serão restaurados.
+        </p>
+        <div class="dialog-summary" data-dialog-summary></div>
+        <div class="dialog-actions">
+          <button class="button button-secondary" type="button" data-cancel-apply>Cancelar</button>
+          <button class="button button-danger" type="button" data-confirm-apply>Sim, aplicar revisão</button>
+        </div>
+      </div>
+    </dialog>
+
+    <template id="catalog-card-template">
+      <article class="catalog-card">
+        <div class="catalog-card-top">
+          <span class="catalog-code" data-catalog-field="code"></span>
+          <span class="record-status">Publicado</span>
+        </div>
+        <div>
+          <h2 data-catalog-field="title"></h2>
+          <p data-catalog-field="summary"></p>
+        </div>
+        <dl>
+          <div>
+            <dt>Revisão</dt>
+            <dd data-catalog-field="revisionId"></dd>
+          </div>
+          <div>
+            <dt>Estado</dt>
+            <dd data-catalog-field="reviewState"></dd>
+          </div>
+        </dl>
+        <button class="button button-secondary button-full" type="button" data-create-workspace>
+          Criar nova revisão
+        </button>
+      </article>
+    </template>
+
+    <template id="string-list-item-template">
+      <div class="repeatable-item">
+        <label>
+          <span class="sr-only" data-list-item-label>Item</span>
+          <textarea rows="2" data-list-item-input></textarea>
+        </label>
+        <div class="repeatable-item-actions">
+          <button type="button" data-list-action="up">
+            <span aria-hidden="true">↑</span>
+            <span class="sr-only">Mover para cima</span>
+          </button>
+          <button type="button" data-list-action="down">
+            <span aria-hidden="true">↓</span>
+            <span class="sr-only">Mover para baixo</span>
+          </button>
+          <button type="button" data-list-action="remove">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only">Remover item</span>
+          </button>
+        </div>
+      </div>
+    </template>
+
+    <template id="objection-template">
+      <article class="objection-editor-card">
+        <div class="objection-editor-heading">
+          <span data-objection-number>Objeção</span>
+          <div class="repeatable-item-actions">
+            <button type="button" data-objection-action="up">
+              <span aria-hidden="true">↑</span>
+              <span class="sr-only">Mover objeção para cima</span>
+            </button>
+            <button type="button" data-objection-action="down">
+              <span aria-hidden="true">↓</span>
+              <span class="sr-only">Mover objeção para baixo</span>
+            </button>
+            <button type="button" data-objection-action="remove">
+              <span aria-hidden="true">×</span>
+              <span class="sr-only">Remover objeção</span>
+            </button>
+          </div>
+        </div>
+        <div class="two-column-fields">
+          <label class="form-field">
+            <span>Identificador estável</span>
+            <input type="text" data-objection-field="id">
+          </label>
+          <label class="form-field">
+            <span>Estado</span>
+            <input type="text" data-objection-field="status">
+          </label>
+          <label class="form-field field-span">
+            <span>Título</span>
+            <input type="text" data-objection-field="title">
+          </label>
+          <label class="form-field field-span">
+            <span>Resposta</span>
+            <textarea rows="4" data-objection-field="response"></textarea>
+          </label>
+        </div>
+      </article>
+    </template>
+
+    <template id="diff-item-template">
+      <article class="diff-item">
+        <header>
+          <strong data-diff-label></strong>
+          <code data-diff-path></code>
+        </header>
+        <div class="diff-values">
+          <div>
+            <span>Antes</span>
+            <p data-diff-before></p>
+          </div>
+          <div>
+            <span>Depois</span>
+            <p data-diff-after></p>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <template id="relation-decision-template">
+      <article class="relation-decision-card">
+        <div class="relation-card-heading">
+          <div>
+            <span class="relation-type" data-relation-type></span>
+            <h3 data-relation-title></h3>
+          </div>
+          <span class="relation-state" data-relation-state></span>
+        </div>
+        <p class="relation-justification" data-relation-justification></p>
+        <p class="relation-reason" data-relation-reason></p>
+        <fieldset>
+          <legend>Decisão editorial</legend>
+          <div class="relation-decision-options">
+            <label>
+              <input type="radio" value="confirm" data-relation-decision>
+              <span><strong>Confirmar</strong><small>Continua adequada contra as novas revisões</small></span>
+            </label>
+            <label>
+              <input type="radio" value="revise" data-relation-decision>
+              <span><strong>Revisar</strong><small>Alterar justificativa, tipo ou evidência</small></span>
+            </label>
+            <label>
+              <input type="radio" value="deprecate" data-relation-decision>
+              <span><strong>Descontinuar</strong><small>Preservar o histórico sem manter a relação vigente</small></span>
+            </label>
+            <label>
+              <input type="radio" value="defer" data-relation-decision>
+              <span><strong>Adiar</strong><small>Mantém o conjunto bloqueado</small></span>
+            </label>
+          </div>
+        </fieldset>
+        <div class="relation-revision-fields" data-relation-revision-fields hidden>
+          <div class="two-column-fields">
+            <label class="form-field">
+              <span>Tipo revisado</span>
+              <select data-relation-input="type"></select>
+            </label>
+            <label class="form-field">
+              <span>Rótulo público</span>
+              <input type="text" data-relation-input="label">
+            </label>
+          </div>
+          <label class="form-field">
+            <span>Justificativa revisada</span>
+            <textarea rows="4" data-relation-input="justification"></textarea>
+          </label>
+          <label class="form-field">
+            <span>Referências da relação</span>
+            <input type="text" list="reference-options" data-relation-input="referenceIds" placeholder="IDs separados por vírgula">
+            <small>Use somente referências já cadastradas na biblioteca central.</small>
+          </label>
+        </div>
+        <div class="relation-card-actions">
+          <small data-relation-decision-status>Nenhuma decisão registrada neste workspace.</small>
+          <button class="button button-secondary" type="button" data-save-relation-decision disabled>
+            Registrar decisão
+          </button>
+        </div>
+      </article>
+    </template>
+
+    <datalist id="reference-options" data-reference-options></datalist>
+    <datalist id="party-options" data-party-options></datalist>
+  </body>
+</html>

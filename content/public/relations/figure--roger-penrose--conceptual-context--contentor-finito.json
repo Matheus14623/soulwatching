@@ -16,5 +16,10 @@
   "label": "Geometria local e estrutura global",
   "justification": "A T-04 precisa distinguir compacidade topológica, representação conforme e propriedades causais.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "roger-penrose-r1",
+    "targetRevisionId": "contentor-finito-r1"
+  }
 }

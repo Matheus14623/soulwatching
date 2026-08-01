@@ -16,5 +16,10 @@
   "label": "Linhas como programas revisáveis",
   "justification": "A T-07 pode distinguir núcleo, hipóteses auxiliares, previsões, objeções e versões sem usar essa estrutura como selo de cientificidade.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "imre-lakatos-r1",
+    "targetRevisionId": "backend-existencia-r1"
+  }
 }

@@ -23,11 +23,15 @@ related_context:
   - "frontend.design-accessibility"
   - "domains.theory-catalog"
   - "domains.content-operations"
+  - "domains.editorial-dashboard"
 evidence_sources:
   - "Arquivo/arquivo.html"
   - "Laboratorio/laboratorio.html"
   - "Contribuicoes/contribuicoes.html"
   - "assets/data/contributions.js"
+  - "content/schemas/publication.schema.json"
+  - "content/public/catalogs/publications.json"
+  - "scripts/publication-pages.mjs"
   - "index.html"
   - "docs/INTEGRACAO_TEORIAS.md"
   - "scripts/build.mjs"
@@ -92,5 +96,5 @@ Revise linguagem, procedência, privacidade, distinção epistemológica e prese
 
 ## To Verify
 
-- Schema e rota canônica do primeiro ensaio, registro ou conteúdo externo completo.
+- Aplicação editorial do schema e da rota já existentes ao primeiro ensaio, registro ou conteúdo externo real.
 - O telefone pessoal foi retirado do conteúdo público; e-mail, LinkedIn e GitHub permanecem como canais profissionais.

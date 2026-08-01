@@ -46,6 +46,28 @@ import {
 } from './schema-validator.mjs';
 import { validateDirectDataImportPolicy } from './direct-import-policy.mjs';
 import { migrateContentRecord } from './migrations.mjs';
+import {
+  assertUniqueEditorialOperations,
+  CONTENT_DIRECTORY_BY_TYPE,
+  EDITORIAL_REVISION_ENTITY_TYPES,
+  referenceIdsFromRecord,
+} from './content-contracts.mjs';
+import {
+  buildRevisionIndex,
+  calculateDirectImpact,
+  classifyContentChange,
+  deriveRelationReviewStatus,
+  diffContentRecords,
+  validatePublicationGate,
+} from './editorial-impact.mjs';
+import { validateLegacyRelationBaselines } from './legacy-relation-baselines.mjs';
+import { generatedImpactForChange } from './content-dependencies.mjs';
+import {
+  hashCanonicalJson,
+  prefixedCanonicalHash,
+  stableCanonicalStringify,
+} from './canonical-hash.mjs';
+import { hashEditorialEntity } from './editorial-revision-ledger.mjs';
 
 const SCHEMA_FILES = Object.freeze({
   theory: 'theory.schema.json',
@@ -59,6 +81,7 @@ const SCHEMA_FILES = Object.freeze({
   'relation-type-taxonomy': 'relation-type-taxonomy.schema.json',
   'publication-catalog': 'publication-catalog.schema.json',
   'publication-revision-ledger': 'publication-revision-ledger.schema.json',
+  'editorial-revision-ledger': 'editorial-revision-ledger.schema.json',
   'publication-taxonomy': 'publication-taxonomy.schema.json',
   'experiment-taxonomy': 'experiment-taxonomy.schema.json',
   party: 'party.schema.json',
@@ -73,6 +96,7 @@ const SCHEMA_FILES = Object.freeze({
 export const CONTENT_DEBT_BUDGETS = Object.freeze({
   experimentTheoryLinksAwaitingMigration: 12,
   relationsAwaitingEvidence: 31,
+  legacyRelationReviewBaselines: 32,
 });
 async function acquireRuntimeLock() {
   return acquireFileLock(RUNTIME_LOCK_PATH, {
@@ -86,21 +110,7 @@ async function acquireContentTransactionLock() {
   });
 }
 
-const SOURCE_DIRECTORIES = Object.freeze({
-  theory: 'theories',
-  figure: 'figures',
-  relation: 'relations',
-  reference: 'references',
-  'figure-trail': 'figure-trails',
-  'timeline-event': 'timeline-events',
-  party: 'parties',
-  publication: 'publications',
-  constellation: 'constellations',
-  experiment: 'experiments',
-  path: 'paths',
-  'research-track': 'research-tracks',
-  'site-page': 'site-pages',
-});
+const SOURCE_DIRECTORIES = CONTENT_DIRECTORY_BY_TYPE;
 
 const FIXED_SOURCES = Object.freeze([
   ['taxonomies/theories.json', 'theory-taxonomy'],
@@ -108,20 +118,228 @@ const FIXED_SOURCES = Object.freeze([
   ['taxonomies/relation-types.json', 'relation-type-taxonomy'],
   ['catalogs/publications.json', 'publication-catalog'],
   ['catalogs/publication-revision-ledger.json', 'publication-revision-ledger'],
+  ['catalogs/editorial-revision-ledger.json', 'editorial-revision-ledger'],
   ['taxonomies/publications.json', 'publication-taxonomy'],
   ['taxonomies/experiments.json', 'experiment-taxonomy'],
 ]);
 
-function stableValue(value) {
-  if (Array.isArray(value)) return value.map(stableValue);
-  if (!value || typeof value !== 'object') return value;
-  return Object.fromEntries(
-    Object.keys(value).sort().map((key) => [key, stableValue(value[key])]),
-  );
+export function stableStringify(value, spacing = 0) {
+  return stableCanonicalStringify(value, spacing);
 }
 
-export function stableStringify(value, spacing = 0) {
-  return JSON.stringify(stableValue(value), null, spacing);
+function editorialEntityKey(type, id) {
+  return `${type}:${id}`;
+}
+
+function revisionOrdinal(revisionId) {
+  const ordinal = revisionId?.match(/-r([1-9][0-9]*)$/)?.[1];
+  return ordinal ? Number(ordinal) : null;
+}
+
+export function createEditorialRevisionIndex(ledger) {
+  return new Map((ledger?.entries || []).map((entry) => [
+    editorialEntityKey(entry.entityType, entry.entityId),
+    entry,
+  ]));
+}
+
+export function validateEditorialRevisionLedger(entities, ledger) {
+  const errors = [];
+  const entityByKey = new Map(
+    entities.map((entity) => [editorialEntityKey(entity.entityType, entity.id), entity]),
+  );
+  const entryByKey = new Map();
+  const actualOrder = [];
+
+  for (const entry of ledger?.entries || []) {
+    const key = editorialEntityKey(entry.entityType, entry.entityId);
+    actualOrder.push(key);
+    if (entryByKey.has(key)) {
+      errors.push(`Ledger editorial: entrada duplicada "${key}"`);
+      continue;
+    }
+    entryByKey.set(key, entry);
+    const entity = entityByKey.get(key);
+    if (!entity) {
+      errors.push(`Ledger editorial: entidade órfã "${key}"`);
+    }
+
+    const seenRevisions = new Set();
+    entry.revisions.forEach((revision, index) => {
+      if (seenRevisions.has(revision.revisionId)) {
+        errors.push(`Ledger editorial ${key}: revisão duplicada "${revision.revisionId}"`);
+      }
+      seenRevisions.add(revision.revisionId);
+      const expectedOrdinal = index + 1;
+      if (
+        revisionOrdinal(revision.revisionId) !== expectedOrdinal
+        || !revision.revisionId.startsWith(`${entry.entityId}-r`)
+      ) {
+        errors.push(
+          `Ledger editorial ${key}: a revisão ${revision.revisionId} deve ser a sequência r${expectedOrdinal} da entidade`,
+        );
+      }
+      revision.changedPaths.forEach((path) => {
+        if (!path.startsWith('/')) {
+          errors.push(
+            `Ledger editorial ${key}.${revision.revisionId}: changedPaths deve usar JSON Pointer`,
+          );
+        }
+      });
+    });
+
+    const currentLedgerRevision = entry.revisions[entry.revisions.length - 1];
+    if (entity && currentLedgerRevision?.revisionId !== entity.revisionId) {
+      errors.push(
+        `Ledger editorial ${key}: revisão atual ${currentLedgerRevision?.revisionId || 'ausente'} diverge de ${entity.revisionId}`,
+      );
+    }
+    if (entity && currentLedgerRevision?.contentHash !== hashEditorialEntity(entity)) {
+      errors.push(
+        `Ledger editorial ${key}: conteúdo atual diverge do hash de ${entity.revisionId}`,
+      );
+    }
+  }
+
+  for (const [key] of entityByKey) {
+    if (!entryByKey.has(key)) errors.push(`Ledger editorial: baseline ausente para "${key}"`);
+  }
+  const expectedOrder = [...actualOrder].sort((left, right) => left.localeCompare(right, 'en'));
+  if (stableStringify(actualOrder) !== stableStringify(expectedOrder)) {
+    errors.push('Ledger editorial: entries precisa permanecer em ordem determinística por tipo e ID');
+  }
+  return errors;
+}
+
+export function validateRelationReviewTraceability(relations, ledger) {
+  const errors = [];
+  const revisionIndex = createEditorialRevisionIndex(ledger);
+
+  for (const relation of relations) {
+    const label = `Relação ${relation.id}`;
+    const baseline = relation.reviewedAgainst;
+    if (relation.reviewState === 'reviewed' && !baseline) {
+      errors.push(`${label}: reviewState reviewed exige reviewedAgainst`);
+      continue;
+    }
+    if (!baseline) continue;
+
+    const sourceEntry = revisionIndex.get(
+      editorialEntityKey(relation.source.type, relation.source.id),
+    );
+    const targetEntry = revisionIndex.get(
+      editorialEntityKey(relation.target.type, relation.target.id),
+    );
+    if (!sourceEntry?.revisions.some(({ revisionId }) => (
+      revisionId === baseline.sourceRevisionId
+    ))) {
+      errors.push(
+        `${label}.reviewedAgainst.sourceRevisionId: revisão não pertence à entidade de origem`,
+      );
+    }
+    if (!targetEntry?.revisions.some(({ revisionId }) => (
+      revisionId === baseline.targetRevisionId
+    ))) {
+      errors.push(
+        `${label}.reviewedAgainst.targetRevisionId: revisão não pertence à entidade de destino`,
+      );
+    }
+
+    if (baseline.mode === 'editorial-review') {
+      if (!baseline.reviewedAt || !baseline.reviewedBy) {
+        errors.push(
+          `${label}.reviewedAgainst: revisão editorial exige reviewedAt e reviewedBy públicos`,
+        );
+      }
+    } else if (baseline.mode === 'legacy-baseline') {
+      if (baseline.reviewedAt || baseline.reviewedBy) {
+        errors.push(
+          `${label}.reviewedAgainst: baseline técnico legado não pode inventar data ou responsável`,
+        );
+      }
+    }
+  }
+  return errors;
+}
+
+export function relationSemanticKey(relation, relationType) {
+  const endpoints = relationType?.symmetric
+    ? [
+      `${relation.source.type}:${relation.source.id}`,
+      `${relation.target.type}:${relation.target.id}`,
+    ].sort().join('|')
+    : `${relation.source.type}:${relation.source.id}|${relation.target.type}:${relation.target.id}`;
+  return `${endpoints}|${relation.type}`;
+}
+
+export function validateRelationSemantics(
+  relation,
+  {
+    entityIds = new Map(),
+    experimentsById = new Map(),
+    partiesById = new Map(),
+    relationTypes = new Map(),
+    path = `relation:${relation?.id || 'unknown'}`,
+  } = {},
+) {
+  const errors = [];
+  const sourceIds = entityIds.get(relation.source.type);
+  const targetIds = entityIds.get(relation.target.type);
+  if (!sourceIds?.has(relation.source.id)) {
+    errors.push(
+      `${path}.source: entidade inexistente ${relation.source.type}:${relation.source.id}`,
+    );
+  }
+  if (!targetIds?.has(relation.target.id)) {
+    errors.push(
+      `${path}.target: entidade inexistente ${relation.target.type}:${relation.target.id}`,
+    );
+  }
+  if (
+    relation.source.type === relation.target.type
+    && relation.source.id === relation.target.id
+  ) {
+    errors.push(`${path}: autorrelação não permitida`);
+  }
+  const relationType = relationTypes.get(
+    `${relation.source.type}:${relation.target.type}:${relation.type}`,
+  );
+  if (!relationType) {
+    errors.push(`${path}.type: combinação/tipo não permitido "${relation.type}"`);
+  }
+  if (
+    relation.source.type === 'experiment'
+    && relation.target.type === 'theory'
+    && relation.reviewState !== 'deprecated'
+  ) {
+    const experiment = experimentsById.get(relation.source.id);
+    if (experiment && !experiment.theoryIds.includes(relation.target.id)) {
+      errors.push(
+        `${path}: relação experimento→teoria precisa constar em theoryIds até concluir a migração legada`,
+      );
+    }
+  }
+  if (relationType?.requiresJustification && relation.justification.length < 30) {
+    errors.push(`${path}.justification: justificativa obrigatória`);
+  }
+  if (
+    relationType?.requiresReference
+    && relation.reviewState === 'reviewed'
+    && !relation.referenceIds.length
+  ) {
+    errors.push(
+      `${path}.referenceIds: o tipo "${relation.type}" exige evidência antes de receber reviewState reviewed`,
+    );
+  }
+  if (relation.reviewedAgainst?.mode === 'editorial-review') {
+    const reviewer = partiesById.get(relation.reviewedAgainst.reviewedBy);
+    if (!reviewer?.publicProfileLinkAuthorized) {
+      errors.push(
+        `${path}.reviewedAgainst.reviewedBy: use o ID de uma parte com identidade pública autorizada`,
+      );
+    }
+  }
+  return errors;
 }
 
 export function containsScaffoldPlaceholder(value) {
@@ -129,11 +347,18 @@ export function containsScaffoldPlaceholder(value) {
 }
 
 function contentHash(value) {
-  return createHash('sha256').update(stableStringify(value)).digest('hex');
+  return hashCanonicalJson(value);
 }
 
 export function hashPublicSnapshot(snapshot) {
-  return `sha256:${contentHash(snapshot)}`;
+  return prefixedCanonicalHash(snapshot);
+}
+
+export function hashPublicationRevision(revision) {
+  return prefixedCanonicalHash({
+    publicSnapshot: revision.publicSnapshot,
+    creditSnapshot: revision.creditSnapshot,
+  });
 }
 
 export function validatePublicAssetPath(publicPath) {
@@ -269,8 +494,10 @@ export function validatePublicationSemantics(
     if (revision.ordinal !== index + 1) {
       errors.push(`${path}.revisions[${index}].ordinal: sequência deve começar em 1`);
     }
-    if (revision.contentHash !== hashPublicSnapshot(revision.publicSnapshot)) {
-      errors.push(`${path}.revisions[${index}].contentHash: hash não corresponde ao snapshot`);
+    if (revision.contentHash !== hashPublicationRevision(revision)) {
+      errors.push(
+        `${path}.revisions[${index}].contentHash: hash não corresponde aos snapshots público e de créditos`,
+      );
     }
   });
   const currentRevision = revisions[revisions.length - 1];
@@ -295,6 +522,66 @@ export function validatePublicationSemantics(
     }
   }
 
+  return errors;
+}
+
+export function validatePublicationCredits(
+  publication,
+  {
+    creditRoleIds = null,
+    partiesById = new Map(),
+    path = `publication:${publication?.id || 'unknown'}`,
+  } = {},
+) {
+  const errors = [];
+  for (const [creditPath, credit] of [
+    ...(publication?.credits || []).map((item) => ['credits', item]),
+    ...(publication?.revisions || []).flatMap((revision) => (
+      (revision.creditSnapshot || []).map((item) => (
+        [`revisions.${revision.revisionId}.creditSnapshot`, item]
+      ))
+    )),
+  ]) {
+    if (creditRoleIds) {
+      credit.roles.forEach((role) => {
+        if (!creditRoleIds.has(role)) {
+          errors.push(`${path}.${creditPath}: papel inexistente "${role}"`);
+        }
+      });
+    }
+    const partyFields = [
+      credit.partyId,
+      credit.partyType,
+      credit.publicProfileLinkAuthorized,
+    ].filter((value) => value !== undefined);
+    if (partyFields.length && partyFields.length !== 3) {
+      errors.push(
+        `${path}.${creditPath}: partyId, partyType e publicProfileLinkAuthorized devem ser declarados juntos`,
+      );
+    }
+    if (credit.partyId && credit.publicProfileLinkAuthorized !== true) {
+      errors.push(
+        `${path}.${creditPath}: vínculo com perfil público exige autorização explícita`,
+      );
+    }
+    if (!credit.partyId) continue;
+    const party = partiesById.get(credit.partyId);
+    if (!party) {
+      errors.push(`${path}.${creditPath}: partyId inexistente "${credit.partyId}"`);
+      continue;
+    }
+    if (party.partyType !== credit.partyType) {
+      errors.push(`${path}.${creditPath}: partyType diverge de ${credit.partyId}`);
+    }
+    const unauthorizedLinks = credit.authorizedLinks.filter((url) => (
+      !party.publicLinks.includes(url)
+    ));
+    if (unauthorizedLinks.length) {
+      errors.push(
+        `${path}.${creditPath}: link não autorizado pelo perfil ${credit.partyId}`,
+      );
+    }
+  }
   return errors;
 }
 
@@ -458,6 +745,78 @@ function groupByType(records) {
   return grouped;
 }
 
+export async function validateContentOverlay({
+  editorialChangeSet,
+  editorialRevisionLedger,
+  publicationRevisionLedger,
+}) {
+  const operations = editorialChangeSet?.operations || [];
+  assertUniqueEditorialOperations(operations);
+  const operationByKey = new Map(
+    operations.map((operation) => [
+      `${operation.type}:${operation.next.id}`,
+      operation,
+    ]),
+  );
+  const consumed = new Set();
+  const rawSources = await loadRawSources();
+  const overlaidSources = rawSources.map((source) => {
+    if (
+      source.expectedType === 'editorial-revision-ledger'
+      && editorialRevisionLedger
+    ) {
+      return { ...source, value: structuredClone(editorialRevisionLedger) };
+    }
+    if (
+      source.expectedType === 'publication-revision-ledger'
+      && publicationRevisionLedger
+    ) {
+      return { ...source, value: structuredClone(publicationRevisionLedger) };
+    }
+    const key = `${source.expectedType}:${source.value.id || ''}`;
+    const operation = operationByKey.get(key);
+    if (!operation) return source;
+    consumed.add(key);
+    return {
+      ...source,
+      value: migrateContentRecord(
+        structuredClone(operation.next),
+        operation.type,
+        { label: publicLabel(source.path) },
+      ),
+    };
+  });
+  for (const operation of operations) {
+    const key = `${operation.type}:${operation.next.id}`;
+    if (consumed.has(key)) continue;
+    const directory = SOURCE_DIRECTORIES[operation.type];
+    if (!directory) {
+      throw new Error(`Overlay editorial não aceita o tipo ${operation.type}`);
+    }
+    const path = resolve(
+      PUBLIC_CONTENT_ROOT,
+      directory,
+      `${operation.next.id}.json`,
+    );
+    overlaidSources.push({
+      expectedType: operation.type,
+      filename: basename(path),
+      path,
+      value: migrateContentRecord(
+        structuredClone(operation.next),
+        operation.type,
+        { label: publicLabel(path) },
+      ),
+    });
+  }
+  const validated = await validateAndProject(overlaidSources);
+  const cross = validateCrossIntegrity(groupByType(validated.records));
+  return {
+    errors: [...validated.errors, ...cross.errors],
+    warnings: [...cross.warnings],
+  };
+}
+
 function addDuplicateErrors(records, field, errors, label) {
   const seen = new Map();
   for (const record of records) {
@@ -559,6 +918,7 @@ function validateCrossIntegrity(grouped) {
   const experimentTaxonomy = grouped.get('experiment-taxonomy')?.[0]?.value;
   const publicationCatalog = grouped.get('publication-catalog')?.[0]?.value;
   const publicationRevisionLedger = grouped.get('publication-revision-ledger')?.[0]?.value;
+  const editorialRevisionLedger = grouped.get('editorial-revision-ledger')?.[0]?.value;
 
   for (const [records, label] of [
     [theories, 'Teoria'],
@@ -625,12 +985,32 @@ function validateCrossIntegrity(grouped) {
   const publicationIds = new Set(publications.map(({ value }) => value.id));
   const constellationIds = new Set(constellations.map(({ value }) => value.id));
   const experimentIds = new Set(experiments.map(({ value }) => value.id));
+  const experimentsById = new Map(experiments.map(({ value }) => [value.id, value]));
   const entityIds = new Map([
     ['theory', theoryIds],
     ['figure', figureIds],
     ['publication', publicationIds],
     ['experiment', experimentIds],
   ]);
+  const editorialRevisionEntities = [
+    ...experiments,
+    ...figures,
+    ...publications,
+    ...theories,
+  ].map(({ value }) => value);
+  errors.push(
+    ...validateEditorialRevisionLedger(
+      editorialRevisionEntities,
+      editorialRevisionLedger,
+    ),
+    ...validateRelationReviewTraceability(
+      relations.map(({ value }) => value),
+      editorialRevisionLedger,
+    ),
+    ...validateLegacyRelationBaselines(
+      relations.map(({ value }) => value),
+    ),
+  );
 
   const filterIds = new Set(theoryTaxonomy?.filters.map(({ id }) => id) || []);
   const theoryTypeIds = new Set(theoryTaxonomy?.types.map(({ id }) => id) || []);
@@ -932,52 +1312,17 @@ function validateCrossIntegrity(grouped) {
   const relationKeys = new Set();
   for (const { value: relation, path } of relations) {
     const label = publicLabel(path);
-    const sourceIds = entityIds.get(relation.source.type);
-    const targetIds = entityIds.get(relation.target.type);
-    if (!sourceIds?.has(relation.source.id)) {
-      errors.push(`${label}.source: entidade inexistente ${relation.source.type}:${relation.source.id}`);
-    }
-    if (!targetIds?.has(relation.target.id)) {
-      errors.push(`${label}.target: entidade inexistente ${relation.target.type}:${relation.target.id}`);
-    }
-    if (relation.source.type === relation.target.type && relation.source.id === relation.target.id) {
-      errors.push(`${label}: autorrelação não permitida`);
-    }
     const relationType = relationTypes.get(
       `${relation.source.type}:${relation.target.type}:${relation.type}`,
     );
-    if (!relationType) {
-      errors.push(`${label}.type: combinação/tipo não permitido "${relation.type}"`);
-    }
-    if (
-      relation.source.type === 'experiment'
-      && relation.target.type === 'theory'
-      && relation.reviewState !== 'deprecated'
-    ) {
-      const experiment = experiments.find(({ value }) => (
-        value.id === relation.source.id
-      ))?.value;
-      if (experiment && !experiment.theoryIds.includes(relation.target.id)) {
-        errors.push(
-          `${label}: relação experimento→teoria precisa constar em theoryIds até concluir a migração legada`,
-        );
-      }
-    }
-    if (relationType?.requiresJustification && relation.justification.length < 30) {
-      errors.push(`${label}.justification: justificativa obrigatória`);
-    }
-    if (relationType?.requiresReference && relation.reviewState === 'reviewed' && !relation.referenceIds.length) {
-      errors.push(
-        `${label}.referenceIds: o tipo "${relation.type}" exige evidência antes de receber reviewState reviewed`,
-      );
-    }
-    const endpoints = relationType?.symmetric
-      ? [
-        `${relation.source.type}:${relation.source.id}`,
-        `${relation.target.type}:${relation.target.id}`,
-      ].sort().join('|')
-      : `${relation.source.type}:${relation.source.id}|${relation.target.type}:${relation.target.id}`;
-    const relationKey = `${endpoints}|${relation.type}`;
+    errors.push(...validateRelationSemantics(relation, {
+      entityIds,
+      experimentsById,
+      partiesById,
+      relationTypes,
+      path: label,
+    }));
+    const relationKey = relationSemanticKey(relation, relationType);
     if (relationKeys.has(relationKey)) errors.push(`${label}: relação duplicada`);
     relationKeys.add(relationKey);
     resolveReferenceIds(
@@ -1022,47 +1367,11 @@ function validateCrossIntegrity(grouped) {
     if (!publicationTypeIds.has(publication.publicationType)) {
       errors.push(`${label}.publicationType: formato inexistente "${publication.publicationType}"`);
     }
-    for (const [creditPath, credit] of [
-      ...publication.credits.map((credit) => ['credits', credit]),
-      ...publication.revisions.flatMap((revision) => (
-        revision.creditSnapshot.map((credit) => [`revisions.${revision.revisionId}.creditSnapshot`, credit])
-      )),
-    ]) {
-      credit.roles.forEach((role) => {
-        if (!creditRoleIds.has(role)) errors.push(`${label}.${creditPath}: papel inexistente "${role}"`);
-      });
-      const partyFields = [
-        credit.partyId,
-        credit.partyType,
-        credit.publicProfileLinkAuthorized,
-      ].filter((value) => value !== undefined);
-      if (partyFields.length && partyFields.length !== 3) {
-        errors.push(
-          `${label}.${creditPath}: partyId, partyType e publicProfileLinkAuthorized devem ser declarados juntos`,
-        );
-      }
-      if (credit.partyId && credit.publicProfileLinkAuthorized !== true) {
-        errors.push(`${label}.${creditPath}: vínculo com perfil público exige autorização explícita`);
-      }
-      if (credit.partyId) {
-        const party = partiesById.get(credit.partyId);
-        if (!party) {
-          errors.push(`${label}.${creditPath}: partyId inexistente "${credit.partyId}"`);
-        } else {
-          if (party.partyType !== credit.partyType) {
-            errors.push(`${label}.${creditPath}: partyType diverge de ${credit.partyId}`);
-          }
-          const unauthorizedLinks = credit.authorizedLinks.filter((url) => (
-            !party.publicLinks.includes(url)
-          ));
-          if (unauthorizedLinks.length) {
-            errors.push(
-              `${label}.${creditPath}: link não autorizado pelo perfil ${credit.partyId}`,
-            );
-          }
-        }
-      }
-    }
+    errors.push(...validatePublicationCredits(publication, {
+      creditRoleIds,
+      partiesById,
+      path: label,
+    }));
     publication.assetRights.forEach((asset, index) => {
       errors.push(...validatePublicAssetPath(asset.publicPath).map((error) => (
         `${label}.assetRights[${index}].publicPath: ${error}`
@@ -1251,6 +1560,11 @@ function compileTheories(theorySources, theoryTaxonomy, relationSources) {
       justification: relation.justification,
       referenceIds: [...relation.referenceIds],
       reviewState: relation.reviewState,
+      ...(relation.needsReview ? {
+        reviewStatus: relation.reviewStatus,
+        needsReview: true,
+        reviewReasons: [...relation.reviewReasons],
+      } : {}),
     })),
   };
 }
@@ -1288,6 +1602,11 @@ function compileFigures(figureSources, relationSources, trails, events) {
             note: relation.justification,
             referenceIds: [...relation.referenceIds],
             reviewState: relation.reviewState,
+            ...(relation.needsReview ? {
+              reviewStatus: relation.reviewStatus,
+              needsReview: true,
+              reviewReasons: [...relation.reviewReasons],
+            } : {}),
           })),
       };
     });
@@ -2289,10 +2608,264 @@ function values(grouped, type) {
   return (grouped.get(type) || []).map(({ value }) => value);
 }
 
+function decorateRelationReviewState(relations, revisionIndex) {
+  return relations.map((relation) => {
+    const review = deriveRelationReviewStatus(relation, revisionIndex);
+    return {
+      ...relation,
+      reviewStatus: review.needsReview
+        ? 'needs-review'
+        : relation.reviewState === 'reviewed'
+          ? 'current'
+          : relation.reviewState,
+      needsReview: review.needsReview,
+      reviewReasons: review.reasons.map((reason) => structuredClone(reason)),
+      currentRevisions: { ...review.currentRevisions },
+    };
+  });
+}
+
+function changedClaimIds(previous, next, changedPaths) {
+  const claims = new Map([
+    ...(previous?.claimLinks || []).map((claim) => [claim.id || claim.claimId, claim]),
+    ...(next?.claimLinks || []).map((claim) => [claim.id || claim.claimId, claim]),
+  ]);
+  if (!claims.size) return [];
+  const claimCollectionChanged = changedPaths.some((path) => (
+    path.startsWith('/claimLinks')
+  ));
+  const allBodyBlocksChanged = changedPaths.includes('/body');
+  const affectedBodyBlockIds = new Set();
+  for (const path of changedPaths) {
+    const index = path.match(/^\/body\/([0-9]+)(?:\/|$)/)?.[1];
+    if (index === undefined) continue;
+    const ordinal = Number(index);
+    const previousId = previous?.body?.[ordinal]?.id;
+    const nextId = next?.body?.[ordinal]?.id;
+    if (previousId) affectedBodyBlockIds.add(previousId);
+    if (nextId) affectedBodyBlockIds.add(nextId);
+  }
+  return [...claims.values()]
+    .filter((claim) => {
+      if (claimCollectionChanged) return true;
+      if (
+        claim.contentBlockId
+        && (
+          allBodyBlocksChanged
+          || affectedBodyBlockIds.has(claim.contentBlockId)
+        )
+      ) return true;
+      if (!claim.field) return false;
+      const claimPointer = `/${claim.field.replaceAll('.', '/')}`;
+      return changedPaths.some((path) => (
+        path === claimPointer
+        || path.startsWith(`${claimPointer}/`)
+        || claimPointer.startsWith(`${path}/`)
+      ));
+    })
+    .map((claim) => claim.id || claim.claimId)
+    .filter(Boolean)
+    .sort((left, right) => left.localeCompare(right, 'en'));
+}
+
+function relationTouchesEntity(relation, entity) {
+  return (
+    relation?.source?.type === entity.type
+    && relation.source.id === entity.id
+  ) || (
+    relation?.target?.type === entity.type
+    && relation.target.id === entity.id
+  );
+}
+
+export function buildEditorialImpactSummary({
+  canonicalExperiments,
+  canonicalPaths,
+  editorialChangeSet,
+  relations,
+  revisionIndex,
+}) {
+  if (!editorialChangeSet) return null;
+  if (!Array.isArray(editorialChangeSet.operations)) {
+    throw new Error('Change set editorial inválido: operations precisa ser uma lista');
+  }
+  const relationOperations = editorialChangeSet.operations
+    .filter(({ type }) => type === 'relation');
+  const changes = [];
+
+  for (const operation of editorialChangeSet.operations) {
+    const { changeClass, next, previous, type } = operation;
+    if (!next || typeof next !== 'object') {
+      throw new Error(`Change set editorial: operação ${type || 'desconhecida'} sem next`);
+    }
+    const diff = diffContentRecords(previous || {}, next);
+    const classification = classifyContentChange(diff, { declaredClass: changeClass });
+    const base = {
+      entity: { type, id: next.id },
+      previousRevisionId: previous?.revisionId || null,
+      nextRevisionId: next.revisionId || null,
+      classification,
+    };
+
+    if (!EDITORIAL_REVISION_ENTITY_TYPES.includes(type)) {
+      const blockers = [];
+      if (classification.upgraded && classification.invalidatesRelations) {
+        blockers.push({
+          code: 'declared-change-class-too-weak',
+          declaredClass: classification.declaredClass,
+          requiredClass: classification.effectiveClass,
+        });
+      }
+      if (
+        type === 'relation'
+        && next.reviewState === 'reviewed'
+        && next.reviewedAgainst?.mode !== 'editorial-review'
+      ) {
+        blockers.push({
+          code: 'explicit-relation-review-required',
+          relationId: next.id,
+        });
+      }
+      const previousReferences = referenceIdsFromRecord(previous);
+      const nextReferences = referenceIdsFromRecord(next);
+      changes.push({
+        ...base,
+        relations: [],
+        blockers,
+        pendingRelations: [],
+        referencesAdded: nextReferences.filter((id) => !previousReferences.includes(id)),
+        referencesRemoved: previousReferences.filter((id) => !nextReferences.includes(id)),
+        claimsAffected: changedClaimIds(previous, next, classification.changedPaths),
+        identityChanges: classification.changedPaths.filter((path) => (
+          /^\/(?:aliases|id|reviewState|slug)(?:\/|$)/.test(path)
+        )),
+        experimentsAffected: [],
+        pathsAffected: [],
+        ...generatedImpactForChange({
+          type,
+          record: next,
+          previousRecord: previous,
+          pathsAffected: [],
+        }),
+      });
+      continue;
+    }
+
+    const directImpact = calculateDirectImpact({
+      entityType: type,
+      entityId: next.id,
+      relations,
+      revisionIndex,
+      changeClass: classification.effectiveClass,
+      changedPaths: classification.changedPaths,
+    });
+    const gate = validatePublicationGate(directImpact);
+    const blockers = [...gate.blockers];
+    if (classification.upgraded && classification.invalidatesRelations) {
+      blockers.push({
+        code: 'declared-change-class-too-weak',
+        declaredClass: classification.declaredClass,
+        requiredClass: classification.effectiveClass,
+      });
+    }
+    const transitionedRelations = [];
+    if (classification.invalidatesRelations) {
+      for (const relationOperation of relationOperations) {
+        if (
+          relationOperation.previous?.reviewState !== 'reviewed'
+          || !relationTouchesEntity(relationOperation.previous, base.entity)
+        ) continue;
+        const nextRelation = relationOperation.next;
+        const review = deriveRelationReviewStatus(nextRelation, revisionIndex);
+        transitionedRelations.push({ relation: nextRelation, review });
+        if (nextRelation.reviewState === 'pending') {
+          blockers.push({
+            code: 'reviewed-relation-deferred',
+            relationId: nextRelation.id,
+            reasons: review.reasons,
+          });
+        }
+      }
+    }
+
+    const previousReferences = referenceIdsFromRecord(previous);
+    const nextReferences = referenceIdsFromRecord(next);
+    const experimentsAffected = type === 'theory'
+      ? canonicalExperiments
+        .filter(({ theoryIds }) => theoryIds.includes(next.id))
+        .map(({ id }) => id)
+      : [];
+    const pathsAffected = canonicalPaths
+      .filter(({ steps }) => steps.some((step) => (
+        step.type === type && step.id === next.id
+      )))
+      .map(({ id }) => id);
+    const generatedImpact = generatedImpactForChange({
+      type,
+      record: next,
+      previousRecord: previous,
+      experimentsAffected,
+      pathsAffected,
+    });
+    const relationEntries = new Map(
+      [...directImpact.relations, ...transitionedRelations]
+        .map(({ relation, review }) => [relation.id, {
+          id: relation.id,
+          source: relation.source,
+          target: relation.target,
+          reviewState: relation.reviewState,
+          reviewStatus: review.needsReview ? 'needs-review' : relation.reviewStatus,
+          needsReview: review.needsReview,
+        }]),
+    );
+    changes.push({
+      ...base,
+      relations: [...relationEntries.values()]
+        .sort((left, right) => left.id.localeCompare(right.id, 'en')),
+      blockers,
+      pendingRelations: [...new Set([
+        ...directImpact.pendingRelations.map(({ relation }) => relation.id),
+        ...transitionedRelations
+          .filter(({ relation }) => relation.reviewState === 'pending')
+          .map(({ relation }) => relation.id),
+      ])].sort((left, right) => left.localeCompare(right, 'en')),
+      referencesAdded: nextReferences.filter((id) => !previousReferences.includes(id)),
+      referencesRemoved: previousReferences.filter((id) => !nextReferences.includes(id)),
+      claimsAffected: changedClaimIds(previous, next, classification.changedPaths),
+      identityChanges: classification.changedPaths.filter((path) => (
+        /^\/(?:aliases|id|reviewState|slug)(?:\/|$)/.test(path)
+      )),
+      experimentsAffected,
+      pathsAffected,
+      ...generatedImpact,
+    });
+  }
+
+  const blockers = changes
+    .flatMap((change) => change.blockers.map((blocker) => ({
+      entity: change.entity,
+      ...blocker,
+    })))
+    .sort((left, right) => (
+      `${left.entity.type}:${left.entity.id}:${left.relationId || ''}:${left.code}`
+        .localeCompare(
+          `${right.entity.type}:${right.entity.id}:${right.relationId || ''}:${right.code}`,
+          'en',
+        )
+    ));
+  return {
+    schemaVersion: 1,
+    changes,
+    blockers,
+    allowed: blockers.length === 0,
+  };
+}
+
 async function compileContentUnlocked({
   writeRuntime = false,
   checkRuntime = false,
   writeIntegrityReport = false,
+  editorialChangeSet = null,
 } = {}) {
   const rawSources = await loadRawSources();
   const validated = await validateAndProject(rawSources);
@@ -2309,8 +2882,14 @@ async function compileContentUnlocked({
   const canonicalFigures = values(grouped, 'figure');
   const references = values(grouped, 'reference')
     .sort((left, right) => left.id.localeCompare(right.id, 'en'));
-  const relationSources = values(grouped, 'relation')
+  const editorialRevisionLedger = values(grouped, 'editorial-revision-ledger')[0];
+  const editorialRevisionIndex = buildRevisionIndex(editorialRevisionLedger);
+  const canonicalRelationSources = values(grouped, 'relation')
     .sort((left, right) => left.id.localeCompare(right.id, 'en'));
+  const relationSources = decorateRelationReviewState(
+    canonicalRelationSources,
+    editorialRevisionIndex,
+  );
   const relations = relationSources.map((relation) => withoutKeys(
     relation,
     new Set(['legacyDirection']),
@@ -2369,6 +2948,7 @@ async function compileContentUnlocked({
     canonicalFigures,
     references,
     relations: relationSources,
+    editorialRevisionLedger,
     trails,
     events,
     parties,
@@ -2431,6 +3011,13 @@ async function compileContentUnlocked({
         'pt-BR',
       )
     ));
+  const impactSummary = buildEditorialImpactSummary({
+    canonicalExperiments,
+    canonicalPaths,
+    editorialChangeSet,
+    relations,
+    revisionIndex: editorialRevisionIndex,
+  });
   const report = {
     schemaVersion: 1,
     fingerprint,
@@ -2451,6 +3038,20 @@ async function compileContentUnlocked({
       })
       .map(({ id }) => id)
       .sort(),
+    relationsNeedingReview: relations
+      .filter(({ needsReview }) => needsReview)
+      .map(({ id, reviewReasons, reviewedAgainst, source, target }) => ({
+        id,
+        source,
+        target,
+        reviewedAgainst,
+        reasons: [...(reviewReasons || [])],
+      }))
+      .sort((left, right) => left.id.localeCompare(right.id, 'en')),
+    legacyRelationReviewBaselines: relations
+      .filter(({ reviewedAgainst }) => reviewedAgainst?.mode === 'legacy-baseline')
+      .map(({ id }) => id)
+      .sort(),
     revisionResponsibilityGaps: canonicalTheories
       .flatMap((theory) => theory.revisions
         .filter((revision) => !revision.responsibles.length)
@@ -2461,7 +3062,26 @@ async function compileContentUnlocked({
     experimentTheoryRelationReviewQueue,
     legacyDirectDataImports: importPolicy.actual,
     debtBudgets: CONTENT_DEBT_BUDGETS,
+    impactSummary,
   };
+  const blockingEditorialDecisions = [
+    ...report.relationsNeedingReview.map(({ id, reasons, source, target }) => ({
+      code: 'stale-reviewed-relation',
+      relationId: id,
+      source,
+      target,
+      reasons,
+    })),
+    ...(impactSummary?.blockers || []),
+  ];
+  report.blockingEditorialDecisions = [...new Map(
+    blockingEditorialDecisions.map((blocker) => [
+      blocker.relationId
+        ? `${blocker.code}:relation:${blocker.relationId}`
+        : `${blocker.code}:${blocker.entity?.type || ''}:${blocker.entity?.id || ''}`,
+      blocker,
+    ]),
+  ).values()];
   const debtBudgetErrors = Object.entries(CONTENT_DEBT_BUDGETS)
     .filter(([key, maximum]) => report[key].length > maximum)
     .map(([key, maximum]) => (
@@ -2481,6 +3101,22 @@ async function compileContentUnlocked({
       `${report.experimentTheoryLinksAwaitingMigration.length} vínculo(s) legado(s) experimento→teoria ainda aguardam relação editorial tipada`,
     );
     report.warnings.sort();
+  }
+  if (report.legacyRelationReviewBaselines.length) {
+    report.warnings.push(
+      `${report.legacyRelationReviewBaselines.length} relação(ões) revisada(s) preservam baseline técnico legado e aguardam a primeira revisão editorial explícita`,
+    );
+    report.warnings.sort();
+  }
+  if (report.blockingEditorialDecisions.length) {
+    throw new Error(
+      'Publicação bloqueada por decisões editoriais pendentes:\n- '
+      + report.blockingEditorialDecisions
+        .map(({ code, entity, relationId }) => (
+          `${entity ? `${entity.type}:${entity.id} ` : ''}${relationId || ''} (${code})`.trim()
+        ))
+        .join('\n- '),
+    );
   }
   const outputs = buildOutputs({
     theories: theoryCompilation.theories,

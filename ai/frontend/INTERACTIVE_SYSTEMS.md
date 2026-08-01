@@ -38,21 +38,21 @@ evidence_sources:
   - "assets/js/smooth-scroll.js"
   - "assets/js/contact.js"
   - "GrandesNomes/grandes-nomes.js"
-  - "assets/data/notable-figures.js"
+  - "content/public/figures/albert-einstein.json"
   - "Constelacoes/constelacoes.js"
   - "Constelacoes/whale-shark-easter-egg.js"
   - "Constelacoes/constelacoes.css"
   - "assets/js/constellation-chart.js"
-  - "assets/data/constellations.js"
+  - "content/public/constellations/orion.json"
   - "assets/js/global-search.js"
-  - "assets/data/experiments.js"
+  - "content/public/taxonomies/experiments.json"
   - "Laboratorio/laboratorio.js"
   - "Laboratorio/experimento.js"
   - "Laboratorio/simulations/light-cone.js"
   - "Laboratorio/simulations/zero-epsilon.js"
   - "Laboratorio/simulations/finite-recurrence.js"
   - "Laboratorio/simulations/astrobiology.js"
-  - "assets/data/learning-paths.js"
+  - "content/public/paths/perder-para-evidencia.json"
   - "assets/js/learning-paths-model.js"
   - "Rotas/rotas.js"
   - "assets/vendor/swiper/LICENSE"
@@ -91,7 +91,7 @@ A comparação recebe duas trajetórias por `?comparar=<slug>,<slug>`, usa os me
 
 ## Atlas de Constelações
 
-`Constelacoes/constelacoes.js` organiza 12 entradas de `assets/data/constellations.js` em uma superfície mestre–detalhe e usa o mesmo renderizador SVG da prévia da home. Uma constelação ocupa o campo principal; a faixa horizontal mantém o catálogo navegável sem repetir 12 painéis completos. Busca textual e filtros sazonais produzem o conjunto visível, preservam a seleção quando possível e escolhem uma opção válida quando ela deixa o recorte. No desktop, campo e catálogo formam a coluna principal à esquerda, enquanto o detalhe ocupa uma coluna independente à direita; assim, diferenças no tamanho do texto não deslocam o catálogo. Em telas estreitas, a ordem natural é campo, catálogo e detalhe.
+`Constelacoes/constelacoes.js` organiza a projeção gerada de `content/public/constellations/` em uma superfície mestre–detalhe e usa o mesmo renderizador SVG da prévia da home. Uma constelação ocupa o campo principal; a faixa horizontal mantém o catálogo navegável sem repetir todos os painéis completos. Busca textual e filtros sazonais produzem o conjunto visível, preservam a seleção quando possível e escolhem uma opção válida quando ela deixa o recorte. No desktop, campo e catálogo formam a coluna principal à esquerda, enquanto o detalhe ocupa uma coluna independente à direita; assim, diferenças no tamanho do texto não deslocam o catálogo. Em telas estreitas, a ordem natural é campo, catálogo e detalhe.
 
 As estrelas permanecem visíveis sem depender das linhas. Hover ou foco sobre uma opção pré-visualizam temporariamente sua guia no campo principal. Seleções por mouse ou teclado — inclusive clique, controles anterior/próximo, opção relacionada e foco móvel da faixa — mudam a constelação ativa e atualizam `?constelacao=<slug>` sem fixar implicitamente as linhas; ao terminar a prévia, a visibilidade volta ao estado explícito da guia. Toque ou caneta fixam a guia porque esses dispositivos não oferecem hover persistente. O botão da guia é o controle explícito para fixar ou liberar as linhas da seleção atual. A faixa usa foco móvel: setas esquerda e direita, `Home` e `End` deslocam a opção ativa sem transformar todas as entradas em uma sequência redundante de tabulação, e a entrada selecionada é mantida visível.
 
@@ -119,13 +119,13 @@ Setas percorrem os resultados, `Escape` fecha o diálogo pelo comportamento nati
 
 ## Rotas Guiadas
 
-`assets/data/learning-paths.js` declara quatro percursos de cinco etapas. `learning-paths-model.js` resolve cada referência para um perfil, uma linha de investigação ou uma experiência e descarta referências inexistentes; `Rotas/rotas.js` apresenta catálogo, justificativa da passagem, progresso e controles anterior/próximo. A URL `?rota=<slug>&etapa=<n>` permite compartilhar a posição atual.
+`content/public/paths/` declara os percursos e suas etapas. O compilador gera a projeção consumida por `learning-paths-model.js`, que resolve cada referência para um perfil, uma linha de investigação ou uma experiência e descarta referências inexistentes; `Rotas/rotas.js` apresenta catálogo, justificativa da passagem, progresso e controles anterior/próximo. A URL `?rota=<slug>&etapa=<n>` permite compartilhar a posição atual.
 
 O avanço representa navegação, não conclusão certificada. Não há conta, persistência ou sincronização entre páginas: abrir o conteúdo de uma etapa e voltar não marca automaticamente leitura. As rotas organizam níveis de evidência distintos sem declarar que um perfil histórico valida uma linha autoral.
 
 ## Laboratório
 
-`assets/data/experiments.js` é a fonte única das nove experiências ativas e de quatro naturezas: visualização conceitual, instrumento interativo, simulador didático e modo de treino. Home, Arquivo, Laboratório, busca, métricas e Rotas Guiadas consomem esse catálogo. `Laboratorio/experimento.js` aceita `?experimento=<slug>`, apresenta pergunta, tecnologia, limite e linhas autorais relacionadas e importa somente o simulador pedido. Uma seleção inválida recebe estado de erro e retorno ao índice; `pagehide` executa a limpeza fornecida pelo módulo.
+`content/public/experiments/` é a fonte canônica das experiências e `content/public/taxonomies/experiments.json` governa suas naturezas. Home, Arquivo, Laboratório, busca, métricas e Rotas Guiadas consomem projeções geradas desse catálogo. `Laboratorio/experimento.js` aceita `?experimento=<slug>`, apresenta pergunta, tecnologia, limite e linhas autorais relacionadas e importa somente o simulador pedido. Uma seleção inválida recebe estado de erro e retorno ao índice; `pagehide` executa a limpeza fornecida pelo módulo.
 
 Os quatro simuladores e seus limites são:
 

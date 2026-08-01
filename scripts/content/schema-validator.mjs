@@ -85,7 +85,7 @@ function validateNode(value, schema, path, errors) {
       errors.push(`${path}: data inválida; use AAAA-MM-DD`);
     }
     if (schema.format === 'uri' && !isValidUri(value)) {
-      errors.push(`${path}: URL HTTP(S) inválida`);
+      errors.push(`${path}: URL HTTPS inválida`);
     }
     if (value.includes(PRIVATE_CANARY)) {
       errors.push(`${path}: canary privado encontrado em conteúdo público`);

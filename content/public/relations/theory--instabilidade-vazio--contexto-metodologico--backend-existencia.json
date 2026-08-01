@@ -16,5 +16,10 @@
   "label": "Contexto metodológico",
   "justification": "A T-07 ajuda a tornar campo, potencial, premissas e objeções da T-02 explicitamente rastreáveis.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "instabilidade-vazio-r1",
+    "targetRevisionId": "backend-existencia-r1"
+  }
 }

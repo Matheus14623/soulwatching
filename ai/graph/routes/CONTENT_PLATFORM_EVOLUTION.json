@@ -17,7 +17,11 @@
     },
     {
       "id": "quality.validation-release",
-      "condition": "Antes de considerar qualquer etapa da migração pronta."
+      "condition": "Antes de considerar qualquer etapa da evolução pronta."
+    },
+    {
+      "id": "domains.editorial-dashboard",
+      "condition": "Quando a mudança planejar ou implementar dashboard, cadastro assistido, análise de impacto, revisão por diff, preview ou publicação administrativa."
     }
   ],
   "relatedContext": ["domains.editorial-model", "domains.theory-catalog", "domains.notable-figures"]

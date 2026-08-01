@@ -16,5 +16,10 @@
   "label": "O problema EPR",
   "justification": "O artigo EPR está no contexto histórico da T-06. Ele não formula ER=EPR e não autoriza comunicação superluminal.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "albert-einstein-r1",
+    "targetRevisionId": "er-epr-sondas-r1"
+  }
 }

@@ -16,5 +16,10 @@
   "label": "Tempo, ruído e inferência",
   "justification": "A identificação de periodicidade mostra por que reconstruções remotas precisam de controles contra ruído e explicações alternativas.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "jocelyn-bell-burnell-r1",
+    "targetRevisionId": "observacao-nao-linear-r1"
+  }
 }

@@ -16,5 +16,10 @@
   "label": "Afinidade conceitual",
   "justification": "As duas tratam retorno ou tentativa, porém uma é estudo matemático e a outra é uma heurística de decisão.",
   "referenceIds": [],
-  "reviewState": "reviewed"
+  "reviewState": "reviewed",
+  "reviewedAgainst": {
+    "mode": "legacy-baseline",
+    "sourceRevisionId": "contentor-finito-r1",
+    "targetRevisionId": "zero-epsilon-r1"
+  }
 }

@@ -35,9 +35,19 @@ evidence_sources:
   - "assets/js/main.js"
   - "assets/js/page-shell.js"
   - "assets/js/global-search.js"
-  - "assets/data/experiments.js"
-  - "assets/data/learning-paths.js"
+  - "assets/js/content-repository.js"
+  - "assets/js/content-source.js"
+  - "content/schemas/entity.schema.json"
+  - "content/schemas/editorial-change-set.schema.json"
+  - "content/public/catalogs/editorial-revision-ledger.json"
+  - "content/public/taxonomies/experiments.json"
+  - "content/public/paths/perder-para-evidencia.json"
+  - "scripts/content/change-set.mjs"
+  - "scripts/content/compiler.mjs"
+  - "scripts/content/editorial-impact.mjs"
+  - "scripts/content/install-record.mjs"
   - "scripts/public-manifest.mjs"
+  - "tools/editorial-dashboard/server.mjs"
   - "assets/js/notable-figures-model.js"
   - "assets/js/constellation-model.js"
   - "assets/js/constellation-chart.js"
@@ -70,7 +80,7 @@ O Observatório é uma aplicação estática multipágina. Cada destino principa
 | Contribuições | `Contribuicoes/contribuicoes.html` → `Contribuicoes/contribuicoes.js` | Política de autoria externa, catálogo ainda vazio e preparação local de proposta por `mailto:`. |
 | Compatibilidade | `teorias.html` | Redirecionamento legado para a rota atual. |
 
-Tecnologias confirmadas: HTML5, CSS, JavaScript ES Modules, SVG, Canvas 2D, Web Audio API, History API e IntersectionObserver. Não há framework, TypeScript, backend, banco ou CMS. A galeria usa Swiper 14.0.6, fixado e servido localmente como dependência de interface sem requisição de runtime a CDN.
+Tecnologias confirmadas no produto público: HTML5, CSS, JavaScript ES Modules, SVG, Canvas 2D, Web Audio API, History API e IntersectionObserver. Não há framework, TypeScript, backend, banco ou CMS no site servido pela Vercel. A galeria usa Swiper 14.0.6, fixado e servido localmente como dependência de interface sem requisição de runtime a CDN. A operação editorial possui uma dashboard local em Node.js e módulos nativos, mantida fora do artefato público.
 
 ## Canonical Rules
 
@@ -84,13 +94,17 @@ Tecnologias confirmadas: HTML5, CSS, JavaScript ES Modules, SVG, Canvas 2D, Web 
 
 ## Dependencies
 
-`assets/data/theories.js` alimenta home, Teorias e Mapa. `assets/js/theory-model.js` concentra localização e relações tipadas simétricas; `assets/js/theory-figure-model.js` deriva, dos perfis, as relações inversas exibidas nos dossiês. `assets/data/notable-figures.js` alimenta destaques, 22 perfis, comparação, quatro trilhas e linha do tempo. `assets/data/constellations.js` alimenta o recorte da home, o atlas e seu treino; `constellation-chart.js` produz o SVG compartilhado.
+`content/public/` é a fonte autoral pública e `content/schemas/` define seus contratos. O compilador gera módulos imutáveis em `assets/data/generated/`; os arquivos históricos em `assets/data/` preservam exports compatíveis e não são fonte de autoria. `ContentRepository` consulta o snapshot sem conhecer o armazenamento, `StaticContentSource` é ativo e `HttpContentSource` permanece disponível para uma origem HTTP futura.
 
-`assets/data/experiments.js` é o catálogo central das nove experiências e seus limites; o executor importa somente o módulo do simulador solicitado. `assets/data/learning-paths.js` e `learning-paths-model.js` ligam as quatro Rotas Guiadas aos catálogos existentes, sem copiar títulos ou slugs. `assets/data/contributions.js` separa formatos, política e publicações externas. Navegação, busca global, métricas e rolagem são compartilhadas por `navigation.js`, `global-search.js`, `site-metrics.js` e `smooth-scroll.js`.
+O núcleo editorial local permanece separado do frontend público. `editorial-impact.mjs` calcula diff, classe efetiva, vigência e impacto direto; `change-set.mjs` valida manifestos privados e monta o overlay; `install-record.mjs` aplica registros e ledgers sob um único lock; o compilador fornece a única integridade cruzada, executa o gate e projeta `needs-review` no runtime. `content/public/catalogs/editorial-revision-ledger.json` mantém a sequência e o hash canônico das revisões de teorias, perfis, publicações e experimentos, sem armazenar snapshots antigos. Relações revisadas fixam os extremos em `reviewedAgainst`; o histórico próprio das relações ainda é o Git.
+
+A dashboard local em `tools/editorial-dashboard/` é um adaptador privado sobre essa camada, não uma segunda fonte de verdade. Ela cria workspaces fora de `content/public/`, monta o mesmo manifesto, chama a análise e a instalação existentes e gera preview em workspace-sombra. Seu servidor aceita somente loopback e IDs allowlisted; caminhos de arquivos nunca são fornecidos pelo navegador. A ferramenta não é API pública, CMS remoto nem rota da Vercel, e o site permanece independente dela.
+
+`theory-model.js` concentra localização e relações tipadas; `theory-figure-model.js` deriva relações inversas dos mesmos registros centrais. Modelos de perfis, constelações, experiências, publicações e Rotas Guiadas consomem projeções geradas específicas para evitar download indiscriminado do snapshot completo. O executor de laboratório importa somente o módulo allowlisted do simulador solicitado. Navegação, busca global, métricas e rolagem são compartilhadas por `navigation.js`, `global-search.js`, `site-metrics.js` e `smooth-scroll.js`.
 
 ## Validation
 
-Execute `npm run verify` depois de alterar entrypoints, imports, rotas ou arquivos obrigatórios. Execute `npm test` para comprovar build, composição pública e smoke das rotas; confirme se o teste de navegador foi executado ou ignorado.
+Execute `npm run content:check` e `npm run content:build -- --check` ao alterar a plataforma de conteúdo. Mudanças no contrato editorial também precisam cobrir ledger, classificação, `reviewedAgainst`, gate, manifesto e rollback nos testes de conteúdo. Execute `npm run verify` depois de alterar entrypoints, imports, rotas ou arquivos obrigatórios. Execute `npm test` para comprovar build, composição pública e smoke das rotas; confirme se o teste de navegador foi executado ou ignorado.
 
 ## To Verify
 
