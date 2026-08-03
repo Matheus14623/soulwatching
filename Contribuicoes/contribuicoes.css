@@ -1,5 +1,6 @@
 .contributions-hero .inner-hero-copy h1 {
   max-width: 12ch;
+  font-size: clamp(2.8rem, 7vw, 6rem);
 }
 
 .contribution-types-section,
