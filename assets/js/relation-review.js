@@ -1,9 +1,11 @@
+export { getPublicRelationJustification } from './public-content-text.js';
+
 export function getRelationReviewPresentation(relation) {
   const referenceCount = Array.isArray(relation?.referenceIds) ? relation.referenceIds.length : 0;
   if (relation?.needsReview || relation?.reviewStatus === 'needs-review') {
     return Object.freeze({
       label: 'Relação precisa de nova revisão',
-      disclosure: 'Uma mudança relevante ocorreu depois da última revisão desta conexão. Ela permanece visível para rastreabilidade, mas não deve ser tratada como vigente.',
+      disclosure: 'Esta conexão aguarda revisão após uma mudança no conteúdo.',
       pending: true,
       needsReview: true,
     });
@@ -16,15 +18,15 @@ export function getRelationReviewPresentation(relation) {
           ? `Relação revisada · ${referenceCount} fontes ligadas`
           : 'Relação editorial revisada',
       disclosure: referenceCount
-        ? 'As fontes dão contexto à relação; não representam endosso da proposta autoral.'
-        : 'A justificativa foi revisada editorialmente, mas não substitui evidência científica.',
+        ? 'As fontes vinculadas documentam o contexto desta conexão.'
+        : 'Sem fontes específicas vinculadas.',
       pending: false,
       needsReview: false,
     });
   }
   return Object.freeze({
     label: 'Relação em revisão',
-    disclosure: 'Conexão editorial provisória; não use esta relação como evidência.',
+    disclosure: 'Conexão editorial provisória.',
     pending: true,
     needsReview: false,
   });

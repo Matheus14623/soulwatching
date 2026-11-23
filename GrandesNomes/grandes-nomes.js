@@ -16,6 +16,7 @@ import {
 } from '../assets/js/notable-figures-model.js?v=great-minds-v3';
 import { smoothScrollToElement } from '../assets/js/smooth-scroll.js';
 import { debounce } from '../assets/js/utils.js';
+import { getPublicRelationJustification } from '../assets/js/relation-review.js';
 
 function createElement(tag, className, text) {
   const element = document.createElement(tag);
@@ -81,6 +82,7 @@ function createContributionCard(contribution, index) {
 }
 
 function createTheoryLink(link) {
+  const justification = getPublicRelationJustification(link);
   const anchor = createElement('a', 'figure-theory-card');
   anchor.href = `../Teorias/teorias.html?teoria=${encodeURIComponent(link.theory.slug)}`;
   anchor.setAttribute('aria-label', `Abrir ${link.theory.code}, ${link.theory.title}`);
@@ -90,7 +92,7 @@ function createTheoryLink(link) {
   copy.append(
     createElement('span', 'figure-theory-type', link.relationLabel),
     createElement('strong', '', link.label),
-    createElement('p', '', link.note),
+    ...(justification ? [createElement('p', '', justification)] : []),
     createElement(
       'span',
       `figure-theory-review${link.reviewPending ? ' is-pending' : ''}`,
@@ -157,7 +159,7 @@ function createDossier(figure) {
     theoryList.append(createElement(
       'p',
       'figure-theory-empty',
-      'Nenhuma conexão editorial direta foi estabelecida com as linhas atuais do Observatório.',
+      'Não há linhas do Observatório relacionadas a este perfil.',
     ));
   }
   theories.append(theoryList);
@@ -265,7 +267,7 @@ function createTrajectoryPanel(figure, sideLabel) {
   if (figure.theoryLinks.length) {
     connectionList.append(...figure.theoryLinks.map(createCompactTheoryLink));
   } else {
-    connectionList.append(createElement('p', 'trajectory-no-connection', 'Sem relação editorial direta no catálogo atual.'));
+    connectionList.append(createElement('p', 'trajectory-no-connection', 'Nenhuma linha do Observatório relacionada.'));
   }
   connections.append(connectionList);
 
@@ -279,7 +281,6 @@ function createTrajectoryPanel(figure, sideLabel) {
 
 function createComparison(comparison) {
   const fragment = document.createDocumentFragment();
-  fragment.append(createTrajectoryPanel(comparison.left, 'Trajetória A'));
 
   const intersection = createElement('aside', 'trajectory-intersection');
   intersection.setAttribute('aria-label', 'Pontos de encontro da comparação');
@@ -292,7 +293,7 @@ function createComparison(comparison) {
     intersection.append(createElement(
       'p',
       '',
-      'As duas trajetórias aparecem nas linhas abaixo por relações editoriais independentes. Abra cada uma para comparar os limites declarados.',
+      'Linhas relacionadas aos dois perfis. Abra o dossiê para consultar cada conexão e seus limites.',
     ));
     const list = createElement('div', 'trajectory-shared-list');
     comparison.sharedTheoryLinks.forEach(({ theory }) => {
@@ -305,11 +306,15 @@ function createComparison(comparison) {
     intersection.append(createElement(
       'p',
       '',
-      'Não há uma linha do Observatório ligada aos dois perfis ao mesmo tempo. A comparação permanece válida como contraste de problemas, métodos e épocas.',
+      'Os perfis não compartilham relações com uma mesma linha do Observatório.',
     ));
   }
 
-  fragment.append(intersection, createTrajectoryPanel(comparison.right, 'Trajetória B'));
+  fragment.append(
+    intersection,
+    createTrajectoryPanel(comparison.left, 'Trajetória A'),
+    createTrajectoryPanel(comparison.right, 'Trajetória B'),
+  );
   return fragment;
 }
 
@@ -437,7 +442,7 @@ function initNotableFiguresGallery() {
   const trails = getNotableFigureTrails();
   const requestedTrail = findNotableFigureTrail(initialUrl.searchParams.get('trilha'));
   const shouldCanonicalizeTrail = initialUrl.searchParams.has('trilha') && !requestedTrail;
-  const pauseReasons = new Set();
+  const pauseReasons = new Set(document.hidden ? ['hidden'] : []);
   let activeArea = 'todas';
   let query = '';
   let visibleFigures = [...NOTABLE_FIGURES];
@@ -445,29 +450,26 @@ function initNotableFiguresGallery() {
   let swiper = null;
   let staticIndex = 0;
   let announceNextChange = false;
+  let focusNextChange = false;
+  let selectedUrlUpdate = true;
+  let renderedFiguresKey = null;
   let activeTrailId = requestedTrail?.id || trails[0]?.id || '';
   let activeMethodCategory = 'todas';
 
   if (total) total.textContent = String(NOTABLE_FIGURES.length);
 
   function setPauseReason(reason, paused) {
+    if (pauseReasons.has(reason) === paused) return;
     if (paused) pauseReasons.add(reason);
     else pauseReasons.delete(reason);
     syncAutoplay();
-  }
-
-  function resetProgress() {
-    carouselShell.classList.remove('is-autoplay-running');
-    void carouselShell.offsetWidth;
-    if (!carouselShell.classList.contains('is-autoplay-paused')) {
-      carouselShell.classList.add('is-autoplay-running');
-    }
   }
 
   function syncAutoplay() {
     if (!autoplayButton || !autoplayLabel) return;
     const unavailable = reducedMotion.matches || visibleFigures.length < 2 || !swiper?.autoplay;
     const manuallyPaused = pauseReasons.has('manual');
+    const lifecycleSuspended = ['hidden', 'page', 'out-of-view'].some((reason) => pauseReasons.has(reason));
     const shouldPause = unavailable || pauseReasons.size > 0;
 
     carouselShell.classList.toggle('is-autoplay-unavailable', unavailable);
@@ -476,21 +478,27 @@ function initNotableFiguresGallery() {
     autoplayButton.setAttribute('aria-pressed', String(manuallyPaused));
 
     if (unavailable) {
-      swiper?.autoplay?.stop();
+      if (swiper?.autoplay?.running) swiper.autoplay.stop();
       autoplayLabel.textContent = reducedMotion.matches ? 'Rotação desativada' : 'Rotação indisponível';
       carouselShell.classList.remove('is-autoplay-running');
       return;
     }
 
     autoplayLabel.textContent = manuallyPaused ? 'Retomar rotação' : 'Pausar rotação';
+    if (lifecycleSuspended) {
+      if (swiper.autoplay.running) swiper.autoplay.stop();
+      carouselShell.classList.remove('is-autoplay-running');
+      return;
+    }
     if (shouldPause) {
-      swiper.autoplay.stop();
+      if (swiper.autoplay.running && !swiper.autoplay.paused) swiper.autoplay.pause();
       carouselShell.classList.remove('is-autoplay-running');
       return;
     }
 
-    swiper.autoplay.start();
-    resetProgress();
+    if (!swiper.autoplay.running) swiper.autoplay.start();
+    else if (swiper.autoplay.paused) swiper.autoplay.resume();
+    carouselShell.classList.add('is-autoplay-running');
   }
 
   function updateUrl(figure) {
@@ -642,7 +650,10 @@ function initNotableFiguresGallery() {
   function updateActiveState(figure, options = {}) {
     if (!figure) return;
     activeFigureId = figure.id;
-    detail.replaceChildren(createDossier(figure));
+    if (detail.dataset.figureId !== figure.id) {
+      detail.replaceChildren(createDossier(figure));
+      detail.dataset.figureId = figure.id;
+    }
 
     document.querySelectorAll('[data-figure-select]').forEach((button) => {
       const active = button.dataset.figureSelect === figure.id;
@@ -660,7 +671,10 @@ function initNotableFiguresGallery() {
     }
 
     if (options.updateUrl !== false) updateUrl(figure);
-    resetProgress();
+    if (focusNextChange) {
+      slides.querySelector(`[data-figure-select="${figure.id}"]`)?.focus({ preventScroll: true });
+      focusNextChange = false;
+    }
   }
 
   function currentFigureFromSwiper(instance) {
@@ -672,20 +686,25 @@ function initNotableFiguresGallery() {
   function selectFigure(figureId, options = {}) {
     const targetIndex = visibleFigures.findIndex((figure) => figure.id === figureId);
     if (targetIndex < 0) return;
+    focusNextChange = options.focusSlide === true;
+    selectedUrlUpdate = options.updateUrl !== false;
 
     if (swiper) {
       const currentFigure = currentFigureFromSwiper(swiper);
       if (currentFigure?.id === figureId) {
-        updateActiveState(visibleFigures[targetIndex], { announce: true });
+        updateActiveState(visibleFigures[targetIndex], { announce: true, updateUrl: selectedUrlUpdate });
+        selectedUrlUpdate = true;
       } else {
         announceNextChange = true;
-        swiper.slideToLoop(targetIndex, reducedMotion.matches ? 0 : 720);
+        if (swiper.params.loop) swiper.slideToLoop(targetIndex, swiper.params.speed);
+        else swiper.slideTo(targetIndex, swiper.params.speed);
       }
     } else {
       staticIndex = targetIndex;
       const slide = slides.children[targetIndex];
       slide?.scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
-      updateActiveState(visibleFigures[targetIndex], { announce: true });
+      updateActiveState(visibleFigures[targetIndex], { announce: true, updateUrl: selectedUrlUpdate });
+      selectedUrlUpdate = true;
     }
 
     if (options.scrollToGallery) {
@@ -699,6 +718,8 @@ function initNotableFiguresGallery() {
     if (!swiper) return;
     swiper.destroy(true, true);
     swiper = null;
+    pauseReasons.delete('drag');
+    announceNextChange = false;
     carousel.classList.remove('is-dragging');
   }
 
@@ -752,11 +773,12 @@ function initNotableFiguresGallery() {
         stretch: 34,
       },
       effect: reducedMotion.matches ? 'slide' : 'coverflow',
+      focusableElements: 'input, select, option, textarea, button:not([data-figure-select]), video, label',
       followFinger: true,
       grabCursor: true,
       initialSlide: initialIndex,
       keyboard: {
-        enabled: true,
+        enabled: false,
         onlyInViewport: true,
         pageUpDown: false,
       },
@@ -782,22 +804,26 @@ function initNotableFiguresGallery() {
       slideToClickedSlide: false,
       slidesPerView: 'auto',
       spaceBetween: 18,
-      speed: reducedMotion.matches ? 0 : (isMouseOptimized ? 520 : 820),
+      speed: reducedMotion.matches ? 0 : (isMouseOptimized ? 520 : 620),
       threshold: isMouseOptimized ? 2 : 5,
       touchRatio: isMouseOptimized ? 1.12 : 1,
+      touchStartPreventDefault: false,
       watchSlidesProgress: true,
       on: {
         init(instance) {
           updateActiveState(currentFigureFromSwiper(instance), { updateUrl: false });
         },
-        slideChange(instance) {
+        realIndexChange(instance) {
+          if (!instance.initialized) return;
           const shouldAnnounce = announceNextChange
             || pauseReasons.size > 0
             || !instance.autoplay?.running;
           announceNextChange = false;
           updateActiveState(currentFigureFromSwiper(instance), {
             announce: shouldAnnounce,
+            updateUrl: selectedUrlUpdate,
           });
+          selectedUrlUpdate = true;
         },
         touchStart() {
           carousel.classList.add('is-dragging');
@@ -813,6 +839,12 @@ function initNotableFiguresGallery() {
         },
         autoplayStop() {
           carouselShell.classList.remove('is-autoplay-running');
+        },
+        autoplayResume() {
+          syncAutoplay();
+        },
+        autoplayTimeLeft(instance, _timeLeft, percentage) {
+          carouselShell.style.setProperty('--notable-autoplay-progress', String(Math.max(0, Math.min(1, 1 - percentage))));
         },
       },
     });
@@ -849,16 +881,12 @@ function initNotableFiguresGallery() {
     });
   }
 
-  function applyFilters() {
+  function applyFilters({ forceRebuild = false } = {}) {
     visibleFigures = filterNotableFigures({ area: activeArea, query });
     const hasResults = visibleFigures.length > 0;
     const selected = visibleFigures.find((figure) => figure.id === activeFigureId) || visibleFigures[0];
     const initialIndex = selected ? visibleFigures.indexOf(selected) : 0;
     const selectionChanged = Boolean(selected && selected.id !== activeFigureId);
-
-    destroySwiper();
-    slides.replaceChildren(...visibleFigures.map(createSlide));
-    renderIndex();
 
     carouselShell.hidden = !hasResults;
     detail.hidden = !hasResults;
@@ -870,7 +898,17 @@ function initNotableFiguresGallery() {
       resultCount.textContent = `${visibleFigures.length} ${suffix}`;
     }
 
-    if (!hasResults) return;
+    const figuresKey = visibleFigures.map(({ id }) => id).join('|');
+    if (!forceRebuild && figuresKey === renderedFiguresKey) return;
+    renderedFiguresKey = figuresKey;
+
+    destroySwiper();
+    slides.replaceChildren(...visibleFigures.map(createSlide));
+    renderIndex();
+    if (!hasResults) {
+      syncAutoplay();
+      return;
+    }
 
     activeFigureId = selected.id;
     slides.querySelectorAll('[data-figure-select]').forEach((button) => {
@@ -908,11 +946,20 @@ function initNotableFiguresGallery() {
   });
 
   autoplayButton?.addEventListener('click', () => {
-    setPauseReason('manual', !pauseReasons.has('manual'));
+    const resume = pauseReasons.has('manual');
+    if (resume) {
+      pauseReasons.delete('focus');
+      pauseReasons.delete('pointer');
+    }
+    setPauseReason('manual', !resume);
   });
 
-  carouselShell.addEventListener('pointerenter', () => setPauseReason('pointer', true));
-  carouselShell.addEventListener('pointerleave', () => setPauseReason('pointer', false));
+  carouselShell.addEventListener('pointerenter', (event) => {
+    if (event.pointerType !== 'touch') setPauseReason('pointer', true);
+  });
+  carouselShell.addEventListener('pointerleave', (event) => {
+    if (event.pointerType !== 'touch') setPauseReason('pointer', false);
+  });
   carouselShell.addEventListener('click', (event) => {
     if (event.target.closest('[data-notable-previous], [data-notable-next], [data-figure-select]')) {
       announceNextChange = true;
@@ -924,18 +971,19 @@ function initNotableFiguresGallery() {
   });
 
   carousel.addEventListener('keydown', (event) => {
-    if (!visibleFigures.length) return;
-    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-      announceNextChange = true;
-    }
-    if (event.key === 'Home') {
-      event.preventDefault();
-      selectFigure(visibleFigures[0].id);
-    }
-    if (event.key === 'End') {
-      event.preventDefault();
-      selectFigure(visibleFigures[visibleFigures.length - 1].id);
-    }
+    if (!visibleFigures.length || event.altKey || event.ctrlKey || event.metaKey) return;
+    const currentIndex = visibleFigures.findIndex(({ id }) => id === activeFigureId);
+    const targets = {
+      ArrowLeft: (currentIndex - 1 + visibleFigures.length) % visibleFigures.length,
+      ArrowRight: (currentIndex + 1) % visibleFigures.length,
+      Home: 0,
+      End: visibleFigures.length - 1,
+    };
+    if (!(event.key in targets)) return;
+    event.preventDefault();
+    selectFigure(visibleFigures[targets[event.key]].id, {
+      focusSlide: event.target.matches('[data-figure-select]'),
+    });
   });
 
   previous?.addEventListener('click', () => {
@@ -954,6 +1002,49 @@ function initNotableFiguresGallery() {
     setPauseReason('hidden', document.hidden);
   });
 
+  window.addEventListener('pagehide', () => setPauseReason('page', true));
+  window.addEventListener('pageshow', () => {
+    setPauseReason('hidden', document.hidden);
+    setPauseReason('page', false);
+  });
+
+  window.addEventListener('popstate', () => {
+    const url = new URL(window.location.href);
+    if (compareLeft && compareRight && comparison) {
+      const requested = (url.searchParams.get('comparar') || '')
+        .split(',')
+        .map((slug) => findNotableFigure(slug))
+        .filter(Boolean);
+      const left = requested[0] || findNotableFigure('albert-einstein') || NOTABLE_FIGURES[0];
+      const preferredRight = findNotableFigure('henrietta-swan-leavitt');
+      const right = requested.find(({ id }) => id !== left.id)
+        || (preferredRight?.id !== left.id ? preferredRight : null)
+        || nextDifferentFigure(left.id);
+      compareLeft.value = left.id;
+      compareRight.value = right.id;
+      renderComparison({ updateUrl: false });
+    }
+
+    const trail = findNotableFigureTrail(url.searchParams.get('trilha')) || trails[0];
+    if (trail && trail.id !== activeTrailId) {
+      activeTrailId = trail.id;
+      renderTrailPicker();
+      renderTrailDetail();
+    }
+
+    const figure = findNotableFigure(url.searchParams.get('perfil')) || NOTABLE_FIGURES[0];
+    if (!figure) return;
+    if (!visibleFigures.some(({ id }) => id === figure.id)) {
+      activeArea = 'todas';
+      query = '';
+      search.value = '';
+      activeFigureId = figure.id;
+      syncFilterState();
+      applyFilters();
+    }
+    selectFigure(figure.id, { updateUrl: false });
+  });
+
   if ('IntersectionObserver' in window) {
     const visibilityObserver = new IntersectionObserver((entries) => {
       const visible = entries.some((entry) => entry.isIntersecting && entry.intersectionRatio >= 0.12);
@@ -963,7 +1054,7 @@ function initNotableFiguresGallery() {
   }
 
   reducedMotion.addEventListener('change', () => {
-    applyFilters();
+    applyFilters({ forceRebuild: true });
   });
 }
 

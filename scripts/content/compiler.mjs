@@ -1,4 +1,9 @@
 import { createHash } from 'node:crypto';
+import {
+  getPublicRelationJustification,
+  getTheoryPublicProposal,
+  getTheoryPublicSummary,
+} from '../../assets/js/public-content-text.js';
 import { statSync } from 'node:fs';
 import {
   mkdir,
@@ -1842,15 +1847,15 @@ function createSearchIndex({
       slug: theory.slug,
       aliases: [...theory.aliases],
       title: theory.title,
-      summary: theory.summary,
+      summary: getTheoryPublicSummary(theory),
       category: 'Teorias',
       url: `/Teorias/teorias.html?teoria=${encodeURIComponent(theory.slug)}`,
       terms: normalizeText([
         theory.title,
         theory.shortTitle,
         theory.subtitle,
-        theory.summary,
-        theory.proposal,
+        getTheoryPublicSummary(theory),
+        getTheoryPublicProposal(theory),
         ...theory.concepts,
         ...theory.aliases,
       ].join(' ')),
@@ -1921,7 +1926,6 @@ function createSearchIndex({
         experiment.shortTitle,
         experiment.summary,
         experiment.question,
-        experiment.technology,
         ...experiment.aliases,
       ].join(' ')),
     })),
@@ -1957,7 +1961,6 @@ function createSearchIndex({
         track.kind,
         track.summary,
         track.boundary,
-        track.nextStep,
         ...track.aliases,
       ].join(' ')),
     })),
@@ -2079,6 +2082,34 @@ function compileOrderedCatalog(records) {
     ));
 }
 
+function publicTheoryProjection(theory) {
+  const revisionFields = new Set(['label', 'changeSummary']);
+  return {
+    ...withoutKeys(theory, new Set(['nextSteps'])),
+    summary: getTheoryPublicSummary(theory),
+    proposal: getTheoryPublicProposal(theory),
+    centralIdea: getTheoryPublicSummary(theory),
+    review: withoutKeys(theory.review, new Set(['assessment'])),
+    revision: withoutKeys(theory.revision, revisionFields),
+    revisionHistory: theory.revisionHistory.map((revision) => withoutKeys(revision, revisionFields)),
+    objections: theory.objections.map((objection) => (
+      objection.status === 'aberta'
+        ? withoutKeys(objection, new Set(['response']))
+        : objection
+    )),
+    claims: theory.claims.filter((claim) => (
+      claim.field !== 'review.assessment'
+      && !(theory.independent === false && ['summary', 'proposal'].includes(claim.field))
+    )),
+  };
+}
+
+function publicRelationProjection(relation, textField = 'justification') {
+  return getPublicRelationJustification(relation)
+    ? relation
+    : withoutKeys(relation, new Set([textField]));
+}
+
 function buildOutputs(compiled) {
   const {
     theories,
@@ -2108,6 +2139,15 @@ function buildOutputs(compiled) {
     searchIndex,
     metrics,
   } = compiled;
+  const publicTheories = theories.map(publicTheoryProjection);
+  const publicTheoryRelations = legacyTheoryRelations.map((relation) => publicRelationProjection(relation));
+  const publicFigures = figures.map((figure) => ({
+    ...figure,
+    theoryLinks: figure.theoryLinks.map((link) => publicRelationProjection(link, 'note')),
+  }));
+  const publicRelations = relations.map((relation) => publicRelationProjection(relation));
+  const publicResearchTracks = researchTracks.map((track) => withoutKeys(track, new Set(['nextStep'])));
+  const publicExperiments = experiments.map((experiment) => withoutKeys(experiment, new Set(['technology'])));
 
   const theoryRelationTypes = relationTaxonomy.types
     .filter((type) => type.sourceType === 'theory' && type.targetType === 'theory')
@@ -2153,14 +2193,14 @@ function buildOutputs(compiled) {
       THEORY_OBJECTION_STATES: theoryTaxonomy.objectionStates,
       THEORY_RELATION_TYPES: theoryRelationTypes,
       THEORY_RUBRICS: theoryTaxonomy.rubrics,
-      THEORY_RELATIONS: legacyTheoryRelations,
-      THEORIES: theories,
+      THEORY_RELATIONS: publicTheoryRelations,
+      THEORIES: publicTheories,
     })],
     [resolve(GENERATED_RUNTIME_ROOT, 'notable-figures.js'), moduleWithFrozenExports({
       NOTABLE_FIGURE_AREAS: figureTaxonomy.areas,
       NOTABLE_FIGURE_RELATION_TYPES: figureRelationTypes,
       NOTABLE_METHOD_TIMELINE_CATEGORIES: figureTaxonomy.timelineCategories,
-      NOTABLE_FIGURES: figures,
+      NOTABLE_FIGURES: publicFigures,
       NOTABLE_METHOD_TIMELINE: events,
       NOTABLE_FIGURE_TRAILS: trails,
     })],
@@ -2183,7 +2223,7 @@ function buildOutputs(compiled) {
     })],
     [resolve(GENERATED_RUNTIME_ROOT, 'relations.js'), moduleWithFrozenExports({
       CONTENT_RELATION_TYPES: relationTaxonomy.types,
-      CONTENT_RELATIONS: relations,
+      CONTENT_RELATIONS: publicRelations,
       CONTENT_RELATION_INDEX: relationIndex,
     })],
     [resolve(GENERATED_RUNTIME_ROOT, 'publications.js'), moduleWithFrozenExports({
@@ -2205,13 +2245,13 @@ function buildOutputs(compiled) {
       EXPERIMENT_KINDS: experimentTaxonomy.kinds,
       EXPERIMENT_STATUSES: experimentTaxonomy.statuses,
       EXPERIMENT_VISUALS: experimentTaxonomy.visuals,
-      EXPERIMENTS: compileOrderedCatalog(experiments),
+      EXPERIMENTS: compileOrderedCatalog(publicExperiments),
     })],
     [resolve(GENERATED_RUNTIME_ROOT, 'learning-paths.js'), moduleWithFrozenExports({
       LEARNING_PATHS: compileOrderedCatalog(paths),
     })],
     [resolve(GENERATED_RUNTIME_ROOT, 'research-tracks.js'), moduleWithFrozenExports({
-      RESEARCH_TRACKS: compileOrderedCatalog(researchTracks),
+      RESEARCH_TRACKS: compileOrderedCatalog(publicResearchTracks),
     })],
     [resolve(GENERATED_RUNTIME_ROOT, 'site-pages.js'), moduleWithFrozenExports({
       SITE_PAGES: compileOrderedCatalog(sitePages),

@@ -49,6 +49,7 @@ export const PRIMARY_NAVIGATION = Object.freeze([
   Object.freeze({ pageId: 'figures', label: 'Grandes nomes', group: 'Explorar' }),
   Object.freeze({ pageId: 'constellations', label: 'Constelações', group: 'Explorar' }),
   Object.freeze({ pageId: 'laboratory', label: 'Laboratório', group: 'Explorar' }),
+  Object.freeze({ pageId: 'archive', label: 'Publicações', group: 'Explorar' }),
   Object.freeze({ pageId: 'contributions', label: 'Contribuir', group: 'Contribuir' }),
   Object.freeze({ pageId: 'about', label: 'Sobre', group: 'Sobre' }),
 ]);
@@ -56,8 +57,7 @@ export const PRIMARY_NAVIGATION = Object.freeze([
 export const FOOTER_NAVIGATION = Object.freeze([
   Object.freeze({ pageId: 'home', label: 'Início' }),
   Object.freeze({ pageId: 'routes', label: 'Rotas guiadas' }),
-  ...PRIMARY_NAVIGATION.slice(1, 6),
-  Object.freeze({ pageId: 'archive', label: 'Publicações' }),
+  ...PRIMARY_NAVIGATION.filter((item) => item.group === 'Explorar'),
   Object.freeze({ pageId: 'contributions', label: 'Contribuições' }),
   Object.freeze({ pageId: 'about', label: 'Sobre' }),
 ]);
@@ -66,45 +66,38 @@ export const SITE_STATUS = Object.freeze({
   id: 'editorial-beta',
   label: 'Beta',
   displayLabel: 'Beta editorial',
-  description: 'Beta editorial: navegação e catálogos em evolução',
-  scope: 'O selo descreve a maturidade editorial e técnica da navegação e dos catálogos; não mede a validade científica de uma ideia.',
-  exitCriteria: Object.freeze([
-    'navegação uniforme em todas as rotas públicas',
-    'schemas e geração de conteúdo estáveis',
-    'jornadas críticas automatizadas',
-    'primeira avaliação formativa com pessoas concluída',
-  ]),
+  description: 'Versão beta',
 });
 
 export const PUBLIC_GLOSSARY = Object.freeze([
   Object.freeze({
     term: 'Teorias',
     functionalTerm: 'Linhas de investigação autorais',
-    definition: 'Hipóteses e estruturas em desenvolvimento, apresentadas com contexto, limites, objeções e caminhos de teste; não são teorias científicas estabelecidas.',
+    definition: 'Hipóteses, estudos e programas autorais com perguntas, fundamentos, limites e fontes.',
     pageId: 'theories',
   }),
   Object.freeze({
     term: 'Mapa',
     functionalTerm: 'Mapa de relações editoriais',
-    definition: 'Índice visual de relações tipadas e justificadas entre ideias. Proximidade no mapa não constitui evidência científica.',
+    definition: 'Conexões conceituais entre linhas de investigação.',
     pageId: 'map',
   }),
   Object.freeze({
     term: 'Grandes nomes',
     functionalTerm: 'Pessoas, métodos e descobertas',
-    definition: 'Contexto histórico verificável. Uma relação com o acervo explica influência, contraste ou método; não implica endosso.',
+    definition: 'Trajetórias, contribuições e métodos da história da ciência e da filosofia.',
     pageId: 'figures',
   }),
   Object.freeze({
     term: 'Publicações',
     functionalTerm: 'Arquivo editorial',
-    definition: 'Ensaios, notas e contribuições que passaram por decisão editorial, com autoria, fontes, licença e histórico próprios.',
+    definition: 'Ensaios, notas e contribuições com autoria, fontes e histórico.',
     pageId: 'archive',
   }),
   Object.freeze({
     term: 'Laboratório',
     functionalTerm: 'Simulações e modelos didáticos',
-    definition: 'Experimentos interativos com premissas e limites explícitos. Ilustram modelos; não produzem validação empírica por si mesmos.',
+    definition: 'Modelos e experiências interativas para explorar fenômenos e hipóteses.',
     pageId: 'laboratory',
   }),
 ]);
@@ -148,7 +141,9 @@ export function findSitePageByPath(pathname = '/') {
 }
 
 function absoluteHref(page, section = null) {
-  const root = page.hrefs.root.replace(/^index\.html/, '/index.html');
+  const root = page.hrefs.root.startsWith('#')
+    ? `/index.html${page.hrefs.root}`
+    : page.hrefs.root.replace(/^index\.html/, '/index.html');
   const path = root.startsWith('/') ? root : `/${root}`;
   return section ? `${path.split('#')[0]}#${section.id}` : path;
 }

@@ -9,6 +9,8 @@ import {
 import { smoothScrollToElement } from '../assets/js/smooth-scroll.js';
 import {
   findTheory,
+  getTheoryPublicProposal,
+  getTheoryPublicSummary,
   getRelatedTheories,
   getTheoryRelationBetween,
   getTheoryRelations,
@@ -23,6 +25,7 @@ import {
 } from '../assets/data/generated/runtime/theories.js';
 import { RESEARCH_TRACKS } from '../assets/data/generated/runtime/research-tracks.js';
 import { getTheoryReferences } from '../assets/js/reference-model.js';
+import { getPublicRelationJustification } from '../assets/js/relation-review.js';
 
 const collator = new Intl.Collator('pt-BR', { sensitivity: 'base' });
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -69,10 +72,14 @@ function searchableText(theory) {
     item.theory.title,
     item.theory.shortTitle,
     item.relationLabel,
-    item.justification,
+    getPublicRelationJustification(item),
   ]);
   const references = getTheoryReferences(theory.referenceIds).flatMap((item) => [item.title, item.authors]);
-  const figures = getNotableFigureConnections(theory).flatMap((item) => [item.figure.name, item.label, item.note]);
+  const figures = getNotableFigureConnections(theory).flatMap((item) => [
+    item.figure.name,
+    item.label,
+    getPublicRelationJustification(item),
+  ]);
 
   return normalizeText([
     theory.code,
@@ -80,12 +87,11 @@ function searchableText(theory) {
     theory.title,
     theory.shortTitle,
     theory.subtitle,
-    theory.summary,
-    theory.proposal,
+    getTheoryPublicSummary(theory),
+    getTheoryPublicProposal(theory),
     theory.centralQuestion,
     theory.typeLabel,
     theory.reviewStateLabel,
-    theory.review.assessment,
     theory.review.known,
     theory.review.focus,
     theory.review.limit,
@@ -94,13 +100,15 @@ function searchableText(theory) {
     theory.filters.join(' '),
     theory.concepts.join(' '),
     theory.questions.join(' '),
-    theory.nextSteps.join(' '),
     theory.claims.flatMap((claim) => [claim.label, claim.text]).join(' '),
-    theory.objections.flatMap((objection) => [objection.title, objection.statusLabel, objection.response]).join(' '),
+    theory.objections.flatMap((objection) => [
+      objection.title,
+      objection.statusLabel,
+      objection.status === 'aberta' ? '' : objection.response,
+    ]).join(' '),
     theory.rubric.flatMap((criterion) => [criterion.label, criterion.question]).join(' '),
     theory.decisionBoundary.revise,
     theory.decisionBoundary.abandon,
-    theory.revision.changeSummary,
     relatedTitles.join(' '),
     references.join(' '),
     figures.join(' '),
@@ -132,24 +140,27 @@ function tagsMarkup(tags = [], limit = 8) {
 
 function relatedMarkup(theory) {
   const relations = getTheoryRelations(theory);
-  if (!relations.length) return '<span class="muted-line">Ainda sem relações catalogadas.</span>';
+  if (!relations.length) return '<span class="muted-line">Nenhuma relação listada.</span>';
 
-  return relations.map((relation) => `
+  return relations.map((relation) => {
+    const justification = getPublicRelationJustification(relation);
+    return `
     <button class="related-relation" type="button" data-related-id="${escapeHtml(relation.theory.id)}">
       <span class="related-relation-title">
         <strong>${escapeHtml(relation.theory.code)} · ${escapeHtml(relation.theory.shortTitle || relation.theory.title)}</strong>
         <small>${escapeHtml(relation.relationLabel)}</small>
       </span>
-      <span class="related-relation-note">${escapeHtml(relation.justification)}</span>
+      ${justification ? `<span class="related-relation-note">${escapeHtml(justification)}</span>` : ''}
       <span class="relation-review-state${relation.reviewPending ? ' is-pending' : ''}">${escapeHtml(relation.reviewLabel)}</span>
       <span class="relation-review-disclosure">${escapeHtml(relation.reviewDisclosure)}</span>
     </button>
-  `).join('');
+  `;
+  }).join('');
 }
 
 function claimReferencesMarkup(theory) {
   if (!theory.claims.length) {
-    return '<p class="reference-empty">Nenhuma afirmação específica desta entrada está ligada a uma referência catalogada nesta versão.</p>';
+    return '<p class="reference-empty">Não há fontes vinculadas a afirmações específicas nesta versão.</p>';
   }
 
   return `
@@ -181,7 +192,7 @@ function objectionsMarkup(theory) {
             <strong>${escapeHtml(objection.title)}</strong>
             <span class="objection-state" data-objection-state="${escapeHtml(objection.status)}">${escapeHtml(objection.statusLabel)}</span>
           </div>
-          <p>${escapeHtml(objection.response)}</p>
+          ${objection.status === 'aberta' ? '' : `<p>${escapeHtml(objection.response)}</p>`}
         </li>
       `).join('')}
     </ul>
@@ -190,7 +201,6 @@ function objectionsMarkup(theory) {
 
 function rubricMarkup(theory) {
   return `
-    <p class="rubric-intro">Critérios próprios de <strong>${escapeHtml(theory.typeLabel.toLowerCase())}</strong>. Eles orientam a revisão; não formam uma nota.</p>
     <ol class="rubric-list">
       ${theory.rubric.map((criterion) => `
         <li>
@@ -220,22 +230,25 @@ function decisionBoundaryMarkup(theory) {
 function notableFiguresMarkup(theory) {
   const connections = getNotableFigureConnections(theory);
   if (!connections.length) {
-    return '<p class="reference-empty">Ainda não há uma relação histórica pública catalogada para esta linha.</p>';
+    return '<p class="reference-empty">Não há perfis históricos relacionados a esta linha.</p>';
   }
 
   return `
     <ul class="theory-figure-list">
-      ${connections.map((connection) => `
+      ${connections.map((connection) => {
+        const justification = getPublicRelationJustification(connection);
+        return `
         <li>
           <a href="../GrandesNomes/grandes-nomes.html?perfil=${encodeURIComponent(connection.figure.slug)}">
             <strong>${escapeHtml(connection.figure.name)}</strong>
             <span>${escapeHtml(connection.relationLabel)} · ${escapeHtml(connection.label)}</span>
-            <small>${escapeHtml(connection.note)}</small>
+            ${justification ? `<small>${escapeHtml(justification)}</small>` : ''}
             <small class="relation-review-state${connection.reviewPending ? ' is-pending' : ''}">${escapeHtml(connection.reviewLabel)}</small>
             <small class="relation-review-disclosure">${escapeHtml(connection.reviewDisclosure)}</small>
           </a>
         </li>
-      `).join('')}
+      `;
+      }).join('')}
     </ul>
   `;
 }
@@ -255,10 +268,8 @@ function revisionMarkup(theory) {
         ${[...theory.revisionHistory].reverse().map((revision) => `
           <li class="revision-record">
             <div>
-              <span>${escapeHtml(revision.label)}</span>
               <strong>Versão ${escapeHtml(revision.version)} · ${escapeHtml(formatter.format(new Date(`${revision.reviewedAt}T00:00:00Z`)))}</strong>
             </div>
-            <p>${escapeHtml(revision.changeSummary)}</p>
           </li>
         `).join('')}
       </ol>
@@ -282,7 +293,7 @@ function versionNoticeMarkup(theory) {
 function referencesMarkup(theory) {
   const references = getTheoryReferences(theory.referenceIds);
   if (!references.length) {
-    return '<p class="reference-empty">Esta entrada é metodológica ou filosófica e ainda não possui uma bibliografia científica central catalogada.</p>';
+    return '<p class="reference-empty">Não há referências bibliográficas listadas para esta linha.</p>';
   }
 
   return `
@@ -327,7 +338,7 @@ function linkageMarkup(theory) {
   return `
     <div class="theory-linkage" role="note">
       <span>Linha derivada</span>
-      <p>Esta entrada permanece integrada à ${escapeHtml(parent.code)} até apresentar uma pergunta e um resultado próprios.</p>
+      <p>Esta linha deriva de ${escapeHtml(parent.code)}.</p>
       <button type="button" data-related-id="${escapeHtml(parent.id)}">Abrir linha principal</button>
     </div>
   `;
@@ -419,22 +430,18 @@ function compactDetailMarkup(theory) {
       <p>${escapeHtml(theory.centralQuestion)}</p>
     </div>
     <div class="mobile-detail-section">
-      <h4>Proposição</h4>
-      <p>${escapeHtml(theory.proposal)}</p>
+      <h4>${theory.independent === false ? 'Recorte em investigação' : 'Proposição'}</h4>
+      <p>${escapeHtml(getTheoryPublicProposal(theory))}</p>
     </div>
     <details class="mobile-detail-disclosure">
       <summary>Leitura crítica completa</summary>
       ${reviewGridMarkup(theory, true)}
     </details>
     <details class="mobile-detail-disclosure">
-      <summary>Perguntas, próximos passos e conceitos</summary>
+      <summary>Perguntas e conceitos</summary>
       <div class="mobile-detail-section">
         <h4>Perguntas abertas</h4>
         <ul>${listMarkup(theory.questions)}</ul>
-      </div>
-      <div class="mobile-detail-section">
-        <h4>Próximos passos</h4>
-        <ul>${listMarkup(theory.nextSteps)}</ul>
       </div>
       <div class="mobile-detail-section">
         <h4>Conceitos conectados</h4>
@@ -447,7 +454,7 @@ function compactDetailMarkup(theory) {
       ${decisionBoundaryMarkup(theory)}
     </details>
     <details class="mobile-detail-disclosure">
-      <summary>Rubrica desta natureza</summary>
+      <summary>Critérios de investigação</summary>
       ${rubricMarkup(theory)}
     </details>
     <details class="mobile-detail-disclosure">
@@ -496,8 +503,7 @@ function cardMarkup(theory) {
         </span>
         <span class="archive-card-title">${escapeHtml(theory.title)}</span>
         <span class="archive-card-subtitle">${escapeHtml(theory.subtitle)}</span>
-        <span class="archive-card-summary">${escapeHtml(theory.summary)}</span>
-        <span class="archive-card-assessment">${escapeHtml(theory.review.assessment)}</span>
+        <span class="archive-card-summary">${escapeHtml(getTheoryPublicSummary(theory))}</span>
         <span class="archive-card-footer">
           <span>${escapeHtml(theory.reviewStateLabel)}</span>
           <span>${escapeHtml(getFilterLabel(theory.category))}</span>
@@ -583,7 +589,7 @@ function comparisonFigureNames(theory) {
   const figures = getNotableFigureConnections(theory);
   return figures.length
     ? figures.map((connection) => connection.figure.name).join(', ')
-    : 'Nenhuma relação histórica catalogada nesta versão.';
+    : 'Nenhum perfil histórico relacionado nesta versão.';
 }
 
 function renderComparison() {
@@ -599,8 +605,7 @@ function renderComparison() {
   if (!complete) {
     output.innerHTML = `
       <div class="comparison-empty" role="status">
-        <strong>${first || second ? 'Falta escolher a segunda linha.' : 'A comparação começa com duas escolhas.'}</strong>
-        <p>O dossiê principal continua independente dos filtros e da seleção feita aqui.</p>
+        <strong>${first || second ? 'Escolha a segunda linha.' : 'Escolha duas linhas para comparar.'}</strong>
       </div>
     `;
     return;
@@ -610,7 +615,7 @@ function renderComparison() {
   const rows = [
     ['Natureza e estado', `${first.typeLabel} · ${first.reviewStateLabel}`, `${second.typeLabel} · ${second.reviewStateLabel}`],
     ['Pergunta central', first.centralQuestion, second.centralQuestion],
-    ['Proposição', first.proposal, second.proposal],
+    [first.independent === false || second.independent === false ? 'Recorte em investigação' : 'Proposição', getTheoryPublicProposal(first), getTheoryPublicProposal(second)],
     ['Limite atual', first.review.limit, second.review.limit],
     ['Caminho verificável', first.review.test, second.review.test],
     ['Revisar quando', first.decisionBoundary.revise, second.decisionBoundary.revise],
@@ -623,11 +628,11 @@ function renderComparison() {
     ${relation ? `
       <div class="comparison-relation" role="note">
         <span>${escapeHtml(relation.relationLabel)}</span>
-        <p>${escapeHtml(relation.justification)}</p>
+        ${getPublicRelationJustification(relation) ? `<p>${escapeHtml(getPublicRelationJustification(relation))}</p>` : ''}
         <small class="relation-review-state${relation.reviewPending ? ' is-pending' : ''}">${escapeHtml(relation.reviewLabel)}</small>
         <small class="relation-review-disclosure">${escapeHtml(relation.reviewDisclosure)}</small>
       </div>
-    ` : '<p class="comparison-no-relation">Não há relação direta catalogada entre estas linhas. A comparação não cria uma.</p>'}
+    ` : '<p class="comparison-no-relation">Não há relação direta listada entre estas linhas.</p>'}
     <div class="comparison-table-scroll" tabindex="0" role="region" aria-label="Tabela comparativa das linhas selecionadas">
       <table class="comparison-table">
         <caption class="sr-only">Comparação crítica entre ${escapeHtml(first.title)} e ${escapeHtml(second.title)}</caption>
@@ -719,12 +724,11 @@ function renderDossier(theories) {
       <span><strong>${getRelatedTheories(theory).length}</strong> relações</span>
     </div>
 
-    <p class="dossier-assessment">${escapeHtml(theory.review.assessment)}</p>
     ${linkageMarkup(theory)}
 
     <div class="dossier-section">
       <h4>Ideia central</h4>
-      <p>${escapeHtml(theory.centralIdea)}</p>
+      <p>${escapeHtml(getTheoryPublicSummary(theory))}</p>
     </div>
 
     <div class="dossier-section dossier-central-question">
@@ -733,8 +737,8 @@ function renderDossier(theories) {
     </div>
 
     <div class="dossier-section">
-      <h4>Proposição</h4>
-      <p>${escapeHtml(theory.proposal)}</p>
+      <h4>${theory.independent === false ? 'Recorte em investigação' : 'Proposição'}</h4>
+      <p>${escapeHtml(getTheoryPublicProposal(theory))}</p>
     </div>
 
     <section class="dossier-critical-review" aria-labelledby="${escapeHtml(theory.id)}-review-title">
@@ -747,9 +751,8 @@ function renderDossier(theories) {
 
     ${disclosure('Objeções registradas', objectionsMarkup(theory), true)}
     ${disclosure('Condição de revisão ou abandono', decisionBoundaryMarkup(theory), true)}
-    ${disclosure('Rubrica desta natureza', rubricMarkup(theory))}
+    ${disclosure('Critérios de investigação', rubricMarkup(theory))}
     ${disclosure('Perguntas abertas', `<ul>${listMarkup(theory.questions)}</ul>`)}
-    ${disclosure('Próximos passos', `<ul>${listMarkup(theory.nextSteps)}</ul>`)}
     ${disclosure('Conceitos relacionados', `<div class="tag-list">${tagsMarkup(theory.concepts)}</div>`)}
     ${disclosure('Afirmações ligadas às fontes', claimReferencesMarkup(theory))}
     ${disclosure('Referências de contexto', referencesMarkup(theory))}
@@ -765,6 +768,7 @@ function renderDossier(theories) {
     </div>
     <p class="copy-status" aria-live="polite" data-copy-status="${escapeHtml(theory.id)}"></p>
   `;
+  dossier.scrollTop = 0;
 }
 
 function renderResearchTracks() {
@@ -781,7 +785,6 @@ function renderResearchTracks() {
       <p>${escapeHtml(track.summary)}</p>
       <dl>
         <div><dt>Limite</dt><dd>${escapeHtml(track.boundary)}</dd></div>
-        <div><dt>Próximo passo</dt><dd>${escapeHtml(track.nextStep)}</dd></div>
       </dl>
     </article>
   `).join('');

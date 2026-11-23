@@ -287,10 +287,10 @@ const requiredTheoryFields = [
   'centralIdea', 'centralQuestion', 'proposal', 'kind', 'typeLabel',
   'typeShortLabel', 'reviewState', 'reviewStateLabel', 'independent',
   'category', 'color', 'glow', 'position', 'concepts', 'questions',
-  'nextSteps', 'connections', 'referenceIds', 'review', 'revision',
+  'connections', 'referenceIds', 'review', 'revision',
 ];
-const requiredArrayFields = ['filters', 'concepts', 'questions', 'nextSteps', 'connections', 'referenceIds'];
-const requiredReviewFields = ['assessment', 'known', 'focus', 'limit', 'test'];
+const requiredArrayFields = ['filters', 'concepts', 'questions', 'connections', 'referenceIds'];
+const requiredReviewFields = ['known', 'focus', 'limit', 'test'];
 
 for (const theory of THEORIES) {
   const missing = requiredTheoryFields.filter((field) => theory[field] === undefined || theory[field] === '');
@@ -303,6 +303,17 @@ for (const theory of THEORIES) {
 
   if ('progress' in theory) errors.push(`Percentual editorial ainda presente em ${theory.id}`);
   if ('sourceFile' in theory) errors.push(`Caminho interno ainda presente nos dados públicos de ${theory.id}`);
+  if ('nextSteps' in theory || 'assessment' in (theory.review || {})) {
+    errors.push(`Notas de trabalho na projeção pública de ${theory.id}`);
+  }
+  for (const revision of [...(theory.revisionHistory || []), theory.revision].filter(Boolean)) {
+    if ('label' in revision || 'changeSummary' in revision) {
+      errors.push(`Nota administrativa de revisão na projeção pública de ${theory.id}`);
+    }
+  }
+  if (theory.objections?.some((objection) => objection.status === 'aberta' && 'response' in objection)) {
+    errors.push(`Resposta de trabalho a objeção aberta na projeção pública de ${theory.id}`);
+  }
 
   const invalidArrays = requiredArrayFields.filter((field) => !Array.isArray(theory[field]));
   if (invalidArrays.length) errors.push(`Arrays inválidos em ${theory.id}: ${invalidArrays.join(', ')}`);
@@ -319,7 +330,6 @@ for (const theory of THEORIES) {
     errors.push(`Data de revisão inválida em ${theory.id}`);
   }
   if (!theory.revision?.version) errors.push(`Versão ausente em ${theory.id}`);
-  if (!theory.revision?.label) errors.push(`Rótulo de revisão ausente em ${theory.id}`);
   if (typeof theory.independent !== 'boolean') errors.push(`Indicador de independência inválido em ${theory.id}`);
   if (
     !Number.isFinite(theory.position?.x)
@@ -526,9 +536,10 @@ for (const [id, reference] of Object.entries(CONSTELLATION_REFERENCES)) {
 
 const trackIds = new Set();
 for (const track of RESEARCH_TRACKS) {
-  const missing = ['id', 'code', 'title', 'kind', 'summary', 'boundary', 'nextStep']
+  const missing = ['id', 'code', 'title', 'kind', 'summary', 'boundary']
     .filter((field) => !track[field]);
   if (missing.length) errors.push(`Linha do radar incompleta em ${track.id || track.code}: ${missing.join(', ')}`);
+  if ('nextStep' in track) errors.push(`Plano de trabalho na projeção pública do radar ${track.id}`);
   if (trackIds.has(track.id)) errors.push(`ID duplicado no radar: ${track.id}`);
   trackIds.add(track.id);
 }

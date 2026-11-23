@@ -37,7 +37,7 @@
       <div class="header-shell">
         <a class="brand" href="../index.html#topo" aria-label="Voltar ao início do Observatório">
           <span class="brand-mark" aria-hidden="true"></span>
-          <span><strong>Observatório</strong><small>arquivo de ideias em órbita</small></span>
+          <span><strong>Observatório</strong><small>ideias em órbita</small></span>
         </a>
 
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle>
@@ -45,22 +45,19 @@
           <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
         </button>
 
-        <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
-          <a href="../Rotas/rotas.html" title="Começar por uma pergunta">Começar</a>
-          <a href="../Teorias/teorias.html" title="Linhas de investigação autorais">Teorias</a>
-          <a href="../Mapa/mapa.html" title="Mapa de relações">Mapa</a>
-          <a href="../GrandesNomes/grandes-nomes.html" title="Pessoas, métodos e descobertas">Grandes nomes</a>
-          <a href="./constelacoes.html" aria-current="page" title="Atlas celeste">Constelações</a>
-          <a href="../Laboratorio/laboratorio.html" title="Simulações e modelos didáticos">Laboratório</a>
-          <a href="../Contribuicoes/contribuicoes.html" title="Propor uma contribuição">Contribuir</a>
-          <a href="../index.html#sobre" title="Sobre o Observatório">Sobre</a>
+        <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav data-site-navigation>
+          <a href="/Rotas/rotas.html">Começar</a>
+          <details class="nav-explore"><summary>Explorar</summary><div class="nav-explore-links">
+            <a href="/Teorias/teorias.html">Teorias</a>
+            <a href="/Mapa/mapa.html">Mapa</a>
+            <a href="/GrandesNomes/grandes-nomes.html">Grandes nomes</a>
+            <a href="/Constelacoes/constelacoes.html">Constelações</a>
+            <a href="/Laboratorio/laboratorio.html">Laboratório</a>
+            <a href="/Arquivo/arquivo.html">Publicações</a>
+          </div></details>
+          <a href="/Contribuicoes/contribuicoes.html">Contribuir</a>
+          <a href="/index.html#sobre">Sobre</a>
         </nav>
-
-        <div class="status-pill" aria-live="polite" data-status-pill>
-          <span class="status-dot" aria-hidden="true"></span>
-          <span data-status-text>Atlas celeste</span>
-        </div>
-        <span class="beta-badge" aria-label="Beta editorial: navegação e catálogos em evolução" title="Beta editorial: navegação e catálogos em evolução">Beta</span>
       </div>
     </header>
 
@@ -214,21 +211,30 @@
 
     <footer class="site-footer">
       <div class="container footer-grid">
-        <p><strong>Atlas de constelações</strong><br />Reconhecimento visual com contexto científico e linhas-guia acessíveis.</p>
+        <p class="footer-identity"><strong>Observatório de Ideias</strong>
+          Código, cosmos e filosofia.<br />Matheus Camargo
+          <small data-site-status-label>Beta editorial</small>
+        </p>
         <nav class="footer-links" aria-label="Navegação e links profissionais" data-footer-nav>
-          <a href="../index.html#topo">Início</a>
-          <a href="../Rotas/rotas.html">Rotas guiadas</a>
-          <a href="../Teorias/teorias.html">Teorias</a>
-          <a href="../Mapa/mapa.html">Mapa</a>
-          <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
-          <a href="./constelacoes.html">Constelações</a>
-          <a href="../Laboratorio/laboratorio.html">Laboratório</a>
-          <a href="../Arquivo/arquivo.html">Publicações</a>
-          <a href="../Contribuicoes/contribuicoes.html">Contribuições</a>
-          <a href="../index.html#sobre">Sobre</a>
+          <div class="footer-link-group"><strong>Explorar</strong>
+          <a href="/Teorias/teorias.html">Teorias</a>
+          <a href="/Mapa/mapa.html">Mapa</a>
+          <a href="/GrandesNomes/grandes-nomes.html">Grandes nomes</a>
+          <a href="/Constelacoes/constelacoes.html">Constelações</a>
+          <a href="/Laboratorio/laboratorio.html">Laboratório</a>
+          <a href="/Arquivo/arquivo.html">Publicações</a>
+        </div>
+          <div class="footer-link-group"><strong>Observatório</strong>
+          <a href="/index.html#topo">Início</a>
+          <a href="/Rotas/rotas.html">Rotas guiadas</a>
+          <a href="/Contribuicoes/contribuicoes.html">Contribuições</a>
+          <a href="/index.html#sobre">Sobre</a>
+        </div>
+          <div class="footer-link-group"><strong>Conectar</strong>
           <a href="mailto:soulwatching@gmail.com">E-mail</a>
           <a href="https://www.linkedin.com/in/gomin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
         </nav>
       </div>
     </footer>

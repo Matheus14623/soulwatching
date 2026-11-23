@@ -177,6 +177,7 @@ export const PUBLIC_REQUIRED_FILES = Object.freeze([
   'assets/js/page-shell.js',
   'assets/js/publication-model.js',
   'assets/js/publication-routing.js',
+  'assets/js/public-content-text.js',
   'assets/js/pix-support.js',
   'assets/js/reference-model.js',
   'assets/js/notable-figures-model.js',

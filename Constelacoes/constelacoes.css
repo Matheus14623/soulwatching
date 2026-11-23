@@ -78,10 +78,10 @@
 }
 
 .sky-atlas-heading h1 {
-  max-width: 12ch;
+  max-width: 20ch;
   margin: 0.65rem 0 0;
-  font-size: clamp(3.2rem, 7.4vw, 7.4rem);
-  line-height: 0.9;
+  font-size: clamp(2.5rem, 1.5rem + 3vw, 5.25rem);
+  line-height: 1.04;
 }
 
 .sky-atlas-heading > p {
@@ -1221,10 +1221,6 @@
     right: calc((100vw - 100%) / -2);
     width: min(78vw, 20rem);
     opacity: 0.64;
-  }
-
-  .sky-atlas-heading h1 {
-    font-size: clamp(2.9rem, 14.5vw, 4.4rem);
   }
 
   .sky-atlas-toolbar {

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "entityType": "site-page",
-  "revisionId": "home-r2",
+  "revisionId": "home-r3",
   "order": 1,
   "id": "home",
   "label": "Início",
@@ -36,9 +36,9 @@
     },
     {
       "id": "glossario",
-      "label": "Nomes do sistema",
+      "label": "Guia do Observatório",
       "title": "Entender o vocabulário do Observatório",
-      "description": "Tradução literal dos nomes editoriais usados na navegação.",
+      "description": "Conheça as áreas do Observatório e os conteúdos de cada uma.",
       "keywords": [
         "glossário",
         "vocabulário",
@@ -66,16 +66,14 @@
       "id": "sobre",
       "label": "Sobre",
       "title": "Sobre o Observatório",
-      "description": "Propósito, autoria e limites editoriais do projeto.",
+      "description": "Conheça Matheus Camargo e as questões que orientam o Observatório.",
       "keywords": [
         "sobre",
         "quem criou",
         "objetivo",
         "autoria",
         "limites",
-        "apoio",
-        "beta editorial",
-        "critérios de saída"
+        "apoio"
       ]
     },
     {

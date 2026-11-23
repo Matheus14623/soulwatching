@@ -16,7 +16,7 @@
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Linhas de Investigação | Observatório de Ideias" />
-    <meta name="twitter:description" content="Um arquivo crítico de hipóteses, estudos e projetos com referências, limites e próximos passos." />
+    <meta name="twitter:description" content="Um arquivo crítico de hipóteses, estudos e projetos com referências, limites e caminhos de teste." />
     <meta name="twitter:image" content="../assets/images/og-observatorio.jpg" />
 
     <title>Linhas de Investigação | Observatório de Ideias</title>
@@ -38,7 +38,7 @@
           <span class="brand-mark" aria-hidden="true"></span>
           <span>
             <strong>Observatório</strong>
-            <small>arquivo de ideias em órbita</small>
+            <small>ideias em órbita</small>
           </span>
         </a>
 
@@ -49,23 +49,19 @@
           <span aria-hidden="true"></span>
         </button>
 
-        <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
-          <a href="../Rotas/rotas.html" title="Começar por uma pergunta">Começar</a>
-          <a href="./teorias.html" aria-current="page" title="Linhas de investigação autorais">Teorias</a>
-          <a href="../Mapa/mapa.html" title="Mapa de relações">Mapa</a>
-          <a href="../GrandesNomes/grandes-nomes.html" title="Pessoas, métodos e descobertas">Grandes nomes</a>
-          <a href="../Constelacoes/constelacoes.html" title="Atlas celeste">Constelações</a>
-          <a href="../Laboratorio/laboratorio.html" title="Simulações e modelos didáticos">Laboratório</a>
-          <a href="../Contribuicoes/contribuicoes.html" title="Propor uma contribuição">Contribuir</a>
-          <a href="../index.html#sobre" title="Sobre o Observatório">Sobre</a>
+        <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav data-site-navigation>
+          <a href="/Rotas/rotas.html">Começar</a>
+          <details class="nav-explore"><summary>Explorar</summary><div class="nav-explore-links">
+            <a href="/Teorias/teorias.html">Teorias</a>
+            <a href="/Mapa/mapa.html">Mapa</a>
+            <a href="/GrandesNomes/grandes-nomes.html">Grandes nomes</a>
+            <a href="/Constelacoes/constelacoes.html">Constelações</a>
+            <a href="/Laboratorio/laboratorio.html">Laboratório</a>
+            <a href="/Arquivo/arquivo.html">Publicações</a>
+          </div></details>
+          <a href="/Contribuicoes/contribuicoes.html">Contribuir</a>
+          <a href="/index.html#sobre">Sobre</a>
         </nav>
-
-        <div class="status-pill" aria-live="polite" data-status-pill>
-          <span class="status-dot" aria-hidden="true"></span>
-          <span data-status-text>Linhas de investigação</span>
-        </div>
-
-        <span class="beta-badge" aria-label="Beta editorial: navegação e catálogos em evolução" title="Beta editorial: navegação e catálogos em evolução">Beta</span>
       </div>
     </header>
 
@@ -95,7 +91,7 @@
               <span>naturezas distintas</span>
             </div>
             <p>
-              <strong data-independent-total data-content-metric="independentTheories">9</strong> linhas são independentes. Uma derivação permanece ligada à sua linha principal para evitar duplicidade.
+              <strong data-independent-total data-content-metric="independentTheories">9</strong> linhas são independentes. Uma linha deriva de outra do catálogo.
             </p>
           </aside>
         </div>
@@ -118,11 +114,8 @@
           <div class="theory-browser-heading">
             <div>
               <p class="section-kicker">como ler o arquivo</p>
-              <h2 id="reading-guide-title">Quatro camadas para não confundir ideia, evidência e caminho de pesquisa.</h2>
+              <h2 id="reading-guide-title">Contexto, proposta, limite e caminho de pesquisa.</h2>
             </div>
-            <p>
-              A mesma estrutura acompanha todas as entradas e permite ampliar o acervo sem perder clareza.
-            </p>
           </div>
 
           <div class="reading-layers-grid">
@@ -160,7 +153,7 @@
               <h2 id="theory-browser-title">Pesquisar, comparar e abrir cada dossiê.</h2>
             </div>
             <p>
-              Os filtros distinguem tema, natureza da entrada e estado do trabalho sem transformar maturidade em uma pontuação.
+              Filtre por tema, natureza da entrada, estado do trabalho ou conceito.
             </p>
           </div>
 
@@ -175,7 +168,7 @@
                 <p class="section-kicker">comparação crítica</p>
                 <h3 id="theory-comparison-title">Coloque duas linhas sob os mesmos critérios.</h3>
               </div>
-              <p>Natureza, pergunta, limite, teste e condição de abandono aparecem lado a lado sem produzir nota de credibilidade.</p>
+              <p>Compare natureza, pergunta, limite, caminho de teste e condição de abandono.</p>
             </div>
             <form class="comparison-controls" data-comparison-controls>
               <label>
@@ -261,11 +254,8 @@
           <div class="theory-browser-heading">
             <div>
               <p class="section-kicker">radar de desenvolvimento</p>
-              <h2 id="research-radar-title">Ideias úteis que ainda não precisam virar novas teorias.</h2>
+              <h2 id="research-radar-title">Perguntas e projetos em desenvolvimento.</h2>
             </div>
-            <p>
-              Ensaios, simuladores e projetos quantitativos permanecem em uma área própria até justificarem uma entrada independente.
-            </p>
           </div>
           <div class="research-track-grid" data-research-tracks></div>
         </div>
@@ -282,24 +272,30 @@
 
     <footer class="site-footer">
       <div class="container footer-grid">
-        <p>
-          <strong>Observatório de Ideias</strong><br />
-          Hipóteses, estudos e programas organizados como linhas de investigação.
+        <p class="footer-identity"><strong>Observatório de Ideias</strong>
+          Código, cosmos e filosofia.<br />Matheus Camargo
+          <small data-site-status-label>Beta editorial</small>
         </p>
         <nav class="footer-links" aria-label="Links profissionais e navegação" data-footer-nav>
-          <a href="../index.html#topo">Início</a>
-          <a href="../Rotas/rotas.html">Rotas guiadas</a>
-          <a href="./teorias.html">Teorias</a>
-          <a href="../Mapa/mapa.html">Mapa</a>
-          <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
-          <a href="../Constelacoes/constelacoes.html">Constelações</a>
-          <a href="../Laboratorio/laboratorio.html">Laboratório</a>
-          <a href="../Arquivo/arquivo.html">Publicações</a>
-          <a href="../Contribuicoes/contribuicoes.html">Contribuições</a>
-          <a href="../index.html#sobre">Sobre</a>
+          <div class="footer-link-group"><strong>Explorar</strong>
+          <a href="/Teorias/teorias.html">Teorias</a>
+          <a href="/Mapa/mapa.html">Mapa</a>
+          <a href="/GrandesNomes/grandes-nomes.html">Grandes nomes</a>
+          <a href="/Constelacoes/constelacoes.html">Constelações</a>
+          <a href="/Laboratorio/laboratorio.html">Laboratório</a>
+          <a href="/Arquivo/arquivo.html">Publicações</a>
+        </div>
+          <div class="footer-link-group"><strong>Observatório</strong>
+          <a href="/index.html#topo">Início</a>
+          <a href="/Rotas/rotas.html">Rotas guiadas</a>
+          <a href="/Contribuicoes/contribuicoes.html">Contribuições</a>
+          <a href="/index.html#sobre">Sobre</a>
+        </div>
+          <div class="footer-link-group"><strong>Conectar</strong>
           <a href="mailto:soulwatching@gmail.com">E-mail</a>
           <a href="https://www.linkedin.com/in/gomin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
         </nav>
       </div>
     </footer>
@@ -308,7 +304,7 @@
 
     <noscript>
       <div class="noscript-message">
-        O guia de leitura permanece disponível, mas as fichas, os filtros e os detalhes do arquivo precisam de JavaScript.
+        Ative JavaScript para consultar as fichas e usar os filtros do catálogo.
       </div>
     </noscript>
 

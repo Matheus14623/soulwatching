@@ -357,10 +357,9 @@ function renderHistory(publication) {
       ),
       createTime(revision.publishedAt),
       createElement('p', '', revision.changeSummary),
-      createElement('code', '', revision.contentHash),
     );
     const details = document.createElement('details');
-    const summary = createElement('summary', '', 'Consultar o snapshot imutável desta versão');
+    const summary = createElement('summary', '', 'Ler o texto desta versão');
     const snapshot = createElement('div', 'publication-snapshot');
     snapshot.append(
       createElement('h3', '', revision.publicSnapshot.title),
@@ -407,7 +406,7 @@ async function boot() {
   if (!slug) {
     setState(
       'Escolha uma publicação no Arquivo.',
-      'Esta página só apresenta registros que já passaram pelo fluxo editorial e estão no catálogo público.',
+      'Acesse o Arquivo para encontrar os textos disponíveis.',
     );
     return;
   }
@@ -415,7 +414,7 @@ async function boot() {
   if (!publication) {
     setState(
       'Publicação não encontrada.',
-      'O endereço pode estar incompleto ou a entrada ainda não integra o catálogo público.',
+      'Confira o endereço ou procure o texto no Arquivo.',
     );
     return;
   }
@@ -425,7 +424,7 @@ async function boot() {
     console.error(error);
     setState(
       'Não foi possível abrir esta publicação.',
-      'O catálogo foi preservado, mas houve uma falha ao montar a leitura. Tente novamente mais tarde.',
+      'Tente novamente mais tarde ou volte ao Arquivo para escolher outro texto.',
     );
   }
 }

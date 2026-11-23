@@ -3,20 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Arquivo editorial do Observatório de Ideias de Matheus Camargo: estrutura preparada para ensaios, registros e fragmentos conceituais futuros." />
+    <meta name="description" content="Arquivo editorial do Observatório de Ideias de Matheus Camargo: ensaios, registros e notas conceituais com autoria, fontes e histórico de revisão." />
     <meta name="author" content="Matheus Camargo de Alencar" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#050712" />
 
     <meta property="og:title" content="Arquivo Editorial | Observatório de Ideias" />
-    <meta property="og:description" content="Uma estrutura honesta para ensaios, registros e fragmentos, ainda sem publicações inventadas." />
+    <meta property="og:description" content="Ensaios, registros e notas conceituais do Observatório de Ideias." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="../assets/images/og-observatorio.jpg" />
     <meta property="og:locale" content="pt_BR" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Arquivo Editorial | Observatório de Ideias" />
-    <meta name="twitter:description" content="Ensaios, registros e fragmentos preparados para crescer com versão, contexto e revisão." />
+    <meta name="twitter:description" content="Ensaios, registros e notas conceituais com autoria, fontes e histórico de revisão." />
     <meta name="twitter:image" content="../assets/images/og-observatorio.jpg" />
 
     <title>Arquivo Editorial | Observatório de Ideias</title>
@@ -36,7 +36,7 @@
       <div class="header-shell">
         <a class="brand" href="../index.html#topo" aria-label="Voltar ao início do Observatório">
           <span class="brand-mark" aria-hidden="true"></span>
-          <span><strong>Observatório</strong><small>arquivo de ideias em órbita</small></span>
+          <span><strong>Observatório</strong><small>ideias em órbita</small></span>
         </a>
 
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle>
@@ -44,22 +44,19 @@
           <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
         </button>
 
-        <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav>
-          <a href="../Rotas/rotas.html" title="Começar por uma pergunta">Começar</a>
-          <a href="../Teorias/teorias.html" title="Linhas de investigação autorais">Teorias</a>
-          <a href="../Mapa/mapa.html" title="Mapa de relações">Mapa</a>
-          <a href="../GrandesNomes/grandes-nomes.html" title="Pessoas, métodos e descobertas">Grandes nomes</a>
-          <a href="../Constelacoes/constelacoes.html" title="Atlas celeste">Constelações</a>
-          <a href="../Laboratorio/laboratorio.html" title="Simulações e modelos didáticos">Laboratório</a>
-          <a href="../Contribuicoes/contribuicoes.html" title="Propor uma contribuição">Contribuir</a>
-          <a href="../index.html#sobre" title="Sobre o Observatório">Sobre</a>
+        <nav class="primary-nav" id="primary-navigation" aria-label="Navegação principal" data-primary-nav data-site-navigation>
+          <a href="/Rotas/rotas.html">Começar</a>
+          <details class="nav-explore"><summary>Explorar</summary><div class="nav-explore-links">
+            <a href="/Teorias/teorias.html">Teorias</a>
+            <a href="/Mapa/mapa.html">Mapa</a>
+            <a href="/GrandesNomes/grandes-nomes.html">Grandes nomes</a>
+            <a href="/Constelacoes/constelacoes.html">Constelações</a>
+            <a href="/Laboratorio/laboratorio.html">Laboratório</a>
+            <a href="/Arquivo/arquivo.html">Publicações</a>
+          </div></details>
+          <a href="/Contribuicoes/contribuicoes.html">Contribuir</a>
+          <a href="/index.html#sobre">Sobre</a>
         </nav>
-
-        <div class="status-pill" aria-live="polite" data-status-pill>
-          <span class="status-dot" aria-hidden="true"></span>
-          <span data-status-text>Arquivo em formação</span>
-        </div>
-        <span class="beta-badge" aria-label="Beta editorial: navegação e catálogos em evolução" title="Beta editorial: navegação e catálogos em evolução">Beta</span>
       </div>
     </header>
 
@@ -68,9 +65,9 @@
         <div class="container inner-hero-grid">
           <div class="inner-hero-copy">
             <p class="eyebrow">ENSAIOS · REGISTROS · FRAGMENTOS</p>
-            <h1 id="archive-page-title">Um arquivo não precisa fingir que já está cheio.</h1>
+            <h1 id="archive-page-title">Ensaios e registros do Observatório.</h1>
             <div class="hero-actions">
-              <a class="button button-primary" href="#arquivo">Conhecer a estrutura</a>
+              <a class="button button-primary" href="#arquivo">Explorar o acervo</a>
               <a class="button button-secondary" href="../Teorias/teorias.html">Explorar teorias existentes</a>
             </div>
           </div>
@@ -79,9 +76,9 @@
             <span>estado editorial</span>
             <strong data-publication-count-label data-content-metric="publications" data-content-format="reviewed-publications">0 publicações revisadas</strong>
             <dl class="page-status-list">
-              <div><dt>Ensaios</dt><dd>estrutura inicial</dd></div>
-              <div><dt>Registros</dt><dd>campo preparado</dd></div>
-              <div><dt>Critério</dt><dd>publicar somente conteúdo real e revisado</dd></div>
+              <div><dt>Formatos</dt><dd>ensaios e notas conceituais</dd></div>
+              <div><dt>Leitura</dt><dd>autoria e fontes identificadas</dd></div>
+              <div><dt>Revisões</dt><dd>histórico por publicação</dd></div>
             </dl>
           </aside>
         </div>
@@ -98,27 +95,27 @@
 
           <div class="archive-type-grid">
             <a class="archive-type-card archive-type-card--active" href="../Teorias/teorias.html">
-              <span>publicado · arquivo central</span>
+              <span>linhas de investigação</span>
               <h3>Teorias</h3>
               <p>Hipóteses estruturadas com pergunta, premissa, estágio, tensão e relações.</p>
               <strong><span data-site-theory-count data-content-metric="theories">10</span> linhas catalogadas</strong>
             </a>
             <article class="archive-type-card">
-              <span>estrutura inicial</span>
+              <span>leitura longa</span>
               <h3>Ensaios</h3>
               <p>Textos longos para desenvolver uma tese com contexto, objeções, fontes e histórico de revisão.</p>
               <strong data-publication-type-count="ensaio" data-content-metric="publicationType:ensaio" data-content-format="published-publication-type">nenhum publicado</strong>
             </article>
             <article class="archive-type-card">
-              <span>campo preparado</span>
+              <span>notas conceituais</span>
               <h3>Registros</h3>
-              <p>Notas conceituais curtas, vinculadas a uma pergunta ou teoria; não são registros pessoais cotidianos.</p>
+              <p>Notas conceituais curtas, vinculadas a uma pergunta ou linha de investigação.</p>
               <strong data-publication-type-count="nota-tecnica" data-content-metric="publicationType:nota-tecnica" data-content-format="published-publication-type">nenhum publicado</strong>
             </article>
             <a class="archive-type-card" href="../Laboratorio/laboratorio.html">
               <span>experimentos ativos</span>
               <h3>Laboratório</h3>
-              <p>Interfaces, canvas e protótipos que investigam uma ideia por gesto, visualização ou código.</p>
+              <p>Visualizações, instrumentos e modelos didáticos para explorar ideias de forma interativa.</p>
               <strong data-site-experiment-count-label data-content-metric="activeExperiments" data-content-format="navigable-fields">experimentos navegáveis</strong>
             </a>
             <a class="archive-type-card" href="../Contribuicoes/contribuicoes.html">
@@ -146,11 +143,11 @@
 
       <section class="section archive-empty-section" data-publication-empty aria-labelledby="empty-archive-title">
           <div class="container empty-panel">
-            <p class="section-kicker">arquivo em formação</p>
-            <h2 id="empty-archive-title">A primeira publicação ainda não entrou em órbita.</h2>
-          <p>Um texto só passa a ocupar este arquivo depois de curadoria, verificação e revisão de tom.</p>
+            <p class="section-kicker">publicações</p>
+            <h2 id="empty-archive-title">Nenhuma publicação disponível.</h2>
+          <p>Explore as linhas de investigação ou envie uma contribuição para avaliação.</p>
           <div class="hero-actions">
-            <a class="button button-secondary" href="../Teorias/teorias.html">Ler o que já está estruturado</a>
+            <a class="button button-secondary" href="../Teorias/teorias.html">Explorar teorias</a>
             <a class="button button-ghost" href="../Mapa/mapa.html">Abrir mapa de relações</a>
             <a class="button button-ghost" href="../Contribuicoes/contribuicoes.html#propor">Propor uma contribuição</a>
           </div>
@@ -161,17 +158,17 @@
         <div class="container">
           <div class="page-section-heading">
             <div>
-              <p class="section-kicker">02 · Fluxo editorial</p>
-              <h2 id="workflow-title">Do rascunho privado ao texto público.</h2>
+              <p class="section-kicker">02 · Guia de leitura</p>
+              <h2 id="workflow-title">O que observar em cada texto.</h2>
             </div>
           </div>
 
-          <ol class="archive-workflow" aria-label="Etapas do fluxo editorial">
-            <li><span>01</span><div><h3>Extrair a pergunta</h3><p>Identificar o problema central, o recorte e a relação com teorias existentes.</p></div></li>
-            <li><span>02</span><div><h3>Separar camadas</h3><p>Distinguir ciência estabelecida, hipótese, metáfora, opinião e consequência filosófica.</p></div></li>
-            <li><span>03</span><div><h3>Verificar e tensionar</h3><p>Revisar fontes, objeções, limites e afirmações que não podem ser sustentadas.</p></div></li>
-            <li><span>04</span><div><h3>Versionar</h3><p>Registrar data, estado editorial, teorias relacionadas e histórico de revisão.</p></div></li>
-            <li><span>05</span><div><h3>Publicar</h3><p>Criar uma URL própria, metadados específicos e leitura confortável em qualquer tela.</p></div></li>
+          <ol class="archive-workflow" aria-label="Pontos de atenção na leitura">
+            <li><span>01</span><div><h3>Pergunta</h3><p>Identifique o problema central e o alcance do argumento.</p></div></li>
+            <li><span>02</span><div><h3>Natureza da proposta</h3><p>Distinga ciência estabelecida, hipótese, metáfora e interpretação filosófica.</p></div></li>
+            <li><span>03</span><div><h3>Fontes e objeções</h3><p>Confira as evidências citadas, os limites e as críticas ao argumento.</p></div></li>
+            <li><span>04</span><div><h3>Histórico</h3><p>Consulte a data e o resumo das mudanças entre versões.</p></div></li>
+            <li><span>05</span><div><h3>Relações</h3><p>Explore os vínculos com outras publicações e linhas de investigação.</p></div></li>
           </ol>
         </div>
       </section>
@@ -179,8 +176,8 @@
       <section class="section">
         <div class="container page-footer-cta">
           <div>
-            <p class="section-kicker">campo já habitado</p>
-            <h2>Enquanto a escrita amadurece, as teorias continuam navegáveis.</h2>
+            <p class="section-kicker">linhas de investigação</p>
+            <h2>Explore perguntas, hipóteses e relações.</h2>
           </div>
           <div class="hero-actions">
             <a class="button button-primary" href="../Teorias/teorias.html">Explorar teorias</a>
@@ -200,21 +197,30 @@
 
     <footer class="site-footer">
       <div class="container footer-grid">
-        <p><strong>Arquivo Editorial</strong><br />Estrutura em formação do Observatório de Matheus Camargo.</p>
+        <p class="footer-identity"><strong>Observatório de Ideias</strong>
+          Código, cosmos e filosofia.<br />Matheus Camargo
+          <small data-site-status-label>Beta editorial</small>
+        </p>
         <nav class="footer-links" aria-label="Navegação e links profissionais" data-footer-nav>
-          <a href="../index.html#topo">Início</a>
-          <a href="../Rotas/rotas.html">Rotas guiadas</a>
-          <a href="../Teorias/teorias.html">Teorias</a>
-          <a href="../Mapa/mapa.html">Mapa</a>
-          <a href="../GrandesNomes/grandes-nomes.html">Grandes nomes</a>
-          <a href="../Constelacoes/constelacoes.html">Constelações</a>
-          <a href="../Laboratorio/laboratorio.html">Laboratório</a>
-          <a href="./arquivo.html">Publicações</a>
-          <a href="../Contribuicoes/contribuicoes.html">Contribuições</a>
-          <a href="../index.html#sobre">Sobre</a>
+          <div class="footer-link-group"><strong>Explorar</strong>
+          <a href="/Teorias/teorias.html">Teorias</a>
+          <a href="/Mapa/mapa.html">Mapa</a>
+          <a href="/GrandesNomes/grandes-nomes.html">Grandes nomes</a>
+          <a href="/Constelacoes/constelacoes.html">Constelações</a>
+          <a href="/Laboratorio/laboratorio.html">Laboratório</a>
+          <a href="/Arquivo/arquivo.html">Publicações</a>
+        </div>
+          <div class="footer-link-group"><strong>Observatório</strong>
+          <a href="/index.html#topo">Início</a>
+          <a href="/Rotas/rotas.html">Rotas guiadas</a>
+          <a href="/Contribuicoes/contribuicoes.html">Contribuições</a>
+          <a href="/index.html#sobre">Sobre</a>
+        </div>
+          <div class="footer-link-group"><strong>Conectar</strong>
           <a href="mailto:soulwatching@gmail.com">E-mail</a>
           <a href="https://www.linkedin.com/in/gomin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://github.com/Matheus14623" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
         </nav>
       </div>
     </footer>
