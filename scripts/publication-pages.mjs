@@ -155,11 +155,10 @@ function renderHistory(publication) {
         `<strong>Versão ${revision.ordinal}${eventLabel ? ` · ${escapeHtml(eventLabel)}` : ''}</strong>`,
         `<time datetime="${escapeHtml(revision.publishedAt)}">${escapeHtml(revision.publishedAt)}</time>`,
         `<p>${escapeHtml(revision.changeSummary)}</p>`,
-        revision.contentHash ? `<code>${escapeHtml(revision.contentHash)}</code>` : '',
         revision.publicSnapshot
           ? [
             '<details>',
-            '<summary>Consultar o snapshot imutável desta versão</summary>',
+            '<summary>Ler o texto desta versão</summary>',
             '<div class="publication-snapshot">',
             `<h3>${escapeHtml(revision.publicSnapshot.title)}</h3>`,
             `<p>${escapeHtml(revision.publicSnapshot.summary)}</p>`,

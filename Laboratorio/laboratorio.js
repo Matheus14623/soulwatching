@@ -49,7 +49,7 @@ function createExperimentCard(experiment) {
   arrow.setAttribute('aria-hidden', 'true');
   strong.append(arrow);
   copy.append(
-    createElement('span', '', `ativo · ${kind?.label || experiment.kind} · ${experiment.technology}`),
+    createElement('span', '', `ativo · ${kind?.label || experiment.kind}`),
     createElement('h3', '', experiment.shortTitle),
     createElement('p', '', experiment.summary),
     strong,

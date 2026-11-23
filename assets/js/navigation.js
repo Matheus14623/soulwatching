@@ -10,6 +10,8 @@ export function initNavigation() {
   const toggle = $('[data-menu-toggle]');
   const nav = $('[data-primary-nav]');
   const backToTop = $('[data-back-to-top]');
+  const explore = $('.nav-explore', nav);
+  const localNavigation = $('.local-page-navigation');
   const mobileMenu = window.matchMedia('(max-width: 1080px)');
   const navLinks = $$('a', nav || document);
   const links = [
@@ -44,6 +46,7 @@ export function initNavigation() {
   };
 
   const closeMenu = (options = {}) => {
+    if (explore) explore.open = false;
     setMenuState(false, options);
   };
 
@@ -69,16 +72,41 @@ export function initNavigation() {
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+    if (event.key !== 'Escape') return;
+    if (explore?.open) {
+      explore.open = false;
+      $('summary', explore)?.focus();
+      event.preventDefault();
+    } else if (toggle?.getAttribute('aria-expanded') === 'true') {
       closeMenu({ returnFocus: true });
     }
   });
 
   document.addEventListener('pointerdown', (event) => {
-    if (toggle?.getAttribute('aria-expanded') !== 'true') return;
     const target = event.target instanceof Node ? event.target : null;
+    if (explore?.open && target && !explore.contains(target)) explore.open = false;
+    if (toggle?.getAttribute('aria-expanded') !== 'true') return;
     if (target && !nav?.contains(target) && !toggle.contains(target)) closeMenu();
   });
+
+  explore?.addEventListener('focusout', (event) => {
+    if (event.relatedTarget instanceof Node && !explore.contains(event.relatedTarget)) explore.open = false;
+  });
+
+  let navigationOffset = 0;
+  let layoutFrame = 0;
+  const measureNavigation = () => {
+    layoutFrame = 0;
+    const headerHeight = Math.ceil(header?.getBoundingClientRect().height || 0);
+    const localHeight = Math.ceil(localNavigation?.getBoundingClientRect().height || 0);
+    document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+    document.documentElement.style.setProperty('--local-navigation-height', `${localHeight}px`);
+    navigationOffset = headerHeight + localHeight;
+    updateHeader();
+  };
+  const scheduleMeasurement = () => {
+    if (!layoutFrame) layoutFrame = window.requestAnimationFrame(measureNavigation);
+  };
 
   const updateHeader = () => {
     const scrolled = window.scrollY > 24;
@@ -91,33 +119,37 @@ export function initNavigation() {
       if (showBackToTop) backToTop.removeAttribute('aria-hidden');
       else backToTop.setAttribute('aria-hidden', 'true');
     }
+    const position = navigationOffset + Math.min(window.innerHeight * 0.15, 120);
+    let activeSection = sections[0];
+    for (const section of sections) {
+      const rectangle = section.getBoundingClientRect();
+      const nested = sections.some((parent) => parent !== section && parent.contains(section));
+      if (rectangle.top <= position && (!nested || rectangle.bottom > navigationOffset)) activeSection = section;
+    }
+    links.forEach((link) => {
+      link.classList.toggle('is-active', link.getAttribute('href') === `#${activeSection?.id}`);
+    });
   };
 
-  updateHeader();
-  window.addEventListener('scroll', updateHeader, { passive: true });
+  measureNavigation();
+  let scrollFrame = 0;
+  window.addEventListener('scroll', () => {
+    if (scrollFrame) return;
+    scrollFrame = window.requestAnimationFrame(() => {
+      scrollFrame = 0;
+      updateHeader();
+    });
+  }, { passive: true });
+  window.addEventListener('resize', scheduleMeasurement, { passive: true });
+  if ('ResizeObserver' in window) {
+    const observer = new ResizeObserver(scheduleMeasurement);
+    if (header) observer.observe(header, { box: 'border-box' });
+    if (localNavigation) observer.observe(localNavigation, { box: 'border-box' });
+  }
+  document.fonts?.ready.then(scheduleMeasurement);
 
   backToTop?.addEventListener('click', () => {
     smoothScrollTo(0);
   });
 
-  if ('IntersectionObserver' in window && sections.length) {
-    const sectionById = new Map(sections.map((section) => [section.id, section]));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (!visible) return;
-        links.forEach((link) => {
-          const target = link.getAttribute('href').slice(1);
-          const active = sectionById.get(target) === visible.target;
-          link.classList.toggle('is-active', active);
-        });
-      },
-      { rootMargin: '-30% 0px -55% 0px', threshold: [0.12, 0.28, 0.5] },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-  }
 }

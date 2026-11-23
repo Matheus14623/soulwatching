@@ -264,8 +264,6 @@ async function openSearch() {
 }
 
 function createTrigger(nav) {
-  const groupLabel = createElement('span', 'primary-nav-group-label', 'Buscar');
-  groupLabel.setAttribute('aria-hidden', 'true');
   const trigger = createElement('button', 'global-search-trigger');
   trigger.dataset.navGroup = 'Buscar';
   trigger.type = 'button';
@@ -277,7 +275,7 @@ function createTrigger(nav) {
     createElement('kbd', '', '⌘K'),
   );
   trigger.addEventListener('click', openSearch);
-  nav.append(groupLabel, trigger);
+  nav.append(trigger);
   searchState.trigger = trigger;
 }
 

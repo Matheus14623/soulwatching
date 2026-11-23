@@ -58,7 +58,7 @@
       "id": "linha-derivada",
       "label": "Linha derivada",
       "shortLabel": "Derivação",
-      "description": "Desdobra outra entrada e só se torna independente se formular uma pergunta própria."
+      "description": "Desdobra uma pergunta ou um mecanismo de outra linha de investigação."
     },
     {
       "id": "heuristica",
@@ -178,7 +178,7 @@
       {
         "id": "resultado-proprio",
         "label": "Resultado distinto",
-        "question": "Há uma consequência verificável que justifique manter uma ficha separada?"
+        "question": "Há uma consequência verificável que distingue esta derivação da linha principal?"
       }
     ],
     "heuristica": [

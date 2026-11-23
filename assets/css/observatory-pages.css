@@ -27,7 +27,7 @@
 }
 
 .gateway-heading h2 {
-  max-width: 14ch;
+  max-width: 20ch;
 }
 
 .gateway-heading > p {
@@ -167,8 +167,7 @@
 
 .inner-hero {
   position: relative;
-  min-height: min(48rem, 88svh);
-  padding: calc(var(--header-height) + clamp(4rem, 8vw, 7rem)) 0 clamp(4rem, 8vw, 7rem);
+  padding: calc(var(--header-height) + clamp(2.75rem, 4vw, 4.5rem)) 0 clamp(2.75rem, 4.5vw, 4.5rem);
   overflow: clip;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
@@ -200,8 +199,8 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.48fr);
-  gap: clamp(2rem, 7vw, 6rem);
+  grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.5fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
   align-items: end;
 }
 
@@ -211,10 +210,10 @@
 }
 
 .inner-hero-copy h1 {
-  max-width: 11ch;
+  max-width: 20ch;
   margin: 0.7rem 0 1rem;
-  font-size: clamp(3.6rem, 9vw, 8.4rem);
-  line-height: 0.94;
+  font-size: clamp(2.5rem, 1.5rem + 3vw, 5.25rem);
+  line-height: 1.04;
 }
 
 .inner-hero-copy .hero-lead {
@@ -257,7 +256,7 @@
 
 .page-status-card strong {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(1.75rem, 2.3vw, 2.5rem);
   line-height: 1;
 }
 
@@ -423,10 +422,6 @@ a.route-card:focus-visible {
   .page-section-heading {
     grid-template-columns: 1fr;
   }
-
-  .inner-hero {
-    min-height: auto;
-  }
 }
 
 @media (max-width: 760px) {
@@ -449,16 +444,15 @@ a.route-card:focus-visible {
 
   .gateway-card--featured h3,
   .gateway-card h3 {
-    font-size: clamp(2.2rem, 12vw, 3.6rem);
+    font-size: clamp(2rem, 8vw, 2.5rem);
   }
 
   .inner-hero {
-    padding-top: calc(var(--header-height) + 3.5rem);
+    padding-top: calc(var(--header-height) + 2rem);
   }
 
   .inner-hero-copy h1 {
     max-width: 100%;
-    font-size: clamp(3rem, 16vw, 5.4rem);
     hyphens: auto;
     overflow-wrap: anywhere;
   }

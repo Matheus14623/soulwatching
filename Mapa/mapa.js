@@ -3,11 +3,13 @@ import { $, escapeHtml, safeSetText } from '../assets/js/utils.js';
 import { smoothScrollToElement } from '../assets/js/smooth-scroll.js';
 import {
   findTheory,
+  getTheoryPublicSummary,
   getTheoryRelations,
   getUniqueTheoryRelations,
   theoryMatchesCategory,
 } from '../assets/js/theory-model.js';
 import { THEORIES, THEORY_FILTERS } from '../assets/data/generated/runtime/theories.js';
+import { getPublicRelationJustification } from '../assets/js/relation-review.js';
 
 const axisDescriptions = {
   cosmologia: 'Escala do universo, ciclos, origem, expansão e horizontes.',
@@ -88,17 +90,20 @@ function renderMap() {
 
 function relatedMarkup(theory) {
   const relations = getTheoryRelations(theory);
-  if (!relations.length) return '<p>Nenhuma relação catalogada neste momento.</p>';
-  return relations.map((relation) => `
+  if (!relations.length) return '<p>Nenhuma relação listada.</p>';
+  return relations.map((relation) => {
+    const justification = getPublicRelationJustification(relation);
+    return `
     <button class="map-related-button" type="button" data-related-theory="${escapeHtml(relation.theory.id)}">
       <span class="map-related-code">${escapeHtml(relation.theory.code)}</span>
       <strong>${escapeHtml(relation.theory.shortTitle)}</strong>
       <span class="map-related-type">${escapeHtml(relation.relationLabel)}</span>
-      <span class="map-related-justification">${escapeHtml(relation.justification)}</span>
+      ${justification ? `<span class="map-related-justification">${escapeHtml(justification)}</span>` : ''}
       <span class="map-related-review${relation.reviewPending ? ' is-pending' : ''}">${escapeHtml(relation.reviewLabel)}</span>
       <span class="map-related-disclosure">${escapeHtml(relation.reviewDisclosure)}</span>
     </button>
-  `).join('');
+  `;
+  }).join('');
 }
 
 function renderDetail() {
@@ -112,12 +117,7 @@ function renderDetail() {
   panel.innerHTML = `
     <p class="map-detail-kicker">${escapeHtml(theory.code)} · ${escapeHtml(theory.typeLabel)}</p>
     <h3>${escapeHtml(theory.title)}</h3>
-    <p>${escapeHtml(theory.centralIdea)}</p>
-
-    <div class="map-detail-section">
-      <h4>Estado do trabalho</h4>
-      <p>${escapeHtml(theory.review.assessment)}</p>
-    </div>
+    <p>${escapeHtml(getTheoryPublicSummary(theory))}</p>
 
     <div class="map-detail-section">
       <h4>Pergunta central</h4>

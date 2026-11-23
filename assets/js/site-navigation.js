@@ -45,19 +45,33 @@ function createExternalLink(item) {
 
 function createPrimaryNavigationItems(pathname, currentPageId) {
   const items = [];
-  let previousGroup = '';
+  const disclosure = document.createElement('details');
+  disclosure.className = 'nav-explore';
+  const summary = document.createElement('summary');
+  summary.textContent = 'Explorar';
+  const destinations = document.createElement('div');
+  destinations.className = 'nav-explore-links';
+  disclosure.append(summary, destinations);
   for (const item of PRIMARY_NAVIGATION) {
-    if (item.group !== previousGroup) {
-      const label = document.createElement('span');
-      label.className = 'primary-nav-group-label';
-      label.textContent = item.group;
-      label.setAttribute('aria-hidden', 'true');
-      items.push(label);
-      previousGroup = item.group;
+    const link = createInternalLink(item, pathname, currentPageId);
+    if (item.group === 'Explorar') {
+      if (!items.includes(disclosure)) items.push(disclosure);
+      destinations.append(link);
+      if (link.hasAttribute('aria-current')) summary.classList.add('is-current');
+    } else {
+      items.push(link);
     }
-    items.push(createInternalLink(item, pathname, currentPageId));
   }
   return items;
+}
+
+function createFooterGroup(label, links) {
+  const group = document.createElement('div');
+  group.className = 'footer-link-group';
+  const heading = document.createElement('strong');
+  heading.textContent = label;
+  group.append(heading, ...links);
+  return group;
 }
 
 export function syncSiteNavigation() {
@@ -73,8 +87,13 @@ export function syncSiteNavigation() {
 
   document.querySelectorAll('[data-footer-nav]').forEach((footerNavigation) => {
     footerNavigation.replaceChildren(
-      ...FOOTER_NAVIGATION.map((item) => createInternalLink(item, pathname, currentPageId, { footer: true })),
-      ...FOOTER_EXTERNAL_LINKS.map(createExternalLink),
+      createFooterGroup('Explorar', FOOTER_NAVIGATION
+        .filter((item) => item.group === 'Explorar')
+        .map((item) => createInternalLink(item, pathname, currentPageId, { footer: true }))),
+      createFooterGroup('Observatório', FOOTER_NAVIGATION
+        .filter((item) => item.group !== 'Explorar')
+        .map((item) => createInternalLink(item, pathname, currentPageId, { footer: true }))),
+      createFooterGroup('Conectar', FOOTER_EXTERNAL_LINKS.map(createExternalLink)),
     );
   });
 
@@ -90,35 +109,9 @@ export function syncSiteNavigation() {
     }));
   });
 
-  document.querySelectorAll('.beta-badge').forEach((badge) => {
-    badge.textContent = SITE_STATUS.label;
-    badge.dataset.siteStatus = SITE_STATUS.id;
-    badge.setAttribute('aria-label', SITE_STATUS.description);
-    badge.title = SITE_STATUS.description;
-  });
-
   document.querySelectorAll('[data-site-status-label]').forEach((element) => {
     element.textContent = SITE_STATUS.displayLabel;
   });
-  document.querySelectorAll('[data-site-status-description]').forEach((element) => {
-    element.textContent = SITE_STATUS.description.replace(/^Beta editorial:\s*/i, '');
-  });
-  document.querySelectorAll('[data-site-status-summary]').forEach((summary) => {
-    const heading = document.createElement('h3');
-    heading.textContent = SITE_STATUS.displayLabel;
-    const scope = document.createElement('p');
-    scope.textContent = SITE_STATUS.scope;
-    const criteriaLabel = document.createElement('p');
-    criteriaLabel.textContent = 'O selo sai quando estes critérios forem atendidos:';
-    const criteria = document.createElement('ul');
-    criteria.append(...SITE_STATUS.exitCriteria.map((criterion) => {
-      const item = document.createElement('li');
-      item.textContent = criterion;
-      return item;
-    }));
-    summary.replaceChildren(heading, scope, criteriaLabel, criteria);
-  });
-
   document.querySelectorAll('[data-public-glossary]').forEach((glossary) => {
     glossary.replaceChildren(...PUBLIC_GLOSSARY.map((entry) => {
       const item = document.createElement('div');

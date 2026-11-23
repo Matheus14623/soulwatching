@@ -107,7 +107,7 @@ export function initContactForm() {
 
     if (!valid) {
       status?.classList.add('is-error');
-      if (status) status.textContent = 'Revise os campos indicados. O foco foi levado ao primeiro deles.';
+      if (status) status.textContent = 'Revise os campos indicados.';
       fields.find((field) => !field.validity.valid)?.focus();
       return;
     }

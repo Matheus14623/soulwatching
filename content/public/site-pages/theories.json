@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "entityType": "site-page",
-  "revisionId": "theories-r1",
+  "revisionId": "theories-r2",
   "order": 3,
   "id": "theories",
   "label": "Teorias",
@@ -51,7 +51,7 @@
       "id": "comparar",
       "label": "Comparar teorias",
       "title": "Comparar duas linhas de investigação",
-      "description": "Comparação editorial pelos mesmos critérios, sem transformar proximidade em evidência.",
+      "description": "Compare perguntas, propostas, fundamentos e limites de duas linhas.",
       "keywords": [
         "comparar",
         "diferenças",
@@ -62,12 +62,12 @@
     {
       "id": "radar",
       "label": "Radar",
-      "title": "Radar de desenvolvimento",
-      "description": "Ideias e formatos que ainda não justificam uma linha de investigação independente.",
+      "title": "Temas de investigação",
+      "description": "Outras perguntas sobre cosmologia, informação e percepção.",
       "keywords": [
         "radar",
-        "desenvolvimento",
-        "ideias futuras"
+        "investigação",
+        "perguntas"
       ]
     }
   ]

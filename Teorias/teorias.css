@@ -8,7 +8,7 @@
 .theory-archive-hero {
   position: relative;
   min-height: auto;
-  padding: calc(var(--header-height) + 4.6rem) 0 clamp(4.5rem, 8vw, 7rem);
+  padding: calc(var(--header-height) + clamp(2.75rem, 4vw, 4.5rem)) 0 clamp(2.75rem, 4.5vw, 4.5rem);
   overflow: hidden;
   isolation: isolate;
 }
@@ -44,9 +44,9 @@
 }
 
 .archive-hero-copy h1 {
-  max-width: 11ch;
-  font-size: clamp(4rem, 11vw, 8.7rem);
-  line-height: 0.87;
+  max-width: 20ch;
+  font-size: clamp(2.5rem, 1.5rem + 3vw, 5.25rem);
+  line-height: 1.04;
 }
 
 .archive-hero-copy .hero-lead {
@@ -361,8 +361,9 @@
 }
 
 .theory-archive-layout {
+  --theory-dossier-top: calc(var(--header-height) + var(--local-navigation-height, 0px) + 1rem);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.42fr);
+  grid-template-columns: minmax(0, 1.6fr) minmax(22rem, 1fr);
   gap: clamp(1rem, 2.6vw, 1.6rem);
   align-items: start;
 }
@@ -381,6 +382,7 @@
 
 .archive-theory-card {
   position: relative;
+  display: grid;
   border: 1px solid rgba(255,255,255,0.105);
   border-radius: var(--radius-lg);
   background:
@@ -398,14 +400,21 @@
 
 .archive-card-trigger {
   display: grid;
+  align-content: start;
+  grid-template-rows: auto auto auto 1fr auto;
   gap: 0.68rem;
   width: 100%;
-  min-height: 100%;
+  min-height: 0;
   padding: clamp(1rem, 1.6vw, 1.15rem);
+  border-radius: inherit;
   color: inherit;
   text-align: left;
   background: transparent;
   cursor: pointer;
+}
+
+.archive-card-trigger:focus-visible {
+  outline-offset: -4px;
 }
 
 .archive-card-trigger:hover .archive-card-title,
@@ -446,22 +455,27 @@
 }
 
 .archive-card-footer span {
+  max-width: 100%;
   padding: 0.32rem 0.5rem;
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 999px;
   background: rgba(255,255,255,0.04);
-  color: var(--muted);
+  color: var(--text-soft);
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  overflow-wrap: break-word;
   text-transform: uppercase;
 }
 
 .theory-dossier {
   position: sticky;
-  top: calc(var(--header-height) + 1rem);
-  max-height: calc(100svh - var(--header-height) - 2rem);
+  top: var(--theory-dossier-top);
+  max-height: calc(100svh - var(--theory-dossier-top) - 1rem);
   overflow: auto;
+  scrollbar-gutter: stable;
+  scroll-padding-block: 1rem;
   padding: clamp(1rem, 1.7vw, 1.25rem);
   border: 1px solid rgba(255,255,255,0.11);
   border-radius: var(--radius-xl);
@@ -477,7 +491,8 @@
   margin: 0.4rem 0 0.45rem;
   font-family: var(--font-serif);
   font-size: clamp(1.55rem, 2.5vw, 2.25rem);
-  line-height: 1.02;
+  line-height: 1.1;
+  overflow-wrap: break-word;
 }
 
 .dossier-header p:last-child,
@@ -488,7 +503,7 @@
 
 .dossier-metrics {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.45rem;
   margin: 1rem 0;
 }
@@ -510,6 +525,11 @@
 .dossier-metrics strong {
   color: var(--accent);
   font-size: 1rem;
+  overflow-wrap: break-word;
+}
+
+.dossier-metrics span:first-child {
+  grid-column: 1 / -1;
 }
 
 .dossier-section,
@@ -796,35 +816,6 @@
 
 .archive-theory-card .status-badge {
   color: var(--accent);
-}
-
-.archive-card-assessment {
-  padding-left: 0.7rem;
-  border-left: 2px solid var(--accent);
-  color: color-mix(in srgb, var(--accent) 82%, white);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  line-height: 1.55;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-}
-
-.dossier-metrics strong {
-  overflow-wrap: anywhere;
-}
-
-.dossier-assessment {
-  margin: 0 0 1rem;
-  padding: 0.72rem 0.8rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
-  border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--accent) 7%, transparent);
-  color: var(--text);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  line-height: 1.5;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .theory-linkage {
@@ -1469,17 +1460,6 @@
   line-height: 1.55;
 }
 
-.rubric-intro {
-  margin: 0 0 0.55rem;
-  color: var(--muted);
-  font-size: 0.75rem;
-  line-height: 1.55;
-}
-
-.rubric-intro strong {
-  color: var(--text-soft);
-}
-
 .theory-figure-list a {
   display: grid;
   gap: 0.25rem;
@@ -1555,7 +1535,6 @@
   text-transform: uppercase;
 }
 
-.revision-record p,
 .copy-status {
   margin: 0;
   color: var(--muted);
@@ -1598,7 +1577,7 @@
 
 @media (max-width: 1180px) {
   .theory-archive-layout {
-    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.48fr);
+    grid-template-columns: minmax(0, 1.25fr) minmax(20rem, 0.85fr);
   }
 
   .theory-archive-grid {
@@ -1638,10 +1617,6 @@
     contain: none;
   }
 
-  .archive-card-trigger {
-    min-height: 0;
-  }
-
   .mobile-theory-detail:not([hidden]) {
     display: block;
   }
@@ -1654,12 +1629,11 @@
 
 @media (max-width: 760px) {
   .theory-archive-hero {
-    padding-top: calc(var(--header-height) + 3rem);
+    padding-top: calc(var(--header-height) + 2rem);
   }
 
   .archive-hero-copy h1 {
-    max-width: 10ch;
-    font-size: clamp(3.3rem, 18vw, 5.7rem);
+    max-width: 100%;
   }
 
   .theory-browser-heading h2 {

@@ -9,6 +9,8 @@ import {
 import { smoothScrollToElement } from './smooth-scroll.js';
 import {
   findTheory,
+  getTheoryPublicProposal,
+  getTheoryPublicSummary,
   getRelatedTheoryIds,
   getUniqueTheoryRelations,
   theoryMatchesCategory,
@@ -30,18 +32,16 @@ function matchesQuery(theory) {
   const haystack = normalizeText([
     theory.title,
     theory.subtitle,
-    theory.summary,
-    theory.proposal,
+    getTheoryPublicSummary(theory),
+    getTheoryPublicProposal(theory),
     theory.typeLabel,
     theory.reviewStateLabel,
-    theory.review.assessment,
     theory.review.known,
     theory.review.focus,
     theory.review.limit,
     theory.review.test,
     theory.concepts.join(' '),
     theory.questions.join(' '),
-    theory.nextSteps.join(' '),
   ].join(' '));
   return haystack.includes(normalizeText(state.query));
 }
@@ -110,13 +110,12 @@ function renderCards(theories) {
       </div>
       <h3>${escapeHtml(theory.title)}</h3>
       <p class="theory-card-subtitle">${escapeHtml(theory.subtitle)}</p>
-      <p class="theory-card-summary">${escapeHtml(theory.summary)}</p>
+      <p class="theory-card-summary">${escapeHtml(getTheoryPublicSummary(theory))}</p>
       <div class="theory-card-meta" aria-label="Resumo da entrada">
         <span>${escapeHtml(theory.reviewStateLabel)}</span>
         <span>${theory.questions.length} perguntas</span>
         <span>${getRelatedTheoryIds(theory).length} relações</span>
       </div>
-      <p class="theory-card-assessment">${escapeHtml(theory.review.assessment)}</p>
       <div class="tag-list">${tagMarkup(theory.concepts)}</div>
     </article>
   `).join('');
@@ -161,9 +160,7 @@ function renderDetail(visibleTheories = getVisibleTheories(filteredTheories(), $
 
     <div class="detail-meta" aria-label="Metadados da entrada">
       <span>${escapeHtml(theory.reviewStateLabel)}</span>
-      <span>${escapeHtml(theory.review.assessment)}</span>
       <span>${theory.questions.length} perguntas abertas</span>
-      <span>${theory.nextSteps.length} próximos passos</span>
     </div>
 
     <div class="detail-section">
@@ -172,8 +169,8 @@ function renderDetail(visibleTheories = getVisibleTheories(filteredTheories(), $
     </div>
 
     <div class="detail-section">
-      <h4>Proposição</h4>
-      <p>${escapeHtml(theory.proposal)}</p>
+      <h4>${theory.independent === false ? 'Recorte em investigação' : 'Proposição'}</h4>
+      <p>${escapeHtml(getTheoryPublicProposal(theory))}</p>
     </div>
 
     <div class="detail-section">
@@ -202,13 +199,8 @@ function renderDetail(visibleTheories = getVisibleTheories(filteredTheories(), $
     </div>
 
     <div class="detail-section">
-      <h4>Próximos passos</h4>
-      <ul>${listMarkup(theory.nextSteps)}</ul>
-    </div>
-
-    <div class="detail-section">
       <h4>Revisão</h4>
-      <p>${escapeHtml(theory.revision.label)} · versão ${escapeHtml(theory.revision.version)}</p>
+      <p>Versão ${escapeHtml(theory.revision.version)} · ${escapeHtml(theory.revision.reviewedAt)}</p>
     </div>
   `;
 }
@@ -236,7 +228,7 @@ function setActiveTheory(id, options = {}) {
   });
 
   const caption = $('[data-map-caption]');
-  safeSetText(caption, `${theory.code} · ${theory.shortTitle}: ${theory.summary}`);
+  safeSetText(caption, `${theory.code} · ${theory.shortTitle}: ${getTheoryPublicSummary(theory)}`);
 
   if (options.scroll) {
     smoothScrollToElement(document.getElementById('teorias'));

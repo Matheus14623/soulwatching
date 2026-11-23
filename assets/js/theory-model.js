@@ -7,6 +7,8 @@ import { getRelationReviewPresentation } from './relation-review.js';
 
 const relationTypeById = new Map(THEORY_RELATION_TYPES.map((item) => [item.id, item]));
 
+export { getTheoryPublicSummary, getTheoryPublicProposal } from './public-content-text.js';
+
 export function findTheory(id, fallback = null) {
   return THEORIES.find((theory) => (
     theory.id === id

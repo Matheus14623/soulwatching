@@ -128,9 +128,9 @@ function renderPublished() {
   if (!CONTRIBUTIONS.length) {
     const empty = createElement('div', 'contribution-empty');
     empty.append(
-      createElement('span', '', 'ARQUIVO EM FORMAÇÃO'),
-      createElement('h3', '', 'Nenhuma contribuição externa publicada ainda.'),
-      createElement('p', '', 'A ausência de entradas evita criar autores ou endossos fictícios. A primeira publicação aparecerá aqui somente depois de autorização, revisão e definição explícita de crédito.'),
+      createElement('span', '', 'CONTRIBUIÇÕES PUBLICADAS'),
+      createElement('h3', '', 'Nenhuma contribuição externa publicada.'),
+      createElement('p', '', 'Envie uma proposta pelo formulário abaixo para avaliação editorial.'),
     );
     dom.list.replaceChildren(empty);
     return;

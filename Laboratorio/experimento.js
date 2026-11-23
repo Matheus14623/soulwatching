@@ -30,14 +30,13 @@ function announce(message) {
 function renderExperimentMeta(experiment) {
   const kind = getExperimentKind(experiment.kind);
   document.title = `${experiment.title} | Laboratório do Observatório`;
-  document.querySelector('[data-experiment-kind]').textContent = `${kind?.label || 'Experimento'} · ${experiment.technology}`;
+  document.querySelector('[data-experiment-kind]').textContent = kind?.label || 'Experimento';
   document.querySelector('[data-experiment-title]').textContent = experiment.title;
   document.querySelector('[data-experiment-summary]').textContent = experiment.summary;
   document.querySelector('[data-experiment-question]').textContent = experiment.question;
   document.querySelector('[data-experiment-state]').textContent = 'ativo e exploratório';
-  document.querySelector('[data-experiment-technology]').textContent = experiment.technology;
   document.querySelector('[data-experiment-inputs]').textContent = 'controladas pelo visitante';
-  document.querySelector('[data-experiment-output]').textContent = 'recalculada localmente';
+  document.querySelector('[data-experiment-output]').textContent = 'atualizada a cada ajuste';
   document.querySelector('[data-experiment-boundary]').textContent = experiment.boundary;
 
   const links = createElement('div', 'experiment-theory-links');
@@ -63,7 +62,6 @@ function renderError(root, message) {
   document.querySelector('[data-experiment-summary]').textContent = 'Este modelo não está disponível neste endereço ou não pôde ser iniciado.';
   document.querySelector('[data-experiment-question]').textContent = 'Escolha outro experimento no catálogo para continuar.';
   document.querySelector('[data-experiment-state]').textContent = 'indisponível';
-  document.querySelector('[data-experiment-technology]').textContent = 'nenhum modelo carregado';
   document.querySelector('[data-experiment-inputs]').textContent = 'nenhuma entrada ativa';
   document.querySelector('[data-experiment-output]').textContent = 'nenhum cálculo realizado';
   document.querySelector('[data-experiment-boundary]').textContent = 'Nenhum resultado foi calculado nesta página.';

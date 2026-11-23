@@ -5,10 +5,6 @@
     var(--bg);
 }
 
-.notable-hero {
-  min-height: min(50rem, 92svh);
-}
-
 .notable-hero::before {
   border-color: rgba(246, 213, 109, 0.17);
   transform: rotate(-9deg) scaleY(0.52);
@@ -66,10 +62,6 @@
   width: min(12rem, 24vw);
   aspect-ratio: 1;
   border-color: rgba(114, 236, 255, 0.17);
-}
-
-.notable-hero .inner-hero-copy h1 {
-  max-width: 10ch;
 }
 
 .notable-status-card::before {
@@ -496,17 +488,12 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, var(--cyan), var(--purple));
-  transform: scaleX(0);
+  transform: scaleX(var(--notable-autoplay-progress, 0));
   transform-origin: left;
-}
-
-.notable-carousel-shell.is-autoplay-running .notable-autoplay-track span {
-  animation: notableAutoplayProgress 30s linear infinite;
 }
 
 .notable-carousel-shell.is-autoplay-paused .notable-autoplay-track span,
 .notable-carousel-shell.is-autoplay-unavailable .notable-autoplay-track span {
-  animation: none;
   opacity: 0.35;
 }
 
@@ -923,8 +910,8 @@
 
 .notable-comparison {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(10rem, 0.34fr) minmax(0, 1fr);
-  gap: 0.8rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
   align-items: start;
 }
 
@@ -1092,14 +1079,16 @@
 }
 
 .trajectory-intersection {
-  position: sticky;
-  top: calc(var(--header-height, 5rem) + 1rem);
-  align-self: start;
-  padding: 1rem;
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: auto minmax(11rem, 0.7fr) minmax(0, 1.3fr);
+  gap: 0.75rem 1rem;
+  align-items: center;
+  padding: 1rem 1.2rem;
   border: 1px dashed rgba(246, 213, 109, 0.3);
   border-radius: var(--radius-lg);
   background: rgba(246, 213, 109, 0.035);
-  text-align: center;
+  text-align: left;
 }
 
 .trajectory-intersection-symbol {
@@ -1113,7 +1102,7 @@
 }
 
 .trajectory-intersection h3 {
-  margin: 0.75rem 0 0.5rem;
+  margin: 0;
   font-family: var(--font-serif);
   font-size: 1.35rem;
 }
@@ -1126,7 +1115,8 @@
 }
 
 .trajectory-shared-list {
-  margin-top: 0.75rem;
+  grid-column: 2 / -1;
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
 }
 
 .notable-trails-section {
@@ -1508,11 +1498,6 @@
   text-transform: uppercase;
 }
 
-@keyframes notableAutoplayProgress {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
 @media (max-width: 1080px) {
   .notable-toolbar,
   .figure-dossier-header,
@@ -1531,21 +1516,6 @@
 
   .notable-index-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .notable-comparison {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .trajectory-intersection {
-    position: static;
-    grid-column: 1 / -1;
-    grid-row: 2;
-  }
-
-  .trajectory-panel:last-child {
-    grid-column: 2;
-    grid-row: 1;
   }
 
   .notable-trail-picker {
@@ -1626,18 +1596,13 @@
     border-radius: var(--radius-md);
   }
 
-  .trajectory-intersection,
-  .trajectory-panel:last-child {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
   .trajectory-intersection {
-    order: 2;
+    grid-template-columns: auto minmax(0, 1fr);
   }
 
-  .trajectory-panel:last-child {
-    order: 3;
+  .trajectory-intersection p,
+  .trajectory-shared-list {
+    grid-column: 1 / -1;
   }
 
   .notable-trail-picker {
