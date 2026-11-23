@@ -1988,7 +1988,7 @@ body[data-mode="observer"] .data-point {
   display: block;
   margin-top: 1rem;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
 }
 
 .footer-link-group {
@@ -2001,7 +2001,7 @@ body[data-mode="observer"] .data-point {
   margin-bottom: 0.7rem;
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
